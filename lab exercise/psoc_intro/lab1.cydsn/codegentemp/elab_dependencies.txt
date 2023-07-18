@@ -1,4 +1,4 @@
-C:\Users\npat025\Dropbox (Uni of Auckland)\CS301\2021\psoc student pack\lab exercise\psoc_intro 4.0\lab1.cydsn\TopDesign\TopDesign.cysch
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\lab1.cydsn\TopDesign\TopDesign.cysch
 C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_pins_v2_20\cy_pins_v2_20.cysym
 C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_pins_v2_20\cy_pins_v2_20.pdf
 C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_pins_v2_20\cy_pins_v2_20.cystate
@@ -64,33 +64,33 @@ C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrim
 C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0\not_v1_0.v
 C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0\version.cypatch
 C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\not_v1_0\Custom\custom.cs
-C:\Users\npat025\Dropbox (Uni of Auckland)\CS301\2021\psoc student pack\lab exercise\psoc_intro 4.0\lab1.cydsn\lab1.cydwr
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Em_EEPROM_Dynamic_v2_20\API\cy_em_eeprom.c
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Em_EEPROM_Dynamic_v2_20\API\cy_em_eeprom.h
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cm3gcc.ld
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\Cm3RealView.scat
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\Cm3Start.c
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\core_cm3.h
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\core_cm3_psoc5.h
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyBootAsmGnu.s
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyBootAsmRv.s
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyDmac.c
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyDmac.h
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyFlash.c
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyFlash.h
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyLib.c
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyLib.h
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cypins.h
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cyPm.c
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cyPm.h
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CySpc.c
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CySpc.h
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cytypes.h
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cyutils.c
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\core_cmFunc.h
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\core_cmInstr.h
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\Cm3Iar.icf
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyBootAsmIar.s
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cmsis_armcc.h
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cmsis_gcc.h
-C:\Users\npat025\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cmsis_compiler.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\lab1.cydsn\lab1.cydwr
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Em_EEPROM_Dynamic_v2_20\API\cy_em_eeprom.c
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Em_EEPROM_Dynamic_v2_20\API\cy_em_eeprom.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cm3gcc.ld
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\Cm3RealView.scat
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\Cm3Start.c
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\core_cm3.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\core_cm3_psoc5.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyBootAsmGnu.s
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyBootAsmRv.s
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyDmac.c
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyDmac.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyFlash.c
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyFlash.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyLib.c
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyLib.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cypins.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cyPm.c
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cyPm.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CySpc.c
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CySpc.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cytypes.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cyutils.c
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\core_cmFunc.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\core_cmInstr.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\Cm3Iar.icf
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\CyBootAsmIar.s
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cmsis_armcc.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cmsis_gcc.h
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\cy_boot_v5_82\PSoC5\API\cmsis_compiler.h

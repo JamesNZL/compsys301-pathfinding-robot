@@ -18,7 +18,7 @@
 int main()
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
-
+    Timer_1_Start();
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
     for(;;)
     {

@@ -1,3 +1,3 @@
-# Component constraints for C:\Users\npat025\Dropbox (Uni of Auckland)\CS301\2021\psoc student pack\lab exercise\psoc_intro 4.0\lab2.cydsn\TopDesign\TopDesign.cysch
-# Project: C:\Users\npat025\Dropbox (Uni of Auckland)\CS301\2021\psoc student pack\lab exercise\psoc_intro 4.0\lab2.cydsn\lab2.cyprj
-# Date: Thu, 15 Jul 2021 21:25:55 GMT
+# Component constraints for C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\lab2.cydsn\TopDesign\TopDesign.cysch
+# Project: C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\lab2.cydsn\lab2.cyprj
+# Date: Tue, 18 Jul 2023 00:07:14 GMT
