@@ -1,0 +1,4 @@
+## Ignore PSoC creator files
+/Generated_Source
+/Backup
+*.*.*
