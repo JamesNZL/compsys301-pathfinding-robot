@@ -1,5 +1,5 @@
--- Project:   C:\Users\npat025\Dropbox (Uni of Auckland)\CS301\2021\psoc student pack\lab exercise\psoc_intro 4.0\lab3.cydsn\lab3.cyprj
--- Generated: 07/16/2021 09:26:15
+-- Project:   C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\lab3.cydsn\lab3.cyprj
+-- Generated: 07/19/2023 12:45:06
 -- PSoC Creator  4.2
 
 ENTITY lab3 IS
@@ -32,7 +32,7 @@ ARCHITECTURE __DEFAULT__ OF lab3 IS
     SIGNAL Net_10 : bit;
     ATTRIBUTE global_signal OF Net_10 : SIGNAL IS true;
     SIGNAL Net_10_local : bit;
-    SIGNAL Net_117 : bit;
+    SIGNAL Net_131 : bit;
     SIGNAL \Timer_1:Net_261\ : bit;
     SIGNAL \Timer_1:Net_51\ : bit;
     SIGNAL __ONE__ : bit;
@@ -345,7 +345,7 @@ BEGIN
             timer_reset => open,
             tc => \Timer_1:Net_51\,
             cmp => \Timer_1:Net_261\,
-            irq => Net_117);
+            irq => Net_131);
 
     __ONE__:macrocell
         GENERIC MAP(
@@ -360,7 +360,7 @@ BEGIN
             int_type => "00",
             is_nmi => 0)
         PORT MAP(
-            interrupt => Net_117,
+            interrupt => Net_131,
             clock => ClockBlock_BUS_CLK);
 
 END __DEFAULT__;

@@ -3,7 +3,7 @@ net ClockBlock_BUS_CLK
 	switch ":clockblockcell.clk_bus_glb==>:interrupt_17.clock"
 	term   ":interrupt_17.clock"
 end ClockBlock_BUS_CLK
-net Net_117
+net Net_131
 	term   ":timercell_0.irq"
 	switch ":timercell_0.irq==>Stub-:dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:v24+:dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:v26"
 	switch "OStub-:dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:v24+:dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:v26"
@@ -13,7 +13,7 @@ net Net_117
 	switch "Stub-:dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:v61+:dsiswitch_bottom@[DSI=(1,3)][side=bottom]:dsihc_bottom:v63==>:interrupt_idmux_17.in_2"
 	switch ":interrupt_idmux_17.interrupt_idmux_17__out==>:interrupt_17.interrupt"
 	term   ":interrupt_17.interrupt"
-end Net_117
+end Net_131
 net __ONE__
 	term   ":udb@[UDB=(1,3)]:pld0:mc0.q"
 	switch ":udb@[UDB=(1,3)]:pld0:mc0.q==>:udb@[UDB=(1,3)]:pld0:output_permute2.q_0"
