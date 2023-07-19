@@ -1,6 +1,6 @@
 -- Project:   lab2
--- Generated: 07/16/2021 09:25:56
--- PSoC Creator  4.2
+-- Generated: 07/19/2023 12:02:27
+-- PSoC Creator  4.4
 
 ENTITY lab2 IS
     PORT(

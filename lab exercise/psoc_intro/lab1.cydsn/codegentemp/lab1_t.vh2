@@ -1,6 +1,6 @@
--- Project:   C:\Users\npat025\Dropbox (Uni of Auckland)\CS301\2021\psoc student pack\lab exercise\psoc_intro 4.0\lab1.cydsn\lab1.cyprj
--- Generated: 07/16/2021 09:25:39
--- PSoC Creator  4.2
+-- Project:   C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\lab exercise\psoc_intro\lab1.cydsn\lab1.cyprj
+-- Generated: 07/18/2023 11:04:35
+-- PSoC Creator  4.4
 
 ENTITY lab1 IS
     PORT(
