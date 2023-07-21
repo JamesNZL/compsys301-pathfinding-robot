@@ -1,6 +1,6 @@
--- Project:   C:\Users\npat025\Dropbox (Uni of Auckland)\CS301\2021\psoc student pack\psoc_code_base\CS301_Class.cydsn\CS301_Class.cyprj
--- Generated: 07/17/2021 00:58:13
--- PSoC Creator  4.2
+-- Project:   C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\CS301_Class.cyprj
+-- Generated: 07/21/2023 13:22:47
+-- PSoC Creator  4.4
 
 ENTITY CS301_Class IS
     PORT(

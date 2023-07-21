@@ -15,3 +15,9 @@ CS301_Class: TopDesign.cysch
 	USBUART [v3.0] to [v3.20]
 
 
+Last Modified Date & Time: 07/21/2023 13:22:02
+
+CS301_Class: CS301_Class.cydwr
+	cy_boot [v5.82] to [v6.10]
+
+

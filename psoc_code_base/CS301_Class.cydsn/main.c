@@ -25,6 +25,7 @@
 void usbPutString(char *s);
 void usbPutChar(char c);
 void handle_usb();
+void handle_pwm_command();
 //* ========================================
 
 
@@ -35,14 +36,14 @@ int main()
 // --------------------------------    
 // ----- INITIALIZATIONS ----------
     CYGlobalIntEnable;
-
+    PWM_1_Start();
 // ------USB SETUP ----------------    
 #ifdef USE_USB    
     USBUART_Start(0,USBUART_5V_OPERATION);
 #endif        
         
     RF_BT_SELECT_Write(0);
-
+    
     usbPutString(displaystring);
     for(;;)
     {
@@ -50,11 +51,40 @@ int main()
         handle_usb();
         if (flag_KB_string == 1)
         {
-            usbPutString(line);
+            handle_pwm_command();
             flag_KB_string = 0;
         }        
     }   
 }
+
+void handle_pwm_command(){
+    // Valid command
+    char percentageString[3]; 
+    char message[BUF_SIZE];
+    if(entry[0] == 'p' && entry[1] == ' ' && entry[2] != NULL){
+        
+        usbPutString("p command entered");
+        //store percentage in a string
+        percentageString[0] = entry[2];
+        percentageString[1] = entry[3];
+        percentageString[2] = entry[4];
+        // get integer representation of percentage
+        uint8 percentage = atoi(percentageString);
+        // get max count assuming it is 8 bits
+        uint8 maxCount = PWM_1_ReadPeriod();
+        
+        // set the compare 
+        uint8 compare = maxCount - (float)maxCount*((float)percentage/100);
+        PWM_1_WriteCompare(compare);
+        
+        // display a status message to the terminal
+        sprintf(message, "Set the duty cycle to %s", percentageString);
+        usbPutString(message);
+    } else {
+        usbPutString("invalid command");
+    }
+}
+
 //* ========================================
 void usbPutString(char *s)
 {
