@@ -1,5 +1,5 @@
 -- Project:   CS301_Class
--- Generated: 07/21/2023 13:22:34
+-- Generated: 07/24/2023 18:04:31
 -- PSoC Creator  4.4
 
 ENTITY CS301_Class IS
@@ -55,6 +55,7 @@ ARCHITECTURE __DEFAULT__ OF CS301_Class IS
     SIGNAL ClockBlock_PLL_OUT : bit;
     SIGNAL ClockBlock_XTAL : bit;
     SIGNAL ClockBlock_XTAL_32KHZ : bit;
+    SIGNAL DAC_Output(0)__PA : bit;
     SIGNAL DB0(0)__PA : bit;
     SIGNAL DB1(0)__PA : bit;
     SIGNAL DB2(0)__PA : bit;
@@ -72,9 +73,7 @@ ARCHITECTURE __DEFAULT__ OF CS301_Class IS
     SIGNAL Net_10 : bit;
     ATTRIBUTE global_signal OF Net_10 : SIGNAL IS true;
     SIGNAL Net_10_local : bit;
-    SIGNAL Net_1496 : bit;
     SIGNAL Net_1497 : bit;
-    SIGNAL Net_1619 : bit;
     SIGNAL Net_1832 : bit;
     SIGNAL Net_1850 : bit;
     ATTRIBUTE udbclken_assigned OF Net_1850 : SIGNAL IS "True";
@@ -96,6 +95,8 @@ ARCHITECTURE __DEFAULT__ OF CS301_Class IS
     SIGNAL Net_362 : bit;
     SIGNAL Net_368 : bit;
     SIGNAL Net_4334 : bit;
+    SIGNAL Net_4432 : bit;
+    SIGNAL Net_4435 : bit;
     SIGNAL Net_724 : bit;
     SIGNAL Net_724_SYNCOUT : bit;
     SIGNAL Net_725 : bit;
@@ -183,6 +184,7 @@ ARCHITECTURE __DEFAULT__ OF CS301_Class IS
     SIGNAL \ADC:Net_3698\ : bit;
     SIGNAL \ADC:Net_3830\ : bit;
     SIGNAL \ADC:Net_3935\ : bit;
+    SIGNAL \\\ADC:SAR:Bypass(0)\\__PA\ : bit;
     SIGNAL \ADC:SAR:Net_207_0\ : bit;
     SIGNAL \ADC:SAR:Net_207_10\ : bit;
     SIGNAL \ADC:SAR:Net_207_11\ : bit;
@@ -209,6 +211,9 @@ ARCHITECTURE __DEFAULT__ OF CS301_Class IS
     SIGNAL \ADC:bSAR_SEQ:enable\ : bit;
     SIGNAL \ADC:bSAR_SEQ:load_period\ : bit;
     SIGNAL \ADC:bSAR_SEQ:nrq_reg\ : bit;
+    SIGNAL \ADC:bSAR_SEQ:soc_in\ : bit;
+    SIGNAL \ADC:bSAR_SEQ:soc_reg\ : bit;
+    SIGNAL \ADC:bSAR_SEQ:state_1\ : bit;
     SIGNAL \ADC:ch_addr_0\ : bit;
     SIGNAL \ADC:ch_addr_1\ : bit;
     SIGNAL \ADC:ch_addr_2\ : bit;
@@ -220,6 +225,7 @@ ARCHITECTURE __DEFAULT__ OF CS301_Class IS
     ATTRIBUTE global_signal OF \ADC:clock\ : SIGNAL IS true;
     SIGNAL \ADC:clock_local\ : bit;
     SIGNAL \ADC:nrq\ : bit;
+    SIGNAL \ADC:soc_out\ : bit;
     SIGNAL \CONTROL:control_2\ : bit;
     SIGNAL \CONTROL:control_3\ : bit;
     SIGNAL \CONTROL:control_4\ : bit;
@@ -443,40 +449,44 @@ ARCHITECTURE __DEFAULT__ OF CS301_Class IS
     ATTRIBUTE Location OF M2_QB(0) : LABEL IS "P0[1]";
     ATTRIBUTE lib_model OF A0(0) : LABEL IS "iocell10";
     ATTRIBUTE Location OF A0(0) : LABEL IS "P0[5]";
-    ATTRIBUTE lib_model OF A1(0) : LABEL IS "iocell11";
+    ATTRIBUTE lib_model OF \ADC:SAR:Bypass(0)\ : LABEL IS "iocell11";
+    ATTRIBUTE Location OF \ADC:SAR:Bypass(0)\ : LABEL IS "P0[2]";
+    ATTRIBUTE lib_model OF A1(0) : LABEL IS "iocell12";
     ATTRIBUTE Location OF A1(0) : LABEL IS "P0[6]";
-    ATTRIBUTE lib_model OF A2(0) : LABEL IS "iocell12";
+    ATTRIBUTE lib_model OF A2(0) : LABEL IS "iocell13";
     ATTRIBUTE Location OF A2(0) : LABEL IS "P0[7]";
-    ATTRIBUTE lib_model OF A3(0) : LABEL IS "iocell13";
+    ATTRIBUTE lib_model OF A3(0) : LABEL IS "iocell14";
     ATTRIBUTE Location OF A3(0) : LABEL IS "P1[2]";
-    ATTRIBUTE lib_model OF A4(0) : LABEL IS "iocell14";
+    ATTRIBUTE lib_model OF A4(0) : LABEL IS "iocell15";
     ATTRIBUTE Location OF A4(0) : LABEL IS "P1[4]";
-    ATTRIBUTE lib_model OF A5(0) : LABEL IS "iocell15";
+    ATTRIBUTE lib_model OF A5(0) : LABEL IS "iocell16";
     ATTRIBUTE Location OF A5(0) : LABEL IS "P1[5]";
-    ATTRIBUTE lib_model OF A6(0) : LABEL IS "iocell16";
+    ATTRIBUTE lib_model OF A6(0) : LABEL IS "iocell17";
     ATTRIBUTE Location OF A6(0) : LABEL IS "P1[6]";
-    ATTRIBUTE lib_model OF A7(0) : LABEL IS "iocell17";
+    ATTRIBUTE lib_model OF A7(0) : LABEL IS "iocell18";
     ATTRIBUTE Location OF A7(0) : LABEL IS "P1[7]";
-    ATTRIBUTE lib_model OF \USBUART:Dm(0)\ : LABEL IS "iocell18";
+    ATTRIBUTE lib_model OF \USBUART:Dm(0)\ : LABEL IS "iocell19";
     ATTRIBUTE Location OF \USBUART:Dm(0)\ : LABEL IS "P15[7]";
-    ATTRIBUTE lib_model OF \USBUART:Dp(0)\ : LABEL IS "iocell19";
+    ATTRIBUTE lib_model OF \USBUART:Dp(0)\ : LABEL IS "iocell20";
     ATTRIBUTE Location OF \USBUART:Dp(0)\ : LABEL IS "P15[6]";
-    ATTRIBUTE lib_model OF M1_D1(0) : LABEL IS "iocell20";
+    ATTRIBUTE lib_model OF M1_D1(0) : LABEL IS "iocell21";
     ATTRIBUTE Location OF M1_D1(0) : LABEL IS "P3[3]";
-    ATTRIBUTE lib_model OF Rx_1(0) : LABEL IS "iocell21";
+    ATTRIBUTE lib_model OF Rx_1(0) : LABEL IS "iocell22";
     ATTRIBUTE Location OF Rx_1(0) : LABEL IS "P2[2]";
-    ATTRIBUTE lib_model OF Tx_1(0) : LABEL IS "iocell22";
+    ATTRIBUTE lib_model OF Tx_1(0) : LABEL IS "iocell23";
     ATTRIBUTE Location OF Tx_1(0) : LABEL IS "P2[3]";
-    ATTRIBUTE lib_model OF LED(0) : LABEL IS "iocell23";
+    ATTRIBUTE lib_model OF LED(0) : LABEL IS "iocell24";
     ATTRIBUTE Location OF LED(0) : LABEL IS "P2[1]";
-    ATTRIBUTE lib_model OF DB0(0) : LABEL IS "iocell24";
+    ATTRIBUTE lib_model OF DB0(0) : LABEL IS "iocell25";
     ATTRIBUTE Location OF DB0(0) : LABEL IS "P3[0]";
-    ATTRIBUTE lib_model OF DB1(0) : LABEL IS "iocell25";
+    ATTRIBUTE lib_model OF DB1(0) : LABEL IS "iocell26";
     ATTRIBUTE Location OF DB1(0) : LABEL IS "P3[1]";
-    ATTRIBUTE lib_model OF DB2(0) : LABEL IS "iocell26";
+    ATTRIBUTE lib_model OF DB2(0) : LABEL IS "iocell27";
     ATTRIBUTE Location OF DB2(0) : LABEL IS "P3[6]";
-    ATTRIBUTE lib_model OF Rx_2(0) : LABEL IS "iocell27";
+    ATTRIBUTE lib_model OF Rx_2(0) : LABEL IS "iocell28";
     ATTRIBUTE Location OF Rx_2(0) : LABEL IS "P2[4]";
+    ATTRIBUTE lib_model OF DAC_Output(0) : LABEL IS "iocell29";
+    ATTRIBUTE Location OF DAC_Output(0) : LABEL IS "P2[0]";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:reload\ : LABEL IS "macrocell2";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:status_0\ : LABEL IS "macrocell3";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:status_2\ : LABEL IS "macrocell4";
@@ -539,6 +549,7 @@ ARCHITECTURE __DEFAULT__ OF CS301_Class IS
     ATTRIBUTE lib_model OF \UART:BUART:sRX:RxShifter:u0\ : LABEL IS "datapathcell7";
     ATTRIBUTE lib_model OF \UART:BUART:sRX:RxSts\ : LABEL IS "statusicell6";
     ATTRIBUTE lib_model OF \RF_BT_SELECT:Sync:ctrl_reg\ : LABEL IS "controlcell5";
+    ATTRIBUTE Location OF \VDAC8_1:viDAC8\ : LABEL IS "F(VIDAC,0)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Net_1251\ : LABEL IS "macrocell41";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell42";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell43";
@@ -640,24 +651,28 @@ ARCHITECTURE __DEFAULT__ OF CS301_Class IS
     ATTRIBUTE lib_model OF Net_1497 : LABEL IS "macrocell139";
     ATTRIBUTE lib_model OF \ADC:bSAR_SEQ:bus_clk_nrq_reg\ : LABEL IS "macrocell140";
     ATTRIBUTE lib_model OF \ADC:bSAR_SEQ:nrq_reg\ : LABEL IS "macrocell141";
-    ATTRIBUTE lib_model OF \QuadDec_M2:Net_1203_split\ : LABEL IS "macrocell142";
-    ATTRIBUTE lib_model OF \UART:BUART:txn\ : LABEL IS "macrocell143";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_1\ : LABEL IS "macrocell144";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_0\ : LABEL IS "macrocell145";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_state_2\ : LABEL IS "macrocell146";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_bitclk\ : LABEL IS "macrocell147";
-    ATTRIBUTE lib_model OF \UART:BUART:tx_ctrl_mark_last\ : LABEL IS "macrocell148";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_state_0\ : LABEL IS "macrocell149";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_load_fifo\ : LABEL IS "macrocell150";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_state_3\ : LABEL IS "macrocell151";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_state_2\ : LABEL IS "macrocell152";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_bitclk_enable\ : LABEL IS "macrocell153";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_state_stop1_reg\ : LABEL IS "macrocell154";
-    ATTRIBUTE lib_model OF \UART:BUART:pollcount_1\ : LABEL IS "macrocell155";
-    ATTRIBUTE lib_model OF \UART:BUART:pollcount_0\ : LABEL IS "macrocell156";
-    ATTRIBUTE lib_model OF \QuadDec_M2:Net_1251_split\ : LABEL IS "macrocell157";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_status_3\ : LABEL IS "macrocell158";
-    ATTRIBUTE lib_model OF \UART:BUART:rx_last\ : LABEL IS "macrocell159";
+    ATTRIBUTE lib_model OF \ADC:bSAR_SEQ:soc_in\ : LABEL IS "macrocell142";
+    ATTRIBUTE lib_model OF \ADC:soc_out\ : LABEL IS "macrocell143";
+    ATTRIBUTE lib_model OF \ADC:bSAR_SEQ:soc_reg\ : LABEL IS "macrocell144";
+    ATTRIBUTE lib_model OF \ADC:bSAR_SEQ:state_1\ : LABEL IS "macrocell145";
+    ATTRIBUTE lib_model OF \QuadDec_M2:Net_1203_split\ : LABEL IS "macrocell146";
+    ATTRIBUTE lib_model OF \UART:BUART:txn\ : LABEL IS "macrocell147";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_1\ : LABEL IS "macrocell148";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_0\ : LABEL IS "macrocell149";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_state_2\ : LABEL IS "macrocell150";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_bitclk\ : LABEL IS "macrocell151";
+    ATTRIBUTE lib_model OF \UART:BUART:tx_ctrl_mark_last\ : LABEL IS "macrocell152";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_state_0\ : LABEL IS "macrocell153";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_load_fifo\ : LABEL IS "macrocell154";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_state_3\ : LABEL IS "macrocell155";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_state_2\ : LABEL IS "macrocell156";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_bitclk_enable\ : LABEL IS "macrocell157";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_state_stop1_reg\ : LABEL IS "macrocell158";
+    ATTRIBUTE lib_model OF \UART:BUART:pollcount_1\ : LABEL IS "macrocell159";
+    ATTRIBUTE lib_model OF \UART:BUART:pollcount_0\ : LABEL IS "macrocell160";
+    ATTRIBUTE lib_model OF \QuadDec_M2:Net_1251_split\ : LABEL IS "macrocell161";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_status_3\ : LABEL IS "macrocell162";
+    ATTRIBUTE lib_model OF \UART:BUART:rx_last\ : LABEL IS "macrocell163";
     COMPONENT clockblockcell
         PORT (
             dclk_0 : OUT std_ulogic;
@@ -1084,6 +1099,22 @@ ARCHITECTURE __DEFAULT__ OF CS301_Class IS
             dma_req_6 : OUT std_ulogic;
             dma_req_7 : OUT std_ulogic;
             dma_termin : OUT std_ulogic);
+    END COMPONENT;
+    COMPONENT vidaccell
+        PORT (
+            data_0 : IN std_ulogic;
+            data_1 : IN std_ulogic;
+            data_2 : IN std_ulogic;
+            data_3 : IN std_ulogic;
+            data_4 : IN std_ulogic;
+            data_5 : IN std_ulogic;
+            data_6 : IN std_ulogic;
+            data_7 : IN std_ulogic;
+            strobe : IN std_ulogic;
+            strobe_udb : IN std_ulogic;
+            reset : IN std_ulogic;
+            idir : IN std_ulogic;
+            ioff : IN std_ulogic);
     END COMPONENT;
 BEGIN
 
@@ -2042,6 +2073,95 @@ BEGIN
             oe => open,
             in_clock => open,
             pin_input => \ADC:AMuxHw_2_Decoder_one_hot_0\,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
+    \ADC:SAR:Bypass\:logicalport
+        GENERIC MAP(
+            drive_mode => "000",
+            ibuf_enabled => "0",
+            id => "fde0a943-5276-4812-84ac-47fe7c122954/dea208d9-07b0-438b-a5e0-ac5d207f2658/16a808f6-2e13-45b9-bce0-b001c8655113",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "0",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "A",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "00000000",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vohsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "10",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    \ADC:SAR:Bypass(0)\:iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "\ADC:SAR:Bypass\",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000010")
+        PORT MAP(
+            pa_out => \\\ADC:SAR:Bypass(0)\\__PA\,
+            oe => open,
+            in_clock => open,
             in_clock_en => '1',
             in_reset => '0',
             out_clock => open,
@@ -3586,6 +3706,95 @@ BEGIN
             out_clock_en => '1',
             out_reset => '0');
 
+    DAC_Output:logicalport
+        GENERIC MAP(
+            drive_mode => "000",
+            ibuf_enabled => "0",
+            id => "77715107-f8d5-47e5-a629-0fb83101ac6b",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "0",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "A",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "00000000",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vohsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "10",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    DAC_Output(0):iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "DAC_Output",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000010")
+        PORT MAP(
+            pa_out => DAC_Output(0)__PA,
+            oe => open,
+            in_clock => open,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
     \QuadDec_M1:Cnt16:CounterUDB:reload\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1 * !main_2)",
@@ -3777,7 +3986,7 @@ BEGIN
             clken_mode => 1)
         PORT MAP(
             q => \ADC:bSAR_SEQ:cnt_enable\,
-            main_0 => Net_1496,
+            main_0 => Net_4432,
             main_1 => \ADC:bSAR_SEQ:load_period\);
 
     Net_1880:macrocell
@@ -4335,7 +4544,7 @@ BEGIN
             cy_registers => "")
         PORT MAP(
             clk_udb => \ADC:clock_local\,
-            sof_udb => open,
+            sof_udb => \ADC:soc_out\,
             vp_ctl_udb_3 => open,
             vp_ctl_udb_2 => open,
             vp_ctl_udb_1 => open,
@@ -4345,7 +4554,7 @@ BEGIN
             vn_ctl_udb_1 => open,
             vn_ctl_udb_0 => open,
             irq => \ADC:SAR:Net_252\,
-            next => Net_1496,
+            next => Net_4432,
             data_out_udb_11 => \ADC:SAR:Net_207_11\,
             data_out_udb_10 => \ADC:SAR:Net_207_10\,
             data_out_udb_9 => \ADC:SAR:Net_207_9\,
@@ -4461,14 +4670,6 @@ BEGIN
             in => \ADC:nrq\,
             out => \ADC:Net_3935\);
 
-    isr_TS:interrupt
-        GENERIC MAP(
-            int_type => "00",
-            is_nmi => 0)
-        PORT MAP(
-            interrupt => Net_1619,
-            clock => ClockBlock_BUS_CLK);
-
     \Timer_TS:TimerHW\:timercell
         GENERIC MAP(
             cy_registers => "")
@@ -4478,7 +4679,7 @@ BEGIN
             enable => __ONE__,
             capture => open,
             timer_reset => open,
-            tc => Net_1619,
+            tc => Net_4435,
             cmp => \Timer_TS:Net_261\,
             irq => \Timer_TS:Net_57\);
 
@@ -4833,6 +5034,16 @@ BEGIN
             control_1 => \RF_BT_SELECT:control_1\,
             control_0 => Net_3437,
             busclk => ClockBlock_BUS_CLK);
+
+    \VDAC8_1:viDAC8\:vidaccell
+        GENERIC MAP(
+            cy_registers => "",
+            is_all_if_any => 0,
+            reg_data => 0)
+        PORT MAP(
+            reset => open,
+            idir => open,
+            ioff => open);
 
     \QuadDec_M1:Net_1251\:macrocell
         GENERIC MAP(
@@ -6431,6 +6642,67 @@ BEGIN
             clk_en => \ADC:bSAR_SEQ:enable\,
             clock_0 => \ADC:clock\,
             main_0 => \ADC:bSAR_SEQ:bus_clk_nrq_reg\);
+
+    \ADC:bSAR_SEQ:soc_in\:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * main_1)",
+            regmode => 1,
+            clk_inv => '0',
+            clken_inv => '0',
+            clken_mode => 3)
+        PORT MAP(
+            q => \ADC:bSAR_SEQ:soc_in\,
+            clk_en => \ADC:bSAR_SEQ:enable\,
+            clock_0 => \ADC:clock\,
+            main_0 => \ADC:bSAR_SEQ:soc_reg\,
+            main_1 => Net_4435);
+
+    \ADC:soc_out\:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * main_1 * !main_2 * main_4 * !main_5) + (!main_0 * !main_2 * main_3 * !main_4)",
+            regmode => 1,
+            clk_inv => '0',
+            clken_inv => '0',
+            clken_mode => 3)
+        PORT MAP(
+            q => \ADC:soc_out\,
+            clk_en => \ADC:bSAR_SEQ:enable\,
+            clock_0 => \ADC:clock\,
+            main_0 => \ADC:soc_out\,
+            main_1 => \ADC:Net_3830\,
+            main_2 => \ADC:bSAR_SEQ:load_period\,
+            main_3 => \ADC:bSAR_SEQ:soc_in\,
+            main_4 => \ADC:bSAR_SEQ:state_1\,
+            main_5 => \ADC:bSAR_SEQ:cnt_tc\);
+
+    \ADC:bSAR_SEQ:soc_reg\:macrocell
+        GENERIC MAP(
+            eqn_main => "(main_0)",
+            regmode => 1,
+            clk_inv => '0',
+            clken_inv => '0',
+            clken_mode => 3)
+        PORT MAP(
+            q => \ADC:bSAR_SEQ:soc_reg\,
+            clk_en => \ADC:bSAR_SEQ:enable\,
+            clock_0 => \ADC:clock\,
+            main_0 => Net_4435);
+
+    \ADC:bSAR_SEQ:state_1\:macrocell
+        GENERIC MAP(
+            eqn_main => "(!main_0 * !main_1 * !main_2 * main_3) + (main_0 * !main_2 * !main_3)",
+            regmode => 1,
+            clk_inv => '0',
+            clken_inv => '0',
+            clken_mode => 3)
+        PORT MAP(
+            q => \ADC:bSAR_SEQ:state_1\,
+            clk_en => \ADC:bSAR_SEQ:enable\,
+            clock_0 => \ADC:clock\,
+            main_0 => \ADC:soc_out\,
+            main_1 => \ADC:Net_3830\,
+            main_2 => \ADC:bSAR_SEQ:load_period\,
+            main_3 => \ADC:bSAR_SEQ:state_1\);
 
     \QuadDec_M2:Net_1203_split\:macrocell
         GENERIC MAP(

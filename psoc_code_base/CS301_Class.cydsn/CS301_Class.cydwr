@@ -430,6 +430,7 @@
       <Data key="06558356-fdf8-4008-a956-bbdf645a3ee7" value="RX_2" />
       <Data key="9224328b-1c0f-46d5-8e08-4a551e10952e" value="MA_INV" />
       <Data key="29017152-12a1-4f98-9f2e-a92c7a5b3a0c" value="Rx_2" />
+      <Data key="77715107-f8d5-47e5-a629-0fb83101ac6b" value="DAC_Output" />
       <Data key="79772720-a0e3-4c4c-9406-2e0ad94c56bf" value="M2_QB" />
       <Data key="a3c4ee1d-1143-4f67-9a9b-4c222ba41b9a" value="M1_IN2" />
       <Data key="a5db89f8-422e-4e1c-9c19-9200e66c9056" value="A4" />
@@ -3635,6 +3636,11 @@
     <Group key="29017152-12a1-4f98-9f2e-a92c7a5b3a0c">
       <Group key="0">
         <Data key="Port Format" value="2,4" />
+      </Group>
+    </Group>
+    <Group key="77715107-f8d5-47e5-a629-0fb83101ac6b">
+      <Group key="0">
+        <Data key="Port Format" value="2,0" />
       </Group>
     </Group>
     <Group key="79772720-a0e3-4c4c-9406-2e0ad94c56bf">

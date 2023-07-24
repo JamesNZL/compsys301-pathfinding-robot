@@ -27,16 +27,28 @@ void usbPutChar(char c);
 void handle_usb();
 void handle_pwm_command();
 //* ========================================
+volatile uint8_t readingIndex = 0;
+volatile uint8_t buffer[40];
+
+CY_ISR(conversion_finished){
+    uint16_t result = ADC_GetResult16(0);
+    float voltage = (2.5*(float)result)/256;
+    uint8_t dac = (voltage/4.08)*256;
+    VDAC8_1_SetValue(dac);
+}
+
 
 
 int main()
 {
-    
-
 // --------------------------------    
 // ----- INITIALIZATIONS ----------
     CYGlobalIntEnable;
     PWM_1_Start();
+    Timer_TS_Start();
+    ADC_Start();
+    VDAC8_1_Start();
+    isr_eoc_StartEx(conversion_finished);
 // ------USB SETUP ----------------    
 #ifdef USE_USB    
     USBUART_Start(0,USBUART_5V_OPERATION);

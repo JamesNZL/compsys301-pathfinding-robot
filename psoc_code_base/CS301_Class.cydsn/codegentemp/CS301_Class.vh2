@@ -2,7 +2,7 @@
 --	Conversion of CS301_Class.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Fri Jul 21 13:22:25 2023
+--	Mon Jul 24 18:04:29 2023
 --
 
 USE cypress.cypress.all;
@@ -606,62 +606,62 @@ SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_60\ : bit;
 SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_61\ : bit;
 SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_62\ : bit;
 SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_63\ : bit;
-TERMINAL Net_1584 : bit;
-TERMINAL Net_1583 : bit;
-TERMINAL Net_1582 : bit;
-TERMINAL Net_1581 : bit;
-TERMINAL Net_1580 : bit;
-TERMINAL Net_1579 : bit;
-TERMINAL Net_1578 : bit;
-TERMINAL Net_1577 : bit;
-TERMINAL Net_1576 : bit;
-TERMINAL Net_1575 : bit;
-TERMINAL Net_1574 : bit;
-TERMINAL Net_1573 : bit;
-TERMINAL Net_1572 : bit;
-TERMINAL Net_1571 : bit;
-TERMINAL Net_1570 : bit;
-TERMINAL Net_1569 : bit;
-TERMINAL Net_1568 : bit;
-TERMINAL Net_1566 : bit;
-TERMINAL Net_1564 : bit;
-TERMINAL Net_1563 : bit;
-TERMINAL Net_1561 : bit;
-TERMINAL Net_1559 : bit;
-TERMINAL Net_1558 : bit;
-TERMINAL Net_1556 : bit;
-TERMINAL Net_1554 : bit;
-TERMINAL Net_1553 : bit;
-TERMINAL Net_1551 : bit;
-TERMINAL Net_1549 : bit;
-TERMINAL Net_1548 : bit;
-TERMINAL Net_1546 : bit;
-TERMINAL Net_1544 : bit;
-TERMINAL Net_1543 : bit;
-TERMINAL Net_1541 : bit;
-TERMINAL Net_1539 : bit;
-TERMINAL Net_1538 : bit;
-TERMINAL Net_1536 : bit;
-TERMINAL Net_1534 : bit;
-TERMINAL Net_1533 : bit;
-TERMINAL Net_1531 : bit;
-TERMINAL Net_1529 : bit;
-TERMINAL Net_1528 : bit;
-TERMINAL Net_1526 : bit;
-TERMINAL Net_1524 : bit;
-TERMINAL Net_1523 : bit;
-TERMINAL Net_1521 : bit;
-TERMINAL Net_1519 : bit;
-TERMINAL Net_1518 : bit;
-TERMINAL Net_1516 : bit;
-TERMINAL Net_1514 : bit;
-TERMINAL Net_1513 : bit;
-TERMINAL Net_1511 : bit;
-TERMINAL Net_1509 : bit;
-TERMINAL Net_1508 : bit;
-TERMINAL Net_1506 : bit;
-TERMINAL Net_1504 : bit;
-TERMINAL Net_1503 : bit;
+TERMINAL Net_4429 : bit;
+TERMINAL Net_4428 : bit;
+TERMINAL Net_4427 : bit;
+TERMINAL Net_4426 : bit;
+TERMINAL Net_4425 : bit;
+TERMINAL Net_4424 : bit;
+TERMINAL Net_4423 : bit;
+TERMINAL Net_4422 : bit;
+TERMINAL Net_4421 : bit;
+TERMINAL Net_4420 : bit;
+TERMINAL Net_4419 : bit;
+TERMINAL Net_4418 : bit;
+TERMINAL Net_4417 : bit;
+TERMINAL Net_4416 : bit;
+TERMINAL Net_4415 : bit;
+TERMINAL Net_4414 : bit;
+TERMINAL Net_4392 : bit;
+TERMINAL Net_4413 : bit;
+TERMINAL Net_4389 : bit;
+TERMINAL Net_4387 : bit;
+TERMINAL Net_4412 : bit;
+TERMINAL Net_4384 : bit;
+TERMINAL Net_4383 : bit;
+TERMINAL Net_4411 : bit;
+TERMINAL Net_4380 : bit;
+TERMINAL Net_4379 : bit;
+TERMINAL Net_4410 : bit;
+TERMINAL Net_4376 : bit;
+TERMINAL Net_4375 : bit;
+TERMINAL Net_4409 : bit;
+TERMINAL Net_4372 : bit;
+TERMINAL Net_4371 : bit;
+TERMINAL Net_4408 : bit;
+TERMINAL Net_4368 : bit;
+TERMINAL Net_4367 : bit;
+TERMINAL Net_4407 : bit;
+TERMINAL Net_4363 : bit;
+TERMINAL Net_4362 : bit;
+TERMINAL Net_4406 : bit;
+TERMINAL Net_4359 : bit;
+TERMINAL Net_4358 : bit;
+TERMINAL Net_4405 : bit;
+TERMINAL Net_4355 : bit;
+TERMINAL Net_4354 : bit;
+TERMINAL Net_4404 : bit;
+TERMINAL Net_4351 : bit;
+TERMINAL Net_4350 : bit;
+TERMINAL Net_4403 : bit;
+TERMINAL Net_4347 : bit;
+TERMINAL Net_4346 : bit;
+TERMINAL Net_4431 : bit;
+TERMINAL Net_4401 : bit;
+TERMINAL Net_4400 : bit;
+TERMINAL Net_4430 : bit;
+TERMINAL Net_4397 : bit;
+TERMINAL Net_4396 : bit;
 TERMINAL Net_1178 : bit;
 TERMINAL Net_1176 : bit;
 TERMINAL Net_1175 : bit;
@@ -671,7 +671,7 @@ TERMINAL Net_1170 : bit;
 TERMINAL Net_1168 : bit;
 TERMINAL \ADC:V_single\ : bit;
 TERMINAL \ADC:SAR:Net_248\ : bit;
-TERMINAL \ADC:SAR:Net_235\ : bit;
+TERMINAL Net_4434 : bit;
 SIGNAL \ADC:SAR:vp_ctl_0\ : bit;
 SIGNAL \ADC:SAR:vp_ctl_2\ : bit;
 SIGNAL \ADC:SAR:vn_ctl_1\ : bit;
@@ -685,9 +685,9 @@ TERMINAL \ADC:Net_2803\ : bit;
 TERMINAL \ADC:SAR:Net_126\ : bit;
 TERMINAL \ADC:SAR:Net_215\ : bit;
 TERMINAL \ADC:SAR:Net_257\ : bit;
-SIGNAL \ADC:SAR:soc\ : bit;
+SIGNAL \ADC:soc_out\ : bit;
 SIGNAL \ADC:SAR:Net_252\ : bit;
-SIGNAL Net_1496 : bit;
+SIGNAL Net_4432 : bit;
 SIGNAL \ADC:SAR:Net_207_11\ : bit;
 SIGNAL \ADC:SAR:Net_207_10\ : bit;
 SIGNAL \ADC:SAR:Net_207_9\ : bit;
@@ -701,8 +701,14 @@ SIGNAL \ADC:SAR:Net_207_2\ : bit;
 SIGNAL \ADC:SAR:Net_207_1\ : bit;
 SIGNAL \ADC:SAR:Net_207_0\ : bit;
 SIGNAL \ADC:Net_3830\ : bit;
-TERMINAL \ADC:SAR:Net_209\ : bit;
+TERMINAL \ADC:SAR:Net_210\ : bit;
+SIGNAL \ADC:SAR:tmpOE__Bypass_net_0\ : bit;
+SIGNAL \ADC:SAR:tmpFB_0__Bypass_net_0\ : bit;
+SIGNAL \ADC:SAR:tmpIO_0__Bypass_net_0\ : bit;
+TERMINAL \ADC:SAR:tmpSIOVREF__Bypass_net_0\ : bit;
+SIGNAL \ADC:SAR:tmpINTERRUPT_0__Bypass_net_0\ : bit;
 TERMINAL \ADC:SAR:Net_149\ : bit;
+TERMINAL \ADC:SAR:Net_209\ : bit;
 TERMINAL \ADC:SAR:Net_255\ : bit;
 TERMINAL \ADC:SAR:Net_368\ : bit;
 SIGNAL \ADC:SAR:Net_221\ : bit;
@@ -738,14 +744,21 @@ SIGNAL \ADC:Net_3935\ : bit;
 SIGNAL \ADC:bSAR_SEQ:nrq_reg\ : bit;
 SIGNAL \ADC:bSAR_SEQ:nrq_edge_detect\ : bit;
 SIGNAL Net_1497 : bit;
-SIGNAL \ADC:soc_out\ : bit;
+SIGNAL \ADC:bSAR_SEQ:soc_in\ : bit;
+SIGNAL \ADC:bSAR_SEQ:soc_edge_detect_reg\ : bit;
+SIGNAL \ADC:bSAR_SEQ:state_0\ : bit;
+SIGNAL \ADC:bSAR_SEQ:soc_reg\ : bit;
+SIGNAL Net_4435 : bit;
+SIGNAL \ADC:bSAR_SEQ:soc_edge_detect\ : bit;
+SIGNAL \ADC:bSAR_SEQ:state_2\ : bit;
+SIGNAL \ADC:bSAR_SEQ:state_1\ : bit;
+SIGNAL \ADC:bSAR_SEQ:cnt_tc\ : bit;
 SIGNAL \ADC:bSAR_SEQ:control_7\ : bit;
 SIGNAL \ADC:bSAR_SEQ:control_6\ : bit;
 SIGNAL \ADC:bSAR_SEQ:control_5\ : bit;
 SIGNAL \ADC:bSAR_SEQ:control_4\ : bit;
 SIGNAL \ADC:bSAR_SEQ:control_3\ : bit;
 SIGNAL \ADC:bSAR_SEQ:count_6\ : bit;
-SIGNAL \ADC:bSAR_SEQ:cnt_tc\ : bit;
 SIGNAL \ADC:Net_3874\ : bit;
 SIGNAL \ADC:Net_3698\ : bit;
 SIGNAL \ADC:nrq\ : bit;
@@ -887,7 +900,6 @@ SIGNAL tmpFB_0__A7_net_0 : bit;
 SIGNAL tmpIO_0__A7_net_0 : bit;
 TERMINAL tmpSIOVREF__A7_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__A7_net_0 : bit;
-SIGNAL Net_1619 : bit;
 SIGNAL Net_12 : bit;
 SIGNAL Net_10 : bit;
 SIGNAL \Timer_TS:Net_260\ : bit;
@@ -895,7 +907,7 @@ SIGNAL \Timer_TS:Net_266\ : bit;
 SIGNAL \Timer_TS:Net_51\ : bit;
 SIGNAL \Timer_TS:Net_261\ : bit;
 SIGNAL \Timer_TS:Net_57\ : bit;
-SIGNAL Net_1614 : bit;
+SIGNAL Net_4438 : bit;
 SIGNAL \Timer_TS:Net_102\ : bit;
 SIGNAL \USBUART:Net_1010\ : bit;
 SIGNAL \USBUART:tmpOE__Dm_net_0\ : bit;
@@ -1394,6 +1406,16 @@ SIGNAL \RF_BT_SELECT:control_3\ : bit;
 SIGNAL \RF_BT_SELECT:control_2\ : bit;
 SIGNAL \RF_BT_SELECT:control_1\ : bit;
 SIGNAL \RF_BT_SELECT:control_0\ : bit;
+SIGNAL \VDAC8_1:Net_83\ : bit;
+SIGNAL \VDAC8_1:Net_81\ : bit;
+SIGNAL \VDAC8_1:Net_82\ : bit;
+TERMINAL Net_4338 : bit;
+TERMINAL \VDAC8_1:Net_77\ : bit;
+SIGNAL tmpOE__DAC_Output_net_0 : bit;
+SIGNAL tmpFB_0__DAC_Output_net_0 : bit;
+SIGNAL tmpIO_0__DAC_Output_net_0 : bit;
+TERMINAL tmpSIOVREF__DAC_Output_net_0 : bit;
+SIGNAL tmpINTERRUPT_0__DAC_Output_net_0 : bit;
 SIGNAL \QuadDec_M1:Net_1251\\D\ : bit;
 SIGNAL \QuadDec_M1:Cnt16:CounterUDB:prevCapture\\D\ : bit;
 SIGNAL \QuadDec_M1:Cnt16:CounterUDB:overflow_reg_i\\D\ : bit;
@@ -1497,6 +1519,11 @@ SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_63\\D\ : bit;
 SIGNAL \ADC:bSAR_SEQ:nrq_edge_detect_reg\\D\ : bit;
 SIGNAL \ADC:bSAR_SEQ:bus_clk_nrq_reg\\D\ : bit;
 SIGNAL \ADC:bSAR_SEQ:nrq_reg\\D\ : bit;
+SIGNAL \ADC:bSAR_SEQ:soc_edge_detect_reg\\D\ : bit;
+SIGNAL \ADC:bSAR_SEQ:state_0\\D\ : bit;
+SIGNAL \ADC:bSAR_SEQ:soc_reg\\D\ : bit;
+SIGNAL \ADC:bSAR_SEQ:state_2\\D\ : bit;
+SIGNAL \ADC:bSAR_SEQ:state_1\\D\ : bit;
 SIGNAL \UART:BUART:reset_reg\\D\ : bit;
 SIGNAL \UART:BUART:txn\\D\ : bit;
 SIGNAL \UART:BUART:tx_state_1\\D\ : bit;
@@ -1874,12 +1901,20 @@ Net_362 <= (not Net_2404);
 \ADC:AMuxHw_2_Decoder_one_hot_63\\D\ <= ((\ADC:AMuxHw_2_Decoder_is_active\ and \ADC:AMuxHw_2_Decoder_old_id_5\ and \ADC:AMuxHw_2_Decoder_old_id_4\ and \ADC:AMuxHw_2_Decoder_old_id_3\ and \ADC:AMuxHw_2_Decoder_old_id_2\ and \ADC:AMuxHw_2_Decoder_old_id_1\ and \ADC:AMuxHw_2_Decoder_old_id_0\));
 
 \ADC:bSAR_SEQ:cnt_enable\ <= (\ADC:bSAR_SEQ:load_period\
-	OR Net_1496);
+	OR Net_4432);
 
 \ADC:bSAR_SEQ:bus_clk_nrq_reg\\D\ <= ((not Net_1497 and \ADC:bSAR_SEQ:bus_clk_nrq_reg\)
 	OR \ADC:Net_3935\);
 
 \ADC:bSAR_SEQ:nrq_edge_detect\ <= ((not \ADC:bSAR_SEQ:nrq_reg\ and \ADC:bSAR_SEQ:bus_clk_nrq_reg\));
+
+\ADC:bSAR_SEQ:soc_edge_detect\ <= ((not \ADC:bSAR_SEQ:soc_reg\ and Net_4435));
+
+\ADC:bSAR_SEQ:state_1\\D\ <= ((not \ADC:soc_out\ and not \ADC:Net_3830\ and not \ADC:bSAR_SEQ:load_period\ and not \ADC:bSAR_SEQ:state_2\ and \ADC:bSAR_SEQ:state_1\)
+	OR (not \ADC:bSAR_SEQ:load_period\ and not \ADC:bSAR_SEQ:state_2\ and not \ADC:bSAR_SEQ:state_1\ and \ADC:soc_out\));
+
+\ADC:bSAR_SEQ:state_0\\D\ <= ((not \ADC:soc_out\ and not \ADC:bSAR_SEQ:load_period\ and not \ADC:bSAR_SEQ:state_2\ and not \ADC:bSAR_SEQ:cnt_tc\ and \ADC:Net_3830\ and \ADC:bSAR_SEQ:state_1\)
+	OR (not \ADC:soc_out\ and not \ADC:bSAR_SEQ:load_period\ and not \ADC:bSAR_SEQ:state_2\ and not \ADC:bSAR_SEQ:state_1\ and \ADC:bSAR_SEQ:soc_in\));
 
 \ADC:MODULE_1:g1:a0:gx:u0:lt_5\ <= ((not \ADC:ch_addr_5\ and not \ADC:ch_addr_4\ and not \ADC:ch_addr_3\ and \ADC:AMuxHw_2_Decoder_old_id_3\)
 	OR (not \ADC:ch_addr_4\ and not \ADC:ch_addr_3\ and \ADC:AMuxHw_2_Decoder_old_id_5\ and \ADC:AMuxHw_2_Decoder_old_id_3\)
@@ -3227,20 +3262,20 @@ A0:cy_psoc3_pins_v1_10
 		init_mux_sel=>"0000000000000000000000000000000000000000000000000000000000000000",
 		api_type=>2,
 		connect_mode=>1)
-	PORT MAP(muxin=>(Net_1584, Net_1583, Net_1582, Net_1581,
-			Net_1580, Net_1579, Net_1578, Net_1577,
-			Net_1576, Net_1575, Net_1574, Net_1573,
-			Net_1572, Net_1571, Net_1570, Net_1569,
-			Net_1568, Net_1566, Net_1564, Net_1563,
-			Net_1561, Net_1559, Net_1558, Net_1556,
-			Net_1554, Net_1553, Net_1551, Net_1549,
-			Net_1548, Net_1546, Net_1544, Net_1543,
-			Net_1541, Net_1539, Net_1538, Net_1536,
-			Net_1534, Net_1533, Net_1531, Net_1529,
-			Net_1528, Net_1526, Net_1524, Net_1523,
-			Net_1521, Net_1519, Net_1518, Net_1516,
-			Net_1514, Net_1513, Net_1511, Net_1509,
-			Net_1508, Net_1506, Net_1504, Net_1503,
+	PORT MAP(muxin=>(Net_4429, Net_4428, Net_4427, Net_4426,
+			Net_4425, Net_4424, Net_4423, Net_4422,
+			Net_4421, Net_4420, Net_4419, Net_4418,
+			Net_4417, Net_4416, Net_4415, Net_4414,
+			Net_4392, Net_4413, Net_4389, Net_4387,
+			Net_4412, Net_4384, Net_4383, Net_4411,
+			Net_4380, Net_4379, Net_4410, Net_4376,
+			Net_4375, Net_4409, Net_4372, Net_4371,
+			Net_4408, Net_4368, Net_4367, Net_4407,
+			Net_4363, Net_4362, Net_4406, Net_4359,
+			Net_4358, Net_4405, Net_4355, Net_4354,
+			Net_4404, Net_4351, Net_4350, Net_4403,
+			Net_4347, Net_4346, Net_4431, Net_4401,
+			Net_4400, Net_4430, Net_4397, Net_4396,
 			Net_1178, Net_1176, Net_1175, Net_1173,
 			Net_1171, Net_1170, Net_1168, Net_1167),
 		hw_ctrl_en=>(\ADC:AMuxHw_2_Decoder_one_hot_63\, \ADC:AMuxHw_2_Decoder_one_hot_62\, \ADC:AMuxHw_2_Decoder_one_hot_61\, \ADC:AMuxHw_2_Decoder_one_hot_60\,
@@ -3264,7 +3299,7 @@ A0:cy_psoc3_pins_v1_10
 	GENERIC MAP(sig_width=>1,
 		is_net_join=>'0')
 	PORT MAP(signal1=>\ADC:SAR:Net_248\,
-		signal2=>\ADC:SAR:Net_235\);
+		signal2=>Net_4434);
 \ADC:SAR:ADC_SAR\:cy_psoc5_sar_v2_0
 	GENERIC MAP(cy_registers=>"")
 	PORT MAP(vplus=>\ADC:Net_2803\,
@@ -3274,12 +3309,12 @@ A0:cy_psoc3_pins_v1_10
 		vref=>\ADC:SAR:Net_248\,
 		clock=>\ADC:clock\,
 		pump_clock=>\ADC:clock\,
-		sof_udb=>Net_2183,
+		sof_udb=>\ADC:soc_out\,
 		clk_udb=>Net_2183,
 		vp_ctl_udb=>(Net_2183, Net_2183, Net_2183, Net_2183),
 		vn_ctl_udb=>(Net_2183, Net_2183, Net_2183, Net_2183),
 		irq=>\ADC:SAR:Net_252\,
-		next_out=>Net_1496,
+		next_out=>Net_4432,
 		data_out=>(\ADC:SAR:Net_207_11\, \ADC:SAR:Net_207_10\, \ADC:SAR:Net_207_9\, \ADC:SAR:Net_207_8\,
 			\ADC:SAR:Net_207_7\, \ADC:SAR:Net_207_6\, \ADC:SAR:Net_207_5\, \ADC:SAR:Net_207_4\,
 			\ADC:SAR:Net_207_3\, \ADC:SAR:Net_207_2\, \ADC:SAR:Net_207_1\, \ADC:SAR:Net_207_0\),
@@ -3288,7 +3323,77 @@ A0:cy_psoc3_pins_v1_10
 	GENERIC MAP(sig_width=>1,
 		is_net_join=>'0')
 	PORT MAP(signal1=>\ADC:SAR:Net_215\,
-		signal2=>\ADC:SAR:Net_209\);
+		signal2=>\ADC:SAR:Net_210\);
+\ADC:SAR:Bypass\:cy_psoc3_pins_v1_10
+	GENERIC MAP(id=>"fde0a943-5276-4812-84ac-47fe7c122954/dea208d9-07b0-438b-a5e0-ac5d207f2658/16a808f6-2e13-45b9-bce0-b001c8655113",
+		drive_mode=>"000",
+		ibuf_enabled=>"0",
+		init_dr_st=>"0",
+		input_sync=>"1",
+		input_clk_en=>'0',
+		input_sync_mode=>"0",
+		intr_mode=>"00",
+		invert_in_clock=>'0',
+		invert_in_clock_en=>'0',
+		invert_in_reset=>'0',
+		invert_out_clock=>'0',
+		invert_out_clock_en=>'0',
+		invert_out_reset=>'0',
+		io_voltage=>"",
+		layout_mode=>"CONTIGUOUS",
+		output_conn=>"0",
+		output_sync=>"0",
+		output_clk_en=>'0',
+		output_mode=>"0",
+		output_reset=>'0',
+		output_clock_mode=>"0",
+		oe_sync=>"0",
+		oe_conn=>"0",
+		oe_reset=>'0',
+		pin_aliases=>"",
+		pin_mode=>"A",
+		por_state=>4,
+		sio_group_cnt=>0,
+		sio_hifreq=>"00000000",
+		sio_hyst=>"1",
+		sio_ibuf=>"00000000",
+		sio_info=>"00",
+		sio_obuf=>"00000000",
+		sio_refsel=>"00000000",
+		sio_vtrip=>"00000000",
+		sio_vohsel=>"00000000",
+		slew_rate=>"0",
+		spanning=>'0',
+		sw_only=>'0',
+		vtrip=>"10",
+		width=>1,
+		port_alias_required=>'0',
+		port_alias_group=>"",
+		use_annotation=>"0",
+		pa_in_clock=>-1,
+		pa_in_clock_en=>-1,
+		pa_in_reset=>-1,
+		pa_out_clock=>-1,
+		pa_out_clock_en=>-1,
+		pa_out_reset=>-1,
+		ovt_needed=>"0",
+		ovt_slew_control=>"00",
+		ovt_hyst_trim=>"0",
+		input_buffer_sel=>"00")
+	PORT MAP(oe=>(tmpOE__M1_IN1_net_0),
+		y=>(Net_2183),
+		fb=>(\ADC:SAR:tmpFB_0__Bypass_net_0\),
+		analog=>\ADC:SAR:Net_210\,
+		io=>(\ADC:SAR:tmpIO_0__Bypass_net_0\),
+		siovref=>(\ADC:SAR:tmpSIOVREF__Bypass_net_0\),
+		annotation=>(open),
+		in_clock=>Net_2183,
+		in_clock_en=>tmpOE__M1_IN1_net_0,
+		in_reset=>Net_2183,
+		out_clock=>Net_2183,
+		out_clock_en=>tmpOE__M1_IN1_net_0,
+		out_reset=>Net_2183,
+		interrupt=>\ADC:SAR:tmpINTERRUPT_0__Bypass_net_0\);
 \ADC:SAR:cy_analog_virtualmux_1_connect\:cy_connect_v1_0
 	GENERIC MAP(sig_width=>1,
 		is_net_join=>'0')
@@ -3303,12 +3408,6 @@ A0:cy_psoc3_pins_v1_10
 		signal2=>\ADC:SAR:Net_149\);
 \ADC:SAR:cy_analog_noconnect_1\:cy_analog_noconnect_v1_0
 	PORT MAP(noconnect=>\ADC:SAR:Net_255\);
-\ADC:SAR:vRef_Vdda_1\:cy_vref_v1_0
-	GENERIC MAP(guid=>"4720866E-BC14-478d-B8A0-3E44F38CADAC",
-		name=>"Vdda/2",
-		autoenable=>'1',
-		ignoresleep=>'0')
-	PORT MAP(vout=>\ADC:SAR:Net_235\);
 \ADC:SAR:noconnect_1\:cy_analog_noconnect_v1_0
 	PORT MAP(noconnect=>\ADC:SAR:Net_368\);
 \ADC:cy_analog_virtualmux_1_connect\:cy_connect_v1_0
@@ -3361,7 +3460,7 @@ A0:cy_psoc3_pins_v1_10
 		id=>"fde0a943-5276-4812-84ac-47fe7c122954/9725d809-97e7-404e-b621-dfdbe78d0ca9",
 		source_clock_id=>"",
 		divisor=>0,
-		period=>"976562500",
+		period=>"558035714.285714",
 		is_direct=>'0',
 		is_digital=>'1')
 	PORT MAP(clock_out=>\ADC:clock\,
@@ -3898,10 +3997,6 @@ A7:cy_psoc3_pins_v1_10
 		out_clock_en=>tmpOE__M1_IN1_net_0,
 		out_reset=>Net_2183,
 		interrupt=>tmpINTERRUPT_0__A7_net_0);
-isr_TS:cy_isr_v1_0
-	GENERIC MAP(int_type=>"00",
-		is_nmi=>'0')
-	PORT MAP(int_signal=>Net_1619);
 \Timer_TS:TimerHW\:cy_psoc3_timer_v1_0
 	GENERIC MAP(cy_registers=>"")
 	PORT MAP(clock=>Net_10,
@@ -3909,7 +4004,7 @@ isr_TS:cy_isr_v1_0
 		enable=>tmpOE__M1_IN1_net_0,
 		capture=>Net_2183,
 		timer_reset=>Net_2183,
-		tc=>Net_1619,
+		tc=>Net_4435,
 		compare=>\Timer_TS:Net_261\,
 		interrupt=>\Timer_TS:Net_57\);
 \USBUART:dp_int\:cy_isr_v1_0
@@ -5035,6 +5130,91 @@ isrRF_RX:cy_isr_v1_0
 		clock=>Net_2183,
 		control=>(\RF_BT_SELECT:control_7\, \RF_BT_SELECT:control_6\, \RF_BT_SELECT:control_5\, \RF_BT_SELECT:control_4\,
 			\RF_BT_SELECT:control_3\, \RF_BT_SELECT:control_2\, \RF_BT_SELECT:control_1\, Net_3437));
+\VDAC8_1:viDAC8\:cy_psoc3_vidac8_v1_0
+	GENERIC MAP(cy_registers=>"",
+		reg_data=>'0',
+		is_all_if_any=>'0')
+	PORT MAP(reset=>Net_2183,
+		idir=>Net_2183,
+		ioff=>Net_2183,
+		data=>(Net_2183, Net_2183, Net_2183, Net_2183,
+			Net_2183, Net_2183, Net_2183, Net_2183),
+		strobe=>Net_2183,
+		strobe_udb=>Net_2183,
+		vout=>Net_4338,
+		iout=>\VDAC8_1:Net_77\);
+\VDAC8_1:cy_analog_noconnect_1\:cy_analog_noconnect_v1_0
+	PORT MAP(noconnect=>\VDAC8_1:Net_77\);
+DAC_Output:cy_psoc3_pins_v1_10
+	GENERIC MAP(id=>"77715107-f8d5-47e5-a629-0fb83101ac6b",
+		drive_mode=>"000",
+		ibuf_enabled=>"0",
+		init_dr_st=>"0",
+		input_sync=>"1",
+		input_clk_en=>'0',
+		input_sync_mode=>"0",
+		intr_mode=>"00",
+		invert_in_clock=>'0',
+		invert_in_clock_en=>'0',
+		invert_in_reset=>'0',
+		invert_out_clock=>'0',
+		invert_out_clock_en=>'0',
+		invert_out_reset=>'0',
+		io_voltage=>"",
+		layout_mode=>"CONTIGUOUS",
+		output_conn=>"0",
+		output_sync=>"0",
+		output_clk_en=>'0',
+		output_mode=>"0",
+		output_reset=>'0',
+		output_clock_mode=>"0",
+		oe_sync=>"0",
+		oe_conn=>"0",
+		oe_reset=>'0',
+		pin_aliases=>"",
+		pin_mode=>"A",
+		por_state=>4,
+		sio_group_cnt=>0,
+		sio_hifreq=>"00000000",
+		sio_hyst=>"1",
+		sio_ibuf=>"00000000",
+		sio_info=>"00",
+		sio_obuf=>"00000000",
+		sio_refsel=>"00000000",
+		sio_vtrip=>"00000000",
+		sio_vohsel=>"00000000",
+		slew_rate=>"0",
+		spanning=>'0',
+		sw_only=>'0',
+		vtrip=>"10",
+		width=>1,
+		port_alias_required=>'0',
+		port_alias_group=>"",
+		use_annotation=>"0",
+		pa_in_clock=>-1,
+		pa_in_clock_en=>-1,
+		pa_in_reset=>-1,
+		pa_out_clock=>-1,
+		pa_out_clock_en=>-1,
+		pa_out_reset=>-1,
+		ovt_needed=>"0",
+		ovt_slew_control=>"00",
+		ovt_hyst_trim=>"0",
+		input_buffer_sel=>"00")
+	PORT MAP(oe=>(tmpOE__M1_IN1_net_0),
+		y=>(Net_2183),
+		fb=>(tmpFB_0__DAC_Output_net_0),
+		analog=>Net_4338,
+		io=>(tmpIO_0__DAC_Output_net_0),
+		siovref=>(tmpSIOVREF__DAC_Output_net_0),
+		annotation=>(open),
+		in_clock=>Net_2183,
+		in_clock_en=>tmpOE__M1_IN1_net_0,
+		in_reset=>Net_2183,
+		out_clock=>Net_2183,
+		out_clock_en=>tmpOE__M1_IN1_net_0,
+		out_reset=>Net_2183,
+		interrupt=>tmpINTERRUPT_0__DAC_Output_net_0);
 \QuadDec_M1:Net_1251\:cy_dff
 	PORT MAP(d=>\QuadDec_M1:Net_1251\\D\,
 		clk=>\QuadDec_M1:bQuadDec:sync_clock\,
@@ -5447,6 +5627,26 @@ isrRF_RX:cy_isr_v1_0
 	PORT MAP(d=>\ADC:bSAR_SEQ:bus_clk_nrq_reg\,
 		clk=>\ADC:bSAR_SEQ:clk_fin\,
 		q=>\ADC:bSAR_SEQ:nrq_reg\);
+\ADC:bSAR_SEQ:soc_edge_detect_reg\:cy_dff
+	PORT MAP(d=>\ADC:bSAR_SEQ:soc_edge_detect\,
+		clk=>\ADC:bSAR_SEQ:clk_fin\,
+		q=>\ADC:bSAR_SEQ:soc_in\);
+\ADC:bSAR_SEQ:state_0\:cy_dff
+	PORT MAP(d=>\ADC:bSAR_SEQ:state_0\\D\,
+		clk=>\ADC:bSAR_SEQ:clk_fin\,
+		q=>\ADC:soc_out\);
+\ADC:bSAR_SEQ:soc_reg\:cy_dff
+	PORT MAP(d=>Net_4435,
+		clk=>\ADC:bSAR_SEQ:clk_fin\,
+		q=>\ADC:bSAR_SEQ:soc_reg\);
+\ADC:bSAR_SEQ:state_2\:cy_dff
+	PORT MAP(d=>Net_2183,
+		clk=>\ADC:bSAR_SEQ:clk_fin\,
+		q=>\ADC:bSAR_SEQ:state_2\);
+\ADC:bSAR_SEQ:state_1\:cy_dff
+	PORT MAP(d=>\ADC:bSAR_SEQ:state_1\\D\,
+		clk=>\ADC:bSAR_SEQ:clk_fin\,
+		q=>\ADC:bSAR_SEQ:state_1\);
 \UART:BUART:reset_reg\:cy_dff
 	PORT MAP(d=>Net_2183,
 		clk=>\UART:BUART:clock_op\,

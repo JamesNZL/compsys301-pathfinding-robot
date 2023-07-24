@@ -81,8 +81,6 @@
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\A7_aliases.h" value="HEADER;;;;;A7" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\A7.c" value="SOURCE_C;CortexM3;;;;A7" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\A7.h" value="HEADER;;;;;A7" />
-  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\isr_TS.c" value="SOURCE_C;CortexM3;;;;isr_TS" />
-  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\isr_TS.h" value="HEADER;;;;;isr_TS" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\Timer_TS.c" value="SOURCE_C;CortexM3;;;;Timer_TS" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\Timer_TS.h" value="HEADER;;;;;Timer_TS" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\Timer_TS_PM.c" value="SOURCE_C;CortexM3;;;;Timer_TS" />
@@ -151,6 +149,12 @@
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\RF_BT_SELECT.h" value="HEADER;;;;;RF_BT_SELECT" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\RF_BT_SELECT.c" value="SOURCE_C;CortexM3;;;;RF_BT_SELECT" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\RF_BT_SELECT_PM.c" value="SOURCE_C;CortexM3;;;;RF_BT_SELECT" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\VDAC8_1.c" value="SOURCE_C;CortexM3;;;;VDAC8_1" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\VDAC8_1.h" value="HEADER;;;;;VDAC8_1" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\VDAC8_1_PM.c" value="SOURCE_C;CortexM3;;;;VDAC8_1" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\DAC_Output_aliases.h" value="HEADER;;;;;DAC_Output" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\DAC_Output.c" value="SOURCE_C;CortexM3;;;;DAC_Output" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\DAC_Output.h" value="HEADER;;;;;DAC_Output" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\QuadDec_M1_Cnt16.c" value="SOURCE_C;CortexM3;;;;QuadDec_M1_Cnt16" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\QuadDec_M1_Cnt16.h" value="HEADER;;;;;QuadDec_M1_Cnt16" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\QuadDec_M1_Cnt16_PM.c" value="SOURCE_C;CortexM3;;;;QuadDec_M1_Cnt16" />
@@ -177,6 +181,9 @@
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\USBUART_Dp.h" value="HEADER;;;;;USBUART_Dp" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\UART_IntClock.c" value="SOURCE_C;CortexM3;;;;UART_IntClock" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\UART_IntClock.h" value="HEADER;;;;;UART_IntClock" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\ADC_SAR_Bypass_aliases.h" value="HEADER;;;;;ADC_SAR_Bypass" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\ADC_SAR_Bypass.c" value="SOURCE_C;CortexM3;;;;ADC_SAR_Bypass" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\ADC_SAR_Bypass.h" value="HEADER;;;;;ADC_SAR_Bypass" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\cm3gcc.ld" value="LINKER_SCRIPT;;;b98f980c-3bd1-4fc7-a887-c56a20a46fdd;;cy_boot" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\Cm3RealView.scat" value="LINKER_SCRIPT;;;fdb8e1ae-f83a-46cf-9446-1d703716f38a;;cy_boot" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\Cm3Start.c" value="SOURCE_C;CortexM3;;;;cy_boot" />

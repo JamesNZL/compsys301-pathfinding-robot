@@ -168,14 +168,14 @@ void Timer_TS_Wakeup(void)        ;
 *    Initialial Parameter Constants
 ***************************************/
 
-#define Timer_TS_INIT_PERIOD             99u
+#define Timer_TS_INIT_PERIOD             4u
 #define Timer_TS_INIT_CAPTURE_MODE       ((uint8)((uint8)0u << Timer_TS_CTRL_CAP_MODE_SHIFT))
 #define Timer_TS_INIT_TRIGGER_MODE       ((uint8)((uint8)0u << Timer_TS_CTRL_TRIG_MODE_SHIFT))
 #if (Timer_TS_UsingFixedFunction)
-    #define Timer_TS_INIT_INTERRUPT_MODE (((uint8)((uint8)0u << Timer_TS_STATUS_TC_INT_MASK_SHIFT)) | \
+    #define Timer_TS_INIT_INTERRUPT_MODE (((uint8)((uint8)1u << Timer_TS_STATUS_TC_INT_MASK_SHIFT)) | \
                                                   ((uint8)((uint8)0 << Timer_TS_STATUS_CAPTURE_INT_MASK_SHIFT)))
 #else
-    #define Timer_TS_INIT_INTERRUPT_MODE (((uint8)((uint8)0u << Timer_TS_STATUS_TC_INT_MASK_SHIFT)) | \
+    #define Timer_TS_INIT_INTERRUPT_MODE (((uint8)((uint8)1u << Timer_TS_STATUS_TC_INT_MASK_SHIFT)) | \
                                                  ((uint8)((uint8)0 << Timer_TS_STATUS_CAPTURE_INT_MASK_SHIFT)) | \
                                                  ((uint8)((uint8)0 << Timer_TS_STATUS_FIFOFULL_INT_MASK_SHIFT)))
 #endif /* (Timer_TS_UsingFixedFunction) */

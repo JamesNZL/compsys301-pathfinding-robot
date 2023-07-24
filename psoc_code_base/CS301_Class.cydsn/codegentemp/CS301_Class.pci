@@ -1,5 +1,5 @@
 # CS301_Class
-# 2023-07-21 01:22:34Z
+# 2023-07-24 06:04:31Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -17,6 +17,7 @@ set_io "M1_QB(0)" iocell 15 2
 set_io "M2_QA(0)" iocell 0 0
 set_io "M2_QB(0)" iocell 0 1
 set_io "A0(0)" iocell 0 5
+set_io "\ADC:SAR:Bypass(0)\" iocell 0 2
 set_io "A1(0)" iocell 0 6
 set_io "A2(0)" iocell 0 7
 set_io "A3(0)" iocell 1 2
@@ -34,5 +35,7 @@ set_io "DB0(0)" iocell 3 0
 set_io "DB1(0)" iocell 3 1
 set_io "DB2(0)" iocell 3 6
 set_io "Rx_2(0)" iocell 2 4
+set_io "DAC_Output(0)" iocell 2 0
 set_location "\ADC:SAR:ADC_SAR\" sarcell -1 -1 1
 set_location "\USBUART:USB\" usbcell -1 -1 0
+set_location "\VDAC8_1:viDAC8\" vidaccell -1 -1 0
