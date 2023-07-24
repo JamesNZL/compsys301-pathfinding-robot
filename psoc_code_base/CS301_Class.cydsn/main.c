@@ -32,7 +32,7 @@ volatile uint8_t buffer[40];
 
 CY_ISR(conversion_finished){
     uint16_t result = ADC_GetResult16(0);
-    float voltage = (2.5*(float)result)/256;
+    float voltage = (2.048*(float)result)/256;
     uint8_t dac = (voltage/4.08)*256;
     VDAC8_1_SetValue(dac);
 }

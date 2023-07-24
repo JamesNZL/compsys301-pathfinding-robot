@@ -2,7 +2,7 @@
 --	Conversion of CS301_Class.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Jul 24 18:04:29 2023
+--	Mon Jul 24 18:32:52 2023
 --
 
 USE cypress.cypress.all;
@@ -671,7 +671,7 @@ TERMINAL Net_1170 : bit;
 TERMINAL Net_1168 : bit;
 TERMINAL \ADC:V_single\ : bit;
 TERMINAL \ADC:SAR:Net_248\ : bit;
-TERMINAL Net_4434 : bit;
+TERMINAL \ADC:SAR:Net_233\ : bit;
 SIGNAL \ADC:SAR:vp_ctl_0\ : bit;
 SIGNAL \ADC:SAR:vp_ctl_2\ : bit;
 SIGNAL \ADC:SAR:vn_ctl_1\ : bit;
@@ -3299,7 +3299,7 @@ A0:cy_psoc3_pins_v1_10
 	GENERIC MAP(sig_width=>1,
 		is_net_join=>'0')
 	PORT MAP(signal1=>\ADC:SAR:Net_248\,
-		signal2=>Net_4434);
+		signal2=>\ADC:SAR:Net_233\);
 \ADC:SAR:ADC_SAR\:cy_psoc5_sar_v2_0
 	GENERIC MAP(cy_registers=>"")
 	PORT MAP(vplus=>\ADC:Net_2803\,
@@ -3401,6 +3401,12 @@ A0:cy_psoc3_pins_v1_10
 		signal2=>\ADC:SAR:Net_149\);
 \ADC:SAR:noconnect\:cy_analog_noconnect_v1_0
 	PORT MAP(noconnect=>\ADC:SAR:Net_209\);
+\ADC:SAR:vRef_1024\:cy_vref_v1_0
+	GENERIC MAP(guid=>"89B398AD-36A8-4627-9212-707F2986319E",
+		name=>"1.024V",
+		autoenable=>'1',
+		ignoresleep=>'0')
+	PORT MAP(vout=>\ADC:SAR:Net_233\);
 \ADC:SAR:cy_analog_virtualmux_4_connect\:cy_connect_v1_0
 	GENERIC MAP(sig_width=>1,
 		is_net_join=>'0')
@@ -3460,7 +3466,7 @@ A0:cy_psoc3_pins_v1_10
 		id=>"fde0a943-5276-4812-84ac-47fe7c122954/9725d809-97e7-404e-b621-dfdbe78d0ca9",
 		source_clock_id=>"",
 		divisor=>0,
-		period=>"558035714.285714",
+		period=>"89286607.1517858",
 		is_direct=>'0',
 		is_digital=>'1')
 	PORT MAP(clock_out=>\ADC:clock\,
