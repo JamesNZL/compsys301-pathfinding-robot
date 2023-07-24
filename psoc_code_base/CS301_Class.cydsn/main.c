@@ -28,13 +28,18 @@ void handle_usb();
 void handle_pwm_command();
 //* ========================================
 volatile uint8_t readingIndex = 0;
-volatile uint8_t buffer[40];
+volatile uint16_t buffer[40];
 
 CY_ISR(conversion_finished){
     uint16_t result = ADC_GetResult16(0);
-    float voltage = (2.048*(float)result)/256;
+    float voltage = (2.048*(float)result)/1023;
     uint8_t dac = (voltage/4.08)*256;
     VDAC8_1_SetValue(dac);
+    buffer[readingIndex] = result;
+    readingIndex++;
+    if (readingIndex == 40) {
+        Timer_TS_Stop();
+    }
 }
 
 
@@ -65,7 +70,16 @@ int main()
         {
             handle_pwm_command();
             flag_KB_string = 0;
-        }        
+        }
+        
+        if (readingIndex == 40) {
+            readingIndex = 0;
+            char temp[BUF_SIZE];
+            for(uint8_t i = 0; i < 40; ++i){
+                sprintf(temp, "%i,", buffer[i]);
+                usbPutString(temp);
+            }
+        }
     }   
 }
 

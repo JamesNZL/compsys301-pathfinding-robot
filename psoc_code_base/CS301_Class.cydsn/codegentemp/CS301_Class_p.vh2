@@ -1,5 +1,5 @@
 -- Project:   CS301_Class
--- Generated: 07/24/2023 18:32:54
+-- Generated: 07/24/2023 21:41:41
 -- PSoC Creator  4.4
 
 ENTITY CS301_Class IS
@@ -95,8 +95,8 @@ ARCHITECTURE __DEFAULT__ OF CS301_Class IS
     SIGNAL Net_362 : bit;
     SIGNAL Net_368 : bit;
     SIGNAL Net_4334 : bit;
-    SIGNAL Net_4432 : bit;
     SIGNAL Net_4435 : bit;
+    SIGNAL Net_4533 : bit;
     SIGNAL Net_724 : bit;
     SIGNAL Net_724_SYNCOUT : bit;
     SIGNAL Net_725 : bit;
@@ -1148,10 +1148,10 @@ BEGIN
             clk_bus => ClockBlock_BUS_CLK_local,
             dsi_clkin_div => open,
             dsi_glb_div => open,
-            dclk_glb_0 => Net_1850,
-            dclk_0 => Net_1850_local,
-            dclk_glb_1 => \ADC:clock\,
-            dclk_1 => \ADC:clock_local\,
+            dclk_glb_0 => \ADC:clock\,
+            dclk_0 => \ADC:clock_local\,
+            dclk_glb_1 => Net_1850,
+            dclk_1 => Net_1850_local,
             dclk_glb_2 => CLK24M,
             dclk_2 => CLK24M_local,
             dclk_glb_3 => \UART:Net_9\,
@@ -3986,7 +3986,7 @@ BEGIN
             clken_mode => 1)
         PORT MAP(
             q => \ADC:bSAR_SEQ:cnt_enable\,
-            main_0 => Net_4432,
+            main_0 => Net_4533,
             main_1 => \ADC:bSAR_SEQ:load_period\);
 
     Net_1880:macrocell
@@ -4554,7 +4554,7 @@ BEGIN
             vn_ctl_udb_1 => open,
             vn_ctl_udb_0 => open,
             irq => \ADC:SAR:Net_252\,
-            next => Net_4432,
+            next => Net_4533,
             data_out_udb_11 => \ADC:SAR:Net_207_11\,
             data_out_udb_10 => \ADC:SAR:Net_207_10\,
             data_out_udb_9 => \ADC:SAR:Net_207_9\,

@@ -2,7 +2,7 @@
 --	Conversion of CS301_Class.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Jul 24 18:32:52 2023
+--	Mon Jul 24 21:41:39 2023
 --
 
 USE cypress.cypress.all;
@@ -606,62 +606,62 @@ SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_60\ : bit;
 SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_61\ : bit;
 SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_62\ : bit;
 SIGNAL \ADC:AMuxHw_2_Decoder_one_hot_63\ : bit;
-TERMINAL Net_4429 : bit;
-TERMINAL Net_4428 : bit;
-TERMINAL Net_4427 : bit;
-TERMINAL Net_4426 : bit;
-TERMINAL Net_4425 : bit;
-TERMINAL Net_4424 : bit;
-TERMINAL Net_4423 : bit;
-TERMINAL Net_4422 : bit;
-TERMINAL Net_4421 : bit;
-TERMINAL Net_4420 : bit;
-TERMINAL Net_4419 : bit;
-TERMINAL Net_4418 : bit;
-TERMINAL Net_4417 : bit;
-TERMINAL Net_4416 : bit;
-TERMINAL Net_4415 : bit;
-TERMINAL Net_4414 : bit;
-TERMINAL Net_4392 : bit;
-TERMINAL Net_4413 : bit;
-TERMINAL Net_4389 : bit;
-TERMINAL Net_4387 : bit;
-TERMINAL Net_4412 : bit;
-TERMINAL Net_4384 : bit;
-TERMINAL Net_4383 : bit;
-TERMINAL Net_4411 : bit;
-TERMINAL Net_4380 : bit;
-TERMINAL Net_4379 : bit;
-TERMINAL Net_4410 : bit;
-TERMINAL Net_4376 : bit;
-TERMINAL Net_4375 : bit;
-TERMINAL Net_4409 : bit;
-TERMINAL Net_4372 : bit;
-TERMINAL Net_4371 : bit;
-TERMINAL Net_4408 : bit;
-TERMINAL Net_4368 : bit;
-TERMINAL Net_4367 : bit;
-TERMINAL Net_4407 : bit;
-TERMINAL Net_4363 : bit;
-TERMINAL Net_4362 : bit;
-TERMINAL Net_4406 : bit;
-TERMINAL Net_4359 : bit;
-TERMINAL Net_4358 : bit;
-TERMINAL Net_4405 : bit;
-TERMINAL Net_4355 : bit;
-TERMINAL Net_4354 : bit;
-TERMINAL Net_4404 : bit;
-TERMINAL Net_4351 : bit;
-TERMINAL Net_4350 : bit;
-TERMINAL Net_4403 : bit;
-TERMINAL Net_4347 : bit;
-TERMINAL Net_4346 : bit;
-TERMINAL Net_4431 : bit;
-TERMINAL Net_4401 : bit;
-TERMINAL Net_4400 : bit;
-TERMINAL Net_4430 : bit;
-TERMINAL Net_4397 : bit;
-TERMINAL Net_4396 : bit;
+TERMINAL Net_4530 : bit;
+TERMINAL Net_4529 : bit;
+TERMINAL Net_4528 : bit;
+TERMINAL Net_4527 : bit;
+TERMINAL Net_4526 : bit;
+TERMINAL Net_4525 : bit;
+TERMINAL Net_4524 : bit;
+TERMINAL Net_4523 : bit;
+TERMINAL Net_4522 : bit;
+TERMINAL Net_4521 : bit;
+TERMINAL Net_4520 : bit;
+TERMINAL Net_4519 : bit;
+TERMINAL Net_4518 : bit;
+TERMINAL Net_4517 : bit;
+TERMINAL Net_4516 : bit;
+TERMINAL Net_4515 : bit;
+TERMINAL Net_4493 : bit;
+TERMINAL Net_4514 : bit;
+TERMINAL Net_4490 : bit;
+TERMINAL Net_4488 : bit;
+TERMINAL Net_4513 : bit;
+TERMINAL Net_4485 : bit;
+TERMINAL Net_4484 : bit;
+TERMINAL Net_4512 : bit;
+TERMINAL Net_4481 : bit;
+TERMINAL Net_4480 : bit;
+TERMINAL Net_4511 : bit;
+TERMINAL Net_4477 : bit;
+TERMINAL Net_4476 : bit;
+TERMINAL Net_4510 : bit;
+TERMINAL Net_4473 : bit;
+TERMINAL Net_4472 : bit;
+TERMINAL Net_4509 : bit;
+TERMINAL Net_4469 : bit;
+TERMINAL Net_4468 : bit;
+TERMINAL Net_4508 : bit;
+TERMINAL Net_4464 : bit;
+TERMINAL Net_4463 : bit;
+TERMINAL Net_4507 : bit;
+TERMINAL Net_4460 : bit;
+TERMINAL Net_4459 : bit;
+TERMINAL Net_4506 : bit;
+TERMINAL Net_4456 : bit;
+TERMINAL Net_4455 : bit;
+TERMINAL Net_4505 : bit;
+TERMINAL Net_4452 : bit;
+TERMINAL Net_4451 : bit;
+TERMINAL Net_4504 : bit;
+TERMINAL Net_4448 : bit;
+TERMINAL Net_4447 : bit;
+TERMINAL Net_4532 : bit;
+TERMINAL Net_4502 : bit;
+TERMINAL Net_4501 : bit;
+TERMINAL Net_4531 : bit;
+TERMINAL Net_4498 : bit;
+TERMINAL Net_4497 : bit;
 TERMINAL Net_1178 : bit;
 TERMINAL Net_1176 : bit;
 TERMINAL Net_1175 : bit;
@@ -687,7 +687,7 @@ TERMINAL \ADC:SAR:Net_215\ : bit;
 TERMINAL \ADC:SAR:Net_257\ : bit;
 SIGNAL \ADC:soc_out\ : bit;
 SIGNAL \ADC:SAR:Net_252\ : bit;
-SIGNAL Net_4432 : bit;
+SIGNAL Net_4533 : bit;
 SIGNAL \ADC:SAR:Net_207_11\ : bit;
 SIGNAL \ADC:SAR:Net_207_10\ : bit;
 SIGNAL \ADC:SAR:Net_207_9\ : bit;
@@ -1901,7 +1901,7 @@ Net_362 <= (not Net_2404);
 \ADC:AMuxHw_2_Decoder_one_hot_63\\D\ <= ((\ADC:AMuxHw_2_Decoder_is_active\ and \ADC:AMuxHw_2_Decoder_old_id_5\ and \ADC:AMuxHw_2_Decoder_old_id_4\ and \ADC:AMuxHw_2_Decoder_old_id_3\ and \ADC:AMuxHw_2_Decoder_old_id_2\ and \ADC:AMuxHw_2_Decoder_old_id_1\ and \ADC:AMuxHw_2_Decoder_old_id_0\));
 
 \ADC:bSAR_SEQ:cnt_enable\ <= (\ADC:bSAR_SEQ:load_period\
-	OR Net_4432);
+	OR Net_4533);
 
 \ADC:bSAR_SEQ:bus_clk_nrq_reg\\D\ <= ((not Net_1497 and \ADC:bSAR_SEQ:bus_clk_nrq_reg\)
 	OR \ADC:Net_3935\);
@@ -3262,20 +3262,20 @@ A0:cy_psoc3_pins_v1_10
 		init_mux_sel=>"0000000000000000000000000000000000000000000000000000000000000000",
 		api_type=>2,
 		connect_mode=>1)
-	PORT MAP(muxin=>(Net_4429, Net_4428, Net_4427, Net_4426,
-			Net_4425, Net_4424, Net_4423, Net_4422,
-			Net_4421, Net_4420, Net_4419, Net_4418,
-			Net_4417, Net_4416, Net_4415, Net_4414,
-			Net_4392, Net_4413, Net_4389, Net_4387,
-			Net_4412, Net_4384, Net_4383, Net_4411,
-			Net_4380, Net_4379, Net_4410, Net_4376,
-			Net_4375, Net_4409, Net_4372, Net_4371,
-			Net_4408, Net_4368, Net_4367, Net_4407,
-			Net_4363, Net_4362, Net_4406, Net_4359,
-			Net_4358, Net_4405, Net_4355, Net_4354,
-			Net_4404, Net_4351, Net_4350, Net_4403,
-			Net_4347, Net_4346, Net_4431, Net_4401,
-			Net_4400, Net_4430, Net_4397, Net_4396,
+	PORT MAP(muxin=>(Net_4530, Net_4529, Net_4528, Net_4527,
+			Net_4526, Net_4525, Net_4524, Net_4523,
+			Net_4522, Net_4521, Net_4520, Net_4519,
+			Net_4518, Net_4517, Net_4516, Net_4515,
+			Net_4493, Net_4514, Net_4490, Net_4488,
+			Net_4513, Net_4485, Net_4484, Net_4512,
+			Net_4481, Net_4480, Net_4511, Net_4477,
+			Net_4476, Net_4510, Net_4473, Net_4472,
+			Net_4509, Net_4469, Net_4468, Net_4508,
+			Net_4464, Net_4463, Net_4507, Net_4460,
+			Net_4459, Net_4506, Net_4456, Net_4455,
+			Net_4505, Net_4452, Net_4451, Net_4504,
+			Net_4448, Net_4447, Net_4532, Net_4502,
+			Net_4501, Net_4531, Net_4498, Net_4497,
 			Net_1178, Net_1176, Net_1175, Net_1173,
 			Net_1171, Net_1170, Net_1168, Net_1167),
 		hw_ctrl_en=>(\ADC:AMuxHw_2_Decoder_one_hot_63\, \ADC:AMuxHw_2_Decoder_one_hot_62\, \ADC:AMuxHw_2_Decoder_one_hot_61\, \ADC:AMuxHw_2_Decoder_one_hot_60\,
@@ -3314,7 +3314,7 @@ A0:cy_psoc3_pins_v1_10
 		vp_ctl_udb=>(Net_2183, Net_2183, Net_2183, Net_2183),
 		vn_ctl_udb=>(Net_2183, Net_2183, Net_2183, Net_2183),
 		irq=>\ADC:SAR:Net_252\,
-		next_out=>Net_4432,
+		next_out=>Net_4533,
 		data_out=>(\ADC:SAR:Net_207_11\, \ADC:SAR:Net_207_10\, \ADC:SAR:Net_207_9\, \ADC:SAR:Net_207_8\,
 			\ADC:SAR:Net_207_7\, \ADC:SAR:Net_207_6\, \ADC:SAR:Net_207_5\, \ADC:SAR:Net_207_4\,
 			\ADC:SAR:Net_207_3\, \ADC:SAR:Net_207_2\, \ADC:SAR:Net_207_1\, \ADC:SAR:Net_207_0\),
@@ -3466,7 +3466,7 @@ A0:cy_psoc3_pins_v1_10
 		id=>"fde0a943-5276-4812-84ac-47fe7c122954/9725d809-97e7-404e-b621-dfdbe78d0ca9",
 		source_clock_id=>"",
 		divisor=>0,
-		period=>"89286607.1517858",
+		period=>"78125781.2578126",
 		is_direct=>'0',
 		is_digital=>'1')
 	PORT MAP(clock_out=>\ADC:clock\,

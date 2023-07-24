@@ -1,6 +1,6 @@
 // ======================================================================
 // CS301_Class.v generated from TopDesign.cysch
-// 07/24/2023 at 18:32
+// 07/24/2023 at 21:41
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -728,7 +728,7 @@ endmodule
 `include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\or_v1_0\or_v1_0.v"
 `endif
 
-// ADC_SAR_v3_10(ADC_Clock=0, ADC_Clock_Frequency=8842106, ADC_Input_Range=0, ADC_Power=0, ADC_Reference=1, ADC_Resolution=8, ADC_SampleMode=2, Enable_next_out=true, Ref_Voltage=1.024, Ref_Voltage_mV=1024, rm_int=true, Sample_Precharge=6, Sample_Rate=0, Sample_Rate_def=631579, CY_API_CALLBACK_HEADER_INCLUDE=, CY_COMMENT=, CY_COMPONENT_NAME=ADC_SAR_v3_10, CY_CONFIG_TITLE=SAR, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=ADC:SAR, CY_INSTANCE_SHORT_NAME=SAR, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=10, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.4, INSTANCE_NAME=ADC_SAR, )
+// ADC_SAR_v3_10(ADC_Clock=0, ADC_Clock_Frequency=10105264, ADC_Input_Range=0, ADC_Power=0, ADC_Reference=1, ADC_Resolution=10, ADC_SampleMode=2, Enable_next_out=true, Ref_Voltage=1.024, Ref_Voltage_mV=1024, rm_int=true, Sample_Precharge=6, Sample_Rate=0, Sample_Rate_def=631579, CY_API_CALLBACK_HEADER_INCLUDE=, CY_COMMENT=, CY_COMPONENT_NAME=ADC_SAR_v3_10, CY_CONFIG_TITLE=SAR, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=ADC:SAR, CY_INSTANCE_SHORT_NAME=SAR, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=10, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.4, INSTANCE_NAME=ADC_SAR, )
 module ADC_SAR_v3_10_4 (
     aclk,
     eoc,
@@ -962,7 +962,7 @@ endmodule
 `include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_sync_v1_0\cy_sync_v1_0.v"
 `endif
 
-// ADC_SAR_SEQ_v2_10(ADC_Clock_Frequency=11199888, Adjust=0, ClockSource=0, InputRange=0, NumChannels=8, Reference=1, Resolution=8, rm_int=false, SampleMode=2, SamplePrecharge=6, SampleRate=799992, SampleRate_def=631579, VrefValue=1.024, CY_API_CALLBACK_HEADER_INCLUDE=, CY_COMMENT=, CY_COMPONENT_NAME=ADC_SAR_SEQ_v2_10, CY_CONFIG_TITLE=ADC, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=ADC, CY_INSTANCE_SHORT_NAME=ADC, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=10, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.4, INSTANCE_NAME=ADC, )
+// ADC_SAR_SEQ_v2_10(ADC_Clock_Frequency=12799872, Adjust=0, ClockSource=0, InputRange=0, NumChannels=8, Reference=1, Resolution=10, rm_int=false, SampleMode=2, SamplePrecharge=6, SampleRate=799992, SampleRate_def=631579, VrefValue=1.024, CY_API_CALLBACK_HEADER_INCLUDE=, CY_COMMENT=, CY_COMPONENT_NAME=ADC_SAR_SEQ_v2_10, CY_CONFIG_TITLE=ADC, CY_CONST_CONFIG=true, CY_CONTROL_FILE=<:default:>, CY_DATASHEET_FILE=<:default:>, CY_FITTER_NAME=ADC, CY_INSTANCE_SHORT_NAME=ADC, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=10, CY_PDL_DRIVER_NAME=, CY_PDL_DRIVER_REQ_VERSION=, CY_PDL_DRIVER_SUBGROUP=, CY_PDL_DRIVER_VARIANT=, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=PSoC Creator  4.4, INSTANCE_NAME=ADC, )
 module ADC_SAR_SEQ_v2_10_5 (
     aclk,
     AIN_10,
@@ -1431,7 +1431,7 @@ module ADC_SAR_SEQ_v2_10_5 (
 		#(.id("fde0a943-5276-4812-84ac-47fe7c122954/9725d809-97e7-404e-b621-dfdbe78d0ca9"),
 		  .source_clock_id(""),
 		  .divisor(0),
-		  .period("89286607.1517858"),
+		  .period("78125781.2578126"),
 		  .is_direct(0),
 		  .is_digital(1))
 		IntClock
@@ -2295,96 +2295,96 @@ module top ;
           wire  Net_1615;
           wire  Net_1618;
           wire  Net_1617;
-    electrical  Net_4434;
-          wire  Net_4432;
-    electrical  Net_4431;
-    electrical  Net_4430;
-    electrical  Net_4429;
-    electrical  Net_4428;
-    electrical  Net_4427;
-    electrical  Net_4426;
-    electrical  Net_4425;
-    electrical  Net_4424;
-    electrical  Net_4423;
-    electrical  Net_4422;
-    electrical  Net_4421;
-    electrical  Net_4420;
-    electrical  Net_4419;
-    electrical  Net_4418;
-    electrical  Net_4417;
-    electrical  Net_4416;
-    electrical  Net_4415;
-    electrical  Net_4414;
-    electrical  Net_4413;
-    electrical  Net_4412;
-    electrical  Net_4411;
-    electrical  Net_4410;
-    electrical  Net_4409;
-    electrical  Net_4408;
-    electrical  Net_4407;
-    electrical  Net_4406;
-    electrical  Net_4405;
-    electrical  Net_4404;
-    electrical  Net_4403;
-    electrical  Net_4402;
-    electrical  Net_4401;
-    electrical  Net_4400;
-    electrical  Net_4399;
-    electrical  Net_4398;
-    electrical  Net_4397;
-    electrical  Net_4396;
-    electrical  Net_4395;
-    electrical  Net_4394;
-    electrical  Net_4393;
-    electrical  Net_4392;
-    electrical  Net_4391;
-    electrical  Net_4390;
-    electrical  Net_4389;
-    electrical  Net_4388;
-    electrical  Net_4387;
-    electrical  Net_4386;
-    electrical  Net_4385;
-    electrical  Net_4384;
-    electrical  Net_4383;
-    electrical  Net_4382;
-    electrical  Net_4381;
-    electrical  Net_4380;
-    electrical  Net_4379;
-    electrical  Net_4378;
-    electrical  Net_4377;
-    electrical  Net_4376;
-    electrical  Net_4375;
-    electrical  Net_4374;
-    electrical  Net_4373;
-    electrical  Net_4372;
-    electrical  Net_4371;
-    electrical  Net_4370;
-    electrical  Net_4369;
-    electrical  Net_4368;
-    electrical  Net_4367;
-    electrical  Net_4366;
-    electrical  Net_4365;
-    electrical  Net_4364;
-    electrical  Net_4363;
-    electrical  Net_4362;
-    electrical  Net_4361;
-    electrical  Net_4360;
-    electrical  Net_4359;
-    electrical  Net_4358;
-    electrical  Net_4357;
-    electrical  Net_4356;
-    electrical  Net_4355;
-    electrical  Net_4354;
-    electrical  Net_4353;
-    electrical  Net_4352;
-    electrical  Net_4351;
-    electrical  Net_4350;
-    electrical  Net_4349;
-    electrical  Net_4348;
-    electrical  Net_4347;
-    electrical  Net_4346;
-    electrical  Net_4345;
-          wire  Net_4344;
+    electrical  Net_4534;
+          wire  Net_4533;
+    electrical  Net_4532;
+    electrical  Net_4531;
+    electrical  Net_4530;
+    electrical  Net_4529;
+    electrical  Net_4528;
+    electrical  Net_4527;
+    electrical  Net_4526;
+    electrical  Net_4525;
+    electrical  Net_4524;
+    electrical  Net_4523;
+    electrical  Net_4522;
+    electrical  Net_4521;
+    electrical  Net_4520;
+    electrical  Net_4519;
+    electrical  Net_4518;
+    electrical  Net_4517;
+    electrical  Net_4516;
+    electrical  Net_4515;
+    electrical  Net_4514;
+    electrical  Net_4513;
+    electrical  Net_4512;
+    electrical  Net_4511;
+    electrical  Net_4510;
+    electrical  Net_4509;
+    electrical  Net_4508;
+    electrical  Net_4507;
+    electrical  Net_4506;
+    electrical  Net_4505;
+    electrical  Net_4504;
+    electrical  Net_4503;
+    electrical  Net_4502;
+    electrical  Net_4501;
+    electrical  Net_4500;
+    electrical  Net_4499;
+    electrical  Net_4498;
+    electrical  Net_4497;
+    electrical  Net_4496;
+    electrical  Net_4495;
+    electrical  Net_4494;
+    electrical  Net_4493;
+    electrical  Net_4492;
+    electrical  Net_4491;
+    electrical  Net_4490;
+    electrical  Net_4489;
+    electrical  Net_4488;
+    electrical  Net_4487;
+    electrical  Net_4486;
+    electrical  Net_4485;
+    electrical  Net_4484;
+    electrical  Net_4483;
+    electrical  Net_4482;
+    electrical  Net_4481;
+    electrical  Net_4480;
+    electrical  Net_4479;
+    electrical  Net_4478;
+    electrical  Net_4477;
+    electrical  Net_4476;
+    electrical  Net_4475;
+    electrical  Net_4474;
+    electrical  Net_4473;
+    electrical  Net_4472;
+    electrical  Net_4471;
+    electrical  Net_4470;
+    electrical  Net_4469;
+    electrical  Net_4468;
+    electrical  Net_4467;
+    electrical  Net_4466;
+    electrical  Net_4465;
+    electrical  Net_4464;
+    electrical  Net_4463;
+    electrical  Net_4462;
+    electrical  Net_4461;
+    electrical  Net_4460;
+    electrical  Net_4459;
+    electrical  Net_4458;
+    electrical  Net_4457;
+    electrical  Net_4456;
+    electrical  Net_4455;
+    electrical  Net_4454;
+    electrical  Net_4453;
+    electrical  Net_4452;
+    electrical  Net_4451;
+    electrical  Net_4450;
+    electrical  Net_4449;
+    electrical  Net_4448;
+    electrical  Net_4447;
+    electrical  Net_4446;
+          wire  Net_4445;
           wire  Net_3249;
           wire  Net_3248;
           wire  Net_3247;
@@ -3210,104 +3210,104 @@ module top ;
     ADC_SAR_SEQ_v2_10_5 ADC (
         .aclk(1'b0),
         .AIN_10(Net_1167),
-        .AIN_100(Net_4345),
-        .AIN_101(Net_4346),
-        .AIN_110(Net_4347),
-        .AIN_111(Net_4348),
-        .AIN_120(Net_4349),
-        .AIN_121(Net_4350),
-        .AIN_130(Net_4351),
-        .AIN_131(Net_4352),
-        .AIN_140(Net_4353),
-        .AIN_141(Net_4354),
-        .AIN_150(Net_4355),
-        .AIN_151(Net_4356),
-        .AIN_160(Net_4357),
-        .AIN_161(Net_4358),
-        .AIN_170(Net_4359),
-        .AIN_171(Net_4360),
-        .AIN_180(Net_4361),
-        .AIN_181(Net_4362),
-        .AIN_190(Net_4363),
-        .AIN_191(Net_4364),
-        .AIN_20(Net_4365),
-        .AIN_200(Net_4366),
-        .AIN_201(Net_4367),
+        .AIN_100(Net_4446),
+        .AIN_101(Net_4447),
+        .AIN_110(Net_4448),
+        .AIN_111(Net_4449),
+        .AIN_120(Net_4450),
+        .AIN_121(Net_4451),
+        .AIN_130(Net_4452),
+        .AIN_131(Net_4453),
+        .AIN_140(Net_4454),
+        .AIN_141(Net_4455),
+        .AIN_150(Net_4456),
+        .AIN_151(Net_4457),
+        .AIN_160(Net_4458),
+        .AIN_161(Net_4459),
+        .AIN_170(Net_4460),
+        .AIN_171(Net_4461),
+        .AIN_180(Net_4462),
+        .AIN_181(Net_4463),
+        .AIN_190(Net_4464),
+        .AIN_191(Net_4465),
+        .AIN_20(Net_4466),
+        .AIN_200(Net_4467),
+        .AIN_201(Net_4468),
         .AIN_21(Net_1170),
-        .AIN_210(Net_4368),
-        .AIN_211(Net_4369),
-        .AIN_220(Net_4370),
-        .AIN_221(Net_4371),
-        .AIN_230(Net_4372),
-        .AIN_231(Net_4373),
-        .AIN_240(Net_4374),
-        .AIN_241(Net_4375),
-        .AIN_250(Net_4376),
-        .AIN_251(Net_4377),
-        .AIN_260(Net_4378),
-        .AIN_261(Net_4379),
-        .AIN_270(Net_4380),
-        .AIN_271(Net_4381),
-        .AIN_280(Net_4382),
-        .AIN_281(Net_4383),
-        .AIN_290(Net_4384),
-        .AIN_291(Net_4385),
+        .AIN_210(Net_4469),
+        .AIN_211(Net_4470),
+        .AIN_220(Net_4471),
+        .AIN_221(Net_4472),
+        .AIN_230(Net_4473),
+        .AIN_231(Net_4474),
+        .AIN_240(Net_4475),
+        .AIN_241(Net_4476),
+        .AIN_250(Net_4477),
+        .AIN_251(Net_4478),
+        .AIN_260(Net_4479),
+        .AIN_261(Net_4480),
+        .AIN_270(Net_4481),
+        .AIN_271(Net_4482),
+        .AIN_280(Net_4483),
+        .AIN_281(Net_4484),
+        .AIN_290(Net_4485),
+        .AIN_291(Net_4486),
         .AIN_30(Net_1171),
-        .AIN_300(Net_4386),
-        .AIN_301(Net_4387),
-        .AIN_31(Net_4388),
-        .AIN_310(Net_4389),
-        .AIN_311(Net_4390),
-        .AIN_320(Net_4391),
-        .AIN_321(Net_4392),
-        .AIN_40(Net_4393),
+        .AIN_300(Net_4487),
+        .AIN_301(Net_4488),
+        .AIN_31(Net_4489),
+        .AIN_310(Net_4490),
+        .AIN_311(Net_4491),
+        .AIN_320(Net_4492),
+        .AIN_321(Net_4493),
+        .AIN_40(Net_4494),
         .AIN_41(Net_1175),
         .AIN_50(Net_1176),
-        .AIN_51(Net_4394),
-        .AIN_60(Net_4395),
-        .AIN_61(Net_4396),
-        .AIN_70(Net_4397),
-        .AIN_71(Net_4398),
-        .AIN_80(Net_4399),
-        .AIN_81(Net_4400),
-        .AIN_90(Net_4401),
-        .AIN_91(Net_4402),
+        .AIN_51(Net_4495),
+        .AIN_60(Net_4496),
+        .AIN_61(Net_4497),
+        .AIN_70(Net_4498),
+        .AIN_71(Net_4499),
+        .AIN_80(Net_4500),
+        .AIN_81(Net_4501),
+        .AIN_90(Net_4502),
+        .AIN_91(Net_4503),
         .AIN1(Net_1168),
-        .AIN11(Net_4403),
-        .AIN13(Net_4404),
-        .AIN15(Net_4405),
-        .AIN17(Net_4406),
-        .AIN19(Net_4407),
-        .AIN21(Net_4408),
-        .AIN23(Net_4409),
-        .AIN25(Net_4410),
-        .AIN27(Net_4411),
-        .AIN29(Net_4412),
+        .AIN11(Net_4504),
+        .AIN13(Net_4505),
+        .AIN15(Net_4506),
+        .AIN17(Net_4507),
+        .AIN19(Net_4508),
+        .AIN21(Net_4509),
+        .AIN23(Net_4510),
+        .AIN25(Net_4511),
+        .AIN27(Net_4512),
+        .AIN29(Net_4513),
         .AIN3(Net_1173),
-        .AIN31(Net_4413),
-        .AIN49(Net_4414),
+        .AIN31(Net_4514),
+        .AIN49(Net_4515),
         .AIN5(Net_1178),
-        .AIN50(Net_4415),
-        .AIN51(Net_4416),
-        .AIN52(Net_4417),
-        .AIN53(Net_4418),
-        .AIN54(Net_4419),
-        .AIN55(Net_4420),
-        .AIN56(Net_4421),
-        .AIN57(Net_4422),
-        .AIN58(Net_4423),
-        .AIN59(Net_4424),
-        .AIN60(Net_4425),
-        .AIN61(Net_4426),
-        .AIN62(Net_4427),
-        .AIN63(Net_4428),
-        .AIN64(Net_4429),
-        .AIN7(Net_4430),
-        .AIN9(Net_4431),
+        .AIN50(Net_4516),
+        .AIN51(Net_4517),
+        .AIN52(Net_4518),
+        .AIN53(Net_4519),
+        .AIN54(Net_4520),
+        .AIN55(Net_4521),
+        .AIN56(Net_4522),
+        .AIN57(Net_4523),
+        .AIN58(Net_4524),
+        .AIN59(Net_4525),
+        .AIN60(Net_4526),
+        .AIN61(Net_4527),
+        .AIN62(Net_4528),
+        .AIN63(Net_4529),
+        .AIN64(Net_4530),
+        .AIN7(Net_4531),
+        .AIN9(Net_4532),
         .eoc(Net_1497),
-        .sdone(Net_4432),
+        .sdone(Net_4533),
         .soc(Net_4435),
-        .vdac_ref(Net_4434));
+        .vdac_ref(Net_4534));
 
 	wire [0:0] tmpOE__A1_net;
 	wire [0:0] tmpFB_0__A1_net;
