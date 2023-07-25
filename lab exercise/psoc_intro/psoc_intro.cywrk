@@ -3,7 +3,7 @@
 <!--This file is machine generated and read. It is not intended to be edited by hand.-->
 <!--Due to this, there is no schema for this file.-->
 <CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWorkspaceSerialize" version="5" xml_contents_version="3" name="psoc_intro" persistent="psoc_intro.cywrk" platform="NOT_USED">
-<current_project name=".\psoc_code_base\CS301_Class.cydsn\CS301_Class.cyprj" />
+<current_project name=".\hardwareTask1.cydsn\hardwareTask1.cyprj" />
 <wrkspc_folders />
 <files />
 <projects>
@@ -11,6 +11,7 @@
 <v>.\lab2.cydsn\lab2.cyprj</v>
 <v>.\lab3.cydsn\lab3.cyprj</v>
 <v>.\psoc_code_base\CS301_Class.cydsn\CS301_Class.cyprj</v>
+<v>.\hardwareTask1.cydsn\hardwareTask1.cyprj</v>
 </projects>
 <workspace_id v="70172b92-34c3-435e-b9f5-ad08ffb49af9" />
 <WriteAppVersionLastSavedWith v="4.2.0.641" />

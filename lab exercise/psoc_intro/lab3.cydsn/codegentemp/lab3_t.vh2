@@ -1,5 +1,5 @@
 -- Project:   C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\lab3.cydsn\lab3.cyprj
--- Generated: 07/19/2023 12:45:06
+-- Generated: 07/25/2023 12:19:40
 -- PSoC Creator  4.2
 
 ENTITY lab3 IS
@@ -47,7 +47,7 @@ ARCHITECTURE __DEFAULT__ OF lab3 IS
     SIGNAL \ClockBlock.dclk_glb_ff_0__sig\ : bit;
     ATTRIBUTE Location OF ClockBlock : LABEL IS "F(Clock,0)";
     ATTRIBUTE lib_model OF LED(0) : LABEL IS "iocell1";
-    ATTRIBUTE Location OF LED(0) : LABEL IS "P2[1]";
+    ATTRIBUTE Location OF LED(0) : LABEL IS "P3[5]";
     ATTRIBUTE Location OF \Timer_1:TimerHW\ : LABEL IS "F(Timer,0)";
     ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell1";
     ATTRIBUTE Location OF __ONE__ : LABEL IS "U(1,3)";
