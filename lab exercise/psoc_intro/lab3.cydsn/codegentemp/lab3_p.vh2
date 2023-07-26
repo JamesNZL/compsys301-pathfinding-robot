@@ -1,5 +1,5 @@
 -- Project:   lab3
--- Generated: 07/19/2023 12:38:30
+-- Generated: 07/25/2023 11:08:22
 -- PSoC Creator  4.4
 
 ENTITY lab3 IS
@@ -45,7 +45,7 @@ ARCHITECTURE __DEFAULT__ OF lab3 IS
     ATTRIBUTE GROUND OF zero : SIGNAL IS true;
     SIGNAL \ClockBlock.dclk_glb_ff_0__sig\ : bit;
     ATTRIBUTE lib_model OF LED(0) : LABEL IS "iocell1";
-    ATTRIBUTE Location OF LED(0) : LABEL IS "P2[1]";
+    ATTRIBUTE Location OF LED(0) : LABEL IS "P3[5]";
     ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell1";
     COMPONENT clockblockcell
         PORT (

@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="psoc_intro\CS301_Class\Source Files\main.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>psoc_intro</v>
 <v>psoc_intro\CS301_Class</v>
@@ -29,14 +29,51 @@
 <v>psoc_intro\CS301_Class\CS301_Class.cydwr\Flash Security</v>
 <v>psoc_intro\CS301_Class\CS301_Class.cydwr\EEPROM</v>
 <v>psoc_intro\CS301_Class\Header Files</v>
+<v>psoc_intro\CS301_Class\Header Files\commands.h</v>
 <v>psoc_intro\CS301_Class\Header Files\defines.h</v>
 <v>psoc_intro\CS301_Class\Header Files\vars.h</v>
 <v>psoc_intro\CS301_Class\Source Files</v>
+<v>psoc_intro\CS301_Class\Source Files\commands.c</v>
 <v>psoc_intro\CS301_Class\Source Files\main.c</v>
 <v>psoc_intro\CS301_Class\Source Files\tacho.c</v>
 <v>psoc_intro\CS301_Class\commands</v>
-<v>psoc_intro\CS301_Class\Generated_Source</v>
 <v>psoc_intro\CS301_Class\Generated_Source\PSoC5</v>
+<v>psoc_intro\hw1\TopDesign</v>
+<v>psoc_intro\hw1\hw1.cydwr</v>
+<v>psoc_intro\hw1\hw1.cydwr\Pins</v>
+<v>psoc_intro\hw1\hw1.cydwr\Analog</v>
+<v>psoc_intro\hw1\hw1.cydwr\Clocks</v>
+<v>psoc_intro\hw1\hw1.cydwr\Interrupts</v>
+<v>psoc_intro\hw1\hw1.cydwr\DMA</v>
+<v>psoc_intro\hw1\hw1.cydwr\System</v>
+<v>psoc_intro\hw1\hw1.cydwr\Directives</v>
+<v>psoc_intro\hw1\hw1.cydwr\Flash Security</v>
+<v>psoc_intro\hw1\hw1.cydwr\EEPROM</v>
+<v>psoc_intro\hw1\Header Files</v>
+<v>psoc_intro\hw1\Header Files\cyapicallbacks.h</v>
+<v>psoc_intro\hw1\Header Files\defines.h</v>
+<v>psoc_intro\hw1\Header Files\vars.h</v>
+<v>psoc_intro\hw1\Source Files</v>
+<v>psoc_intro\hw1\Source Files\main.c</v>
+<v>psoc_intro\hw1\Generated_Source\PSoC5</v>
+<v>psoc_intro\hw2</v>
+<v>psoc_intro\hw2\TopDesign</v>
+<v>psoc_intro\hw2\hw2.cydwr</v>
+<v>psoc_intro\hw2\hw2.cydwr\Pins</v>
+<v>psoc_intro\hw2\hw2.cydwr\Analog</v>
+<v>psoc_intro\hw2\hw2.cydwr\Clocks</v>
+<v>psoc_intro\hw2\hw2.cydwr\Interrupts</v>
+<v>psoc_intro\hw2\hw2.cydwr\DMA</v>
+<v>psoc_intro\hw2\hw2.cydwr\System</v>
+<v>psoc_intro\hw2\hw2.cydwr\Directives</v>
+<v>psoc_intro\hw2\hw2.cydwr\Flash Security</v>
+<v>psoc_intro\hw2\hw2.cydwr\EEPROM</v>
+<v>psoc_intro\hw2\Header Files</v>
+<v>psoc_intro\hw2\Header Files\cyapicallbacks.h</v>
+<v>psoc_intro\hw2\Source Files</v>
+<v>psoc_intro\hw2\Source Files\main.c</v>
+<v>psoc_intro\hw2\Generated_Source</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5</v>
 <v>psoc_intro\lab1\TopDesign</v>
 <v>psoc_intro\lab1\lab1.cydwr</v>
 <v>psoc_intro\lab1\lab1.cydwr\Pins</v>
@@ -54,6 +91,7 @@
 <v>psoc_intro\lab1\Source Files\main.c</v>
 <v>psoc_intro\lab1\Generated_Source</v>
 <v>psoc_intro\lab1\Generated_Source\PSoC5</v>
+<v>psoc_intro\lab2</v>
 <v>psoc_intro\lab2\TopDesign</v>
 <v>psoc_intro\lab2\lab2.cydwr</v>
 <v>psoc_intro\lab2\lab2.cydwr\Pins</v>
@@ -69,8 +107,8 @@
 <v>psoc_intro\lab2\Header Files\cyapicallbacks.h</v>
 <v>psoc_intro\lab2\Source Files</v>
 <v>psoc_intro\lab2\Source Files\main.c</v>
-<v>psoc_intro\lab2\Generated_Source</v>
 <v>psoc_intro\lab2\Generated_Source\PSoC5</v>
+<v>psoc_intro\lab3</v>
 <v>psoc_intro\lab3\TopDesign</v>
 <v>psoc_intro\lab3\lab3.cydwr</v>
 <v>psoc_intro\lab3\lab3.cydwr\Pins</v>
@@ -104,60 +142,60 @@
 <v>psoc_intro\CS301_Class\CS301_Class.cydwr\Flash Security</v>
 <v>psoc_intro\CS301_Class\CS301_Class.cydwr\EEPROM</v>
 <v>psoc_intro\CS301_Class\Header Files</v>
+<v>psoc_intro\CS301_Class\Header Files\commands.h</v>
 <v>psoc_intro\CS301_Class\Header Files\defines.h</v>
 <v>psoc_intro\CS301_Class\Header Files\vars.h</v>
 <v>psoc_intro\CS301_Class\Source Files</v>
+<v>psoc_intro\CS301_Class\Source Files\commands.c</v>
 <v>psoc_intro\CS301_Class\Source Files\main.c</v>
 <v>psoc_intro\CS301_Class\Source Files\tacho.c</v>
 <v>psoc_intro\CS301_Class\commands</v>
 <v>psoc_intro\CS301_Class\Generated_Source</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A0</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A1</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A2</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A3</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A4</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A5</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A6</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A7</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_FinalBuf</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_IntClock</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_IRQ</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_SAR</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_TempBuf</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\Clock_PWM</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\Clock_QENC</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\Clock2</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\CONTROL</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\cy_boot</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\DB0</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\DB1</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\DB2</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\isr_eoc</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\isr_TS</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\isrRF_RX</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\isrRF_TX</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\LED</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\M1_D1</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\M1_IN1</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\M1_IN2</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\M1_QA</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\M1_QB</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\M2_D1</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\M2_IN1</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\M2_IN2</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\M2_QA</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\M2_QB</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\PWM_1</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\PWM_2</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\QuadDec_M1</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\QuadDec_M1_Cnt16</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\QuadDec_M2</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\QuadDec_M2_Cnt16</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\RF_BT_SELECT</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\Timer_TS</v>
+<v>psoc_intro\hw1</v>
+<v>psoc_intro\hw2</v>
+<v>psoc_intro\hw2\TopDesign</v>
+<v>psoc_intro\hw2\hw2.cydwr</v>
+<v>psoc_intro\hw2\hw2.cydwr\Pins</v>
+<v>psoc_intro\hw2\hw2.cydwr\Analog</v>
+<v>psoc_intro\hw2\hw2.cydwr\Clocks</v>
+<v>psoc_intro\hw2\hw2.cydwr\Interrupts</v>
+<v>psoc_intro\hw2\hw2.cydwr\DMA</v>
+<v>psoc_intro\hw2\hw2.cydwr\System</v>
+<v>psoc_intro\hw2\hw2.cydwr\Directives</v>
+<v>psoc_intro\hw2\hw2.cydwr\Flash Security</v>
+<v>psoc_intro\hw2\hw2.cydwr\EEPROM</v>
+<v>psoc_intro\hw2\Header Files</v>
+<v>psoc_intro\hw2\Header Files\cyapicallbacks.h</v>
+<v>psoc_intro\hw2\Source Files</v>
+<v>psoc_intro\hw2\Source Files\main.c</v>
+<v>psoc_intro\hw2\Generated_Source</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\Clock_PWM</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\Clock_QENC</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\cy_boot</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\M1_D1</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\M1_D2</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\M1_EN</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\M1_IN1</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\M1_IN2</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\M1_QA</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\M1_QB</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\PWM_1</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\QuadDec_M1</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\QuadDec_M1_Cnt16</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\cycodeshareexport.ld</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\cycodeshareimport.ld</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\cycodeshareimport.scat</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\cydevice.h</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\cydevice_trm.h</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\cydevicegnu.inc</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\cydevicegnu_trm.inc</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\cydeviceiar.inc</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\cydeviceiar_trm.inc</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\cydevicerv.inc</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\cydevicerv_trm.inc</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\cydisabledsheets.h</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -166,6 +204,12 @@
 <v>psoc_intro\CS301_Class</v>
 <v>psoc_intro\CS301_Class\TopDesign</v>
 <v>psoc_intro\CS301_Class\TopDesign\TopDesign.cysch</v>
+<v>psoc_intro\hw1</v>
+<v>psoc_intro\hw1\TopDesign</v>
+<v>psoc_intro\hw1\TopDesign\TopDesign.cysch</v>
+<v>psoc_intro\hw2</v>
+<v>psoc_intro\hw2\TopDesign</v>
+<v>psoc_intro\hw2\TopDesign\TopDesign.cysch</v>
 <v>psoc_intro\lab1</v>
 <v>psoc_intro\lab1\TopDesign</v>
 <v>psoc_intro\lab1\TopDesign\TopDesign.cysch</v>
@@ -181,6 +225,12 @@
 <v>psoc_intro\CS301_Class</v>
 <v>psoc_intro\CS301_Class\TopDesign</v>
 <v>psoc_intro\CS301_Class\TopDesign\TopDesign.cysch</v>
+<v>psoc_intro\hw1</v>
+<v>psoc_intro\hw1\TopDesign</v>
+<v>psoc_intro\hw1\TopDesign\TopDesign.cysch</v>
+<v>psoc_intro\hw2</v>
+<v>psoc_intro\hw2\TopDesign</v>
+<v>psoc_intro\hw2\TopDesign\TopDesign.cysch</v>
 <v>psoc_intro\lab1</v>
 <v>psoc_intro\lab1\TopDesign</v>
 <v>psoc_intro\lab1\TopDesign\TopDesign.cysch</v>
@@ -200,28 +250,11 @@
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A0.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A1.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A2.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A3.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A4.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A5.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A6.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A7.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_FinalBuf_dma.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_INT.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_IntClock.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_IRQ.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_PM.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_INT.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_PM.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_TempBuf_dma.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_PWM.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_QENC.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock2.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\commands.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\CONTROL.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\CONTROL_PM.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
@@ -237,7 +270,6 @@
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\DB0.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\DB1.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\DB2.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_eoc.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_TS.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\isrRF_RX.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\isrRF_TX.lst</v>
@@ -297,6 +329,98 @@
 <v>psoc_intro\CS301_Class\CS301_Class.gpdsc</v>
 <v>psoc_intro\CS301_Class\CS301_Class.rpt</v>
 <v>psoc_intro\CS301_Class\CS301_Class_timing.html</v>
+<v>psoc_intro\hw1</v>
+<v>psoc_intro\hw1\CortexM3</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_In.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_INT.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_IRQ.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_PM.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_1_theACLK.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_eoc.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\LED.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_1.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_2.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_1.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_1_PM.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\timer_clock.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_audio.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_boot.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cdc.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cls.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_descr.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dm.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dp.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_drv.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_episr.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_hid.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_midi.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_msc.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_pm.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_std.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_vnd.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC8_1.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC8_1_PM.lst</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\hw1.elf</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\hw1.hex</v>
+<v>psoc_intro\hw1\CortexM3\ARM_GCC_541\Debug\hw1.map</v>
+<v>psoc_intro\hw1\hw1.gpdsc</v>
+<v>psoc_intro\hw1\hw1.rpt</v>
+<v>psoc_intro\hw1\hw1_timing.html</v>
+<v>psoc_intro\hw2</v>
+<v>psoc_intro\hw2\CortexM3</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_PWM.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_QENC.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_D1.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_D2.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_EN.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_IN1.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_IN2.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_QA.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_QB.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1_PM.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M1.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M1_Cnt16.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M1_Cnt16_PM.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M1_PM.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\hw2.elf</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\hw2.hex</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\hw2.map</v>
+<v>psoc_intro\hw2\hw2.gpdsc</v>
+<v>psoc_intro\hw2\hw2.rpt</v>
+<v>psoc_intro\hw2\hw2_timing.html</v>
 <v>psoc_intro\lab1</v>
 <v>psoc_intro\lab1\CortexM3</v>
 <v>psoc_intro\lab1\CortexM3\ARM_GCC_541</v>
@@ -386,28 +510,11 @@
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A0.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A1.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A2.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A3.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A4.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A5.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A6.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\A7.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_FinalBuf_dma.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_INT.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_IntClock.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_IRQ.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_PM.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_INT.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_PM.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_TempBuf_dma.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_PWM.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_QENC.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock2.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\commands.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\CONTROL.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\CONTROL_PM.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
@@ -423,7 +530,6 @@
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\DB0.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\DB1.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\DB2.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_eoc.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_TS.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\isrRF_RX.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\isrRF_TX.lst</v>
@@ -448,6 +554,24 @@
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M1_Cnt16_PM.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M1_PM.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M2.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M2_Cnt16.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M2_Cnt16_PM.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M2_PM.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\RF_BT_SELECT.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\RF_BT_SELECT_PM.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\tacho.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_TS.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_TS_PM.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\UART.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_BOOT.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_INT.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_IntClock.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_PM.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_audio.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_boot.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cdc.lst</v>
+<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cls.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -462,7 +586,7 @@
 <v>psoc_intro\CS301_Class\PSoC 5LP Architecture TRM</v>
 <v>psoc_intro\CS301_Class\CY8C58LP Family Datasheet</v>
 <v>psoc_intro\CS301_Class\System Reference Guides</v>
-<v>psoc_intro\CS301_Class\ADC_SAR_SEQ_v2_10.pdf</v>
+<v>psoc_intro\CS301_Class\System Reference Guides\cy_boot_v6_10</v>
 <v>psoc_intro\CS301_Class\cy_clock_v2_20</v>
 <v>psoc_intro\CS301_Class\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
 <v>psoc_intro\CS301_Class\cy_constant_v1_0.pdf</v>
@@ -483,6 +607,34 @@
 <v>psoc_intro\CS301_Class\UART_v2_50.pdf</v>
 <v>psoc_intro\CS301_Class\USBFS_v3_20.pdf</v>
 <v>psoc_intro\CS301_Class\ZeroTerminal.pdf</v>
+<v>psoc_intro\hw1</v>
+<v>psoc_intro\hw1\PSoC 5LP Architecture TRM</v>
+<v>psoc_intro\hw1\CY8C58LP Family Datasheet</v>
+<v>psoc_intro\hw1\System Reference Guides</v>
+<v>psoc_intro\hw1\System Reference Guides\cy_boot_v6_10</v>
+<v>psoc_intro\hw1\ADC_SAR_v3_10.pdf</v>
+<v>psoc_intro\hw1\cy_clock_v2_20.pdf</v>
+<v>psoc_intro\hw1\cy_isr_v1_71.pdf</v>
+<v>psoc_intro\hw1\cy_pins_v2_20</v>
+<v>psoc_intro\hw1\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>psoc_intro\hw1\Timer_v2_80.pdf</v>
+<v>psoc_intro\hw1\USBFS_v3_20.pdf</v>
+<v>psoc_intro\hw1\VDAC8_v1_90.pdf</v>
+<v>psoc_intro\hw1\ZeroTerminal.pdf</v>
+<v>psoc_intro\hw2</v>
+<v>psoc_intro\hw2\PSoC 5LP Architecture TRM</v>
+<v>psoc_intro\hw2\CY8C58LP Family Datasheet</v>
+<v>psoc_intro\hw2\System Reference Guides</v>
+<v>psoc_intro\hw2\System Reference Guides\cy_boot_v6_10</v>
+<v>psoc_intro\hw2\cy_clock_v2_20</v>
+<v>psoc_intro\hw2\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>psoc_intro\hw2\cy_constant_v1_0</v>
+<v>psoc_intro\hw2\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
+<v>psoc_intro\hw2\cy_pins_v2_20</v>
+<v>psoc_intro\hw2\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>psoc_intro\hw2\not_v1_0.pdf</v>
+<v>psoc_intro\hw2\PWM_v3_30.pdf</v>
+<v>psoc_intro\hw2\QuadDec_v3_0.pdf</v>
 <v>psoc_intro\lab1</v>
 <v>psoc_intro\lab1\PSoC 5LP Architecture TRM</v>
 <v>psoc_intro\lab1\CY8C58LP Family Datasheet</v>
@@ -508,6 +660,7 @@
 <v>psoc_intro\lab3\PSoC 5LP Architecture TRM</v>
 <v>psoc_intro\lab3\CY8C58LP Family Datasheet</v>
 <v>psoc_intro\lab3\System Reference Guides</v>
+<v>psoc_intro\lab3\System Reference Guides\cy_boot_v6_10</v>
 <v>psoc_intro\lab3\cy_clock_v2_20.pdf</v>
 <v>psoc_intro\lab3\cy_isr_v1_71.pdf</v>
 <v>psoc_intro\lab3\cy_pins_v2_20.pdf</v>
@@ -520,7 +673,7 @@
 <v>psoc_intro\CS301_Class\PSoC 5LP Architecture TRM</v>
 <v>psoc_intro\CS301_Class\CY8C58LP Family Datasheet</v>
 <v>psoc_intro\CS301_Class\System Reference Guides</v>
-<v>psoc_intro\CS301_Class\ADC_SAR_SEQ_v2_10.pdf</v>
+<v>psoc_intro\CS301_Class\System Reference Guides\cy_boot_v6_10</v>
 <v>psoc_intro\CS301_Class\cy_clock_v2_20</v>
 <v>psoc_intro\CS301_Class\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
 <v>psoc_intro\CS301_Class\cy_constant_v1_0.pdf</v>
@@ -541,6 +694,34 @@
 <v>psoc_intro\CS301_Class\UART_v2_50.pdf</v>
 <v>psoc_intro\CS301_Class\USBFS_v3_20.pdf</v>
 <v>psoc_intro\CS301_Class\ZeroTerminal.pdf</v>
+<v>psoc_intro\hw1</v>
+<v>psoc_intro\hw1\PSoC 5LP Architecture TRM</v>
+<v>psoc_intro\hw1\CY8C58LP Family Datasheet</v>
+<v>psoc_intro\hw1\System Reference Guides</v>
+<v>psoc_intro\hw1\System Reference Guides\cy_boot_v6_10</v>
+<v>psoc_intro\hw1\ADC_SAR_v3_10.pdf</v>
+<v>psoc_intro\hw1\cy_clock_v2_20.pdf</v>
+<v>psoc_intro\hw1\cy_isr_v1_71.pdf</v>
+<v>psoc_intro\hw1\cy_pins_v2_20</v>
+<v>psoc_intro\hw1\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>psoc_intro\hw1\Timer_v2_80.pdf</v>
+<v>psoc_intro\hw1\USBFS_v3_20.pdf</v>
+<v>psoc_intro\hw1\VDAC8_v1_90.pdf</v>
+<v>psoc_intro\hw1\ZeroTerminal.pdf</v>
+<v>psoc_intro\hw2</v>
+<v>psoc_intro\hw2\PSoC 5LP Architecture TRM</v>
+<v>psoc_intro\hw2\CY8C58LP Family Datasheet</v>
+<v>psoc_intro\hw2\System Reference Guides</v>
+<v>psoc_intro\hw2\System Reference Guides\cy_boot_v6_10</v>
+<v>psoc_intro\hw2\cy_clock_v2_20</v>
+<v>psoc_intro\hw2\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>psoc_intro\hw2\cy_constant_v1_0</v>
+<v>psoc_intro\hw2\cy_constant_v1_0\cy_constant_v1_0.pdf</v>
+<v>psoc_intro\hw2\cy_pins_v2_20</v>
+<v>psoc_intro\hw2\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>psoc_intro\hw2\not_v1_0.pdf</v>
+<v>psoc_intro\hw2\PWM_v3_30.pdf</v>
+<v>psoc_intro\hw2\QuadDec_v3_0.pdf</v>
 <v>psoc_intro\lab1</v>
 <v>psoc_intro\lab1\PSoC 5LP Architecture TRM</v>
 <v>psoc_intro\lab1\CY8C58LP Family Datasheet</v>
@@ -555,22 +736,6 @@
 <v>psoc_intro\lab2\PSoC 5LP Architecture TRM</v>
 <v>psoc_intro\lab2\CY8C58LP Family Datasheet</v>
 <v>psoc_intro\lab2\System Reference Guides</v>
-<v>psoc_intro\lab2\System Reference Guides\cy_boot_v6_10</v>
-<v>psoc_intro\lab2\cy_clock_v2_20.pdf</v>
-<v>psoc_intro\lab2\cy_constant_v1_0.pdf</v>
-<v>psoc_intro\lab2\cy_pins_v2_20.pdf</v>
-<v>psoc_intro\lab2\cy_tff_v1_0.pdf</v>
-<v>psoc_intro\lab2\Timer_v2_80.pdf</v>
-<v>psoc_intro\lab2\ZeroTerminal.pdf</v>
-<v>psoc_intro\lab3</v>
-<v>psoc_intro\lab3\PSoC 5LP Architecture TRM</v>
-<v>psoc_intro\lab3\CY8C58LP Family Datasheet</v>
-<v>psoc_intro\lab3\System Reference Guides</v>
-<v>psoc_intro\lab3\cy_clock_v2_20.pdf</v>
-<v>psoc_intro\lab3\cy_isr_v1_71.pdf</v>
-<v>psoc_intro\lab3\cy_pins_v2_20.pdf</v>
-<v>psoc_intro\lab3\Timer_v2_80.pdf</v>
-<v>psoc_intro\lab3\ZeroTerminal.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -585,11 +750,11 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\lab3.cydsn\TopDesign\TopDesign.cysch" />
-<name v=".\lab3.cydsn\lab3.cydwr" />
-<name v=".\lab3.cydsn\main.c" />
-<name v=".\lab2.cydsn\main.c" />
-<name v=".\lab1.cydsn\main.c" />
+<name v="..\additional tasks\hw1.cydsn\TopDesign\TopDesign.cysch" />
+<name v="..\additional tasks\hw1.cydsn\hw1.cydwr" />
+<name v="..\..\psoc_code_base\CS301_Class.cydsn\TopDesign\TopDesign.cysch" />
+<name v="..\..\psoc_code_base\CS301_Class.cydsn\CS301_Class.cydwr" />
+<name v="..\additional tasks\hw1.cydsn\main.c" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -597,7 +762,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1408, 857" SelectedTabbedMdiWindow="fe6cd991-0acf-4dc2-9e4f-1293cd8a4807"><DocumentWindow Key="C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\lab exercise\psoc_intro\lab3.cydsn\TopDesign\TopDesign.cysch" Guid="4263ce9e-0136-4ea5-a9bc-7e945cac935f" /><DocumentWindow Key="C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\lab exercise\psoc_intro\lab3.cydsn\lab3.cydwr" Guid="5e3937e0-8245-4e69-8acd-a6b5e8523425" /><DocumentWindow Key="C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\lab exercise\psoc_intro\lab3.cydsn\main.c" Guid="fe6cd991-0acf-4dc2-9e4f-1293cd8a4807" /><DocumentWindow Key="C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\lab exercise\psoc_intro\lab2.cydsn\main.c" Guid="d4bee4c9-0df3-4e57-b53b-9c15e398e0b5" /><DocumentWindow Key="C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\lab exercise\psoc_intro\lab1.cydsn\main.c" Guid="111327bc-25fa-42ad-b2b9-b2a6057da6df" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1662, 826" SelectedTabbedMdiWindow="cb7e5bed-a612-4d9b-afdd-9a5f0f18b5f9"><DocumentWindow Key="C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\lab exercise\additional tasks\hw1.cydsn\TopDesign\TopDesign.cysch" Guid="20fc9ea1-fd59-40f5-8dc2-44b782409f29" /><DocumentWindow Key="C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\lab exercise\additional tasks\hw1.cydsn\hw1.cydwr" Guid="2873cb2a-89b9-4a29-b0c4-87f35eb25875" /><DocumentWindow Key="C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\psoc_code_base\CS301_Class.cydsn\TopDesign\TopDesign.cysch" Guid="2bc6d8e2-24e7-4969-89ff-cc52dee9adde" /><DocumentWindow Key="C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\psoc_code_base\CS301_Class.cydsn\CS301_Class.cydwr" Guid="a22ed0e8-0cad-426e-a023-c49e73081c7f" /><DocumentWindow Key="C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\lab exercise\additional tasks\hw1.cydsn\main.c" Guid="cb7e5bed-a612-4d9b-afdd-9a5f0f18b5f9" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
