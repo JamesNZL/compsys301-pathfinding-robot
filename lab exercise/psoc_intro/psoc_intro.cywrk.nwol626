@@ -16,6 +16,7 @@
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>psoc_intro</v>
+<v>psoc_intro\CS301_Class</v>
 <v>psoc_intro\CS301_Class\TopDesign</v>
 <v>psoc_intro\CS301_Class\CS301_Class.cydwr</v>
 <v>psoc_intro\CS301_Class\CS301_Class.cydwr\Pins</v>
@@ -109,53 +110,52 @@
 <VisibleNodeIds>
 <v>psoc_intro</v>
 <v>psoc_intro\CS301_Class</v>
-<v>psoc_intro\hardwareTask1</v>
-<v>psoc_intro\hardwareTask1\TopDesign</v>
-<v>psoc_intro\hardwareTask1\hardwareTask1.cydwr</v>
-<v>psoc_intro\hardwareTask1\hardwareTask1.cydwr\Pins</v>
-<v>psoc_intro\hardwareTask1\hardwareTask1.cydwr\Analog</v>
-<v>psoc_intro\hardwareTask1\hardwareTask1.cydwr\Clocks</v>
-<v>psoc_intro\hardwareTask1\hardwareTask1.cydwr\Interrupts</v>
-<v>psoc_intro\hardwareTask1\hardwareTask1.cydwr\DMA</v>
-<v>psoc_intro\hardwareTask1\hardwareTask1.cydwr\System</v>
-<v>psoc_intro\hardwareTask1\hardwareTask1.cydwr\Directives</v>
-<v>psoc_intro\hardwareTask1\hardwareTask1.cydwr\Flash Security</v>
-<v>psoc_intro\hardwareTask1\hardwareTask1.cydwr\EEPROM</v>
-<v>psoc_intro\hardwareTask1\Header Files</v>
-<v>psoc_intro\hardwareTask1\Header Files\cyapicallbacks.h</v>
-<v>psoc_intro\hardwareTask1\Source Files</v>
-<v>psoc_intro\hardwareTask1\Generated_Source</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\ADC_SAR_1</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\ADC_SAR_1_IRQ</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\ADC_SAR_1_IRQ\ADC_SAR_1_IRQ.c</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\ADC_SAR_1_IRQ\ADC_SAR_1_IRQ.h</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\ADC_SAR_1_theACLK</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\cy_boot</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\isr_EOC</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\LED</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\Pin_1</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\Pin_2</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\Pin_3</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\Timer_1</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\timer_clock</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\USBUART_1</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\USBUART_1_Dm</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\USBUART_1_Dp</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\VDAC8_1</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\cycodeshareexport.ld</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\cycodeshareimport.ld</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\cycodeshareimport.scat</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\cydevice.h</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\cydevice_trm.h</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\cydevicegnu.inc</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\cydevicegnu_trm.inc</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\cydeviceiar.inc</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\cydeviceiar_trm.inc</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\cydevicerv.inc</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\cydevicerv_trm.inc</v>
-<v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\cydisabledsheets.h</v>
+<v>psoc_intro\CS301_Class\TopDesign</v>
+<v>psoc_intro\CS301_Class\CS301_Class.cydwr</v>
+<v>psoc_intro\CS301_Class\CS301_Class.cydwr\Pins</v>
+<v>psoc_intro\CS301_Class\CS301_Class.cydwr\Analog</v>
+<v>psoc_intro\CS301_Class\CS301_Class.cydwr\Clocks</v>
+<v>psoc_intro\CS301_Class\CS301_Class.cydwr\Interrupts</v>
+<v>psoc_intro\CS301_Class\CS301_Class.cydwr\DMA</v>
+<v>psoc_intro\CS301_Class\CS301_Class.cydwr\System</v>
+<v>psoc_intro\CS301_Class\CS301_Class.cydwr\Directives</v>
+<v>psoc_intro\CS301_Class\CS301_Class.cydwr\Flash Security</v>
+<v>psoc_intro\CS301_Class\CS301_Class.cydwr\EEPROM</v>
+<v>psoc_intro\CS301_Class\Header Files</v>
+<v>psoc_intro\CS301_Class\Header Files\defines.h</v>
+<v>psoc_intro\CS301_Class\Header Files\vars.h</v>
+<v>psoc_intro\CS301_Class\Source Files</v>
+<v>psoc_intro\CS301_Class\Source Files\main.c</v>
+<v>psoc_intro\CS301_Class\Source Files\tacho.c</v>
+<v>psoc_intro\CS301_Class\commands</v>
+<v>psoc_intro\CS301_Class\Generated_Source</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A0</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A1</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A2</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A3</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A4</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A5</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A6</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A7</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_FinalBuf</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_IntClock</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_IRQ</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_SAR</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_TempBuf</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\Clock_PWM</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\Clock_QENC</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\Clock2</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\CONTROL</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\cy_boot</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\DB0</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\DB1</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\DB2</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\isr_eoc</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\isr_TS</v>
+<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\isrRF_RX</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -323,30 +323,28 @@
 <v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
 <v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
 <v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_EOC.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\LED.lst</v>
 <v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
 <v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_1.lst</v>
 <v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_2.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\Pin_3.lst</v>
 <v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_1.lst</v>
 <v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_1_PM.lst</v>
 <v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\timer_clock.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_audio.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_boot.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_cdc.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_cls.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_descr.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_Dm.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_Dp.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_drv.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_episr.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_hid.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_midi.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_msc.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_pm.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_std.lst</v>
-<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_1_vnd.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_audio.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_boot.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cdc.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cls.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_descr.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dm.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dp.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_drv.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_episr.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_hid.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_midi.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_msc.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_pm.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_std.lst</v>
+<v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_vnd.lst</v>
 <v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC8_1.lst</v>
 <v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\Listing Files\VDAC8_1_PM.lst</v>
 <v>psoc_intro\hardwareTask1\CortexM3\ARM_GCC_541\Debug\hardwareTask1.elf</v>
@@ -486,7 +484,6 @@
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\isrRF_RX.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\isrRF_TX.lst</v>
 <v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\LED.lst</v>
-<v>psoc_intro\CS301_Class\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_D1.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -618,7 +615,6 @@
 <v>psoc_intro\lab1\System Reference Guides\cy_boot_v5_82</v>
 <v>psoc_intro\lab1\cy_clock_v2_20.pdf</v>
 <v>psoc_intro\lab1\cy_pins_v2_20</v>
-<v>psoc_intro\lab1\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -633,13 +629,16 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\psoc_code_base\CS301_Class.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\hardwareTask1.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\hardwareTask1.cydsn\main.c" />
+<name v=".\lab3.cydsn\main.c" />
+<name v=".\hardwareTask1.cydsn\hardwareTask1.cydwr" />
 <name v=".\psoc_code_base\CS301_Class.cydsn\main.c" />
-<name v=".\psoc_code_base\CS301_Class.cydsn\tacho.c" />
-<name v=".\psoc_code_base\CS301_Class.cydsn\vars.h" />
-<name v=".\psoc_code_base\CS301_Class.cydsn\defines.h" />
 <name v=".\psoc_code_base\CS301_Class.cydsn\CS301_Class.cydwr" />
-<name v=".\psoc_code_base\CS301_Class.cydsn\commands" />
+<name v=".\lab3.cydsn\lab3.cydwr" />
+<name v=".\hardwareTask1.cydsn\Generated_Source\PSoC5\ADC_SAR_1_IRQ.h" />
+<name v=".\psoc_code_base\CS301_Class.cydsn\defines.h" />
+<name v=".\psoc_code_base\CS301_Class.cydsn\vars.h" />
 </OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
@@ -647,7 +646,7 @@
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1693, 831" SelectedTabbedMdiWindow="8b256ed6-c414-417e-b1d0-cf41d4f6e703"><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\psoc_code_base\CS301_Class.cydsn\TopDesign\TopDesign.cysch" Guid="24a48f1e-5b0e-4728-af5f-4d85cf72761e" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\psoc_code_base\CS301_Class.cydsn\main.c" Guid="c3de64b2-9b56-47ba-8430-f9739839451a" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\psoc_code_base\CS301_Class.cydsn\tacho.c" Guid="4bbccb64-9f4c-4d63-89cc-2bba8315a6b2" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\psoc_code_base\CS301_Class.cydsn\vars.h" Guid="a991108c-e7c7-4e22-9993-446794ddf728" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\psoc_code_base\CS301_Class.cydsn\defines.h" Guid="5de03280-2c42-40ea-8724-153e0c588406" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\psoc_code_base\CS301_Class.cydsn\CS301_Class.cydwr" Guid="8b256ed6-c414-417e-b1d0-cf41d4f6e703" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="5d8f6f65-39b6-443b-8484-156a54c3a9e8" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\psoc_code_base\CS301_Class.cydsn\commands" Guid="7128974c-56b2-4d27-9634-1873c281c6e1" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1439, 711" SelectedTabbedMdiWindow="d2d0d495-dee1-4b61-ba9c-fa921782c66d"><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\hardwareTask1.cydsn\TopDesign\TopDesign.cysch" Guid="7e48b00b-3c3e-40da-b10d-8e8008c603a9" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\hardwareTask1.cydsn\main.c" Guid="d2d0d495-dee1-4b61-ba9c-fa921782c66d" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\lab3.cydsn\main.c" Guid="f412d26c-5e5a-4f43-8d71-fbe8e71122fb" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\hardwareTask1.cydsn\hardwareTask1.cydwr" Guid="593468bb-b23c-4d13-b177-da3a7f3a3633" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\psoc_code_base\CS301_Class.cydsn\main.c" Guid="c0f7a37a-798f-40cc-8a8c-82fb365e4cf0" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\psoc_code_base\CS301_Class.cydsn\CS301_Class.cydwr" Guid="32605504-e03e-4602-9f8e-9bff0924702b" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\lab3.cydsn\lab3.cydwr" Guid="527c2732-a38f-42a8-8934-a5888683fb0f" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\hardwareTask1.cydsn\Generated_Source\PSoC5\ADC_SAR_1_IRQ.h" Guid="d6db30f1-a7cb-4f5f-bf27-ba388cddaa23" /><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="8ec66dc2-0865-4308-b5c8-d15ae6c9fa4a" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\psoc_code_base\CS301_Class.cydsn\defines.h" Guid="6e466bfc-0334-4be9-8b96-d4cd3b11f632" /><DocumentWindow Key="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\psoc_code_base\CS301_Class.cydsn\vars.h" Guid="fcf3d4dc-9647-41ba-95e9-c66d71071838" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
