@@ -1,5 +1,5 @@
 -- Project:   CS301_Class
--- Generated: 07/24/2023 21:41:41
+-- Generated: 07/26/2023 15:34:23
 -- PSoC Creator  4.4
 
 ENTITY CS301_Class IS
@@ -96,7 +96,11 @@ ARCHITECTURE __DEFAULT__ OF CS301_Class IS
     SIGNAL Net_368 : bit;
     SIGNAL Net_4334 : bit;
     SIGNAL Net_4435 : bit;
-    SIGNAL Net_4533 : bit;
+    SIGNAL Net_4747 : bit;
+    SIGNAL Net_4806 : bit;
+    ATTRIBUTE global_signal OF Net_4806 : SIGNAL IS true;
+    SIGNAL Net_4806_local : bit;
+    SIGNAL Net_4820 : bit;
     SIGNAL Net_724 : bit;
     SIGNAL Net_724_SYNCOUT : bit;
     SIGNAL Net_725 : bit;
@@ -326,6 +330,8 @@ ARCHITECTURE __DEFAULT__ OF CS301_Class IS
     SIGNAL \RF_BT_SELECT:control_5\ : bit;
     SIGNAL \RF_BT_SELECT:control_6\ : bit;
     SIGNAL \RF_BT_SELECT:control_7\ : bit;
+    SIGNAL \Timer_1:Net_261\ : bit;
+    SIGNAL \Timer_1:Net_57\ : bit;
     SIGNAL \Timer_TS:Net_261\ : bit;
     SIGNAL \Timer_TS:Net_57\ : bit;
     SIGNAL \UART:BUART:counter_load_not\ : bit;
@@ -401,8 +407,9 @@ ARCHITECTURE __DEFAULT__ OF CS301_Class IS
     ATTRIBUTE GROUND OF __ZERO__ : SIGNAL IS true;
     SIGNAL tmpOE__M1_IN1_net_0 : bit;
     ATTRIBUTE POWER OF tmpOE__M1_IN1_net_0 : SIGNAL IS true;
-    SIGNAL \ClockBlock.dclk_glb_ff_2__sig\ : bit;
+    SIGNAL \ClockBlock.dclk_glb_ff_1__sig\ : bit;
     SIGNAL \ClockBlock.dclk_glb_ff_4__sig\ : bit;
+    SIGNAL \ClockBlock.dclk_glb_ff_5__sig\ : bit;
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0.ce0__sig\ : bit;
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0.cl0__sig\ : bit;
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0.z0__sig\ : bit;
@@ -1148,18 +1155,21 @@ BEGIN
             clk_bus => ClockBlock_BUS_CLK_local,
             dsi_clkin_div => open,
             dsi_glb_div => open,
-            dclk_glb_0 => \ADC:clock\,
-            dclk_0 => \ADC:clock_local\,
-            dclk_glb_1 => Net_1850,
-            dclk_1 => Net_1850_local,
-            dclk_glb_2 => CLK24M,
-            dclk_2 => CLK24M_local,
+            dclk_glb_0 => Net_1850,
+            dclk_0 => Net_1850_local,
+            dclk_glb_1 => CLK24M,
+            dclk_1 => CLK24M_local,
+            dclk_glb_2 => \ADC:clock\,
+            dclk_2 => \ADC:clock_local\,
             dclk_glb_3 => \UART:Net_9\,
             dclk_3 => \UART:Net_9_local\,
             dclk_glb_4 => Net_10,
             dclk_4 => Net_10_local,
-            dclk_glb_ff_2 => \ClockBlock.dclk_glb_ff_2__sig\,
-            dclk_glb_ff_4 => \ClockBlock.dclk_glb_ff_4__sig\);
+            dclk_glb_5 => Net_4806,
+            dclk_5 => Net_4806_local,
+            dclk_glb_ff_1 => \ClockBlock.dclk_glb_ff_1__sig\,
+            dclk_glb_ff_4 => \ClockBlock.dclk_glb_ff_4__sig\,
+            dclk_glb_ff_5 => \ClockBlock.dclk_glb_ff_5__sig\);
 
     M1_IN1:logicalport
         GENERIC MAP(
@@ -3986,7 +3996,7 @@ BEGIN
             clken_mode => 1)
         PORT MAP(
             q => \ADC:bSAR_SEQ:cnt_enable\,
-            main_0 => Net_4533,
+            main_0 => Net_4747,
             main_1 => \ADC:bSAR_SEQ:load_period\);
 
     Net_1880:macrocell
@@ -4554,7 +4564,7 @@ BEGIN
             vn_ctl_udb_1 => open,
             vn_ctl_udb_0 => open,
             irq => \ADC:SAR:Net_252\,
-            next => Net_4533,
+            next => Net_4747,
             data_out_udb_11 => \ADC:SAR:Net_207_11\,
             data_out_udb_10 => \ADC:SAR:Net_207_10\,
             data_out_udb_9 => \ADC:SAR:Net_207_9\,
@@ -4978,7 +4988,7 @@ BEGIN
         GENERIC MAP(
             cy_registers => "")
         PORT MAP(
-            clock => \ClockBlock.dclk_glb_ff_2__sig\,
+            clock => \ClockBlock.dclk_glb_ff_1__sig\,
             kill => open,
             enable => __ONE__,
             capture => open,
@@ -4991,7 +5001,7 @@ BEGIN
         GENERIC MAP(
             cy_registers => "")
         PORT MAP(
-            clock => \ClockBlock.dclk_glb_ff_2__sig\,
+            clock => \ClockBlock.dclk_glb_ff_1__sig\,
             kill => open,
             enable => __ONE__,
             capture => open,
@@ -5044,6 +5054,27 @@ BEGIN
             reset => open,
             idir => open,
             ioff => open);
+
+    \Timer_1:TimerHW\:timercell
+        GENERIC MAP(
+            cy_registers => "")
+        PORT MAP(
+            clock => \ClockBlock.dclk_glb_ff_5__sig\,
+            kill => open,
+            enable => __ONE__,
+            capture => open,
+            timer_reset => open,
+            tc => Net_4820,
+            cmp => \Timer_1:Net_261\,
+            irq => \Timer_1:Net_57\);
+
+    isr_calculate:interrupt
+        GENERIC MAP(
+            int_type => "00",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => Net_4820,
+            clock => ClockBlock_BUS_CLK);
 
     \QuadDec_M1:Net_1251\:macrocell
         GENERIC MAP(

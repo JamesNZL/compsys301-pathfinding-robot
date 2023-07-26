@@ -27,19 +27,37 @@ void usbPutChar(char c);
 void handle_usb();
 void handle_pwm_command();
 //* ========================================
-volatile uint8_t readingIndex = 0;
-volatile uint16_t buffer[40];
+// ADC USART
+volatile uint16_t readingIndex = 0;
+volatile float results[40];
+volatile int16_t counts[40];
 
 CY_ISR(conversion_finished){
     uint16_t result = ADC_GetResult16(0);
-    float voltage = (2.048*(float)result)/1023;
-    uint8_t dac = (voltage/4.08)*256;
+    float voltage = ADC_CountsTo_Volts(result);
+    uint8_t dac = (voltage/4.08)*(float)255;
     VDAC8_1_SetValue(dac);
-    buffer[readingIndex] = result;
+    /*
+    results[readingIndex] = voltage;
     readingIndex++;
+    
     if (readingIndex == 40) {
         Timer_TS_Stop();
     }
+    */
+}
+
+CY_ISR(take_count){
+    int16_t count = QuadDec_M1_GetCounter();
+    float speed = (float) count;
+    counts[readingIndex] = speed;
+    readingIndex++;
+    QuadDec_M1_SetCounter(0);
+    if (readingIndex == 10) {
+        Timer_1_Stop();
+        
+    }
+    
 }
 
 
@@ -50,9 +68,13 @@ int main()
 // ----- INITIALIZATIONS ----------
     CYGlobalIntEnable;
     PWM_1_Start();
+    QuadDec_M1_Start();
+    QuadDec_M1_SetCounter(0);
     Timer_TS_Start();
+    Timer_1_Start();
     ADC_Start();
     VDAC8_1_Start();
+    isr_calculate_StartEx(take_count);
     isr_eoc_StartEx(conversion_finished);
 // ------USB SETUP ----------------    
 #ifdef USE_USB    
@@ -72,16 +94,21 @@ int main()
             flag_KB_string = 0;
         }
         
-        if (readingIndex == 40) {
-            readingIndex = 0;
-            char temp[BUF_SIZE];
-            for(uint8_t i = 0; i < 40; ++i){
-                sprintf(temp, "%i,", buffer[i]);
+        if (readingIndex == 10){
+            for(uint16_t i = 0; i < 10; ++i){
+                char temp[BUF_SIZE];
+                int16_t out = counts[i];
+                sprintf(temp, "%i,", out);
                 usbPutString(temp);
             }
+            readingIndex = 0;
+            QuadDec_M1_SetCounter(0);
+            Timer_1_Start();
         }
     }   
 }
+
+
 
 void handle_pwm_command(){
     // Valid command
@@ -89,7 +116,7 @@ void handle_pwm_command(){
     char message[BUF_SIZE];
     if(entry[0] == 'p' && entry[1] == ' ' && entry[2] != NULL){
         
-        usbPutString("p command entered");
+        usbPutString("p command entered\n");
         //store percentage in a string
         percentageString[0] = entry[2];
         percentageString[1] = entry[3];
@@ -104,10 +131,10 @@ void handle_pwm_command(){
         PWM_1_WriteCompare(compare);
         
         // display a status message to the terminal
-        sprintf(message, "Set the duty cycle to %s", percentageString);
+        sprintf(message, "Set the duty cycle to %s\n", percentageString);
         usbPutString(message);
     } else {
-        usbPutString("invalid command");
+        usbPutString("invalid command\n");
     }
 }
 

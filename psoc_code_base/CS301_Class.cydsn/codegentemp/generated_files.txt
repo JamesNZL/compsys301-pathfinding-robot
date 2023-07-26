@@ -155,6 +155,13 @@
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\DAC_Output_aliases.h" value="HEADER;;;;;DAC_Output" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\DAC_Output.c" value="SOURCE_C;CortexM3;;;;DAC_Output" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\DAC_Output.h" value="HEADER;;;;;DAC_Output" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\timer_clock.c" value="SOURCE_C;CortexM3;;;;timer_clock" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\timer_clock.h" value="HEADER;;;;;timer_clock" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\Timer_1.c" value="SOURCE_C;CortexM3;;;;Timer_1" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\Timer_1.h" value="HEADER;;;;;Timer_1" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\Timer_1_PM.c" value="SOURCE_C;CortexM3;;;;Timer_1" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\isr_calculate.c" value="SOURCE_C;CortexM3;;;;isr_calculate" />
+  <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\isr_calculate.h" value="HEADER;;;;;isr_calculate" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\QuadDec_M1_Cnt16.c" value="SOURCE_C;CortexM3;;;;QuadDec_M1_Cnt16" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\QuadDec_M1_Cnt16.h" value="HEADER;;;;;QuadDec_M1_Cnt16" />
   <file name="C:\Users\AKLbc\Desktop\301\psoc_code_base\CS301_Class.cydsn\codegentemp\QuadDec_M1_Cnt16_PM.c" value="SOURCE_C;CortexM3;;;;QuadDec_M1_Cnt16" />
