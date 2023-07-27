@@ -10,6 +10,7 @@
  * ========================================
  */
 #include "project.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -23,6 +24,27 @@ void usbPutChar(char c);
 void handle_usb();
 //* ========================================
 
+static volatile int16_t SPEED_MEASUREMENTS[2];
+static volatile uint8_t SPEED_INDEX = 0;
+static volatile bool SPEED_FULL = false;
+static volatile bool SPEED_CHANGING = false;
+CY_ISR(CalculateSpeed)
+{
+	// skip a timer iteration if the speed was just changed
+	if (SPEED_CHANGING)
+	{
+		SPEED_CHANGING = false;
+		return;
+	}
+
+	SPEED_MEASUREMENTS[SPEED_INDEX++] = QuadDec_M1_GetCounter();
+	if (SPEED_INDEX == 2)
+	{
+		SPEED_FULL = true;
+		SPEED_INDEX = 0;
+	}
+}
+
 int main(void)
 {
 	CyGlobalIntEnable; /* Enable global interrupts. */
@@ -30,8 +52,9 @@ int main(void)
 	/* Place your initialization/startup code here (e.g. MyInst_Start()) */
 	PWM_1_Start();
 	PWM_1_WriteCompare(PWM_MAX * (float)0.8);
-
-	Control_Reg_1_Write(Control_Reg_1_Read() | (1 << CR1_M1_DIRECTION));
+	Timer_1_Start();
+	QuadDec_M1_Start();
+	isr_speed_StartEx(CalculateSpeed);
 
 #ifdef USE_USB
 	USBUART_Start(0, USBUART_5V_OPERATION);
@@ -40,6 +63,26 @@ int main(void)
 	for (;;)
 	{
 		/* Place your application code here. */
+		static char speedBuffer[20];
+		static float dutyCycle = 0.0;
+		if (SPEED_FULL == true)
+		{
+			int16_t speedCSec = SPEED_MEASUREMENTS[1] - (int16_t)SPEED_MEASUREMENTS[0];
+
+			sprintf(speedBuffer, "%d\% => %d\n", dutyCycle * 100, speedCSec);
+			usbPutString(speedBuffer);
+			SPEED_FULL = false;
+			QuadDec_M1_SetCounter(0);
+
+			PWM_1_WriteCompare(PWM_MAX * dutyCycle);
+			SPEED_CHANGING = true;
+			dutyCycle += 0.1;
+			if (dutyCycle == 1.1)
+			{
+				dutyCycle = 0.0;
+			}
+		}
+
 		handle_usb();
 		if (flag_KB_string == 1)
 		{

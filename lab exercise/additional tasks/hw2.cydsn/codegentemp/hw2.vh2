@@ -2,7 +2,7 @@
 --	Conversion of hw2.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Thu Jul 27 12:43:00 2023
+--	Thu Jul 27 17:48:09 2023
 --
 
 USE cypress.cypress.all;
@@ -291,6 +291,7 @@ SIGNAL tmpFB_0__M1_D2_net_0 : bit;
 SIGNAL tmpIO_0__M1_D2_net_0 : bit;
 TERMINAL tmpSIOVREF__M1_D2_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__M1_D2_net_0 : bit;
+SIGNAL Net_295 : bit;
 SIGNAL \USBUART:Net_1010\ : bit;
 SIGNAL \USBUART:tmpOE__Dm_net_0\ : bit;
 SIGNAL \USBUART:tmpFB_0__Dm_net_0\ : bit;
@@ -364,6 +365,15 @@ SIGNAL \Control_Reg_1:control_3\ : bit;
 SIGNAL \Control_Reg_1:control_2\ : bit;
 SIGNAL \Control_Reg_1:control_1\ : bit;
 SIGNAL \Control_Reg_1:control_0\ : bit;
+SIGNAL Net_304 : bit;
+SIGNAL Net_12 : bit;
+SIGNAL \Timer_1:Net_260\ : bit;
+SIGNAL \Timer_1:Net_266\ : bit;
+SIGNAL \Timer_1:Net_51\ : bit;
+SIGNAL \Timer_1:Net_261\ : bit;
+SIGNAL \Timer_1:Net_57\ : bit;
+SIGNAL Net_297 : bit;
+SIGNAL \Timer_1:Net_102\ : bit;
 SIGNAL \QuadDec_M1:Net_1251\\D\ : bit;
 SIGNAL \QuadDec_M1:Cnt16:CounterUDB:prevCapture\\D\ : bit;
 SIGNAL \QuadDec_M1:Cnt16:CounterUDB:overflow_reg_i\\D\ : bit;
@@ -443,8 +453,14 @@ one <=  ('1') ;
 	OR (not \QuadDec_M1:Net_1260\ and not \QuadDec_M1:bQuadDec:quad_A_filt\ and not \QuadDec_M1:bQuadDec:error\ and not \QuadDec_M1:bQuadDec:state_0\ and \QuadDec_M1:Net_1251\)
 	OR (not \QuadDec_M1:Net_1260\ and not \QuadDec_M1:bQuadDec:error\ and not \QuadDec_M1:bQuadDec:state_1\ and \QuadDec_M1:Net_1251\ and \QuadDec_M1:bQuadDec:quad_B_filt\));
 
-\QuadDec_M1:Net_1203\\D\ <= ((not \QuadDec_M1:Net_1260\ and not \QuadDec_M1:bQuadDec:quad_A_filt\ and not \QuadDec_M1:bQuadDec:quad_B_filt\ and not \QuadDec_M1:bQuadDec:error\ and not \QuadDec_M1:bQuadDec:state_1\ and \QuadDec_M1:bQuadDec:state_0\)
-	OR (not \QuadDec_M1:Net_1260\ and not \QuadDec_M1:bQuadDec:state_1\ and not \QuadDec_M1:bQuadDec:state_0\ and \QuadDec_M1:Net_1203\ and \QuadDec_M1:bQuadDec:error\)
+\QuadDec_M1:Net_1203\\D\ <= ((not \QuadDec_M1:Net_1260\ and not \QuadDec_M1:bQuadDec:state_1\ and not \QuadDec_M1:bQuadDec:state_0\ and \QuadDec_M1:Net_1203\ and \QuadDec_M1:bQuadDec:error\)
+	OR (not \QuadDec_M1:Net_1260\ and not \QuadDec_M1:bQuadDec:quad_B_filt\ and not \QuadDec_M1:bQuadDec:error\ and \QuadDec_M1:bQuadDec:quad_A_filt\ and \QuadDec_M1:bQuadDec:state_1\ and \QuadDec_M1:bQuadDec:state_0\)
+	OR (not \QuadDec_M1:Net_1260\ and not \QuadDec_M1:bQuadDec:quad_A_filt\ and not \QuadDec_M1:bQuadDec:error\ and \QuadDec_M1:bQuadDec:quad_B_filt\ and \QuadDec_M1:bQuadDec:state_1\ and \QuadDec_M1:bQuadDec:state_0\)
+	OR (not \QuadDec_M1:Net_1260\ and not \QuadDec_M1:bQuadDec:quad_A_filt\ and not \QuadDec_M1:bQuadDec:quad_B_filt\ and not \QuadDec_M1:bQuadDec:error\ and not \QuadDec_M1:bQuadDec:state_0\ and \QuadDec_M1:bQuadDec:state_1\)
+	OR (not \QuadDec_M1:Net_1260\ and not \QuadDec_M1:bQuadDec:error\ and not \QuadDec_M1:bQuadDec:state_0\ and \QuadDec_M1:bQuadDec:quad_A_filt\ and \QuadDec_M1:bQuadDec:quad_B_filt\ and \QuadDec_M1:bQuadDec:state_1\)
+	OR (not \QuadDec_M1:Net_1260\ and not \QuadDec_M1:bQuadDec:quad_A_filt\ and not \QuadDec_M1:bQuadDec:quad_B_filt\ and not \QuadDec_M1:bQuadDec:error\ and not \QuadDec_M1:bQuadDec:state_1\ and \QuadDec_M1:bQuadDec:state_0\)
+	OR (not \QuadDec_M1:Net_1260\ and not \QuadDec_M1:bQuadDec:error\ and not \QuadDec_M1:bQuadDec:state_1\ and \QuadDec_M1:bQuadDec:quad_A_filt\ and \QuadDec_M1:bQuadDec:quad_B_filt\ and \QuadDec_M1:bQuadDec:state_0\)
+	OR (not \QuadDec_M1:bQuadDec:quad_B_filt\ and not \QuadDec_M1:bQuadDec:error\ and not \QuadDec_M1:bQuadDec:state_1\ and not \QuadDec_M1:bQuadDec:state_0\ and \QuadDec_M1:bQuadDec:quad_A_filt\)
 	OR (not \QuadDec_M1:bQuadDec:quad_A_filt\ and not \QuadDec_M1:bQuadDec:error\ and not \QuadDec_M1:bQuadDec:state_1\ and not \QuadDec_M1:bQuadDec:state_0\ and \QuadDec_M1:bQuadDec:quad_B_filt\));
 
 \QuadDec_M1:Net_530\ <= ((not \QuadDec_M1:Net_1264\ and \QuadDec_M1:Net_1275\ and \QuadDec_M1:Net_1251\));
@@ -1212,6 +1228,16 @@ M1_D2:cy_psoc3_pins_v1_10
 		out_clock_en=>one,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__M1_D2_net_0);
+timer_clock:cy_clock_v1_0
+	GENERIC MAP(cy_registers=>"",
+		id=>"c0fb34bd-1044-4931-9788-16b01ce89812",
+		source_clock_id=>"39D5E4C2-EBFC-44ab-AE3D-19F9BBFD674D",
+		divisor=>0,
+		period=>"1000000000000",
+		is_direct=>'0',
+		is_digital=>'1')
+	PORT MAP(clock_out=>Net_295,
+		dig_domain_out=>open);
 \USBUART:dp_int\:cy_isr_v1_0
 	GENERIC MAP(int_type=>"10",
 		is_nmi=>'0')
@@ -1408,6 +1434,20 @@ M1_D2:cy_psoc3_pins_v1_10
 		clock=>zero,
 		control=>(\Control_Reg_1:control_7\, \Control_Reg_1:control_6\, \Control_Reg_1:control_5\, \Control_Reg_1:control_4\,
 			\Control_Reg_1:control_3\, Net_232, Net_231, Net_240));
+isr_speed:cy_isr_v1_0
+	GENERIC MAP(int_type=>"00",
+		is_nmi=>'0')
+	PORT MAP(int_signal=>Net_304);
+\Timer_1:TimerHW\:cy_psoc3_timer_v1_0
+	GENERIC MAP(cy_registers=>"")
+	PORT MAP(clock=>Net_295,
+		kill=>zero,
+		enable=>one,
+		capture=>zero,
+		timer_reset=>zero,
+		tc=>Net_304,
+		compare=>\Timer_1:Net_261\,
+		interrupt=>\Timer_1:Net_57\);
 \QuadDec_M1:Net_1251\:cy_dff
 	PORT MAP(d=>\QuadDec_M1:Net_1251\\D\,
 		clk=>\QuadDec_M1:bQuadDec:sync_clock\,

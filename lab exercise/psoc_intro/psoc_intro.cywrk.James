@@ -131,37 +131,6 @@
 <v>psoc_intro\lab3\Generated_Source\PSoC5</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
-<v>psoc_intro</v>
-<v>psoc_intro\CS301_Class</v>
-<v>psoc_intro\hw1</v>
-<v>psoc_intro\hw2</v>
-<v>psoc_intro\hw2\TopDesign</v>
-<v>psoc_intro\hw2\hw2.cydwr</v>
-<v>psoc_intro\hw2\hw2.cydwr\Pins</v>
-<v>psoc_intro\hw2\hw2.cydwr\Analog</v>
-<v>psoc_intro\hw2\hw2.cydwr\Clocks</v>
-<v>psoc_intro\hw2\hw2.cydwr\Interrupts</v>
-<v>psoc_intro\hw2\hw2.cydwr\DMA</v>
-<v>psoc_intro\hw2\hw2.cydwr\System</v>
-<v>psoc_intro\hw2\hw2.cydwr\Directives</v>
-<v>psoc_intro\hw2\hw2.cydwr\Flash Security</v>
-<v>psoc_intro\hw2\hw2.cydwr\EEPROM</v>
-<v>psoc_intro\hw2\Header Files</v>
-<v>psoc_intro\hw2\Header Files\commands.h</v>
-<v>psoc_intro\hw2\Header Files\cyapicallbacks.h</v>
-<v>psoc_intro\hw2\Header Files\defines.h</v>
-<v>psoc_intro\hw2\Header Files\vars.h</v>
-<v>psoc_intro\hw2\Source Files</v>
-<v>psoc_intro\hw2\Source Files\commands.c</v>
-<v>psoc_intro\hw2\Source Files\main.c</v>
-<v>psoc_intro\hw2\Generated_Source</v>
-<v>psoc_intro\hw2\Generated_Source\PSoC5</v>
-<v>psoc_intro\hw2\Generated_Source\PSoC5\Clock_PWM</v>
-<v>psoc_intro\hw2\Generated_Source\PSoC5\Clock_QENC</v>
-<v>psoc_intro\hw2\Generated_Source\PSoC5\Control_Reg_1</v>
-<v>psoc_intro\hw2\Generated_Source\PSoC5\cy_boot</v>
-<v>psoc_intro\hw2\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
-<v>psoc_intro\hw2\Generated_Source\PSoC5\M1_D1</v>
 <v>psoc_intro\hw2\Generated_Source\PSoC5\M1_D2</v>
 <v>psoc_intro\hw2\Generated_Source\PSoC5\M1_EN</v>
 <v>psoc_intro\hw2\Generated_Source\PSoC5\M1_IN1</v>
@@ -171,6 +140,8 @@
 <v>psoc_intro\hw2\Generated_Source\PSoC5\PWM_1</v>
 <v>psoc_intro\hw2\Generated_Source\PSoC5\QuadDec_M1</v>
 <v>psoc_intro\hw2\Generated_Source\PSoC5\QuadDec_M1_Cnt16</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\Timer_1</v>
+<v>psoc_intro\hw2\Generated_Source\PSoC5\timer_clock</v>
 <v>psoc_intro\hw2\Generated_Source\PSoC5\USBUART</v>
 <v>psoc_intro\hw2\Generated_Source\PSoC5\USBUART_Dm</v>
 <v>psoc_intro\hw2\Generated_Source\PSoC5\USBUART_Dp</v>
@@ -199,6 +170,35 @@
 <v>psoc_intro\lab2\TopDesign</v>
 <v>psoc_intro\lab2\lab2.cydwr</v>
 <v>psoc_intro\lab2\lab2.cydwr\Pins</v>
+<v>psoc_intro\lab2\lab2.cydwr\Analog</v>
+<v>psoc_intro\lab2\lab2.cydwr\Clocks</v>
+<v>psoc_intro\lab2\lab2.cydwr\Interrupts</v>
+<v>psoc_intro\lab2\lab2.cydwr\DMA</v>
+<v>psoc_intro\lab2\lab2.cydwr\System</v>
+<v>psoc_intro\lab2\lab2.cydwr\Directives</v>
+<v>psoc_intro\lab2\lab2.cydwr\Flash Security</v>
+<v>psoc_intro\lab2\lab2.cydwr\EEPROM</v>
+<v>psoc_intro\lab2\Header Files</v>
+<v>psoc_intro\lab2\Header Files\cyapicallbacks.h</v>
+<v>psoc_intro\lab2\Source Files</v>
+<v>psoc_intro\lab2\Source Files\main.c</v>
+<v>psoc_intro\lab2\Generated_Source</v>
+<v>psoc_intro\lab3</v>
+<v>psoc_intro\lab3\TopDesign</v>
+<v>psoc_intro\lab3\lab3.cydwr</v>
+<v>psoc_intro\lab3\lab3.cydwr\Pins</v>
+<v>psoc_intro\lab3\lab3.cydwr\Analog</v>
+<v>psoc_intro\lab3\lab3.cydwr\Clocks</v>
+<v>psoc_intro\lab3\lab3.cydwr\Interrupts</v>
+<v>psoc_intro\lab3\lab3.cydwr\DMA</v>
+<v>psoc_intro\lab3\lab3.cydwr\System</v>
+<v>psoc_intro\lab3\lab3.cydwr\Directives</v>
+<v>psoc_intro\lab3\lab3.cydwr\Flash Security</v>
+<v>psoc_intro\lab3\lab3.cydwr\EEPROM</v>
+<v>psoc_intro\lab3\Header Files</v>
+<v>psoc_intro\lab3\Header Files\cyapicallbacks.h</v>
+<v>psoc_intro\lab3\Source Files</v>
+<v>psoc_intro\lab3\Source Files\main.c</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -407,6 +407,7 @@
 <v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
 <v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
 <v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_speed.lst</v>
 <v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_D1.lst</v>
 <v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_D2.lst</v>
 <v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_EN.lst</v>
@@ -421,6 +422,9 @@
 <v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M1_Cnt16.lst</v>
 <v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M1_Cnt16_PM.lst</v>
 <v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M1_PM.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_1.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_1_PM.lst</v>
+<v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\timer_clock.lst</v>
 <v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART.lst</v>
 <v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_audio.lst</v>
 <v>psoc_intro\hw2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_boot.lst</v>
