@@ -539,7 +539,7 @@ function getElementsByClass(rootNode, elemName, className)
 <tr> <td class="prop"> Project :</td>
 <td class="proptext"> hw2</td></tr>
 <tr> <td class="prop"> Build Time :</td>
-<td class="proptext"> 07/27/23 12:20:56</td></tr>
+<td class="proptext"> 07/27/23 12:43:04</td></tr>
 <tr> <td class="prop"> Device :</td>
 <td class="proptext"> CY8C5888LTI-LP097</td></tr>
 <tr> <td class="prop"> Temperature :</td>
@@ -607,32 +607,32 @@ Clock Summary Section</span>
 <tr> 
  <td class = "text_info">CyILO</td>
  <td class = "text_info">CyILO</td>
- <td class = "number">1.000&nbsp;kHz</td>
- <td class = "number">1.000&nbsp;kHz</td>
+ <td class = "number">100.000&nbsp;kHz</td>
+ <td class = "number">100.000&nbsp;kHz</td>
  <td class = "number"> N/A </td>
  <td class = "text_info"> </td>
 </tr>
 <tr> 
  <td class = "text_info">CyIMO</td>
  <td class = "text_info">CyIMO</td>
- <td class = "number">3.000&nbsp;MHz</td>
- <td class = "number">3.000&nbsp;MHz</td>
+ <td class = "number">24.000&nbsp;MHz</td>
+ <td class = "number">24.000&nbsp;MHz</td>
  <td class = "number"> N/A </td>
  <td class = "text_info"> </td>
 </tr>
 <tr> 
  <td class = "text_info">CyMASTER_CLK</td>
  <td class = "text_info">CyMASTER_CLK</td>
- <td class = "number">24.000&nbsp;MHz</td>
- <td class = "number">24.000&nbsp;MHz</td>
+ <td class = "number">60.000&nbsp;MHz</td>
+ <td class = "number">60.000&nbsp;MHz</td>
  <td class = "number"> N/A </td>
  <td class = "text_info"> </td>
 </tr>
 <tr> 
  <td class = "text_info">CyBUS_CLK</td>
  <td class = "text_info">CyMASTER_CLK</td>
- <td class = "number">24.000&nbsp;MHz</td>
- <td class = "number">24.000&nbsp;MHz</td>
+ <td class = "number">60.000&nbsp;MHz</td>
+ <td class = "number">60.000&nbsp;MHz</td>
  <td class = "number"> N/A </td>
  <td class = "text_info"> </td>
 </tr>
@@ -641,7 +641,7 @@ Clock Summary Section</span>
  <td class = "text_info">CyMASTER_CLK</td>
  <td class = "number">12.000&nbsp;MHz</td>
  <td class = "number">12.000&nbsp;MHz</td>
- <td class = "number">43.630&nbsp;MHz</td>
+ <td class = "number">46.123&nbsp;MHz</td>
  <td class = "text_info"></td>
 </tr>
 <tr> 
@@ -655,8 +655,8 @@ Clock Summary Section</span>
 <tr> 
  <td class = "text_info">CyPLL_OUT</td>
  <td class = "text_info">CyPLL_OUT</td>
- <td class = "number">24.000&nbsp;MHz</td>
- <td class = "number">24.000&nbsp;MHz</td>
+ <td class = "number">60.000&nbsp;MHz</td>
+ <td class = "number">60.000&nbsp;MHz</td>
  <td class = "number"> N/A </td>
  <td class = "text_info"> </td>
 </tr>
@@ -702,227 +702,11 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
 </thead> 
 <tbody>
 <tr> 
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/z0</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
- <td class = "number">43.630&nbsp;MHz</td>
- <td class = "number">22.920</td>
- <td class = "number">60.413</td>
- <td class = "text_info"></td>
-</tr>
-<tr class="sta_path">
-<td class="sta_path"  colspan="6">
-<table class="sta_path">
- <thead> 
-<tr> 
-<th>Type</th>
-<th>Location</th>
-<th>Fanout</th>
-<th>Instance/Net</th>
-<th>Source</th>
-<th>Dest</th>
-<th>Delay (ns)</th>
-</tr>
-</thead> 
-<tbody>
-<tr> 
- <td class = "text_info">datapathcell1</td>
- <td class = "text_info">U(3,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/clock</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/z0</td>
- <td class = "number">0.760</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0.z0__sig\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/z0</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0i</td>
- <td class = "number">0.000</td>
-</tr>
-<tr> 
- <td class = "text_info">datapathcell2</td>
- <td class = "text_info">U(2,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0i</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0_comb</td>
- <td class = "number">2.740</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:status_1\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0_comb</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_1</td>
- <td class = "number">3.894</td>
-</tr>
-<tr> 
- <td class = "text_info">macrocell1</td>
- <td class = "text_info">U(2,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
- <td class = "number">3.350</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
- <td class = "number">2.816</td>
-</tr>
-<tr> 
- <td class = "text_info">datapathcell1</td>
- <td class = "text_info">U(3,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/co_msb</td>
- <td class = "number">5.130</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0.co_msb__sig\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/co_msb</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
- <td class = "number">0.000</td>
-</tr>
-<tr> 
- <td class = "text_info">datapathcell2</td>
- <td class = "text_info">U(2,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
- <td class = "text_info"></td>
- <td class = "text_info">SETUP</td>
- <td class = "number">4.230</td>
-</tr>
-<tr> 
- <td class = "text_info">Clock</td>
- <td class = "text_info"> </td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info">Skew</td>
- <td class = "number">0.000</td>
-</tr>
-</tbody>
- </table> 
-</td>
-</tr>
-<tr> 
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0_comb</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
- <td class = "number">46.062&nbsp;MHz</td>
- <td class = "number">21.710</td>
- <td class = "number">61.623</td>
- <td class = "text_info"></td>
-</tr>
-<tr class="sta_path">
-<td class="sta_path"  colspan="6">
-<table class="sta_path">
- <thead> 
-<tr> 
-<th>Type</th>
-<th>Location</th>
-<th>Fanout</th>
-<th>Instance/Net</th>
-<th>Source</th>
-<th>Dest</th>
-<th>Delay (ns)</th>
-</tr>
-</thead> 
-<tbody>
-<tr> 
- <td class = "text_info">datapathcell2</td>
- <td class = "text_info">U(2,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/clock</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0_comb</td>
- <td class = "number">2.290</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:status_1\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0_comb</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_1</td>
- <td class = "number">3.894</td>
-</tr>
-<tr> 
- <td class = "text_info">macrocell1</td>
- <td class = "text_info">U(2,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
- <td class = "number">3.350</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
- <td class = "number">2.816</td>
-</tr>
-<tr> 
- <td class = "text_info">datapathcell1</td>
- <td class = "text_info">U(3,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/co_msb</td>
- <td class = "number">5.130</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0.co_msb__sig\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/co_msb</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
- <td class = "number">0.000</td>
-</tr>
-<tr> 
- <td class = "text_info">datapathcell2</td>
- <td class = "text_info">U(2,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
- <td class = "text_info"></td>
- <td class = "text_info">SETUP</td>
- <td class = "number">4.230</td>
-</tr>
-<tr> 
- <td class = "text_info">Clock</td>
- <td class = "text_info"> </td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info">Skew</td>
- <td class = "number">0.000</td>
-</tr>
-</tbody>
- </table> 
-</td>
-</tr>
-<tr> 
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/ff0</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
- <td class = "number">47.121&nbsp;MHz</td>
- <td class = "number">21.222</td>
- <td class = "number">62.111</td>
+ <td class = "number">46.123&nbsp;MHz</td>
+ <td class = "number">21.681</td>
+ <td class = "number">61.652</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -974,7 +758,7 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:overflow\</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/f0_comb</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_2</td>
- <td class = "number">2.306</td>
+ <td class = "number">2.779</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell1</td>
@@ -992,106 +776,7 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
- <td class = "number">2.816</td>
-</tr>
-<tr> 
- <td class = "text_info">datapathcell1</td>
- <td class = "text_info">U(3,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/co_msb</td>
- <td class = "number">5.130</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0.co_msb__sig\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/co_msb</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
- <td class = "number">0.000</td>
-</tr>
-<tr> 
- <td class = "text_info">datapathcell2</td>
- <td class = "text_info">U(2,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
- <td class = "text_info"></td>
- <td class = "text_info">SETUP</td>
- <td class = "number">4.230</td>
-</tr>
-<tr> 
- <td class = "text_info">Clock</td>
- <td class = "text_info"> </td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info">Skew</td>
- <td class = "number">0.000</td>
-</tr>
-</tbody>
- </table> 
-</td>
-</tr>
-<tr> 
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/f0_comb</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
- <td class = "number">49.920&nbsp;MHz</td>
- <td class = "number">20.032</td>
- <td class = "number">63.301</td>
- <td class = "text_info"></td>
-</tr>
-<tr class="sta_path">
-<td class="sta_path"  colspan="6">
-<table class="sta_path">
- <thead> 
-<tr> 
-<th>Type</th>
-<th>Location</th>
-<th>Fanout</th>
-<th>Instance/Net</th>
-<th>Source</th>
-<th>Dest</th>
-<th>Delay (ns)</th>
-</tr>
-</thead> 
-<tbody>
-<tr> 
- <td class = "text_info">datapathcell2</td>
- <td class = "text_info">U(2,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/clock</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/f0_comb</td>
- <td class = "number">2.200</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:overflow\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/f0_comb</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_2</td>
- <td class = "number">2.306</td>
-</tr>
-<tr> 
- <td class = "text_info">macrocell1</td>
- <td class = "text_info">U(2,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_2</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
- <td class = "number">3.350</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
- <td class = "number">2.816</td>
+ <td class = "number">2.802</td>
 </tr>
 <tr> 
  <td class = "text_info">datapathcell1</td>
@@ -1135,10 +820,10 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
 </tr>
 <tr> 
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/z0</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
- <td class = "number">50.968&nbsp;MHz</td>
- <td class = "number">19.620</td>
- <td class = "number">63.713</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
+ <td class = "number">46.909&nbsp;MHz</td>
+ <td class = "number">21.318</td>
+ <td class = "number">62.015</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1190,7 +875,7 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:status_1\</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0_comb</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_1</td>
- <td class = "number">3.894</td>
+ <td class = "number">2.306</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell1</td>
@@ -1208,106 +893,25 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
- <td class = "number">2.816</td>
+ <td class = "number">2.802</td>
 </tr>
 <tr> 
  <td class = "text_info">datapathcell1</td>
  <td class = "text_info">U(3,1)</td>
  <td class = "number">1</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\</td>
- <td class = "text_info"></td>
- <td class = "text_info">SETUP</td>
- <td class = "number">6.060</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/co_msb</td>
+ <td class = "number">5.130</td>
 </tr>
 <tr> 
- <td class = "text_info">Clock</td>
+ <td class = "text_info">Route</td>
  <td class = "text_info"> </td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info">Skew</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0.co_msb__sig\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/co_msb</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
  <td class = "number">0.000</td>
-</tr>
-</tbody>
- </table> 
-</td>
-</tr>
-<tr> 
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/z0</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/cs_addr_0</td>
- <td class = "number">50.997&nbsp;MHz</td>
- <td class = "number">19.609</td>
- <td class = "number">63.724</td>
- <td class = "text_info"></td>
-</tr>
-<tr class="sta_path">
-<td class="sta_path"  colspan="6">
-<table class="sta_path">
- <thead> 
-<tr> 
-<th>Type</th>
-<th>Location</th>
-<th>Fanout</th>
-<th>Instance/Net</th>
-<th>Source</th>
-<th>Dest</th>
-<th>Delay (ns)</th>
-</tr>
-</thead> 
-<tbody>
-<tr> 
- <td class = "text_info">datapathcell1</td>
- <td class = "text_info">U(3,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/clock</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/z0</td>
- <td class = "number">0.760</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0.z0__sig\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/z0</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0i</td>
- <td class = "number">0.000</td>
-</tr>
-<tr> 
- <td class = "text_info">datapathcell2</td>
- <td class = "text_info">U(2,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0i</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0_comb</td>
- <td class = "number">2.740</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:status_1\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0_comb</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_1</td>
- <td class = "number">3.894</td>
-</tr>
-<tr> 
- <td class = "text_info">macrocell1</td>
- <td class = "text_info">U(2,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
- <td class = "number">3.350</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"> </td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/cs_addr_0</td>
- <td class = "number">2.805</td>
 </tr>
 <tr> 
  <td class = "text_info">datapathcell2</td>
@@ -1316,7 +920,7 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
  <td class = "text_info"></td>
  <td class = "text_info">SETUP</td>
- <td class = "number">6.060</td>
+ <td class = "number">4.230</td>
 </tr>
 <tr> 
  <td class = "text_info">Clock</td>
@@ -1334,9 +938,9 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
 <tr> 
  <td class = "text_info">\QuadDec_M1:Net_1260\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
- <td class = "number">51.083&nbsp;MHz</td>
- <td class = "number">19.576</td>
- <td class = "number">63.757</td>
+ <td class = "number">47.139&nbsp;MHz</td>
+ <td class = "number">21.214</td>
+ <td class = "number">62.119</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1370,7 +974,7 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
  <td class = "text_info">\QuadDec_M1:Net_1260\</td>
  <td class = "text_info">\QuadDec_M1:Net_1260\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_0</td>
- <td class = "number">2.800</td>
+ <td class = "number">4.452</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell1</td>
@@ -1388,7 +992,205 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
- <td class = "number">2.816</td>
+ <td class = "number">2.802</td>
+</tr>
+<tr> 
+ <td class = "text_info">datapathcell1</td>
+ <td class = "text_info">U(3,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/co_msb</td>
+ <td class = "number">5.130</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"> </td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0.co_msb__sig\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/co_msb</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
+ <td class = "number">0.000</td>
+</tr>
+<tr> 
+ <td class = "text_info">datapathcell2</td>
+ <td class = "text_info">U(2,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
+ <td class = "text_info"></td>
+ <td class = "text_info">SETUP</td>
+ <td class = "number">4.230</td>
+</tr>
+<tr> 
+ <td class = "text_info">Clock</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info">Skew</td>
+ <td class = "number">0.000</td>
+</tr>
+</tbody>
+ </table> 
+</td>
+</tr>
+<tr> 
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/f0_comb</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
+ <td class = "number">48.802&nbsp;MHz</td>
+ <td class = "number">20.491</td>
+ <td class = "number">62.842</td>
+ <td class = "text_info"></td>
+</tr>
+<tr class="sta_path">
+<td class="sta_path"  colspan="6">
+<table class="sta_path">
+ <thead> 
+<tr> 
+<th>Type</th>
+<th>Location</th>
+<th>Fanout</th>
+<th>Instance/Net</th>
+<th>Source</th>
+<th>Dest</th>
+<th>Delay (ns)</th>
+</tr>
+</thead> 
+<tbody>
+<tr> 
+ <td class = "text_info">datapathcell2</td>
+ <td class = "text_info">U(2,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/clock</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/f0_comb</td>
+ <td class = "number">2.200</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"> </td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:overflow\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/f0_comb</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_2</td>
+ <td class = "number">2.779</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell1</td>
+ <td class = "text_info">U(2,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_2</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
+ <td class = "number">3.350</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"> </td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
+ <td class = "number">2.802</td>
+</tr>
+<tr> 
+ <td class = "text_info">datapathcell1</td>
+ <td class = "text_info">U(3,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/co_msb</td>
+ <td class = "number">5.130</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"> </td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0.co_msb__sig\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/co_msb</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
+ <td class = "number">0.000</td>
+</tr>
+<tr> 
+ <td class = "text_info">datapathcell2</td>
+ <td class = "text_info">U(2,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
+ <td class = "text_info"></td>
+ <td class = "text_info">SETUP</td>
+ <td class = "number">4.230</td>
+</tr>
+<tr> 
+ <td class = "text_info">Clock</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info">Skew</td>
+ <td class = "number">0.000</td>
+</tr>
+</tbody>
+ </table> 
+</td>
+</tr>
+<tr> 
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0_comb</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
+ <td class = "number">49.731&nbsp;MHz</td>
+ <td class = "number">20.108</td>
+ <td class = "number">63.225</td>
+ <td class = "text_info"></td>
+</tr>
+<tr class="sta_path">
+<td class="sta_path"  colspan="6">
+<table class="sta_path">
+ <thead> 
+<tr> 
+<th>Type</th>
+<th>Location</th>
+<th>Fanout</th>
+<th>Instance/Net</th>
+<th>Source</th>
+<th>Dest</th>
+<th>Delay (ns)</th>
+</tr>
+</thead> 
+<tbody>
+<tr> 
+ <td class = "text_info">datapathcell2</td>
+ <td class = "text_info">U(2,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/clock</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0_comb</td>
+ <td class = "number">2.290</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"> </td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:status_1\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/z0_comb</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_1</td>
+ <td class = "number">2.306</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell1</td>
+ <td class = "text_info">U(2,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
+ <td class = "number">3.350</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"> </td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
+ <td class = "number">2.802</td>
 </tr>
 <tr> 
  <td class = "text_info">datapathcell1</td>
@@ -1433,9 +1235,9 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
 <tr> 
  <td class = "text_info">\QuadDec_M1:Net_1203\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
- <td class = "number">51.674&nbsp;MHz</td>
- <td class = "number">19.352</td>
- <td class = "number">63.981</td>
+ <td class = "number">51.677&nbsp;MHz</td>
+ <td class = "number">19.351</td>
+ <td class = "number">63.982</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1487,7 +1289,7 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:count_enable\</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:count_enable\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_1</td>
- <td class = "number">2.803</td>
+ <td class = "number">2.802</td>
 </tr>
 <tr> 
  <td class = "text_info">datapathcell1</td>
@@ -1532,9 +1334,9 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
 <tr> 
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:count_stored_i\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
- <td class = "number">52.447&nbsp;MHz</td>
- <td class = "number">19.067</td>
- <td class = "number">64.266</td>
+ <td class = "number">52.433&nbsp;MHz</td>
+ <td class = "number">19.072</td>
+ <td class = "number">64.261</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1568,7 +1370,7 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:count_stored_i\</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:count_stored_i\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:count_enable\/main_1</td>
- <td class = "number">2.304</td>
+ <td class = "number">2.310</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell5</td>
@@ -1586,7 +1388,7 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:count_enable\</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:count_enable\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_1</td>
- <td class = "number">2.803</td>
+ <td class = "number">2.802</td>
 </tr>
 <tr> 
  <td class = "text_info">datapathcell1</td>
@@ -1631,9 +1433,9 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
 <tr> 
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sCTRLReg:ctrlreg\/control_7</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ci</td>
- <td class = "number">52.496&nbsp;MHz</td>
- <td class = "number">19.049</td>
- <td class = "number">64.284</td>
+ <td class = "number">52.499&nbsp;MHz</td>
+ <td class = "number">19.048</td>
+ <td class = "number">64.285</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1685,7 +1487,7 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:count_enable\</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:count_enable\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_1</td>
- <td class = "number">2.803</td>
+ <td class = "number">2.802</td>
 </tr>
 <tr> 
  <td class = "text_info">datapathcell1</td>
@@ -1713,6 +1515,204 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
  <td class = "text_info"></td>
  <td class = "text_info">SETUP</td>
  <td class = "number">4.230</td>
+</tr>
+<tr> 
+ <td class = "text_info">Clock</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info">Skew</td>
+ <td class = "number">0.000</td>
+</tr>
+</tbody>
+ </table> 
+</td>
+</tr>
+<tr> 
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/ff0</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
+ <td class = "number">54.404&nbsp;MHz</td>
+ <td class = "number">18.381</td>
+ <td class = "number">64.952</td>
+ <td class = "text_info"></td>
+</tr>
+<tr class="sta_path">
+<td class="sta_path"  colspan="6">
+<table class="sta_path">
+ <thead> 
+<tr> 
+<th>Type</th>
+<th>Location</th>
+<th>Fanout</th>
+<th>Instance/Net</th>
+<th>Source</th>
+<th>Dest</th>
+<th>Delay (ns)</th>
+</tr>
+</thead> 
+<tbody>
+<tr> 
+ <td class = "text_info">datapathcell1</td>
+ <td class = "text_info">U(3,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/clock</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/ff0</td>
+ <td class = "number">0.670</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"> </td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0.ff0__sig\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/ff0</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ff0i</td>
+ <td class = "number">0.000</td>
+</tr>
+<tr> 
+ <td class = "text_info">datapathcell2</td>
+ <td class = "text_info">U(2,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ff0i</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/f0_comb</td>
+ <td class = "number">2.720</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"> </td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:overflow\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/f0_comb</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_2</td>
+ <td class = "number">2.779</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell1</td>
+ <td class = "text_info">U(2,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_2</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
+ <td class = "number">3.350</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"> </td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/cs_addr_0</td>
+ <td class = "number">2.802</td>
+</tr>
+<tr> 
+ <td class = "text_info">datapathcell1</td>
+ <td class = "text_info">U(3,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\</td>
+ <td class = "text_info"></td>
+ <td class = "text_info">SETUP</td>
+ <td class = "number">6.060</td>
+</tr>
+<tr> 
+ <td class = "text_info">Clock</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info">Skew</td>
+ <td class = "number">0.000</td>
+</tr>
+</tbody>
+ </table> 
+</td>
+</tr>
+<tr> 
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/ff0</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/cs_addr_0</td>
+ <td class = "number">54.490&nbsp;MHz</td>
+ <td class = "number">18.352</td>
+ <td class = "number">64.981</td>
+ <td class = "text_info"></td>
+</tr>
+<tr class="sta_path">
+<td class="sta_path"  colspan="6">
+<table class="sta_path">
+ <thead> 
+<tr> 
+<th>Type</th>
+<th>Location</th>
+<th>Fanout</th>
+<th>Instance/Net</th>
+<th>Source</th>
+<th>Dest</th>
+<th>Delay (ns)</th>
+</tr>
+</thead> 
+<tbody>
+<tr> 
+ <td class = "text_info">datapathcell1</td>
+ <td class = "text_info">U(3,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/clock</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/ff0</td>
+ <td class = "number">0.670</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"> </td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0.ff0__sig\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/ff0</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ff0i</td>
+ <td class = "number">0.000</td>
+</tr>
+<tr> 
+ <td class = "text_info">datapathcell2</td>
+ <td class = "text_info">U(2,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ff0i</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/f0_comb</td>
+ <td class = "number">2.720</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"> </td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:overflow\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/f0_comb</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_2</td>
+ <td class = "number">2.779</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell1</td>
+ <td class = "text_info">U(2,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/main_2</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
+ <td class = "number">3.350</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"> </td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:reload\/q</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/cs_addr_0</td>
+ <td class = "number">2.773</td>
+</tr>
+<tr> 
+ <td class = "text_info">datapathcell2</td>
+ <td class = "text_info">U(2,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
+ <td class = "text_info"></td>
+ <td class = "text_info">SETUP</td>
+ <td class = "number">6.060</td>
 </tr>
 <tr> 
  <td class = "text_info">Clock</td>
@@ -1825,9 +1825,70 @@ Destination Clock : Clock_QENC : Positive edge</span>
 </td>
 </tr>
 <tr> 
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\/q</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_filt\/main_2</td>
+ <td class = "number">3.538</td>
+ <td class = "text_info"></td>
+</tr>
+<tr class="sta_path">
+<td class="sta_path"  colspan="4">
+<table class="sta_path">
+ <thead> 
+<tr> 
+<th>Type</th>
+<th>Location</th>
+<th>Fanout</th>
+<th>Instance/Net</th>
+<th>Source</th>
+<th>Dest</th>
+<th>Delay (ns)</th>
+</tr>
+</thead> 
+<tbody>
+<tr> 
+ <td class = "text_info">macrocell12</td>
+ <td class = "text_info">U(3,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\/clock_0</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\/q</td>
+ <td class = "number">1.250</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"></td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\/q</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_filt\/main_2</td>
+ <td class = "number">2.288</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell24</td>
+ <td class = "text_info">U(3,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_filt\</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info">HOLD</td>
+ <td class = "number">0.000</td>
+</tr>
+<tr> 
+ <td class = "text_info">Clock</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info">Skew</td>
+ <td class = "number">0.000</td>
+</tr>
+</tbody>
+ </table> 
+</td>
+</tr>
+<tr> 
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ce1_comb</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:prevCompare\/main_0</td>
- <td class = "number">3.100</td>
+ <td class = "number">3.697</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1861,11 +1922,11 @@ Destination Clock : Clock_QENC : Positive edge</span>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:cmp_out_i\</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ce1_comb</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:prevCompare\/main_0</td>
- <td class = "number">2.290</td>
+ <td class = "number">2.887</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell20</td>
- <td class = "text_info">U(2,1)</td>
+ <td class = "text_info">U(2,2)</td>
  <td class = "number">1</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:prevCompare\</td>
  <td class = "text_info"> </td>
@@ -1886,9 +1947,9 @@ Destination Clock : Clock_QENC : Positive edge</span>
 </td>
 </tr>
 <tr> 
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_2\/q</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_filt\/main_2</td>
- <td class = "number">3.551</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\/q</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_filt\/main_1</td>
+ <td class = "number">3.828</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -1907,87 +1968,26 @@ Destination Clock : Clock_QENC : Positive edge</span>
 </thead> 
 <tbody>
 <tr> 
- <td class = "text_info">macrocell15</td>
- <td class = "text_info">U(3,2)</td>
+ <td class = "text_info">macrocell11</td>
+ <td class = "text_info">U(3,1)</td>
  <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_2\</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_2\/clock_0</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_2\/q</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\/clock_0</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\/q</td>
  <td class = "number">1.250</td>
 </tr>
 <tr> 
  <td class = "text_info">Route</td>
  <td class = "text_info"></td>
  <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_2\</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_2\/q</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_filt\/main_2</td>
- <td class = "number">2.301</td>
-</tr>
-<tr> 
- <td class = "text_info">macrocell25</td>
- <td class = "text_info">U(3,2)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_filt\</td>
- <td class = "text_info"> </td>
- <td class = "text_info">HOLD</td>
- <td class = "number">0.000</td>
-</tr>
-<tr> 
- <td class = "text_info">Clock</td>
- <td class = "text_info"> </td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info">Skew</td>
- <td class = "number">0.000</td>
-</tr>
-</tbody>
- </table> 
-</td>
-</tr>
-<tr> 
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\/q</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_filt\/main_2</td>
- <td class = "number">3.565</td>
- <td class = "text_info"></td>
-</tr>
-<tr class="sta_path">
-<td class="sta_path"  colspan="4">
-<table class="sta_path">
- <thead> 
-<tr> 
-<th>Type</th>
-<th>Location</th>
-<th>Fanout</th>
-<th>Instance/Net</th>
-<th>Source</th>
-<th>Dest</th>
-<th>Delay (ns)</th>
-</tr>
-</thead> 
-<tbody>
-<tr> 
- <td class = "text_info">macrocell12</td>
- <td class = "text_info">U(2,2)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\/clock_0</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\/q</td>
- <td class = "number">1.250</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"></td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\/q</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_filt\/main_2</td>
- <td class = "number">2.315</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\/q</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_filt\/main_1</td>
+ <td class = "number">2.578</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell24</td>
- <td class = "text_info">U(3,2)</td>
+ <td class = "text_info">U(3,1)</td>
  <td class = "number">1</td>
  <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_filt\</td>
  <td class = "text_info"> </td>
@@ -2008,9 +2008,9 @@ Destination Clock : Clock_QENC : Positive edge</span>
 </td>
 </tr>
 <tr> 
- <td class = "text_info">\QuadDec_M1:bQuadDec:state_1\/q</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:state_1\/main_4</td>
- <td class = "number">3.783</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\/q</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\/main_0</td>
+ <td class = "number">3.829</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -2029,150 +2029,28 @@ Destination Clock : Clock_QENC : Positive edge</span>
 </thead> 
 <tbody>
 <tr> 
- <td class = "text_info">macrocell28</td>
- <td class = "text_info">U(3,0)</td>
+ <td class = "text_info">macrocell11</td>
+ <td class = "text_info">U(3,1)</td>
  <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:state_1\</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:state_1\/clock_0</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:state_1\/q</td>
- <td class = "number">1.250</td>
-</tr>
-<tr> 
- <td class = "text_info">macrocell28</td>
- <td class = "text_info">U(3,0)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:state_1\</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:state_1\/q</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:state_1\/main_4</td>
- <td class = "number">2.533</td>
-</tr>
-<tr> 
- <td class = "text_info">macrocell28</td>
- <td class = "text_info">U(3,0)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:state_1\</td>
- <td class = "text_info"> </td>
- <td class = "text_info">HOLD</td>
- <td class = "number">0.000</td>
-</tr>
-<tr> 
- <td class = "text_info">Clock</td>
- <td class = "text_info"> </td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info">Skew</td>
- <td class = "number">0.000</td>
-</tr>
-</tbody>
- </table> 
-</td>
-</tr>
-<tr> 
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_1\/q</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_filt\/main_1</td>
- <td class = "number">3.835</td>
- <td class = "text_info"></td>
-</tr>
-<tr class="sta_path">
-<td class="sta_path"  colspan="4">
-<table class="sta_path">
- <thead> 
-<tr> 
-<th>Type</th>
-<th>Location</th>
-<th>Fanout</th>
-<th>Instance/Net</th>
-<th>Source</th>
-<th>Dest</th>
-<th>Delay (ns)</th>
-</tr>
-</thead> 
-<tbody>
-<tr> 
- <td class = "text_info">macrocell14</td>
- <td class = "text_info">U(3,2)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_1\</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_1\/clock_0</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_1\/q</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\/clock_0</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\/q</td>
  <td class = "number">1.250</td>
 </tr>
 <tr> 
  <td class = "text_info">Route</td>
  <td class = "text_info"></td>
  <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_1\</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_1\/q</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_filt\/main_1</td>
- <td class = "number">2.585</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\/q</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\/main_0</td>
+ <td class = "number">2.579</td>
 </tr>
 <tr> 
- <td class = "text_info">macrocell25</td>
- <td class = "text_info">U(3,2)</td>
+ <td class = "text_info">macrocell12</td>
+ <td class = "text_info">U(3,1)</td>
  <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_filt\</td>
- <td class = "text_info"> </td>
- <td class = "text_info">HOLD</td>
- <td class = "number">0.000</td>
-</tr>
-<tr> 
- <td class = "text_info">Clock</td>
- <td class = "text_info"> </td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info">Skew</td>
- <td class = "number">0.000</td>
-</tr>
-</tbody>
- </table> 
-</td>
-</tr>
-<tr> 
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_1\/q</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_2\/main_0</td>
- <td class = "number">3.839</td>
- <td class = "text_info"></td>
-</tr>
-<tr class="sta_path">
-<td class="sta_path"  colspan="4">
-<table class="sta_path">
- <thead> 
-<tr> 
-<th>Type</th>
-<th>Location</th>
-<th>Fanout</th>
-<th>Instance/Net</th>
-<th>Source</th>
-<th>Dest</th>
-<th>Delay (ns)</th>
-</tr>
-</thead> 
-<tbody>
-<tr> 
- <td class = "text_info">macrocell14</td>
- <td class = "text_info">U(3,2)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_1\</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_1\/clock_0</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_1\/q</td>
- <td class = "number">1.250</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"></td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_1\</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_1\/q</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_2\/main_0</td>
- <td class = "number">2.589</td>
-</tr>
-<tr> 
- <td class = "text_info">macrocell15</td>
- <td class = "text_info">U(3,2)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_2\</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_2\</td>
  <td class = "text_info"> </td>
  <td class = "text_info">HOLD</td>
  <td class = "number">0.000</td>
@@ -2313,9 +2191,9 @@ Destination Clock : Clock_QENC : Positive edge</span>
 </td>
 </tr>
 <tr> 
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/ce1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:prevCompare\/main_0</td>
- <td class = "number">3.920</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\/q</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_filt\/main_0</td>
+ <td class = "number">3.847</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -2334,46 +2212,150 @@ Destination Clock : Clock_QENC : Positive edge</span>
 </thead> 
 <tbody>
 <tr> 
- <td class = "text_info">datapathcell1</td>
+ <td class = "text_info">macrocell10</td>
  <td class = "text_info">U(3,1)</td>
  <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/clock</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/ce1</td>
- <td class = "number">0.440</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\/clock_0</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\/q</td>
+ <td class = "number">1.250</td>
 </tr>
 <tr> 
  <td class = "text_info">Route</td>
  <td class = "text_info"></td>
  <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0.ce1__sig\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\/ce1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ce1i</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\/q</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_filt\/main_0</td>
+ <td class = "number">2.597</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell24</td>
+ <td class = "text_info">U(3,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_filt\</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info">HOLD</td>
  <td class = "number">0.000</td>
 </tr>
 <tr> 
- <td class = "text_info">datapathcell2</td>
- <td class = "text_info">U(2,1)</td>
+ <td class = "text_info">Clock</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info">Skew</td>
+ <td class = "number">0.000</td>
+</tr>
+</tbody>
+ </table> 
+</td>
+</tr>
+<tr> 
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\/q</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\/main_0</td>
+ <td class = "number">3.855</td>
+ <td class = "text_info"></td>
+</tr>
+<tr class="sta_path">
+<td class="sta_path"  colspan="4">
+<table class="sta_path">
+ <thead> 
+<tr> 
+<th>Type</th>
+<th>Location</th>
+<th>Fanout</th>
+<th>Instance/Net</th>
+<th>Source</th>
+<th>Dest</th>
+<th>Delay (ns)</th>
+</tr>
+</thead> 
+<tbody>
+<tr> 
+ <td class = "text_info">macrocell10</td>
+ <td class = "text_info">U(3,1)</td>
  <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ce1i</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ce1_comb</td>
- <td class = "number">1.190</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\/clock_0</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\/q</td>
+ <td class = "number">1.250</td>
 </tr>
 <tr> 
  <td class = "text_info">Route</td>
  <td class = "text_info"></td>
  <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:cmp_out_i\</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\/ce1_comb</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:prevCompare\/main_0</td>
- <td class = "number">2.290</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\/q</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\/main_0</td>
+ <td class = "number">2.605</td>
 </tr>
 <tr> 
- <td class = "text_info">macrocell20</td>
- <td class = "text_info">U(2,1)</td>
+ <td class = "text_info">macrocell11</td>
+ <td class = "text_info">U(3,1)</td>
  <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:prevCompare\</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_1\</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info">HOLD</td>
+ <td class = "number">0.000</td>
+</tr>
+<tr> 
+ <td class = "text_info">Clock</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info">Skew</td>
+ <td class = "number">0.000</td>
+</tr>
+</tbody>
+ </table> 
+</td>
+</tr>
+<tr> 
+ <td class = "text_info">\QuadDec_M1:bQuadDec:state_0\/q</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:state_0\/main_5</td>
+ <td class = "number">3.862</td>
+ <td class = "text_info"></td>
+</tr>
+<tr class="sta_path">
+<td class="sta_path"  colspan="4">
+<table class="sta_path">
+ <thead> 
+<tr> 
+<th>Type</th>
+<th>Location</th>
+<th>Fanout</th>
+<th>Instance/Net</th>
+<th>Source</th>
+<th>Dest</th>
+<th>Delay (ns)</th>
+</tr>
+</thead> 
+<tbody>
+<tr> 
+ <td class = "text_info">macrocell29</td>
+ <td class = "text_info">U(3,2)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:state_0\</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:state_0\/clock_0</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:state_0\/q</td>
+ <td class = "number">1.250</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell29</td>
+ <td class = "text_info">U(3,2)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:state_0\</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:state_0\/q</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:state_0\/main_5</td>
+ <td class = "number">2.612</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell29</td>
+ <td class = "text_info">U(3,2)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:state_0\</td>
  <td class = "text_info"> </td>
  <td class = "text_info">HOLD</td>
  <td class = "number">0.000</td>
@@ -2423,78 +2405,9 @@ Clock_QENC</span>
 </thead> 
 <tbody>
 <tr> 
- <td class = "text_info">M1_QB(0)_PAD</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_0\/main_0</td>
- <td class = "number">15.885</td>
-</tr>
-<tr class="sta_path">
-<td class="sta_path"  colspan="3">
-<table class="sta_path">
- <thead> 
-<tr> 
-<th>Type</th>
-<th>Location</th>
-<th>Fanout</th>
-<th>Instance/Net</th>
-<th>Source</th>
-<th>Dest</th>
-<th>Delay (ns)</th>
-</tr>
-</thead> 
-<tbody>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"></td>
- <td class = "number">1</td>
- <td class = "text_info">M1_QB(0)_PAD</td>
- <td class = "text_info">M1_QB(0)_PAD</td>
- <td class = "text_info">M1_QB(0)/pad_in</td>
- <td class = "number">0.000</td>
-</tr>
-<tr> 
- <td class = "text_info">iocell4</td>
- <td class = "text_info">P15[2]</td>
- <td class = "number">1</td>
- <td class = "text_info">M1_QB(0)</td>
- <td class = "text_info">M1_QB(0)/pad_in</td>
- <td class = "text_info">M1_QB(0)/fb</td>
- <td class = "number">6.653</td>
-</tr>
-<tr> 
- <td class = "text_info">Route</td>
- <td class = "text_info"></td>
- <td class = "number">1</td>
- <td class = "text_info">Net_72</td>
- <td class = "text_info">M1_QB(0)/fb</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_0\/main_0</td>
- <td class = "number">5.722</td>
-</tr>
-<tr> 
- <td class = "text_info">macrocell13</td>
- <td class = "text_info">U(3,1)</td>
- <td class = "number">1</td>
- <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_0\</td>
- <td class = "text_info"> </td>
- <td class = "text_info">SETUP</td>
- <td class = "number">3.510</td>
-</tr>
-<tr> 
- <td class = "text_info">Clock</td>
- <td class = "text_info"> </td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info"></td>
- <td class = "text_info">Clock path delay</td>
- <td class = "number">0.000</td>
-</tr>
-</tbody>
- </table> 
-</td>
-</tr>
-<tr> 
  <td class = "text_info">M1_QA(0)_PAD</td>
  <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\/main_0</td>
- <td class = "number">15.351</td>
+ <td class = "number">15.188</td>
 </tr>
 <tr class="sta_path">
 <td class="sta_path"  colspan="3">
@@ -2536,13 +2449,82 @@ Clock_QENC</span>
  <td class = "text_info">Net_71</td>
  <td class = "text_info">M1_QA(0)/fb</td>
  <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\/main_0</td>
- <td class = "number">5.894</td>
+ <td class = "number">5.731</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell10</td>
- <td class = "text_info">U(3,2)</td>
+ <td class = "text_info">U(3,1)</td>
  <td class = "number">1</td>
  <td class = "text_info">\QuadDec_M1:bQuadDec:quad_A_delayed_0\</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info">SETUP</td>
+ <td class = "number">3.510</td>
+</tr>
+<tr> 
+ <td class = "text_info">Clock</td>
+ <td class = "text_info"> </td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info"></td>
+ <td class = "text_info">Clock path delay</td>
+ <td class = "number">0.000</td>
+</tr>
+</tbody>
+ </table> 
+</td>
+</tr>
+<tr> 
+ <td class = "text_info">M1_QB(0)_PAD</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_0\/main_0</td>
+ <td class = "number">14.847</td>
+</tr>
+<tr class="sta_path">
+<td class="sta_path"  colspan="3">
+<table class="sta_path">
+ <thead> 
+<tr> 
+<th>Type</th>
+<th>Location</th>
+<th>Fanout</th>
+<th>Instance/Net</th>
+<th>Source</th>
+<th>Dest</th>
+<th>Delay (ns)</th>
+</tr>
+</thead> 
+<tbody>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"></td>
+ <td class = "number">1</td>
+ <td class = "text_info">M1_QB(0)_PAD</td>
+ <td class = "text_info">M1_QB(0)_PAD</td>
+ <td class = "text_info">M1_QB(0)/pad_in</td>
+ <td class = "number">0.000</td>
+</tr>
+<tr> 
+ <td class = "text_info">iocell4</td>
+ <td class = "text_info">P15[2]</td>
+ <td class = "number">1</td>
+ <td class = "text_info">M1_QB(0)</td>
+ <td class = "text_info">M1_QB(0)/pad_in</td>
+ <td class = "text_info">M1_QB(0)/fb</td>
+ <td class = "number">6.653</td>
+</tr>
+<tr> 
+ <td class = "text_info">Route</td>
+ <td class = "text_info"></td>
+ <td class = "number">1</td>
+ <td class = "text_info">Net_72</td>
+ <td class = "text_info">M1_QB(0)/fb</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_0\/main_0</td>
+ <td class = "number">4.684</td>
+</tr>
+<tr> 
+ <td class = "text_info">macrocell13</td>
+ <td class = "text_info">U(3,1)</td>
+ <td class = "number">1</td>
+ <td class = "text_info">\QuadDec_M1:bQuadDec:quad_B_delayed_0\</td>
  <td class = "text_info"> </td>
  <td class = "text_info">SETUP</td>
  <td class = "number">3.510</td>
@@ -2678,7 +2660,7 @@ CyBUS_CLK</span>
 <tr> 
  <td class = "text_info">\Control_Reg_1:Sync:ctrl_reg\/control_0</td>
  <td class = "text_info">M1_IN2(0)_PAD</td>
- <td class = "number">29.280</td>
+ <td class = "number">30.092</td>
 </tr>
 <tr class="sta_path">
 <td class="sta_path"  colspan="3">
@@ -2711,11 +2693,11 @@ CyBUS_CLK</span>
  <td class = "text_info">Net_240</td>
  <td class = "text_info">\Control_Reg_1:Sync:ctrl_reg\/control_0</td>
  <td class = "text_info">Net_218/main_0</td>
- <td class = "number">3.433</td>
+ <td class = "number">3.463</td>
 </tr>
 <tr> 
  <td class = "text_info">macrocell8</td>
- <td class = "text_info">U(3,0)</td>
+ <td class = "text_info">U(2,0)</td>
  <td class = "number">1</td>
  <td class = "text_info">Net_218</td>
  <td class = "text_info">Net_218/main_0</td>
@@ -2729,7 +2711,7 @@ CyBUS_CLK</span>
  <td class = "text_info">Net_218</td>
  <td class = "text_info">Net_218/q</td>
  <td class = "text_info">M1_IN2(0)/pin_input</td>
- <td class = "number">5.460</td>
+ <td class = "number">6.242</td>
 </tr>
 <tr> 
  <td class = "text_info">iocell1</td>
@@ -2834,7 +2816,7 @@ CyBUS_CLK</span>
 <tr> 
  <td class = "text_info">\Control_Reg_1:Sync:ctrl_reg\/control_0</td>
  <td class = "text_info">M1_IN1(0)_PAD</td>
- <td class = "number">23.021</td>
+ <td class = "number">23.046</td>
 </tr>
 <tr class="sta_path">
 <td class="sta_path"  colspan="3">
@@ -2867,7 +2849,7 @@ CyBUS_CLK</span>
  <td class = "text_info">Net_240</td>
  <td class = "text_info">\Control_Reg_1:Sync:ctrl_reg\/control_0</td>
  <td class = "text_info">M1_IN1(0)/pin_input</td>
- <td class = "number">5.633</td>
+ <td class = "number">5.658</td>
 </tr>
 <tr> 
  <td class = "text_info">iocell2</td>
@@ -3015,9 +2997,9 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
 <tr> 
  <td class = "text_info">\QuadDec_M1:Net_1260\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sSTSReg:stsreg\/reset</td>
- <td class = "number">181.028&nbsp;MHz</td>
- <td class = "number">5.524</td>
- <td class = "number">77.809</td>
+ <td class = "number">157.085&nbsp;MHz</td>
+ <td class = "number">6.366</td>
+ <td class = "number">76.967</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -3051,11 +3033,11 @@ Destination Clock : Clock_QENC : Positive edge(Required Frequency 12&nbsp;MHz)</
  <td class = "text_info">\QuadDec_M1:Net_1260\</td>
  <td class = "text_info">\QuadDec_M1:Net_1260\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sSTSReg:stsreg\/reset</td>
- <td class = "number">4.274</td>
+ <td class = "number">5.116</td>
 </tr>
 <tr> 
  <td class = "text_info">statusicell1</td>
- <td class = "text_info">U(2,0)</td>
+ <td class = "text_info">U(2,2)</td>
  <td class = "number">1</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sSTSReg:stsreg\</td>
  <td class = "text_info"></td>
@@ -3114,7 +3096,7 @@ Destination Clock : Clock_QENC : Positive edge</span>
 <tr> 
  <td class = "text_info">\QuadDec_M1:Net_1260\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sSTSReg:stsreg\/reset</td>
- <td class = "number">5.524</td>
+ <td class = "number">6.366</td>
  <td class = "text_info"></td>
 </tr>
 <tr class="sta_path">
@@ -3148,11 +3130,11 @@ Destination Clock : Clock_QENC : Positive edge</span>
  <td class = "text_info">\QuadDec_M1:Net_1260\</td>
  <td class = "text_info">\QuadDec_M1:Net_1260\/q</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sSTSReg:stsreg\/reset</td>
- <td class = "number">4.274</td>
+ <td class = "number">5.116</td>
 </tr>
 <tr> 
  <td class = "text_info">statusicell1</td>
- <td class = "text_info">U(2,0)</td>
+ <td class = "text_info">U(2,2)</td>
  <td class = "number">1</td>
  <td class = "text_info">\QuadDec_M1:Cnt16:CounterUDB:sSTSReg:stsreg\</td>
  <td class = "text_info"> </td>

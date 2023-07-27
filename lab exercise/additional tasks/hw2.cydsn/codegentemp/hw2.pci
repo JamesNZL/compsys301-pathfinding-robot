@@ -1,5 +1,5 @@
 # hw2
-# 2023-07-27 00:20:53Z
+# 2023-07-27 00:43:01Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -14,3 +14,6 @@ set_io "M1_QB(0)" iocell 15 2
 set_io "M1_EN(0)" iocell 3 3
 set_io "M1_D1(0)" iocell 3 1
 set_io "M1_D2(0)" iocell 3 2
+set_io "\USBUART:Dm(0)\" iocell 15 7
+set_io "\USBUART:Dp(0)\" iocell 15 6
+set_location "\USBUART:USB\" usbcell -1 -1 0

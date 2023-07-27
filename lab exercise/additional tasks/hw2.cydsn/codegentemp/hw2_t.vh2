@@ -1,5 +1,5 @@
 -- Project:   C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-pathfinding-robot\lab exercise\additional tasks\hw2.cydsn\hw2.cyprj
--- Generated: 07/27/2023 12:20:56
+-- Generated: 07/27/2023 12:43:04
 -- PSoC Creator  4.4
 
 ENTITY hw2 IS
@@ -45,11 +45,12 @@ ARCHITECTURE __DEFAULT__ OF hw2 IS
     ATTRIBUTE global_signal OF Net_165 : SIGNAL IS true;
     SIGNAL Net_165_local : bit;
     SIGNAL Net_218 : bit;
-    ATTRIBUTE placement_force OF Net_218 : SIGNAL IS "U(3,0,A)0";
+    ATTRIBUTE placement_force OF Net_218 : SIGNAL IS "U(2,0,B)0";
     SIGNAL Net_219 : bit;
     SIGNAL Net_231 : bit;
     SIGNAL Net_232 : bit;
     SIGNAL Net_240 : bit;
+    SIGNAL Net_256 : bit;
     SIGNAL Net_71 : bit;
     SIGNAL Net_72 : bit;
     SIGNAL Net_74 : bit;
@@ -78,60 +79,84 @@ ARCHITECTURE __DEFAULT__ OF hw2 IS
     ATTRIBUTE placement_force OF \QuadDec_M1:Cnt16:CounterUDB:count_stored_i\ : SIGNAL IS "U(2,1,B)0";
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:overflow\ : bit;
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:overflow_reg_i\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:Cnt16:CounterUDB:overflow_reg_i\ : SIGNAL IS "U(2,0,B)3";
+    ATTRIBUTE placement_force OF \QuadDec_M1:Cnt16:CounterUDB:overflow_reg_i\ : SIGNAL IS "U(2,1,B)3";
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:prevCompare\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:Cnt16:CounterUDB:prevCompare\ : SIGNAL IS "U(2,1,B)1";
+    ATTRIBUTE placement_force OF \QuadDec_M1:Cnt16:CounterUDB:prevCompare\ : SIGNAL IS "U(2,2,A)3";
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:reload\ : bit;
     ATTRIBUTE placement_force OF \QuadDec_M1:Cnt16:CounterUDB:reload\ : SIGNAL IS "U(2,1,A)0";
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:status_0\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:Cnt16:CounterUDB:status_0\ : SIGNAL IS "U(2,1,B)3";
+    ATTRIBUTE placement_force OF \QuadDec_M1:Cnt16:CounterUDB:status_0\ : SIGNAL IS "U(2,2,A)0";
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:status_1\ : bit;
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:status_2\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:Cnt16:CounterUDB:status_2\ : SIGNAL IS "U(2,0,A)3";
+    ATTRIBUTE placement_force OF \QuadDec_M1:Cnt16:CounterUDB:status_2\ : SIGNAL IS "U(2,2,A)2";
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:status_3\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:Cnt16:CounterUDB:status_3\ : SIGNAL IS "U(2,0,A)1";
+    ATTRIBUTE placement_force OF \QuadDec_M1:Cnt16:CounterUDB:status_3\ : SIGNAL IS "U(2,2,A)1";
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:status_5\ : bit;
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:status_6\ : bit;
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:underflow_reg_i\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:Cnt16:CounterUDB:underflow_reg_i\ : SIGNAL IS "U(2,0,B)0";
+    ATTRIBUTE placement_force OF \QuadDec_M1:Cnt16:CounterUDB:underflow_reg_i\ : SIGNAL IS "U(2,2,B)0";
     SIGNAL \QuadDec_M1:Net_1203\ : bit;
     ATTRIBUTE placement_force OF \QuadDec_M1:Net_1203\ : SIGNAL IS "U(2,1,A)2";
     SIGNAL \QuadDec_M1:Net_1251\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:Net_1251\ : SIGNAL IS "U(2,2,B)0";
+    ATTRIBUTE placement_force OF \QuadDec_M1:Net_1251\ : SIGNAL IS "U(3,0,A)1";
     SIGNAL \QuadDec_M1:Net_1251_split\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:Net_1251_split\ : SIGNAL IS "U(2,2,A)0";
+    ATTRIBUTE placement_force OF \QuadDec_M1:Net_1251_split\ : SIGNAL IS "U(3,0,B)2";
     SIGNAL \QuadDec_M1:Net_1260\ : bit;
     ATTRIBUTE placement_force OF \QuadDec_M1:Net_1260\ : SIGNAL IS "U(2,1,A)1";
     SIGNAL \QuadDec_M1:Net_1275\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:Net_1275\ : SIGNAL IS "U(2,0,B)2";
+    ATTRIBUTE placement_force OF \QuadDec_M1:Net_1275\ : SIGNAL IS "U(2,2,B)3";
     SIGNAL \QuadDec_M1:Net_530\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:Net_530\ : SIGNAL IS "U(2,0,B)1";
+    ATTRIBUTE placement_force OF \QuadDec_M1:Net_530\ : SIGNAL IS "U(3,2,B)0";
     SIGNAL \QuadDec_M1:Net_611\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:Net_611\ : SIGNAL IS "U(2,0,A)2";
+    ATTRIBUTE placement_force OF \QuadDec_M1:Net_611\ : SIGNAL IS "U(3,2,A)0";
     SIGNAL \QuadDec_M1:bQuadDec:error\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:error\ : SIGNAL IS "U(3,2,A)0";
+    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:error\ : SIGNAL IS "U(2,0,A)0";
     SIGNAL \QuadDec_M1:bQuadDec:quad_A_delayed_0\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_A_delayed_0\ : SIGNAL IS "U(3,2,A)2";
+    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_A_delayed_0\ : SIGNAL IS "U(3,1,A)3";
     SIGNAL \QuadDec_M1:bQuadDec:quad_A_delayed_1\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_A_delayed_1\ : SIGNAL IS "U(2,2,B)1";
+    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_A_delayed_1\ : SIGNAL IS "U(3,1,B)0";
     SIGNAL \QuadDec_M1:bQuadDec:quad_A_delayed_2\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_A_delayed_2\ : SIGNAL IS "U(2,2,B)2";
+    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_A_delayed_2\ : SIGNAL IS "U(3,1,B)2";
     SIGNAL \QuadDec_M1:bQuadDec:quad_A_filt\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_A_filt\ : SIGNAL IS "U(3,2,B)2";
+    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_A_filt\ : SIGNAL IS "U(3,1,A)1";
     SIGNAL \QuadDec_M1:bQuadDec:quad_B_delayed_0\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_B_delayed_0\ : SIGNAL IS "U(3,1,A)3";
+    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_B_delayed_0\ : SIGNAL IS "U(3,1,A)2";
     SIGNAL \QuadDec_M1:bQuadDec:quad_B_delayed_1\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_B_delayed_1\ : SIGNAL IS "U(3,2,B)3";
+    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_B_delayed_1\ : SIGNAL IS "U(3,2,A)3";
     SIGNAL \QuadDec_M1:bQuadDec:quad_B_delayed_2\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_B_delayed_2\ : SIGNAL IS "U(3,2,B)1";
+    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_B_delayed_2\ : SIGNAL IS "U(3,1,B)3";
     SIGNAL \QuadDec_M1:bQuadDec:quad_B_filt\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_B_filt\ : SIGNAL IS "U(3,2,A)1";
+    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:quad_B_filt\ : SIGNAL IS "U(3,0,A)2";
     SIGNAL \QuadDec_M1:bQuadDec:state_0\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:state_0\ : SIGNAL IS "U(3,1,A)0";
+    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:state_0\ : SIGNAL IS "U(3,2,B)1";
     SIGNAL \QuadDec_M1:bQuadDec:state_1\ : bit;
-    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:state_1\ : SIGNAL IS "U(3,0,B)0";
+    ATTRIBUTE placement_force OF \QuadDec_M1:bQuadDec:state_1\ : SIGNAL IS "U(2,0,B)1";
+    SIGNAL \\\USBUART:Dm(0)\\__PA\ : bit;
+    SIGNAL \\\USBUART:Dp(0)\\__PA\ : bit;
+    SIGNAL \USBUART:Net_1010\ : bit;
+    SIGNAL \USBUART:Net_1876\ : bit;
+    SIGNAL \USBUART:Net_1889\ : bit;
+    SIGNAL \USBUART:Net_95\ : bit;
+    SIGNAL \USBUART:dma_request_0\ : bit;
+    SIGNAL \USBUART:dma_request_1\ : bit;
+    SIGNAL \USBUART:dma_request_2\ : bit;
+    SIGNAL \USBUART:dma_request_3\ : bit;
+    SIGNAL \USBUART:dma_request_4\ : bit;
+    SIGNAL \USBUART:dma_request_5\ : bit;
+    SIGNAL \USBUART:dma_request_6\ : bit;
+    SIGNAL \USBUART:dma_request_7\ : bit;
+    SIGNAL \USBUART:dma_terminate\ : bit;
+    SIGNAL \USBUART:ep_int_0\ : bit;
+    SIGNAL \USBUART:ep_int_1\ : bit;
+    SIGNAL \USBUART:ep_int_2\ : bit;
+    SIGNAL \USBUART:ep_int_3\ : bit;
+    SIGNAL \USBUART:ep_int_4\ : bit;
+    SIGNAL \USBUART:ep_int_5\ : bit;
+    SIGNAL \USBUART:ep_int_6\ : bit;
+    SIGNAL \USBUART:ep_int_7\ : bit;
+    SIGNAL \USBUART:ep_int_8\ : bit;
     SIGNAL __ONE__ : bit;
-    ATTRIBUTE placement_force OF __ONE__ : SIGNAL IS "U(1,5,A)3";
+    ATTRIBUTE placement_force OF __ONE__ : SIGNAL IS "U(3,2,B)3";
     ATTRIBUTE POWER OF __ONE__ : SIGNAL IS true;
     SIGNAL __ZERO__ : bit;
     ATTRIBUTE GROUND OF __ZERO__ : SIGNAL IS true;
@@ -168,77 +193,91 @@ ARCHITECTURE __DEFAULT__ OF hw2 IS
     ATTRIBUTE Location OF M1_D1(0) : LABEL IS "P3[1]";
     ATTRIBUTE lib_model OF M1_D2(0) : LABEL IS "iocell7";
     ATTRIBUTE Location OF M1_D2(0) : LABEL IS "P3[2]";
+    ATTRIBUTE lib_model OF \USBUART:Dm(0)\ : LABEL IS "iocell8";
+    ATTRIBUTE Location OF \USBUART:Dm(0)\ : LABEL IS "P15[7]";
+    ATTRIBUTE Location OF \USBUART:Dp\ : LABEL IS "F(PICU,8)";
+    ATTRIBUTE lib_model OF \USBUART:Dp(0)\ : LABEL IS "iocell9";
+    ATTRIBUTE Location OF \USBUART:Dp(0)\ : LABEL IS "P15[6]";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:reload\ : LABEL IS "macrocell1";
     ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:reload\ : LABEL IS "U(2,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:status_0\ : LABEL IS "macrocell2";
-    ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:status_0\ : LABEL IS "U(2,1)";
+    ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:status_0\ : LABEL IS "U(2,2)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:status_2\ : LABEL IS "macrocell3";
-    ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:status_2\ : LABEL IS "U(2,0)";
+    ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:status_2\ : LABEL IS "U(2,2)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:status_3\ : LABEL IS "macrocell4";
-    ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:status_3\ : LABEL IS "U(2,0)";
+    ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:status_3\ : LABEL IS "U(2,2)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:count_enable\ : LABEL IS "macrocell5";
     ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:count_enable\ : LABEL IS "U(2,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Net_530\ : LABEL IS "macrocell6";
-    ATTRIBUTE Location OF \QuadDec_M1:Net_530\ : LABEL IS "U(2,0)";
+    ATTRIBUTE Location OF \QuadDec_M1:Net_530\ : LABEL IS "U(3,2)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Net_611\ : LABEL IS "macrocell7";
-    ATTRIBUTE Location OF \QuadDec_M1:Net_611\ : LABEL IS "U(2,0)";
+    ATTRIBUTE Location OF \QuadDec_M1:Net_611\ : LABEL IS "U(3,2)";
     ATTRIBUTE lib_model OF Net_218 : LABEL IS "macrocell8";
-    ATTRIBUTE Location OF Net_218 : LABEL IS "U(3,0)";
+    ATTRIBUTE Location OF Net_218 : LABEL IS "U(2,0)";
     ATTRIBUTE Location OF \PWM_1:PWMHW\ : LABEL IS "F(Timer,0)";
     ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell9";
-    ATTRIBUTE Location OF __ONE__ : LABEL IS "U(1,5)";
+    ATTRIBUTE Location OF __ONE__ : LABEL IS "U(3,2)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:sCTRLReg:ctrlreg\ : LABEL IS "controlcell1";
     ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:sCTRLReg:ctrlreg\ : LABEL IS "U(2,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:sSTSReg:stsreg\ : LABEL IS "statusicell1";
-    ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:sSTSReg:stsreg\ : LABEL IS "U(2,0)";
+    ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:sSTSReg:stsreg\ : LABEL IS "U(2,2)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\ : LABEL IS "datapathcell1";
     ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\ : LABEL IS "U(3,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\ : LABEL IS "datapathcell2";
     ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u1\ : LABEL IS "U(2,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:quad_A_delayed_0\ : LABEL IS "macrocell10";
-    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:quad_A_delayed_0\ : LABEL IS "U(3,2)";
+    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:quad_A_delayed_0\ : LABEL IS "U(3,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:quad_A_delayed_1\ : LABEL IS "macrocell11";
-    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:quad_A_delayed_1\ : LABEL IS "U(2,2)";
+    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:quad_A_delayed_1\ : LABEL IS "U(3,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:quad_A_delayed_2\ : LABEL IS "macrocell12";
-    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:quad_A_delayed_2\ : LABEL IS "U(2,2)";
+    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:quad_A_delayed_2\ : LABEL IS "U(3,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:quad_B_delayed_0\ : LABEL IS "macrocell13";
     ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:quad_B_delayed_0\ : LABEL IS "U(3,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:quad_B_delayed_1\ : LABEL IS "macrocell14";
     ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:quad_B_delayed_1\ : LABEL IS "U(3,2)";
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:quad_B_delayed_2\ : LABEL IS "macrocell15";
-    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:quad_B_delayed_2\ : LABEL IS "U(3,2)";
+    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:quad_B_delayed_2\ : LABEL IS "U(3,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:Stsreg\ : LABEL IS "statusicell2";
-    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:Stsreg\ : LABEL IS "U(3,0)";
+    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:Stsreg\ : LABEL IS "U(3,2)";
+    ATTRIBUTE Location OF \USBUART:dp_int\ : LABEL IS "[IntrContainer=(0)][IntrId=(12)]";
+    ATTRIBUTE Location OF \USBUART:USB\ : LABEL IS "F(USB,0)";
+    ATTRIBUTE Location OF \USBUART:ep_3\ : LABEL IS "[IntrContainer=(0)][IntrId=(2)]";
+    ATTRIBUTE Location OF \USBUART:ep_2\ : LABEL IS "[IntrContainer=(0)][IntrId=(1)]";
+    ATTRIBUTE Location OF \USBUART:ep_1\ : LABEL IS "[IntrContainer=(0)][IntrId=(0)]";
+    ATTRIBUTE Location OF \USBUART:ep_0\ : LABEL IS "[IntrContainer=(0)][IntrId=(24)]";
+    ATTRIBUTE Location OF \USBUART:bus_reset\ : LABEL IS "[IntrContainer=(0)][IntrId=(23)]";
+    ATTRIBUTE Location OF \USBUART:arb_int\ : LABEL IS "[IntrContainer=(0)][IntrId=(22)]";
+    ATTRIBUTE Location OF \USBUART:sof_int\ : LABEL IS "[IntrContainer=(0)][IntrId=(21)]";
     ATTRIBUTE lib_model OF \Control_Reg_1:Sync:ctrl_reg\ : LABEL IS "controlcell2";
     ATTRIBUTE Location OF \Control_Reg_1:Sync:ctrl_reg\ : LABEL IS "U(3,0)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Net_1251\ : LABEL IS "macrocell16";
-    ATTRIBUTE Location OF \QuadDec_M1:Net_1251\ : LABEL IS "U(2,2)";
+    ATTRIBUTE Location OF \QuadDec_M1:Net_1251\ : LABEL IS "U(3,0)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell17";
-    ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "U(2,0)";
+    ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "U(2,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell18";
-    ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "U(2,0)";
+    ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "U(2,2)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Net_1275\ : LABEL IS "macrocell19";
-    ATTRIBUTE Location OF \QuadDec_M1:Net_1275\ : LABEL IS "U(2,0)";
+    ATTRIBUTE Location OF \QuadDec_M1:Net_1275\ : LABEL IS "U(2,2)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:prevCompare\ : LABEL IS "macrocell20";
-    ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:prevCompare\ : LABEL IS "U(2,1)";
+    ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:prevCompare\ : LABEL IS "U(2,2)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Net_1251_split\ : LABEL IS "macrocell21";
-    ATTRIBUTE Location OF \QuadDec_M1:Net_1251_split\ : LABEL IS "U(2,2)";
+    ATTRIBUTE Location OF \QuadDec_M1:Net_1251_split\ : LABEL IS "U(3,0)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "macrocell22";
     ATTRIBUTE Location OF \QuadDec_M1:Cnt16:CounterUDB:count_stored_i\ : LABEL IS "U(2,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Net_1203\ : LABEL IS "macrocell23";
     ATTRIBUTE Location OF \QuadDec_M1:Net_1203\ : LABEL IS "U(2,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:quad_A_filt\ : LABEL IS "macrocell24";
-    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:quad_A_filt\ : LABEL IS "U(3,2)";
+    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:quad_A_filt\ : LABEL IS "U(3,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:quad_B_filt\ : LABEL IS "macrocell25";
-    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:quad_B_filt\ : LABEL IS "U(3,2)";
+    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:quad_B_filt\ : LABEL IS "U(3,0)";
     ATTRIBUTE lib_model OF \QuadDec_M1:Net_1260\ : LABEL IS "macrocell26";
     ATTRIBUTE Location OF \QuadDec_M1:Net_1260\ : LABEL IS "U(2,1)";
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:error\ : LABEL IS "macrocell27";
-    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:error\ : LABEL IS "U(3,2)";
+    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:error\ : LABEL IS "U(2,0)";
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:state_1\ : LABEL IS "macrocell28";
-    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:state_1\ : LABEL IS "U(3,0)";
+    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:state_1\ : LABEL IS "U(2,0)";
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:state_0\ : LABEL IS "macrocell29";
-    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:state_0\ : LABEL IS "U(3,1)";
+    ATTRIBUTE Location OF \QuadDec_M1:bQuadDec:state_0\ : LABEL IS "U(3,2)";
     COMPONENT clockblockcell
         PORT (
             dclk_0 : OUT std_ulogic;
@@ -428,6 +467,11 @@ ARCHITECTURE __DEFAULT__ OF hw2 IS
             cmsbo : OUT std_ulogic;
             busclk : IN std_ulogic);
     END COMPONENT;
+    COMPONENT interrupt
+        PORT (
+            interrupt : IN std_ulogic;
+            clock : IN std_ulogic);
+    END COMPONENT;
     COMPONENT iocell
         PORT (
             oe : IN std_ulogic;
@@ -527,6 +571,31 @@ ARCHITECTURE __DEFAULT__ OF hw2 IS
             tc : OUT std_ulogic;
             cmp : OUT std_ulogic;
             irq : OUT std_ulogic);
+    END COMPONENT;
+    COMPONENT usbcell
+        PORT (
+            sof_int : OUT std_ulogic;
+            arb_int : OUT std_ulogic;
+            usb_int : OUT std_ulogic;
+            ord_int : OUT std_ulogic;
+            ept_int_0 : OUT std_ulogic;
+            ept_int_1 : OUT std_ulogic;
+            ept_int_2 : OUT std_ulogic;
+            ept_int_3 : OUT std_ulogic;
+            ept_int_4 : OUT std_ulogic;
+            ept_int_5 : OUT std_ulogic;
+            ept_int_6 : OUT std_ulogic;
+            ept_int_7 : OUT std_ulogic;
+            ept_int_8 : OUT std_ulogic;
+            dma_req_0 : OUT std_ulogic;
+            dma_req_1 : OUT std_ulogic;
+            dma_req_2 : OUT std_ulogic;
+            dma_req_3 : OUT std_ulogic;
+            dma_req_4 : OUT std_ulogic;
+            dma_req_5 : OUT std_ulogic;
+            dma_req_6 : OUT std_ulogic;
+            dma_req_7 : OUT std_ulogic;
+            dma_termin : OUT std_ulogic);
     END COMPONENT;
 BEGIN
 
@@ -1193,6 +1262,186 @@ BEGIN
             out_clock_en => '1',
             out_reset => '0');
 
+    \USBUART:Dm\:logicalport
+        GENERIC MAP(
+            drive_mode => "000",
+            ibuf_enabled => "0",
+            id => "beca5e2d-f70f-4900-a4db-7eca1ed3126e/8b77a6c4-10a0-4390-971c-672353e2a49c",
+            init_dr_st => "0",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "00",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "NONCONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "0",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "A",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "00000000",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vohsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 1,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "10",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open);
+
+    \USBUART:Dm(0)\:iocell
+        GENERIC MAP(
+            in_sync_mode => 0,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "\USBUART:Dm\",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000100000000000000000000000")
+        PORT MAP(
+            pa_out => \\\USBUART:Dm(0)\\__PA\,
+            oe => open,
+            in_clock => open,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
+    \USBUART:Dp\:logicalport
+        GENERIC MAP(
+            drive_mode => "000",
+            ibuf_enabled => "0",
+            id => "beca5e2d-f70f-4900-a4db-7eca1ed3126e/618a72fc-5ddd-4df5-958f-a3d55102db42",
+            init_dr_st => "1",
+            input_buffer_sel => "00",
+            input_clk_en => 0,
+            input_sync => "1",
+            input_sync_mode => "0",
+            intr_mode => "10",
+            invert_in_clock => 0,
+            invert_in_clock_en => 0,
+            invert_in_reset => 0,
+            invert_out_clock => 0,
+            invert_out_clock_en => 0,
+            invert_out_reset => 0,
+            io_voltage => "",
+            layout_mode => "CONTIGUOUS",
+            oe_conn => "0",
+            oe_reset => 0,
+            oe_sync => "0",
+            output_clk_en => 0,
+            output_clock_mode => "0",
+            output_conn => "0",
+            output_mode => "0",
+            output_reset => 0,
+            output_sync => "0",
+            ovt_hyst_trim => "0",
+            ovt_needed => "0",
+            ovt_slew_control => "00",
+            pa_in_clock => -1,
+            pa_in_clock_en => -1,
+            pa_in_reset => -1,
+            pa_out_clock => -1,
+            pa_out_clock_en => -1,
+            pa_out_reset => -1,
+            pin_aliases => "",
+            pin_mode => "I",
+            por_state => 4,
+            port_alias_group => "",
+            port_alias_required => 0,
+            sio_group_cnt => 0,
+            sio_hifreq => "00000000",
+            sio_hyst => "1",
+            sio_ibuf => "00000000",
+            sio_info => "00",
+            sio_obuf => "00000000",
+            sio_refsel => "00000000",
+            sio_vohsel => "00000000",
+            sio_vtrip => "00000000",
+            slew_rate => "0",
+            spanning => 0,
+            sw_only => 0,
+            use_annotation => "0",
+            vtrip => "00",
+            width => 1,
+            in_clk_inv => 0,
+            in_clken_inv => 0,
+            in_clken_mode => 1,
+            in_rst_inv => 0,
+            out_clk_inv => 0,
+            out_clken_inv => 0,
+            out_clken_mode => 1,
+            out_rst_inv => 0)
+        PORT MAP(
+            in_clock_en => open,
+            in_reset => open,
+            out_clock_en => open,
+            out_reset => open,
+            interrupt => \USBUART:Net_1010\,
+            in_clock => open);
+
+    \USBUART:Dp(0)\:iocell
+        GENERIC MAP(
+            in_sync_mode => 2,
+            out_sync_mode => 0,
+            oe_sync_mode => 0,
+            logicalport => "\USBUART:Dp\",
+            logicalport_pin_id => 0,
+            io_capabilities => "0000000000000000000000000000000000000000010000000000000000000000")
+        PORT MAP(
+            pa_out => \\\USBUART:Dp(0)\\__PA\,
+            oe => open,
+            in_clock => ClockBlock_BUS_CLK,
+            in_clock_en => '1',
+            in_reset => '0',
+            out_clock => open,
+            out_clock_en => '1',
+            out_reset => '0');
+
     \QuadDec_M1:Cnt16:CounterUDB:reload\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1 * !main_2)",
@@ -1518,6 +1767,97 @@ BEGIN
             status_2 => \QuadDec_M1:Net_1260\,
             status_1 => \QuadDec_M1:Net_611\,
             status_0 => \QuadDec_M1:Net_530\);
+
+    \USBUART:dp_int\:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => \USBUART:Net_1010\,
+            clock => ClockBlock_BUS_CLK);
+
+    \USBUART:USB\:usbcell
+        GENERIC MAP(
+            cy_registers => "")
+        PORT MAP(
+            sof_int => Net_256,
+            arb_int => \USBUART:Net_1889\,
+            usb_int => \USBUART:Net_1876\,
+            ept_int_8 => \USBUART:ep_int_8\,
+            ept_int_7 => \USBUART:ep_int_7\,
+            ept_int_6 => \USBUART:ep_int_6\,
+            ept_int_5 => \USBUART:ep_int_5\,
+            ept_int_4 => \USBUART:ep_int_4\,
+            ept_int_3 => \USBUART:ep_int_3\,
+            ept_int_2 => \USBUART:ep_int_2\,
+            ept_int_1 => \USBUART:ep_int_1\,
+            ept_int_0 => \USBUART:ep_int_0\,
+            ord_int => \USBUART:Net_95\,
+            dma_req_7 => \USBUART:dma_request_7\,
+            dma_req_6 => \USBUART:dma_request_6\,
+            dma_req_5 => \USBUART:dma_request_5\,
+            dma_req_4 => \USBUART:dma_request_4\,
+            dma_req_3 => \USBUART:dma_request_3\,
+            dma_req_2 => \USBUART:dma_request_2\,
+            dma_req_1 => \USBUART:dma_request_1\,
+            dma_req_0 => \USBUART:dma_request_0\,
+            dma_termin => \USBUART:dma_terminate\);
+
+    \USBUART:ep_3\:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => \USBUART:ep_int_3\,
+            clock => ClockBlock_BUS_CLK);
+
+    \USBUART:ep_2\:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => \USBUART:ep_int_2\,
+            clock => ClockBlock_BUS_CLK);
+
+    \USBUART:ep_1\:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => \USBUART:ep_int_1\,
+            clock => ClockBlock_BUS_CLK);
+
+    \USBUART:ep_0\:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => \USBUART:ep_int_0\,
+            clock => ClockBlock_BUS_CLK);
+
+    \USBUART:bus_reset\:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => \USBUART:Net_1876\,
+            clock => ClockBlock_BUS_CLK);
+
+    \USBUART:arb_int\:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => \USBUART:Net_1889\,
+            clock => ClockBlock_BUS_CLK);
+
+    \USBUART:sof_int\:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => Net_256,
+            clock => ClockBlock_BUS_CLK);
 
     \Control_Reg_1:Sync:ctrl_reg\:controlcell
         GENERIC MAP(
