@@ -37,6 +37,7 @@
 #include "M1_D1.h"
 #include "M1_D2_aliases.h"
 #include "M1_D2.h"
+#include "Control_Reg_1.h"
 #include "QuadDec_M1_Cnt16.h"
 #include "core_cm3_psoc5.h"
 #include "CyDmac.h"

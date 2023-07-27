@@ -2,7 +2,7 @@
 --	Conversion of hw2.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Thu Jul 27 11:20:18 2023
+--	Thu Jul 27 12:20:52 2023
 --
 
 USE cypress.cypress.all;
@@ -260,6 +260,7 @@ SIGNAL tmpFB_0__M1_IN2_net_0 : bit;
 SIGNAL tmpIO_0__M1_IN2_net_0 : bit;
 TERMINAL tmpSIOVREF__M1_IN2_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__M1_IN2_net_0 : bit;
+SIGNAL Net_240 : bit;
 SIGNAL tmpOE__M1_IN1_net_0 : bit;
 SIGNAL tmpFB_0__M1_IN1_net_0 : bit;
 SIGNAL tmpIO_0__M1_IN1_net_0 : bit;
@@ -274,7 +275,6 @@ SIGNAL tmpIO_0__M1_QB_net_0 : bit;
 TERMINAL tmpSIOVREF__M1_QB_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__M1_QB_net_0 : bit;
 SIGNAL tmpOE__M1_EN_net_0 : bit;
-SIGNAL Net_230 : bit;
 SIGNAL tmpFB_0__M1_EN_net_0 : bit;
 SIGNAL tmpIO_0__M1_EN_net_0 : bit;
 TERMINAL tmpSIOVREF__M1_EN_net_0 : bit;
@@ -291,6 +291,29 @@ SIGNAL tmpFB_0__M1_D2_net_0 : bit;
 SIGNAL tmpIO_0__M1_D2_net_0 : bit;
 TERMINAL tmpSIOVREF__M1_D2_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__M1_D2_net_0 : bit;
+SIGNAL \Control_Reg_1:clk\ : bit;
+SIGNAL \Control_Reg_1:rst\ : bit;
+SIGNAL \Control_Reg_1:control_out_0\ : bit;
+SIGNAL \Control_Reg_1:control_out_1\ : bit;
+SIGNAL \Control_Reg_1:control_out_2\ : bit;
+SIGNAL Net_244 : bit;
+SIGNAL \Control_Reg_1:control_out_3\ : bit;
+SIGNAL Net_246 : bit;
+SIGNAL \Control_Reg_1:control_out_4\ : bit;
+SIGNAL Net_247 : bit;
+SIGNAL \Control_Reg_1:control_out_5\ : bit;
+SIGNAL Net_248 : bit;
+SIGNAL \Control_Reg_1:control_out_6\ : bit;
+SIGNAL Net_249 : bit;
+SIGNAL \Control_Reg_1:control_out_7\ : bit;
+SIGNAL \Control_Reg_1:control_7\ : bit;
+SIGNAL \Control_Reg_1:control_6\ : bit;
+SIGNAL \Control_Reg_1:control_5\ : bit;
+SIGNAL \Control_Reg_1:control_4\ : bit;
+SIGNAL \Control_Reg_1:control_3\ : bit;
+SIGNAL \Control_Reg_1:control_2\ : bit;
+SIGNAL \Control_Reg_1:control_1\ : bit;
+SIGNAL \Control_Reg_1:control_0\ : bit;
 SIGNAL \QuadDec_M1:Net_1251\\D\ : bit;
 SIGNAL \QuadDec_M1:Cnt16:CounterUDB:prevCapture\\D\ : bit;
 SIGNAL \QuadDec_M1:Cnt16:CounterUDB:overflow_reg_i\\D\ : bit;
@@ -378,7 +401,7 @@ one <=  ('1') ;
 
 \QuadDec_M1:Net_611\ <= ((not \QuadDec_M1:Net_1251\ and not \QuadDec_M1:Net_1264\ and \QuadDec_M1:Net_1275\));
 
-Net_218 <= (not Net_219);
+Net_218 <= (not Net_240);
 
 \PWM_1:PWMHW\:cy_psoc3_timer_v1_0
 	GENERIC MAP(cy_registers=>"")
@@ -766,7 +789,7 @@ M1_IN1:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(one),
-		y=>Net_219,
+		y=>Net_240,
 		fb=>(tmpFB_0__M1_IN1_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__M1_IN1_net_0),
@@ -986,7 +1009,7 @@ M1_EN:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(one),
-		y=>one,
+		y=>Net_219,
 		fb=>(tmpFB_0__M1_EN_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__M1_EN_net_0),
@@ -1056,7 +1079,7 @@ M1_D1:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(one),
-		y=>zero,
+		y=>Net_231,
 		fb=>(tmpFB_0__M1_D1_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__M1_D1_net_0),
@@ -1126,7 +1149,7 @@ M1_D2:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(one),
-		y=>one,
+		y=>Net_232,
 		fb=>(tmpFB_0__M1_D2_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__M1_D2_net_0),
@@ -1139,6 +1162,16 @@ M1_D2:cy_psoc3_pins_v1_10
 		out_clock_en=>one,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__M1_D2_net_0);
+\Control_Reg_1:Sync:ctrl_reg\:cy_psoc3_control
+	GENERIC MAP(cy_init_value=>"00000100",
+		cy_force_order=>'1',
+		cy_ctrl_mode_1=>"00000000",
+		cy_ctrl_mode_0=>"00000000",
+		cy_ext_reset=>'0')
+	PORT MAP(reset=>zero,
+		clock=>zero,
+		control=>(\Control_Reg_1:control_7\, \Control_Reg_1:control_6\, \Control_Reg_1:control_5\, \Control_Reg_1:control_4\,
+			\Control_Reg_1:control_3\, Net_232, Net_231, Net_240));
 \QuadDec_M1:Net_1251\:cy_dff
 	PORT MAP(d=>\QuadDec_M1:Net_1251\\D\,
 		clk=>\QuadDec_M1:bQuadDec:sync_clock\,

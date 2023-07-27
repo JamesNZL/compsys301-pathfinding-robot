@@ -1,6 +1,6 @@
 // ======================================================================
 // hw2.v generated from TopDesign.cysch
-// 07/27/2023 at 11:20
+// 07/27/2023 at 12:20
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -537,9 +537,29 @@ endmodule
 `include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\cy_constant_v1_0\cy_constant_v1_0.v"
 `endif
 
+// Component: CyControlReg_v1_80
+`ifdef CY_BLK_DIR
+`undef CY_BLK_DIR
+`endif
+
+`ifdef WARP
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80\CyControlReg_v1_80.v"
+`else
+`define CY_BLK_DIR "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80"
+`include "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\CyPrimitives\cyprimitives.cylib\CyControlReg_v1_80\CyControlReg_v1_80.v"
+`endif
+
 // top
 module top ;
 
+          wire  Net_251;
+          wire  Net_249;
+          wire  Net_248;
+          wire  Net_247;
+          wire  Net_246;
+          wire  Net_244;
+          wire  Net_250;
           wire  Net_225;
           wire  Net_121;
           wire  Net_75;
@@ -556,13 +576,13 @@ module top ;
           wire  Net_206;
           wire  Net_205;
           wire  Net_232;
-          wire  Net_230;
           wire  Net_231;
+          wire  Net_218;
+          wire  Net_240;
           wire  Net_72;
           wire  Net_71;
           wire  Net_74;
           wire  Net_219;
-          wire  Net_218;
           wire  Net_209;
           wire  Net_165;
 
@@ -683,7 +703,7 @@ module top ;
 	assign tmpOE__M1_IN2_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
 
-    assign Net_218 = ~Net_219;
+    assign Net_218 = ~Net_240;
 
 	wire [0:0] tmpOE__M1_IN1_net;
 	wire [0:0] tmpFB_0__M1_IN1_net;
@@ -746,7 +766,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		M1_IN1
 		 (.oe(tmpOE__M1_IN1_net),
-		  .y({Net_219}),
+		  .y({Net_240}),
 		  .fb({tmpFB_0__M1_IN1_net[0:0]}),
 		  .io({tmpIO_0__M1_IN1_net[0:0]}),
 		  .siovref(tmpSIOVREF__M1_IN1_net),
@@ -981,7 +1001,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		M1_EN
 		 (.oe(tmpOE__M1_EN_net),
-		  .y({Net_230}),
+		  .y({Net_219}),
 		  .fb({tmpFB_0__M1_EN_net[0:0]}),
 		  .io({tmpIO_0__M1_EN_net[0:0]}),
 		  .siovref(tmpSIOVREF__M1_EN_net),
@@ -1145,11 +1165,29 @@ module top ;
 
 	assign tmpOE__M1_D2_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
-    assign Net_230 = 1'h1;
-
-    assign Net_232 = 1'h1;
-
-    assign Net_231 = 1'h0;
+    CyControlReg_v1_80 Control_Reg_1 (
+        .clock(1'b0),
+        .control_0(Net_240),
+        .control_1(Net_231),
+        .control_2(Net_232),
+        .control_3(Net_244),
+        .control_4(Net_246),
+        .control_5(Net_247),
+        .control_6(Net_248),
+        .control_7(Net_249),
+        .reset(1'b0));
+    defparam Control_Reg_1.Bit0Mode = 0;
+    defparam Control_Reg_1.Bit1Mode = 0;
+    defparam Control_Reg_1.Bit2Mode = 0;
+    defparam Control_Reg_1.Bit3Mode = 0;
+    defparam Control_Reg_1.Bit4Mode = 0;
+    defparam Control_Reg_1.Bit5Mode = 0;
+    defparam Control_Reg_1.Bit6Mode = 0;
+    defparam Control_Reg_1.Bit7Mode = 0;
+    defparam Control_Reg_1.BitValue = 4;
+    defparam Control_Reg_1.BusDisplay = 0;
+    defparam Control_Reg_1.ExtrReset = 0;
+    defparam Control_Reg_1.NumOutputs = 3;
 
 
 

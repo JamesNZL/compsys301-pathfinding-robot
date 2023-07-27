@@ -1,5 +1,5 @@
 -- Project:   hw2
--- Generated: 07/27/2023 11:20:19
+-- Generated: 07/27/2023 12:20:53
 -- PSoC Creator  4.4
 
 ENTITY hw2 IS
@@ -46,12 +46,20 @@ ARCHITECTURE __DEFAULT__ OF hw2 IS
     SIGNAL Net_165_local : bit;
     SIGNAL Net_218 : bit;
     SIGNAL Net_219 : bit;
+    SIGNAL Net_231 : bit;
+    SIGNAL Net_232 : bit;
+    SIGNAL Net_240 : bit;
     SIGNAL Net_71 : bit;
     SIGNAL Net_72 : bit;
     SIGNAL Net_74 : bit;
     ATTRIBUTE udbclken_assigned OF Net_74 : SIGNAL IS "True";
     ATTRIBUTE global_signal OF Net_74 : SIGNAL IS true;
     SIGNAL Net_74_local : bit;
+    SIGNAL \Control_Reg_1:control_3\ : bit;
+    SIGNAL \Control_Reg_1:control_4\ : bit;
+    SIGNAL \Control_Reg_1:control_5\ : bit;
+    SIGNAL \Control_Reg_1:control_6\ : bit;
+    SIGNAL \Control_Reg_1:control_7\ : bit;
     SIGNAL \PWM_1:Net_54\ : bit;
     SIGNAL \PWM_1:Net_63\ : bit;
     SIGNAL \QuadDec_M1:Cnt16:CounterUDB:cmp_out_i\ : bit;
@@ -126,19 +134,19 @@ ARCHITECTURE __DEFAULT__ OF hw2 IS
     ATTRIBUTE Location OF M1_QB(0) : LABEL IS "P15[2]";
     ATTRIBUTE lib_model OF M1_EN(0) : LABEL IS "iocell5";
     ATTRIBUTE Location OF M1_EN(0) : LABEL IS "P3[3]";
-    ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell1";
     ATTRIBUTE lib_model OF M1_D1(0) : LABEL IS "iocell6";
     ATTRIBUTE Location OF M1_D1(0) : LABEL IS "P3[1]";
     ATTRIBUTE lib_model OF M1_D2(0) : LABEL IS "iocell7";
     ATTRIBUTE Location OF M1_D2(0) : LABEL IS "P3[2]";
-    ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:reload\ : LABEL IS "macrocell2";
-    ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:status_0\ : LABEL IS "macrocell3";
-    ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:status_2\ : LABEL IS "macrocell4";
-    ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:status_3\ : LABEL IS "macrocell5";
-    ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:count_enable\ : LABEL IS "macrocell6";
-    ATTRIBUTE lib_model OF \QuadDec_M1:Net_530\ : LABEL IS "macrocell7";
-    ATTRIBUTE lib_model OF \QuadDec_M1:Net_611\ : LABEL IS "macrocell8";
-    ATTRIBUTE lib_model OF Net_218 : LABEL IS "macrocell9";
+    ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:reload\ : LABEL IS "macrocell1";
+    ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:status_0\ : LABEL IS "macrocell2";
+    ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:status_2\ : LABEL IS "macrocell3";
+    ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:status_3\ : LABEL IS "macrocell4";
+    ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:count_enable\ : LABEL IS "macrocell5";
+    ATTRIBUTE lib_model OF \QuadDec_M1:Net_530\ : LABEL IS "macrocell6";
+    ATTRIBUTE lib_model OF \QuadDec_M1:Net_611\ : LABEL IS "macrocell7";
+    ATTRIBUTE lib_model OF Net_218 : LABEL IS "macrocell8";
+    ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell9";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:sCTRLReg:ctrlreg\ : LABEL IS "controlcell1";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:sSTSReg:stsreg\ : LABEL IS "statusicell1";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:sC16:counterdp:u0\ : LABEL IS "datapathcell1";
@@ -150,6 +158,7 @@ ARCHITECTURE __DEFAULT__ OF hw2 IS
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:quad_B_delayed_1\ : LABEL IS "macrocell14";
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:quad_B_delayed_2\ : LABEL IS "macrocell15";
     ATTRIBUTE lib_model OF \QuadDec_M1:bQuadDec:Stsreg\ : LABEL IS "statusicell2";
+    ATTRIBUTE lib_model OF \Control_Reg_1:Sync:ctrl_reg\ : LABEL IS "controlcell2";
     ATTRIBUTE lib_model OF \QuadDec_M1:Net_1251\ : LABEL IS "macrocell16";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:overflow_reg_i\ : LABEL IS "macrocell17";
     ATTRIBUTE lib_model OF \QuadDec_M1:Cnt16:CounterUDB:underflow_reg_i\ : LABEL IS "macrocell18";
@@ -669,7 +678,7 @@ BEGIN
         PORT MAP(
             pa_out => M1_IN1(0)__PA,
             oe => open,
-            pin_input => Net_219,
+            pin_input => Net_240,
             pad_out => M1_IN1(0)_PAD,
             pad_in => M1_IN1(0)_PAD,
             in_clock => open,
@@ -939,11 +948,11 @@ BEGIN
             oe_sync_mode => 0,
             logicalport => "M1_EN",
             logicalport_pin_id => 0,
-            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
         PORT MAP(
             pa_out => M1_EN(0)__PA,
             oe => open,
-            pin_input => __ONE__,
+            pin_input => Net_219,
             pad_out => M1_EN(0)_PAD,
             pad_in => M1_EN(0)_PAD,
             in_clock => open,
@@ -952,14 +961,6 @@ BEGIN
             out_clock => open,
             out_clock_en => '1',
             out_reset => '0');
-
-    __ONE__:macrocell
-        GENERIC MAP(
-            eqn_main => "1'b0",
-            regmode => 0,
-            clken_mode => 1)
-        PORT MAP(
-            q => __ONE__);
 
     M1_D1:logicalport
         GENERIC MAP(
@@ -1039,10 +1040,12 @@ BEGIN
             oe_sync_mode => 0,
             logicalport => "M1_D1",
             logicalport_pin_id => 0,
-            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
         PORT MAP(
             pa_out => M1_D1(0)__PA,
             oe => open,
+            pin_input => Net_231,
+            pad_out => M1_D1(0)_PAD,
             pad_in => M1_D1(0)_PAD,
             in_clock => open,
             in_clock_en => '1',
@@ -1129,11 +1132,11 @@ BEGIN
             oe_sync_mode => 0,
             logicalport => "M1_D2",
             logicalport_pin_id => 0,
-            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000001")
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
         PORT MAP(
             pa_out => M1_D2(0)__PA,
             oe => open,
-            pin_input => __ONE__,
+            pin_input => Net_232,
             pad_out => M1_D2(0)_PAD,
             pad_in => M1_D2(0)_PAD,
             in_clock => open,
@@ -1224,7 +1227,7 @@ BEGIN
             clken_mode => 1)
         PORT MAP(
             q => Net_218,
-            main_0 => Net_219);
+            main_0 => Net_240);
 
     \PWM_1:PWMHW\:timercell
         GENERIC MAP(
@@ -1238,6 +1241,14 @@ BEGIN
             tc => \PWM_1:Net_63\,
             cmp => Net_219,
             irq => \PWM_1:Net_54\);
+
+    __ONE__:macrocell
+        GENERIC MAP(
+            eqn_main => "1'b0",
+            regmode => 0,
+            clken_mode => 1)
+        PORT MAP(
+            q => __ONE__);
 
     \QuadDec_M1:Cnt16:CounterUDB:sCTRLReg:ctrlreg\:controlcell
         GENERIC MAP(
@@ -1460,6 +1471,25 @@ BEGIN
             status_2 => \QuadDec_M1:Net_1260\,
             status_1 => \QuadDec_M1:Net_611\,
             status_0 => \QuadDec_M1:Net_530\);
+
+    \Control_Reg_1:Sync:ctrl_reg\:controlcell
+        GENERIC MAP(
+            cy_ctrl_mode_0 => "00000000",
+            cy_ctrl_mode_1 => "00000000",
+            cy_ext_reset => 0,
+            cy_force_order => 1,
+            cy_init_value => "00000100",
+            clken_mode => 1)
+        PORT MAP(
+            control_7 => \Control_Reg_1:control_7\,
+            control_6 => \Control_Reg_1:control_6\,
+            control_5 => \Control_Reg_1:control_5\,
+            control_4 => \Control_Reg_1:control_4\,
+            control_3 => \Control_Reg_1:control_3\,
+            control_2 => Net_232,
+            control_1 => Net_231,
+            control_0 => Net_240,
+            busclk => ClockBlock_BUS_CLK);
 
     \QuadDec_M1:Net_1251\:macrocell
         GENERIC MAP(
