@@ -20,7 +20,6 @@ Project\ Logs
 *.log
 *.ipynd_checkpoints
 *checkpoint.ipynb
-*.csv
 
 ## Ignore Proteus files
 *.pdsbak
