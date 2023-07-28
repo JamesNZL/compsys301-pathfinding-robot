@@ -4,7 +4,7 @@
 # You may need to add additional directories, e.g. CortexM3/
 
 # Project Settings
-*.cywry.*
+*.cywrk.*
 *.cyprj.*
 
 # Generated Assets and Resources
