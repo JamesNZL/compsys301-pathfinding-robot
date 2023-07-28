@@ -1,9 +1,0 @@
-C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\lab exercise\psoc_intro\lab1.cydsn\lab1.cyprj|7d9ba029-7569-4ab1-b75c-635b49e8d947
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|4690b5c5-49c6-4419-9c3c-8633e5ddc121
-C:\Users\James\OneDrive\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|4f040762-d9c8-4bd6-889d-682a3aa89a15
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|0234da37-c313-430a-881c-01981cd96241
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|0e271ccc-23c4-4025-a8ae-6e94637ec276
-C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|7b5f8e0c-9f76-4d3c-96cc-ba7099bb7c69
-C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\lab exercise\psoc_intro\lab2.cydsn\lab2.cyprj|0e3f364b-c04e-4ecc-bb1e-ea365d2b3e91
-C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\lab exercise\psoc_intro\lab3.cydsn\lab3.cyprj|87a6b6dc-9a1d-46f0-ba53-f26daa9268a3
-C:\Users\James\OneDrive\Documents\The University of Auckland\Engineering (Part III)\Repositories\compsys301-line-following-robot\psoc_code_base\CS301_Class.cydsn\CS301_Class.cyprj|048200de-2b59-45d3-9ddd-668d50c0af47
