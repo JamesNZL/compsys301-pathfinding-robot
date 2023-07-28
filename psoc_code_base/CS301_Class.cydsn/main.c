@@ -26,17 +26,20 @@ void usbPutString(char *s);
 void usbPutChar(char c);
 void handle_usb();
 void handle_pwm_command();
+void set_pwm_duty_cycle(uint8_t percentage);
 //* ========================================
 // ADC USART
 volatile uint16_t readingIndex = 0;
 volatile float results[40];
 volatile int16_t counts[40];
+volatile uint8_t currentDuty = 100;
 
 CY_ISR(conversion_finished){
     uint16_t result = ADC_GetResult16(0);
     float voltage = ADC_CountsTo_Volts(result);
     uint8_t dac = (voltage/4.08)*(float)255;
     VDAC8_1_SetValue(dac);
+    
     /*
     results[readingIndex] = voltage;
     readingIndex++;
@@ -49,13 +52,16 @@ CY_ISR(conversion_finished){
 
 CY_ISR(take_count){
     int16_t count = QuadDec_M1_GetCounter();
-    float speed = (float) count;
+
+    float speed = (float) count/2;
     counts[readingIndex] = speed;
     readingIndex++;
     QuadDec_M1_SetCounter(0);
-    if (readingIndex == 10) {
+    if(currentDuty == 100) currentDuty = 0;
+    set_pwm_duty_cycle(currentDuty);
+    currentDuty += 10;
+    if (readingIndex == 11) {
         Timer_1_Stop();
-        
     }
     
 }
@@ -68,6 +74,7 @@ int main()
 // ----- INITIALIZATIONS ----------
     CYGlobalIntEnable;
     PWM_1_Start();
+    set_pwm_duty_cycle(0);
     QuadDec_M1_Start();
     QuadDec_M1_SetCounter(0);
     Timer_TS_Start();
@@ -94,8 +101,8 @@ int main()
             flag_KB_string = 0;
         }
         
-        if (readingIndex == 10){
-            for(uint16_t i = 0; i < 10; ++i){
+        if (readingIndex == 11){
+            for(uint16_t i = 0; i < 11; ++i){
                 char temp[BUF_SIZE];
                 int16_t out = counts[i];
                 sprintf(temp, "%i,", out);
@@ -108,7 +115,13 @@ int main()
     }   
 }
 
-
+void set_pwm_duty_cycle(uint8_t percentage) {
+    // get max count assuming it is 8 bits
+    uint8 maxCount = PWM_1_ReadPeriod();
+    // set the compare 
+    uint8 compare = maxCount - (float)maxCount*((float)percentage/100);
+    PWM_1_WriteCompare(compare);
+}
 
 void handle_pwm_command(){
     // Valid command
@@ -123,12 +136,9 @@ void handle_pwm_command(){
         percentageString[2] = entry[4];
         // get integer representation of percentage
         uint8 percentage = atoi(percentageString);
-        // get max count assuming it is 8 bits
-        uint8 maxCount = PWM_1_ReadPeriod();
         
-        // set the compare 
-        uint8 compare = maxCount - (float)maxCount*((float)percentage/100);
-        PWM_1_WriteCompare(compare);
+        // write appropriate duty cycle
+        set_pwm_duty_cycle(percentage);
         
         // display a status message to the terminal
         sprintf(message, "Set the duty cycle to %s\n", percentageString);
