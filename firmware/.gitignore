@@ -12,8 +12,10 @@ Debug/
 Release/
 Export/
 CortexM0/
-codegentemp
-Generated_Source
+CortexM3/
+codegentemp/
+Generated_Source/
+Backup/
 *_datasheet.pdf
 *_timing.html
 *.cycdx
