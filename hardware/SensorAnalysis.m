@@ -23,13 +23,14 @@ FILE_SUFFIXES = ["10m", "1m", "fft-samples"];
 FILES_COUNT = length(FILE_SUFFIXES);
 
 % The file suffix of the exported FFT data
-FILE_FFT_NAME = 'fft';
+FILE_FFT_SUFFIX = 'fft';
 
 % The format of the CSV data
 DATA_FORMAT = '%f,%f';
 
 % The number of header rows in the output CSV data
 LINES_TO_SKIP = 2;
+LINES_TO_SKIP_FFT = LINES_TO_SKIP + 2002;
 
 % The voltage scaling factor
 VOLTAGE_SCALE = 1;
@@ -48,6 +49,14 @@ for i = 1:FILES_COUNT
 	fclose(fid);
 end
 
+% Raw FFT file
+file_name = strcat(SENSOR_DIR, '/', FILE_NAME, '-', FILE_FFT_SUFFIX, '.csv');
+
+% Load the CSV file
+fid = fopen(file_name);
+raw_fft_data = textscan(fid, DATA_FORMAT, 'Headerlines', LINES_TO_SKIP_FFT);
+fclose(fid);
+
 %% Raw Plot
 
 figure;
@@ -63,3 +72,13 @@ for i = 1:FILES_COUNT
 end
 
 %% TODO: Calculate FFT
+
+figure;
+for i = 1:FILES_COUNT
+end
+
+subplot((FILES_COUNT + 1), 1, (FILES_COUNT + 1));
+plot(raw_fft_data{1, 1}, raw_fft_data{1, 2});
+xlabel('Frequency (Hz)');
+ylabel('FFT');
+title(strcat(SENSOR_DIR, ": ", FILE_NAME, " @", "Oscilloscope FFT"));
