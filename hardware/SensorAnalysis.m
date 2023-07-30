@@ -1,6 +1,14 @@
 %%% SensorAnalysis.m
 % A MATLAB script to analyse the response of a sensor excited by a test circuit using the saved output from an oscilloscope.
 %
+% ! To use this script:
+% * Create a sibling directory for each sensor type, and add it to SENSOR_DIR_NAMES
+% * Name each exported CSV file in the format [room light state]-[projector test condition]-[suffix].csv
+% * Where:
+% * 	- [room light state] corresponds to an entry in FILE_PREFIXES
+% * 	- [projector test condition] corresponds to an entry in FILE_NAMES
+% * 	- [suffix] corresponds to a suffix in FILE_SUFFIXES
+%
 % Author: James Bao
 
 %% Sanitise workspace
