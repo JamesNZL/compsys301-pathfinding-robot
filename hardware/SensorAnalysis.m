@@ -52,6 +52,9 @@ LINES_TO_SKIP_FFT = LINES_TO_SKIP + 2002;
 % The voltage scaling factor
 VOLTAGE_SCALE = 1;
 
+% The default upper voltage view limit
+VOLTAGE_UPPER_VIEW_LIMIT = 5;
+
 % The default upper FFT frequency view limit
 FFT_UPPER_VIEW_LIMIT = 300;
 
@@ -111,6 +114,7 @@ for l = 1:SENSOR_COUNT
 				plot(time * 1000, voltage * VOLTAGE_SCALE);
 				xlabel('Time (ms)');
 				ylabel('Voltage (V)');
+				ylim([0, VOLTAGE_UPPER_VIEW_LIMIT]);
 				title(strcat(SENSOR_DIR_NAMES(l), " (lights ", FILE_PREFIXES(i), "): ", FILE_NAMES(j), " @", num2str(Fs), "Hz"));
 			end
 		end
