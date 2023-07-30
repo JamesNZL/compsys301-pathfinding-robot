@@ -8,7 +8,6 @@
 /**
  * @brief The `switch`-able enumeration value that is mapped to by a command string.
  */
-// TODO: what is the size of each enum member?
 typedef enum CommandEnumeration
 {
 	COMMAND_CHANGE_DUTY,
