@@ -17,7 +17,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <project.h>
+#include <commands.h>
+
 //* ========================================
 #include "defines.h"
 #include "vars.h"
@@ -50,7 +51,31 @@ int main()
         handle_usb();
         if (flag_KB_string == 1)
         {
-            usbPutString(line);
+            char *token = strtok(line, COMMAND_DELIMITER);
+            if (token != NULL)
+            {
+            	switch (matchCommand(token))
+            	{
+            	case (COMMAND_CHANGE_DIRECTION):
+            	{
+            		usbPutString("Parsed command: CHANGE_DIRECTION\n");
+            		break;
+            	}
+            	case (COMMAND_CHANGE_DUTY):
+            	{
+            		usbPutString("Parsed command: CHANGE_DUTY\n");
+
+            		// extract first argument
+            		token = strtok(NULL, COMMAND_DELIMITER);
+            		break;
+            	}
+            	default:
+            	{
+            		usbPutString("Failed to parse command.\n");
+            		break;
+            	}
+            	}
+            }
             flag_KB_string = 0;
         }        
     }   
