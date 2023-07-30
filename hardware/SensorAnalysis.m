@@ -70,51 +70,53 @@ fclose(fid);
 
 figure;
 for i = 1:FILES_COUNT
-	% Extract time and voltage data
-	[time, voltage] = data{i}{1:2};
-	
-	subplot(FILES_COUNT, 1, i);
-	plot(time * 1000, voltage * VOLTAGE_SCALE);
-	xlabel('Time (ms)');
-	ylabel('Voltage (V)');
-	title(strcat(SENSOR_DIR, ": ", FILE_NAME, " @", FILE_SUFFIXES(i)));
+    % Extract time and voltage data
+    [time, voltage] = data{i}{1:2};
+    
+    % Sampling frequency, assuming equidistant time points
+    Fs = 1 / mean(diff(time));
+    
+    subplot(FILES_COUNT, 1, i);
+    plot(time * 1000, voltage * VOLTAGE_SCALE);
+    xlabel('Time (ms)');
+    ylabel('Voltage (V)');
+    title(strcat(SENSOR_DIR, ": ", FILE_NAME, " @", num2str(Fs), "Hz"));
 end
 
 %% Calculate FFT
 
 figure;
 for i = 1:FILES_COUNT
-	% Extract time and voltage data
-	[time, voltage] = data{i}{1:2};
-	
-	L = length(voltage);
-	
-	% Calculate the FFT
-	F = fft(voltage);
-	F = abs(F./L);
-	
-	one_sided_spectrum = F(1:L/2+1);
-	one_sided_spectrum(2:end-1) = 2.*one_sided_spectrum(2:end-1);
-	one_sided_spectrum_dbm = mag2db(one_sided_spectrum);
-	% one_sided_spectrum_dbm = 10.*log10(one_sided_spectrum.^2);
-	
-	% Sampling frequency, assuming equidistant time points
-	Fs = 1 / mean(diff(time));
-	f = Fs*(0:(L/2))/L;
-	
-	% Plot the power spectrum
-	subplot((FILES_COUNT + 1), 1, i);
-	plot(f, one_sided_spectrum_dbm);
-	xlabel('Frequency (Hz)');
-	xlim([0, FFT_UPPER_VIEW_LIMIT]);
-	% TODO:
-	ylabel('Something');
-	title(strcat(SENSOR_DIR, " FFT: ", FILE_NAME, " @", FILE_SUFFIXES(i)));
+    % Extract time and voltage data
+    [time, voltage] = data{i}{1:2};
+    
+    L = length(voltage);
+    
+    % Sampling frequency, assuming equidistant time points
+    Fs = 1 / mean(diff(time));
+    f = Fs*(0:(L/2))/L;
+    
+    % Compute the FFT
+    FFT = fft(voltage);
+    FFT = abs(FFT ./ L);
+    
+    % Compute the one-sided amplitude spectrum
+    one_sided_spectrum = FFT(1:L/2+1);
+    one_sided_spectrum(2:end-1) = 2 .* one_sided_spectrum(2:end-1);
+    
+    % Plot the amplitude spectrum
+    subplot((FILES_COUNT + 1), 1, i);
+    plot(f, one_sided_spectrum);
+    xlabel('Frequency (Hz)');
+    xlim([0, FFT_UPPER_VIEW_LIMIT]);
+    ylabel('Amplitude (V)');
+	title(strcat(SENSOR_DIR, " FFT: ", FILE_NAME, " @", "", num2str(Fs), "Hz"));
 end
 
 subplot((FILES_COUNT + 1), 1, (FILES_COUNT + 1));
-plot(raw_fft_data{1, 1}, raw_fft_data{1, 2});
+% A somewhat arbitrary scaling factor of 10 to try reconcile the y-axis
+plot(raw_fft_data{1, 1}, 10*db2mag(raw_fft_data{1, 2}));
 xlabel('Frequency (Hz)');
 xlim([0, FFT_UPPER_VIEW_LIMIT]);
-ylabel('FFT');
+ylabel('Amplitude (V)');
 title(strcat(SENSOR_DIR, " FFT: ", FILE_NAME, " @", "Oscilloscope FFT"));
