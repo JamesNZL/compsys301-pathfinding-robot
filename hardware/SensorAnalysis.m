@@ -13,10 +13,14 @@ fprintf("SensorAnalysis.m\n\n");
 %% Script Configuration
 
 % Sensor directory
-SENSOR_DIR = 'phototransistor';
+SENSOR_DIR_NAMES = ["phototransistor"];
 
-% The test case to import
-FILE_NAME = 'off-white';
+% The set of file prefixes for each test case,
+% corresponding to the state of the room light
+FILE_PREFIXES = ["on", "off"];
+
+% The various projector test conditions
+FILE_NAMES = ["black", "green", "white"];
 
 % The set of file suffixes for each test case
 % * "fft-samples" can also be used, but, the "fft" file
@@ -26,7 +30,6 @@ FILE_NAME = 'off-white';
 % * rows at the top of the fft data, so treating it as a regular data
 % * file will also work
 FILE_SUFFIXES = ["10m", "1m", "fft"];
-FILES_COUNT = length(FILE_SUFFIXES);
 
 % The file suffix of the exported FFT data
 FILE_FFT_SUFFIX = 'fft';
@@ -46,77 +49,107 @@ FFT_UPPER_VIEW_LIMIT = 300;
 
 %% Data Import
 
-data = cell(1, FILES_COUNT);
+SENSOR_COUNT = length(SENSOR_DIR_NAMES);
+PREFIX_COUNT = length(FILE_PREFIXES);
+TEST_COUNT = length(FILE_NAMES);
+SUFFIX_COUNT = length(FILE_SUFFIXES);
 
-for i = 1:FILES_COUNT
-    % Construct the file name
-    file_name = strcat(SENSOR_DIR, '/', FILE_NAME, '-', FILE_SUFFIXES(i), '.csv');
-    
-    % Load the CSV file
-    fid = fopen(file_name);
-    data{i} = textscan(fid, DATA_FORMAT, 'Headerlines', LINES_TO_SKIP);
-    fclose(fid);
+% This is a 4D cell array, where
+% dimension 1: the sensor type
+% dimension 2: whether the room light is on
+% dimension 3: the projector test condition (green, white, black)
+% dimension 4: the various sampling rates for each condition (and the raw fft data)
+data = cell(PREFIX_COUNT, TEST_COUNT, SUFFIX_COUNT + 1);
+
+for l = 1:SENSOR_COUNT
+	for i = 1:PREFIX_COUNT
+		for j = 1:TEST_COUNT
+			for k = 1:SUFFIX_COUNT
+				% Construct the file name
+				file_name = strcat(SENSOR_DIR_NAMES(l), '/', FILE_PREFIXES(i), '-', FILE_NAMES(j), '-', FILE_SUFFIXES(k), '.csv');
+				
+				% Load the CSV file
+				fid = fopen(file_name);
+				data{l, i, j, k} = textscan(fid, DATA_FORMAT, 'Headerlines', LINES_TO_SKIP);
+				fclose(fid);
+			end
+			
+			% Raw FFT file
+			file_name = strcat(SENSOR_DIR_NAMES(l), '/', FILE_PREFIXES(i), '-', FILE_NAMES(j), '-', FILE_FFT_SUFFIX, '.csv');
+			
+			% Load the CSV file
+			fid = fopen(file_name);
+			data{l, i, j, (SUFFIX_COUNT + 1)} = textscan(fid, DATA_FORMAT, 'Headerlines', LINES_TO_SKIP_FFT);
+			fclose(fid);
+		end
+	end
 end
-
-% Raw FFT file
-file_name = strcat(SENSOR_DIR, '/', FILE_NAME, '-', FILE_FFT_SUFFIX, '.csv');
-
-% Load the CSV file
-fid = fopen(file_name);
-raw_fft_data = textscan(fid, DATA_FORMAT, 'Headerlines', LINES_TO_SKIP_FFT);
-fclose(fid);
 
 %% Raw Plot
 
-figure;
-for i = 1:FILES_COUNT
-    % Extract time and voltage data
-    [time, voltage] = data{i}{1:2};
-    
-    % Sampling frequency, assuming equidistant time points
-    Fs = 1 / mean(diff(time));
-    
-    subplot(FILES_COUNT, 1, i);
-    plot(time * 1000, voltage * VOLTAGE_SCALE);
-    xlabel('Time (ms)');
-    ylabel('Voltage (V)');
-    title(strcat(SENSOR_DIR, ": ", FILE_NAME, " @", num2str(Fs), "Hz"));
+for l = 1:SENSOR_COUNT
+	for i = 1:PREFIX_COUNT
+		figure('Name', strcat(SENSOR_DIR_NAMES(l), " lights ", FILE_PREFIXES(i)));
+		
+		for j = 1:TEST_COUNT
+			for k = 1:SUFFIX_COUNT
+				% Extract time and voltage data
+				[time, voltage] = data{l, i, j, k}{1:2};
+				
+				% Sampling frequency, assuming equidistant time points
+				Fs = 1 / mean(diff(time));
+				
+				subplot(SUFFIX_COUNT, TEST_COUNT, (3*(k-1) + (j)));
+				plot(time * 1000, voltage * VOLTAGE_SCALE);
+				xlabel('Time (ms)');
+				ylabel('Voltage (V)');
+				title(strcat(SENSOR_DIR_NAMES(l), " (lights ", FILE_PREFIXES(i), "): ", FILE_NAMES(j), " @", num2str(Fs), "Hz"));
+			end
+		end
+	end
 end
 
 %% Calculate FFT
 
-figure;
-for i = 1:FILES_COUNT
-    % Extract time and voltage data
-    [time, voltage] = data{i}{1:2};
-    
-    L = length(voltage);
-    
-    % Sampling frequency, assuming equidistant time points
-    Fs = 1 / mean(diff(time));
-    f = Fs*(0:(L/2))/L;
-    
-    % Compute the FFT
-    FFT = fft(voltage);
-    FFT = abs(FFT ./ L);
-    
-    % Compute the one-sided amplitude spectrum
-    one_sided_spectrum = FFT(1:L/2+1);
-    one_sided_spectrum(2:end-1) = 2 .* one_sided_spectrum(2:end-1);
-    
-    % Plot the amplitude spectrum
-    subplot((FILES_COUNT + 1), 1, i);
-    plot(f, one_sided_spectrum);
-    xlabel('Frequency (Hz)');
-    xlim([0, FFT_UPPER_VIEW_LIMIT]);
-    ylabel('Amplitude (V)');
-	title(strcat(SENSOR_DIR, " FFT: ", FILE_NAME, " @", "", num2str(Fs), "Hz"));
+for l = 1:SENSOR_COUNT
+	for i = 1:PREFIX_COUNT
+		figure('Name', strcat(SENSOR_DIR_NAMES(l), " lights ", FILE_PREFIXES(i), " FFT"));
+		
+		for j = 1:TEST_COUNT
+			for k = 1:SUFFIX_COUNT
+				% Extract time and voltage data
+				[time, voltage] = data{l, i, j, k}{1:2};
+				
+				L = length(voltage);
+				
+				% Sampling frequency, assuming equidistant time points
+				Fs = 1 / mean(diff(time));
+				f = Fs*(0:(L/2))/L;
+				
+				% Compute the FFT
+				FFT = fft(voltage);
+				FFT = abs(FFT ./ L);
+				
+				% Compute the one-sided amplitude spectrum
+				one_sided_spectrum = FFT(1:L/2+1);
+				one_sided_spectrum(2:end-1) = 2 .* one_sided_spectrum(2:end-1);
+				
+				% Plot the amplitude spectrum
+				subplot((SUFFIX_COUNT + 1), TEST_COUNT, (3*(k-1) + (j)));
+				plot(f, one_sided_spectrum);
+				xlabel('Frequency (Hz)');
+				xlim([0, FFT_UPPER_VIEW_LIMIT]);
+				ylabel('Amplitude (V)');
+				title(strcat(SENSOR_DIR_NAMES(l), " (lights ", FILE_PREFIXES(i), ") FFT: ", FILE_NAMES(j), " @", "", num2str(Fs), "Hz"));
+			end
+			
+			subplot((SUFFIX_COUNT + 1), TEST_COUNT, (3*(SUFFIX_COUNT) + (j)));
+			% A somewhat arbitrary scaling factor of 10 to try reconcile the y-axis
+			plot(data{l, i, j, (SUFFIX_COUNT + 1)}{1, 1}, 10*db2mag(data{l, i, j, (SUFFIX_COUNT + 1)}{1, 2}));
+			xlabel('Frequency (Hz)');
+			xlim([0, FFT_UPPER_VIEW_LIMIT]);
+			ylabel('Amplitude (V)');
+			title(strcat(SENSOR_DIR_NAMES(l), " (lights ", FILE_PREFIXES(i), ") FFT: ", FILE_NAMES(j), " @", "Oscilloscope FFT"));
+		end
+	end
 end
-
-subplot((FILES_COUNT + 1), 1, (FILES_COUNT + 1));
-% A somewhat arbitrary scaling factor of 10 to try reconcile the y-axis
-plot(raw_fft_data{1, 1}, 10*db2mag(raw_fft_data{1, 2}));
-xlabel('Frequency (Hz)');
-xlim([0, FFT_UPPER_VIEW_LIMIT]);
-ylabel('Amplitude (V)');
-title(strcat(SENSOR_DIR, " FFT: ", FILE_NAME, " @", "Oscilloscope FFT"));
