@@ -134,6 +134,9 @@ for l = 1:SENSOR_COUNT
 				one_sided_spectrum = FFT(1:L/2+1);
 				one_sided_spectrum(2:end-1) = 2 .* one_sided_spectrum(2:end-1);
 				
+				% Convert to dBV
+				one_sided_spectrum = mag2db(one_sided_spectrum);
+				
 				% Plot the amplitude spectrum
 				subplot((SUFFIX_COUNT + 1), TEST_COUNT, (3*(k-1) + (j)));
 				plot(f, one_sided_spectrum);
@@ -144,8 +147,7 @@ for l = 1:SENSOR_COUNT
 			end
 			
 			subplot((SUFFIX_COUNT + 1), TEST_COUNT, (3*(SUFFIX_COUNT) + (j)));
-			% A somewhat arbitrary scaling factor of 10 to try reconcile the y-axis
-			plot(data{l, i, j, (SUFFIX_COUNT + 1)}{1, 1}, 10*db2mag(data{l, i, j, (SUFFIX_COUNT + 1)}{1, 2}));
+			plot(data{l, i, j, (SUFFIX_COUNT + 1)}{1, 1}, data{l, i, j, (SUFFIX_COUNT + 1)}{1, 2});
 			xlabel('Frequency (Hz)');
 			xlim([0, FFT_UPPER_VIEW_LIMIT]);
 			ylabel('Amplitude (V)');
