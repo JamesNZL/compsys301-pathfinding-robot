@@ -3,7 +3,6 @@
 
 #include <stddef.h>
 #include <stdint.h>
-
 /**
  * @brief The possible movement directions for the robot.
  */
@@ -12,8 +11,6 @@ typedef enum Direction
     FORWARD,
     REVERSE,
 } Direction;
-
-// Turning
 
 /**
  * @brief Turns the robot right (on the spot) by angle degrees
@@ -36,6 +33,10 @@ void set_direction(Direction direction);
 void set_speed(uint8_t percent);
 void set_speed_right(uint8_t percent);
 void set_speed_left(uint8_t percent);
+
+// Utils
+void set_pwm_1_duty_cycle(uint8_t percent);
+void set_pwm_1_duty_cycle(uint8_t percent);
 
 // Debug
 int16_t get_speed_left();
