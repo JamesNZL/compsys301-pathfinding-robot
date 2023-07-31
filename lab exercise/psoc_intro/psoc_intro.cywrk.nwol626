@@ -16,7 +16,6 @@
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>psoc_intro</v>
-<v>psoc_intro\CS301_Class</v>
 <v>psoc_intro\CS301_Class\TopDesign</v>
 <v>psoc_intro\CS301_Class\CS301_Class.cydwr</v>
 <v>psoc_intro\CS301_Class\CS301_Class.cydwr\Pins</v>
@@ -37,7 +36,6 @@
 <v>psoc_intro\CS301_Class\commands</v>
 <v>psoc_intro\CS301_Class\Generated_Source</v>
 <v>psoc_intro\CS301_Class\Generated_Source\PSoC5</v>
-<v>psoc_intro\hardwareTask1</v>
 <v>psoc_intro\hardwareTask1\TopDesign</v>
 <v>psoc_intro\hardwareTask1\hardwareTask1.cydwr</v>
 <v>psoc_intro\hardwareTask1\hardwareTask1.cydwr\Pins</v>
@@ -51,10 +49,32 @@
 <v>psoc_intro\hardwareTask1\hardwareTask1.cydwr\EEPROM</v>
 <v>psoc_intro\hardwareTask1\Header Files</v>
 <v>psoc_intro\hardwareTask1\Header Files\cyapicallbacks.h</v>
+<v>psoc_intro\hardwareTask1\Source Files</v>
 <v>psoc_intro\hardwareTask1\Source Files\main.c</v>
 <v>psoc_intro\hardwareTask1\Generated_Source</v>
 <v>psoc_intro\hardwareTask1\Generated_Source\PSoC5</v>
 <v>psoc_intro\hardwareTask1\Generated_Source\PSoC5\ADC_SAR_1_IRQ</v>
+<v>psoc_intro\HardwareTask2</v>
+<v>psoc_intro\HardwareTask2\TopDesign</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\Pins</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\Analog</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\Clocks</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\Interrupts</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\DMA</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\System</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\Directives</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\Flash Security</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\EEPROM</v>
+<v>psoc_intro\HardwareTask2\Header Files</v>
+<v>psoc_intro\HardwareTask2\Header Files\defines.h</v>
+<v>psoc_intro\HardwareTask2\Header Files\vars.h</v>
+<v>psoc_intro\HardwareTask2\Source Files</v>
+<v>psoc_intro\HardwareTask2\Source Files\main.c</v>
+<v>psoc_intro\HardwareTask2\Source Files\tacho.c</v>
+<v>psoc_intro\HardwareTask2\commands</v>
+<v>psoc_intro\HardwareTask2\Generated_Source</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5</v>
 <v>psoc_intro\lab1\TopDesign</v>
 <v>psoc_intro\lab1\lab1.cydwr</v>
 <v>psoc_intro\lab1\lab1.cydwr\Pins</v>
@@ -108,54 +128,54 @@
 <v>psoc_intro\lab3\Generated_Source\PSoC5</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
-<v>psoc_intro</v>
-<v>psoc_intro\CS301_Class</v>
-<v>psoc_intro\CS301_Class\TopDesign</v>
-<v>psoc_intro\CS301_Class\CS301_Class.cydwr</v>
-<v>psoc_intro\CS301_Class\CS301_Class.cydwr\Pins</v>
-<v>psoc_intro\CS301_Class\CS301_Class.cydwr\Analog</v>
-<v>psoc_intro\CS301_Class\CS301_Class.cydwr\Clocks</v>
-<v>psoc_intro\CS301_Class\CS301_Class.cydwr\Interrupts</v>
-<v>psoc_intro\CS301_Class\CS301_Class.cydwr\DMA</v>
-<v>psoc_intro\CS301_Class\CS301_Class.cydwr\System</v>
-<v>psoc_intro\CS301_Class\CS301_Class.cydwr\Directives</v>
-<v>psoc_intro\CS301_Class\CS301_Class.cydwr\Flash Security</v>
-<v>psoc_intro\CS301_Class\CS301_Class.cydwr\EEPROM</v>
-<v>psoc_intro\CS301_Class\Header Files</v>
-<v>psoc_intro\CS301_Class\Header Files\defines.h</v>
-<v>psoc_intro\CS301_Class\Header Files\vars.h</v>
-<v>psoc_intro\CS301_Class\Source Files</v>
-<v>psoc_intro\CS301_Class\Source Files\main.c</v>
-<v>psoc_intro\CS301_Class\Source Files\tacho.c</v>
-<v>psoc_intro\CS301_Class\commands</v>
-<v>psoc_intro\CS301_Class\Generated_Source</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A0</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A1</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A2</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A3</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A4</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A5</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A6</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\A7</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_FinalBuf</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_IntClock</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_IRQ</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_SAR</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\ADC_TempBuf</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\Clock_PWM</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\Clock_QENC</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\Clock2</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\CONTROL</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\cy_boot</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\DB0</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\DB1</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\DB2</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\isr_eoc</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\isr_TS</v>
-<v>psoc_intro\CS301_Class\Generated_Source\PSoC5\isrRF_RX</v>
+<v>psoc_intro\HardwareTask2</v>
+<v>psoc_intro\HardwareTask2\TopDesign</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\Pins</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\Analog</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\Clocks</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\Interrupts</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\DMA</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\System</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\Directives</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\Flash Security</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.cydwr\EEPROM</v>
+<v>psoc_intro\HardwareTask2\Header Files</v>
+<v>psoc_intro\HardwareTask2\Header Files\defines.h</v>
+<v>psoc_intro\HardwareTask2\Header Files\vars.h</v>
+<v>psoc_intro\HardwareTask2\Source Files</v>
+<v>psoc_intro\HardwareTask2\Source Files\main.c</v>
+<v>psoc_intro\HardwareTask2\Source Files\tacho.c</v>
+<v>psoc_intro\HardwareTask2\commands</v>
+<v>psoc_intro\HardwareTask2\Generated_Source</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\A0</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\A1</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\A2</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\A3</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\A4</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\A5</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\A6</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\A7</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\ADC</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\ADC_FinalBuf</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\ADC_IntClock</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\ADC_IRQ</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\ADC_SAR</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\ADC_TempBuf</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\Clock_PWM</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\Clock_QENC</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\Clock2</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\CONTROL</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\cy_boot</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\DB0</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\DB1</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\DB2</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\isr_eoc</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\isr_TS</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\isrRF_RX</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\isrRF_TX</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -167,6 +187,9 @@
 <v>psoc_intro\hardwareTask1</v>
 <v>psoc_intro\hardwareTask1\TopDesign</v>
 <v>psoc_intro\hardwareTask1\TopDesign\TopDesign.cysch</v>
+<v>psoc_intro\HardwareTask2</v>
+<v>psoc_intro\HardwareTask2\TopDesign</v>
+<v>psoc_intro\HardwareTask2\TopDesign\TopDesign.cysch</v>
 <v>psoc_intro\lab1</v>
 <v>psoc_intro\lab1\TopDesign</v>
 <v>psoc_intro\lab1\TopDesign\TopDesign.cysch</v>
@@ -185,6 +208,9 @@
 <v>psoc_intro\hardwareTask1</v>
 <v>psoc_intro\hardwareTask1\TopDesign</v>
 <v>psoc_intro\hardwareTask1\TopDesign\TopDesign.cysch</v>
+<v>psoc_intro\HardwareTask2</v>
+<v>psoc_intro\HardwareTask2\TopDesign</v>
+<v>psoc_intro\HardwareTask2\TopDesign\TopDesign.cysch</v>
 <v>psoc_intro\lab1</v>
 <v>psoc_intro\lab1\TopDesign</v>
 <v>psoc_intro\lab1\TopDesign\TopDesign.cysch</v>
@@ -353,6 +379,108 @@
 <v>psoc_intro\hardwareTask1\hardwareTask1.gpdsc</v>
 <v>psoc_intro\hardwareTask1\hardwareTask1.rpt</v>
 <v>psoc_intro\hardwareTask1\hardwareTask1_timing.html</v>
+<v>psoc_intro\HardwareTask2</v>
+<v>psoc_intro\HardwareTask2\CortexM3</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\A0.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\A1.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\A2.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\A3.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\A4.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\A5.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\A6.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\A7.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_FinalBuf_dma.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_INT.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_IntClock.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_IRQ.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_PM.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_INT.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_SAR_PM.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\ADC_TempBuf_dma.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_PWM.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock_QENC.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\Clock2.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\CONTROL.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\CONTROL_PM.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\DB0.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\DB1.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\DB2.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_eoc.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_TS.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\isrRF_RX.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\isrRF_TX.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\LED.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_D1.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_IN1.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_IN2.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_QA.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_QB.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M2_D1.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M2_IN1.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M2_IN2.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M2_QA.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M2_QB.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_1_PM.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_2.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_2_PM.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M1.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M1_Cnt16.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M1_Cnt16_PM.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M1_PM.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M2.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M2_Cnt16.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M2_Cnt16_PM.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\QuadDec_M2_PM.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\RF_BT_SELECT.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\RF_BT_SELECT_PM.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\tacho.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_TS.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\Timer_TS_PM.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\UART.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_BOOT.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_INT.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_IntClock.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\UART_PM.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_audio.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_boot.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cdc.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_cls.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_descr.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dm.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_Dp.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_drv.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_episr.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_hid.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_midi.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_msc.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_pm.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_std.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\USBUART_vnd.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\HardwareTask2.elf</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\HardwareTask2.hex</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\HardwareTask2.map</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.gpdsc</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2.rpt</v>
+<v>psoc_intro\HardwareTask2\HardwareTask2_timing.html</v>
 <v>psoc_intro\lab1</v>
 <v>psoc_intro\lab1\CortexM3</v>
 <v>psoc_intro\lab1\CortexM3\ARM_GCC_541</v>
@@ -534,6 +662,32 @@
 <v>psoc_intro\hardwareTask1\USBFS_v3_20.pdf</v>
 <v>psoc_intro\hardwareTask1\VDAC8_v1_90.pdf</v>
 <v>psoc_intro\hardwareTask1\ZeroTerminal.pdf</v>
+<v>psoc_intro\HardwareTask2</v>
+<v>psoc_intro\HardwareTask2\PSoC 5LP Architecture TRM</v>
+<v>psoc_intro\HardwareTask2\CY8C58LP Family Datasheet</v>
+<v>psoc_intro\HardwareTask2\System Reference Guides</v>
+<v>psoc_intro\HardwareTask2\System Reference Guides\cy_boot_v5_82</v>
+<v>psoc_intro\HardwareTask2\ADC_SAR_SEQ_v2_10.pdf</v>
+<v>psoc_intro\HardwareTask2\cy_clock_v2_20</v>
+<v>psoc_intro\HardwareTask2\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>psoc_intro\HardwareTask2\cy_constant_v1_0.pdf</v>
+<v>psoc_intro\HardwareTask2\cy_isr_v1_71</v>
+<v>psoc_intro\HardwareTask2\cy_isr_v1_71\cy_isr_v1_71.pdf</v>
+<v>psoc_intro\HardwareTask2\cy_pins_v2_20</v>
+<v>psoc_intro\HardwareTask2\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>psoc_intro\HardwareTask2\CyControlReg_v1_80</v>
+<v>psoc_intro\HardwareTask2\CyControlReg_v1_80\CyControlReg_v1_80.pdf</v>
+<v>psoc_intro\HardwareTask2\mux_v1_10.pdf</v>
+<v>psoc_intro\HardwareTask2\not_v1_0</v>
+<v>psoc_intro\HardwareTask2\not_v1_0\not_v1_0.pdf</v>
+<v>psoc_intro\HardwareTask2\PWM_v3_30</v>
+<v>psoc_intro\HardwareTask2\PWM_v3_30\PWM_v3_30.pdf</v>
+<v>psoc_intro\HardwareTask2\QuadDec_v3_0</v>
+<v>psoc_intro\HardwareTask2\QuadDec_v3_0\QuadDec_v3_0.pdf</v>
+<v>psoc_intro\HardwareTask2\Timer_v2_80.pdf</v>
+<v>psoc_intro\HardwareTask2\UART_v2_50.pdf</v>
+<v>psoc_intro\HardwareTask2\USBFS_v3_20.pdf</v>
+<v>psoc_intro\HardwareTask2\ZeroTerminal.pdf</v>
 <v>psoc_intro\lab1</v>
 <v>psoc_intro\lab1\PSoC 5LP Architecture TRM</v>
 <v>psoc_intro\lab1\CY8C58LP Family Datasheet</v>
@@ -608,13 +762,13 @@
 <v>psoc_intro\hardwareTask1\USBFS_v3_20.pdf</v>
 <v>psoc_intro\hardwareTask1\VDAC8_v1_90.pdf</v>
 <v>psoc_intro\hardwareTask1\ZeroTerminal.pdf</v>
-<v>psoc_intro\lab1</v>
-<v>psoc_intro\lab1\PSoC 5LP Architecture TRM</v>
-<v>psoc_intro\lab1\CY8C58LP Family Datasheet</v>
-<v>psoc_intro\lab1\System Reference Guides</v>
-<v>psoc_intro\lab1\System Reference Guides\cy_boot_v5_82</v>
-<v>psoc_intro\lab1\cy_clock_v2_20.pdf</v>
-<v>psoc_intro\lab1\cy_pins_v2_20</v>
+<v>psoc_intro\HardwareTask2</v>
+<v>psoc_intro\HardwareTask2\PSoC 5LP Architecture TRM</v>
+<v>psoc_intro\HardwareTask2\CY8C58LP Family Datasheet</v>
+<v>psoc_intro\HardwareTask2\System Reference Guides</v>
+<v>psoc_intro\HardwareTask2\System Reference Guides\cy_boot_v5_82</v>
+<v>psoc_intro\HardwareTask2\ADC_SAR_SEQ_v2_10.pdf</v>
+<v>psoc_intro\HardwareTask2\cy_clock_v2_20</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
