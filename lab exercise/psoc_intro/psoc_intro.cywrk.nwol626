@@ -168,14 +168,14 @@
 <v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\Clock2</v>
 <v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\CONTROL</v>
 <v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\cy_boot</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\D1</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\D2</v>
 <v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\DB0</v>
 <v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\DB1</v>
 <v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\DB2</v>
 <v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
-<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\isr_eoc</v>
-<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\isr_TS</v>
-<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\isrRF_RX</v>
-<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\isrRF_TX</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\IN1</v>
+<v>psoc_intro\HardwareTask2\Generated_Source\PSoC5\IN2</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -418,20 +418,22 @@
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\D1.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\D2.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\DB0.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\DB1.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\DB2.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\IN1.lst</v>
+<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\IN2.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_eoc.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\isr_TS.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\isrRF_RX.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\isrRF_TX.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\LED.lst</v>
-<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_D1.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_IN1.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_IN2.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_QA.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M1_QB.lst</v>
-<v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M2_D1.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M2_IN1.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M2_IN2.lst</v>
 <v>psoc_intro\HardwareTask2\CortexM3\ARM_GCC_541\Debug\Listing Files\M2_QA.lst</v>

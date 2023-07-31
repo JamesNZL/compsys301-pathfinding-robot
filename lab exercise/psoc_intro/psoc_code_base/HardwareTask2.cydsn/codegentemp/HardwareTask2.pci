@@ -1,5 +1,5 @@
 # HardwareTask2
-# 2023-07-31 03:19:36Z
+# 2023-07-31 03:52:31Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -11,7 +11,7 @@ set_io "M1_IN1(0)" iocell 2 6
 set_io "M1_IN2(0)" iocell 3 4
 set_io "M2_IN1(0)" iocell 12 2
 set_io "M2_IN2(0)" iocell 12 3
-set_io "M2_D1(0)" iocell 12 4
+set_io "D1(0)" iocell 12 4
 set_io "M1_QA(0)" iocell 15 1
 set_io "M1_QB(0)" iocell 15 2
 set_io "M2_QA(0)" iocell 0 0
@@ -26,7 +26,7 @@ set_io "A6(0)" iocell 1 6
 set_io "A7(0)" iocell 1 7
 set_io "\USBUART:Dm(0)\" iocell 15 7
 set_io "\USBUART:Dp(0)\" iocell 15 6
-set_io "M1_D1(0)" iocell 3 3
+set_io "D2(0)" iocell 12 5
 set_io "Rx_1(0)" iocell 2 2
 set_io "Tx_1(0)" iocell 2 3
 set_io "LED(0)" iocell 2 1
@@ -34,5 +34,7 @@ set_io "DB0(0)" iocell 3 0
 set_io "DB1(0)" iocell 3 1
 set_io "DB2(0)" iocell 3 6
 set_io "Rx_2(0)" iocell 2 4
+set_io "IN1(0)" iocell 12 6
+set_io "IN2(0)" iocell 12 7
 set_location "\ADC:SAR:ADC_SAR\" sarcell -1 -1 1
 set_location "\USBUART:USB\" usbcell -1 -1 0

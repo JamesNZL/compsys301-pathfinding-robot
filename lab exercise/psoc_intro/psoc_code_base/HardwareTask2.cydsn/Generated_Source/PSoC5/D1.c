@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: M2_D1.c  
+* File Name: D1.c  
 * Version 2.20
 *
 * Description:
@@ -15,15 +15,15 @@
 *******************************************************************************/
 
 #include "cytypes.h"
-#include "M2_D1.h"
+#include "D1.h"
 
 /* APIs are not generated for P15[7:6] on PSoC 5 */
 #if !(CY_PSOC5A &&\
-	 M2_D1__PORT == 15 && ((M2_D1__MASK & 0xC0) != 0))
+	 D1__PORT == 15 && ((D1__MASK & 0xC0) != 0))
 
 
 /*******************************************************************************
-* Function Name: M2_D1_Write
+* Function Name: D1_Write
 ****************************************************************************//**
 *
 * \brief Writes the value to the physical port (data output register), masking
@@ -52,17 +52,17 @@
 *  this function.
 *
 * \funcusage
-*  \snippet M2_D1_SUT.c usage_M2_D1_Write
+*  \snippet D1_SUT.c usage_D1_Write
 *******************************************************************************/
-void M2_D1_Write(uint8 value)
+void D1_Write(uint8 value)
 {
-    uint8 staticBits = (M2_D1_DR & (uint8)(~M2_D1_MASK));
-    M2_D1_DR = staticBits | ((uint8)(value << M2_D1_SHIFT) & M2_D1_MASK);
+    uint8 staticBits = (D1_DR & (uint8)(~D1_MASK));
+    D1_DR = staticBits | ((uint8)(value << D1_SHIFT) & D1_MASK);
 }
 
 
 /*******************************************************************************
-* Function Name: M2_D1_SetDriveMode
+* Function Name: D1_SetDriveMode
 ****************************************************************************//**
 *
 * \brief Sets the drive mode for each of the Pins component's pins.
@@ -85,16 +85,16 @@ void M2_D1_Write(uint8 value)
 *  APIs (primary method) or disable interrupts around this function.
 *
 * \funcusage
-*  \snippet M2_D1_SUT.c usage_M2_D1_SetDriveMode
+*  \snippet D1_SUT.c usage_D1_SetDriveMode
 *******************************************************************************/
-void M2_D1_SetDriveMode(uint8 mode)
+void D1_SetDriveMode(uint8 mode)
 {
-	CyPins_SetPinDriveMode(M2_D1_0, mode);
+	CyPins_SetPinDriveMode(D1_0, mode);
 }
 
 
 /*******************************************************************************
-* Function Name: M2_D1_Read
+* Function Name: D1_Read
 ****************************************************************************//**
 *
 * \brief Reads the associated physical port (pin status register) and masks 
@@ -108,16 +108,16 @@ void M2_D1_SetDriveMode(uint8 mode)
 *  The current value for the pins in the component as a right justified number.
 *
 * \funcusage
-*  \snippet M2_D1_SUT.c usage_M2_D1_Read  
+*  \snippet D1_SUT.c usage_D1_Read  
 *******************************************************************************/
-uint8 M2_D1_Read(void)
+uint8 D1_Read(void)
 {
-    return (M2_D1_PS & M2_D1_MASK) >> M2_D1_SHIFT;
+    return (D1_PS & D1_MASK) >> D1_SHIFT;
 }
 
 
 /*******************************************************************************
-* Function Name: M2_D1_ReadDataReg
+* Function Name: D1_ReadDataReg
 ****************************************************************************//**
 *
 * \brief Reads the associated physical port's data output register and masks 
@@ -126,8 +126,8 @@ uint8 M2_D1_Read(void)
 *
 * The data output register controls the signal applied to the physical pin in 
 * conjunction with the drive mode parameter. This is not the same as the 
-* preferred M2_D1_Read() API because the 
-* M2_D1_ReadDataReg() reads the data register instead of the status 
+* preferred D1_Read() API because the 
+* D1_ReadDataReg() reads the data register instead of the status 
 * register. For output pins this is a useful function to determine the value 
 * just written to the pin.
 *
@@ -136,19 +136,19 @@ uint8 M2_D1_Read(void)
 *  justified number for the component instance.
 *
 * \funcusage
-*  \snippet M2_D1_SUT.c usage_M2_D1_ReadDataReg 
+*  \snippet D1_SUT.c usage_D1_ReadDataReg 
 *******************************************************************************/
-uint8 M2_D1_ReadDataReg(void)
+uint8 D1_ReadDataReg(void)
 {
-    return (M2_D1_DR & M2_D1_MASK) >> M2_D1_SHIFT;
+    return (D1_DR & D1_MASK) >> D1_SHIFT;
 }
 
 
 /* If interrupt is connected for this Pins component */ 
-#if defined(M2_D1_INTSTAT) 
+#if defined(D1_INTSTAT) 
 
     /*******************************************************************************
-    * Function Name: M2_D1_SetInterruptMode
+    * Function Name: D1_SetInterruptMode
     ****************************************************************************//**
     *
     * \brief Configures the interrupt mode for each of the Pins component's
@@ -161,12 +161,12 @@ uint8 M2_D1_ReadDataReg(void)
     * \param position
     *  The pin position as listed in the Pins component. You may OR these to be 
     *  able to configure the interrupt mode of multiple pins within a Pins 
-    *  component. Or you may use M2_D1_INTR_ALL to configure the
+    *  component. Or you may use D1_INTR_ALL to configure the
     *  interrupt mode of all the pins in the Pins component.       
-    *  - M2_D1_0_INTR       (First pin in the list)
-    *  - M2_D1_1_INTR       (Second pin in the list)
+    *  - D1_0_INTR       (First pin in the list)
+    *  - D1_1_INTR       (Second pin in the list)
     *  - ...
-    *  - M2_D1_INTR_ALL     (All pins in Pins component)
+    *  - D1_INTR_ALL     (All pins in Pins component)
     *
     * \param mode
     *  Interrupt mode for the selected pins. Valid options are documented in
@@ -182,19 +182,19 @@ uint8 M2_D1_ReadDataReg(void)
     *  port.
     *
     * \funcusage
-    *  \snippet M2_D1_SUT.c usage_M2_D1_SetInterruptMode
+    *  \snippet D1_SUT.c usage_D1_SetInterruptMode
     *******************************************************************************/
-    void M2_D1_SetInterruptMode(uint16 position, uint16 mode)
+    void D1_SetInterruptMode(uint16 position, uint16 mode)
     {
-		if((position & M2_D1_0_INTR) != 0u) 
+		if((position & D1_0_INTR) != 0u) 
 		{ 
-			 M2_D1_0_INTTYPE_REG = (uint8)mode; 
+			 D1_0_INTTYPE_REG = (uint8)mode; 
 		}
     }
     
     
     /*******************************************************************************
-    * Function Name: M2_D1_ClearInterrupt
+    * Function Name: D1_ClearInterrupt
     ****************************************************************************//**
     *
     * \brief Clears any active interrupts attached with the component and returns 
@@ -211,11 +211,11 @@ uint8 M2_D1_ReadDataReg(void)
     *  those associated with the Pins component.
     *
     * \funcusage
-    *  \snippet M2_D1_SUT.c usage_M2_D1_ClearInterrupt
+    *  \snippet D1_SUT.c usage_D1_ClearInterrupt
     *******************************************************************************/
-    uint8 M2_D1_ClearInterrupt(void)
+    uint8 D1_ClearInterrupt(void)
     {
-        return (M2_D1_INTSTAT & M2_D1_MASK) >> M2_D1_SHIFT;
+        return (D1_INTSTAT & D1_MASK) >> D1_SHIFT;
     }
 
 #endif /* If Interrupts Are Enabled for this Pins component */ 

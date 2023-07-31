@@ -185,9 +185,6 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_IN2_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_IN2.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_IN2.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_D1_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_D1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_D1.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_QA_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_QA.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_QA.h</File>
@@ -200,9 +197,6 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_QB_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_QB.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M2_QB.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_D1_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_D1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\M1_D1.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_eoc.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\isr_eoc.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\PWM_2.c</File>
@@ -251,6 +245,18 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\RF_BT_SELECT_PM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cy_em_eeprom.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cy_em_eeprom.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\D1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\D1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\D1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\D2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\D2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\D2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\IN1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\IN1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\IN1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\IN2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\IN2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\IN2.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\psoc_code_base\HardwareTask2.cydsn\Export\ARM_GCC_Generic">

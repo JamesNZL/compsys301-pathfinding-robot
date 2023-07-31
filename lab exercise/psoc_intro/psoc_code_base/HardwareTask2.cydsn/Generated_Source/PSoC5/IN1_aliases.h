@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: M1_D1.h  
+* File Name: IN1.h  
 * Version 2.20
 *
 * Description:
@@ -15,8 +15,8 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#if !defined(CY_PINS_M1_D1_ALIASES_H) /* Pins M1_D1_ALIASES_H */
-#define CY_PINS_M1_D1_ALIASES_H
+#if !defined(CY_PINS_IN1_ALIASES_H) /* Pins IN1_ALIASES_H */
+#define CY_PINS_IN1_ALIASES_H
 
 #include "cytypes.h"
 #include "cyfitter.h"
@@ -25,12 +25,12 @@
 /***************************************
 *              Constants        
 ***************************************/
-#define M1_D1_0			(M1_D1__0__PC)
-#define M1_D1_0_INTR	((uint16)((uint16)0x0001u << M1_D1__0__SHIFT))
+#define IN1_0			(IN1__0__PC)
+#define IN1_0_INTR	((uint16)((uint16)0x0001u << IN1__0__SHIFT))
 
-#define M1_D1_INTR_ALL	 ((uint16)(M1_D1_0_INTR))
+#define IN1_INTR_ALL	 ((uint16)(IN1_0_INTR))
 
-#endif /* End Pins M1_D1_ALIASES_H */
+#endif /* End Pins IN1_ALIASES_H */
 
 
 /* [] END OF FILE */
