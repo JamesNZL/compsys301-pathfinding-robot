@@ -17,17 +17,19 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <commands.h>
+#include <project.h>
 
 //* ========================================
+#include "commands.h"
 #include "movement.h"
 #include "defines.h"
 #include "vars.h"
-//* ========================================
-void usbPutString(char *s);
-void usbPutChar(char c);
+#include "handlers.h"
+
+// *=======================================
 void handle_usb();
-//* ========================================
+void usb_put_string(char *s);
+void usb_put_char(char c);
 
 int main()
 {
@@ -43,7 +45,6 @@ int main()
 
     RF_BT_SELECT_Write(0);
 
-    usbPutString(displaystring);
     for (;;)
     {
         /* Place your application code here. */
@@ -53,29 +54,20 @@ int main()
             char *token = strtok(line, COMMAND_DELIMITER);
             if (token != NULL)
             {
-                switch (matchCommand(token))
+                switch (match_command(token))
                 {
                 case (COMMAND_CHANGE_DIRECTION):
                 {
-                    usbPutString("Parsed command: CHANGE_DIRECTION\n");
+                    usb_put_string("Parsed command: CHANGE_DIRECTION\n");
+
                     // extract first argument
                     token = strtok(NULL, COMMAND_DELIMITER);
-                    if (token != NULL)
-                    {
-                        if (strcmp(token, "F") == 0)
-                        {
-                            set_direction(FORWARD);
-                        }
-                        else if (strcmp(token, "R") == 0)
-                        {
-                            set_direction(REVERSE);
-                        }
-                    }
+                    handle_change_direction(token);
                     break;
                 }
                 case (COMMAND_CHANGE_DUTY):
                 {
-                    usbPutString("Parsed command: CHANGE_DUTY\n");
+                    usb_put_string("Parsed command: CHANGE_DUTY\n");
 
                     // extract first argument
                     token = strtok(NULL, COMMAND_DELIMITER);
@@ -83,19 +75,18 @@ int main()
                 }
                 case (COMMAND_CHANGE_SPEED):
                 {
-                    usbPutString("Parsed command: CHANGE_SPEED\n");
+                    usb_put_string("Parsed command: CHANGE_DUTY\n");
+                    // extract first argument
                     token = strtok(NULL, COMMAND_DELIMITER);
-                    uint8_t percent = atoi(token);
-                    usbPutString(token);
-                    set_speed(percent);
+                    handle_change_speed(token);
                     break;
                 }
                 default:
                 {
-                    usbPutString("Failed to parse command.\n");
-                    usbPutString("You Sent:\n");
-                    usbPutString(token);
-                    usbPutString("\n");
+                    usb_put_string("Failed to parse command.\n");
+                    usb_put_string("You Sent:\n");
+                    usb_put_string(token);
+                    usb_put_string("\n");
                     break;
                 }
                 }
@@ -105,7 +96,7 @@ int main()
     }
 }
 //* ========================================
-void usbPutString(char *s)
+void usb_put_string(char *s)
 {
     // !! Assumes that *s is a string with allocated space >=64 chars
     //  Since USB implementation retricts data packets to 64 chars, this function truncates the
@@ -120,7 +111,7 @@ void usbPutString(char *s)
 #endif
 }
 //* ========================================
-void usbPutChar(char c)
+void usb_put_char(char c)
 {
 #ifdef USE_USB
     while (USBUART_CDCIsReady() == 0)
@@ -180,5 +171,4 @@ void handle_usb()
         }
     }
 }
-
 /* [] END OF FILE */
