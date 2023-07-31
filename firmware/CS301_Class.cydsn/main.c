@@ -20,6 +20,7 @@
 #include <commands.h>
 
 //* ========================================
+#include "movement.h"
 #include "defines.h"
 #include "vars.h"
 //* ========================================
@@ -33,6 +34,8 @@ int main()
     // --------------------------------
     // ----- INITIALIZATIONS ----------
     CYGlobalIntEnable;
+    PWM_1_Start();
+    PWM_2_Start();
 // ------USB SETUP ----------------
 #ifdef USE_USB
     USBUART_Start(0, USBUART_5V_OPERATION);
@@ -65,9 +68,21 @@ int main()
                     token = strtok(NULL, COMMAND_DELIMITER);
                     break;
                 }
+                case (COMMAND_CHANGE_SPEED):
+                {
+                    usbPutString("Parsed command: CHANGE_SPEED\n");
+                    token = strtok(NULL, COMMAND_DELIMITER);
+                    uint8_t percent = atoi(token);
+                    usbPutString(token);
+                    set_speed(percent);
+                    break;
+                }
                 default:
                 {
                     usbPutString("Failed to parse command.\n");
+                    usbPutString("You Sent:\n");
+                    usbPutString(token);
+                    usbPutString("\n");
                     break;
                 }
                 }

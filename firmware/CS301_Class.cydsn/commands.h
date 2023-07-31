@@ -13,6 +13,7 @@ typedef enum CommandEnumeration
 {
 	COMMAND_CHANGE_DUTY,
 	COMMAND_CHANGE_DIRECTION,
+	COMMAND_CHANGE_SPEED,
 	COMMAND_NOT_FOUND,
 } CommandEnumeration;
 
@@ -34,10 +35,11 @@ typedef struct Command
 /**
  * @brief The list of all recognised commands.
  */
-static const Command COMMAND_LIST[3] = {
-	{ "CHG_DUTY", COMMAND_CHANGE_DUTY },
-	{ "CHG_DIR", COMMAND_CHANGE_DIRECTION },
-	{ NULL, COMMAND_NOT_FOUND },
+static const Command COMMAND_LIST[4] = {
+	{"CHG_DUTY", COMMAND_CHANGE_DUTY},
+	{"CHG_DIR", COMMAND_CHANGE_DIRECTION},
+	{"CHG_SPEED", COMMAND_CHANGE_SPEED},
+	{NULL, COMMAND_NOT_FOUND},
 };
 
 /**

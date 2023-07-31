@@ -3,20 +3,24 @@
 
 void set_pwm_1_duty_cycle(uint8_t percent)
 {
-    // get max count assuming it is 8 bits
-    uint8 maxCount = PWM_1_ReadPeriod();
     // set the compare
-    uint8 compare = maxCount - (float)maxCount * ((float)percent / 100);
+    uint8_t compare = calculate_compare(percent);
     PWM_1_WriteCompare(compare);
 }
 
 void set_pwm_2_duty_cycle(uint8_t percent)
 {
-    // get max count assuming it is 8 bits
-    uint8 maxCount = PWM_2_ReadPeriod();
     // set the compare
-    uint8 compare = maxCount - (float)maxCount * ((float)percent / 100);
+    uint8_t compare = calculate_compare(percent);
     PWM_2_WriteCompare(compare);
+}
+
+uint8_t calculate_compare(uint8_t percent)
+{
+    // get max count assuming it is 8 bits
+    uint8_t maxCount = PWM_2_ReadPeriod();
+    uint8_t compare = maxCount - (float)maxCount * ((float)percent / 100);
+    return compare;
 }
 
 void set_speed_left(uint8_t percent)

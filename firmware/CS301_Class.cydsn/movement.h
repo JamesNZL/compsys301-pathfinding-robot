@@ -36,7 +36,8 @@ void set_speed_left(uint8_t percent);
 
 // Utils
 void set_pwm_1_duty_cycle(uint8_t percent);
-void set_pwm_1_duty_cycle(uint8_t percent);
+void set_pwm_2_duty_cycle(uint8_t percent);
+uint8_t calculate_compare(uint8_t percent);
 
 // Debug
 int16_t get_speed_left();
