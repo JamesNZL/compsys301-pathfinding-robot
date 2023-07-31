@@ -29,12 +29,20 @@ void turn_left(uint8_t angle);
  */
 void turn_right(uint8_t angle);
 
-// Direction
+/**
+ * @brief sets the direction of BOTH motors to forwards or reverse
+ *
+ * @param direction the direction to set the motors to
+ */
 void set_direction(Direction direction);
 void set_direction_right(Direction direction);
 void set_direction_left(Direction direction);
 
-// Speed
+/**
+ * @brief sets the direction of BOTH motors to a percentage of the max speed
+ *
+ * @param percent percentage (out of 100) to set the motors to
+ */
 void set_speed(uint8_t percent);
 void set_speed_right(uint8_t percent);
 void set_speed_left(uint8_t percent);
