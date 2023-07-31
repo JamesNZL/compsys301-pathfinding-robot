@@ -58,6 +58,19 @@ int main()
                 case (COMMAND_CHANGE_DIRECTION):
                 {
                     usbPutString("Parsed command: CHANGE_DIRECTION\n");
+                    // extract first argument
+                    token = strtok(NULL, COMMAND_DELIMITER);
+                    if (token != NULL)
+                    {
+                        if (strcmp(token, "F") == 0)
+                        {
+                            set_direction(FORWARD);
+                        }
+                        else if (strcmp(token, "R") == 0)
+                        {
+                            set_direction(REVERSE);
+                        }
+                    }
                     break;
                 }
                 case (COMMAND_CHANGE_DUTY):

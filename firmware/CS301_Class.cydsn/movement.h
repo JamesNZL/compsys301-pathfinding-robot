@@ -1,6 +1,9 @@
 #ifndef MOVEMENT_H_
 #define MOVEMENT_H_
 
+#define LEFT_MOTOR_CR_POS 0
+#define RIGHT_MOTOR_CR_POS 1
+
 #include <stddef.h>
 #include <stdint.h>
 /**
@@ -28,6 +31,8 @@ void turn_right(uint8_t angle);
 
 // Direction
 void set_direction(Direction direction);
+void set_direction_right(Direction direction);
+void set_direction_left(Direction direction);
 
 // Speed
 void set_speed(uint8_t percent);
