@@ -18,22 +18,16 @@
 #include <string.h>
 #include <stdlib.h>
 #include <project.h>
-<<<<<<< HEAD
-    //* ========================================
-    == == ==
-    =
 
 //* ========================================
 #include "commands.h"
 #include "movement.h"
-        >>>>>>> 08654a5 (refactor: move command handlers to separate file)
 #include "defines.h"
 #include "vars.h"
 #include "handlers.h"
 
-    // *=======================================
-    void
-    handle_usb();
+// *=======================================
+void handle_usb();
 void usb_put_string(char *s);
 void usb_put_char(char c);
 
