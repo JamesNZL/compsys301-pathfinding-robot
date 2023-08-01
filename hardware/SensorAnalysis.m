@@ -25,7 +25,7 @@ SENSOR_DIR_NAMES = ["phototransistor"];
 
 % The set of file prefixes for each test case,
 % corresponding to the state of the room light
-FILE_PREFIXES = ["on", "off"];
+FILE_PREFIXES = ["on"]; # "off"
 
 % The various projector test conditions
 FILE_NAMES = ["black", "green", "white"];
@@ -37,7 +37,7 @@ FILE_NAMES = ["black", "green", "white"];
 % * the textscan() of "fft" will fail once it hits the header
 % * rows at the top of the fft data, so treating it as a regular data
 % * file will also work
-FILE_SUFFIXES = ["10m", "1m", "fft"];
+FILE_SUFFIXES = ["2ms", "20ms", "200ms", "2s", "5s"];
 
 % The file suffix of the exported FFT data
 FILE_FFT_SUFFIX = 'fft';
@@ -46,8 +46,8 @@ FILE_FFT_SUFFIX = 'fft';
 DATA_FORMAT = '%f,%f';
 
 % The number of header rows in the output CSV data
-LINES_TO_SKIP = 2;
-LINES_TO_SKIP_FFT = LINES_TO_SKIP + 2002;
+LINES_TO_SKIP = 1;
+LINES_TO_SKIP_FFT = LINES_TO_SKIP + 2003;
 
 % The voltage scaling factor
 VOLTAGE_SCALE = 1;
