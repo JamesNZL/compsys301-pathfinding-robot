@@ -192,8 +192,11 @@ if PLOT_FFT
 					
 					if (FFT_DISCARD_HIGH_FREQUENCY)
 						max_index = find( f > (4 * FFT_UPPER_VIEW_LIMIT ), 1 );
+						
 						f = f(1:max_index);
 						one_sided_spectrum = one_sided_spectrum(1:max_index);
+						
+						clear max_index;
 					end
 					
 					% Convert to dBV
