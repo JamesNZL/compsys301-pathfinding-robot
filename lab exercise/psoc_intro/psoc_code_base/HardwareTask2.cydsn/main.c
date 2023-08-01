@@ -58,12 +58,8 @@ int main()
                 if (strcmp(token,"Duty") == 0){
                     token = strtok(NULL,s);
                     PWM_1_WriteCompare(255 * atof(token) / 100);
-                } else if (strcmp(token,"Dir") == 0){
-                    token = strtok(NULL,s);
-                    if (strcmp(token,"CW") == 0){
-                       CONTROL_Write(CONTROL_Read ^ (1 <<
-                    } else {
-                    }
+                } else if (strcmp(token,"cd") == 0){
+                    CONTROL_Write(CONTROL_Read() ^ (1<<2));
                 }
                 token = strtok(NULL,s);
             }

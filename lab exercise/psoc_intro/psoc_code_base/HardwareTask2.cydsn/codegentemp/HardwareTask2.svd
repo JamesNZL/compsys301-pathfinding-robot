@@ -7,8 +7,8 @@
   <width>32</width>
   <peripherals>
     <peripheral>
-      <name>UART</name>
-      <description>UART</description>
+      <name>PWM_1</name>
+      <description>No description available</description>
       <baseAddress>0x0</baseAddress>
       <addressBlock>
         <offset>0</offset>
@@ -17,139 +17,284 @@
       </addressBlock>
       <registers>
         <register>
-          <name>RX_UART_RX_ADDRESS1</name>
-          <description>RX Address1 Register</description>
-          <addressOffset>0x4000642B</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
-          <name>RX_UART_RX_ADDRESS2</name>
-          <description>RX Address2 Register</description>
-          <addressOffset>0x4000643B</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
-          <name>TX_UART_TX_DATA</name>
-          <description>TX Data Register</description>
-          <addressOffset>0x4000644A</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
-          <name>RX_UART_RX_DATA</name>
-          <description>RX Data Register</description>
-          <addressOffset>0x4000644B</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
-          <name>RX_UART_RX_STATUS</name>
-          <description>RX status register</description>
-          <addressOffset>0x4000646C</addressOffset>
+          <name>PWM_1_GLOBAL_ENABLE</name>
+          <description>PM.ACT.CFG</description>
+          <addressOffset>0x400043A3</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
           <resetMask>0</resetMask>
           <fields>
             <field>
-              <name>UART_RX_STS_MRKSPC</name>
-              <description>No description available</description>
+              <name>en_timer</name>
+              <description>Enable timer/counters.</description>
+              <lsb>0</lsb>
+              <msb>3</msb>
+              <access>read-write</access>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>PWM_1_CONTROL</name>
+          <description>TMRx.CFG0</description>
+          <addressOffset>0x40004F00</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+          <fields>
+            <field>
+              <name>EN</name>
+              <description>Enables timer/comparator.</description>
               <lsb>0</lsb>
               <msb>0</msb>
-              <access>read-only</access>
+              <access>read-write</access>
             </field>
             <field>
-              <name>UART_RX_STS_BREAK</name>
-              <description>No description available</description>
+              <name>MODE</name>
+              <description>Mode. (0 = Timer; 1 = Comparator)</description>
               <lsb>1</lsb>
               <msb>1</msb>
-              <access>read-only</access>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Timer</name>
+                  <description>Timer mode. CNT/CMP register holds timer count value.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Comparator</name>
+                  <description>Comparator mode. CNT/CMP register holds comparator threshold value.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
             </field>
             <field>
-              <name>UART_RX_STS_PAR_ERROR</name>
-              <description>No description available</description>
+              <name>ONESHOT</name>
+              <description>Timer stops upon reaching stop condition defined by TMR_CFG bits. Can be restarted by asserting TIMER RESET or disabling and re-enabling block.</description>
               <lsb>2</lsb>
               <msb>2</msb>
-              <access>read-only</access>
+              <access>read-write</access>
             </field>
             <field>
-              <name>UART_RX_STS_STOP_ERROR</name>
-              <description>No description available</description>
+              <name>CMP_BUFF</name>
+              <description>Buffer compare register. Compare register updates only on timer terminal count.</description>
               <lsb>3</lsb>
               <msb>3</msb>
-              <access>read-only</access>
+              <access>read-write</access>
             </field>
             <field>
-              <name>UART_RX_STS_OVERRUN</name>
-              <description>No description available</description>
+              <name>INV</name>
+              <description>Invert sense of TIMEREN signal</description>
               <lsb>4</lsb>
               <msb>4</msb>
-              <access>read-only</access>
+              <access>read-write</access>
             </field>
             <field>
-              <name>UART_RX_STS_FIFO_NOTEMPTY</name>
-              <description>No description available</description>
+              <name>DB</name>
+              <description>Deadband mode--Deadband phases phi1 and phi2 are outputted on CMP and TC output pins respectively.</description>
               <lsb>5</lsb>
               <msb>5</msb>
-              <access>read-only</access>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Timer</name>
+                  <description>CMP and TC are output.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Deadband</name>
+                  <description>PHI1 (instead of CMP) and PHI2 (instead of TC) are output.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
             </field>
             <field>
-              <name>UART_RX_STS_ADDR_MATCH</name>
-              <description>No description available</description>
+              <name>DEADBAND_PERIOD</name>
+              <description>Deadband Period</description>
               <lsb>6</lsb>
-              <msb>6</msb>
-              <access>read-only</access>
+              <msb>7</msb>
+              <access>read-write</access>
             </field>
           </fields>
         </register>
         <register>
-          <name>TX_UART_TX_STATUS</name>
-          <description>TX status register</description>
-          <addressOffset>0x40006568</addressOffset>
+          <name>PWM_1_CONTROL2</name>
+          <description>TMRx.CFG1</description>
+          <addressOffset>0x40004F01</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
           <resetMask>0</resetMask>
           <fields>
             <field>
-              <name>UART_TX_STS_COMPLETE</name>
-              <description>No description available</description>
+              <name>IRQ_SEL</name>
+              <description>Irq selection. (0 = raw interrupts; 1 = status register interrupts)</description>
               <lsb>0</lsb>
               <msb>0</msb>
-              <access>read-only</access>
+              <access>read-write</access>
             </field>
             <field>
-              <name>UART_TX_STS_FIFO_EMPTY</name>
-              <description>No description available</description>
+              <name>FTC</name>
+              <description>First Terminal Count (FTC). Setting this bit forces a single pulse on the TC pin when first enabled.</description>
               <lsb>1</lsb>
               <msb>1</msb>
-              <access>read-only</access>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disable_FTC</name>
+                  <description>Disable the single cycle pulse, which signifies the timer is starting.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enable_FTC</name>
+                  <description>Enable the single cycle pulse, which signifies the timer is starting.</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
             </field>
             <field>
-              <name>UART_TX_STS_FIFO_FULL</name>
-              <description>No description available</description>
+              <name>DCOR</name>
+              <description>Disable Clear on Read (DCOR) of Status Register SR0.</description>
               <lsb>2</lsb>
               <msb>2</msb>
-              <access>read-only</access>
+              <access>read-write</access>
             </field>
             <field>
-              <name>UART_TX_STS_FIFO_NOT_FULL</name>
-              <description>No description available</description>
+              <name>DBMODE</name>
+              <description>Deadband mode (asynchronous/synchronous). CMP output pin is also affected when not in deadband mode (CFG0.DEADBAND).</description>
               <lsb>3</lsb>
               <msb>3</msb>
-              <access>read-only</access>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>CLK_BUS_EN_SEL</name>
+              <description>Digital Global Clock selection.</description>
+              <lsb>4</lsb>
+              <msb>6</msb>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>BUS_CLK_SEL</name>
+              <description>Bus Clock selection.</description>
+              <lsb>7</lsb>
+              <msb>7</msb>
+              <access>read-write</access>
             </field>
           </fields>
+        </register>
+        <register>
+          <name>PWM_1_CONTROL3_</name>
+          <description>TMRx.CFG2</description>
+          <addressOffset>0x40004F02</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+          <fields>
+            <field>
+              <name>TMR_CFG</name>
+              <description>Timer configuration (MODE = 0): 000 = Continuous; 001 = Pulsewidth; 010 = Period; 011 = Stop on IRQ</description>
+              <lsb>0</lsb>
+              <msb>1</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Continuous</name>
+                  <description>Timer runs while EN bit of CFG0 register is set to '1'.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Pulsewidth</name>
+                  <description>Timer runs from positive to negative edge of TIMEREN.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Period</name>
+                  <description>Timer runs from positive to positive edge of TIMEREN.</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Irq</name>
+                  <description>Timer runs until IRQ.</description>
+                  <value>3</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>COD</name>
+              <description>Clear On Disable (COD). Clears or gates outputs to zero.</description>
+              <lsb>2</lsb>
+              <msb>2</msb>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>ROD</name>
+              <description>Reset On Disable (ROD). Resets internal state of output logic</description>
+              <lsb>3</lsb>
+              <msb>3</msb>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>CMP_CFG</name>
+              <description>Comparator configurations</description>
+              <lsb>4</lsb>
+              <msb>6</msb>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Equal</name>
+                  <description>Compare Equal </description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Less_than</name>
+                  <description>Compare Less Than </description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Less_than_or_equal</name>
+                  <description>Compare Less Than or Equal .</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Greater</name>
+                  <description>Compare Greater Than .</description>
+                  <value>3</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Greater_than_or_equal</name>
+                  <description>Compare Greater Than or Equal </description>
+                  <value>4</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>HW_EN</name>
+              <description>When set Timer Enable controls counting.</description>
+              <lsb>7</lsb>
+              <msb>7</msb>
+              <access>read-write</access>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>PWM_1_PERIOD</name>
+          <description>TMRx.PER0 - Assigned Period</description>
+          <addressOffset>0x40004F04</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>PWM_1_COMPARE</name>
+          <description>TMRx.CNT_CMP0 - Assigned Compare Value</description>
+          <addressOffset>0x40004F06</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
         </register>
       </registers>
     </peripheral>
@@ -446,8 +591,8 @@
       </registers>
     </peripheral>
     <peripheral>
-      <name>PWM_1</name>
-      <description>No description available</description>
+      <name>UART</name>
+      <description>UART</description>
       <baseAddress>0x0</baseAddress>
       <addressBlock>
         <offset>0</offset>
@@ -456,284 +601,139 @@
       </addressBlock>
       <registers>
         <register>
-          <name>PWM_1_GLOBAL_ENABLE</name>
-          <description>PM.ACT.CFG</description>
-          <addressOffset>0x400043A3</addressOffset>
+          <name>TX_UART_TX_STATUS</name>
+          <description>TX status register</description>
+          <addressOffset>0x40006469</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
           <resetMask>0</resetMask>
           <fields>
             <field>
-              <name>en_timer</name>
-              <description>Enable timer/counters.</description>
+              <name>UART_TX_STS_COMPLETE</name>
+              <description>No description available</description>
               <lsb>0</lsb>
+              <msb>0</msb>
+              <access>read-only</access>
+            </field>
+            <field>
+              <name>UART_TX_STS_FIFO_EMPTY</name>
+              <description>No description available</description>
+              <lsb>1</lsb>
+              <msb>1</msb>
+              <access>read-only</access>
+            </field>
+            <field>
+              <name>UART_TX_STS_FIFO_FULL</name>
+              <description>No description available</description>
+              <lsb>2</lsb>
+              <msb>2</msb>
+              <access>read-only</access>
+            </field>
+            <field>
+              <name>UART_TX_STS_FIFO_NOT_FULL</name>
+              <description>No description available</description>
+              <lsb>3</lsb>
               <msb>3</msb>
-              <access>read-write</access>
+              <access>read-only</access>
             </field>
           </fields>
         </register>
         <register>
-          <name>PWM_1_CONTROL</name>
-          <description>TMRx.CFG0</description>
-          <addressOffset>0x40004F00</addressOffset>
+          <name>RX_UART_RX_ADDRESS1</name>
+          <description>RX Address1 Register</description>
+          <addressOffset>0x40006528</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>RX_UART_RX_ADDRESS2</name>
+          <description>RX Address2 Register</description>
+          <addressOffset>0x40006538</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>RX_UART_RX_DATA</name>
+          <description>RX Data Register</description>
+          <addressOffset>0x40006548</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>TX_UART_TX_DATA</name>
+          <description>TX Data Register</description>
+          <addressOffset>0x40006549</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>RX_UART_RX_STATUS</name>
+          <description>RX status register</description>
+          <addressOffset>0x40006568</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
           <resetMask>0</resetMask>
           <fields>
             <field>
-              <name>EN</name>
-              <description>Enables timer/comparator.</description>
+              <name>UART_RX_STS_MRKSPC</name>
+              <description>No description available</description>
               <lsb>0</lsb>
               <msb>0</msb>
-              <access>read-write</access>
+              <access>read-only</access>
             </field>
             <field>
-              <name>MODE</name>
-              <description>Mode. (0 = Timer; 1 = Comparator)</description>
+              <name>UART_RX_STS_BREAK</name>
+              <description>No description available</description>
               <lsb>1</lsb>
               <msb>1</msb>
-              <access>read-write</access>
-              <enumeratedValues>
-                <enumeratedValue>
-                  <name>Timer</name>
-                  <description>Timer mode. CNT/CMP register holds timer count value.</description>
-                  <value>0</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>Comparator</name>
-                  <description>Comparator mode. CNT/CMP register holds comparator threshold value.</description>
-                  <value>1</value>
-                </enumeratedValue>
-              </enumeratedValues>
+              <access>read-only</access>
             </field>
             <field>
-              <name>ONESHOT</name>
-              <description>Timer stops upon reaching stop condition defined by TMR_CFG bits. Can be restarted by asserting TIMER RESET or disabling and re-enabling block.</description>
+              <name>UART_RX_STS_PAR_ERROR</name>
+              <description>No description available</description>
               <lsb>2</lsb>
               <msb>2</msb>
-              <access>read-write</access>
+              <access>read-only</access>
             </field>
             <field>
-              <name>CMP_BUFF</name>
-              <description>Buffer compare register. Compare register updates only on timer terminal count.</description>
+              <name>UART_RX_STS_STOP_ERROR</name>
+              <description>No description available</description>
               <lsb>3</lsb>
               <msb>3</msb>
-              <access>read-write</access>
+              <access>read-only</access>
             </field>
             <field>
-              <name>INV</name>
-              <description>Invert sense of TIMEREN signal</description>
+              <name>UART_RX_STS_OVERRUN</name>
+              <description>No description available</description>
               <lsb>4</lsb>
               <msb>4</msb>
-              <access>read-write</access>
+              <access>read-only</access>
             </field>
             <field>
-              <name>DB</name>
-              <description>Deadband mode--Deadband phases phi1 and phi2 are outputted on CMP and TC output pins respectively.</description>
+              <name>UART_RX_STS_FIFO_NOTEMPTY</name>
+              <description>No description available</description>
               <lsb>5</lsb>
               <msb>5</msb>
-              <access>read-write</access>
-              <enumeratedValues>
-                <enumeratedValue>
-                  <name>Timer</name>
-                  <description>CMP and TC are output.</description>
-                  <value>0</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>Deadband</name>
-                  <description>PHI1 (instead of CMP) and PHI2 (instead of TC) are output.</description>
-                  <value>1</value>
-                </enumeratedValue>
-              </enumeratedValues>
+              <access>read-only</access>
             </field>
             <field>
-              <name>DEADBAND_PERIOD</name>
-              <description>Deadband Period</description>
+              <name>UART_RX_STS_ADDR_MATCH</name>
+              <description>No description available</description>
               <lsb>6</lsb>
-              <msb>7</msb>
-              <access>read-write</access>
-            </field>
-          </fields>
-        </register>
-        <register>
-          <name>PWM_1_CONTROL2</name>
-          <description>TMRx.CFG1</description>
-          <addressOffset>0x40004F01</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-          <fields>
-            <field>
-              <name>IRQ_SEL</name>
-              <description>Irq selection. (0 = raw interrupts; 1 = status register interrupts)</description>
-              <lsb>0</lsb>
-              <msb>0</msb>
-              <access>read-write</access>
-            </field>
-            <field>
-              <name>FTC</name>
-              <description>First Terminal Count (FTC). Setting this bit forces a single pulse on the TC pin when first enabled.</description>
-              <lsb>1</lsb>
-              <msb>1</msb>
-              <access>read-write</access>
-              <enumeratedValues>
-                <enumeratedValue>
-                  <name>Disable_FTC</name>
-                  <description>Disable the single cycle pulse, which signifies the timer is starting.</description>
-                  <value>0</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>Enable_FTC</name>
-                  <description>Enable the single cycle pulse, which signifies the timer is starting.</description>
-                  <value>1</value>
-                </enumeratedValue>
-              </enumeratedValues>
-            </field>
-            <field>
-              <name>DCOR</name>
-              <description>Disable Clear on Read (DCOR) of Status Register SR0.</description>
-              <lsb>2</lsb>
-              <msb>2</msb>
-              <access>read-write</access>
-            </field>
-            <field>
-              <name>DBMODE</name>
-              <description>Deadband mode (asynchronous/synchronous). CMP output pin is also affected when not in deadband mode (CFG0.DEADBAND).</description>
-              <lsb>3</lsb>
-              <msb>3</msb>
-              <access>read-write</access>
-            </field>
-            <field>
-              <name>CLK_BUS_EN_SEL</name>
-              <description>Digital Global Clock selection.</description>
-              <lsb>4</lsb>
               <msb>6</msb>
-              <access>read-write</access>
-            </field>
-            <field>
-              <name>BUS_CLK_SEL</name>
-              <description>Bus Clock selection.</description>
-              <lsb>7</lsb>
-              <msb>7</msb>
-              <access>read-write</access>
+              <access>read-only</access>
             </field>
           </fields>
-        </register>
-        <register>
-          <name>PWM_1_CONTROL3_</name>
-          <description>TMRx.CFG2</description>
-          <addressOffset>0x40004F02</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-          <fields>
-            <field>
-              <name>TMR_CFG</name>
-              <description>Timer configuration (MODE = 0): 000 = Continuous; 001 = Pulsewidth; 010 = Period; 011 = Stop on IRQ</description>
-              <lsb>0</lsb>
-              <msb>1</msb>
-              <access>read-write</access>
-              <enumeratedValues>
-                <enumeratedValue>
-                  <name>Continuous</name>
-                  <description>Timer runs while EN bit of CFG0 register is set to '1'.</description>
-                  <value>0</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>Pulsewidth</name>
-                  <description>Timer runs from positive to negative edge of TIMEREN.</description>
-                  <value>1</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>Period</name>
-                  <description>Timer runs from positive to positive edge of TIMEREN.</description>
-                  <value>2</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>Irq</name>
-                  <description>Timer runs until IRQ.</description>
-                  <value>3</value>
-                </enumeratedValue>
-              </enumeratedValues>
-            </field>
-            <field>
-              <name>COD</name>
-              <description>Clear On Disable (COD). Clears or gates outputs to zero.</description>
-              <lsb>2</lsb>
-              <msb>2</msb>
-              <access>read-write</access>
-            </field>
-            <field>
-              <name>ROD</name>
-              <description>Reset On Disable (ROD). Resets internal state of output logic</description>
-              <lsb>3</lsb>
-              <msb>3</msb>
-              <access>read-write</access>
-            </field>
-            <field>
-              <name>CMP_CFG</name>
-              <description>Comparator configurations</description>
-              <lsb>4</lsb>
-              <msb>6</msb>
-              <access>read-write</access>
-              <enumeratedValues>
-                <enumeratedValue>
-                  <name>Equal</name>
-                  <description>Compare Equal </description>
-                  <value>0</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>Less_than</name>
-                  <description>Compare Less Than </description>
-                  <value>1</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>Less_than_or_equal</name>
-                  <description>Compare Less Than or Equal .</description>
-                  <value>2</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>Greater</name>
-                  <description>Compare Greater Than .</description>
-                  <value>3</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>Greater_than_or_equal</name>
-                  <description>Compare Greater Than or Equal </description>
-                  <value>4</value>
-                </enumeratedValue>
-              </enumeratedValues>
-            </field>
-            <field>
-              <name>HW_EN</name>
-              <description>When set Timer Enable controls counting.</description>
-              <lsb>7</lsb>
-              <msb>7</msb>
-              <access>read-write</access>
-            </field>
-          </fields>
-        </register>
-        <register>
-          <name>PWM_1_PERIOD</name>
-          <description>TMRx.PER0 - Assigned Period</description>
-          <addressOffset>0x40004F04</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
-          <name>PWM_1_COMPARE</name>
-          <description>TMRx.CNT_CMP0 - Assigned Compare Value</description>
-          <addressOffset>0x40004F06</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
         </register>
       </registers>
     </peripheral>
@@ -2900,7 +2900,7 @@
         <register>
           <name>CONTROL_CONTROL_REG</name>
           <description>No description available</description>
-          <addressOffset>0x40006471</addressOffset>
+          <addressOffset>0x4000647C</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -2921,7 +2921,7 @@
         <register>
           <name>RF_BT_SELECT_CONTROL_REG</name>
           <description>No description available</description>
-          <addressOffset>0x4000647B</addressOffset>
+          <addressOffset>0x40006578</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -2930,7 +2930,7 @@
       </registers>
     </peripheral>
     <peripheral>
-      <name>QuadDec_M1</name>
+      <name>QuadDec_M2</name>
       <description>No description available</description>
       <baseAddress>0x0</baseAddress>
       <addressBlock>
@@ -2940,9 +2940,18 @@
       </addressBlock>
       <registers>
         <register>
-          <name>QuadDec_M1_STATUS_REG</name>
+          <name>QuadDec_M2_Cnt16_COUNTER</name>
+          <description>Counter value</description>
+          <addressOffset>0x4000640D</addressOffset>
+          <size>16</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>QuadDec_M2_STATUS_REG</name>
           <description>Quadrature Decoder Status Register</description>
-          <addressOffset>0x40006466</addressOffset>
+          <addressOffset>0x40006567</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -2978,21 +2987,12 @@
             </field>
           </fields>
         </register>
-        <register>
-          <name>QuadDec_M1_Cnt16_COUNTER</name>
-          <description>Counter value</description>
-          <addressOffset>0x40006504</addressOffset>
-          <size>16</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
       </registers>
     </peripheral>
     <peripheral>
-      <name>QuadDec_M1_Cnt16</name>
+      <name>QuadDec_M2_Cnt16</name>
       <description>No description available</description>
-      <alternatePeripheral>QuadDec_M1</alternatePeripheral>
+      <alternatePeripheral>QuadDec_M2</alternatePeripheral>
       <baseAddress>0x0</baseAddress>
       <addressBlock>
         <offset>0</offset>
@@ -3001,9 +3001,36 @@
       </addressBlock>
       <registers>
         <register>
-          <name>QuadDec_M1_Cnt16_Control_Reg</name>
+          <name>QuadDec_M2_Cnt16_COUNTER</name>
+          <description>UDB.A0 - Current Counter Value</description>
+          <addressOffset>0x4000640D</addressOffset>
+          <size>16</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>QuadDec_M2_Cnt16_PERIOD</name>
+          <description>UDB.D0 - Assigned Period</description>
+          <addressOffset>0x4000642D</addressOffset>
+          <size>16</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>QuadDec_M2_Cnt16_COMPARE</name>
+          <description>UDB.D1 - Assigned Compare Value</description>
+          <addressOffset>0x4000643D</addressOffset>
+          <size>16</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>QuadDec_M2_Cnt16_Control_Reg</name>
           <description>UDB Control Register - Assigned Control Register Value</description>
-          <addressOffset>0x40006475</addressOffset>
+          <addressOffset>0x40006474</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -3033,36 +3060,9 @@
           </fields>
         </register>
         <register>
-          <name>QuadDec_M1_Cnt16_COUNTER</name>
-          <description>UDB.A0 - Current Counter Value</description>
-          <addressOffset>0x40006504</addressOffset>
-          <size>16</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
-          <name>QuadDec_M1_Cnt16_PERIOD</name>
-          <description>UDB.D0 - Assigned Period</description>
-          <addressOffset>0x40006524</addressOffset>
-          <size>16</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
-          <name>QuadDec_M1_Cnt16_COMPARE</name>
-          <description>UDB.D1 - Assigned Compare Value</description>
-          <addressOffset>0x40006534</addressOffset>
-          <size>16</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
-          <name>QuadDec_M1_Cnt16_STATUS_MASK</name>
+          <name>QuadDec_M2_Cnt16_STATUS_MASK</name>
           <description>UDB Status bits Interrupt Mask Enable Register</description>
-          <addressOffset>0x40006586</addressOffset>
+          <addressOffset>0x4000648E</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -3120,9 +3120,9 @@
           </fields>
         </register>
         <register>
-          <name>QuadDec_M1_Cnt16_STATUS_AUX_CTRL</name>
+          <name>QuadDec_M2_Cnt16_STATUS_AUX_CTRL</name>
           <description>UDB Auxilliary Control Register</description>
-          <addressOffset>0x40006596</addressOffset>
+          <addressOffset>0x4000649E</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -3247,7 +3247,7 @@
       </registers>
     </peripheral>
     <peripheral>
-      <name>QuadDec_M2</name>
+      <name>QuadDec_M1</name>
       <description>No description available</description>
       <baseAddress>0x0</baseAddress>
       <addressBlock>
@@ -3257,18 +3257,18 @@
       </addressBlock>
       <registers>
         <register>
-          <name>QuadDec_M2_Cnt16_COUNTER</name>
+          <name>QuadDec_M1_Cnt16_COUNTER</name>
           <description>Counter value</description>
-          <addressOffset>0x40006406</addressOffset>
+          <addressOffset>0x40006506</addressOffset>
           <size>16</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
           <resetMask>0</resetMask>
         </register>
         <register>
-          <name>QuadDec_M2_STATUS_REG</name>
+          <name>QuadDec_M1_STATUS_REG</name>
           <description>Quadrature Decoder Status Register</description>
-          <addressOffset>0x40006462</addressOffset>
+          <addressOffset>0x40006565</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -3307,9 +3307,9 @@
       </registers>
     </peripheral>
     <peripheral>
-      <name>QuadDec_M2_Cnt16</name>
+      <name>QuadDec_M1_Cnt16</name>
       <description>No description available</description>
-      <alternatePeripheral>QuadDec_M2</alternatePeripheral>
+      <alternatePeripheral>QuadDec_M1</alternatePeripheral>
       <baseAddress>0x0</baseAddress>
       <addressBlock>
         <offset>0</offset>
@@ -3318,36 +3318,9 @@
       </addressBlock>
       <registers>
         <register>
-          <name>QuadDec_M2_Cnt16_COUNTER</name>
-          <description>UDB.A0 - Current Counter Value</description>
-          <addressOffset>0x40006406</addressOffset>
-          <size>16</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
-          <name>QuadDec_M2_Cnt16_PERIOD</name>
-          <description>UDB.D0 - Assigned Period</description>
-          <addressOffset>0x40006426</addressOffset>
-          <size>16</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
-          <name>QuadDec_M2_Cnt16_COMPARE</name>
-          <description>UDB.D1 - Assigned Compare Value</description>
-          <addressOffset>0x40006436</addressOffset>
-          <size>16</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
-          <name>QuadDec_M2_Cnt16_Control_Reg</name>
+          <name>QuadDec_M1_Cnt16_Control_Reg</name>
           <description>UDB Control Register - Assigned Control Register Value</description>
-          <addressOffset>0x40006472</addressOffset>
+          <addressOffset>0x40006477</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -3377,7 +3350,7 @@
           </fields>
         </register>
         <register>
-          <name>QuadDec_M2_Cnt16_STATUS_MASK</name>
+          <name>QuadDec_M1_Cnt16_STATUS_MASK</name>
           <description>UDB Status bits Interrupt Mask Enable Register</description>
           <addressOffset>0x40006484</addressOffset>
           <size>8</size>
@@ -3437,7 +3410,7 @@
           </fields>
         </register>
         <register>
-          <name>QuadDec_M2_Cnt16_STATUS_AUX_CTRL</name>
+          <name>QuadDec_M1_Cnt16_STATUS_AUX_CTRL</name>
           <description>UDB Auxilliary Control Register</description>
           <addressOffset>0x40006494</addressOffset>
           <size>8</size>
@@ -3560,6 +3533,33 @@
               </enumeratedValues>
             </field>
           </fields>
+        </register>
+        <register>
+          <name>QuadDec_M1_Cnt16_COUNTER</name>
+          <description>UDB.A0 - Current Counter Value</description>
+          <addressOffset>0x40006506</addressOffset>
+          <size>16</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>QuadDec_M1_Cnt16_PERIOD</name>
+          <description>UDB.D0 - Assigned Period</description>
+          <addressOffset>0x40006526</addressOffset>
+          <size>16</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>QuadDec_M1_Cnt16_COMPARE</name>
+          <description>UDB.D1 - Assigned Compare Value</description>
+          <addressOffset>0x40006536</addressOffset>
+          <size>16</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
         </register>
       </registers>
     </peripheral>

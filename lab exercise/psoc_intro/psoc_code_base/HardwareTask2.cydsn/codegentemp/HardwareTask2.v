@@ -1,6 +1,6 @@
 // ======================================================================
 // HardwareTask2.v generated from TopDesign.cysch
-// 07/31/2023 at 15:52
+// 08/01/2023 at 12:01
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -2093,6 +2093,7 @@ endmodule
 module top ;
 
           wire  CLK24M;
+          wire  Net_4338;
           wire  Net_3493;
           wire  Net_3492;
           wire  Net_3491;
@@ -2143,6 +2144,7 @@ module top ;
           wire  Net_1835;
           wire  Net_1834;
           wire  Net_3231;
+          wire  Net_4337;
           wire  Net_1878;
           wire  Net_4335;
           wire  Net_4334;
@@ -2247,7 +2249,6 @@ module top ;
           wire  Net_3247;
           wire  Net_3246;
           wire  Net_1849;
-          wire  Net_4337;
           wire  Net_4336;
           wire  Net_362;
           wire  Net_368;
@@ -3753,7 +3754,7 @@ module top ;
 		#(.id("e8400984-016a-44c5-81cf-16d5ecf8b2d4"),
 		  .drive_mode(3'b110),
 		  .ibuf_enabled(1'b1),
-		  .init_dr_st(1'b1),
+		  .init_dr_st(1'b0),
 		  .input_clk_en(0),
 		  .input_sync(1'b1),
 		  .input_sync_mode(1'b0),
@@ -3844,10 +3845,10 @@ module top ;
     defparam CONTROL.Bit5Mode = 0;
     defparam CONTROL.Bit6Mode = 0;
     defparam CONTROL.Bit7Mode = 0;
-    defparam CONTROL.BitValue = 0;
+    defparam CONTROL.BitValue = 6;
     defparam CONTROL.BusDisplay = 0;
     defparam CONTROL.ExtrReset = 0;
-    defparam CONTROL.NumOutputs = 4;
+    defparam CONTROL.NumOutputs = 3;
 
     UART_v2_50_8 UART (
         .cts_n(1'b0),
@@ -4508,7 +4509,7 @@ module top ;
 		#(.id("589e906e-6bf0-4e62-a1c2-d0706fb8ef74"),
 		  .drive_mode(3'b110),
 		  .ibuf_enabled(1'b1),
-		  .init_dr_st(1'b1),
+		  .init_dr_st(1'b0),
 		  .input_clk_en(0),
 		  .input_sync(1'b1),
 		  .input_sync_mode(1'b0),
@@ -4634,7 +4635,7 @@ module top ;
 		  .input_buffer_sel(2'b00))
 		IN2
 		 (.oe(tmpOE__IN2_net),
-		  .y({Net_4337}),
+		  .y({Net_4338}),
 		  .fb({tmpFB_0__IN2_net[0:0]}),
 		  .io({tmpIO_0__IN2_net[0:0]}),
 		  .siovref(tmpSIOVREF__IN2_net),
@@ -4647,6 +4648,9 @@ module top ;
 		  .out_reset({1'b0}));
 
 	assign tmpOE__IN2_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+
+    assign Net_4338 = ~Net_4336;
 
 
 

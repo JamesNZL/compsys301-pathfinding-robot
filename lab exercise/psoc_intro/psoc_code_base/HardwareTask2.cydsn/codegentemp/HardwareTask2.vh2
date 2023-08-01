@@ -2,7 +2,7 @@
 --	Conversion of HardwareTask2.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Jul 31 15:52:27 2023
+--	Tue Aug 01 12:01:47 2023
 --
 
 USE cypress.cypress.all;
@@ -1400,6 +1400,7 @@ SIGNAL tmpIO_0__IN1_net_0 : bit;
 TERMINAL tmpSIOVREF__IN1_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__IN1_net_0 : bit;
 SIGNAL tmpOE__IN2_net_0 : bit;
+SIGNAL Net_4338 : bit;
 SIGNAL tmpFB_0__IN2_net_0 : bit;
 SIGNAL tmpIO_0__IN2_net_0 : bit;
 TERMINAL tmpSIOVREF__IN2_net_0 : bit;
@@ -2040,6 +2041,8 @@ Net_3394D <= ((not \UART:BUART:reset_reg\ and \UART:BUART:tx_state_2\)
 	OR (\UART:BUART:rx_postpoll\ and \UART:BUART:rx_state_2\ and \UART:BUART:rx_parity_bit\)
 	OR (not \UART:BUART:rx_postpoll\ and \UART:BUART:rx_state_0\ and \UART:BUART:rx_parity_bit\)
 	OR \UART:BUART:rx_parity_bit\);
+
+Net_4338 <= (not Net_4336);
 
 Clock_PWM:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
@@ -4122,7 +4125,7 @@ D2:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"e8400984-016a-44c5-81cf-16d5ecf8b2d4",
 		drive_mode=>"110",
 		ibuf_enabled=>"1",
-		init_dr_st=>"1",
+		init_dr_st=>"0",
 		input_sync=>"1",
 		input_clk_en=>'0',
 		input_sync_mode=>"0",
@@ -4193,7 +4196,7 @@ isr_eoc:cy_isr_v1_0
 		is_nmi=>'0')
 	PORT MAP(int_signal=>Net_1497);
 \CONTROL:Sync:ctrl_reg\:cy_psoc3_control
-	GENERIC MAP(cy_init_value=>"00000000",
+	GENERIC MAP(cy_init_value=>"00000110",
 		cy_force_order=>'1',
 		cy_ctrl_mode_1=>"00000000",
 		cy_ctrl_mode_0=>"00000000",
@@ -4201,7 +4204,7 @@ isr_eoc:cy_isr_v1_0
 	PORT MAP(reset=>Net_2183,
 		clock=>Net_2183,
 		control=>(\CONTROL:control_7\, \CONTROL:control_6\, \CONTROL:control_5\, \CONTROL:control_4\,
-			Net_4337, Net_4336, Net_3236, Net_1832));
+			\CONTROL:control_3\, Net_4336, Net_3236, Net_1832));
 \UART:IntClock\:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
 		id=>"b0162966-0060-4af5-82d1-fcb491ad7619/be0a0e37-ad17-42ca-b5a1-1a654d736358",
@@ -5049,7 +5052,7 @@ IN1:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"589e906e-6bf0-4e62-a1c2-d0706fb8ef74",
 		drive_mode=>"110",
 		ibuf_enabled=>"1",
-		init_dr_st=>"1",
+		init_dr_st=>"0",
 		input_sync=>"1",
 		input_clk_en=>'0',
 		input_sync_mode=>"0",
@@ -5172,7 +5175,7 @@ IN2:cy_psoc3_pins_v1_10
 		ovt_hyst_trim=>"0",
 		input_buffer_sel=>"00")
 	PORT MAP(oe=>(tmpOE__M1_IN1_net_0),
-		y=>Net_4337,
+		y=>Net_4338,
 		fb=>(tmpFB_0__IN2_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__IN2_net_0),
