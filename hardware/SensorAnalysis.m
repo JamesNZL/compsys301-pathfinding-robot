@@ -60,7 +60,7 @@ LINES_TO_SKIP_FFT = LINES_TO_SKIP + 2003;
 VOLTAGE_SCALE = 1;
 
 % The default upper FFT frequency view limit
-FFT_UPPER_VIEW_LIMIT = 300;
+FFT_UPPER_VIEW_LIMIT = 300/2;
 
 %% Data Import
 
