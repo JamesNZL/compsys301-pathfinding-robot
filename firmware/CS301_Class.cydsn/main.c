@@ -33,11 +33,11 @@ void usb_put_char(char c);
 
 int main()
 {
-
     // --------------------------------
     // ----- INITIALIZATIONS ----------
     CYGlobalIntEnable;
-
+    PWM_1_Start();
+    PWM_2_Start();
 // ------USB SETUP ----------------
 #ifdef USE_USB
     USBUART_Start(0, USBUART_5V_OPERATION);
@@ -58,28 +58,11 @@ int main()
                 {
                 case (COMMAND_CHANGE_DIRECTION):
                 {
-<<<<<<< HEAD
                     usb_put_string("Parsed command: CHANGE_DIRECTION\n");
 
                     // extract first argument
                     token = strtok(NULL, COMMAND_DELIMITER);
                     handle_change_direction(token);
-=======
-                    usbPutString("Parsed command: CHANGE_DIRECTION\n");
-                    // extract first argument
-                    token = strtok(NULL, COMMAND_DELIMITER);
-                    if (token != NULL)
-                    {
-                        if (strcmp(token, "F") == 0)
-                        {
-                            set_direction(FORWARD);
-                        }
-                        else if (strcmp(token, "R") == 0)
-                        {
-                            set_direction(REVERSE);
-                        }
-                    }
->>>>>>> 92ff4fe (feat: got direction setting command working via serial)
                     break;
                 }
                 case (COMMAND_CHANGE_DUTY):
@@ -188,5 +171,4 @@ void handle_usb()
         }
     }
 }
-
 /* [] END OF FILE */
