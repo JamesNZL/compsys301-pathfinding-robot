@@ -62,6 +62,9 @@ VOLTAGE_SCALE = 1;
 % The default upper FFT frequency view limit
 FFT_UPPER_VIEW_LIMIT = 300/2;
 
+% Whether to discard FFT data above (4 * FFT_UPPER_VIEW_LIMIT) to improve performance
+FFT_DISCARD_HIGH_FREQUENCY = true;
+
 %% Data Import
 
 SENSOR_COUNT = length(SENSOR_DIR_NAMES);
@@ -157,6 +160,12 @@ for l = 1:SENSOR_COUNT
 				% Compute the one-sided amplitude spectrum
 				one_sided_spectrum = FFT(1:L/2+1);
 				one_sided_spectrum(2:end-1) = 2 .* one_sided_spectrum(2:end-1);
+				
+				if (FFT_DISCARD_HIGH_FREQUENCY)
+					max_index = find( f > (4 * FFT_UPPER_VIEW_LIMIT ), 1 );
+					f = f(1:max_index);
+					one_sided_spectrum = one_sided_spectrum(1:max_index);
+				end
 				
 				% Convert to dBV
 				one_sided_spectrum = mag2db(one_sided_spectrum);
