@@ -30,6 +30,8 @@ FILE_PREFIXES = ["on", "off"];
 % The various projector test conditions
 FILE_NAMES = ["black", "green", "white"];
 
+% TODO: left projector
+
 % The set of file suffixes for each test case
 % * "fft-samples" can also be used, but, the "fft" file
 % * actually contains *both* the raw samples and the scope's
@@ -72,7 +74,7 @@ SUFFIX_COUNT = length(FILE_SUFFIXES);
 % dimension 2: whether the room light is on
 % dimension 3: the projector test condition (green, white, black)
 % dimension 4: the various sampling rates for each condition (and the raw fft data)
-data = cell(PREFIX_COUNT, TEST_COUNT, SUFFIX_COUNT + 1);
+data = cell(PREFIX_COUNT, TEST_COUNT, SUFFIX_COUNT);
 
 for l = 1:SENSOR_COUNT
 	for i = 1:PREFIX_COUNT
@@ -103,9 +105,9 @@ end
 %% Raw Plot
 
 for l = 1:SENSOR_COUNT
+	figure('Name', SENSOR_DIR_NAMES(l));
+	
 	for i = 1:PREFIX_COUNT
-		figure('Name', strcat(SENSOR_DIR_NAMES(l), " lights ", FILE_PREFIXES(i)));
-		
 		for j = 1:TEST_COUNT
 			for k = 1:SUFFIX_COUNT
 				% Extract time and voltage data
@@ -115,22 +117,28 @@ for l = 1:SENSOR_COUNT
 				Fs = 1 / mean(diff(time));
 				
 				subplot(SUFFIX_COUNT, TEST_COUNT, (3*(k-1) + (j)));
-				plot(time * 1000, voltage * VOLTAGE_SCALE);
+				plot(time * 1000, voltage * VOLTAGE_SCALE, 'DisplayName', strcat("lights ", FILE_PREFIXES(i)));
+				hold on;
+				
 				xlabel('Time (ms)');
 				ylabel('Voltage (V)');
 				ylim([0, VOLTAGE_UPPER_VIEW_LIMIT]);
-				title(strcat(SENSOR_DIR_NAMES(l), " (lights ", FILE_PREFIXES(i), "): ", FILE_NAMES(j), " @", num2str(Fs), "Hz"));
+				title(strcat(SENSOR_DIR_NAMES(l), " ", FILE_NAMES(j), " @", num2str(Fs), "Hz"));
+				
+				legend;
 			end
 		end
 	end
+	
+	hold off;
 end
 
 %% Calculate FFT
 
 for l = 1:SENSOR_COUNT
+	figure('Name', strcat(SENSOR_DIR_NAMES(l), " FFT"));
+	
 	for i = 1:PREFIX_COUNT
-		figure('Name', strcat(SENSOR_DIR_NAMES(l), " lights ", FILE_PREFIXES(i), " FFT"));
-		
 		for j = 1:TEST_COUNT
 			for k = 1:SUFFIX_COUNT
 				% Extract time and voltage data
@@ -155,11 +163,16 @@ for l = 1:SENSOR_COUNT
 				
 				% Plot the amplitude spectrum
 				subplot(SUFFIX_COUNT, TEST_COUNT, (3*(k-1) + (j)));
-				plot(f, one_sided_spectrum);
+				% TODO: plot thickness
+				plot(f, one_sided_spectrum, 'DisplayName', strcat("lights ", FILE_PREFIXES(i)));
+				hold on;
+				
 				xlabel('Frequency (Hz)');
 				xlim([0, FFT_UPPER_VIEW_LIMIT]);
 				ylabel('Amplitude (dBV)');
-				title(strcat(SENSOR_DIR_NAMES(l), " (lights ", FILE_PREFIXES(i), ") FFT: ", FILE_NAMES(j), " @", "", num2str(Fs), "Hz"));
+				title(strcat(SENSOR_DIR_NAMES(l), " FFT: ", FILE_NAMES(j), " @", "", num2str(Fs), "Hz"));
+				
+				legend;
 			end
 			
 			%{
@@ -172,4 +185,6 @@ for l = 1:SENSOR_COUNT
 			%}
 		end
 	end
+	
+	hold off;
 end
