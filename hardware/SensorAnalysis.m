@@ -25,7 +25,7 @@ SENSOR_DIR_NAMES = ["phototransistor"];
 
 % The set of file prefixes for each test case,
 % corresponding to the state of the room light
-FILE_PREFIXES = ["on"]; # "off"
+FILE_PREFIXES = ["on"]; % "off"
 
 % The various projector test conditions
 FILE_NAMES = ["black", "green", "white"];
