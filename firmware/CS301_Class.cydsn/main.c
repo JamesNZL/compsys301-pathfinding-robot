@@ -62,7 +62,7 @@ int main()
 
                     // extract first argument
                     token = strtok(NULL, COMMAND_DELIMITER);
-                    handle_change_direction(token);
+                    Handlers_change_direction(token);
                     break;
                 }
                 case (COMMAND_CHANGE_DUTY):
@@ -78,7 +78,7 @@ int main()
                     usb_put_string("Parsed command: CHANGE_DUTY\n");
                     // extract first argument
                     token = strtok(NULL, COMMAND_DELIMITER);
-                    handle_change_speed(token);
+                    Handlers_change_speed(token);
                     break;
                 }
                 default:
