@@ -23,6 +23,9 @@ fprintf("SensorAnalysis.m\n\n");
 % Sensor directory
 SENSOR_DIR_NAMES = ["phototransistor", "photodiode"];
 
+% The upper voltage view limit for each sensor
+VOLTAGE_UPPER_VIEW_LIMIT = [2, 0.8];
+
 % The set of file prefixes for each test case,
 % corresponding to the state of the room light
 FILE_PREFIXES = ["on", "off"];
@@ -55,9 +58,6 @@ LINES_TO_SKIP_FFT = LINES_TO_SKIP + 2003;
 
 % The voltage scaling factor
 VOLTAGE_SCALE = 1;
-
-% The default upper voltage view limit
-VOLTAGE_UPPER_VIEW_LIMIT = 5;
 
 % The default upper FFT frequency view limit
 FFT_UPPER_VIEW_LIMIT = 300;
@@ -122,7 +122,7 @@ for l = 1:SENSOR_COUNT
 				
 				xlabel('Time (ms)');
 				ylabel('Voltage (V)');
-				ylim([0, VOLTAGE_UPPER_VIEW_LIMIT]);
+				ylim([0, VOLTAGE_UPPER_VIEW_LIMIT(l)]);
 				title(strcat(SENSOR_DIR_NAMES(l), " ", FILE_NAMES(j), " @", num2str(Fs), "Hz"));
 				
 				legend;
