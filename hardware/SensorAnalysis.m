@@ -40,12 +40,6 @@ FILE_PREFIXES = ["on", "off"];
 FILE_NAMES = ["none", "black", "green", "white"];
 
 % The set of file suffixes for each test case
-% * "fft-samples" can also be used, but, the "fft" file
-% * actually contains *both* the raw samples and the scope's
-% * fft data
-% * the textscan() of "fft" will fail once it hits the header
-% * rows at the top of the fft data, so treating it as a regular data
-% * file will also work
 FILE_SUFFIXES = ["2ms", "20ms", "200ms", "2s", "5s"];
 
 % Whether to plot the raw response for each file suffix
