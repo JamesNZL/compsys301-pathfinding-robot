@@ -90,6 +90,8 @@ for l = 1:SENSOR_COUNT
 				fid = fopen(file_name);
 				data{l, i, j, k} = textscan(fid, DATA_FORMAT, 'Headerlines', LINES_TO_SKIP);
 				fclose(fid);
+				
+				clear file_name fid;
 			end
 			
 			%{
@@ -100,6 +102,8 @@ for l = 1:SENSOR_COUNT
 			fid = fopen(file_name);
 			data{l, i, j, (SUFFIX_COUNT + 1)} = textscan(fid, DATA_FORMAT, 'Headerlines', LINES_TO_SKIP_FFT);
 			fclose(fid);
+
+			clear file_name fid;
 			%}
 		end
 	end
@@ -123,10 +127,14 @@ for l = 1:SENSOR_COUNT
 				plot(time * 1000, voltage * VOLTAGE_SCALE, 'DisplayName', strcat("lights ", FILE_PREFIXES(i)));
 				hold on;
 				
+				clear time voltage;
+				
 				xlabel('Time (ms)');
 				ylabel('Voltage (V)');
 				ylim([0, VOLTAGE_UPPER_VIEW_LIMIT(l)]);
 				title(strcat(SENSOR_DIR_NAMES(l), " ", FILE_NAMES(j), " @", num2str(Fs), "Hz"));
+				
+				clear Fs;
 				
 				legend;
 			end
@@ -157,9 +165,13 @@ for l = 1:SENSOR_COUNT
 				FFT = fft(voltage);
 				FFT = abs(FFT ./ L);
 				
+				clear time voltage;
+				
 				% Compute the one-sided amplitude spectrum
 				one_sided_spectrum = FFT(1:L/2+1);
 				one_sided_spectrum(2:end-1) = 2 .* one_sided_spectrum(2:end-1);
+				
+				clear FFT L;
 				
 				if (FFT_DISCARD_HIGH_FREQUENCY)
 					max_index = find( f > (4 * FFT_UPPER_VIEW_LIMIT ), 1 );
@@ -175,10 +187,14 @@ for l = 1:SENSOR_COUNT
 				plot(f, one_sided_spectrum, 'DisplayName', strcat("lights ", FILE_PREFIXES(i)), 'LineWidth', ((PREFIX_COUNT - (i - 1)) / 2));
 				hold on;
 				
+				clear f one_sided_spectrum;
+				
 				xlabel('Frequency (Hz)');
 				xlim([0, FFT_UPPER_VIEW_LIMIT]);
 				ylabel('Amplitude (dBV)');
 				title(strcat(SENSOR_DIR_NAMES(l), " FFT: ", FILE_NAMES(j), " @", "", num2str(Fs), "Hz"));
+				
+				clear Fs;
 				
 				legend;
 			end
@@ -196,3 +212,5 @@ for l = 1:SENSOR_COUNT
 	
 	hold off;
 end
+
+clear data;
