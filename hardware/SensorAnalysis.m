@@ -39,8 +39,10 @@ FILE_NAMES = ["black", "green", "white"];
 % * file will also work
 FILE_SUFFIXES = ["2ms", "20ms", "200ms", "2s", "5s"];
 
-% The file suffix of the exported FFT data
+%{
+ % The file suffix of the exported FFT data
 FILE_FFT_SUFFIX = 'fft';
+%}
 
 % The format of the CSV data
 DATA_FORMAT = '%f,%f';
@@ -85,13 +87,15 @@ for l = 1:SENSOR_COUNT
 				fclose(fid);
 			end
 			
-			% Raw FFT file
+			%{
+ 			% Raw FFT file
 			file_name = strcat(SENSOR_DIR_NAMES(l), '/', FILE_PREFIXES(i), '-', FILE_NAMES(j), '-', FILE_FFT_SUFFIX, '.csv');
 			
 			% Load the CSV file
 			fid = fopen(file_name);
 			data{l, i, j, (SUFFIX_COUNT + 1)} = textscan(fid, DATA_FORMAT, 'Headerlines', LINES_TO_SKIP_FFT);
 			fclose(fid);
+			%}
 		end
 	end
 end
@@ -150,7 +154,7 @@ for l = 1:SENSOR_COUNT
 				one_sided_spectrum = mag2db(one_sided_spectrum);
 				
 				% Plot the amplitude spectrum
-				subplot((SUFFIX_COUNT + 1), TEST_COUNT, (3*(k-1) + (j)));
+				subplot(SUFFIX_COUNT, TEST_COUNT, (3*(k-1) + (j)));
 				plot(f, one_sided_spectrum);
 				xlabel('Frequency (Hz)');
 				xlim([0, FFT_UPPER_VIEW_LIMIT]);
@@ -158,12 +162,14 @@ for l = 1:SENSOR_COUNT
 				title(strcat(SENSOR_DIR_NAMES(l), " (lights ", FILE_PREFIXES(i), ") FFT: ", FILE_NAMES(j), " @", "", num2str(Fs), "Hz"));
 			end
 			
-			subplot((SUFFIX_COUNT + 1), TEST_COUNT, (3*(SUFFIX_COUNT) + (j)));
+			%{
+ 			subplot((SUFFIX_COUNT + 1), TEST_COUNT, (3*(SUFFIX_COUNT) + (j)));
 			plot(data{l, i, j, (SUFFIX_COUNT + 1)}{1, 1}, data{l, i, j, (SUFFIX_COUNT + 1)}{1, 2});
 			xlabel('Frequency (Hz)');
 			xlim([0, FFT_UPPER_VIEW_LIMIT]);
-			ylabel('Amplitude (V)');
+			ylabel('Amplitude (dBV)');
 			title(strcat(SENSOR_DIR_NAMES(l), " (lights ", FILE_PREFIXES(i), ") FFT: ", FILE_NAMES(j), " @", "Oscilloscope FFT"));
+			%}
 		end
 	end
 end
