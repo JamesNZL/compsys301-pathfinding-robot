@@ -37,9 +37,7 @@ VOLTAGE_UPPER_VIEW_LIMIT = [2, 0.8];
 FILE_PREFIXES = ["on", "off"];
 
 % The various projector test conditions
-FILE_NAMES = ["black", "green", "white"];
-
-% TODO: left projector
+FILE_NAMES = ["none", "black", "green", "white"];
 
 % The set of file suffixes for each test case
 % * "fft-samples" can also be used, but, the "fft" file
@@ -142,7 +140,7 @@ if PLOT_RAW_RESPONSES
 					% Sampling frequency, assuming equidistant time points
 					Fs = 1 / mean(diff(time));
 					
-					subplot(SUFFIX_COUNT, TEST_COUNT, (3*(k-1) + (j)));
+					subplot(SUFFIX_COUNT, TEST_COUNT, (TEST_COUNT*(k-1) + (j)));
 					plot(time * 1000, voltage * VOLTAGE_SCALE, 'DisplayName', strcat("lights ", FILE_PREFIXES(i)));
 					hold on;
 					
@@ -208,7 +206,7 @@ if PLOT_FFT
 					one_sided_spectrum = mag2db(one_sided_spectrum);
 					
 					% Plot the amplitude spectrum
-					subplot(SUFFIX_COUNT, TEST_COUNT, (3*(k-1) + (j)));
+					subplot(SUFFIX_COUNT, TEST_COUNT, (TEST_COUNT*(k-1) + (j)));
 					plot(f, one_sided_spectrum, 'DisplayName', strcat("lights ", FILE_PREFIXES(i)), 'LineWidth', ((PREFIX_COUNT - (i - 1)) / 2));
 					hold on;
 					
