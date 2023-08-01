@@ -154,7 +154,7 @@ for l = 1:SENSOR_COUNT
 				plot(f, one_sided_spectrum);
 				xlabel('Frequency (Hz)');
 				xlim([0, FFT_UPPER_VIEW_LIMIT]);
-				ylabel('Amplitude (V)');
+				ylabel('Amplitude (dBV)');
 				title(strcat(SENSOR_DIR_NAMES(l), " (lights ", FILE_PREFIXES(i), ") FFT: ", FILE_NAMES(j), " @", "", num2str(Fs), "Hz"));
 			end
 			
