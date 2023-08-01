@@ -91,7 +91,7 @@ SUFFIX_COUNT = length(FILE_SUFFIXES);
 % dimension 2: whether the room light is on
 % dimension 3: the projector test condition (green, white, black)
 % dimension 4: the various sampling rates for each condition (and the raw fft data)
-data = cell(PREFIX_COUNT, TEST_COUNT, SUFFIX_COUNT);
+data = cell(SENSOR_COUNT, PREFIX_COUNT, TEST_COUNT, SUFFIX_COUNT);
 
 for l = 1:SENSOR_COUNT
 	for i = 1:PREFIX_COUNT
