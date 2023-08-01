@@ -2,5 +2,6 @@
 	"conventionalCommits.scopes": [
 		"hardware",
 		"firmware"
-	]
+	],
+	"C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: WebKit, BreakBeforeBraces: Allman, IndentWidth: 2, TabWidth: 2, UseTab: Always, ColumnLimit: 0, PointerAlignment: Right }"
 }
