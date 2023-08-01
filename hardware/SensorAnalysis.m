@@ -147,7 +147,7 @@ if PLOT_RAW_RESPONSES
 					
 					clear Fs;
 					
-					legend;
+					legend('Location', 'northwest');
 				end
 			end
 		end
@@ -216,7 +216,7 @@ if PLOT_FFT
 					
 					clear Fs;
 					
-					legend;
+					legend('Location', 'northwest');
 				end
 				
 				%{
