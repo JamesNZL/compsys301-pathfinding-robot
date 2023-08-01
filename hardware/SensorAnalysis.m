@@ -21,11 +21,11 @@ fprintf("SensorAnalysis.m\n\n");
 %% Script Configuration
 
 % Sensor directory
-SENSOR_DIR_NAMES = ["phototransistor"];
+SENSOR_DIR_NAMES = ["phototransistor", "photodiode"];
 
 % The set of file prefixes for each test case,
 % corresponding to the state of the room light
-FILE_PREFIXES = ["on"]; % "off"
+FILE_PREFIXES = ["on", "off"];
 
 % The various projector test conditions
 FILE_NAMES = ["black", "green", "white"];
