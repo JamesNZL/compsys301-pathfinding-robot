@@ -12,7 +12,7 @@ CommandEnumeration match_command(char *command)
 		// Check that the incoming command is the correct length
 		if (command[commandLength] != '\0')
 		{
-			// return COMMAND_NOT_FOUND;
+			return COMMAND_NOT_FOUND;
 		}
 
 		if (strncmp(command, COMMAND_LIST[i].keyword, commandLength) == 0)
