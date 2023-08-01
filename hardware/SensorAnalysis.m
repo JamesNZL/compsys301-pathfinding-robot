@@ -163,8 +163,7 @@ for l = 1:SENSOR_COUNT
 				
 				% Plot the amplitude spectrum
 				subplot(SUFFIX_COUNT, TEST_COUNT, (3*(k-1) + (j)));
-				% TODO: plot thickness
-				plot(f, one_sided_spectrum, 'DisplayName', strcat("lights ", FILE_PREFIXES(i)));
+				plot(f, one_sided_spectrum, 'DisplayName', strcat("lights ", FILE_PREFIXES(i)), 'LineWidth', ((PREFIX_COUNT - (i - 1)) / 2));
 				hold on;
 				
 				xlabel('Frequency (Hz)');
