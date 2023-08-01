@@ -46,6 +46,16 @@ CY_ISR(CalculateSpeed)
 	}
 }
 
+uint8 head_index_battery = 0;
+uint8 tail_index_battery = 0;
+char bat_entry[20];
+
+CY_ISR(SenseBattery)
+{
+    usbBuffer[head_index_battery] = (ADC_SAR_1_CountsTo_Volts(ADC_SAR_1_GetResult16()) * 3.518);
+    head_index_battery = (head_index_battery + 1 > BUF_SIZE) ? 0 : head_index_battery + 1;
+}
+
 int main(void)
 {
 	CyGlobalIntEnable; /* Enable global interrupts. */
@@ -57,6 +67,8 @@ int main(void)
 	QuadDec_M1_Start();
 	QuadDec_M2_Start();
 	isr_speed_StartEx(CalculateSpeed);
+    ADC_SAR_1_Start();
+	isr_bat_StartEx(SenseBattery);
 
 	PWM_M1_WriteCompare(0);
 	PWM_M2_WriteCompare(0);
@@ -92,6 +104,12 @@ int main(void)
 
 			PWM_M1_WriteCompare(PWM_MAX * (dutyCycle / (float)100));
 			PWM_M2_WriteCompare(PWM_MAX * (dutyCycle / (float)100));
+            
+            if (head_index_battery != tail_index_battery){
+                sprintf(bat_entry, "%d\n", usbBuffer[tail_index_battery]);
+                usbPutString(bat_entry);
+                tail_index_battery++;
+            }
 		}
 	}
 }
