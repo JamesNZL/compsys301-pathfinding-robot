@@ -20,6 +20,12 @@ fprintf("SensorAnalysis.m\n\n");
 
 %% Script Configuration
 
+% Whether to plot the raw responses
+PLOT_RAW_RESPONSES = true;
+
+% Whether to plot the FFT responses
+PLOT_FFT = true;
+
 % Sensor directory
 SENSOR_DIR_NAMES = ["phototransistor", "photodiode"];
 
@@ -43,6 +49,14 @@ FILE_NAMES = ["black", "green", "white"];
 % * rows at the top of the fft data, so treating it as a regular data
 % * file will also work
 FILE_SUFFIXES = ["2ms", "20ms", "200ms", "2s", "5s"];
+
+% Whether to plot the raw response for each file suffix
+% * NOTE: PLOT_RAW_RESPONSES takes priority over these flags
+PLOT_RAW_SUFFIXES = [true, true, true, true, true];
+
+% Whether to plot the FFT response for each file suffix
+% * NOTE: PLOT_FFT takes priority over these flags
+PLOT_FFT_SUFFIXES = [true, true, true, true, true];
 
 %{
  % The file suffix of the exported FFT data
@@ -111,106 +125,118 @@ end
 
 %% Raw Plot
 
-for l = 1:SENSOR_COUNT
-	figure('Name', SENSOR_DIR_NAMES(l));
-	
-	for i = 1:PREFIX_COUNT
-		for j = 1:TEST_COUNT
-			for k = 1:SUFFIX_COUNT
-				% Extract time and voltage data
-				[time, voltage] = data{l, i, j, k}{1:2};
-				
-				% Sampling frequency, assuming equidistant time points
-				Fs = 1 / mean(diff(time));
-				
-				subplot(SUFFIX_COUNT, TEST_COUNT, (3*(k-1) + (j)));
-				plot(time * 1000, voltage * VOLTAGE_SCALE, 'DisplayName', strcat("lights ", FILE_PREFIXES(i)));
-				hold on;
-				
-				clear time voltage;
-				
-				xlabel('Time (ms)');
-				ylabel('Voltage (V)');
-				ylim([0, VOLTAGE_UPPER_VIEW_LIMIT(l)]);
-				title(strcat(SENSOR_DIR_NAMES(l), " ", FILE_NAMES(j), " @", num2str(Fs), "Hz"));
-				
-				clear Fs;
-				
-				legend;
+if PLOT_RAW_RESPONSES
+	for l = 1:SENSOR_COUNT
+		figure('Name', SENSOR_DIR_NAMES(l));
+		
+		for i = 1:PREFIX_COUNT
+			for j = 1:TEST_COUNT
+				for k = 1:SUFFIX_COUNT
+					if ~PLOT_RAW_SUFFIXES(k)
+						continue;
+					end
+					
+					% Extract time and voltage data
+					[time, voltage] = data{l, i, j, k}{1:2};
+					
+					% Sampling frequency, assuming equidistant time points
+					Fs = 1 / mean(diff(time));
+					
+					subplot(SUFFIX_COUNT, TEST_COUNT, (3*(k-1) + (j)));
+					plot(time * 1000, voltage * VOLTAGE_SCALE, 'DisplayName', strcat("lights ", FILE_PREFIXES(i)));
+					hold on;
+					
+					clear time voltage;
+					
+					xlabel('Time (ms)');
+					ylabel('Voltage (V)');
+					ylim([0, VOLTAGE_UPPER_VIEW_LIMIT(l)]);
+					title(strcat(SENSOR_DIR_NAMES(l), " ", FILE_NAMES(j), " @", num2str(Fs), "Hz"));
+					
+					clear Fs;
+					
+					legend;
+				end
 			end
 		end
+		
+		hold off;
 	end
-	
-	hold off;
 end
 
 %% Calculate FFT
 
-for l = 1:SENSOR_COUNT
-	figure('Name', strcat(SENSOR_DIR_NAMES(l), " FFT"));
-	
-	for i = 1:PREFIX_COUNT
-		for j = 1:TEST_COUNT
-			for k = 1:SUFFIX_COUNT
-				% Extract time and voltage data
-				[time, voltage] = data{l, i, j, k}{1:2};
-				
-				L = length(voltage);
-				
-				% Sampling frequency, assuming equidistant time points
-				Fs = 1 / mean(diff(time));
-				f = Fs*(0:(L/2))/L;
-				
-				% Compute the FFT
-				FFT = fft(voltage);
-				FFT = abs(FFT ./ L);
-				
-				clear time voltage;
-				
-				% Compute the one-sided amplitude spectrum
-				one_sided_spectrum = FFT(1:L/2+1);
-				one_sided_spectrum(2:end-1) = 2 .* one_sided_spectrum(2:end-1);
-				
-				clear FFT L;
-				
-				if (FFT_DISCARD_HIGH_FREQUENCY)
-					max_index = find( f > (4 * FFT_UPPER_VIEW_LIMIT ), 1 );
-					f = f(1:max_index);
-					one_sided_spectrum = one_sided_spectrum(1:max_index);
+if PLOT_FFT
+	for l = 1:SENSOR_COUNT
+		figure('Name', strcat(SENSOR_DIR_NAMES(l), " FFT"));
+		
+		for i = 1:PREFIX_COUNT
+			for j = 1:TEST_COUNT
+				for k = 1:SUFFIX_COUNT
+					if ~PLOT_FFT_SUFFIXES(k)
+						continue;
+					end
+					
+					% Extract time and voltage data
+					[time, voltage] = data{l, i, j, k}{1:2};
+					
+					L = length(voltage);
+					
+					% Sampling frequency, assuming equidistant time points
+					Fs = 1 / mean(diff(time));
+					f = Fs*(0:(L/2))/L;
+					
+					% Compute the FFT
+					FFT = fft(voltage);
+					FFT = abs(FFT ./ L);
+					
+					clear time voltage;
+					
+					% Compute the one-sided amplitude spectrum
+					one_sided_spectrum = FFT(1:L/2+1);
+					one_sided_spectrum(2:end-1) = 2 .* one_sided_spectrum(2:end-1);
+					
+					clear FFT L;
+					
+					if (FFT_DISCARD_HIGH_FREQUENCY)
+						max_index = find( f > (4 * FFT_UPPER_VIEW_LIMIT ), 1 );
+						f = f(1:max_index);
+						one_sided_spectrum = one_sided_spectrum(1:max_index);
+					end
+					
+					% Convert to dBV
+					one_sided_spectrum = mag2db(one_sided_spectrum);
+					
+					% Plot the amplitude spectrum
+					subplot(SUFFIX_COUNT, TEST_COUNT, (3*(k-1) + (j)));
+					plot(f, one_sided_spectrum, 'DisplayName', strcat("lights ", FILE_PREFIXES(i)), 'LineWidth', ((PREFIX_COUNT - (i - 1)) / 2));
+					hold on;
+					
+					clear f one_sided_spectrum;
+					
+					xlabel('Frequency (Hz)');
+					xlim([0, FFT_UPPER_VIEW_LIMIT]);
+					ylabel('Amplitude (dBV)');
+					title(strcat(SENSOR_DIR_NAMES(l), " FFT: ", FILE_NAMES(j), " @", "", num2str(Fs), "Hz"));
+					
+					clear Fs;
+					
+					legend;
 				end
 				
-				% Convert to dBV
-				one_sided_spectrum = mag2db(one_sided_spectrum);
-				
-				% Plot the amplitude spectrum
-				subplot(SUFFIX_COUNT, TEST_COUNT, (3*(k-1) + (j)));
-				plot(f, one_sided_spectrum, 'DisplayName', strcat("lights ", FILE_PREFIXES(i)), 'LineWidth', ((PREFIX_COUNT - (i - 1)) / 2));
-				hold on;
-				
-				clear f one_sided_spectrum;
-				
-				xlabel('Frequency (Hz)');
-				xlim([0, FFT_UPPER_VIEW_LIMIT]);
-				ylabel('Amplitude (dBV)');
-				title(strcat(SENSOR_DIR_NAMES(l), " FFT: ", FILE_NAMES(j), " @", "", num2str(Fs), "Hz"));
-				
-				clear Fs;
-				
-				legend;
-			end
-			
-			%{
+				%{
  			subplot((SUFFIX_COUNT + 1), TEST_COUNT, (3*(SUFFIX_COUNT) + (j)));
 			plot(data{l, i, j, (SUFFIX_COUNT + 1)}{1, 1}, data{l, i, j, (SUFFIX_COUNT + 1)}{1, 2});
 			xlabel('Frequency (Hz)');
 			xlim([0, FFT_UPPER_VIEW_LIMIT]);
 			ylabel('Amplitude (dBV)');
 			title(strcat(SENSOR_DIR_NAMES(l), " (lights ", FILE_PREFIXES(i), ") FFT: ", FILE_NAMES(j), " @", "Oscilloscope FFT"));
-			%}
+				%}
+			end
 		end
+		
+		hold off;
 	end
-	
-	hold off;
 end
 
 clear data;
