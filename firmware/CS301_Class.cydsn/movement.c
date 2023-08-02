@@ -28,12 +28,12 @@ void Movement_set_direction_left(Direction direction)
 	uint8_t currentValue = Dir_Control_Reg_Read();
 	switch (direction)
 	{
-	case FORWARD:
+	case DIRECTION_FORWARD:
 	{
 		currentValue |= 1 << LEFT_MOTOR_CR_POS;
 		break;
 	}
-	case REVERSE:
+	case DIRECTION_REVERSE:
 	{
 		currentValue &= ~(1 << LEFT_MOTOR_CR_POS);
 		break;
@@ -47,12 +47,12 @@ void Movement_set_direction_right(Direction direction)
 	uint8_t currentValue = Dir_Control_Reg_Read();
 	switch (direction)
 	{
-	case FORWARD:
+	case DIRECTION_FORWARD:
 	{
 		currentValue |= 1 << RIGHT_MOTOR_CR_POS;
 		break;
 	}
-	case REVERSE:
+	case DIRECTION_REVERSE:
 	{
 		currentValue &= ~(1 << RIGHT_MOTOR_CR_POS);
 		break;

@@ -6,13 +6,14 @@
 
 #include <stddef.h>
 #include <stdint.h>
+
 /**
  * @brief The possible movement directions for the robot.
  */
 typedef enum Direction
 {
-	FORWARD,
-	REVERSE,
+	DIRECTION_FORWARD,
+	DIRECTION_REVERSE,
 } Direction;
 
 /**
