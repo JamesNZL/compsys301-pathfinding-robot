@@ -47,6 +47,6 @@ static const Command COMMAND_LIST[4] = {
  * @param command The null-terminated C string to parse as a command keyword.
  * @return CommandEnumeration The matched command enumeration, or COMMAND_NOT_FOUND if unsuccessful.
  */
-CommandEnumeration match_command(char *command);
+CommandEnumeration Commands_match_command(char *command);
 
 #endif
