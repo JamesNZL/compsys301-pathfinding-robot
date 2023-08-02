@@ -20,6 +20,9 @@ fprintf("SensorAnalysis.m\n\n");
 
 %% Script Configuration
 
+% Whether to AC-couple the raw response plots
+AC_COUPLE = false;
+
 % Whether to plot the raw responses
 PLOT_RAW_RESPONSES = true;
 
@@ -131,6 +134,10 @@ if PLOT_RAW_RESPONSES
 					% Extract time and voltage data
 					[time, voltage] = data{l, i, j, k}{1:2};
 					
+					if AC_COUPLE
+						voltage = voltage - mean(voltage);
+					end
+					
 					% Sampling frequency, assuming equidistant time points
 					Fs = 1 / mean(diff(time));
 					
@@ -142,7 +149,9 @@ if PLOT_RAW_RESPONSES
 					
 					xlabel('Time (ms)');
 					ylabel('Voltage (V)');
-					ylim([0, VOLTAGE_UPPER_VIEW_LIMIT(l)]);
+					if ~AC_COUPLE
+						ylim([0, VOLTAGE_UPPER_VIEW_LIMIT(l)]);
+					end
 					title(strcat(SENSOR_DIR_NAMES(l), " ", FILE_NAMES(j), " @", num2str(Fs), "Hz"));
 					
 					clear Fs;
@@ -171,6 +180,10 @@ if PLOT_FFT
 					
 					% Extract time and voltage data
 					[time, voltage] = data{l, i, j, k}{1:2};
+					
+					if AC_COUPLE
+						voltage = voltage - mean(voltage);
+					end
 					
 					L = length(voltage);
 					
