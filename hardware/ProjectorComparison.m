@@ -117,7 +117,7 @@ if PLOT_RAW_RESPONSES
 						Fs = 1 / mean(diff(time));
 						
 						subplot(SUFFIX_COUNT, TEST_COUNT, (TEST_COUNT*(k-1) + (j)));
-						plot(time * 1000, voltage * VOLTAGE_SCALE, 'DisplayName', strcat("projector ", PROJECTOR_PREFIX_LABELS(i)));
+						plot(time * 1000, voltage * VOLTAGE_SCALE, 'DisplayName', strcat(PROJECTOR_PREFIX_LABELS(i), " projector"));
 						hold on;
 						
 						clear time voltage;
@@ -184,7 +184,7 @@ if PLOT_FFT
 						
 						% Plot the amplitude spectrum
 						subplot(SUFFIX_COUNT, TEST_COUNT, (TEST_COUNT*(k-1) + (j)));
-						plot(f, one_sided_spectrum, 'DisplayName', strcat("projector ", PROJECTOR_PREFIX_LABELS(i)), 'LineWidth', ((PROJECTOR_COUNT - (i - 1)) / 2));
+						plot(f, one_sided_spectrum, 'DisplayName', strcat(PROJECTOR_PREFIX_LABELS(i), " projector"), 'LineWidth', ((PROJECTOR_COUNT - (i - 1)) / 2));
 						hold on;
 						
 						clear f one_sided_spectrum;
