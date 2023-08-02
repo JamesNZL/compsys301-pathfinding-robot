@@ -6,9 +6,12 @@ def copy_files_except_first_two_lines(source_dir, dest_dir):
         os.makedirs(dest_dir)
     
     for filename in os.listdir(source_dir):
-        if filename.endswith(".csv"):  # only process CSV files
+        if filename.endswith(".csv") or filename.endswith(".CSV"):  # only process CSV files
             source_file = os.path.join(source_dir, filename)
-            dest_file = os.path.join(dest_dir, filename.replace('.csv', '.txt'))
+            if filename.endswith(".csv"):
+                dest_file = os.path.join(dest_dir, filename.replace('.csv', '.txt'))
+            else: 
+                dest_file = os.path.join(dest_dir, filename.replace('.CSV', '.txt'))
 
             with open(source_file, 'r') as in_f, open(dest_file, 'w') as out_f:
                 csv_reader = csv.reader(in_f)
