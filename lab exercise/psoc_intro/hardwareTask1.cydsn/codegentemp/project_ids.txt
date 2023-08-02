@@ -1,0 +1,11 @@
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\lab1.cydsn\lab1.cyprj|0876e579-7f0f-47e1-93b8-1fc0c69ab0fe
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|d6ce3104-7b3c-4094-aeb5-932fff399160
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|2d985962-d7e1-4fe1-a4d2-896a323d2271
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|44afdf8c-c948-4898-8b01-a0064258fdaa
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|660fddb9-ac01-4cc0-b2a4-aca5e8290efd
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|87b68204-62a1-472a-9de1-2fc7ce676a2d
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\lab2.cydsn\lab2.cyprj|b1cf8d04-5dfe-44e1-b359-6ef30c2c20f7
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\lab3.cydsn\lab3.cyprj|a2a7d084-2b20-427a-a670-72b36afd82c5
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\psoc_code_base\CS301_Class.cydsn\CS301_Class.cyprj|f58006c9-faf0-45a0-8cdb-6e12d69fce19
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\hardwareTask1.cydsn\hardwareTask1.cyprj|3293de10-12fe-47af-b6b1-c4c82f45b744
+C:\Users\nwol626\OneDrive - The University of Auckland\Documents\GitHub\compsys301-line-following-robot\lab exercise\psoc_intro\psoc_code_base\HardwareTask2.cydsn\HardwareTask2.cyprj|856dd448-1031-40cd-969d-c610dc47779b

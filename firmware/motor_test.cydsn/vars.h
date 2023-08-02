@@ -34,7 +34,7 @@ uint8 flag_rf_transmission_active = UNKNOWN; // [TRUE if receieving data, FALSE 
 
 //* ========================================
 char displaystring[BUF_SIZE] = "CS301 2023\n";
-char line[BUF_SIZE], entry[BUF_SIZE];
+char line[BUF_SIZE], entry[BUF_SIZE], bat_entry[BUF_SIZE];
 uint8 usbBuffer[BUF_SIZE];
 //* ========================================
 typedef struct data_main

@@ -14,6 +14,7 @@
 #include "vars.h"
 
 #include <stdio.h>
+#include <stdbool.h>
 
 void usbPutString(char *s);
 void usbPutChar(char c);
@@ -46,12 +47,12 @@ CY_ISR(CalculateSpeed)
 	}
 }
 
-uint8 battery_reading;
-char bat_entry[20];
-
+volatile float battery_reading;
+volatile bool data_ready = 0;
 CY_ISR(SenseBattery)
 {
     battery_reading = (ADC_SAR_1_CountsTo_Volts(ADC_SAR_1_GetResult16()) * 3.518);
+    data_ready = 1;
 }
 
 int main(void)
@@ -65,6 +66,7 @@ int main(void)
 	QuadDec_M1_Start();
 	QuadDec_M2_Start();
 	isr_speed_StartEx(CalculateSpeed);
+    Timer_ADC_Start();
     ADC_SAR_1_Start();
 	isr_bat_StartEx(SenseBattery);
 
@@ -74,6 +76,13 @@ int main(void)
 #ifdef USE_USB
 	USBUART_Start(0, USBUART_5V_OPERATION);
 #endif
+
+    while(data_ready == 0){
+        ;
+    }
+    sprintf(bat_entry, "Battery: %dmV\n", (uint)(battery_reading*1000));
+    usbPutString(bat_entry);
+    ADC_SAR_1_Stop();
 	for (;;)
 	{
 		/* Place your application code here. */
@@ -99,12 +108,9 @@ int main(void)
 			{
 				dutyCycle = 0;
 			}
-
 			PWM_M1_WriteCompare(PWM_MAX * (dutyCycle / (float)100));
 			PWM_M2_WriteCompare(PWM_MAX * (dutyCycle / (float)100));
             
-            sprintf(bat_entry, "%d\n", battery_reading);
-            usbPutString(bat_entry);
 		}
 	}
 }

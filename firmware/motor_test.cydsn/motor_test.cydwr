@@ -336,6 +336,7 @@
       <Data key="22b1b250-5fab-4c93-b577-7c1f84744ee3" value="M1_D2" />
       <Data key="80f3df9c-91f3-4941-953a-61d8a45b99bd" value="M2_EN" />
       <Data key="431ae9e2-77e4-4bff-8fc6-8ba974752918" value="M1_QB" />
+      <Data key="628f5bbc-4618-42a2-bdf7-55a0bf51cbee" value="LED" />
       <Data key="8354eef8-dd55-4474-a8be-48e3fa4b0193" value="M2_QA" />
       <Data key="8747be07-e466-42e1-ba07-6631f6ca36eb" value="M2_IN2" />
       <Data key="84256fa2-a917-4b6d-aa1b-af3b949d9938" value="M2_D1" />
@@ -3471,6 +3472,11 @@
         <Data key="Port Format" value="15,2" />
       </Group>
     </Group>
+    <Group key="628f5bbc-4618-42a2-bdf7-55a0bf51cbee">
+      <Group key="0">
+        <Data key="Port Format" value="2,1" />
+      </Group>
+    </Group>
     <Group key="8354eef8-dd55-4474-a8be-48e3fa4b0193">
       <Group key="0">
         <Data key="Port Format" value="0,0" />
@@ -3517,6 +3523,7 @@
       </Group>
     </Group>
     <Group key="UnAssigned Pins" />
+    <Group key="Unlocked Pins" />
   </Group>
   <Group key="PlaceDir">
     <Data key="count" value="0" />
