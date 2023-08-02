@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <string.h>
 
-CommandEnumeration match_command(char *command)
+CommandEnumeration Commands_match_command(char *command)
 {
 	for (uint8_t i = 0; COMMAND_LIST[i].enumeration != COMMAND_NOT_FOUND; i++)
 	{

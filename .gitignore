@@ -18,6 +18,7 @@ Project\ Logs
 *.raw
 *.lnk
 *.log
+*.plt
 *.ipynd_checkpoints
 *checkpoint.ipynb
 
