@@ -13,7 +13,6 @@
 #include "project.h"
 #include "vars.h"
 
-#include <stdbool.h>
 #include <stdio.h>
 
 void usbPutString(char *s);
@@ -47,12 +46,13 @@ CY_ISR(CalculateSpeed)
 	}
 }
 
-volatile float battery_reading;
-volatile bool data_ready = 0;
+volatile float batteryReading;
+volatile uint8 dataReady = 0;
 CY_ISR(SenseBattery)
 {
-	battery_reading = (ADC_SAR_1_CountsTo_Volts(ADC_SAR_1_GetResult16()) * 3.518);
-	data_ready = 1;
+    //10k 2.7k Voltage Divider
+	batteryReading = (ADC_SAR_1_CountsTo_Volts(ADC_SAR_1_GetResult16()) * 4.703);
+	dataReady = 1;
 }
 
 int main(void)
@@ -77,13 +77,15 @@ int main(void)
 	USBUART_Start(0, USBUART_5V_OPERATION);
 #endif
 
-	while (data_ready == 0)
+	while (dataReady == 0)
 	{
 		;
 	}
-	sprintf(bat_entry, "Battery: %dmV\n", (uint16_t)(battery_reading * 1000));
+	sprintf(bat_entry, "Battery: %dmV\n", (uint16_t)(batteryReading * 1000));
 	usbPutString(bat_entry);
 	ADC_SAR_1_Stop();
+    Timer_ADC_Stop();
+    isr_bat_Stop();
 	for (;;)
 	{
 		/* Place your application code here. */
