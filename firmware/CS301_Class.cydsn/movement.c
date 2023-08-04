@@ -67,8 +67,12 @@ void Movement_set_direction(Direction direction)
 	Movement_set_direction_right(direction);
 }
 
+// TODO: Change percent to encoder pulses and raise power accordingly
 void Movement_set_speed_left(uint8_t percent)
 {
+	// While (encoder target < encoder reading){
+	// Increase duty cycle
+	//}
 	Movement_set_pwm_1_duty_cycle(percent);
 }
 
