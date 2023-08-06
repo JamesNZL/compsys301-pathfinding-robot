@@ -16,7 +16,7 @@ char displaystring[BUF_SIZE] = "CS301 2016\n";
 char line[BUF_SIZE], entry[BUF_SIZE];
 uint8 usbBuffer[BUF_SIZE];
 
-void USB_get_input();
+void USB_get_input(void);
 void USB_put_string(char *s);
 void USB_put_char(char c);
 

@@ -28,7 +28,7 @@ void USB_put_char(char c)
 #endif
 }
 
-void USB_get_input()
+void USB_get_input(void)
 {
 	// handles input at terminal, echos it back to the terminal
 	// turn echo OFF, key emulation: only CR
