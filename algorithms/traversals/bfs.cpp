@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main()
-{
-    cout << "Not Implemented";
+int main() {
+    Graph test("../maps/map_1.txt");
+    return 0;
 }
