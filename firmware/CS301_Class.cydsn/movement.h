@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#define MOTOR_LEFT_CR_POS 0
+#define MOTOR_LEFT_CR_POS  0
 #define MOTOR_RIGHT_CR_POS 1
 
 /**
