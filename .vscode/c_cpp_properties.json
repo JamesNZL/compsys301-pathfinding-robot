@@ -5,7 +5,7 @@
             "includePath": [
                 "${default}",
                 "${workspaceFolder}/firmware/CS301_Class.cydsn/Generated_Source/**",
-                "${workspaceFolder}/firmware/CS301_Class.cydsn/include",
+                "${workspaceFolder}/firmware/CS301_Class.cydsn/inc",
                 "${workspaceFolder}/firmware/CS301_Class.cydsn/lib"
             ],
             "defines": [
