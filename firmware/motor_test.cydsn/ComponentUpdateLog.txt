@@ -1,0 +1,6 @@
+Last Modified Date & Time: 08/01/2023 12:16:01
+
+motor_test: motor_test.cydwr
+	cy_boot [v6.10] to [v5.82]
+
+
