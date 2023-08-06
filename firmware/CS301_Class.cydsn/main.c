@@ -26,7 +26,7 @@ int main()
 		USB_get_input();
 		if (flag_KB_string == 1)
 		{
-			char *token = strtok(line, COMMAND_DELIMITER);
+			char *token = strtok(USB_input, COMMAND_DELIMITER);
 			if (token != NULL)
 			{
 				switch (Commands_match_command(token))

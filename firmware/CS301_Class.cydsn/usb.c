@@ -51,7 +51,7 @@ void USB_get_input(void)
 				//                if (usbBufCount > 0)
 				{
 					entry[usbBufCount] = '\0';
-					strcpy(line, entry);
+					strcpy(USB_input, entry);
 					usbBufCount = 0;
 					flag_KB_string = 1;
 				}
