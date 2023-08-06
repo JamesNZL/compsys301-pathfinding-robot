@@ -4,9 +4,9 @@
             "name": "Win32",
             "includePath": [
                 "${default}",
-                "${workspaceFolder}/firmware/CS301_Class.cydsn/Generated_Source/**",
-                "${workspaceFolder}/firmware/CS301_Class.cydsn/inc",
-                "${workspaceFolder}/firmware/CS301_Class.cydsn/lib"
+                "${workspaceFolder}/firmware/Team01.cydsn/Generated_Source/**",
+                "${workspaceFolder}/firmware/Team01.cydsn/inc",
+                "${workspaceFolder}/firmware/Team01.cydsn/lib"
             ],
             "defines": [
                 "_DEBUG",
