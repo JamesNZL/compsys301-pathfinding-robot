@@ -3,12 +3,8 @@
 
 #define USE_USB
 
-#define BUF_SIZE	64 // USBUART fixed buffer size
-#define CHAR_NULL	'0'
-#define CHAR_BACKSP 0x08
-#define CHAR_DEL	0x7F
-#define CHAR_ENTER	0x0D
-#define LOW_DIGIT	'0'
+#define BUF_SIZE 64 // USBUART fixed buffer size
+#define CHAR_DEL 0x7F
 
 const char USB_MOTD[BUF_SIZE] = "COMPSYS 301 Pathfinding Robot\n";
 

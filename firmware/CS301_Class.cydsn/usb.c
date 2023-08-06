@@ -47,7 +47,7 @@ void USB_get_input(void)
 		{
 			c = USBUART_GetChar();
 
-			if ((c == 13) || (c == 10))
+			if ((c == '\r') || (c == '\n'))
 			{
 				received[usbBufCount] = '\0';
 				strcpy(USB_input, received);
@@ -56,7 +56,7 @@ void USB_get_input(void)
 			}
 			else
 			{
-				if (((c == CHAR_BACKSP) || (c == CHAR_DEL)) && (usbBufCount > 0))
+				if (((c == '\b') || (c == CHAR_DEL)) && (usbBufCount > 0))
 					usbBufCount--;
 				else
 				{
