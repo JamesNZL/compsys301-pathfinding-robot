@@ -57,15 +57,20 @@ void USB_get_input(void)
 			else
 			{
 				if (((c == '\b') || (c == CHAR_DEL)) && (usbBufCount > 0))
+				{
 					usbBufCount--;
+				}
 				else
 				{
-					if (usbBufCount > (BUF_SIZE - 2)) // one less else strtok triggers a crash
+					// one less else strtok triggers a crash
+					if (usbBufCount > (BUF_SIZE - 2))
 					{
 						USBUART_PutChar('!');
 					}
 					else
+					{
 						received[usbBufCount++] = c;
+					}
 				}
 			}
 		}
