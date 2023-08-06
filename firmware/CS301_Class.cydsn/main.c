@@ -1,4 +1,5 @@
 #include "commands.h"
+#include "common.h"
 #include "handlers.h"
 #include "movement.h"
 #include "usb.h"
@@ -7,6 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+volatile uint8_t FLAGS = 0x00;
 
 int main()
 {
@@ -24,8 +27,11 @@ int main()
 	{
 		/* Place your application code here. */
 		USB_get_input();
-		if (flag_KB_string == 1)
+
+		if (IS_SET(FLAGS, FLAG_USB_INPUT))
 		{
+			FLAGS &= ~(1 << FLAG_USB_INPUT);
+
 			char *token = strtok(USB_input, COMMAND_DELIMITER);
 			if (token != NULL)
 			{
@@ -66,7 +72,6 @@ int main()
 				}
 				}
 			}
-			flag_KB_string = 0;
 		}
 	}
 }

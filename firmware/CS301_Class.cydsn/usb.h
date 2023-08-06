@@ -10,8 +10,6 @@
 #define CHAR_ENTER	0x0D
 #define LOW_DIGIT	'0'
 
-extern uint8 flag_KB_string = 0;
-
 const char USB_MOTD[BUF_SIZE] = "COMPSYS 301 Pathfinding Robot\n";
 
 char USB_input[BUF_SIZE];
@@ -23,7 +21,7 @@ char USB_buffer[BUF_SIZE];
  * @note - Turn echo `OFF`
  * @note - Use `CR` line endings
  *
- * @returns void The input string is made available in `USB_input`, and `flag_KB_string` is set.
+ * @returns void The input string is made available in `USB_input`, and the `USB_INPUT` bit of `FLAGS` is set.
  */
 void USB_get_input(void);
 

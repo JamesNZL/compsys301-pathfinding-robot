@@ -9,6 +9,16 @@
 #define UNKNOWN 10
 
 /*
+ * Flag Bits
+ */
+volatile extern uint8_t FLAGS;
+
+#define IS_SET(byte, bit)	  byte & (1 << bit)
+#define IS_CLEARED(byte, bit) ~byte & (1 << bit)
+
+#define FLAG_USB_INPUT		  0
+
+/*
  * Debugging
  */
 #define LED_ON		   LED_Write(1)
