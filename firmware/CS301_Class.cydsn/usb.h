@@ -12,10 +12,10 @@
 
 extern uint8 flag_KB_string = 0;
 
-char displaystring[BUF_SIZE] = "CS301 2016\n";
+const char USB_MOTD[BUF_SIZE] = "COMPSYS 301 Pathfinding Robot\n";
+
 char USB_input[BUF_SIZE];
-char entry[BUF_SIZE];
-uint8 usbBuffer[BUF_SIZE];
+char USB_buffer[BUF_SIZE];
 
 /**
  * @brief Get input from the terminal.
@@ -23,7 +23,7 @@ uint8 usbBuffer[BUF_SIZE];
  * @note - Turn echo `OFF`
  * @note - Use `CR` line endings
  *
- * @returns void The input string is made available in `line`, and `flag_KB_string` is set.
+ * @returns void The input string is made available in `USB_input`, and `flag_KB_string` is set.
  */
 void USB_get_input(void);
 

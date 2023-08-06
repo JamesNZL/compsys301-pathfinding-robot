@@ -30,6 +30,7 @@ void USB_get_input(void)
 {
 	static uint8 usbStarted = FALSE;
 	static uint16 usbBufCount = 0;
+	static char received[BUF_SIZE];
 	uint8 c;
 
 	if (!usbStarted)
@@ -48,13 +49,10 @@ void USB_get_input(void)
 
 			if ((c == 13) || (c == 10))
 			{
-				//                if (usbBufCount > 0)
-				{
-					entry[usbBufCount] = '\0';
-					strcpy(USB_input, entry);
-					usbBufCount = 0;
-					flag_KB_string = 1;
-				}
+				received[usbBufCount] = '\0';
+				strcpy(USB_input, received);
+				usbBufCount = 0;
+				flag_KB_string = 1;
 			}
 			else
 			{
@@ -67,7 +65,7 @@ void USB_get_input(void)
 						USBUART_PutChar('!');
 					}
 					else
-						entry[usbBufCount++] = c;
+						received[usbBufCount++] = c;
 				}
 			}
 		}
