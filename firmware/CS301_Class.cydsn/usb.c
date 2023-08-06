@@ -5,15 +5,15 @@
 
 void usb_put_string(char *s)
 {
-	// !! Assumes that *s is a string with allocated space >=64 chars
-	//  Since USB implementation retricts data packets to 64 chars, this function truncates the
-	//  length to 62 char (63rd char is a '!')
-
 #ifdef USE_USB
 	while (USBUART_CDCIsReady() == 0)
 		;
+
+	// ! Assumes that *s is a string with allocated space >= 64 chars
+	// ? Since USB implementation restricts data packets to 64 chars, this function truncates the length to 62 chars (63rd char is a '!')
 	s[63] = '\0';
 	s[62] = '!';
+
 	USBUART_PutData((uint8 *)s, strlen(s));
 #endif
 }
@@ -23,6 +23,7 @@ void usb_put_char(char c)
 #ifdef USE_USB
 	while (USBUART_CDCIsReady() == 0)
 		;
+
 	USBUART_PutChar(c);
 #endif
 }
@@ -77,4 +78,3 @@ void handle_usb()
 			}
 		}
 	}
-}
