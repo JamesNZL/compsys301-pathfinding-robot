@@ -4,19 +4,18 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
+#include "../utils/indexConversion.h"
 using namespace std;
 
 class Graph {
 public:
     Graph(string filepath) {
-        createMatrix(filepath);
-        printMaze();
+        createMaze(filepath);
+        createAdjMatrix();
     }
-
-private:
-    vector<vector<int>> maze;
 
     void printMaze() {
         for (vector<int> row : maze) {
@@ -27,7 +26,55 @@ private:
         }
     }
 
-    void createMatrix(string filepath) {
+    void printAdjList() {
+        for (auto const &pair : adjList) {
+            vector<int> list = pair.second;
+            for (int i : list) {
+                cout << i << " ";
+            }
+            cout << "\n";
+        }
+    }
+
+private:
+    vector<vector<int>> maze;
+    unordered_map<int, vector<int>> adjList;
+    int mazeWidth, mazeHeight;
+
+    void createAdjMatrix() {
+        // add empty lists
+        for (int i = 0; i < mazeWidth * mazeHeight; ++i) {
+            adjList[i] = vector<int>{};
+        }
+        for (int y = 0; y < mazeHeight; ++y) {
+            for (int x = 0; x < mazeWidth; ++x) {
+                if (maze[y][x] == 1)
+                    continue;
+                checkAdjacent(x, y);
+            }
+        }
+    }
+
+    void checkAdjacent(int x, int y) {
+        int dx[] = {-1, 1, 0, 0}; // Offsets for adjacent cells in x direction
+        int dy[] = {0, 0, -1, 1}; // Offsets for adjacent cells in y direction
+        int index1d = convertTo1d(x, y, mazeWidth);
+
+        for (int i = 0; i < 4; ++i) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+
+            if (isInBounds(nx, ny) && maze[ny][nx] == 0)
+                adjList[index1d].push_back(convertTo1d(nx, ny, mazeWidth));
+        }
+    }
+
+    bool isInBounds(int x, int y) {
+        bool horizontallyInBounds = x >= 0 && x < mazeWidth;
+        bool verticallyInBounds = y >= 0 && x < mazeHeight;
+        return horizontallyInBounds && verticallyInBounds;
+    }
+    void createMaze(string filepath) {
         ifstream inputFile(filepath);
         if (!inputFile) {
             cout << "failed to read file";
@@ -48,6 +95,9 @@ private:
             }
             maze.push_back(row);
         }
+        // store diemensions
+        mazeHeight = maze.size();
+        mazeWidth = maze[0].size();
     }
 };
 
