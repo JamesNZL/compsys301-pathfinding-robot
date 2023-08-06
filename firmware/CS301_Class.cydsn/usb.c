@@ -3,7 +3,7 @@
 
 #include <project.h>
 
-void usb_put_string(char *s)
+void USB_put_string(char *s)
 {
 #ifdef USE_USB
 	while (USBUART_CDCIsReady() == 0)
@@ -18,7 +18,7 @@ void usb_put_string(char *s)
 #endif
 }
 
-void usb_put_char(char c)
+void USB_put_char(char c)
 {
 #ifdef USE_USB
 	while (USBUART_CDCIsReady() == 0)
@@ -28,7 +28,7 @@ void usb_put_char(char c)
 #endif
 }
 
-void handle_usb()
+void USB_get_input()
 {
 	// handles input at terminal, echos it back to the terminal
 	// turn echo OFF, key emulation: only CR

@@ -23,7 +23,7 @@ int main()
 	for (;;)
 	{
 		/* Place your application code here. */
-		handle_usb();
+		USB_get_input();
 		if (flag_KB_string == 1)
 		{
 			char *token = strtok(line, COMMAND_DELIMITER);
@@ -33,7 +33,7 @@ int main()
 				{
 				case (COMMAND_CHANGE_DIRECTION):
 				{
-					usb_put_string("Parsed command: CHANGE_DIRECTION\n");
+					USB_put_string("Parsed command: CHANGE_DIRECTION\n");
 
 					// extract first argument
 					token = strtok(NULL, COMMAND_DELIMITER);
@@ -42,7 +42,7 @@ int main()
 				}
 				case (COMMAND_CHANGE_DUTY):
 				{
-					usb_put_string("Parsed command: CHANGE_DUTY\n");
+					USB_put_string("Parsed command: CHANGE_DUTY\n");
 
 					// extract first argument
 					token = strtok(NULL, COMMAND_DELIMITER);
@@ -50,7 +50,7 @@ int main()
 				}
 				case (COMMAND_CHANGE_SPEED):
 				{
-					usb_put_string("Parsed command: CHANGE_DUTY\n");
+					USB_put_string("Parsed command: CHANGE_DUTY\n");
 					// extract first argument
 					token = strtok(NULL, COMMAND_DELIMITER);
 					Handlers_change_speed(token);
@@ -58,10 +58,10 @@ int main()
 				}
 				default:
 				{
-					usb_put_string("Failed to parse command.\n");
-					usb_put_string("You Sent:\n");
-					usb_put_string(token);
-					usb_put_string("\n");
+					USB_put_string("Failed to parse command.\n");
+					USB_put_string("You Sent:\n");
+					USB_put_string(token);
+					USB_put_string("\n");
 					break;
 				}
 				}
