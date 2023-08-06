@@ -1,12 +1,10 @@
-#ifndef UART_H_
-#define UART_H_
+#ifndef USB_H_
+#define USB_H_
 
 #define USE_USB
 
 #define BUF_SIZE 64 // USBUART fixed buffer size
 #define CHAR_DEL 0x7F
-
-const char USB_MOTD[BUF_SIZE] = "COMPSYS 301 Pathfinding Robot\n";
 
 char USB_input[BUF_SIZE];
 char USB_buffer[BUF_SIZE];

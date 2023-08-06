@@ -70,3 +70,4 @@ void USB_get_input(void)
 			}
 		}
 	}
+}
