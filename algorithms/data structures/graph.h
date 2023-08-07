@@ -12,6 +12,8 @@ using namespace std;
 
 class Graph {
 public:
+    Graph() {
+    }
     Graph(string filepath) {
         createMaze(filepath);
         createAdjMatrix();
@@ -36,11 +38,12 @@ public:
         }
     }
 
-private:
     vector<vector<int>> maze;
+    // TODO: every node has max 4 neighbours, possible optimization?
     unordered_map<int, vector<int>> adjList;
     int mazeWidth, mazeHeight;
 
+private:
     void createAdjMatrix() {
         // add empty lists
         for (int i = 0; i < mazeWidth * mazeHeight; ++i) {
