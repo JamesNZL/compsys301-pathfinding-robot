@@ -19,8 +19,7 @@ typedef struct Stack
  */
 Stack *Stack_construct(void);
 /**
- * @brief Free the memory allocated to a stack.
- * TODO: free the nodes if not empty
+ * @brief Free the memory allocated to a stack and any contained `Node`s.
  *
  * @param stack The pointer to the stack to free.
  */

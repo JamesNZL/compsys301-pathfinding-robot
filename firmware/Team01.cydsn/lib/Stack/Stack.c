@@ -14,6 +14,19 @@ void Stack_destroy(Stack *stack)
 		return;
 	}
 
+	if (Stack_isEmpty(stack))
+	{
+		free(stack);
+		return;
+	}
+
+	// Destroy the nodes on the stack
+	while (!Stack_isEmpty(stack))
+	{
+		Node *head = Stack_pop(stack);
+		Node_destroy(head);
+	}
+
 	free(stack);
 }
 
