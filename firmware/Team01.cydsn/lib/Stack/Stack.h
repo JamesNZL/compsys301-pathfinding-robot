@@ -1,7 +1,7 @@
 #ifndef STACK_H_
 #define STACK_H_
 
-#include "../Node/Node.h"
+#include <Node/Node.h>
 
 #include <stdbool.h>
 
@@ -24,6 +24,14 @@ Stack *Stack_construct(void);
  * @param stack The pointer to the stack to free.
  */
 void Stack_destroy(Stack *stack);
+
+/**
+ * @brief Peek the node at the top of a stack without removing the node.
+ *
+ * @param stack The pointer to the stack.
+ * @return Node* The pointer to the node, or `NULL` if the stack is empty.
+ */
+Node *Stack_peek(Stack *stack);
 
 /**
  * @brief Pop the node at the top of a stack.

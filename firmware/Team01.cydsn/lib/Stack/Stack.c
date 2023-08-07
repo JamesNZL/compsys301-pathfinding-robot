@@ -30,6 +30,16 @@ void Stack_destroy(Stack *stack)
 	free(stack);
 }
 
+Node *Stack_peek(Stack *stack)
+{
+	if (stack == NULL || Stack_isEmpty(stack))
+	{
+		return NULL;
+	}
+
+	return stack->head;
+}
+
 Node *Stack_pop(Stack *stack)
 {
 	if (stack == NULL || Stack_isEmpty(stack))
