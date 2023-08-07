@@ -27,6 +27,16 @@ void Node_destroy(Node *node)
 	free(node);
 }
 
+uint32_t Node_getValue(Node *node)
+{
+	if (node == NULL)
+	{
+		return NULL;
+	}
+
+	return node->value;
+}
+
 void Node_setNext(Node *node, Node *next)
 {
 	if (node == NULL)

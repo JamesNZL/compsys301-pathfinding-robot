@@ -26,6 +26,14 @@ Node *Node_create(uint32_t value);
 void Node_destroy(Node *node);
 
 /**
+ * @brief Get the value of a node.
+ *
+ * @param node The pointer to the node.
+ * @return uint32_t The value of the node.
+ */
+uint32_t Node_getValue(Node *node);
+
+/**
  * @brief Create an edge between two nodes.
  *
  * @param node The pointer to the source node.
