@@ -16,7 +16,8 @@ enum Movement {
     LEFT_,
     RIGHT_,
     STRAIGHT,
-    AROUND
+    AROUND,
+    SKIP_TURN
 };
 
 Direction getRelativeDirection(pair<int, int> current, pair<int, int> next) {
@@ -107,10 +108,31 @@ vector<Movement> findMovements(Direction startingDirection, vector<vector<int>> 
         pair<int, int> coordsNext = shortestPath[i + 1];
         Direction relativeDirection = getRelativeDirection(coordsCurrent, coordsNext);
         Movement movement = getRequiredMovement(currentDirection, relativeDirection);
-
-        movements.push_back(movement);
         // we need to move after turning
         currentDirection = relativeDirection;
+        // check if there are intersections
+        int x = coordsCurrent.first;
+        int y = coordsCurrent.second;
+        if (movement == Movement::STRAIGHT) {
+            switch (currentDirection) {
+            case Direction::LEFT:
+            case Direction::RIGHT:
+                if (maze[y + 1][x] == 0 || maze[y - 1][x] == 0) {
+                    movements.push_back(Movement::SKIP_TURN);
+                }
+                break;
+            case Direction::UP:
+            case Direction::DOWN:
+                if (maze[y][x + 1] == 0 || maze[y][x - 1] == 0) {
+                    movements.push_back(Movement::SKIP_TURN);
+                }
+                break;
+            default:
+                break;
+            }
+        } else {
+            movements.push_back(movement);
+        }
     }
     cout << "\n";
     return movements;

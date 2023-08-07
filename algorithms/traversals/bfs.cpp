@@ -72,21 +72,19 @@ int main() {
     Graph testGraph("../maps/map_1.txt");
     GraphBFS testBFS(testGraph);
     printMaze(testGraph.maze);
-    printAdjList(testGraph.adjList);
     // start BFS
-    pair<int, int> start = make_pair<int, int>(1, 1);
+    pair<int, int> start = make_pair<int, int>(1, 7);
     pair<int, int> end = make_pair<int, int>(17, 1);
     if (!(testGraph.isValidCoords(start) && testGraph.isValidCoords(end))) {
         cerr << "invalid coordinates";
         throw exception();
     }
     testBFS.findShortestPath(start, end);
-    printShortestPath(testBFS.shortestPath);
-    vector<Movement> movements = findMovements(Direction::RIGHT, testGraph.maze, testBFS.shortestPath);
-    vector<string> names = {"left", "right", "straight", "around"};
+    vector<Movement> movements = findMovements(Direction::UP, testGraph.maze, testBFS.shortestPath);
+    vector<string> names = {"left", "right", "straight", "around", "skip"};
     for (Movement movement : movements) {
         cout << names[movement] << " ";
     }
-    // exportPathToFile(testGraph, testBFS.shortestPath);
+    exportPathToFile(testGraph, testBFS.shortestPath);
     return 0;
 }
