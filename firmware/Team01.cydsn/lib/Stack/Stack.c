@@ -4,7 +4,16 @@
 
 Stack *Stack_construct(void)
 {
-	return malloc(sizeof(Stack));
+	Stack *stack = malloc(sizeof(Stack));
+	if (stack == NULL)
+	{
+		// malloc error
+		return NULL;
+	}
+
+	stack->head = NULL;
+
+	return stack;
 }
 
 void Stack_destroy(Stack *stack)

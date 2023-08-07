@@ -4,7 +4,17 @@
 
 Queue *Queue_construct(void)
 {
-	return malloc(sizeof(Queue));
+	Queue *queue = malloc(sizeof(Queue));
+	if (queue == NULL)
+	{
+		// malloc error
+		return NULL;
+	}
+
+	queue->head = NULL;
+	queue->tail = NULL;
+
+	return queue;
 }
 
 void Queue_destroy(Queue *queue)
