@@ -25,12 +25,14 @@ def plot_matrix(matrix):
 
     x_tick_labels = [str(i) for i in range(x_width)]
     y_tick_labels = [str(i) for i in range(y_height)]
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(20, 20))
 
     ax.matshow(matrix, cmap=cmap)
     plt.xticks(x_tick_positions, x_tick_labels)
     plt.yticks(y_tick_positions, y_tick_labels)
     plt.title("Shortest Path")
+
+    # Add the extra information as an annotation on the plot
     plt.show()
 
 
