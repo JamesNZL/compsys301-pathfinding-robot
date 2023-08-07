@@ -102,11 +102,11 @@ void Queue_append(Queue *queue, Node *node)
 	}
 }
 
-bool Queue_isEmpty(Queue *queue)
+uint8_t Queue_isEmpty(Queue *queue)
 {
 	if (queue == NULL)
 	{
-		return true;
+		return 1;
 	}
 
 	return queue->front == NULL;

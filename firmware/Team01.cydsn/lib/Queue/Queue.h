@@ -3,7 +3,7 @@
 
 #include <Node/Node.h>
 
-#include <stdbool.h>
+#include <stdint.h>
 
 // Use an opaque type to prevent direct access to members
 typedef struct Queue Queue;
@@ -50,8 +50,8 @@ void Queue_append(Queue *queue, Node *node);
  * @brief Check if the queue is empty.
  *
  * @param queue The pointer to the queue.
- * @return true If the queue is empty, or if a `NULL` pointer was provided.
+ * @return 1 If the queue is empty, or if a `NULL` pointer was provided.
  */
-bool Queue_isEmpty(Queue *queue);
+uint8_t Queue_isEmpty(Queue *queue);
 
 #endif

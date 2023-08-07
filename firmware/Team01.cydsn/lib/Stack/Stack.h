@@ -3,7 +3,7 @@
 
 #include <Node/Node.h>
 
-#include <stdbool.h>
+#include <stdint.h>
 
 // Use an opaque type to prevent direct access to members
 typedef struct Stack Stack;
@@ -57,8 +57,8 @@ void Stack_push(Stack *stack, Node *node);
  * @brief Check if the stack is empty.
  *
  * @param stack The pointer to the stack.
- * @return true If the stack is empty, or if a `NULL` pointer was provided.
+ * @return 1 If the stack is empty, or if a `NULL` pointer was provided.
  */
-bool Stack_isEmpty(Stack *stack);
+uint8_t Stack_isEmpty(Stack *stack);
 
 #endif

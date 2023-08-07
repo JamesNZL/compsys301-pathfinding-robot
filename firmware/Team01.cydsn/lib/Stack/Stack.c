@@ -107,11 +107,11 @@ void Stack_push(Stack *stack, Node *node)
 	}
 }
 
-bool Stack_isEmpty(Stack *stack)
+uint8_t Stack_isEmpty(Stack *stack)
 {
 	if (stack == NULL)
 	{
-		return true;
+		return 1;
 	}
 
 	return stack->top == NULL;
