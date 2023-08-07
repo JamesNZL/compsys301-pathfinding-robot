@@ -11,9 +11,11 @@ enum Direction {
     RIGHT
 };
 
-enum Turn {
+enum Movement {
     LEFT,
-    RIGHT
+    RIGHT,
+    STRAIGHT,
+    AROUND
 };
 
 Direction getRelativeDirection(pair<int, int> current, pair<int, int> next) {
@@ -41,7 +43,57 @@ Direction getRelativeDirection(pair<int, int> current, pair<int, int> next) {
     }
 }
 
-Turn getRequiredTurn(Direction current, Direction next) {
+Movement getRequiredMovement(Direction current, Direction next) {
+    switch (current) {
+    case Direction::LEFT: {
+        switch (next) {
+        case Direction::LEFT:
+            return Movement::STRAIGHT;
+        case Direction::RIGHT:
+            return Movement::AROUND;
+        case Direction::UP:
+            return Movement::RIGHT;
+        case Direction::DOWN:
+            return Movement::LEFT;
+        }
+    } break;
+    case Direction::RIGHT: {
+        switch (next) {
+        case Direction::LEFT:
+            return Movement::AROUND;
+        case Direction::RIGHT:
+            return Movement::STRAIGHT;
+        case Direction::UP:
+            return Movement::LEFT;
+        case Direction::DOWN:
+            return Movement::RIGHT;
+        }
+    } break;
+    case Direction::UP: {
+        switch (next) {
+        case Direction::LEFT:
+            return Movement::LEFT;
+        case Direction::RIGHT:
+            return Movement::RIGHT;
+        case Direction::UP:
+            return Movement::STRAIGHT;
+        case Direction::DOWN:
+            return Movement::AROUND;
+        }
+    } break;
+    case Direction::DOWN: {
+        switch (next) {
+        case Direction::LEFT:
+            return Movement::RIGHT;
+        case Direction::RIGHT:
+            return Movement::LEFT;
+        case Direction::UP:
+            return Movement::AROUND;
+        case Direction::DOWN:
+            return Movement::STRAIGHT;
+        }
+    } break;
+    }
 }
 void findDirections(vector<vector<int>> maze, vector<pair<int, int>> shortestPath) {
     // shortest path is already sorted
