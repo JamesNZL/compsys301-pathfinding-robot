@@ -39,7 +39,7 @@ void Stack_destroy(Stack *stack)
 	free(stack);
 }
 
-void Stack_empty(Stack *stack)
+void Stack_clear(Stack *stack)
 {
 	if (stack == NULL || Stack_isEmpty(stack))
 	{
