@@ -5,10 +5,8 @@
 
 #include <stdbool.h>
 
-typedef struct Stack
-{
-	Node *top;
-} Stack;
+// Use an opaque type to prevent direct access to members
+typedef struct Stack Stack;
 
 /**
  * @brief Construct a new empty stack on the heap.

@@ -2,6 +2,12 @@
 
 #include <stdlib.h>
 
+typedef struct Node
+{
+	uint32_t value;
+	struct Node *next;
+} Node;
+
 Node *Node_create(uint32_t value)
 {
 	Node *node = malloc(sizeof(Node));

@@ -2,6 +2,13 @@
 
 #include <stdlib.h>
 
+typedef struct Queue
+{
+	Node *front;
+	// Maintain an end pointer to enable O(1) insertions
+	Node *end;
+} Queue;
+
 Queue *Queue_construct(void)
 {
 	Queue *queue = malloc(sizeof(Queue));

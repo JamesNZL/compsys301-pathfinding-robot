@@ -2,6 +2,11 @@
 
 #include <stdlib.h>
 
+typedef struct Stack
+{
+	Node *top;
+} Stack;
+
 Stack *Stack_construct(void)
 {
 	Stack *stack = malloc(sizeof(Stack));

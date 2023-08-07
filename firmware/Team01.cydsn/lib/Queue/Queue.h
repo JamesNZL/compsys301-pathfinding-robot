@@ -5,12 +5,8 @@
 
 #include <stdbool.h>
 
-typedef struct Queue
-{
-	Node *front;
-	// Maintain an end pointer to enable O(1) insertions
-	Node *end;
-} Queue;
+// Use an opaque type to prevent direct access to members
+typedef struct Queue Queue;
 
 /**
  * @brief Construct a new empty queue on the heap.

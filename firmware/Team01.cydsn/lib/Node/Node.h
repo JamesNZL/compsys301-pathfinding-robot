@@ -3,11 +3,8 @@
 
 #include <stdint.h>
 
-typedef struct Node
-{
-	uint32_t value;
-	struct Node *next;
-} Node;
+// Use an opaque type to prevent direct access to members
+typedef struct Node Node;
 
 /**
  * @brief Create a new node on the heap.
