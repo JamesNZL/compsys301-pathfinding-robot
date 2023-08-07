@@ -7,7 +7,7 @@
 
 typedef struct Stack
 {
-	Node *head;
+	Node *top;
 } Stack;
 
 /**

@@ -7,8 +7,8 @@
 
 typedef struct Queue
 {
-	Node *head;
-	Node *tail;
+	Node *front;
+	Node *end;
 } Queue;
 
 /**
@@ -30,7 +30,7 @@ void Queue_destroy(Queue *queue);
  * @brief Peek the node at the front of a queue without removing the node.
  *
  * @param queue The pointer to the queue.
- * @return Node* The pointer to the node, or `NULL` if the queue is empty;
+ * @return Node* The pointer to the node, or `NULL` if the queue is empty.
  */
 Node *Queue_peek(Queue *queue);
 
