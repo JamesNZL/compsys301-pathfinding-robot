@@ -1,3 +1,4 @@
+#include "../data structures/abstractTraversal.h"
 #include "../data structures/graph.h"
 #include "../utils/indexConversion.h"
 #include <iostream>
@@ -6,15 +7,13 @@
 
 using namespace std;
 
-typedef pair<int, int> Coords;
-
-class GraphBFS {
+class GraphBFS : public AbstractTraversal {
 public:
     GraphBFS(Graph _graph) {
         graph = _graph;
     }
 
-    void findShortestPath(Coords start, Coords end) {
+    void findShortestPath(pair<int, int> start, pair<int, int> end) override {
         // Conversions
         int w = graph.mazeWidth;
         int h = graph.mazeHeight;
@@ -53,21 +52,24 @@ public:
         }
 
         while (!stack.empty()) {
-            Coords coord2d = convertToXY(stack.top(), h, w);
+            pair<int, int> coord2d = convertToXY(stack.top(), h, w);
             shortestPath.push_back(coord2d);
             stack.pop();
         }
     }
-    void printShortestPath() {
-        for (Coords coords : shortestPath) {
+    void printShortestPath() override {
+        for (pair<int, int> coords : shortestPath) {
             cout << "(" << coords.first << "," << coords.second << ")"
                  << " ";
         }
     }
 
+    void exportPathToFile() override {
+    }
+
 private:
     Graph graph;
-    vector<Coords> shortestPath;
+    vector<pair<int, int>> shortestPath;
 };
 
 int main() {
@@ -75,8 +77,8 @@ int main() {
     testGraph.printMaze();
     GraphBFS testBFS(testGraph);
     // start BFS
-    Coords start = make_pair<int, int>(1, 1);
-    Coords end = make_pair<int, int>(1, 17);
+    pair<int, int> start = make_pair<int, int>(1, 1);
+    pair<int, int> end = make_pair<int, int>(1, 17);
     testBFS.findShortestPath(start, end);
     testBFS.printShortestPath();
     return 0;
