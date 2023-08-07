@@ -9,6 +9,8 @@ def read_file_to_matrix(filename):
     matrix = []
     with open(filename, 'r') as file:
         for line in file:
+            if line.strip() == "==END":
+                break
             row = [int(digit) for digit in line.strip()]
             matrix.append(row)
     return matrix
@@ -25,7 +27,7 @@ def plot_matrix(matrix):
 
     x_tick_labels = [str(i) for i in range(x_width)]
     y_tick_labels = [str(i) for i in range(y_height)]
-    fig, ax = plt.subplots(figsize=(20, 20))
+    fig, ax = plt.subplots()
 
     ax.matshow(matrix, cmap=cmap)
     plt.xticks(x_tick_positions, x_tick_labels)
