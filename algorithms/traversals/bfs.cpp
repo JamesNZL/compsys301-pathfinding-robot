@@ -80,7 +80,7 @@ int main() {
     printAdjList(testGraph.adjList);
     // start BFS
     pair<int, int> start = make_pair<int, int>(1, 1);
-    pair<int, int> end = make_pair<int, int>(17, 17);
+    pair<int, int> end = make_pair<int, int>(17, 1);
     if (!(testGraph.isValidCoords(start) && testGraph.isValidCoords(end))) {
         cerr << "invalid coordinates";
         throw exception();
