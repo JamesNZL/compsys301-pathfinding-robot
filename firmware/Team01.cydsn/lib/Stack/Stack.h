@@ -26,6 +26,13 @@ Stack *Stack_construct(void);
 void Stack_destroy(Stack *stack);
 
 /**
+ * @brief Empty the stack without deallocating any memory.
+ *
+ * @param stack The pointer to the stack.
+ */
+void Stack_empty(Stack *stack);
+
+/**
  * @brief Peek the node at the top of a stack without removing the node.
  *
  * @param stack The pointer to the stack.
