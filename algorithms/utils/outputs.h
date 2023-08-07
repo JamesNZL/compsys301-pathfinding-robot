@@ -1,5 +1,6 @@
 #ifndef OUTPUTS_H
 #define OUTPUTS_H
+#include "../data structures/graph.h"
 #include <iostream>
 #include <unordered_map>
 #include <vector>
@@ -24,5 +25,23 @@ void printAdjList(unordered_map<int, vector<int>> adjList) {
         }
         cout << "\n";
     }
+}
+
+void exportPathToFile(Graph graph, vector<pair<int, int>> shortestPath) {
+    vector<vector<int>> maze = graph.maze;
+    for (pair<int, int> coords : shortestPath) {
+        int x = coords.first;
+        int y = coords.second;
+        // use 2 to mark square as part of shortest path
+        maze[y][x] = 2;
+    }
+    ofstream outFile("outputs/mazePath.txt");
+    for (vector<int> list : maze) {
+        for (int i : list) {
+            outFile << i;
+        }
+        outFile << endl;
+    }
+    outFile.close();
 }
 #endif
