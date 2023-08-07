@@ -39,5 +39,10 @@ void Node_setNext(Node *node, Node *next)
 
 Node *Node_getNext(Node *node)
 {
+	if (node == NULL)
+	{
+		return NULL;
+	}
+
 	return node->next;
 }
