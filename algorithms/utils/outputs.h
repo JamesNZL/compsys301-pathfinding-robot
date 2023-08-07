@@ -35,7 +35,7 @@ void exportPathToFile(Graph graph, vector<pair<int, int>> shortestPath) {
         // use 2 to mark square as part of shortest path
         maze[y][x] = 2;
     }
-    ofstream outFile("outputs/mazePath.txt");
+    ofstream outFile("../visualisation/outputs/mazePath.txt");
     for (vector<int> list : maze) {
         for (int i : list) {
             outFile << i;

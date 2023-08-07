@@ -79,7 +79,7 @@ private:
             for (char c : line) {
                 if (c == '0') {
                     row.push_back(0);
-                } else {
+                } else if (c == '1') {
                     row.push_back(1);
                 }
             }
