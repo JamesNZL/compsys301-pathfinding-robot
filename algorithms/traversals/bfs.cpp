@@ -69,18 +69,49 @@ private:
 
 int main() {
     int startX, startY, endX, endY;
+    cout << "Enter starting point x:";
+    cin >> startX;
+    cout << "Enter starting point y:";
+    cin >> startY;
+    cout << "Enter destination x:";
+    cin >> endX;
+    cout << "Enter destination y:";
+    cin >> endY;
+
+    int directionInt;
+    Direction startingDirection;
+    cout << "Enter the direction (0 for UP, 1 for DOWN, 2 for LEFT, 3 for RIGHT): ";
+    cin >> directionInt;
+    switch (directionInt) {
+    case 0:
+        startingDirection = UP;
+        break;
+    case 1:
+        startingDirection = DOWN;
+        break;
+    case 2:
+        startingDirection = LEFT;
+        break;
+    case 3:
+        startingDirection = RIGHT;
+        break;
+    default:
+        cout << "Invalid input. Using default value: UP." << std::endl;
+        startingDirection = UP;
+        break;
+    }
     Graph testGraph("../maps/map_1.txt");
     GraphBFS testBFS(testGraph);
     printMaze(testGraph.maze);
     // start BFS
-    pair<int, int> start = make_pair<int, int>(1, 7);
-    pair<int, int> end = make_pair<int, int>(17, 1);
+    pair<int, int> start = make_pair(startX, startY);
+    pair<int, int> end = make_pair(endX, endY);
     if (!(testGraph.isValidCoords(start) && testGraph.isValidCoords(end))) {
         cerr << "invalid coordinates";
         throw exception();
     }
     testBFS.findShortestPath(start, end);
-    vector<Movement> movements = findMovements(Direction::UP, testGraph.maze, testBFS.shortestPath);
+    vector<Movement> movements = findMovements(startingDirection, testGraph.maze, testBFS.shortestPath);
     exportPathToFile(testGraph, testBFS.shortestPath, movements);
     return 0;
 }
