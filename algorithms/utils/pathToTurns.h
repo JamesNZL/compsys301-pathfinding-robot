@@ -1,5 +1,6 @@
 #ifndef PATHTOTURNS_H
 #define PATHTOTURNS_H
+#include <iostream>
 #include <vector>
 
 using namespace std;
@@ -12,8 +13,8 @@ enum Direction {
 };
 
 enum Movement {
-    LEFT,
-    RIGHT,
+    LEFT_,
+    RIGHT_,
     STRAIGHT,
     AROUND
 };
@@ -52,9 +53,9 @@ Movement getRequiredMovement(Direction current, Direction next) {
         case Direction::RIGHT:
             return Movement::AROUND;
         case Direction::UP:
-            return Movement::RIGHT;
+            return Movement::RIGHT_;
         case Direction::DOWN:
-            return Movement::LEFT;
+            return Movement::LEFT_;
         }
     } break;
     case Direction::RIGHT: {
@@ -64,17 +65,17 @@ Movement getRequiredMovement(Direction current, Direction next) {
         case Direction::RIGHT:
             return Movement::STRAIGHT;
         case Direction::UP:
-            return Movement::LEFT;
+            return Movement::LEFT_;
         case Direction::DOWN:
-            return Movement::RIGHT;
+            return Movement::RIGHT_;
         }
     } break;
     case Direction::UP: {
         switch (next) {
         case Direction::LEFT:
-            return Movement::LEFT;
+            return Movement::LEFT_;
         case Direction::RIGHT:
-            return Movement::RIGHT;
+            return Movement::RIGHT_;
         case Direction::UP:
             return Movement::STRAIGHT;
         case Direction::DOWN:
@@ -84,9 +85,9 @@ Movement getRequiredMovement(Direction current, Direction next) {
     case Direction::DOWN: {
         switch (next) {
         case Direction::LEFT:
-            return Movement::RIGHT;
+            return Movement::RIGHT_;
         case Direction::RIGHT:
-            return Movement::LEFT;
+            return Movement::LEFT_;
         case Direction::UP:
             return Movement::AROUND;
         case Direction::DOWN:
@@ -95,12 +96,24 @@ Movement getRequiredMovement(Direction current, Direction next) {
     } break;
     }
 }
-void findDirections(vector<vector<int>> maze, vector<pair<int, int>> shortestPath) {
+vector<Movement> findMovements(Direction startingDirection, vector<vector<int>> maze, vector<pair<int, int>> shortestPath) {
+    Direction currentDirection = startingDirection;
+    vector<Movement> movements;
+
     // shortest path is already sorted
-    for (pair<int, int> coords : shortestPath) {
-        int x = coords.first;
-        int y = coords.second;
+    for (int i = 0; i < shortestPath.size() - 1; ++i) {
+        cout << currentDirection << " ";
+        pair<int, int> coordsCurrent = shortestPath[i];
+        pair<int, int> coordsNext = shortestPath[i + 1];
+        Direction relativeDirection = getRelativeDirection(coordsCurrent, coordsNext);
+        Movement movement = getRequiredMovement(currentDirection, relativeDirection);
+
+        movements.push_back(movement);
+        // we need to move after turning
+        currentDirection = relativeDirection;
     }
+    cout << "\n";
+    return movements;
 }
 
 #endif

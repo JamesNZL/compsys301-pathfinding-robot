@@ -2,6 +2,7 @@
 #include "../data structures/graph.h"
 #include "../utils/indexConversion.h"
 #include "../utils/outputs.h"
+#include "../utils/pathToTurns.h"
 #include <iostream>
 #include <queue>
 #include <stack>
@@ -59,12 +60,6 @@ public:
             stack.pop();
         }
     }
-    void printShortestPath() override {
-        for (pair<int, int> coords : shortestPath) {
-            cout << "(" << coords.first << "," << coords.second << ")"
-                 << " ";
-        }
-    }
 
     vector<pair<int, int>> shortestPath;
 
@@ -86,7 +81,12 @@ int main() {
         throw exception();
     }
     testBFS.findShortestPath(start, end);
-    testBFS.printShortestPath();
-    exportPathToFile(testGraph, testBFS.shortestPath);
+    printShortestPath(testBFS.shortestPath);
+    vector<Movement> movements = findMovements(Direction::RIGHT, testGraph.maze, testBFS.shortestPath);
+    vector<string> names = {"left", "right", "straight", "around"};
+    for (Movement movement : movements) {
+        cout << names[movement] << " ";
+    }
+    // exportPathToFile(testGraph, testBFS.shortestPath);
     return 0;
 }
