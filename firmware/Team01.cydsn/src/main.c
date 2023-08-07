@@ -16,6 +16,11 @@ int main()
 	CYGlobalIntEnable;
 	PWM_1_Start();
 	PWM_2_Start();
+    
+    init_control_loop();
+    
+    set_target_pulse_L(50);
+    set_target_pulse_R(50);
 
 #ifdef USE_USB
 	USBUART_Start(0, USBUART_5V_OPERATION);
