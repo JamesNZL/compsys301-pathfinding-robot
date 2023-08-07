@@ -1,5 +1,6 @@
 #include "../data structures/abstractTraversal.h"
 #include "../data structures/graph.h"
+#include "../utils/display.h"
 #include "../utils/indexConversion.h"
 #include <iostream>
 #include <queue>
@@ -64,18 +65,16 @@ public:
         }
     }
 
-    void exportPathToFile() override {
-    }
-
 private:
     Graph graph;
     vector<pair<int, int>> shortestPath;
 };
 
 int main() {
+    int startX, startY, endX, endY;
     Graph testGraph("../maps/map_1.txt");
-    testGraph.printMaze();
     GraphBFS testBFS(testGraph);
+    printMaze(testGraph.maze);
     // start BFS
     pair<int, int> start = make_pair<int, int>(1, 1);
     pair<int, int> end = make_pair<int, int>(1, 17);
