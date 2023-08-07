@@ -18,7 +18,13 @@ public:
         createMaze(filepath);
         createAdjMatrix();
     }
-
+    bool isValidCoords(pair<int, int> coord) {
+        int x = coord.first;
+        int y = coord.second;
+        bool xInBounds = x >= 0 && x < mazeWidth;
+        bool yInBounds = y >= 0 && y < mazeHeight;
+        return xInBounds && yInBounds;
+    }
     vector<vector<int>> maze;
     // TODO: every node has max 4 neighbours, possible optimization?
     unordered_map<int, vector<int>> adjList;
