@@ -14,6 +14,19 @@ void Queue_destroy(Queue *queue)
 		return;
 	}
 
+	if (Queue_isEmpty(queue))
+	{
+		free(queue);
+		return;
+	}
+
+	// Destroy the nodes in the queue
+	while (!Queue_isEmpty(queue))
+	{
+		Node *head = Queue_pop(queue);
+		Node_destroy(head);
+	}
+
 	free(queue);
 }
 

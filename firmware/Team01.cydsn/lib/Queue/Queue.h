@@ -20,8 +20,7 @@ typedef struct Queue
  */
 Queue *Queue_construct(void);
 /**
- * @brief Free the memory allocated to a queue.
- * TODO: free the nodes if not empty
+ * @brief Free the memory allocated to a queue and any contained `Node`s.
  *
  * @param queue The pointer to the queue to free.
  */
