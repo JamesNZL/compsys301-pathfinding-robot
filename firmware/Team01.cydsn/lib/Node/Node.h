@@ -6,7 +6,7 @@
 typedef struct Node
 {
 	uint32_t value;
-	Node *next;
+	struct Node *next;
 } Node;
 
 /**
