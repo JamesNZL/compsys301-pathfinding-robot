@@ -43,3 +43,6 @@ Project\ Logs
 
 ## Ignore Autodesk Inventor autosave files
 OldVersions/
+
+## Ignore temporary files
+*.tmp
