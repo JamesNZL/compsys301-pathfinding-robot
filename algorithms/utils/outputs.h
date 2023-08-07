@@ -13,8 +13,16 @@ void printMaze(vector<vector<int>> maze) {
         }
         cout << "\n";
     }
+    cout << "\n";
 }
 
+void printShortestPath(vector<pair<int, int>> shortestPath) {
+    for (pair<int, int> coords : shortestPath) {
+        cout << "(" << coords.first << "," << coords.second << ")"
+             << " ";
+    }
+    cout << "\n";
+}
 void printAdjList(unordered_map<int, vector<int>> adjList) {
     for (auto const &pair : adjList) {
         int key = pair.first;
@@ -25,6 +33,7 @@ void printAdjList(unordered_map<int, vector<int>> adjList) {
         }
         cout << "\n";
     }
+    cout << "\n";
 }
 
 void exportPathToFile(Graph graph, vector<pair<int, int>> shortestPath) {
