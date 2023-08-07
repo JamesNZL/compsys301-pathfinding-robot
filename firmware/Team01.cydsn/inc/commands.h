@@ -35,10 +35,10 @@ typedef struct Command
  * @brief The list of all recognised commands.
  */
 static const Command COMMAND_LIST[4] = {
-	{"CHG_DUTY", COMMAND_CHANGE_DUTY},
-	{"CHG_DIR", COMMAND_CHANGE_DIRECTION},
-	{"CHG_SPEED", COMMAND_CHANGE_SPEED},
-	{NULL, COMMAND_NOT_FOUND},
+	{ "CHG_DUTY", COMMAND_CHANGE_DUTY },
+	{ "CHG_DIR", COMMAND_CHANGE_DIRECTION },
+	{ "CHG_SPEED", COMMAND_CHANGE_SPEED },
+	{ NULL, COMMAND_NOT_FOUND },
 };
 
 /**

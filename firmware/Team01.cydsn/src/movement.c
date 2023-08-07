@@ -30,12 +30,12 @@ void Movement_set_direction_left(Direction direction)
 	{
 	case DIRECTION_FORWARD:
 	{
-		currentValue |= 1 << LEFT_MOTOR_CR_POS;
+		currentValue |= 1 << MOTOR_LEFT_CR_POS;
 		break;
 	}
 	case DIRECTION_REVERSE:
 	{
-		currentValue &= ~(1 << LEFT_MOTOR_CR_POS);
+		currentValue &= ~(1 << MOTOR_LEFT_CR_POS);
 		break;
 	}
 	}
@@ -49,12 +49,12 @@ void Movement_set_direction_right(Direction direction)
 	{
 	case DIRECTION_FORWARD:
 	{
-		currentValue |= 1 << RIGHT_MOTOR_CR_POS;
+		currentValue |= 1 << MOTOR_RIGHT_CR_POS;
 		break;
 	}
 	case DIRECTION_REVERSE:
 	{
-		currentValue &= ~(1 << RIGHT_MOTOR_CR_POS);
+		currentValue &= ~(1 << MOTOR_RIGHT_CR_POS);
 		break;
 	}
 	}

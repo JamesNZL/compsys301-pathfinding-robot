@@ -1,11 +1,11 @@
 #ifndef MOVEMENT_H_
 #define MOVEMENT_H_
 
-#define LEFT_MOTOR_CR_POS 0
-#define RIGHT_MOTOR_CR_POS 1
-
 #include <stddef.h>
 #include <stdint.h>
+
+#define MOTOR_LEFT_CR_POS  0
+#define MOTOR_RIGHT_CR_POS 1
 
 /**
  * @brief The possible movement directions for the robot.

@@ -46,6 +46,15 @@ CY_ISR(CalculateSpeed)
 	}
 }
 
+volatile float batteryReading;
+volatile uint8 dataReady = 0;
+CY_ISR(SenseBattery)
+{
+    //10k 2.7k Voltage Divider
+	batteryReading = (ADC_SAR_1_CountsTo_Volts(ADC_SAR_1_GetResult16()) * 4.703);
+	dataReady = 1;
+}
+
 int main(void)
 {
 	CyGlobalIntEnable; /* Enable global interrupts. */
@@ -57,6 +66,9 @@ int main(void)
 	QuadDec_M1_Start();
 	QuadDec_M2_Start();
 	isr_speed_StartEx(CalculateSpeed);
+	Timer_ADC_Start();
+	ADC_SAR_1_Start();
+	isr_bat_StartEx(SenseBattery);
 
 	PWM_M1_WriteCompare(0);
 	PWM_M2_WriteCompare(0);
@@ -64,6 +76,16 @@ int main(void)
 #ifdef USE_USB
 	USBUART_Start(0, USBUART_5V_OPERATION);
 #endif
+
+	while (dataReady == 0)
+	{
+		;
+	}
+	sprintf(bat_entry, "Battery: %dmV\n", (uint16_t)(batteryReading * 1000));
+	usbPutString(bat_entry);
+	ADC_SAR_1_Stop();
+    Timer_ADC_Stop();
+    isr_bat_Stop();
 	for (;;)
 	{
 		/* Place your application code here. */
@@ -89,7 +111,6 @@ int main(void)
 			{
 				dutyCycle = 0;
 			}
-
 			PWM_M1_WriteCompare(PWM_MAX * (dutyCycle / (float)100));
 			PWM_M2_WriteCompare(PWM_MAX * (dutyCycle / (float)100));
 		}
