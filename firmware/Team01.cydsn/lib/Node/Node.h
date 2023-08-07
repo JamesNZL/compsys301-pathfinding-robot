@@ -1,8 +1,6 @@
 #ifndef NODE_H_
 #define NODE_H_
 
-#include <stdint.h>
-
 // Use an opaque type to prevent direct access to members
 typedef struct Node Node;
 
@@ -11,10 +9,10 @@ typedef struct Node Node;
  *
  * @warning The allocated memory must be freed with a call to `Node_destroy()`.
  *
- * @param value The value of the node to create.
+ * @param value The pointer to the value of the node to create.
  * @return Node* A pointer to the created node, or `NULL` if there was an error.
  */
-Node *Node_create(uint32_t value);
+Node *Node_create(void *value);
 /**
  * @brief Free the memory allocated to a node.
  *
@@ -26,9 +24,9 @@ void Node_destroy(Node *node);
  * @brief Get the value of a node.
  *
  * @param node The pointer to the node.
- * @return uint32_t The value of the node, or `0` if a `NULL` pointer was provided.
+ * @return void* The void pointer to the value of the node, or `0` if a `NULL` pointer was provided.
  */
-uint32_t Node_getValue(Node *node);
+void *Node_getValue(Node *node);
 
 /**
  * @brief Create an edge between two nodes.

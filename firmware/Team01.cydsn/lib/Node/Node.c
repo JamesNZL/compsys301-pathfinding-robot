@@ -4,11 +4,11 @@
 
 typedef struct Node
 {
-	uint32_t value;
+	void *value;
 	struct Node *next;
 } Node;
 
-Node *Node_create(uint32_t value)
+Node *Node_create(void *value)
 {
 	Node *node = malloc(sizeof(Node));
 	if (node == NULL)
@@ -33,7 +33,7 @@ void Node_destroy(Node *node)
 	free(node);
 }
 
-uint32_t Node_getValue(Node *node)
+void *Node_getValue(Node *node)
 {
 	if (node == NULL)
 	{
