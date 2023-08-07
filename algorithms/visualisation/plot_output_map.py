@@ -5,18 +5,36 @@ import os
 import numpy as np
 
 
-def read_file_to_matrix(filename):
+def process_maze(lines):
     matrix = []
-    with open(filename, 'r') as file:
-        for line in file:
-            if line.strip() == "==END":
-                break
-            row = [int(digit) for digit in line.strip()]
-            matrix.append(row)
+    for line in lines:
+        row = [int(digit) for digit in line.strip()]
+        matrix.append(row)
     return matrix
 
 
-def plot_matrix(matrix):
+def process_other_data(lines):
+    other_data = lines
+    return other_data
+
+
+def process_file(filename):
+    with open(filename, 'r') as file:
+        lines = file.readlines()
+
+    end_flag_index = lines.index("==END\n")
+
+    maze_lines = lines[:end_flag_index]
+    other_data_lines = lines[end_flag_index + 1:]
+
+    data = {}
+    data["maze"] = process_maze(maze_lines)
+    data["instructions"] = process_other_data(other_data_lines)
+
+    return data
+
+
+def plot_maze(matrix):
 
     cmap = colors.ListedColormap(['white', 'black', 'blue'])
     x_width = len(matrix[0])
@@ -40,6 +58,7 @@ def plot_matrix(matrix):
 
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, 'outputs/mazePath.txt')
-matrix = read_file_to_matrix(filename)
+data = process_file(filename)
 
-plot_matrix(matrix)
+print(data["instructions"])
+plot_maze(data["maze"])
