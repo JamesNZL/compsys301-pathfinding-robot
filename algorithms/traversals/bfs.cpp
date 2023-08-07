@@ -1,7 +1,7 @@
 #include "../data structures/abstractTraversal.h"
 #include "../data structures/graph.h"
-#include "../utils/display.h"
 #include "../utils/indexConversion.h"
+#include "../utils/outputs.h"
 #include <iostream>
 #include <queue>
 #include <stack>
@@ -97,7 +97,7 @@ int main() {
     printAdjList(testGraph.adjList);
     // start BFS
     pair<int, int> start = make_pair<int, int>(1, 1);
-    pair<int, int> end = make_pair<int, int>(1, 17);
+    pair<int, int> end = make_pair<int, int>(17, 1);
     testBFS.findShortestPath(start, end);
     testBFS.printShortestPath();
     testBFS.exportPathToFile();

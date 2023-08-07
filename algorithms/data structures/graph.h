@@ -55,7 +55,7 @@ private:
 
     bool isInBounds(int x, int y) {
         bool horizontallyInBounds = x >= 0 && x < mazeWidth;
-        bool verticallyInBounds = y >= 0 && x < mazeHeight;
+        bool verticallyInBounds = y >= 0 && y < mazeHeight;
         return horizontallyInBounds && verticallyInBounds;
     }
     void createMaze(string filepath) {
