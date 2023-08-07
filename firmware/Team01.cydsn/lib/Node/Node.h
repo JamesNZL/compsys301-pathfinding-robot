@@ -29,7 +29,7 @@ void Node_destroy(Node *node);
  * @brief Get the value of a node.
  *
  * @param node The pointer to the node.
- * @return uint32_t The value of the node.
+ * @return uint32_t The value of the node, or `0` if a `NULL` pointer was provided.
  */
 uint32_t Node_getValue(Node *node);
 

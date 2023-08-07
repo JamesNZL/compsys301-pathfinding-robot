@@ -31,7 +31,7 @@ uint32_t Node_getValue(Node *node)
 {
 	if (node == NULL)
 	{
-		return NULL;
+		return 0;
 	}
 
 	return node->value;
