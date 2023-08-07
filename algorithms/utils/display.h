@@ -16,6 +16,8 @@ void printMaze(vector<vector<int>> maze) {
 
 void printAdjList(unordered_map<int, vector<int>> adjList) {
     for (auto const &pair : adjList) {
+        int key = pair.first;
+        cout << key << ": ";
         vector<int> list = pair.second;
         for (int i : list) {
             cout << i << " ";

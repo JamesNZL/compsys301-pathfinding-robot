@@ -29,12 +29,13 @@ public:
         q.push(start1dCoord);
         visited[start1dCoord] = true;
         int current;
-
         while (!q.empty()) {
             current = q.front();
             q.pop();
-            if (current == end1dCoord)
+            cout << current << "\n";
+            if (current == end1dCoord) {
                 break;
+            }
             for (int neighbour : adjList[current]) {
                 if (!visited[neighbour]) {
                     visited[neighbour] = true;
@@ -64,6 +65,24 @@ public:
                  << " ";
         }
     }
+    void exportPathToFile() override {
+        vector<vector<int>> maze = graph.maze;
+        for (pair<int, int> coords : shortestPath) {
+            int x = coords.first;
+            int y = coords.second;
+            // use 2 to mark square as part of shortest path
+            maze[y][x] = 2;
+        }
+        printMaze(maze);
+        ofstream outFile("outputs/mazePath.txt");
+        for (vector<int> list : maze) {
+            for (int i : list) {
+                outFile << i;
+            }
+            outFile << endl;
+        }
+        outFile.close();
+    }
 
 private:
     Graph graph;
@@ -75,10 +94,12 @@ int main() {
     Graph testGraph("../maps/map_1.txt");
     GraphBFS testBFS(testGraph);
     printMaze(testGraph.maze);
+    printAdjList(testGraph.adjList);
     // start BFS
     pair<int, int> start = make_pair<int, int>(1, 1);
     pair<int, int> end = make_pair<int, int>(1, 17);
     testBFS.findShortestPath(start, end);
     testBFS.printShortestPath();
+    testBFS.exportPathToFile();
     return 0;
 }
