@@ -8,6 +8,7 @@
 typedef struct Queue
 {
 	Node *front;
+	// Maintain an end pointer to enable O(1) insertions
 	Node *end;
 } Queue;
 
