@@ -30,6 +30,16 @@ void Queue_destroy(Queue *queue)
 	free(queue);
 }
 
+Node *Queue_peek(Queue *queue)
+{
+	if (queue == NULL || Queue_isEmpty(queue))
+	{
+		return NULL;
+	}
+
+	return queue->head;
+}
+
 Node *Queue_pop(Queue *queue)
 {
 	if (queue == NULL || Queue_isEmpty(queue))

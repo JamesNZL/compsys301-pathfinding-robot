@@ -1,7 +1,7 @@
 #ifndef QUEUE_H_
 #define QUEUE_H_
 
-#include "../Node/Node.h"
+#include <Node/Node.h>
 
 #include <stdbool.h>
 
@@ -25,6 +25,14 @@ Queue *Queue_construct(void);
  * @param queue The pointer to the queue to free.
  */
 void Queue_destroy(Queue *queue);
+
+/**
+ * @brief Peek the node at the front of a queue without removing the node.
+ *
+ * @param queue The pointer to the queue.
+ * @return Node* The pointer to the node, or `NULL` if the queue is empty;
+ */
+Node *Queue_peek(Queue *queue);
 
 /**
  * @brief Pop the node at the front of a queue.
