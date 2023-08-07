@@ -45,7 +45,7 @@ void Queue_append(Queue *queue, Node *node)
 {
 	if (queue == NULL)
 	{
-		return NULL;
+		return;
 	}
 
 	// Case 1: queue is empty
