@@ -81,10 +81,6 @@ int main() {
     }
     testBFS.findShortestPath(start, end);
     vector<Movement> movements = findMovements(Direction::UP, testGraph.maze, testBFS.shortestPath);
-    vector<string> names = {"left", "right", "straight", "around", "skip"};
-    for (Movement movement : movements) {
-        cout << names[movement] << " ";
-    }
-    exportPathToFile(testGraph, testBFS.shortestPath);
+    exportPathToFile(testGraph, testBFS.shortestPath, movements);
     return 0;
 }

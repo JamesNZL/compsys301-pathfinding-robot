@@ -5,6 +5,7 @@
 
 using namespace std;
 
+vector<string> names = {"left", "right", "straight", "around", "skip"};
 enum Direction {
     UP,
     DOWN,
@@ -96,6 +97,7 @@ Movement getRequiredMovement(Direction current, Direction next) {
         }
     } break;
     }
+    return Movement::SKIP_TURN;
 }
 vector<Movement> findMovements(Direction startingDirection, vector<vector<int>> maze, vector<pair<int, int>> shortestPath) {
     Direction currentDirection = startingDirection;
