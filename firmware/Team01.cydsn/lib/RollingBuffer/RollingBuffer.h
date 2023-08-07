@@ -24,6 +24,17 @@ RollingBuffer *RollingBuffer_construct(void **array, uint16_t length);
 void RollingBuffer_destroy(RollingBuffer *buffer);
 
 /**
+ * @brief Get the element at a specified index.
+ *
+ * @note The index is relative to the current head of the rolling buffer.
+ *
+ * @param buffer The pointer to the rolling buffer.
+ * @param index The index (relative to the head of the buffer) of the element.
+ * @return void* The pointer to the element.
+ */
+void *RollingBuffer_get_element(RollingBuffer *buffer, uint16_t index);
+
+/**
  * @brief Push an element to the tail of the rolling buffer.
  *
  * @param buffer The pointer to the rolling buffer.

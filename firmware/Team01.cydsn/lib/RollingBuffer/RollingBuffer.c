@@ -42,6 +42,12 @@ void RollingBuffer_destroy(RollingBuffer *buffer)
 	free(buffer);
 }
 
+void *RollingBuffer_get_element(RollingBuffer *buffer, uint16_t index)
+{
+	uint16_t arrayIndex = (buffer->head + index) % buffer->length;
+	return buffer->array[arrayIndex];
+}
+
 void RollingBuffer_push(RollingBuffer *buffer, void *data)
 {
 	if (is_buffer_full(buffer))
