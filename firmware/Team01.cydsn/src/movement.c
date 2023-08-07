@@ -1,6 +1,22 @@
 #include "movement.h"
 #include <project.h>
 
+CY_ISR(adjustMotors)
+{
+    ACTUAL_PULSE_L = QuadDec_M1_GetCounter();
+    ACTUAL_PULSE_R = QuadDec_M2_GetCounter();
+    //Store pulses in data structure
+    QuadDec_M1_SetCounter(0);
+    QuadDec_M2_SetCounter(0);
+}
+
+void init_control_loop()
+{
+    Timer_Motor_Control_Start();
+    isr_adjust_motors_StartEx(adjustMotors);
+    
+}
+
 void Movement_set_pwm_1_duty_cycle(uint8_t percent)
 {
 	// set the compare

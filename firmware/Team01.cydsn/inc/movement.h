@@ -16,6 +16,18 @@ typedef enum Direction
 	DIRECTION_REVERSE,
 } Direction;
 
+//Movement variables
+
+//Target pulse - Desired motor speed to reference in control loop
+volatile int TARGET_PULSE_L, TARGET_PULSE_R;
+//Actual pulse - Measured encoder pulses to compare to target
+volatile int ACTUAL_PULSE_L, ACTUAL_PULSE_R;
+
+/**
+ * @brief Calls the necessary API routines to start control loop components
+ */
+void init_control_loop();
+
 /**
  * @brief Turns the robot right (on the spot) by angle degrees
  *
