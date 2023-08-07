@@ -1,6 +1,6 @@
 #ifndef ABSTRACTTRAVERSAL_H
 #define ABSTRACTTRAVERSAL_H
-#include "../utils/display.h"
+#include "../utils/outputs.h"
 #include "graph.h"
 using namespace std;
 
