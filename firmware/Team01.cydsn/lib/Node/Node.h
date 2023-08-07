@@ -26,7 +26,7 @@ void Node_destroy(Node *node);
  * @param node The pointer to the node.
  * @return void* The void pointer to the value of the node, or `0` if a `NULL` pointer was provided.
  */
-void *Node_getValue(Node *node);
+void *Node_get_value(Node *node);
 
 /**
  * @brief Create an edge between two nodes.
@@ -34,13 +34,13 @@ void *Node_getValue(Node *node);
  * @param node The pointer to the source node.
  * @param next The pointer to the target node.
  */
-void Node_setNext(Node *node, Node *next);
+void Node_set_next(Node *node, Node *next);
 /**
  * @brief Get the target node from a source node.
  *
  * @param node The pointer to the source node.
  * @return Node* The pointer to the target node.
  */
-Node *Node_getNext(Node *node);
+Node *Node_get_next(Node *node);
 
 #endif

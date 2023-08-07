@@ -28,14 +28,14 @@ void Stack_destroy(Stack *stack)
 		return;
 	}
 
-	if (Stack_isEmpty(stack))
+	if (Stack_is_empty(stack))
 	{
 		free(stack);
 		return;
 	}
 
 	// Destroy the nodes on the stack
-	while (!Stack_isEmpty(stack))
+	while (!Stack_is_empty(stack))
 	{
 		Node *top = Stack_pop(stack);
 		Node_destroy(top);
@@ -46,7 +46,7 @@ void Stack_destroy(Stack *stack)
 
 void Stack_clear(Stack *stack)
 {
-	if (stack == NULL || Stack_isEmpty(stack))
+	if (stack == NULL || Stack_is_empty(stack))
 	{
 		return;
 	}
@@ -56,7 +56,7 @@ void Stack_clear(Stack *stack)
 
 Node *Stack_peek(Stack *stack)
 {
-	if (stack == NULL || Stack_isEmpty(stack))
+	if (stack == NULL || Stack_is_empty(stack))
 	{
 		return NULL;
 	}
@@ -66,24 +66,24 @@ Node *Stack_peek(Stack *stack)
 
 Node *Stack_pop(Stack *stack)
 {
-	if (stack == NULL || Stack_isEmpty(stack))
+	if (stack == NULL || Stack_is_empty(stack))
 	{
 		return NULL;
 	}
 
 	Node *top = stack->top;
 	// Case 1: stack has 1 element
-	if (Node_getNext(top) == NULL)
+	if (Node_get_next(top) == NULL)
 	{
 		stack->top = NULL;
 	}
 	// Case 2: stack has many elements
 	else
 	{
-		stack->top = Node_getNext(top);
+		stack->top = Node_get_next(top);
 	}
 
-	Node_setNext(top, NULL);
+	Node_set_next(top, NULL);
 	return top;
 }
 
@@ -95,19 +95,19 @@ void Stack_push(Stack *stack, Node *node)
 	}
 
 	// Case 1: stack is empty
-	if (Stack_isEmpty(stack))
+	if (Stack_is_empty(stack))
 	{
 		stack->top = node;
 	}
 	// Case 2: stack is not empty
 	else
 	{
-		Node_setNext(node, stack->top);
+		Node_set_next(node, stack->top);
 		stack->top = node;
 	}
 }
 
-uint8_t Stack_isEmpty(Stack *stack)
+uint8_t Stack_is_empty(Stack *stack)
 {
 	if (stack == NULL)
 	{

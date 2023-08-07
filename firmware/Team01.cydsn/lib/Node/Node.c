@@ -33,7 +33,7 @@ void Node_destroy(Node *node)
 	free(node);
 }
 
-void *Node_getValue(Node *node)
+void *Node_get_value(Node *node)
 {
 	if (node == NULL)
 	{
@@ -43,7 +43,7 @@ void *Node_getValue(Node *node)
 	return node->value;
 }
 
-void Node_setNext(Node *node, Node *next)
+void Node_set_next(Node *node, Node *next)
 {
 	if (node == NULL)
 	{
@@ -53,7 +53,7 @@ void Node_setNext(Node *node, Node *next)
 	node->next = next;
 }
 
-Node *Node_getNext(Node *node)
+Node *Node_get_next(Node *node)
 {
 	if (node == NULL)
 	{

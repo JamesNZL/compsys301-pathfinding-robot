@@ -59,6 +59,6 @@ void Stack_push(Stack *stack, Node *node);
  * @param stack The pointer to the stack.
  * @return 1 If the stack is empty, or if a `NULL` pointer was provided.
  */
-uint8_t Stack_isEmpty(Stack *stack);
+uint8_t Stack_is_empty(Stack *stack);
 
 #endif

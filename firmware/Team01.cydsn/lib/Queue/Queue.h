@@ -52,6 +52,6 @@ void Queue_append(Queue *queue, Node *node);
  * @param queue The pointer to the queue.
  * @return 1 If the queue is empty, or if a `NULL` pointer was provided.
  */
-uint8_t Queue_isEmpty(Queue *queue);
+uint8_t Queue_is_empty(Queue *queue);
 
 #endif

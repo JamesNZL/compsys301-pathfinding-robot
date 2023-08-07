@@ -31,14 +31,14 @@ void Queue_destroy(Queue *queue)
 		return;
 	}
 
-	if (Queue_isEmpty(queue))
+	if (Queue_is_empty(queue))
 	{
 		free(queue);
 		return;
 	}
 
 	// Destroy the nodes in the queue
-	while (!Queue_isEmpty(queue))
+	while (!Queue_is_empty(queue))
 	{
 		Node *front = Queue_pop(queue);
 		Node_destroy(front);
@@ -49,7 +49,7 @@ void Queue_destroy(Queue *queue)
 
 Node *Queue_peek(Queue *queue)
 {
-	if (queue == NULL || Queue_isEmpty(queue))
+	if (queue == NULL || Queue_is_empty(queue))
 	{
 		return NULL;
 	}
@@ -59,14 +59,14 @@ Node *Queue_peek(Queue *queue)
 
 Node *Queue_pop(Queue *queue)
 {
-	if (queue == NULL || Queue_isEmpty(queue))
+	if (queue == NULL || Queue_is_empty(queue))
 	{
 		return NULL;
 	}
 
 	Node *front = queue->front;
 	// Case 1: queue has 1 element
-	if (Node_getNext(front) == NULL)
+	if (Node_get_next(front) == NULL)
 	{
 		queue->front = NULL;
 		queue->end = NULL;
@@ -74,10 +74,10 @@ Node *Queue_pop(Queue *queue)
 	// Case 2: queue has many elements
 	else
 	{
-		queue->front = Node_getNext(front);
+		queue->front = Node_get_next(front);
 	}
 
-	Node_setNext(front, NULL);
+	Node_set_next(front, NULL);
 	return front;
 }
 
@@ -89,7 +89,7 @@ void Queue_append(Queue *queue, Node *node)
 	}
 
 	// Case 1: queue is empty
-	if (Queue_isEmpty(queue))
+	if (Queue_is_empty(queue))
 	{
 		queue->front = node;
 		queue->end = node;
@@ -97,12 +97,12 @@ void Queue_append(Queue *queue, Node *node)
 	// Case 2: queue is not empty
 	else
 	{
-		Node_setNext(queue->end, node);
+		Node_set_next(queue->end, node);
 		queue->end = node;
 	}
 }
 
-uint8_t Queue_isEmpty(Queue *queue)
+uint8_t Queue_is_empty(Queue *queue)
 {
 	if (queue == NULL)
 	{
