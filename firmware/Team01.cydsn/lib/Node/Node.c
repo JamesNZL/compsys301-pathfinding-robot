@@ -2,7 +2,7 @@
 
 #include <stdlib.h>
 
-Node *Node_create(uint32_t value, Node *next)
+Node *Node_create(uint32_t value)
 {
 	Node *node = malloc(sizeof(Node));
 	if (node == NULL)
@@ -12,7 +12,7 @@ Node *Node_create(uint32_t value, Node *next)
 	}
 
 	node->value = value;
-	node->next = next;
+	node->next = NULL;
 
 	return node;
 }

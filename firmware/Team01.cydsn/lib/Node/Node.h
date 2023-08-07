@@ -15,11 +15,9 @@ typedef struct Node
  * @warning The allocated memory must be freed with a call to `Node_destroy()`.
  *
  * @param value The value of the node to create.
- * TODO: remove this parameter
- * @param next The next node to point to.
  * @return Node* A pointer to the created node, or `NULL` if there was an error.
  */
-Node *Node_create(uint32_t value, Node *next);
+Node *Node_create(uint32_t value);
 /**
  * @brief Free the memory allocated to a node.
  *
