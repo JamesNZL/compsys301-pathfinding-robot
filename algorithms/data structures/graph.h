@@ -19,25 +19,6 @@ public:
         createAdjMatrix();
     }
 
-    void printMaze() {
-        for (vector<int> row : maze) {
-            for (int val : row) {
-                cout << val;
-            }
-            cout << "\n";
-        }
-    }
-
-    void printAdjList() {
-        for (auto const &pair : adjList) {
-            vector<int> list = pair.second;
-            for (int i : list) {
-                cout << i << " ";
-            }
-            cout << "\n";
-        }
-    }
-
     vector<vector<int>> maze;
     // TODO: every node has max 4 neighbours, possible optimization?
     unordered_map<int, vector<int>> adjList;

@@ -11,7 +11,11 @@ public:
     };
     virtual void findShortestPath(pair<int, int> start, pair<int, int> end) = 0;
     virtual void printShortestPath() = 0;
-    virtual void exportPathToFile() = 0;
+    void exportPathToFile(){};
+
+private:
+    Graph graph;
+    vector<pair<int, int>> shortestPath;
 };
 
 #endif
