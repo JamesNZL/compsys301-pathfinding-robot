@@ -37,7 +37,7 @@ void printAdjList(unordered_map<int, vector<int>> adjList) {
     cout << "\n";
 }
 
-void exportPathToFile(Graph graph, vector<pair<int, int>> shortestPath, vector<Movement> movements) {
+void exportPathToFile(Graph graph, vector<pair<int, int>> shortestPath, vector<Movement> movements, Direction startingDirection) {
     vector<vector<int>> maze = graph.maze;
     for (pair<int, int> coords : shortestPath) {
         int x = coords.first;
@@ -53,10 +53,13 @@ void exportPathToFile(Graph graph, vector<pair<int, int>> shortestPath, vector<M
         }
         outFile << endl;
     }
-    outFile << "==END" << endl;
+    outFile << "==ENDMAZE" << endl;
     for (Movement movement : movements) {
-        outFile << names[movement] << " ";
+        outFile << movementStrings[movement] << " ";
     }
+    outFile << endl
+            << "==ENDDIRS" << endl;
+    outFile << directionStrings[startingDirection];
     outFile.close();
 }
 #endif

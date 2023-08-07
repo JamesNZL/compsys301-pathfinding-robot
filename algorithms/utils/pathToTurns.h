@@ -5,7 +5,8 @@
 
 using namespace std;
 
-vector<string> names = {"left", "right", "straight", "around", "skip"};
+vector<string> movementStrings = {"left", "right", "straight", "around", "skip"};
+vector<string> directionStrings = {"up", "down", "left", "right"};
 enum Direction {
     UP,
     DOWN,

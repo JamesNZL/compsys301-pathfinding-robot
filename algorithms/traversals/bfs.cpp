@@ -112,6 +112,6 @@ int main() {
     }
     testBFS.findShortestPath(start, end);
     vector<Movement> movements = findMovements(startingDirection, testGraph.maze, testBFS.shortestPath);
-    exportPathToFile(testGraph, testBFS.shortestPath, movements);
+    exportPathToFile(testGraph, testBFS.shortestPath, movements, startingDirection);
     return 0;
 }

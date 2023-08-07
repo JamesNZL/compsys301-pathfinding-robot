@@ -13,8 +13,13 @@ def process_maze(lines):
     return matrix
 
 
-def process_other_data(lines):
+def process_directions(lines):
     other_data = lines
+    return other_data
+
+
+def process_starting_direction(line):
+    other_data = line
     return other_data
 
 
@@ -22,14 +27,18 @@ def process_file(filename):
     with open(filename, 'r') as file:
         lines = file.readlines()
 
-    end_flag_index = lines.index("==END\n")
+    end_maze_index = lines.index("==ENDMAZE\n")
+    end_dirs_index = lines.index("==ENDDIRS\n")
 
-    maze_lines = lines[:end_flag_index]
-    other_data_lines = lines[end_flag_index + 1:]
+    maze_lines = lines[:end_maze_index]
+    direction_lines = lines[end_maze_index+1:end_dirs_index]
+    starting_direction_lines = lines[end_dirs_index+1]
 
     data = {}
     data["maze"] = process_maze(maze_lines)
-    data["instructions"] = process_other_data(other_data_lines)
+    data["instructions"] = process_directions(direction_lines)
+    data["starting_direction"] = process_starting_direction(
+        starting_direction_lines)
 
     return data
 
@@ -60,5 +69,7 @@ dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, 'outputs/mazePath.txt')
 data = process_file(filename)
 
+print("Steps needed:")
 print(data["instructions"])
+print("Starting facing: " + data["starting_direction"])
 plot_maze(data["maze"])
