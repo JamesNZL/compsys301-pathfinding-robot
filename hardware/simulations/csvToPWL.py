@@ -18,7 +18,6 @@ def copy_files_except_first_two_lines(source_dir, dest_dir):
                 
                 # Skip first two lines
                 next(csv_reader)
-                next(csv_reader)
 
                 # Copy the rest
                 for row in csv_reader:
