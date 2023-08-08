@@ -26,4 +26,4 @@ def copy_files_except_first_two_lines(source_dir, dest_dir):
                     out_f.write('\t'.join(row) + '\n')
 
 # use the function
-copy_files_except_first_two_lines('C:\\Users\\AKLbc\\Desktop\\301\\hardware\\photodiode', 'C:\\Users\\AKLbc\\Desktop\\301\\hardware\\simulations\\Photodiode PWL Sources')
+copy_files_except_first_two_lines('C:\\Users\\AKLbc\\Desktop\\301\\hardware\\transimpedance', 'C:\\Users\\AKLbc\\Desktop\\301\\hardware\\simulations\\Transimpedance PWL Sources')
