@@ -3,18 +3,18 @@
 
 CY_ISR(adjustMotors)
 {
-    LED_Write(1);
     ACTUAL_PULSE_L = QuadDec_M1_GetCounter();
     ACTUAL_PULSE_R = QuadDec_M2_GetCounter();
     //Store pulses in data structure
-    PULSE_DIFF = TARGET_PULSE_L/ACTUAL_PULSE_L;
-    PWM_1_WriteCompare(PWM_1_ReadCompare() * PULSE_DIFF);
+    PULSE_DIFF = TARGET_PULSE_L - ACTUAL_PULSE_L;
+    PWM_1_WriteCompare(PWM_1_ReadCompare() + PULSE_DIFF);
     
     PULSE_DIFF = TARGET_PULSE_R/ACTUAL_PULSE_R;
-    PWM_2_WriteCompare(PWM_2_ReadCompare() * PULSE_DIFF);
+    PWM_2_WriteCompare(PWM_2_ReadCompare() + PULSE_DIFF);
     
     QuadDec_M1_SetCounter(0);
     QuadDec_M2_SetCounter(0);
+    Timer_Motor_Control_ReadStatusRegister();
 }
 
 void init_control_loop()
