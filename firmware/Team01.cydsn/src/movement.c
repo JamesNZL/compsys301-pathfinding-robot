@@ -17,10 +17,13 @@ CY_ISR(adjustMotors)
 	 * error = TPL - APL
 	 * correction = (error/target * pwmMax)
 	 * pwm_writeCompare( PWM_readCompare + correction > pwmMax ? pwmMax : PWM_readCompare + correction)
+    actual 0, target 50
+    error = 50, we want to increase the pulses per 1/4 sec by 50
+    so we need to change the PWM to a ratio of targetPulse/maxPulse
 	 */
 	PULSE_ERROR = TARGET_PULSE_L - APPARENT_PULSE_L;
 	correction = PULSE_ERROR / TARGET_PULSE_L * PWM_MAX;
-	next_PWM = CURRENT_PWM_L + correction > PWM_MAX ? PWM_MAX : CURRENT_PWM_L + correction;
+	next_PWM = CURRENT_PWM_L + PULSE_ERROR/4; //> PWM_MAX ? PWM_MAX : CURRENT_PWM_L + correction;
 	PWM_1_WriteCompare(next_PWM);
 
 	PULSE_ERROR = TARGET_PULSE_R - APPARENT_PULSE_R;

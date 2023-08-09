@@ -8,6 +8,7 @@
 #define MOTOR_RIGHT_CR_POS 1
 
 #define PWM_MAX			   255
+#define PULSE_MAX_QUARTER  200
 
 /**
  * @brief The possible movement directions for the robot.
@@ -21,7 +22,7 @@ typedef enum Direction
 // Movement variables
 
 // Target pulse - Desired motor speed to reference in control loop
-volatile uint8_t TARGET_PULSE_L, TARGET_PULSE_R;
+uint8_t TARGET_PULSE_L, TARGET_PULSE_R;
 // Apparent pulse - Measured encoder pulses to compare to target
 volatile uint8_t APPARENT_PULSE_L, APPARENT_PULSE_R, TOTAL_PULSE_L, TOTAL_PULSE_R;
 volatile float PULSE_ERROR, CURRENT_PWM_L, CURRENT_PWM_R;
