@@ -1,37 +1,52 @@
 #include "movement.h"
 #include <project.h>
 
+volatile float correction, next_PWM;
 CY_ISR(adjustMotors)
 {
-    ACTUAL_PULSE_L = QuadDec_M1_GetCounter();
-    ACTUAL_PULSE_R = QuadDec_M2_GetCounter();
-    //Store pulses in data structure
-    PULSE_DIFF = TARGET_PULSE_L - ACTUAL_PULSE_L;
-    PWM_1_WriteCompare(PWM_1_ReadCompare() + PULSE_DIFF);
-    
-    PULSE_DIFF = TARGET_PULSE_R/ACTUAL_PULSE_R;
-    PWM_2_WriteCompare(PWM_2_ReadCompare() + PULSE_DIFF);
-    
-    QuadDec_M1_SetCounter(0);
-    QuadDec_M2_SetCounter(0);
-    Timer_Motor_Control_ReadStatusRegister();
+	APPARENT_PULSE_L = QuadDec_M1_GetCounter();
+	APPARENT_PULSE_R = QuadDec_M2_GetCounter();
+	CURRENT_PWM_L = PWM_1_ReadCompare();
+	CURRENT_PWM_R = PWM_2_ReadCompare();
+	// Store pulses in data structure
+
+	TOTAL_PULSE_L += APPARENT_PULSE_L;
+	TOTAL_PULSE_R += APPARENT_PULSE_R;
+
+	/* Correction Algorithm:
+	 * error = TPL - APL
+	 * correction = (error/target * pwmMax)
+	 * pwm_writeCompare( PWM_readCompare + correction > pwmMax ? pwmMax : PWM_readCompare + correction)
+	 */
+	PULSE_ERROR = TARGET_PULSE_L - APPARENT_PULSE_L;
+	correction = PULSE_ERROR / TARGET_PULSE_L * PWM_MAX;
+	next_PWM = CURRENT_PWM_L + correction > PWM_MAX ? PWM_MAX : CURRENT_PWM_L + correction;
+	PWM_1_WriteCompare(next_PWM);
+
+	PULSE_ERROR = TARGET_PULSE_R - APPARENT_PULSE_R;
+	correction = PULSE_ERROR / TARGET_PULSE_R * PWM_MAX;
+	next_PWM = CURRENT_PWM_R + correction > PWM_MAX ? PWM_MAX : CURRENT_PWM_R + correction;
+	PWM_2_WriteCompare(next_PWM);
+
+	QuadDec_M1_SetCounter(0);
+	QuadDec_M2_SetCounter(0);
+	Timer_Motor_Control_ReadStatusRegister();
 }
 
 void init_control_loop()
 {
-    Timer_Motor_Control_Start();
-    isr_adjust_motors_StartEx(adjustMotors);
-    
+	Timer_Motor_Control_Start();
+	isr_adjust_motors_StartEx(adjustMotors);
 }
 
 void set_target_pulse_L(uint8_t target)
 {
-    TARGET_PULSE_L = target;
+	TARGET_PULSE_L = target;
 }
 
 void set_target_pulse_R(uint8_t target)
 {
-    TARGET_PULSE_R = target;
+	TARGET_PULSE_R = target;
 }
 
 void Movement_set_pwm_1_duty_cycle(uint8_t percent)
