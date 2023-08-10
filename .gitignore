@@ -40,3 +40,9 @@ Project\ Logs
 
 ## Ignore MATLAB autosave files
 *.asv
+
+## Ignore Autodesk Inventor autosave files
+OldVersions/
+
+## Ignore temporary files
+*.tmp
