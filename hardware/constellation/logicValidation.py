@@ -115,6 +115,11 @@ def determine_action(
     if front_left and front_right and rear_left and rear_right:
         return "Rotate left and right to acquire valid state"
 
+    print(
+        f"\nERROR:\n{middle}\t{front_left}\t{front_right}\t{rear_left}\t{rear_right}\t{left}\t{right}\n"
+    )
+    raise Exception("No case matched!")
+
 
 def main():
     for middle in BOOLEANS:
