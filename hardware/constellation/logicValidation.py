@@ -83,7 +83,7 @@ def determine_action(
         return "Correct left"
 
     if (
-        (front_left and not front_right and not rear_left and rear_right)
+        (front_left and not front_right and not rear_left and not rear_right)
         or (not middle and front_left and front_right and rear_left and not rear_right)
         or (not front_right and rear_left and not rear_right)
         or (not middle and front_left and not front_right and rear_right)
