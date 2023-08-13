@@ -1,124 +1,176 @@
+from enum import Enum
+
 BOOLEANS = [
     False,
     True,
 ]
 
 
+class Actions(Enum):
+    CONTINUE_PREVIOUS = 0
+    CONTINUE_FORWARD = 1
+    CORRECT_LEFT = 2
+    CORRECT_RIGHT = 3
+    DETERMINE_SKEW_OR_TURN_ABOUT = 4
+    FIND_VALID_STATE = 5
+
+
+ACTION_DESCRIPTIONS = [
+    "Continue previous action",
+    "Continue forward",
+    "Correct left",
+    "Correct right",
+    "Rotate left and right to see if just skewed or whether turn around",
+    "Rotate left and right to acquire valid state",
+]
+
+# Use an enum here so this lookup only has to be a uint8_t[128]
+ACTIONS_LOOKUP = [
+    Actions.CONTINUE_FORWARD,
+    Actions.CONTINUE_FORWARD,
+    Actions.CONTINUE_FORWARD,
+    Actions.CONTINUE_FORWARD,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CONTINUE_FORWARD,
+    Actions.CONTINUE_FORWARD,
+    Actions.CONTINUE_FORWARD,
+    Actions.CONTINUE_FORWARD,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CONTINUE_FORWARD,
+    Actions.CONTINUE_FORWARD,
+    Actions.CONTINUE_FORWARD,
+    Actions.CONTINUE_FORWARD,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.FIND_VALID_STATE,
+    Actions.FIND_VALID_STATE,
+    Actions.FIND_VALID_STATE,
+    Actions.FIND_VALID_STATE,
+    Actions.CONTINUE_PREVIOUS,
+    Actions.CONTINUE_PREVIOUS,
+    Actions.CONTINUE_PREVIOUS,
+    Actions.CONTINUE_PREVIOUS,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CONTINUE_FORWARD,
+    Actions.CONTINUE_FORWARD,
+    Actions.CONTINUE_FORWARD,
+    Actions.CONTINUE_FORWARD,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CONTINUE_PREVIOUS,
+    Actions.CONTINUE_PREVIOUS,
+    Actions.CONTINUE_PREVIOUS,
+    Actions.CONTINUE_PREVIOUS,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CORRECT_LEFT,
+    Actions.CONTINUE_FORWARD,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CONTINUE_PREVIOUS,
+    Actions.CONTINUE_PREVIOUS,
+    Actions.CONTINUE_PREVIOUS,
+    Actions.CONTINUE_PREVIOUS,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CORRECT_RIGHT,
+    Actions.CONTINUE_FORWARD,
+    Actions.DETERMINE_SKEW_OR_TURN_ABOUT,
+    Actions.DETERMINE_SKEW_OR_TURN_ABOUT,
+    Actions.DETERMINE_SKEW_OR_TURN_ABOUT,
+    Actions.DETERMINE_SKEW_OR_TURN_ABOUT,
+    Actions.DETERMINE_SKEW_OR_TURN_ABOUT,
+    Actions.DETERMINE_SKEW_OR_TURN_ABOUT,
+    Actions.DETERMINE_SKEW_OR_TURN_ABOUT,
+    Actions.DETERMINE_SKEW_OR_TURN_ABOUT,
+    Actions.DETERMINE_SKEW_OR_TURN_ABOUT,
+    Actions.DETERMINE_SKEW_OR_TURN_ABOUT,
+    Actions.DETERMINE_SKEW_OR_TURN_ABOUT,
+    Actions.DETERMINE_SKEW_OR_TURN_ABOUT,
+    Actions.FIND_VALID_STATE,
+    Actions.FIND_VALID_STATE,
+    Actions.FIND_VALID_STATE,
+    Actions.FIND_VALID_STATE,
+]
+
+
 def determine_action(
     middle, front_left, front_right, rear_left, rear_right, left, right
 ):
-    if (
-        (
-            not middle
-            and not front_left
-            and not front_right
-            and not rear_left
-            and not rear_right
-        )
-        or (
-            not middle
-            and front_left
-            and front_right
-            and not rear_left
-            and not rear_right
-        )
-        or (
-            middle
-            and not front_left
-            and front_right
-            and rear_left
-            and rear_right
-            and left
-            and right
-        )
-        or (
-            middle
-            and front_left
-            and not front_right
-            and rear_left
-            and rear_right
-            and left
-            and right
-        )
-        or (not front_left and not front_right and rear_left and rear_right)
-    ):
-        return "Continue forward"
-
-    if (
-        (
-            middle
-            and not front_left
-            and not front_right
-            and not rear_left
-            and not rear_right
-        )
-        or (middle and not front_left and front_right and rear_left and not rear_right)
-        or (middle and front_left and not front_right and not rear_left and rear_right)
-    ):
-        return "Continue previous action"
-
-    if (
-        (not front_left and front_right and not rear_left and not rear_right)
-        or (not front_left and not rear_left and rear_right)
-        or (not middle and not front_left and front_right and rear_left)
-        or (not middle and front_left and front_right and not rear_left and rear_right)
-        or (
-            middle
-            and not front_left
-            and front_right
-            and rear_left
-            and rear_right
-            and not left
-        )
-        or (
-            middle
-            and not front_left
-            and front_right
-            and rear_left
-            and rear_right
-            and left
-            and not right
-        )
-    ):
-        return "Correct left"
-
-    if (
-        (front_left and not front_right and not rear_left and not rear_right)
-        or (not middle and front_left and front_right and rear_left and not rear_right)
-        or (not front_right and rear_left and not rear_right)
-        or (not middle and front_left and not front_right and rear_right)
-        or (
-            middle
-            and front_left
-            and not front_right
-            and rear_left
-            and rear_right
-            and not left
-        )
-        or (
-            middle
-            and front_left
-            and not front_right
-            and rear_left
-            and rear_right
-            and left
-            and not right
-        )
-    ):
-        return "Correct right"
-
-    if (middle and front_left and front_right and rear_left and not rear_right) or (
-        middle and front_left and front_right and not rear_left
-    ):
-        return "Rotate left and right to see if just skewed or whether turn around"
-
-    if front_left and front_right and rear_left and rear_right:
-        return "Rotate left and right to acquire valid state"
-
-    print(
-        f"\nERROR:\n{middle}\t{front_left}\t{front_right}\t{rear_left}\t{rear_right}\t{left}\t{right}\n"
+    bitfield = (
+        (middle << 6)
+        | (front_left << 5)
+        | (front_right << 4)
+        | (rear_left << 3)
+        | (rear_right << 2)
+        | (left << 1)
+        | (right)
     )
-    raise Exception("No case matched!")
+
+    return ACTIONS_LOOKUP[bitfield]
 
 
 def main():
@@ -140,7 +192,7 @@ def main():
                                 )
 
                                 print(
-                                    f"{middle}\t{front_left}\t{front_right}\t{rear_left}\t{rear_right}\t{left}\t{right}:\t{action}"
+                                    f"{middle}\t{front_left}\t{front_right}\t{rear_left}\t{rear_right}\t{left}\t{right}:\t{ACTION_DESCRIPTIONS[action.value]}"
                                 )
 
 
