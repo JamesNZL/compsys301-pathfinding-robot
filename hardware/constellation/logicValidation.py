@@ -174,6 +174,13 @@ def determine_action(
 
 
 def main():
+    print(
+        "Middle\t\tFront Left\tFront Right\tRear Left\tRear Right\tLeft\t\tRight\t\tAction"
+    )
+    print(
+        "----------------------------------------------------------------------------------------------------------------------------------------"
+    )
+
     for middle in BOOLEANS:
         for front_left in BOOLEANS:
             for front_right in BOOLEANS:
@@ -192,7 +199,7 @@ def main():
                                 )
 
                                 print(
-                                    f"{middle}\t{front_left}\t{front_right}\t{rear_left}\t{rear_right}\t{left}\t{right}:\t{ACTION_DESCRIPTIONS[action.value]}"
+                                    f"{middle}\t\t{front_left}\t\t{front_right}\t\t{rear_left}\t\t{rear_right}\t\t{left}\t\t{right}\t\t{ACTION_DESCRIPTIONS[action.value]}"
                                 )
 
 
