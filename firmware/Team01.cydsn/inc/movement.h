@@ -8,7 +8,7 @@
 #define MOTOR_RIGHT_CR_POS 1
 
 #define PWM_MAX			   255
-#define PULSE_MAX_QUARTER  200
+#define PULSE_MAX_QUARTER  57
 
 /**
  * @brief The possible movement directions for the robot.
