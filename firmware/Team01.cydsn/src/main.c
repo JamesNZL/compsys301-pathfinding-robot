@@ -30,15 +30,21 @@ int main()
 
 	for (;;)
 	{
-		PULSE_ERROR = TARGET_PULSE_L - APPARENT_PULSE_L;
-		correction = PULSE_ERROR / TARGET_PULSE_L * PWM_MAX;
-		next_PWM = CURRENT_PWM_L + PULSE_ERROR / 4; //> PWM_MAX ? PWM_MAX : CURRENT_PWM_L + correction;
-		PWM_1_WriteCompare(next_PWM);
+		if (IS_SET(FLAGS, FLAG_MOTOR_DATA_READY))
+		{
+			PULSE_ERROR = TARGET_PULSE_L - APPARENT_PULSE_L;
+			correction = PULSE_ERROR / TARGET_PULSE_L * PWM_MAX;
+			next_PWM = CURRENT_PWM_L + PULSE_ERROR / 4; //> PWM_MAX ? PWM_MAX : CURRENT_PWM_L + correction;
+			PWM_1_WriteCompare(next_PWM);
 
-		PULSE_ERROR = TARGET_PULSE_R - APPARENT_PULSE_R;
-		correction = PULSE_ERROR / TARGET_PULSE_R * PWM_MAX;
-		next_PWM = CURRENT_PWM_R + correction > PWM_MAX ? PWM_MAX : CURRENT_PWM_R + correction;
-		PWM_2_WriteCompare(next_PWM);
+			PULSE_ERROR = TARGET_PULSE_R - APPARENT_PULSE_R;
+			correction = PULSE_ERROR / TARGET_PULSE_R * PWM_MAX;
+			next_PWM = CURRENT_PWM_R + correction > PWM_MAX ? PWM_MAX : CURRENT_PWM_R + correction;
+			PWM_2_WriteCompare(next_PWM);
+
+			FLAGS &= ~(1 << FLAG_MOTOR_DATA_READY);
+		}
+
 		/* Place your application code here. */
 		USB_get_input();
 

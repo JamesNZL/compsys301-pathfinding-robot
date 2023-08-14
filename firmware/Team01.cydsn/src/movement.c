@@ -1,4 +1,5 @@
 #include "movement.h"
+#include "common.h"
 #include <project.h>
 
 CY_ISR(adjustMotors)
@@ -14,6 +15,7 @@ CY_ISR(adjustMotors)
 
 	QuadDec_M1_SetCounter(0);
 	QuadDec_M2_SetCounter(0);
+	FLAGS |= (1 << FLAG_MOTOR_DATA_READY);
 	Timer_Motor_Control_ReadStatusRegister();
 }
 
