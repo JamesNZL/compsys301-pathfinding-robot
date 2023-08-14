@@ -25,7 +25,7 @@ typedef enum Direction
 uint8_t TARGET_PULSE_L, TARGET_PULSE_R;
 // Apparent pulse - Measured encoder pulses to compare to target
 volatile uint8_t APPARENT_PULSE_L, APPARENT_PULSE_R, TOTAL_PULSE_L, TOTAL_PULSE_R;
-volatile float PULSE_ERROR, CURRENT_PWM_L, CURRENT_PWM_R;
+volatile float PULSE_ERROR, CURRENT_PWM_L, CURRENT_PWM_R, correction, next_PWM;
 
 /**
  * @brief Calls the necessary API routines to start control loop components
