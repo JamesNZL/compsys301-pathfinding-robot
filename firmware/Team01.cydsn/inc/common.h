@@ -2,10 +2,12 @@
 #define COMMON_H_
 
 #include <stdint.h>
-    
+
 /*
  * Booleans
  */
+typedef uint8 bool;
+
 #define FALSE	0
 #define TRUE	1
 #define UNKNOWN 10
