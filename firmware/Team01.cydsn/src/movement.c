@@ -2,38 +2,38 @@
 #include "common.h"
 #include <project.h>
 
-CY_ISR(adjustMotors)
-{
-	APPARENT_PULSE_L = QuadDec_M1_GetCounter();
-	APPARENT_PULSE_R = QuadDec_M2_GetCounter();
-	CURRENT_PWM_L = PWM_1_ReadCompare();
-	CURRENT_PWM_R = PWM_2_ReadCompare();
-	// Store pulses in data structure
+// CY_ISR(adjustMotors)
+// {
+// 	APPARENT_PULSE_L = QuadDec_M1_GetCounter();
+// 	APPARENT_PULSE_R = QuadDec_M2_GetCounter();
+// CURRENT_PWM_L = PWM_1_ReadCompare();
+// CURRENT_PWM_R = PWM_2_ReadCompare();
+// Store pulses in data structure
 
-	TOTAL_PULSE_L += APPARENT_PULSE_L;
-	TOTAL_PULSE_R += APPARENT_PULSE_R;
+// 	TOTAL_PULSE_L += APPARENT_PULSE_L;
+// 	TOTAL_PULSE_R += APPARENT_PULSE_R;
 
-	QuadDec_M1_SetCounter(0);
-	QuadDec_M2_SetCounter(0);
-	FLAGS |= (1 << FLAG_MOTOR_DATA_READY);
-	Timer_Motor_Control_ReadStatusRegister();
-}
+// 	QuadDec_M1_SetCounter(0);
+// 	QuadDec_M2_SetCounter(0);
+// 	FLAGS |= (1 << FLAG_MOTOR_DATA_READY);
+// 	Timer_Motor_Control_ReadStatusRegister();
+// }
 
-void init_control_loop()
-{
-	Timer_Motor_Control_Start();
-	isr_adjust_motors_StartEx(adjustMotors);
-}
+// void init_control_loop()
+// {
+// 	Timer_Motor_Control_Start();
+// 	isr_adjust_motors_StartEx(adjustMotors);
+// }
 
-void set_target_pulse_L(uint8_t target)
-{
-	TARGET_PULSE_L = target;
-}
+// void set_target_pulse_L(uint8_t target)
+// {
+// 	TARGET_PULSE_L = target;
+// }
 
-void set_target_pulse_R(uint8_t target)
-{
-	TARGET_PULSE_R = target;
-}
+// void set_target_pulse_R(uint8_t target)
+// {
+// 	TARGET_PULSE_R = target;
+// }
 
 void Movement_set_pwm_1_duty_cycle(uint8_t percent)
 {
