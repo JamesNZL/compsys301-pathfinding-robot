@@ -17,10 +17,13 @@ int main()
 	PWM_1_Start();
 	PWM_2_Start();
 
+	QuadDec_M1_Start();
+	QuadDec_M2_Start();
+
 	init_control_loop();
 
 	set_target_pulse_L(30);
-	set_target_pulse_R(50);
+	set_target_pulse_R(10);
 
 #ifdef USE_USB
 	USBUART_Start(0, USBUART_5V_OPERATION);
@@ -32,14 +35,17 @@ int main()
 	{
 		if (IS_SET(FLAGS, FLAG_MOTOR_DATA_READY))
 		{
-			PULSE_ERROR = TARGET_PULSE_L - APPARENT_PULSE_L;
-			correction = PULSE_ERROR / PULSE_MAX_QUARTER * PWM_MAX;
-			next_PWM = CURRENT_PWM_L + PULSE_ERROR > PWM_MAX ? PWM_MAX : CURRENT_PWM_L + correction;
+			static char pulseentry[20];
+			PULSE_ERROR = TARGET_PULSE_L - abs(APPARENT_PULSE_L);
+            sprintf(pulseentry, "L: %d, TL: %d, R: %d\r\n", APPARENT_PULSE_L, (uint8_t)PULSE_ERROR, APPARENT_PULSE_R);
+			USB_put_string(pulseentry);
+			correction = (PULSE_ERROR / (float)PULSE_MAX_QUARTER) * PWM_MAX;
+			next_PWM = (CURRENT_PWM_L + correction > PWM_MAX) ? PWM_MAX : CURRENT_PWM_L + correction;
 			PWM_1_WriteCompare(next_PWM);
 
-			PULSE_ERROR = TARGET_PULSE_R - APPARENT_PULSE_R;
-			correction = PULSE_ERROR / PULSE_MAX_QUARTER * PWM_MAX;
-			next_PWM = CURRENT_PWM_R + correction > PWM_MAX ? PWM_MAX : CURRENT_PWM_R + correction;
+			PULSE_ERROR = TARGET_PULSE_R - abs(APPARENT_PULSE_R);
+			correction = (PULSE_ERROR / (float)PULSE_MAX_QUARTER) * PWM_MAX;
+			next_PWM = (CURRENT_PWM_R + correction > PWM_MAX) ? PWM_MAX : CURRENT_PWM_R + correction;
 			PWM_2_WriteCompare(next_PWM);
 
 			FLAGS &= ~(1 << FLAG_MOTOR_DATA_READY);
