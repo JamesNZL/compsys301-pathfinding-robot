@@ -1,13 +1,13 @@
 #include "commands.h"
 
-#include <stdint.h>
+#include <cytypes.h>
 #include <string.h>
 
 CommandEnumeration Commands_match_command(char *command)
 {
-	for (uint8_t i = 0; COMMAND_LIST[i].enumeration != COMMAND_NOT_FOUND; i++)
+	for (uint8 i = 0; COMMAND_LIST[i].enumeration != COMMAND_NOT_FOUND; i++)
 	{
-		uint8_t commandLength = strlen(COMMAND_LIST[i].keyword);
+		uint8 commandLength = strlen(COMMAND_LIST[i].keyword);
 
 		// Check that the incoming command is the correct length
 		if (command[commandLength] != '\0')
