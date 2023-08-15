@@ -22,7 +22,7 @@ int main()
 
 	init_control_loop();
 
-	set_target_pulse_L(30);
+	set_target_pulse_L(56);
 	set_target_pulse_R(10);
 
 #ifdef USE_USB
@@ -37,7 +37,7 @@ int main()
 		{
 			static char pulseentry[20];
 			PULSE_ERROR = TARGET_PULSE_L - abs(APPARENT_PULSE_L);
-            sprintf(pulseentry, "L: %d, TL: %d, R: %d\r\n", APPARENT_PULSE_L, (uint8_t)PULSE_ERROR, APPARENT_PULSE_R);
+            sprintf(pulseentry, "L: %d, PULSE_ERROR: %d, R: %d\r\n", APPARENT_PULSE_L, (uint8_t)PULSE_ERROR, APPARENT_PULSE_R);
 			USB_put_string(pulseentry);
 			correction = (PULSE_ERROR / (float)PULSE_MAX_QUARTER) * PWM_MAX;
 			next_PWM = (CURRENT_PWM_L + correction > PWM_MAX) ? PWM_MAX : CURRENT_PWM_L + correction;
