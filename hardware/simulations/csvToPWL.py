@@ -18,7 +18,6 @@ def copy_files_except_first_two_lines(source_dir, dest_dir):
                 
                 # Skip first two lines
                 next(csv_reader)
-                next(csv_reader)
 
                 # Copy the rest
                 for row in csv_reader:
@@ -26,4 +25,4 @@ def copy_files_except_first_two_lines(source_dir, dest_dir):
                     out_f.write('\t'.join(row) + '\n')
 
 # use the function
-copy_files_except_first_two_lines('C:\\Users\\AKLbc\\Desktop\\301\\hardware\\phototransistor', 'C:\\Users\\AKLbc\\Desktop\\301\\hardware\\simulations\\PWL Sources')
+copy_files_except_first_two_lines('C:\\Users\\AKLbc\\Desktop\\301\\hardware\\transimpedance', 'C:\\Users\\AKLbc\\Desktop\\301\\hardware\\simulations\\Transimpedance PWL Sources')
