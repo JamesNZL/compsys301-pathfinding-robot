@@ -25,6 +25,20 @@ void Movement_set_M1_pulse(uint16_t target);
 void Movement_set_M2_pulse(uint16_t target);
 
 /**
+ * @brief Turns the robot left (on the spot) by angle degrees
+ *
+ * @param angle The angle (in degrees) to turn left from the current position
+ */
+void Movement_turn_left(uint16_t angle);
+
+/**
+ * @brief Turns the robot right (on the spot) by angle degrees
+ *
+ * @param angle The angle (in degrees) to turn right from the current position
+ */
+void Movement_turn_right(uint16_t angle);
+
+/**
  * @brief sets the direction of BOTH motors to forwards or reverse
  *
  * @param direction the direction to set the motors to
