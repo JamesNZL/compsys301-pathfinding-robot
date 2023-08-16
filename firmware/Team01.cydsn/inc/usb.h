@@ -1,13 +1,13 @@
 #ifndef USB_H_
 #define USB_H_
 
-#define USE_USB
+#define USB_ENABLED
 
-#define BUF_SIZE 64 // USBUART fixed buffer size
-#define CHAR_DEL 0x7F
+#define USB_BUF_SIZE 64 // USBUART fixed buffer size
+#define CHAR_DEL	 0x7F
 
-char USB_input[BUF_SIZE];
-char USB_buffer[BUF_SIZE];
+char USB_input[USB_BUF_SIZE];
+char USB_buffer[USB_BUF_SIZE];
 
 /**
  * @brief Get input from the terminal.

@@ -1,7 +1,7 @@
 #ifndef COMMANDS_H_
 #define COMMANDS_H_
 
-#include <stddef.h>
+#include "common.h"
 
 #define COMMAND_DELIMITER " "
 

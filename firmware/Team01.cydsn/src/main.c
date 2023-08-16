@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-volatile uint8_t FLAGS = 0x00;
+volatile uint8 FLAGS = 0x00;
 
 int main()
 {
@@ -17,7 +17,7 @@ int main()
 	PWM_1_Start();
 	PWM_2_Start();
 
-#ifdef USE_USB
+#ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
 #endif
 
@@ -28,7 +28,7 @@ int main()
 		/* Place your application code here. */
 		USB_get_input();
 
-		if (IS_SET(FLAGS, FLAG_USB_INPUT))
+		if (FLAG_IS_SET(FLAGS, FLAG_USB_INPUT))
 		{
 			FLAGS &= ~(1 << FLAG_USB_INPUT);
 
