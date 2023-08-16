@@ -5,7 +5,7 @@
 
 void USB_put_string(char *s)
 {
-#ifdef USE_USB
+#ifdef USB_ENABLED
 	while (USBUART_CDCIsReady() == 0)
 		;
 
@@ -18,7 +18,7 @@ void USB_put_string(char *s)
 
 void USB_put_char(char c)
 {
-#ifdef USE_USB
+#ifdef USB_ENABLED
 	while (USBUART_CDCIsReady() == 0)
 		;
 
@@ -28,9 +28,9 @@ void USB_put_char(char c)
 
 void USB_get_input(void)
 {
-	static uint8 usbStarted = FALSE;
+	static bool usbStarted = FALSE;
 	static uint16 usbBufCount = 0;
-	static char received[BUF_SIZE];
+	static char received[USB_BUF_SIZE];
 	uint8 c;
 
 	if (!usbStarted)
@@ -63,7 +63,7 @@ void USB_get_input(void)
 				else
 				{
 					// one less else strtok triggers a crash
-					if (usbBufCount > (BUF_SIZE - 2))
+					if (usbBufCount > (USB_BUF_SIZE - 2))
 					{
 						USBUART_PutChar('!');
 					}

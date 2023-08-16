@@ -1,10 +1,9 @@
 #include "handlers.h"
 #include "commands.h"
+#include "common.h"
 #include "movement.h"
 #include "usb.h"
 
-#include <stddef.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 

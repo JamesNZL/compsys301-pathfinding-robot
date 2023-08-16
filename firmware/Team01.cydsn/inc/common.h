@@ -1,11 +1,18 @@
 #ifndef COMMON_H_
 #define COMMON_H_
 
-#include <stdint.h>
+#include <cytypes.h>
+
+/*
+ * Null
+ */
+#define NULL ((void *)0)
 
 /*
  * Booleans
  */
+#define bool	uint8
+
 #define FALSE	0
 #define TRUE	1
 #define UNKNOWN 10
@@ -13,12 +20,25 @@
 /*
  * Flag Bits
  */
-volatile extern uint8_t FLAGS;
+volatile extern uint8 FLAGS;
 
-#define IS_SET(byte, bit)	  byte & (1 << bit)
-#define IS_CLEARED(byte, bit) ~byte & (1 << bit)
+/**
+ * @brief Check whether a flag bit is set.
+ *
+ * @param flags The flag byte(s).
+ * @param bit The position of the flag bit.
+ */
+#define FLAG_IS_SET(flags, bit) flags & (1 << bit)
 
-#define FLAG_USB_INPUT		  0
+/**
+ * @brief Check whether a flag bit is cleared.
+ *
+ * @param flags The flag byte(s).
+ * @param bit The position of the flag bit.
+ */
+#define FLAG_IS_CLEARED(flags, bit) ~flags & (1 << bit)
+
+#define FLAG_USB_INPUT				0
 
 /*
  * Debugging
