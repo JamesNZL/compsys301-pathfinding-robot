@@ -7,8 +7,8 @@
 #define MOTOR_LEFT_CR_POS  0
 #define MOTOR_RIGHT_CR_POS 1
 
-#define PWM_MAX			   255
-#define PULSE_MAX_QUARTER  57
+// #define PWM_MAX			   255
+// #define PULSE_MAX_QUARTER  57
 
 /**
  * @brief The possible movement directions for the robot.
@@ -22,10 +22,10 @@ typedef enum Direction
 // Movement variables
 
 // Target pulse - Desired motor speed to reference in control loop
-int8_t TARGET_PULSE_L, TARGET_PULSE_R;
+// int8_t TARGET_PULSE_L, TARGET_PULSE_R;
 // Apparent pulse - Measured encoder pulses to compare to target
-volatile int8_t APPARENT_PULSE_L, APPARENT_PULSE_R, TOTAL_PULSE_L, TOTAL_PULSE_R;
-volatile float PULSE_ERROR, CURRENT_PWM_L, CURRENT_PWM_R, correction, next_PWM;
+// volatile int8_t APPARENT_PULSE_L, APPARENT_PULSE_R, TOTAL_PULSE_L, TOTAL_PULSE_R;
+// volatile float PULSE_ERROR, CURRENT_PWM_L, CURRENT_PWM_R, correction, next_PWM;
 
 /**
  * @brief Calls the necessary API routines to start control loop components
@@ -39,6 +39,14 @@ void init_control_loop();
  */
 void set_target_pulse_L(uint8_t target);
 void set_target_pulse_R(uint8_t target);
+
+/**
+ * @brief Sets the motor pulse target
+ *
+ * @param target The target amount of pulses for a motor to turn in one second
+ */
+void Movement_set_M1_pulse(uint16_t target);
+void Movement_set_M2_pulse(uint16_t target);
 
 /**
  * @brief Turns the robot right (on the spot) by angle degrees

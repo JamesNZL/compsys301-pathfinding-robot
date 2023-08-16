@@ -35,6 +35,16 @@
 // 	TARGET_PULSE_R = target;
 // }
 
+void Movement_set_M1_pulse(uint16_t target)
+{
+	PWM_1_WriteCompare(PWM_1_ReadPeriod() * ((target + 170.9) / 8.6543) / (float)100);
+}
+
+void Movement_set_M2_pulse(uint16_t target)
+{
+	PWM_2_WriteCompare(PWM_2_ReadPeriod() * ((target + 170.9) / 8.6543) / (float)100);
+}
+
 void Movement_set_pwm_1_duty_cycle(uint8_t percent)
 {
 	// set the compare

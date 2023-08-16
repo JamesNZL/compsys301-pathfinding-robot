@@ -22,8 +22,8 @@ int main()
 
 	// init_control_loop();
 
-	Movement_set_pwm_1_duty_cycle(50);
-	Movement_set_pwm_2_duty_cycle(50);
+	Movement_set_M1_pulse(600);
+	Movement_set_M2_pulse(200);
 
 	// set_target_pulse_L(56);
 	// set_target_pulse_R(10);
