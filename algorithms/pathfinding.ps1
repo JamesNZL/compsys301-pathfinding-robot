@@ -1,11 +1,14 @@
-function CompileAndRunBfs {
+function CompileAndRunAlgorithm {
+    param(
+        [string]$algorithmName
+    )
 
     $currentDir = Get-Location
-    Write-Host "Compiling bfs with g++..."
+    Write-Host "Compiling $algorithmName with g++..."
 
     $traversalDir = Join-Path -Path $currentDir -ChildPath '\traversals'
     Set-Location -Path $traversalDir
-    $gccOutput = & g++ 'bfs.cpp' -o 'bfs' 2>&1
+    $gccOutput = & g++ "$algorithmName.cpp" -o "$algorithmName" 2>&1
     if ($LASTEXITCODE -ne 0) {
         Write-Host "Compilation failed:"
         Write-Host $gccOutput
@@ -14,16 +17,13 @@ function CompileAndRunBfs {
 
     Write-Host "Compilation successful."
 
-    & '.\bfs.exe' 
+    & ".\$algorithmName.exe" 
     Set-Location -Path $currentDir
 }
 
 function VisualisePath {
-
     $currentDir = Get-Location
     $PlotMapPath = Join-Path -Path $currentDir -ChildPath '/visualisation/plot_output_map.py'
-
-
     & python $PlotMapPath
 }
 
@@ -33,19 +33,23 @@ function Main {
         Write-Host "------------------------------------------"
         Write-Host "Options:"
         Write-Host "1. Run BFS"
-        Write-Host "2. Visualise"
-        Write-Host "3. Exit"
+        Write-Host "2. Run Dijkstras"
+        Write-Host "3. Visualise"
+        Write-Host "4. Exit"
 
-        $choice = Read-Host "Enter your choice (1/2/3):"
+        $choice = Read-Host "Enter your choice (1/2/3/4):"
 
         switch ($choice) {
             1 {
-                CompileAndRunBfs -CppFileName $CppFileName
+                CompileAndRunAlgorithm -algorithmName "bfs"
             }
             2 {
-                VisualisePath -PythonFileName $PythonFileName
+                CompileAndRunAlgorithm -algorithmName "dijkstras"
             }
             3 {
+                VisualisePath
+            }
+            4 {
                 return
             }
             default {
