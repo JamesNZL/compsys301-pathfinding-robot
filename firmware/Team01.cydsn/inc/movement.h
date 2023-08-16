@@ -15,6 +15,9 @@ typedef enum Direction
 	DIRECTION_REVERSE,
 } Direction;
 
+volatile extern float OFFSET;
+volatile extern float SLOPE;
+
 /**
  * @brief Sets the motor pulse target
  *

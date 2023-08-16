@@ -2,14 +2,17 @@
 #include "common.h"
 #include <project.h>
 
+volatile float OFFSET = 170.9;
+volatile float SLOPE = 8.6543;
+
 void Movement_set_M1_pulse(uint16 target)
 {
-	PWM_1_WriteCompare(PWM_1_ReadPeriod() * ((target + 170.9) / 8.6543) / (float)100);
+	PWM_1_WriteCompare(PWM_1_ReadPeriod() * ((target + OFFSET) / SLOPE) / (float)100);
 }
 
 void Movement_set_M2_pulse(uint16 target)
 {
-	PWM_2_WriteCompare(PWM_2_ReadPeriod() * ((target + 170.9) / 8.6543) / (float)100);
+	PWM_2_WriteCompare(PWM_2_ReadPeriod() * ((target + OFFSET) / SLOPE) / (float)100);
 }
 
 void Movement_set_pwm_1_duty_cycle(uint8 percent)
