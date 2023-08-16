@@ -15,11 +15,11 @@ void Handlers_change_direction(char *token)
 	{
 		if (strcmp(token, "F") == 0)
 		{
-			MOVEMENT_set_direction(DIRECTION_FORWARD);
+			Movement_set_direction(DIRECTION_FORWARD);
 		}
 		else if (strcmp(token, "R") == 0)
 		{
-			MOVEMENT_set_direction(DIRECTION_REVERSE);
+			Movement_set_direction(DIRECTION_REVERSE);
 		}
 	}
 }
@@ -28,5 +28,5 @@ void Handlers_change_speed(char *token)
 {
 	uint8_t percent = atoi(token);
 	USB_put_string(token);
-	MOVEMENT_set_speed(percent);
+	Movement_set_speed(percent);
 }
