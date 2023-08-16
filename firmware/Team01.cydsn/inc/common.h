@@ -19,7 +19,6 @@ volatile extern uint8_t FLAGS;
 #define IS_CLEARED(byte, bit) ~byte & (1 << bit)
 
 #define FLAG_USB_INPUT		  0
-#define FLAG_MOTOR_DATA_READY 1
 
 /*
  * Debugging

@@ -17,17 +17,6 @@ int main()
 	PWM_1_Start();
 	PWM_2_Start();
 
-	// QuadDec_M1_Start();
-	// QuadDec_M2_Start();
-
-	// init_control_loop();
-
-	Movement_set_M1_pulse(600);
-	Movement_set_M2_pulse(200);
-
-	// set_target_pulse_L(56);
-	// set_target_pulse_R(10);
-
 #ifdef USE_USB
 	USBUART_Start(0, USBUART_5V_OPERATION);
 #endif
@@ -36,24 +25,6 @@ int main()
 
 	for (;;)
 	{
-		// if (IS_SET(FLAGS, FLAG_MOTOR_DATA_READY))
-		// {
-		// 	static char pulseentry[20];
-		// 	PULSE_ERROR = TARGET_PULSE_L - abs(APPARENT_PULSE_L);
-		// 	sprintf(pulseentry, "L: %d, R: %d\r\n", APPARENT_PULSE_L, APPARENT_PULSE_R);
-		// 	USB_put_string(pulseentry);
-		// 	correction = (PULSE_ERROR / (float)PULSE_MAX_QUARTER) * PWM_MAX;
-		// 	next_PWM = (CURRENT_PWM_L + correction > PWM_MAX) ? PWM_MAX : CURRENT_PWM_L + correction;
-		// 	PWM_1_WriteCompare(next_PWM);
-
-		// 	PULSE_ERROR = TARGET_PULSE_R - abs(APPARENT_PULSE_R);
-		// 	correction = (PULSE_ERROR / (float)PULSE_MAX_QUARTER) * PWM_MAX;
-		// 	next_PWM = (CURRENT_PWM_R + correction > PWM_MAX) ? PWM_MAX : CURRENT_PWM_R + correction;
-		// 	PWM_2_WriteCompare(next_PWM);
-
-		// 	FLAGS &= ~(1 << FLAG_MOTOR_DATA_READY);
-		// }
-
 		/* Place your application code here. */
 		USB_get_input();
 
