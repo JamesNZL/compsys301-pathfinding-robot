@@ -2,23 +2,33 @@
 #include "common.h"
 #include <project.h>
 
-volatile float OFFSET = 170.9;
-volatile float SLOPE = 8.6543;
+volatile const float MOVEMENT_OFFSET = 170.9;
+volatile const float MOVEMENT_SLOPE = 8.6543;
 
 void Movement_set_M1_pulse(uint16 target)
 {
-	PWM_1_WriteCompare(PWM_1_ReadPeriod() * ((target + OFFSET) / SLOPE) / (float)100);
+	PWM_1_WriteCompare(PWM_1_ReadPeriod() * ((target + MOVEMENT_OFFSET) / MOVEMENT_SLOPE) / (float)100);
 }
 
 void Movement_set_M2_pulse(uint16 target)
 {
-	PWM_2_WriteCompare(PWM_2_ReadPeriod() * ((target + OFFSET) / SLOPE) / (float)100);
+	PWM_2_WriteCompare(PWM_2_ReadPeriod() * ((target + MOVEMENT_OFFSET) / MOVEMENT_SLOPE) / (float)100);
 }
 
 void Movement_turn_left(uint16 angle)
 {
+	uint16 pulse;
 	// OPTIONAL - OPTIMIZATION
 	// Quick switch case for common turns 90 degree and 180 degree to skip long calculations
+	switch (angle)
+	{
+	case 90:
+		pulse = 99;
+	case 180:
+		pulse = 198;
+	default:
+		pulse = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION);
+	}
 
 	// Convert angle to fraction of circumference by dividing 360
 	// Multiply fraction by total circumference

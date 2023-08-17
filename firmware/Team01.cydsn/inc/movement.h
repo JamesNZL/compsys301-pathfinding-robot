@@ -3,8 +3,12 @@
 
 #include <cytypes.h>
 
-#define MOTOR_LEFT_CR_POS  0
-#define MOTOR_RIGHT_CR_POS 1
+#define MOTOR_LEFT_CR_POS			 0
+#define MOTOR_RIGHT_CR_POS			 1
+
+#define MOVEMENT_PIVOT_CIRCUMFERENCE 354.277
+#define MOVEMENT_WHEEL_CIRCUMFERENCE 203.57
+#define MOVEMENT_PULSE_REVOLUTION	 288
 
 /**
  * @brief The possible movement directions for the robot.
@@ -15,8 +19,8 @@ typedef enum Direction
 	DIRECTION_REVERSE,
 } Direction;
 
-volatile extern float OFFSET;
-volatile extern float SLOPE;
+volatile const extern float MOVEMENT_OFFSET;
+volatile const extern float MOVEMENT_SLOPE;
 
 /**
  * @brief Sets the motor pulse target
