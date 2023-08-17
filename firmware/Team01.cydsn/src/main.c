@@ -18,6 +18,7 @@ int main()
 	PWM_2_Start();
 
 	QuadDec_M1_Start();
+    QuadDec_M2_Start();
 
 	CyDelay(5000);
 
@@ -25,6 +26,7 @@ int main()
 	Movement_set_M2_pulse(300);
 
 	Movement_turn_left(90);
+    Movement_turn_right(90);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
