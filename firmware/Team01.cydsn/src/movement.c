@@ -15,6 +15,26 @@ void Movement_set_M2_pulse(uint16 target)
 	PWM_2_WriteCompare(PWM_2_ReadPeriod() * ((target + OFFSET) / SLOPE) / (float)100);
 }
 
+void Movement_turn_left(uint16 angle)
+{
+	// OPTIONAL - OPTIMIZATION
+	// Quick switch case for common turns 90 degree and 180 degree to skip long calculations
+
+	// Convert angle to fraction of circumference by dividing 360
+	// Multiply fraction by total circumference
+	// Divide by circumference of wheel to determine revs needed
+	// Convert revs to pulses through multiply 228
+
+	// Poll to wait until pulse target is met
+	// Exit loop
+	// Set both motors forward
+	// OPTIONAL: Store working rpm and return to it - #define CONSTANT_SPEED 400
+}
+
+void Movement_turn_right(uint16 angle)
+{
+}
+
 void Movement_set_pwm_1_duty_cycle(uint8 percent)
 {
 	// set the compare
