@@ -17,23 +17,31 @@ void Movement_set_M2_pulse(uint16 target)
 
 void Movement_turn_left(uint16 angle)
 {
-	uint16 pulse;
+	uint16 pulseTarget;
+	// Read current decoder value in order to preserve the count, instead of reset to 0.
+	uint16 pulseMeas = QuadDec_M1_GetCounter();
 	// OPTIONAL - OPTIMIZATION
 	// Quick switch case for common turns 90 degree and 180 degree to skip long calculations
 	switch (angle)
 	{
 	case 90:
-		pulse = 99;
+		pulseTarget = 99;
 	case 180:
-		pulse = 198;
+		pulseTarget = 198;
 	default:
-		pulse = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION);
+		// Convert angle to fraction of circumference by dividing 360
+		// Multiply fraction by total circumference
+		// Divide by circumference of wheel to determine revs needed
+		// Convert revs to pulses through multiply 228
+		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION);
 	}
 
-	// Convert angle to fraction of circumference by dividing 360
-	// Multiply fraction by total circumference
-	// Divide by circumference of wheel to determine revs needed
-	// Convert revs to pulses through multiply 228
+	// Reverse left motor to initiate turning
+
+	while (QuadDec_M1_GetCounter() - pulseMeas < pulseTarget)
+	{
+		;
+	}
 
 	// Poll to wait until pulse target is met
 	// Exit loop
