@@ -37,16 +37,19 @@ void Movement_turn_left(uint16 angle)
 	}
 
 	// Reverse left motor to initiate turning
+	Movement_set_direction_left(DIRECTION_REVERSE);
+	// MOTOR SPEED = CONST TURNING SPEED?
 
+	// Poll to wait until pulse target is met
 	while (QuadDec_M1_GetCounter() - pulseMeas < pulseTarget)
 	{
 		;
 	}
-
-	// Poll to wait until pulse target is met
 	// Exit loop
 	// Set both motors forward
+	Movement_set_direction_left(DIRECTION_FORWARD);
 	// OPTIONAL: Store working rpm and return to it - #define CONSTANT_SPEED 400
+	// NOTE: Probably not necessary above. Just keep them constant.
 }
 
 void Movement_turn_right(uint16 angle)
