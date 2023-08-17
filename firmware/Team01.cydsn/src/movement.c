@@ -1,6 +1,19 @@
 #include "movement.h"
-
+#include "common.h"
 #include <project.h>
+
+volatile float OFFSET = 170.9;
+volatile float SLOPE = 8.6543;
+
+void Movement_set_M1_pulse(uint16 target)
+{
+	PWM_1_WriteCompare(PWM_1_ReadPeriod() * ((target + OFFSET) / SLOPE) / (float)100);
+}
+
+void Movement_set_M2_pulse(uint16 target)
+{
+	PWM_2_WriteCompare(PWM_2_ReadPeriod() * ((target + OFFSET) / SLOPE) / (float)100);
+}
 
 void Movement_set_pwm_1_duty_cycle(uint8 percent)
 {
@@ -70,6 +83,9 @@ void Movement_set_direction(Direction direction)
 
 void Movement_set_speed_left(uint8 percent)
 {
+	// While (encoder target < encoder reading){
+	// Increase duty cycle
+	//}
 	Movement_set_pwm_1_duty_cycle(percent);
 }
 

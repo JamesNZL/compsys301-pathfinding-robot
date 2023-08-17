@@ -15,19 +15,30 @@ typedef enum Direction
 	DIRECTION_REVERSE,
 } Direction;
 
+volatile extern float OFFSET;
+volatile extern float SLOPE;
+
 /**
- * @brief Turns the robot right (on the spot) by angle degrees
+ * @brief Sets the motor pulse target
  *
- * @param angle The angle (in degrees) to turn right from the current position
+ * @param target The target amount of pulses for a motor to turn in one second
  */
-void Movement_turn_left(uint8 angle);
+void Movement_set_M1_pulse(uint16 target);
+void Movement_set_M2_pulse(uint16 target);
 
 /**
  * @brief Turns the robot left (on the spot) by angle degrees
  *
  * @param angle The angle (in degrees) to turn left from the current position
  */
-void Movement_turn_right(uint8 angle);
+void Movement_turn_left(uint16 angle);
+
+/**
+ * @brief Turns the robot right (on the spot) by angle degrees
+ *
+ * @param angle The angle (in degrees) to turn right from the current position
+ */
+void Movement_turn_right(uint16 angle);
 
 /**
  * @brief sets the direction of BOTH motors to forwards or reverse
