@@ -18,7 +18,7 @@ void Movement_set_M2_pulse(uint16 target)
 void Movement_turn_left(uint16 angle)
 {
 	uint16 pulseTarget;
-	// Read current decoder value in order to preserve the count, instead of reset to 0. - uint16 pulseMeas = quaddec_m1_getcounter();
+	// uint16 pulseMeas = QuadDec_M1_GetCounter();
 	switch (angle)
 	{
 	case 90:
@@ -51,7 +51,7 @@ void Movement_turn_left(uint16 angle)
 void Movement_turn_right(uint16 angle)
 {
 	uint16 pulseTarget;
-	// Read current decoder value in order to preserve the count, instead of reset to 0. - uint16 pulseMeas = quaddec_m1_getcounter();
+	// uint16 pulseMeas = QuadDec_M1_GetCounter();
 	switch (angle)
 	{
 	case 90:
