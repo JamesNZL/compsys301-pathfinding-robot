@@ -19,74 +19,66 @@ void Movement_turn_left(uint16 angle)
 {
 	uint16 pulseTarget;
 	// Read current decoder value in order to preserve the count, instead of reset to 0. - uint16 pulseMeas = quaddec_m1_getcounter();
-	// OPTIONAL - OPTIMIZATION
-	// Quick switch case for common turns 90 degree and 180 degree to skip long calculations
 	switch (angle)
 	{
-	// case 90:
-	// 	pulseTarget = 99;
-	// case 180:
-	// 	pulseTarget = 198;
+	case 90:
+		pulseTarget = MOVEMENT_PULSE_90_DEGREE;
+		break;
+	case 180:
+		pulseTarget = MOVEMENT_PULSE_180_DEGREE;
+		break;
 	default:
 		// Convert angle to fraction of circumference by dividing 360
 		// Multiply fraction by total circumference
 		// Divide by circumference of wheel to determine revs needed
 		// Convert revs to pulses through multiply 228
-		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION)-9;
+		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_PULSE_CORRECTION;
 	}
 
-	// Reverse left motor to initiate turning
 	Movement_set_direction_left(DIRECTION_REVERSE);
 	// MOTOR SPEED = CONST TURNING SPEED?
 
 	QuadDec_M1_SetCounter(0);
-	// Poll to wait until pulse target is met
 	while (QuadDec_M1_GetCounter() < pulseTarget)
 	{
 		;
 	}
-	// Exit loop
-	// Set both motors forward
 	Movement_set_direction_left(DIRECTION_FORWARD);
-	// OPTIONAL: Store working rpm and return to it - #define CONSTANT_SPEED 400
-	// NOTE: Probably not necessary above. Just keep them constant.
+	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
 }
 
 void Movement_turn_right(uint16 angle)
 {
 	uint16 pulseTarget;
-	// Read current decoder value in order to preserve the count, instead of reset to 0. - uint16 pulseMeas = quaddec_m2_getcounter();
-	// OPTIONAL - OPTIMIZATION
-	// Quick switch case for common turns 90 degree and 180 degree to skip long calculations
+	// Read current decoder value in order to preserve the count, instead of reset to 0. - uint16 pulseMeas = quaddec_m1_getcounter();
 	switch (angle)
 	{
 	case 90:
-		pulseTarget = 99;
+		pulseTarget = MOVEMENT_PULSE_90_DEGREE;
+		break;
 	case 180:
-		pulseTarget = 198;
+		pulseTarget = MOVEMENT_PULSE_180_DEGREE;
+		break;
 	default:
 		// Convert angle to fraction of circumference by dividing 360
 		// Multiply fraction by total circumference
 		// Divide by circumference of wheel to determine revs needed
 		// Convert revs to pulses through multiply 228
-		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION);
+		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_PULSE_CORRECTION;
 	}
 
-	// Reverse left motor to initiate turning
 	Movement_set_direction_right(DIRECTION_REVERSE);
 	// MOTOR SPEED = CONST TURNING SPEED?
 
-	QuadDec_M2_SetCounter(0);
-	// Poll to wait until pulse target is met
-	while (QuadDec_M2_GetCounter() < pulseTarget)
+	QuadDec_M1_SetCounter(0);
+	while (QuadDec_M1_GetCounter() > -pulseTarget)
 	{
 		;
 	}
-	// Exit loop
-	// Set both motors forward
 	Movement_set_direction_right(DIRECTION_FORWARD);
-	// OPTIONAL: Store working rpm and return to it - #define CONSTANT_SPEED 400
-	// NOTE: Probably not necessary above. Just keep them constant.
+	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
 }
 
 void Movement_set_pwm_1_duty_cycle(uint8 percent)
