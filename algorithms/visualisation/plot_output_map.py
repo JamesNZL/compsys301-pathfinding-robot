@@ -69,7 +69,6 @@ dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, 'outputs/mazePath.txt')
 data = process_file(filename)
 
-print("Steps needed:")
-print(data["instructions"])
+print("Steps needed:" + str(data["instructions"]))
 print("Starting facing: " + data["starting_direction"])
 plot_maze(data["maze"])
