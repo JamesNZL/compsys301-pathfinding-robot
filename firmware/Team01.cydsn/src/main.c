@@ -25,8 +25,11 @@ int main()
 	Movement_set_M1_pulse(300);
 	Movement_set_M2_pulse(300);
 
-	Movement_turn_left(90);
-    Movement_turn_right(90);
+	Movement_turn_left(45);
+    
+    Movement_set_M1_pulse(0);
+	Movement_set_M2_pulse(0);
+    //Movement_turn_right(90);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);

@@ -23,16 +23,16 @@ void Movement_turn_left(uint16 angle)
 	// Quick switch case for common turns 90 degree and 180 degree to skip long calculations
 	switch (angle)
 	{
-	case 90:
-		pulseTarget = 99;
-	case 180:
-		pulseTarget = 198;
+	// case 90:
+	// 	pulseTarget = 99;
+	// case 180:
+	// 	pulseTarget = 198;
 	default:
 		// Convert angle to fraction of circumference by dividing 360
 		// Multiply fraction by total circumference
 		// Divide by circumference of wheel to determine revs needed
 		// Convert revs to pulses through multiply 228
-		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION);
+		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION)-9;
 	}
 
 	// Reverse left motor to initiate turning
