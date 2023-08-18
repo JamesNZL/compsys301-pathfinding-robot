@@ -22,10 +22,21 @@ int main()
 
 	CyDelay(5000);
 
-	Movement_set_M1_pulse(300);
-	Movement_set_M2_pulse(300);
-
-	Movement_turn_right(180);
+	Movement_turn_left(90);
+    CyDelay(1000);
+    Movement_turn_left(90);
+    CyDelay(1000);
+    Movement_turn_left(180);
+    CyDelay(1000);
+    Movement_turn_right(90);
+    CyDelay(1000);
+    Movement_turn_right(90);
+    CyDelay(1000);
+    Movement_turn_right(180);
+    CyDelay(1000);
+    Movement_turn_right(360);
+    CyDelay(1000);
+    Movement_turn_left(360);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
