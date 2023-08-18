@@ -28,8 +28,8 @@ void Movement_turn_left(uint16 angle)
 		pulseTarget = MOVEMENT_PULSE_180_DEGREE;
 		break;
 	default:
-		// Convert angle to fraction of circumference by dividing 360
-		// Multiply fraction by total circumference
+		// Convert angle to fraction of circle by dividing 360
+		// Multiply fraction by total pivot circumference
 		// Divide by circumference of wheel to determine revs needed
 		// Convert revs to pulses through multiply 228
 		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_PULSE_CORRECTION;
@@ -61,8 +61,8 @@ void Movement_turn_right(uint16 angle)
 		pulseTarget = MOVEMENT_PULSE_180_DEGREE;
 		break;
 	default:
-		// Convert angle to fraction of circumference by dividing 360
-		// Multiply fraction by total circumference
+		// Convert angle to fraction of circle by dividing 360
+		// Multiply fraction by total pivot circumference
 		// Divide by circumference of wheel to determine revs needed
 		// Convert revs to pulses through multiply 228
 		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_PULSE_CORRECTION;
