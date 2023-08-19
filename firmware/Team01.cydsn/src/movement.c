@@ -22,10 +22,10 @@ void Movement_turn_left(uint16 angle)
 	switch (angle)
 	{
 	case 90:
-		pulseTarget = MOVEMENT_PULSE_90_DEGREE;
+		pulseTarget = MOVEMENT_PULSE_90_DEGREE - MOVEMENT_PULSE_CORRECTION;
 		break;
 	case 180:
-		pulseTarget = MOVEMENT_PULSE_180_DEGREE;
+		pulseTarget = MOVEMENT_PULSE_180_DEGREE - MOVEMENT_PULSE_CORRECTION;
 		break;
 	default:
 		// Convert angle to fraction of circle by dividing 360
@@ -55,10 +55,10 @@ void Movement_turn_right(uint16 angle)
 	switch (angle)
 	{
 	case 90:
-		pulseTarget = MOVEMENT_PULSE_90_DEGREE;
+		pulseTarget = MOVEMENT_PULSE_90_DEGREE - MOVEMENT_PULSE_CORRECTION;
 		break;
 	case 180:
-		pulseTarget = MOVEMENT_PULSE_180_DEGREE;
+		pulseTarget = MOVEMENT_PULSE_180_DEGREE - MOVEMENT_PULSE_CORRECTION;
 		break;
 	default:
 		// Convert angle to fraction of circle by dividing 360
