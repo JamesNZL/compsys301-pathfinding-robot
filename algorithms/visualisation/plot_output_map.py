@@ -23,6 +23,14 @@ def process_starting_direction(line):
     return other_data
 
 
+def process_nodes(line):
+    split_line = line.replace("(", "").replace(")", "").split()
+    print(split_line)
+    nodes = [(int(pair.split(',')[0]), int(pair.split(',')[1]))
+             for pair in split_line]
+    return nodes
+
+
 def process_file(filename):
     with open(filename, 'r') as file:
         lines = file.readlines()
@@ -41,13 +49,12 @@ def process_file(filename):
     data["instructions"] = process_directions(direction_lines)
     data["starting_direction"] = process_starting_direction(
         starting_direction_lines)
-    data["nodes"] = node_lines
+    data["nodes"] = process_nodes(node_lines)
 
     return data
 
 
-def plot_maze(matrix):
-
+def plot_maze(matrix, nodes):
     cmap = colors.ListedColormap(['white', 'black', 'blue'])
     x_width = len(matrix[0])
     y_height = len(matrix)
@@ -58,6 +65,9 @@ def plot_maze(matrix):
     x_tick_labels = [str(i) for i in range(x_width)]
     y_tick_labels = [str(i) for i in range(y_height)]
     fig, ax = plt.subplots()
+    for idx, node in enumerate(nodes):
+        ax.text(node[0], node[1], idx+1, ha='center',
+                va='center', color='white')
 
     ax.matshow(matrix, cmap=cmap)
     plt.xticks(x_tick_positions, x_tick_labels)
@@ -75,4 +85,4 @@ data = process_file(filename)
 print("Steps needed:" + str(data["instructions"]))
 print("Starting facing: " + str(data["starting_direction"]))
 print("Nodes Visited: " + str(data["nodes"]))
-plot_maze(data["maze"])
+plot_maze(data["maze"], data["nodes"])
