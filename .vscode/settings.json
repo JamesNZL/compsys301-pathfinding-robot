@@ -1,0 +1,12 @@
+{
+	"conventionalCommits.scopes": [
+		"hardware",
+		"firmware"
+	],
+	"C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: WebKit, BreakBeforeBraces: Allman, IndentWidth: 4, TabWidth: 4, UseTab: Always, ColumnLimit: 0, PointerAlignment: Right, AlignConsecutiveMacros: AcrossEmptyLines }",
+	"explorer.excludeGitIgnore": true,
+	"files.associations": {
+		"common.h": "c",
+		"movement.h": "c"
+	}
+}
