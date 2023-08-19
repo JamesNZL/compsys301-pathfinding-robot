@@ -58,6 +58,13 @@ void Movement_turn_left(uint16 angle);
 void Movement_turn_right(uint16 angle);
 
 /**
+ * @brief Turns target angle to turn into pulse count
+ *
+ * @param angle the scalar angle in degrees to turn any direction
+ */
+uint16 Movement_calculate_angle_to_pulse(uint16 angle);
+
+/**
  * @brief sets the direction of BOTH motors to forwards or reverse
  *
  * @param direction the direction to set the motors to
