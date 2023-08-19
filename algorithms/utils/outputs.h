@@ -3,6 +3,7 @@
 #include "../data structures/graph.h"
 #include "pathToTurns.h"
 #include <iostream>
+#include <sstream>
 #include <unordered_map>
 #include <vector>
 using namespace std;
@@ -39,11 +40,15 @@ void printAdjList(unordered_map<int, vector<int>> adjList) {
 
 void exportPathToFile(Graph graph, vector<pair<int, int>> shortestPath, vector<Movement> movements, Direction startingDirection) {
     vector<vector<int>> maze = graph.maze;
+    stringstream pathString;
     for (pair<int, int> coords : shortestPath) {
         int x = coords.first;
         int y = coords.second;
         // use 2 to mark square as part of shortest path
         maze[y][x] = 2;
+        // write nodes included in shortest path
+        pathString << "(" << coords.first << "," << coords.second << ")"
+                   << " ";
     }
     ofstream outFile("../visualisation/outputs/mazePath.txt");
 
@@ -59,7 +64,9 @@ void exportPathToFile(Graph graph, vector<pair<int, int>> shortestPath, vector<M
     }
     outFile << endl
             << "==ENDDIRS" << endl;
-    outFile << directionStrings[startingDirection];
+    outFile << directionStrings[startingDirection] << endl
+            << "==ENDSTART" << endl;
+    outFile << pathString.str();
     outFile.close();
 }
 #endif
