@@ -22,23 +22,8 @@ float Movement_calculate_duty(uint16 target)
 
 void Movement_turn_left(uint16 angle)
 {
-	uint16 pulseTarget;
+	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
 	// uint16 pulseMeas = QuadDec_M1_GetCounter();
-	switch (angle)
-	{
-	case 90:
-		pulseTarget = MOVEMENT_PULSE_90_DEGREE - MOVEMENT_PULSE_CORRECTION;
-		break;
-	case 180:
-		pulseTarget = MOVEMENT_PULSE_180_DEGREE - MOVEMENT_PULSE_CORRECTION;
-		break;
-	default:
-		// Convert angle to fraction of circle by dividing 360
-		// Multiply fraction by total pivot circumference
-		// Divide by circumference of wheel to determine revs needed
-		// Convert revs to pulses through multiply 228
-		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_PULSE_CORRECTION;
-	}
 
 	Movement_set_direction_left(DIRECTION_REVERSE);
 	Movement_set_M1_pulse(MOVEMENT_MOTOR_TURN_SPEED);
@@ -55,23 +40,8 @@ void Movement_turn_left(uint16 angle)
 
 void Movement_turn_right(uint16 angle)
 {
-	uint16 pulseTarget;
+	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
 	// uint16 pulseMeas = QuadDec_M1_GetCounter();
-	switch (angle)
-	{
-	case 90:
-		pulseTarget = MOVEMENT_PULSE_90_DEGREE - MOVEMENT_PULSE_CORRECTION;
-		break;
-	case 180:
-		pulseTarget = MOVEMENT_PULSE_180_DEGREE - MOVEMENT_PULSE_CORRECTION;
-		break;
-	default:
-		// Convert angle to fraction of circle by dividing 360
-		// Multiply fraction by total pivot circumference
-		// Divide by circumference of wheel to determine revs needed
-		// Convert revs to pulses through multiply 228
-		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_PULSE_CORRECTION;
-	}
 
 	Movement_set_direction_right(DIRECTION_REVERSE);
 	Movement_set_M1_pulse(MOVEMENT_MOTOR_TURN_SPEED);
