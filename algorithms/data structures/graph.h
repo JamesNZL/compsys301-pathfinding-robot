@@ -23,7 +23,13 @@ public:
         int y = coord.second;
         bool xInBounds = x >= 0 && x < mazeWidth;
         bool yInBounds = y >= 0 && y < mazeHeight;
-        return xInBounds && yInBounds;
+        // if either is false
+        if (!(xInBounds && yInBounds)) {
+            return false;
+        }
+        // if path is not visitable
+        bool isOpenSquare = maze[y][x] == 0;
+        return isOpenSquare;
     }
     vector<vector<int>> maze;
     // TODO: every node has max 4 neighbours, possible optimization?

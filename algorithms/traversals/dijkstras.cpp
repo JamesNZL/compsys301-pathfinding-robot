@@ -90,6 +90,16 @@ int main() {
     cout << "Enter destination y:";
     cin >> endY;
 
+    Graph testGraph("../maps/map_1.txt");
+    ArrayDijkstras testDijkstras(testGraph);
+    printMaze(testGraph.maze);
+    // start Dijkstras
+    pair<int, int> start = make_pair(startX, startY);
+    pair<int, int> end = make_pair(endX, endY);
+    if (!(testGraph.isValidCoords(start) && testGraph.isValidCoords(end))) {
+        cerr << "invalid coordinates";
+        throw exception();
+    }
     int directionInt;
     Direction startingDirection;
     cout << "Enter the direction (0 for UP, 1 for DOWN, 2 for LEFT, 3 for RIGHT): ";
@@ -111,16 +121,6 @@ int main() {
         cout << "Invalid input. Using default value: UP." << std::endl;
         startingDirection = UP;
         break;
-    }
-    Graph testGraph("../maps/map_1.txt");
-    ArrayDijkstras testDijkstras(testGraph);
-    printMaze(testGraph.maze);
-    // start BFS
-    pair<int, int> start = make_pair(startX, startY);
-    pair<int, int> end = make_pair(endX, endY);
-    if (!(testGraph.isValidCoords(start) && testGraph.isValidCoords(end))) {
-        cerr << "invalid coordinates";
-        throw exception();
     }
     testDijkstras.findShortestPath(start, end);
     vector<Movement> movements = findMovements(startingDirection, testGraph.maze, testDijkstras.shortestPath);
