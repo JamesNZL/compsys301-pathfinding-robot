@@ -37,6 +37,13 @@ void Movement_set_M1_pulse(uint16 target);
 void Movement_set_M2_pulse(uint16 target);
 
 /**
+ * @brief Calculates target duty cycle
+ *
+ * @param target the target pulses to be converted
+ */
+float Movement_calculate_duty(uint16 target);
+
+/**
  * @brief Turns the robot left (on the spot) by angle degrees
  *
  * @param angle The angle (in degrees) to turn left from the current position
