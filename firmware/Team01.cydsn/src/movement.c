@@ -86,6 +86,27 @@ void Movement_turn_right(uint16 angle)
 	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
 }
 
+uint16 Movement_calculate_angle_to_pulse(uint16 angle)
+{
+	uint16 pulseTarget;
+	switch (angle)
+	{
+	case 90:
+		pulseTarget = MOVEMENT_PULSE_90_DEGREE - MOVEMENT_PULSE_CORRECTION;
+		break;
+	case 180:
+		pulseTarget = MOVEMENT_PULSE_180_DEGREE - MOVEMENT_PULSE_CORRECTION;
+		break;
+	default:
+		// Convert angle to fraction of circle by dividing 360
+		// Multiply fraction by total pivot circumference
+		// Divide by circumference of wheel to determine revs needed
+		// Convert revs to pulses through multiply 228
+		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_PULSE_CORRECTION;
+	}
+	return pulseTarget;
+}
+
 void Movement_set_pwm_1_duty_cycle(uint8 percent)
 {
 	// set the compare
