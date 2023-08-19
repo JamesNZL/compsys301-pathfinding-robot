@@ -7,12 +7,17 @@ volatile const float MOVEMENT_SLOPE = 8.6543;
 
 void Movement_set_M1_pulse(uint16 target)
 {
-	PWM_1_WriteCompare(PWM_1_ReadPeriod() * ((target + MOVEMENT_OFFSET) / MOVEMENT_SLOPE) / (float)100);
+	PWM_1_WriteCompare(PWM_1_ReadPeriod() * Movement_calculate_duty(target));
 }
 
 void Movement_set_M2_pulse(uint16 target)
 {
-	PWM_2_WriteCompare(PWM_2_ReadPeriod() * ((target + MOVEMENT_OFFSET) / MOVEMENT_SLOPE) / (float)100);
+	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target));
+}
+
+float Movement_calculate_duty(uint16 target)
+{
+	return (((target + MOVEMENT_OFFSET) / MOVEMENT_SLOPE) / (float)100);
 }
 
 void Movement_turn_left(uint16 angle)
