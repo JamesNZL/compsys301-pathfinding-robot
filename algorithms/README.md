@@ -6,6 +6,7 @@ To run the simulations in this folder, you must have the following prerequisites
 
 - G++ compiler (it is reccommended that you install it from [here](https://www.mingw-w64.org/))
 - Python interpreter
+    - Note that **matplotlib** and **numpy** are required
 - Windows Powershell
 
 > **Note**: it is important that you have g++ and python in your path! For details on how to do this check out [this]()
