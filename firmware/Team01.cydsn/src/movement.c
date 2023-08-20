@@ -2,17 +2,79 @@
 #include "common.h"
 #include <project.h>
 
-volatile float OFFSET = 170.9;
-volatile float SLOPE = 8.6543;
+volatile const float MOVEMENT_OFFSET = 170.9;
+volatile const float MOVEMENT_SLOPE = 8.6543;
 
 void Movement_set_M1_pulse(uint16 target)
 {
-	PWM_1_WriteCompare(PWM_1_ReadPeriod() * ((target + OFFSET) / SLOPE) / (float)100);
+	PWM_1_WriteCompare(PWM_1_ReadPeriod() * Movement_calculate_duty(target));
 }
 
 void Movement_set_M2_pulse(uint16 target)
 {
-	PWM_2_WriteCompare(PWM_2_ReadPeriod() * ((target + OFFSET) / SLOPE) / (float)100);
+	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target));
+}
+
+float Movement_calculate_duty(uint16 target)
+{
+	return (((target + MOVEMENT_OFFSET) / MOVEMENT_SLOPE) / (float)100);
+}
+
+void Movement_turn_left(uint16 angle)
+{
+	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
+	// uint16 pulseMeas = QuadDec_M1_GetCounter();
+
+	Movement_set_direction_left(DIRECTION_REVERSE);
+	Movement_set_M1_pulse(MOVEMENT_MOTOR_TURN_SPEED);
+	Movement_set_M2_pulse(MOVEMENT_MOTOR_TURN_SPEED);
+	QuadDec_M1_SetCounter(0);
+	while (QuadDec_M1_GetCounter() < pulseTarget)
+	{
+		;
+	}
+	Movement_set_direction_left(DIRECTION_FORWARD);
+	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+}
+
+void Movement_turn_right(uint16 angle)
+{
+	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
+	// uint16 pulseMeas = QuadDec_M1_GetCounter();
+
+	Movement_set_direction_right(DIRECTION_REVERSE);
+	Movement_set_M1_pulse(MOVEMENT_MOTOR_TURN_SPEED);
+	Movement_set_M2_pulse(MOVEMENT_MOTOR_TURN_SPEED);
+	QuadDec_M1_SetCounter(0);
+	while (QuadDec_M1_GetCounter() > -pulseTarget)
+	{
+		;
+	}
+	Movement_set_direction_right(DIRECTION_FORWARD);
+	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+}
+
+uint16 Movement_calculate_angle_to_pulse(uint16 angle)
+{
+	uint16 pulseTarget;
+	switch (angle)
+	{
+	case 90:
+		pulseTarget = MOVEMENT_PULSE_90_DEGREE - MOVEMENT_PULSE_CORRECTION;
+		break;
+	case 180:
+		pulseTarget = MOVEMENT_PULSE_180_DEGREE - MOVEMENT_PULSE_CORRECTION;
+		break;
+	default:
+		// Convert angle to fraction of circle by dividing 360
+		// Multiply fraction by total pivot circumference
+		// Divide by circumference of wheel to determine revs needed
+		// Convert revs to pulses through multiply 228
+		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_PULSE_CORRECTION;
+	}
+	return pulseTarget;
 }
 
 void Movement_set_pwm_1_duty_cycle(uint8 percent)

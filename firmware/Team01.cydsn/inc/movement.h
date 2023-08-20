@@ -3,8 +3,18 @@
 
 #include <cytypes.h>
 
-#define MOTOR_LEFT_CR_POS  0
-#define MOTOR_RIGHT_CR_POS 1
+#define MOTOR_LEFT_CR_POS			 0
+#define MOTOR_RIGHT_CR_POS			 1
+
+#define MOVEMENT_PIVOT_CIRCUMFERENCE 354.277F
+#define MOVEMENT_WHEEL_CIRCUMFERENCE 203.57F
+#define MOVEMENT_PULSE_REVOLUTION	 228
+#define MOVEMENT_PULSE_CORRECTION	 9
+#define MOVEMENT_PULSE_90_DEGREE	 99
+#define MOVEMENT_PULSE_180_DEGREE	 198
+#define MOVEMENT_MOTOR_TURN_SPEED	 300
+
+#define MOVEMENT_MOTOR_OFF			 0
 
 /**
  * @brief The possible movement directions for the robot.
@@ -15,8 +25,8 @@ typedef enum Direction
 	DIRECTION_REVERSE,
 } Direction;
 
-volatile extern float OFFSET;
-volatile extern float SLOPE;
+volatile const extern float MOVEMENT_OFFSET;
+volatile const extern float MOVEMENT_SLOPE;
 
 /**
  * @brief Sets the motor pulse target
@@ -25,6 +35,13 @@ volatile extern float SLOPE;
  */
 void Movement_set_M1_pulse(uint16 target);
 void Movement_set_M2_pulse(uint16 target);
+
+/**
+ * @brief Calculates target duty cycle
+ *
+ * @param target the target pulses to be converted
+ */
+float Movement_calculate_duty(uint16 target);
 
 /**
  * @brief Turns the robot left (on the spot) by angle degrees
@@ -39,6 +56,13 @@ void Movement_turn_left(uint16 angle);
  * @param angle The angle (in degrees) to turn right from the current position
  */
 void Movement_turn_right(uint16 angle);
+
+/**
+ * @brief Turns target angle to turn into pulse count
+ *
+ * @param angle the scalar angle in degrees to turn any direction
+ */
+uint16 Movement_calculate_angle_to_pulse(uint16 angle);
 
 /**
  * @brief sets the direction of BOTH motors to forwards or reverse
