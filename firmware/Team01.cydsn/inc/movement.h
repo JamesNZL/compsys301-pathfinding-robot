@@ -28,6 +28,8 @@ typedef enum Direction
 volatile const extern float MOVEMENT_OFFSET;
 volatile const extern float MOVEMENT_SLOPE;
 
+void Movement_move_millimeters(uint16 dist);
+
 /**
  * @brief Sets the motor pulse target
  *
