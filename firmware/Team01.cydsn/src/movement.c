@@ -7,7 +7,12 @@ volatile const float MOVEMENT_SLOPE = 8.6543;
 
 void Movement_move_mm(uint16 dist)
 {
-	uint16 pulseTarget = (float)dist * MOVEMENT_PULSE_PER_MM;
+	uint16 pulseTarget = (float)dist / MOVEMENT_MM_PER_PULSE;
+
+	while (QuadDec_M1_GetCounter() < pulseTarget)
+	{
+		;
+	}
 }
 
 void Movement_set_M1_pulse(uint16 target)
