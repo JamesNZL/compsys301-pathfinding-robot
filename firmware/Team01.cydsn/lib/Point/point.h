@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-typedef struct Point Point;
+struct Point;
 
 /// @brief
 /// @param x
@@ -16,4 +16,4 @@ Point *Point_create(uint8_t x, uint8_t y);
 /// @return
 void *Point_destroy(*Point point);
 
-uint8_t Point_to_1d(*Point point);
+#endif
