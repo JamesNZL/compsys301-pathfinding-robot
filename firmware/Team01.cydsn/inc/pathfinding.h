@@ -3,11 +3,21 @@
 #include "../lib/Point/Point.h"
 #include "../lib/Queue/Queue.h"
 #include <stdbool.h>
+#include <stdint.h>
 
 #define PATHFINDING_MAZE_WIDTH			69
 #define PATHFINDING_MAZE_HEIGH			69
 #define PATHFINDING_STARTING_INDEX		0
 #define PATHFINDING_POSSIBLE_DIRECTIONS 4
+
+typedef enum Actions
+{
+	ACTIONS_LEFT,
+	ACTIONS_RIGHT,
+	ACTIONS_SKIP,
+	ACTIONS_AROUND,
+	ACTIONS_ARRIVE
+} Actions;
 
 bool Pathfinding_coordinates_in_bounds(uint8_t x, uint8_t y);
 
