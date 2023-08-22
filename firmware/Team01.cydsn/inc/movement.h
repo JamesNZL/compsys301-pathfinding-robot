@@ -29,7 +29,7 @@ typedef enum Direction
 
 volatile const extern float MOVEMENT_OFFSET;
 volatile const extern float MOVEMENT_SLOPE;
-volatile uint16 MOVEMENT_PULSES_TO_MOVE;
+volatile int16 MOVEMENT_PULSES_TO_MOVE;
 volatile uint16 MOVEMENT_APPARENT_PULSE_L;
 volatile uint16 MOVEMENT_APPARENT_PULSE_R;
 volatile uint8 MOVEMENT_PULSE_ERROR;

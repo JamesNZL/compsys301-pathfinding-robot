@@ -19,6 +19,7 @@ CY_ISR(PROCESS_PULSE)
 	// If pulses to move are positive, turn the motors on and subtract from pulses to move.
 	if (MOVEMENT_PULSES_TO_MOVE > 0)
 	{
+		MOVEMENT_PULSES_TO_MOVE -= MOVEMENT_APPARENT_PULSE_L;
 	}
 
 	QuadDec_M1_SetCounter(0);
