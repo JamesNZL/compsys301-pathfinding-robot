@@ -5,14 +5,20 @@
 volatile const float MOVEMENT_OFFSET = 170.9;
 volatile const float MOVEMENT_SLOPE = 8.6543;
 
+// Note for future: use error in pulses as a relationship to the constant we multiply to the skew correct.
+
 void Movement_move_mm(uint16 dist)
 {
 	uint16 pulseTarget = (float)dist / MOVEMENT_MM_PER_PULSE;
+	// Enable the ISR
+	// Wait for pulses to be reached
+	// Disable the ISR
+	// ISR Periodically fetches both encoder pulses
+	// We want this to be constantly on for skew
+	// So we dont need to enable it
+	// Something needs to change in the ISR when we are using this function
 
-	while (QuadDec_M1_GetCounter() < pulseTarget)
-	{
-		;
-	}
+	// Something like in the isr have a condition if mm to move > 0 do mm-- getcounter.
 }
 
 void Movement_set_M1_pulse(uint16 target)
@@ -85,6 +91,10 @@ uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_PULSE_CORRECTION;
 	}
 	return pulseTarget;
+}
+
+void Movement_init_decoder_ISR()
+{
 }
 
 void Movement_set_pwm_1_duty_cycle(uint8 percent)
