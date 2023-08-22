@@ -5,6 +5,10 @@
 volatile const float MOVEMENT_OFFSET = 170.9;
 volatile const float MOVEMENT_SLOPE = 8.6543;
 
+void Movement_move_millimeters(uint16 dist)
+{
+}
+
 void Movement_set_M1_pulse(uint16 target)
 {
 	PWM_1_WriteCompare(PWM_1_ReadPeriod() * Movement_calculate_duty(target));
