@@ -50,7 +50,7 @@ volatile float batteryReading;
 volatile uint8 dataReady = 0;
 CY_ISR(SenseBattery)
 {
-    //10k 2.7k Voltage Divider
+	// 10k 2.7k Voltage Divider
 	batteryReading = (ADC_SAR_1_CountsTo_Volts(ADC_SAR_1_GetResult16()) * 4.703);
 	dataReady = 1;
 }
@@ -84,8 +84,8 @@ int main(void)
 	sprintf(bat_entry, "Battery: %dmV\n", (uint16_t)(batteryReading * 1000));
 	usbPutString(bat_entry);
 	ADC_SAR_1_Stop();
-    Timer_ADC_Stop();
-    isr_bat_Stop();
+	Timer_ADC_Stop();
+	isr_bat_Stop();
 	for (;;)
 	{
 		/* Place your application code here. */
@@ -111,8 +111,8 @@ int main(void)
 			{
 				target = 0;
 			}
-			PWM_M1_WriteCompare(PWM_MAX *((target+170.9)/8.6543)/(float)100);
-			PWM_M2_WriteCompare(PWM_MAX *((target+170.9)/8.6543)/(float)100);
+			PWM_M1_WriteCompare(PWM_MAX * ((target + 170.9) / 8.6543) / (float)100);
+			PWM_M2_WriteCompare(PWM_MAX * ((target + 170.9) / 8.6543) / (float)100);
 		}
 	}
 }
