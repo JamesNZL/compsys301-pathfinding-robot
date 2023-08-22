@@ -7,9 +7,17 @@ volatile const float MOVEMENT_SLOPE = 8.6543;
 
 // Note for future: use error in pulses as a relationship to the constant we multiply to the skew correct.
 
+CY_ISR(PROCESS_PULSE)
+{
+	MOVEMENT_APPARENT_PULSE_L = QuadDec_M1_GetCounter();
+	MOVEMENT_APPARENT_PULSE_R = QuadDec_M2_GetCounter();
+
+	Timer_Dec_ReadStatusRegister();
+}
+
 void Movement_move_mm(uint16 dist)
 {
-	uint16 pulseTarget = (float)dist / MOVEMENT_MM_PER_PULSE;
+	MOVEMENT_PULSES_TO_MOVE = (float)dist / MOVEMENT_MM_PER_PULSE;
 	// Enable the ISR
 	// Wait for pulses to be reached
 	// Disable the ISR
@@ -95,6 +103,10 @@ uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 
 void Movement_init_decoder_ISR()
 {
+	Timer_Dec_Start();
+	QuadDec_M1_Start();
+	QuadDec_M2_Start();
+	isr_getpulse_StartEx(PROCESS_PULSE);
 }
 
 void Movement_set_pwm_1_duty_cycle(uint8 percent)
