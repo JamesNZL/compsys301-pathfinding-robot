@@ -32,6 +32,7 @@ volatile const extern float MOVEMENT_SLOPE;
 volatile uint16 MOVEMENT_PULSES_TO_MOVE;
 volatile uint16 MOVEMENT_APPARENT_PULSE_L;
 volatile uint16 MOVEMENT_APPARENT_PULSE_R;
+volatile uint8 MOVEMENT_PULSE_ERROR;
 
 /**
  * @brief Instructs the robot to move a certain number of mm
