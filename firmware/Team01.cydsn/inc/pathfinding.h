@@ -11,4 +11,6 @@
 
 bool Pathfinding_coordinates_in_bounds(uint8_t x, uint8_t y);
 
+Queue *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t[][] maze);
+
 #endif
