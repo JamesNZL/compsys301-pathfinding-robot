@@ -28,7 +28,12 @@ typedef enum Direction
 volatile const extern float MOVEMENT_OFFSET;
 volatile const extern float MOVEMENT_SLOPE;
 
-void Movement_move_millimeters(uint16 dist);
+/**
+ * @brief Instructs the robot to move a certain number of mm
+ *
+ * @param dist the distance to move in mm
+ */
+void Movement_move_mm(uint16 dist);
 
 /**
  * @brief Sets the motor pulse target

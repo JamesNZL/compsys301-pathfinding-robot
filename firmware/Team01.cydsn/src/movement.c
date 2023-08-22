@@ -5,7 +5,7 @@
 volatile const float MOVEMENT_OFFSET = 170.9;
 volatile const float MOVEMENT_SLOPE = 8.6543;
 
-void Movement_move_millimeters(uint16 dist)
+void Movement_move_mm(uint16 dist)
 {
 }
 
