@@ -14,7 +14,7 @@ CY_ISR(PROCESS_PULSE)
 
 	// Alternatively, run abs in the skew correct function. Or dont do this at all and in skew correct
 	// Simply use MOVEMENT_APPARENT_PULSE_L - MOVEMENT_APPARENT_PULSE_R - saves a global var.
-	MOVEMENT_PULSE_ERROR = abs(MOVEMENT_APPARENT_PULSE_L - MOVEMENT_APPARENT_PULSE_R);
+	MOVEMENT_PULSE_ERROR = (int8)MOVEMENT_APPARENT_PULSE_L - MOVEMENT_APPARENT_PULSE_R;
 
 	// If pulses to move are positive, turn the motors on and subtract from pulses to move.
 	if (MOVEMENT_PULSES_TO_MOVE > 0)

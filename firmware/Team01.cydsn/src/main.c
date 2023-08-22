@@ -26,6 +26,12 @@ int main()
 	for (;;)
 	{
 		/* Place your application code here. */
+
+		if (MOVEMENT_PULSES_TO_MOVE > 0)
+		{
+			Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
+		}
+
 		USB_get_input();
 
 		if (FLAG_IS_SET(FLAGS, FLAG_USB_INPUT))

@@ -13,6 +13,7 @@
 #define MOVEMENT_PULSE_90_DEGREE	 99
 #define MOVEMENT_PULSE_180_DEGREE	 198
 #define MOVEMENT_MOTOR_TURN_SPEED	 300
+#define MOVEMENT_RUN_SPEED			 400
 
 #define MOVEMENT_MM_PER_PULSE		 0.8928F
 
@@ -32,7 +33,7 @@ volatile const extern float MOVEMENT_SLOPE;
 volatile int16 MOVEMENT_PULSES_TO_MOVE;
 volatile uint16 MOVEMENT_APPARENT_PULSE_L;
 volatile uint16 MOVEMENT_APPARENT_PULSE_R;
-volatile uint8 MOVEMENT_PULSE_ERROR;
+volatile int8 MOVEMENT_PULSE_ERROR;
 
 /**
  * @brief Instructs the robot to move a certain number of mm
