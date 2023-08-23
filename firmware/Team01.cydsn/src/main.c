@@ -20,9 +20,10 @@ int main()
 	CyDelay(2000);
 
 	Movement_init_decoder_ISR();
+	Movement_turn_left(90);
 	Movement_move_mm(500);
-    Movement_turn_left(180);
-    CyDelay(500);
+	Movement_turn_left(180);
+	CyDelay(500);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
