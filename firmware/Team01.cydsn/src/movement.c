@@ -51,6 +51,15 @@ void Movement_set_M2_pulse(uint16 target)
 
 float Movement_calculate_duty(uint16 target)
 {
+	// float dutyFraction = (((target + MOVEMENT_OFFSET) / MOVEMENT_SLOPE) / (float)100);
+	// if (dutyFraction < 1)
+	// {
+	// 	return dutyFraction;
+	// }
+	// else
+	// {
+	// 	return 1;
+	// }
 	return (((target + MOVEMENT_OFFSET) / MOVEMENT_SLOPE) / (float)100);
 }
 

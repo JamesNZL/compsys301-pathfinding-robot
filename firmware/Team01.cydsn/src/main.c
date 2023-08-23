@@ -33,7 +33,7 @@ int main()
 	for (;;)
 	{
 		/* Place your application code here. */
-        
+
 		//--------------------------------------------
 		if (MOVEMENT_PULSES_TO_MOVE > 0)
 		{
