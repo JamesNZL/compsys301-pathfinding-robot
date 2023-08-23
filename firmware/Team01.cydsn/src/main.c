@@ -13,15 +13,15 @@ volatile uint8 FLAGS = 0x00;
 
 int main()
 {
-	CYGlobalIntEnable;
+    CYGlobalIntEnable;
 	PWM_1_Start();
 	PWM_2_Start();
 
 	CyDelay(2000);
 
 	Movement_init_decoder_ISR();
-
-	Movement_move_mm(10);
+    Movement_turn_left(90);
+	Movement_move_mm(500);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
@@ -38,10 +38,10 @@ int main()
 		{
 			Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
 			Movement_set_M2_pulse(MOVEMENT_RUN_SPEED);
-			if (MOVEMENT_PULSES_TO_MOVE < 50)
+			if (MOVEMENT_PULSES_TO_MOVE < 150)
 			{
-				Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
-				Movement_set_M2_pulse(MOVEMENT_RUN_SPEED);
+				Movement_set_M1_pulse(MOVEMENT_BRAKE_SPEED);
+				Movement_set_M2_pulse(MOVEMENT_BRAKE_SPEED);
 			}
 		}
 		else

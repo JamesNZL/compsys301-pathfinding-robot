@@ -17,7 +17,7 @@ CY_ISR(PROCESS_PULSE)
 	// If pulses to move are positive, turn the motors on and subtract from pulses to move.
 	if (MOVEMENT_PULSES_TO_MOVE > 0)
 	{
-		MOVEMENT_PULSES_TO_MOVE -= MOVEMENT_APPARENT_PULSE_L;
+		MOVEMENT_PULSES_TO_MOVE -= MOVEMENT_APPARENT_PULSE_R;
 	}
 
 	QuadDec_M1_SetCounter(0);
@@ -65,6 +65,7 @@ float Movement_calculate_duty(uint16 target)
 
 void Movement_turn_left(uint16 angle)
 {
+    CYGlobalIntDisable;
 	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
 	// uint16 pulseMeas = QuadDec_M1_GetCounter();
 
@@ -79,6 +80,7 @@ void Movement_turn_left(uint16 angle)
 	Movement_set_direction_left(DIRECTION_FORWARD);
 	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
 	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+    CYGlobalIntEnable;
 }
 
 void Movement_turn_right(uint16 angle)
