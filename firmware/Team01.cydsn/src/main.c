@@ -13,14 +13,14 @@ volatile uint8 FLAGS = 0x00;
 
 int main()
 {
-    CYGlobalIntEnable;
+	CYGlobalIntEnable;
 	PWM_1_Start();
 	PWM_2_Start();
 
 	CyDelay(2000);
 
 	Movement_init_decoder_ISR();
-    Movement_turn_left(90);
+	Movement_turn_left(90);
 	Movement_move_mm(500);
 
 #ifdef USB_ENABLED
