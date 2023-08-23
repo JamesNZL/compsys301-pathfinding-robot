@@ -19,11 +19,13 @@ int main()
 
 	CyDelay(2000);
 
+	// NOTE!!! The skew correction isnt working for this reason - I am placing a small number of pulses extra into the pwm count
+	// Due to the freq of the ISR. Need a smarter way to use the pulse error as a factor in skew correct.
+
 	Movement_init_decoder_ISR();
-	Movement_turn_left(90);
-	Movement_move_mm(500);
-	Movement_turn_left(180);
-	CyDelay(500);
+	// Movement_turn_right(90);
+	// Movement_move_mm(2000);
+	Movement_set_M1_pulse(300);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
@@ -50,6 +52,12 @@ int main()
 		{
 			Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
 			Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+		}
+
+		if (FLAG_IS_SET(FLAGS, FLAG_ERROR_READY))
+		{
+			Movement_set_M2_pulse(PWM_2_ReadCompare() + MOVEMENT_PULSE_ERROR);
+			FLAGS &= ~(1 << FLAG_ERROR_READY);
 		}
 		//--------------------------------------------
 

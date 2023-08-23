@@ -13,6 +13,7 @@ CY_ISR(PROCESS_PULSE)
 	MOVEMENT_APPARENT_PULSE_R = QuadDec_M2_GetCounter();
 
 	MOVEMENT_PULSE_ERROR = (int8)MOVEMENT_APPARENT_PULSE_L - MOVEMENT_APPARENT_PULSE_R;
+	FLAGS |= (1 << FLAG_ERROR_READY);
 
 	// If pulses to move are positive, turn the motors on and subtract from pulses to move.
 	if (MOVEMENT_PULSES_TO_MOVE > 0)
@@ -85,6 +86,7 @@ void Movement_turn_left(uint16 angle)
 
 void Movement_turn_right(uint16 angle)
 {
+	CYGlobalIntDisable;
 	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
 	// uint16 pulseMeas = QuadDec_M1_GetCounter();
 
@@ -99,6 +101,7 @@ void Movement_turn_right(uint16 angle)
 	Movement_set_direction_right(DIRECTION_FORWARD);
 	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
 	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+	CYGlobalIntEnable;
 }
 
 uint16 Movement_calculate_angle_to_pulse(uint16 angle)
