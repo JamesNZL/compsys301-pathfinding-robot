@@ -22,7 +22,6 @@ int main()
 	Movement_init_decoder_ISR();
 
 	Movement_move_mm(100);
-	Movement_set_M2_pulse(500);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
