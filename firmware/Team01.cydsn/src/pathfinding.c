@@ -10,13 +10,21 @@ Queue *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t[][] 
 
 	while (!Queue_is_empty(q))
 	{
+		uint8_t visited[][];
 		Node *current = Queue_pop(q);
 		Point *point = current->value;
 		for (uint8_t i = 0; i < PATHFINDING_POSSIBLE_DIRECTIONS; ++i)
 		{
-			uint8_t newX;
-			uint8_t newY;
+			uint8_t newX = point->x + dX[i];
+			uint8_t newY = point->y + dY[i];
+			if (Pathfinding_coordinates_in_bounds(newX, newY) && !visited[newY][newX])
+			{
+				Node *neighbour = Pathfinding_create_node(Point_create(newX, newY));
+				visited[newY][newX] = TRUE;
+				Queue_append(neighbour);
+			}
 		}
+		Point_destroy(point);
 	}
 }
 
