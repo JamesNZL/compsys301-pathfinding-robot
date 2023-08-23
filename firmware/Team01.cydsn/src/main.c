@@ -17,6 +17,13 @@ int main()
 	PWM_1_Start();
 	PWM_2_Start();
 
+	CyDelay(2000);
+
+	Movement_init_decoder_ISR();
+
+	Movement_move_mm(100);
+	Movement_set_M2_pulse(500);
+
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
 #endif
@@ -26,11 +33,19 @@ int main()
 	for (;;)
 	{
 		/* Place your application code here. */
-
+        
+		//--------------------------------------------
 		if (MOVEMENT_PULSES_TO_MOVE > 0)
 		{
 			Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
+			Movement_set_M2_pulse(MOVEMENT_RUN_SPEED);
 		}
+		else
+		{
+			Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
+			Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+		}
+		//--------------------------------------------
 
 		USB_get_input();
 

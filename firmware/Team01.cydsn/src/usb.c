@@ -28,6 +28,7 @@ void USB_put_char(char c)
 
 void USB_get_input(void)
 {
+#ifdef USB_ENABLED
 	static bool usbStarted = FALSE;
 	static uint16 usbBufCount = 0;
 	static char received[USB_BUF_SIZE];
@@ -75,4 +76,5 @@ void USB_get_input(void)
 			}
 		}
 	}
+#endif
 }
