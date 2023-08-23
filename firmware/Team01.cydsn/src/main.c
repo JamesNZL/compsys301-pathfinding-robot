@@ -21,7 +21,7 @@ int main()
 
 	Movement_init_decoder_ISR();
 
-	Movement_move_mm(100);
+	Movement_move_mm(10);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
@@ -38,6 +38,11 @@ int main()
 		{
 			Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
 			Movement_set_M2_pulse(MOVEMENT_RUN_SPEED);
+			if (MOVEMENT_PULSES_TO_MOVE < 50)
+			{
+				Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
+				Movement_set_M2_pulse(MOVEMENT_RUN_SPEED);
+			}
 		}
 		else
 		{
