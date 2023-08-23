@@ -16,8 +16,8 @@ Point *Point_create(uint8_t x, uint8_t y)
 		return NULL;
 	}
 
-	point->x = x;
-	point->y = y;
+	point.x = x;
+	point.y = y;
 	// TODO: convert these to 1d
 
 	return point;
