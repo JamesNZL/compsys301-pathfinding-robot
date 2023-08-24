@@ -44,6 +44,10 @@ void Movement_set_M1_target(uint16 target)
 {
 }
 
+void Movement_set_M2_target(uint16 target)
+{
+}
+
 float Movement_calculate_duty(uint16 target)
 {
 	float dutyFraction = (((target + MOVEMENT_OFFSET) / MOVEMENT_SLOPE) / (float)100);
