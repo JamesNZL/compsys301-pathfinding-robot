@@ -24,7 +24,7 @@ int main()
 
 	Movement_init_decoder_ISR();
 	// Movement_turn_right(90);
-    Movement_move_mm(2000);
+	Movement_move_mm(2000);
 	// Movement_set_M1_pulse(300);
 
 #ifdef USB_ENABLED
