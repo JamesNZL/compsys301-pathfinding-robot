@@ -5,7 +5,10 @@
 volatile const float MOVEMENT_OFFSET = 170.9;
 volatile const float MOVEMENT_SLOPE = 8.6543;
 
-// Note for future: use error in pulses as a relationship to the constant we multiply to the skew correct.
+const uint8 MOVEMENT_BRAKE_SPEED = 150;
+const uint16 MOVEMENT_RUN_SPEED = 600;
+const uint16 MOVEMENT_MOTOR_TURN_SPEED = 227;
+const uint8 MOVEMENT_PULSE_CORRECTION = 9;
 
 CY_ISR(PROCESS_PULSE)
 {
@@ -24,15 +27,6 @@ void Movement_move_mm(uint16 dist)
 	MOVEMENT_PULSES_TO_MOVE = (float)dist / MOVEMENT_MM_PER_PULSE;
 	Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
 	Movement_set_M2_pulse(MOVEMENT_RUN_SPEED);
-	// Enable the ISR
-	// Wait for pulses to be reached
-	// Disable the ISR
-	// ISR Periodically fetches both encoder pulses
-	// We want this to be constantly on for skew
-	// So we dont need to enable it
-	// Something needs to change in the ISR when we are using this function
-
-	// Something like in the isr have a condition if mm to move > 0 do mm-- getcounter.
 }
 
 void Movement_set_M1_pulse(uint16 target)
@@ -44,6 +38,10 @@ void Movement_set_M2_pulse(uint16 target)
 {
 	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target));
 	MOVEMENT_GLOB_2 = target;
+}
+
+void Movement_set_M1_target(uint16 target)
+{
 }
 
 float Movement_calculate_duty(uint16 target)

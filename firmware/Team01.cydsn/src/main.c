@@ -59,7 +59,7 @@ int main()
 			// If pulses to move are positive, turn the motors on and subtract from pulses to move.
 			if (MOVEMENT_PULSES_TO_MOVE > 0)
 			{
-				MOVEMENT_PULSES_TO_MOVE -= MOVEMENT_APPARENT_PULSE_1;
+				MOVEMENT_PULSES_TO_MOVE -= (MOVEMENT_APPARENT_PULSE_1 > 0) ? MOVEMENT_APPARENT_PULSE_1 : -MOVEMENT_APPARENT_PULSE_1;
 			}
 
 			int8 pulseError = MOVEMENT_APPARENT_PULSE_1 - MOVEMENT_APPARENT_PULSE_2;
