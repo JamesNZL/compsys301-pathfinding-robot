@@ -22,6 +22,8 @@ CY_ISR(PROCESS_PULSE)
 void Movement_move_mm(uint16 dist)
 {
 	MOVEMENT_PULSES_TO_MOVE = (float)dist / MOVEMENT_MM_PER_PULSE;
+	Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
+	Movement_set_M2_pulse(MOVEMENT_RUN_SPEED);
 	// Enable the ISR
 	// Wait for pulses to be reached
 	// Disable the ISR
@@ -67,7 +69,7 @@ void Movement_turn_left(uint16 angle)
 	Movement_set_M1_pulse(MOVEMENT_MOTOR_TURN_SPEED);
 	Movement_set_M2_pulse(MOVEMENT_MOTOR_TURN_SPEED);
 	QuadDec_M1_SetCounter(0);
-	while (QuadDec_M1_GetCounter() < pulseTarget)
+	while (QuadDec_M1_GetCounter() > -pulseTarget)
 	{
 		;
 	}
@@ -87,7 +89,7 @@ void Movement_turn_right(uint16 angle)
 	Movement_set_M1_pulse(MOVEMENT_MOTOR_TURN_SPEED);
 	Movement_set_M2_pulse(MOVEMENT_MOTOR_TURN_SPEED);
 	QuadDec_M1_SetCounter(0);
-	while (QuadDec_M1_GetCounter() > -pulseTarget)
+	while (QuadDec_M1_GetCounter() < pulseTarget)
 	{
 		;
 	}

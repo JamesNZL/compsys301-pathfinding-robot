@@ -24,8 +24,10 @@ int main()
 
 	Movement_init_decoder_ISR();
 	// Movement_turn_right(90);
-	// Movement_move_mm(2000);
-	Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
+	// CyDelay(500);
+	Movement_move_mm(500);
+	// Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
+	// Movement_set_M2_pulse(MOVEMENT_RUN_SPEED);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
@@ -38,35 +40,33 @@ int main()
 		/* Place your application code here. */
 
 		//--------------------------------------------
-		// if (MOVEMENT_PULSES_TO_MOVE > 0)
-		// {
-		// 	Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
-		// 	Movement_set_M2_pulse(MOVEMENT_RUN_SPEED);
-		// 	if (MOVEMENT_PULSES_TO_MOVE < 150)
-		// 	{
-		// 		Movement_set_M1_pulse(MOVEMENT_BRAKE_SPEED);
-		// 		Movement_set_M2_pulse(MOVEMENT_BRAKE_SPEED);
-		// 	}
-		// }
-		// else
-		// {
-		// 	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
-		// 	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
-		// }
+
+		if (MOVEMENT_PULSES_TO_MOVE <= 0)
+		{
+			// USB_put_string("STOP!");
+			Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
+			Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+		}
+		else if (MOVEMENT_PULSES_TO_MOVE < 150)
+		{
+			// USB_put_string("BRAKE");
+			Movement_set_M1_pulse(MOVEMENT_BRAKE_SPEED);
+			Movement_set_M2_pulse(MOVEMENT_BRAKE_SPEED);
+		}
 
 		if (FLAG_IS_SET(FLAGS, FLAG_ENCODERS_READY))
 		{
 			// If pulses to move are positive, turn the motors on and subtract from pulses to move.
 			if (MOVEMENT_PULSES_TO_MOVE > 0)
 			{
-				MOVEMENT_PULSES_TO_MOVE += MOVEMENT_APPARENT_PULSE_1;
+				MOVEMENT_PULSES_TO_MOVE -= MOVEMENT_APPARENT_PULSE_1;
 			}
 
 			int8 pulseError = MOVEMENT_APPARENT_PULSE_1 - MOVEMENT_APPARENT_PULSE_2;
 
-			static char entryy[256];
-			sprintf(entryy, "ERR: %d\n;\tTGT2: %d\n;\tM1ENC: %d, M2ENC %d\n\n", pulseError, MOVEMENT_GLOB_2, MOVEMENT_APPARENT_PULSE_1, MOVEMENT_APPARENT_PULSE_2);
-			USB_put_string(entryy);
+			// static char entryy[256];
+			// sprintf(entryy, "ERR: %d\n;\tTGT2: %d\n;\tM1ENC: %d, M2ENC %d\n\n", pulseError, MOVEMENT_GLOB_2, MOVEMENT_APPARENT_PULSE_1, MOVEMENT_APPARENT_PULSE_2);
+			// USB_put_string(entryy);
 
 			Movement_set_M2_pulse(MOVEMENT_GLOB_2 + pulseError);
 
