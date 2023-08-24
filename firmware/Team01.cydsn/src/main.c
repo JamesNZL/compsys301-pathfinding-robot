@@ -56,7 +56,10 @@ int main()
 
 		if (FLAG_IS_SET(FLAGS, FLAG_ERROR_READY))
 		{
-			Movement_set_M2_pulse(MOVEMENT_GLOB_R - MOVEMENT_PULSE_ERROR);
+			char entryy[100];
+			sprintf(entryy, "Encoder error: %d\n; current pulsespeed: %d\r\n; M1ENC: %d\r\n, M2END %d\r\n", MOVEMENT_PULSE_ERROR, MOVEMENT_GLOB_R, MOVEMENT_APPARENT_PULSE_L, MOVEMENT_APPARENT_PULSE_R);
+			USB_put_string(entryy);
+			Movement_set_M2_pulse(MOVEMENT_GLOB_R + MOVEMENT_PULSE_ERROR);
 			FLAGS &= ~(1 << FLAG_ERROR_READY);
 		}
 		//--------------------------------------------

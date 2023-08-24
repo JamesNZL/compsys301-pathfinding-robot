@@ -35,7 +35,7 @@ volatile int16 MOVEMENT_PULSES_TO_MOVE;
 volatile uint16 MOVEMENT_APPARENT_PULSE_L;
 volatile uint16 MOVEMENT_APPARENT_PULSE_R;
 volatile int8 MOVEMENT_PULSE_ERROR;
-volatile uint16 MOVEMENT_GLOB_R;
+volatile int16 MOVEMENT_GLOB_R;
 
 /**
  * @brief Instructs the robot to move a certain number of mm
