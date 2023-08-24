@@ -41,10 +41,12 @@ void Movement_set_M2_pulse(uint16 target)
 
 void Movement_set_M1_ctrltarget(uint16 target)
 {
+	MOVEMENT_TPULSE_1 = target;
 }
 
 void Movement_set_M2_ctrltarget(uint16 target)
 {
+	MOVEMENT_TPULSE_2 = target;
 }
 
 float Movement_calculate_duty(uint16 target)
