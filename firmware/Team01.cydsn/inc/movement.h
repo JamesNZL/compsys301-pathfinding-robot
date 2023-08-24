@@ -39,6 +39,7 @@ const extern uint16 MOVEMENT_RUN_SPEED;
 const extern uint16 MOVEMENT_MOTOR_TURN_SPEED;
 
 const extern uint8 MOVEMENT_PULSE_CORRECTION;
+const extern uint8 Kp;
 
 /**
  * @brief Instructs the robot to move a certain number of mm
