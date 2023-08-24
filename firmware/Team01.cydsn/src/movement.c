@@ -40,11 +40,11 @@ void Movement_set_M2_pulse(uint16 target)
 	MOVEMENT_GLOB_2 = target;
 }
 
-void Movement_set_M1_target(uint16 target)
+void Movement_set_M1_ctrltarget(uint16 target)
 {
 }
 
-void Movement_set_M2_target(uint16 target)
+void Movement_set_M2_ctrltarget(uint16 target)
 {
 }
 
