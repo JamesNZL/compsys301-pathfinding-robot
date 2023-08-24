@@ -1,0 +1,130 @@
+Middle		Front Left	Front Right	Rear Left	Rear Right	Left		Right		Action
+----------------------------------------------------------------------------------------------------------------------------------------
+False		False		False		False		False		False		False		Continue forward
+False		False		False		False		False		False		True		Continue forward
+False		False		False		False		False		True		False		Continue forward
+False		False		False		False		False		True		True		Continue forward
+False		False		False		False		True		False		False		Correct left
+False		False		False		False		True		False		True		Correct left
+False		False		False		False		True		True		False		Correct left
+False		False		False		False		True		True		True		Correct left
+False		False		False		True		False		False		False		Correct right
+False		False		False		True		False		False		True		Correct right
+False		False		False		True		False		True		False		Correct right
+False		False		False		True		False		True		True		Correct right
+False		False		False		True		True		False		False		Continue forward
+False		False		False		True		True		False		True		Continue forward
+False		False		False		True		True		True		False		Continue forward
+False		False		False		True		True		True		True		Continue forward
+False		False		True		False		False		False		False		Correct left
+False		False		True		False		False		False		True		Correct left
+False		False		True		False		False		True		False		Correct left
+False		False		True		False		False		True		True		Correct left
+False		False		True		False		True		False		False		Correct left
+False		False		True		False		True		False		True		Correct left
+False		False		True		False		True		True		False		Correct left
+False		False		True		False		True		True		True		Correct left
+False		False		True		True		False		False		False		Correct left
+False		False		True		True		False		False		True		Correct left
+False		False		True		True		False		True		False		Correct left
+False		False		True		True		False		True		True		Correct left
+False		False		True		True		True		False		False		Correct left
+False		False		True		True		True		False		True		Correct left
+False		False		True		True		True		True		False		Correct left
+False		False		True		True		True		True		True		Correct left
+False		True		False		False		False		False		False		Correct right
+False		True		False		False		False		False		True		Correct right
+False		True		False		False		False		True		False		Correct right
+False		True		False		False		False		True		True		Correct right
+False		True		False		False		True		False		False		Correct right
+False		True		False		False		True		False		True		Correct right
+False		True		False		False		True		True		False		Correct right
+False		True		False		False		True		True		True		Correct right
+False		True		False		True		False		False		False		Correct right
+False		True		False		True		False		False		True		Correct right
+False		True		False		True		False		True		False		Correct right
+False		True		False		True		False		True		True		Correct right
+False		True		False		True		True		False		False		Correct right
+False		True		False		True		True		False		True		Correct right
+False		True		False		True		True		True		False		Correct right
+False		True		False		True		True		True		True		Correct right
+False		True		True		False		False		False		False		Continue forward
+False		True		True		False		False		False		True		Continue forward
+False		True		True		False		False		True		False		Continue forward
+False		True		True		False		False		True		True		Continue forward
+False		True		True		False		True		False		False		Correct left
+False		True		True		False		True		False		True		Correct left
+False		True		True		False		True		True		False		Correct left
+False		True		True		False		True		True		True		Correct left
+False		True		True		True		False		False		False		Correct right
+False		True		True		True		False		False		True		Correct right
+False		True		True		True		False		True		False		Correct right
+False		True		True		True		False		True		True		Correct right
+False		True		True		True		True		False		False		Rotate left and right to acquire valid state
+False		True		True		True		True		False		True		Rotate left and right to acquire valid state
+False		True		True		True		True		True		False		Rotate left and right to acquire valid state
+False		True		True		True		True		True		True		Rotate left and right to acquire valid state
+True		False		False		False		False		False		False		Continue previous action
+True		False		False		False		False		False		True		Continue previous action
+True		False		False		False		False		True		False		Continue previous action
+True		False		False		False		False		True		True		Continue previous action
+True		False		False		False		True		False		False		Correct left
+True		False		False		False		True		False		True		Correct left
+True		False		False		False		True		True		False		Correct left
+True		False		False		False		True		True		True		Correct left
+True		False		False		True		False		False		False		Correct right
+True		False		False		True		False		False		True		Correct right
+True		False		False		True		False		True		False		Correct right
+True		False		False		True		False		True		True		Correct right
+True		False		False		True		True		False		False		Continue forward
+True		False		False		True		True		False		True		Continue forward
+True		False		False		True		True		True		False		Continue forward
+True		False		False		True		True		True		True		Continue forward
+True		False		True		False		False		False		False		Correct left
+True		False		True		False		False		False		True		Correct left
+True		False		True		False		False		True		False		Correct left
+True		False		True		False		False		True		True		Correct left
+True		False		True		False		True		False		False		Correct left
+True		False		True		False		True		False		True		Correct left
+True		False		True		False		True		True		False		Correct left
+True		False		True		False		True		True		True		Correct left
+True		False		True		True		False		False		False		Continue previous action
+True		False		True		True		False		False		True		Continue previous action
+True		False		True		True		False		True		False		Continue previous action
+True		False		True		True		False		True		True		Continue previous action
+True		False		True		True		True		False		False		Correct left
+True		False		True		True		True		False		True		Correct left
+True		False		True		True		True		True		False		Correct left
+True		False		True		True		True		True		True		Continue forward
+True		True		False		False		False		False		False		Correct right
+True		True		False		False		False		False		True		Correct right
+True		True		False		False		False		True		False		Correct right
+True		True		False		False		False		True		True		Correct right
+True		True		False		False		True		False		False		Continue previous action
+True		True		False		False		True		False		True		Continue previous action
+True		True		False		False		True		True		False		Continue previous action
+True		True		False		False		True		True		True		Continue previous action
+True		True		False		True		False		False		False		Correct right
+True		True		False		True		False		False		True		Correct right
+True		True		False		True		False		True		False		Correct right
+True		True		False		True		False		True		True		Correct right
+True		True		False		True		True		False		False		Correct right
+True		True		False		True		True		False		True		Correct right
+True		True		False		True		True		True		False		Correct right
+True		True		False		True		True		True		True		Continue forward
+True		True		True		False		False		False		False		Rotate left and right to see if just skewed or whether turn around
+True		True		True		False		False		False		True		Rotate left and right to see if just skewed or whether turn around
+True		True		True		False		False		True		False		Rotate left and right to see if just skewed or whether turn around
+True		True		True		False		False		True		True		Rotate left and right to see if just skewed or whether turn around
+True		True		True		False		True		False		False		Rotate left and right to see if just skewed or whether turn around
+True		True		True		False		True		False		True		Rotate left and right to see if just skewed or whether turn around
+True		True		True		False		True		True		False		Rotate left and right to see if just skewed or whether turn around
+True		True		True		False		True		True		True		Rotate left and right to see if just skewed or whether turn around
+True		True		True		True		False		False		False		Rotate left and right to see if just skewed or whether turn around
+True		True		True		True		False		False		True		Rotate left and right to see if just skewed or whether turn around
+True		True		True		True		False		True		False		Rotate left and right to see if just skewed or whether turn around
+True		True		True		True		False		True		True		Rotate left and right to see if just skewed or whether turn around
+True		True		True		True		True		False		False		Rotate left and right to acquire valid state
+True		True		True		True		True		False		True		Rotate left and right to acquire valid state
+True		True		True		True		True		True		False		Rotate left and right to acquire valid state
+True		True		True		True		True		True		True		Rotate left and right to acquire valid state
