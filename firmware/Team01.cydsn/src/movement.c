@@ -48,6 +48,7 @@ void Movement_set_M1_pulse(uint16 target)
 void Movement_set_M2_pulse(uint16 target)
 {
 	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target));
+	MOVEMENT_GLOB_R = target;
 }
 
 float Movement_calculate_duty(uint16 target)

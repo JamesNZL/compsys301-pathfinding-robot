@@ -24,8 +24,8 @@ int main()
 
 	Movement_init_decoder_ISR();
 	// Movement_turn_right(90);
-    Movement_move_mm(2000);
-	// Movement_set_M1_pulse(300);
+	// Movement_move_mm(2000);
+	Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
@@ -38,25 +38,25 @@ int main()
 		/* Place your application code here. */
 
 		//--------------------------------------------
-		if (MOVEMENT_PULSES_TO_MOVE > 0)
-		{
-			Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
-			Movement_set_M2_pulse(MOVEMENT_RUN_SPEED);
-			if (MOVEMENT_PULSES_TO_MOVE < 150)
-			{
-				Movement_set_M1_pulse(MOVEMENT_BRAKE_SPEED);
-				Movement_set_M2_pulse(MOVEMENT_BRAKE_SPEED);
-			}
-		}
-		else
-		{
-			Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
-			Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
-		}
+		// if (MOVEMENT_PULSES_TO_MOVE > 0)
+		// {
+		// 	Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
+		// 	Movement_set_M2_pulse(MOVEMENT_RUN_SPEED);
+		// 	if (MOVEMENT_PULSES_TO_MOVE < 150)
+		// 	{
+		// 		Movement_set_M1_pulse(MOVEMENT_BRAKE_SPEED);
+		// 		Movement_set_M2_pulse(MOVEMENT_BRAKE_SPEED);
+		// 	}
+		// }
+		// else
+		// {
+		// 	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
+		// 	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+		// }
 
 		if (FLAG_IS_SET(FLAGS, FLAG_ERROR_READY))
 		{
-			Movement_set_M2_pulse(PWM_2_ReadCompare() + MOVEMENT_PULSE_ERROR);
+			Movement_set_M2_pulse(MOVEMENT_GLOB_R - MOVEMENT_PULSE_ERROR);
 			FLAGS &= ~(1 << FLAG_ERROR_READY);
 		}
 		//--------------------------------------------
