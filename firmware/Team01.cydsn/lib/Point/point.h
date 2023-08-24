@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-struct Point;
+typedef struct Point Point;
 
 /// @brief Allocates memory for a point representing a point in the maze as (x,y)
 /// @param x the x-coordinates (cols) ZERO INDEXED

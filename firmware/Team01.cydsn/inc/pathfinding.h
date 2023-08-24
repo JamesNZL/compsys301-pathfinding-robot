@@ -4,7 +4,6 @@
 #include "../lib/Point/Point.h"
 #include "../lib/Queue/Queue.h"
 #include "common.h"
-#include <cytypes.h>
 
 #define PATHFINDING_MAZE_WIDTH			69
 #define PATHFINDING_MAZE_HEIGHT			69
