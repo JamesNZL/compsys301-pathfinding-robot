@@ -30,10 +30,14 @@ volatile const extern float MOVEMENT_SLOPE;
 volatile int16 MOVEMENT_PULSES_TO_MOVE;
 volatile int16 MOVEMENT_APPARENT_PULSE_1;
 volatile int16 MOVEMENT_APPARENT_PULSE_2;
-volatile int16 MOVEMENT_GLOB_2;
+
+volatile int16 MOVEMENT_TPULSE_1;
+volatile int16 MOVEMENT_TPULSE_2;
+
 const extern uint8 MOVEMENT_BRAKE_SPEED;
 const extern uint16 MOVEMENT_RUN_SPEED;
 const extern uint16 MOVEMENT_MOTOR_TURN_SPEED;
+
 const extern uint8 MOVEMENT_PULSE_CORRECTION;
 
 /**

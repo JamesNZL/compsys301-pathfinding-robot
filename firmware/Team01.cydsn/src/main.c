@@ -68,7 +68,7 @@ int main()
 			// sprintf(entryy, "ERR: %d\n;\tTGT2: %d\n;\tM1ENC: %d, M2ENC %d\n\n", pulseError, MOVEMENT_GLOB_2, MOVEMENT_APPARENT_PULSE_1, MOVEMENT_APPARENT_PULSE_2);
 			// USB_put_string(entryy);
 
-			Movement_set_M2_pulse(MOVEMENT_GLOB_2 + pulseError);
+			Movement_set_M2_pulse(MOVEMENT_TPULSE_2 + pulseError);
 
 			FLAGS &= ~(1 << FLAG_ENCODERS_READY);
 		}
