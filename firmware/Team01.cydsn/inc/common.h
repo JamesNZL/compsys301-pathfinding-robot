@@ -11,7 +11,7 @@
 /*
  * Booleans
  */
-#define bool uint8
+#define bool	uint8
 
 #define FALSE	0
 #define TRUE	1
@@ -28,7 +28,7 @@ volatile extern uint8 FLAGS;
  * @param flags The flag byte(s).
  * @param bit The position of the flag bit.
  */
-#define FLAG_IS_SET(flags, bit) flags &(1 << bit)
+#define FLAG_IS_SET(flags, bit) flags & (1 << bit)
 
 /**
  * @brief Check whether a flag bit is cleared.
@@ -36,10 +36,10 @@ volatile extern uint8 FLAGS;
  * @param flags The flag byte(s).
  * @param bit The position of the flag bit.
  */
-#define FLAG_IS_CLEARED(flags, bit) ~flags &(1 << bit)
+#define FLAG_IS_CLEARED(flags, bit) ~flags & (1 << bit)
 
 #define FLAG_USB_INPUT				0
-#define FLAG_ERROR_READY			1
+#define FLAG_ENCODERS_READY			1
 
 /*
  * Debugging

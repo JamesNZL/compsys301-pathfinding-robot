@@ -54,62 +54,73 @@ int main()
 		// 	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
 		// }
 
-		if (FLAG_IS_SET(FLAGS, FLAG_ERROR_READY))
+		if (FLAG_IS_SET(FLAGS, FLAG_ENCODERS_READY))
 		{
-			char entryy[100];
-			sprintf(entryy, "Encoder error: %d\n; current pulsespeed: %d\r\n; M1ENC: %d\r\n, M2END %d\r\n", MOVEMENT_PULSE_ERROR, MOVEMENT_GLOB_R, MOVEMENT_APPARENT_PULSE_L, MOVEMENT_APPARENT_PULSE_R);
+			// If pulses to move are positive, turn the motors on and subtract from pulses to move.
+			if (MOVEMENT_PULSES_TO_MOVE > 0)
+			{
+				MOVEMENT_PULSES_TO_MOVE += MOVEMENT_APPARENT_PULSE_1;
+			}
+
+			int8 pulseError = MOVEMENT_APPARENT_PULSE_1 - MOVEMENT_APPARENT_PULSE_2;
+
+			static char entryy[256];
+			sprintf(entryy, "ERR: %d\n;\tTGT2: %d\n;\tM1ENC: %d, M2ENC %d\n\n", pulseError, MOVEMENT_GLOB_2, MOVEMENT_APPARENT_PULSE_1, MOVEMENT_APPARENT_PULSE_2);
 			USB_put_string(entryy);
-			Movement_set_M2_pulse(MOVEMENT_GLOB_R + MOVEMENT_PULSE_ERROR);
-			FLAGS &= ~(1 << FLAG_ERROR_READY);
+
+			Movement_set_M2_pulse(MOVEMENT_GLOB_2 + pulseError);
+
+			FLAGS &= ~(1 << FLAG_ENCODERS_READY);
 		}
+
 		//--------------------------------------------
 
-		USB_get_input();
+		// USB_get_input();
 
-		if (FLAG_IS_SET(FLAGS, FLAG_USB_INPUT))
-		{
-			FLAGS &= ~(1 << FLAG_USB_INPUT);
+		// if (FLAG_IS_SET(FLAGS, FLAG_USB_INPUT))
+		// {
+		// 	FLAGS &= ~(1 << FLAG_USB_INPUT);
 
-			char *token = strtok(USB_input, COMMAND_DELIMITER);
-			if (token != NULL)
-			{
-				switch (Commands_match_command(token))
-				{
-				case (COMMAND_CHANGE_DIRECTION):
-				{
-					USB_put_string("Parsed command: CHANGE_DIRECTION\n");
+		// 	char *token = strtok(USB_input, COMMAND_DELIMITER);
+		// 	if (token != NULL)
+		// 	{
+		// 		switch (Commands_match_command(token))
+		// 		{
+		// 		case (COMMAND_CHANGE_DIRECTION):
+		// 		{
+		// 			USB_put_string("Parsed command: CHANGE_DIRECTION\n");
 
-					// extract first argument
-					token = strtok(NULL, COMMAND_DELIMITER);
-					Handlers_change_direction(token);
-					break;
-				}
-				case (COMMAND_CHANGE_DUTY):
-				{
-					USB_put_string("Parsed command: CHANGE_DUTY\n");
+		// 			// extract first argument
+		// 			token = strtok(NULL, COMMAND_DELIMITER);
+		// 			Handlers_change_direction(token);
+		// 			break;
+		// 		}
+		// 		case (COMMAND_CHANGE_DUTY):
+		// 		{
+		// 			USB_put_string("Parsed command: CHANGE_DUTY\n");
 
-					// extract first argument
-					token = strtok(NULL, COMMAND_DELIMITER);
-					break;
-				}
-				case (COMMAND_CHANGE_SPEED):
-				{
-					USB_put_string("Parsed command: CHANGE_DUTY\n");
-					// extract first argument
-					token = strtok(NULL, COMMAND_DELIMITER);
-					Handlers_change_speed(token);
-					break;
-				}
-				default:
-				{
-					USB_put_string("Failed to parse command.\n");
-					USB_put_string("You Sent:\n");
-					USB_put_string(token);
-					USB_put_string("\n");
-					break;
-				}
-				}
-			}
-		}
+		// 			// extract first argument
+		// 			token = strtok(NULL, COMMAND_DELIMITER);
+		// 			break;
+		// 		}
+		// 		case (COMMAND_CHANGE_SPEED):
+		// 		{
+		// 			USB_put_string("Parsed command: CHANGE_DUTY\n");
+		// 			// extract first argument
+		// 			token = strtok(NULL, COMMAND_DELIMITER);
+		// 			Handlers_change_speed(token);
+		// 			break;
+		// 		}
+		// 		default:
+		// 		{
+		// 			USB_put_string("Failed to parse command.\n");
+		// 			USB_put_string("You Sent:\n");
+		// 			USB_put_string(token);
+		// 			USB_put_string("\n");
+		// 			break;
+		// 		}
+		// 		}
+		// }
+		// }
 	}
 }

@@ -32,10 +32,9 @@ typedef enum Direction
 volatile const extern float MOVEMENT_OFFSET;
 volatile const extern float MOVEMENT_SLOPE;
 volatile int16 MOVEMENT_PULSES_TO_MOVE;
-volatile uint16 MOVEMENT_APPARENT_PULSE_L;
-volatile uint16 MOVEMENT_APPARENT_PULSE_R;
-volatile int8 MOVEMENT_PULSE_ERROR;
-volatile int16 MOVEMENT_GLOB_R;
+volatile int16 MOVEMENT_APPARENT_PULSE_1;
+volatile int16 MOVEMENT_APPARENT_PULSE_2;
+volatile int16 MOVEMENT_GLOB_2;
 
 /**
  * @brief Instructs the robot to move a certain number of mm

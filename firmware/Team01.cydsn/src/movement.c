@@ -9,17 +9,10 @@ volatile const float MOVEMENT_SLOPE = 8.6543;
 
 CY_ISR(PROCESS_PULSE)
 {
-	MOVEMENT_APPARENT_PULSE_L = QuadDec_M1_GetCounter();
-	MOVEMENT_APPARENT_PULSE_R = QuadDec_M2_GetCounter();
+	MOVEMENT_APPARENT_PULSE_1 = QuadDec_M1_GetCounter();
+	MOVEMENT_APPARENT_PULSE_2 = QuadDec_M2_GetCounter();
 
-	MOVEMENT_PULSE_ERROR = (int8)MOVEMENT_APPARENT_PULSE_L - MOVEMENT_APPARENT_PULSE_R;
-	FLAGS |= (1 << FLAG_ERROR_READY);
-
-	// If pulses to move are positive, turn the motors on and subtract from pulses to move.
-	if (MOVEMENT_PULSES_TO_MOVE > 0)
-	{
-		MOVEMENT_PULSES_TO_MOVE += MOVEMENT_APPARENT_PULSE_L;
-	}
+	FLAGS |= (1 << FLAG_ENCODERS_READY);
 
 	QuadDec_M1_SetCounter(0);
 	QuadDec_M2_SetCounter(0);
@@ -48,7 +41,7 @@ void Movement_set_M1_pulse(uint16 target)
 void Movement_set_M2_pulse(uint16 target)
 {
 	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target));
-	MOVEMENT_GLOB_R = target;
+	MOVEMENT_GLOB_2 = target;
 }
 
 float Movement_calculate_duty(uint16 target)
