@@ -25,9 +25,9 @@ int main()
 	Movement_init_decoder_ISR();
 	// Movement_turn_right(90);
 	// CyDelay(500);
-	Movement_move_mm(500);
-	// Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
-	// Movement_set_M2_pulse(MOVEMENT_RUN_SPEED);
+	// Movement_move_mm(500);
+	Movement_set_M1_pulse(300);
+	//Movement_set_M2_ctrltarget(300);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
@@ -41,18 +41,18 @@ int main()
 
 		//--------------------------------------------
 
-		if (MOVEMENT_PULSES_TO_MOVE <= 0)
-		{
-			// USB_put_string("STOP!");
-			Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
-			Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
-		}
-		else if (MOVEMENT_PULSES_TO_MOVE < 150)
-		{
-			// USB_put_string("BRAKE");
-			Movement_set_M1_pulse(MOVEMENT_BRAKE_SPEED);
-			Movement_set_M2_pulse(MOVEMENT_BRAKE_SPEED);
-		}
+		// if (MOVEMENT_PULSES_TO_MOVE <= 0)
+		// {
+		// 	// USB_put_string("STOP!");
+		// 	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
+		// 	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+		// }
+		// else if (MOVEMENT_PULSES_TO_MOVE < 150)
+		// {
+		// 	// USB_put_string("BRAKE");
+		// 	Movement_set_M1_pulse(MOVEMENT_BRAKE_SPEED);
+		// 	Movement_set_M2_pulse(MOVEMENT_BRAKE_SPEED);
+		// }
 
 		if (FLAG_IS_SET(FLAGS, FLAG_ENCODERS_READY))
 		{
@@ -62,14 +62,14 @@ int main()
 				MOVEMENT_PULSES_TO_MOVE -= (MOVEMENT_APPARENT_PULSE_1 > 0) ? MOVEMENT_APPARENT_PULSE_1 : -MOVEMENT_APPARENT_PULSE_1;
 			}
 
-			int8 pulseError1 = MOVEMENT_TPULSE_1 - MOVEMENT_APPARENT_PULSE_1;
-			int8 pulseError2 = MOVEMENT_TPULSE_2 - MOVEMENT_APPARENT_PULSE_2;
+			//int8 pulseError1 = MOVEMENT_TPULSE_1/100 - MOVEMENT_APPARENT_PULSE_1;
+			int8 pulseError2 = MOVEMENT_APPARENT_PULSE_1 - MOVEMENT_APPARENT_PULSE_2;
 
-			// static char entryy[256];
-			// sprintf(entryy, "ERR: %d\n;\tTGT2: %d\n;\tM1ENC: %d, M2ENC %d\n\n", pulseError, MOVEMENT_GLOB_2, MOVEMENT_APPARENT_PULSE_1, MOVEMENT_APPARENT_PULSE_2);
-			// USB_put_string(entryy);
+			static char entryy[256];
+			sprintf(entryy, "ERR: %d\n;\tTGT2: %d\n;\tM1ENC: %d, M2ENC %d\n\n", pulseError2, MOVEMENT_TPULSE_2, MOVEMENT_APPARENT_PULSE_1, MOVEMENT_APPARENT_PULSE_2);
+			USB_put_string(entryy);
 
-			Movement_set_M2_pulse(MOVEMENT_TPULSE_1 + pulseError1);
+			//Movement_set_M1_pulse(MOVEMENT_TPULSE_1 + pulseError1);
 			Movement_set_M2_pulse(MOVEMENT_TPULSE_2 + pulseError2);
 
 			FLAGS &= ~(1 << FLAG_ENCODERS_READY);
