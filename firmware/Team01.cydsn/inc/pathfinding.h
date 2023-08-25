@@ -4,8 +4,8 @@
 #include "../lib/Point/Point.h"
 #include "../lib/Queue/Queue.h"
 
-#define PATHFINDING_MAZE_WIDTH			69
-#define PATHFINDING_MAZE_HEIGHT			69
+#define PATHFINDING_MAZE_WIDTH			19
+#define PATHFINDING_MAZE_HEIGHT			15
 #define PATHFINDING_STARTING_INDEX		0
 #define PATHFINDING_POSSIBLE_DIRECTIONS 4
 

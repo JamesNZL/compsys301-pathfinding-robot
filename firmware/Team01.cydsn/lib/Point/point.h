@@ -14,6 +14,8 @@ Point *Point_create(uint8_t x, uint8_t y);
 /// @brief Frees the memory occupied by a point
 /// @param point
 /// @return
-void *Point_destroy(Point *point);
+void Point_destroy(Point *point);
 
+uint8_t Point_get_x(Point *point);
+uint8_t Point_get_y(Point *point);
 #endif

@@ -1,7 +1,7 @@
 #ifndef STACK_H_
 #define STACK_H_
 
-#include <Node/Node.h>
+#include "../Node/Node.h"
 
 #include <stdint.h>
 

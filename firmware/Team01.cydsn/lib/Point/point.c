@@ -23,7 +23,17 @@ Point *Point_create(uint8_t x, uint8_t y)
 	return point;
 }
 
-void Destroy_point(Point *point)
+void Point_destroy(Point *point)
 {
 	free(point);
+}
+
+uint8_t Point_get_x(Point *point)
+{
+	return point->x;
+}
+
+uint8_t Point_get_y(Point *point)
+{
+	return point->y;
 }

@@ -1,6 +1,8 @@
+#include "../inc/pathfinding.h"
+#include "../lib/Point/Point.h"
+#include "../lib/Queue/Queue.h"
 #include <stdint.h>
-
-extern const uint8_t map[15][19] = {
+uint8_t map[15][19] = {
 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 	{ 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
 	{ 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1 },
@@ -18,7 +20,7 @@ extern const uint8_t map[15][19] = {
 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 };
 
-extern const uint8_t food_list[5][2] = { { 1, 9 },
+uint8_t food_list[5][2] = { { 1, 9 },
 	{ 5, 5 },
 	{ 7, 1 },
 	{ 13, 5 },
