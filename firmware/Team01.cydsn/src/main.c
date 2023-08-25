@@ -63,6 +63,7 @@ int main()
 			}
 
 			int8 pulseError1 = MOVEMENT_TPULSE_1 / 100 - MOVEMENT_APPARENT_PULSE_1;
+			// int8 pulseError2 = MOVEMENT_TPULSE_2 / 100 - MOVEMENT_APPARENT_PULSE_2;
 			int8 pulseError2 = MOVEMENT_APPARENT_PULSE_1 - MOVEMENT_APPARENT_PULSE_2;
 
 			// static char entryy[256];
