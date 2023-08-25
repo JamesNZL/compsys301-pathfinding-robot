@@ -20,7 +20,7 @@ TEST_EXEC = test_executable
 all: $(TEST_EXEC)
 
 $(TEST_EXEC): $(OBJ_FILES)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) tests/test_pathfinding.c $(CFLAGS) $^ -o $@
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
