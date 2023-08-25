@@ -11,9 +11,14 @@
  */
 #include "project.h"
 
+CY_ISR(light_sensed)
+{
+}
+
 int main(void)
 {
 	CyGlobalIntEnable; /* Enable global interrupts. */
+	isr_lightsense_StartEx(light_sensed);
 
 	/* Place your initialization/startup code here (e.g. MyInst_Start()) */
 
