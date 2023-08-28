@@ -32,3 +32,4 @@ jobs:
           auto_fix: true
           clang_format_auto_fix: true
           clang_format_dir: firmware/
+          commit_message: "style(firmware): :art: format with ${linter}"
