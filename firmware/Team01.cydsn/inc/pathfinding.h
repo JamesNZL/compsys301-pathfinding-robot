@@ -1,8 +1,9 @@
 #ifndef PATHFINDING_H_
 #define PATHFINDING_H_
-#include "../lib/Node/Node.h"
-#include "../lib/Point/Point.h"
-#include "../lib/Queue/Queue.h"
+
+#include <Node/Node.h>
+#include <Point/Point.h>
+#include <Queue/Queue.h>
 
 #define PATHFINDING_MAZE_WIDTH			19
 #define PATHFINDING_MAZE_HEIGHT			15
