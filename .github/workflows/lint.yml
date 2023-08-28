@@ -29,6 +29,6 @@ jobs:
         uses: wearerequired/lint-action@v2
         with:
           clang_format: true
-          clang_format_args: "--style file:.clang-format"
+          clang_format_args: "--style=\"{ BasedOnStyle: WebKit, BreakBeforeBraces: Allman, IndentWidth: 4, TabWidth: 4, UseTab: Always, ColumnLimit: 0, PointerAlignment: Right, AlignConsecutiveMacros: AcrossEmptyLines }\""
           clang_format_dir: firmware/
           commit_message: "style(firmware): :art: format with ${linter}"
