@@ -12,6 +12,12 @@ typedef struct Point Point;
 /// @return
 Point *Point_create(uint8_t x, uint8_t y, uint8_t COLUMNS);
 
+/// @brief Allocates memory for a point representing a point in the maze as (x,y) given a zero-indexed 1d index
+/// @param index the 1d index (zero-indexed) of the point
+/// @param COLUMNS the width of the maze which the point resides
+/// @return
+Point *Point_create_from_1d(uint16_t index, uint8_t COLUMNS);
+
 /// @brief Frees the memory occupied by a point
 /// @param point
 /// @return

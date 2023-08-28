@@ -18,8 +18,22 @@ Point *Point_create(uint8_t x, uint8_t y, uint8_t COLUMNS)
 
 	point->x = x;
 	point->y = y;
-	// TODO: convert these to 1d
 	point->one_dim_index = x + y * COLUMNS;
+	return point;
+}
+
+Point *Point_create_from_1d(uint16_t index, uint8_t COLUMNS)
+{
+
+	Point *point = malloc(sizeof(Point));
+	if (point == NULL)
+	{
+		return NULL;
+	}
+
+	point->x = index % COLUMNS;
+	point->y = index / COLUMNS;
+	point->one_dim_index = index;
 	return point;
 }
 

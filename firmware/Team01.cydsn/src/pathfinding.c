@@ -34,6 +34,7 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 		Node_destroy(current);
 		Point_destroy(point);
 	}
+	uint16_t current;
 }
 
 Node *Pathfinding_create_node(Point *point)
