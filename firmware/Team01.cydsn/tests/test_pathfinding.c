@@ -4,6 +4,7 @@
 
 int main()
 {
+	printf("Test Started.\n");
 	Point *start = Point_create(1, 1, PATHFINDING_MAZE_WIDTH);
 	Point *end = Point_create(17, 1, PATHFINDING_MAZE_WIDTH);
 	Stack *path = Pathfinding_find_shortest_path_bfs(start, end, map);

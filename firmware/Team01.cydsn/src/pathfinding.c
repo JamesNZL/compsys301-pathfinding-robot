@@ -9,10 +9,10 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 	uint16_t pred[PATHFINDING_MAZE_HEIGHT * PATHFINDING_MAZE_WIDTH];
 	Queue *q = Queue_construct();
 	Queue_append(q, Pathfinding_create_node(start));
+	uint8_t visited[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH];
 	Point *current_point;
 	while (!Queue_is_empty(q))
 	{
-		uint8_t visited[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH];
 		Node *current_node = Queue_pop(q);
 		current_point = Node_get_value(current_node);
 		if (Point_equal(current_point, end))
@@ -23,7 +23,7 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 		{
 			uint8_t newX = Point_get_x(current_point) + dX[i];
 			uint8_t newY = Point_get_y(current_point) + dY[i];
-			if (Pathfinding_coordinates_in_bounds(newX, newY) && !visited[newY][newX])
+			if (maze[newY][newX] == 0 && Pathfinding_coordinates_in_bounds(newX, newY) && !visited[newY][newX])
 			{
 				Point *neighbour_point = Point_create(newX, newY, PATHFINDING_MAZE_WIDTH);
 				Node *neighbour = Pathfinding_create_node(neighbour_point);
