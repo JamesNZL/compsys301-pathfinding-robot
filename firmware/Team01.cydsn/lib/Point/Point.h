@@ -30,5 +30,5 @@ void Point_destroy(Point *point);
 uint8_t Point_equal(Point *point_1, Point *point_2);
 uint8_t Point_get_x(Point *point);
 uint8_t Point_get_y(Point *point);
-uint8_t Point_get_1d(Point *point);
+uint16_t Point_get_1d(Point *point);
 #endif

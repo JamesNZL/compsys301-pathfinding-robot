@@ -58,7 +58,7 @@ uint8_t Point_get_y(Point *point)
 {
 	return point->y;
 }
-uint8_t Point_get_1d(Point *point)
+uint16_t Point_get_1d(Point *point)
 {
 	return point->one_dim_index;
 }
