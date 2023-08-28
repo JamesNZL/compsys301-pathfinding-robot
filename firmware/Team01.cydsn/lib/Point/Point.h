@@ -21,7 +21,6 @@ void Point_destroy(Point *point);
 /// @param point_1
 /// @param point_2
 /// @return 1 (TRUE) if the nodes are equal or 0 (FALSE) if they are not
-
 uint8_t Point_equal(Point *point_1, Point *point_2);
 uint8_t Point_get_x(Point *point);
 uint8_t Point_get_y(Point *point);
