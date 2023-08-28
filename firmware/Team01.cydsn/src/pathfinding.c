@@ -7,7 +7,6 @@ Queue *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 {
 	Queue *q = Queue_construct();
 	Queue_append(q, Pathfinding_create_node(start));
-	return q;
 	while (!Queue_is_empty(q))
 	{
 		uint8_t visited[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH];
