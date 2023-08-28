@@ -40,4 +40,9 @@ Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze[PATHFI
 /// @return
 void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_MAZE_HEIGHT * PATHFINDING_MAZE_WIDTH], Point *start, Point *end);
 
+/// @brief Gives a path to the food containing the turns needed, as well as instructions after the final turn such as distance
+/// @param path a stack of the nodes contained within the shortest path
+/// @return
+Queue *Pathfinding_generate_route_to_food(Stack *path);
+
 #endif
