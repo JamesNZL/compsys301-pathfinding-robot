@@ -1,6 +1,6 @@
 # Compiler settings
 CC = gcc
-CFLAGS = -Iinc -Wall
+CFLAGS = -Ilib -Iinc -Wall
 
 # Source, library, and object directories
 SRC_DIR = src

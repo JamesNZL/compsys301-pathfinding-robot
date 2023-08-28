@@ -5,6 +5,7 @@
 #include <Point/Point.h>
 #include <Queue/Queue.h>
 #include <Stack/Stack.h>
+#include <stdint.h>
 
 #define PATHFINDING_MAZE_WIDTH			19
 #define PATHFINDING_MAZE_HEIGHT			15
@@ -37,6 +38,6 @@ Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze[PATHFI
 /// @param start A Point representing the starting position in the maze
 /// @param end  A Point represetning the destination position of the maze
 /// @return
-void *Pathfinding_build_stack_from_pred(Stack *stack, uint16_t[PATHFINDING_MAZE_HEIGHT * PATHFINDING_MAZE_WIDTH] pred, Point *start, Point *end);
+void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_MAZE_HEIGHT * PATHFINDING_MAZE_WIDTH], Point *start, Point *end);
 
 #endif
