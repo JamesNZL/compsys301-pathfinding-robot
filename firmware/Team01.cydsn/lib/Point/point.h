@@ -19,4 +19,5 @@ void Point_destroy(Point *point);
 
 uint8_t Point_get_x(Point *point);
 uint8_t Point_get_y(Point *point);
+uint8_t Point_get_1d(Point *point);
 #endif
