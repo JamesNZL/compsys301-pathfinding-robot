@@ -27,4 +27,6 @@ Node *Pathfinding_create_node(Point *point);
 Stack *
 Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
 
+void *Pathfinding_build_stack_from_pred(Stack *stack, uint16_t[PATHFINDING_MAZE_HEIGHT * PATHFINDING_MAZE_WIDTH], Point *start, Point *end);
+
 #endif
