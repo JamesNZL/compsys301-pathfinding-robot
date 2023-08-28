@@ -13,6 +13,7 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 	}
 
 	uint8_t visited[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH] = { 0 };
+	visited[Point_get_y(start)][Point_get_x(start)] = 1;
 	Queue *q = Queue_construct();
 	Queue_append(q, Pathfinding_create_node(start));
 	Point *current_point;
@@ -55,6 +56,7 @@ void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_M
 	uint16_t start_index = Point_get_1d(start);
 	while (current_index != UINT16_MAX && current_index != start_index)
 	{
+		// printf("%i\n", current_index);
 		Node *current_node = Node_create(Point_create_from_1d(current_index, PATHFINDING_MAZE_WIDTH));
 		Stack_push(stack, current_node);
 		current_index = pred[current_index];
