@@ -21,7 +21,7 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 	{
 		Node *current_node = Queue_pop(q);
 		current_point = Node_get_value(current_node);
-		printf("(%i,%i)", Point_get_x(current_point), Point_get_y(current_point));
+		// printf("(%i,%i)", Point_get_x(current_point), Point_get_y(current_point));
 		if (Point_equal(current_point, end))
 		{
 			break;
