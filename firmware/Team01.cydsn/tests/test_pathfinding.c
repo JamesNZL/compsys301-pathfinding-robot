@@ -2,6 +2,13 @@
 #include <assert.h>
 #include <stdio.h>
 
+void teardown(Point *start, Point *end, Stack *path)
+{
+	Point_destroy(start);
+	Point_destroy(end);
+	Stack_destroy(path);
+}
+
 int main()
 {
 	printf("Test 1 Started.\n");
@@ -20,7 +27,7 @@ int main()
 	}
 	printf("Length of path is: %i \n", length);
 	assert(length == 21);
-
+	teardown(start, end, path);
 	printf("Test 2 Started.\n");
 	return 0;
 }
