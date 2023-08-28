@@ -4,6 +4,7 @@
 #include <Node/Node.h>
 #include <Point/Point.h>
 #include <Queue/Queue.h>
+#include <Stack/Stack.h>
 
 #define PATHFINDING_MAZE_WIDTH			19
 #define PATHFINDING_MAZE_HEIGHT			15
@@ -23,7 +24,7 @@ uint8_t Pathfinding_coordinates_in_bounds(uint8_t x, uint8_t y);
 
 Node *Pathfinding_create_node(Point *point);
 
-Queue *
+Stack *
 Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
 
 #endif
