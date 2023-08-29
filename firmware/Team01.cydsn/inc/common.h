@@ -38,7 +38,23 @@ volatile extern uint8 FLAGS;
  */
 #define FLAG_IS_CLEARED(flags, bit) ~flags & (1 << bit)
 
-#define FLAG_USB_INPUT				0
+/**
+ * @brief Set a flag bit.
+ *
+ * @param flags The flag byte(s).
+ * @param bit The position of the flag bit.
+ */
+#define FLAG_SET(flags, bit) flags |= (1 << bit)
+
+/**
+ * @brief Clear a flag bit.
+ *
+ * @param flags The flag byte(s).
+ * @param bit The position of the flag bit.
+ */
+#define FLAG_CLEAR(flags, bit) flags &= ~(1 << bit)
+
+#define FLAG_USB_INPUT		   0
 
 /*
  * Debugging
