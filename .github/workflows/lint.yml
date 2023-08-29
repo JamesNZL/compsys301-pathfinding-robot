@@ -12,9 +12,11 @@ jobs:
   clang-format:
     name: Run clang format
     runs-on: ubuntu-latest
+
     permissions:
       checks: write
       contents: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -22,13 +24,18 @@ jobs:
            ref: ${{ github.ref }}
            fetch-depth: 0
 
-      - name: Install Dependencies
-        run: sudo apt-get install -y clang-format
-
-      - name: Run clang format
-        uses: wearerequired/lint-action@v2
+      - name: Run clang-format
+        uses: DoozyX/clang-format-lint-action@v0.16.2
         with:
-          clang_format: true
-          auto_fix: true
-          clang_format_auto_fix: true
-          clang_format_dir: firmware/
+          source: './firmware'
+          clangFormatVersion: 16
+          inplace: True
+            
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: James
+          author_email: james@jamesnzl.xyz
+          message: 'style(firmware): :art: format with clang-format'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
