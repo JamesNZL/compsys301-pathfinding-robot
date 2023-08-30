@@ -183,10 +183,16 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 			}
 		}
 		Node_destroy(current_node);
-		Point_destroy(current_point);
+		// we can't destroy the reference to the start point
+		if (!Point_equal(start, current_point))
+		{
+			Point_destroy(current_point);
+		}
 	}
 	Stack *stack = Stack_construct();
 	Pathfinding_build_stack_from_pred(stack, pred, start, end);
+	// we are ok to free the start point now
+	Point_destroy(current_point);
 	Queue_destroy(q);
 	return stack;
 }
