@@ -93,7 +93,7 @@ void run_route_tests()
 		free(current_action);
 		Node_destroy(current);
 	}
-	printf("\nThe last facing direction is: %i\n", Pathfinding_route_get_last_faced_direction(route));
+	printf("\nThe last facing direction is: %s\n", direction_strings[Pathfinding_route_get_last_faced_direction(route)]);
 	printf("The final required distance is:\n");
 }
 

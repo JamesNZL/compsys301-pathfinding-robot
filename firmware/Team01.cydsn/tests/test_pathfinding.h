@@ -3,8 +3,13 @@
 #include "../lib/Queue/Queue.h"
 #include <stdint.h>
 
+/* For debugging purposes */
 char *action_strings[5] = {
 	"left", "right", "skip", "around", "straight"
+};
+
+char *direction_strings[4] = {
+	"left", "right", "up", "down"
 };
 
 uint8_t map[15][19]
