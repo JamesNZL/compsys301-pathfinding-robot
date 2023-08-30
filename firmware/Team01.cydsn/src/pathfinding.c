@@ -112,7 +112,7 @@ Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions
 	return ACTIONS_SKIP;
 }
 
-Pathfinding_route *Pathfinding_route_create(Queue *turns, uint8_t final_distance)
+Pathfinding_route *Pathfinding_route_construct(Queue *turns, uint8_t final_distance)
 {
 	Pathfinding_route *route = malloc(sizeof(Pathfinding_route));
 	if (route == NULL)
