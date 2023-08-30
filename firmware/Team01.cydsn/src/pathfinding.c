@@ -209,7 +209,7 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze
 		// we popped the last node
 		if (Stack_is_empty(shortest_path))
 		{
-			printf("final: (%i,%i), last: (%i,%i)", Point_get_x(current_point), Point_get_y(current_point), Point_get_x(last_intersection_point), Point_get_y(last_intersection_point));
+			// printf("final: (%i,%i), last: (%i,%i)", Point_get_x(current_point), Point_get_y(current_point), Point_get_x(last_intersection_point), Point_get_y(last_intersection_point));
 			final_distance = Pathfinding_calculate_point_spacing(current_direction, current_point, last_intersection_point);
 			Stack_destroy(shortest_path);
 			Point_destroy(current_point);
@@ -246,7 +246,8 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze
 		}
 	}
 
-	Pathfinding_route *route = Pathfinding_route_construct(turns, current_direction, last_intersection_point);
+	// we add 1 to the final distance to be inclusive of the last intersection point
+	Pathfinding_route *route = Pathfinding_route_construct(turns, current_direction, final_distance + 1);
 	return route;
 }
 
@@ -279,12 +280,13 @@ uint8_t Pathfinding_calculate_point_spacing(Maze_Directions current_direction, P
 	// moving horizontally
 	case MAZE_DIRECTIONS_LEFT:
 	case MAZE_DIRECTIONS_RIGHT:
-		return abs(Point_get_x(point_1) - Point_get_x(point_2));
+		// implement abs manually
+		return abs(Point_get_x(point_1), Point_get_x(point_2));
 		break;
 	// moving vertically
 	case MAZE_DIRECTIONS_UP:
 	case MAZE_DIRECTIONS_DOWN:
-		return abs(Point_get_y(point_1) - Point_get_y(point_2));
+		return abs(Point_get_y(point_1), Point_get_y(point_2));
 		break;
 	default:
 		return 0;
