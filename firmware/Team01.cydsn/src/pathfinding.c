@@ -2,13 +2,6 @@
 
 const static int8_t dY[PATHFINDING_POSSIBLE_DIRECTIONS] = { 0, 0, -1, 1 };
 const static int8_t dX[PATHFINDING_POSSIBLE_DIRECTIONS] = { -1, 1, 0, 0 };
-const static Actions action_LUT[5][5] = {
-	{ ACTIONS_SKIP, ACTIONS_SKIP, ACTIONS_SKIP, ACTIONS_SKIP, ACTIONS_SKIP },
-	{ ACTIONS_SKIP, ACTIONS_AROUND, ACTIONS_RIGHT, ACTIONS_SKIP, ACTIONS_LEFT },
-	{ ACTIONS_SKIP, ACTIONS_LEFT, ACTIONS_AROUND, ACTIONS_RIGHT, ACTIONS_SKIP },
-	{ ACTIONS_SKIP, ACTIONS_SKIP, ACTIONS_LEFT, ACTIONS_AROUND, ACTIONS_RIGHT },
-	{ ACTIONS_SKIP, ACTIONS_RIGHT, ACTIONS_SKIP, ACTIONS_LEFT, ACTIONS_AROUND }
-};
 
 typedef struct Pathfinding_route
 {
@@ -18,7 +11,70 @@ typedef struct Pathfinding_route
 
 Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions next)
 {
-	return action_LUT[current + 1][next + 1];
+	switch (current)
+	{
+	case MAZE_DIRECTIONS_LEFT:
+	{
+		switch (next)
+		{
+		case MAZE_DIRECTIONS_LEFT:
+			return ACTIONS_SKIP;
+		case MAZE_DIRECTIONS_RIGHT:
+			return ACTIONS_AROUND;
+		case MAZE_DIRECTIONS_UP:
+			return ACTIONS_RIGHT;
+		case MAZE_DIRECTIONS_DOWN:
+			return ACTIONS_LEFT;
+		}
+	}
+	break;
+	case MAZE_DIRECTIONS_RIGHT:
+	{
+		switch (next)
+		{
+		case MAZE_DIRECTIONS_LEFT:
+			return ACTIONS_AROUND;
+		case MAZE_DIRECTIONS_RIGHT:
+			return ACTIONS_SKIP;
+		case MAZE_DIRECTIONS_UP:
+			return ACTIONS_LEFT;
+		case MAZE_DIRECTIONS_DOWN:
+			return ACTIONS_RIGHT;
+		}
+	}
+	break;
+	case MAZE_DIRECTIONS_UP:
+	{
+		switch (next)
+		{
+		case MAZE_DIRECTIONS_LEFT:
+			return ACTIONS_LEFT;
+		case MAZE_DIRECTIONS_RIGHT:
+			return ACTIONS_RIGHT;
+		case MAZE_DIRECTIONS_UP:
+			return ACTIONS_SKIP;
+		case MAZE_DIRECTIONS_DOWN:
+			return ACTIONS_AROUND;
+		}
+	}
+	break;
+	case MAZE_DIRECTIONS_DOWN:
+	{
+		switch (next)
+		{
+		case MAZE_DIRECTIONS_LEFT:
+			return ACTIONS_RIGHT;
+		case MAZE_DIRECTIONS_RIGHT:
+			return ACTIONS_LEFT;
+		case MAZE_DIRECTIONS_UP:
+			return ACTIONS_AROUND;
+		case MAZE_DIRECTIONS_DOWN:
+			return ACTIONS_SKIP;
+		}
+	}
+	break;
+	}
+	return ACTIONS_SKIP;
 }
 
 Pathfinding_route *Pathfinding_route_create(Queue *turns, uint8_t final_distance)

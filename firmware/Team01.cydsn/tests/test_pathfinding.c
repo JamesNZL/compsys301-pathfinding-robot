@@ -59,6 +59,6 @@ int main()
 	assert(action_1 == ACTIONS_AROUND);
 	// Should be left (down to ->)
 	Actions action_2 = Pathfinding_get_required_action(MAZE_DIRECTIONS_DOWN, MAZE_DIRECTIONS_RIGHT);
-	assert(action_2 == ACTIONS_SKIP);
+	assert(action_2 == ACTIONS_LEFT);
 	return 0;
 }
