@@ -186,6 +186,12 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *path, Maze_Directio
 		{
 			break;
 		}
+
+		Node *next_node = Stack_pop(path);
+		Point *next_point = Node_get_value(next_node);
+
+		Maze_Directions relative_direction_of_next = Pathfinding_get_relative_direction(current_point, next_point);
+		Actions action = Pathfinding_get_required_action(current_direction, relative_direction_of_next);
 	}
 }
 

@@ -76,4 +76,12 @@ void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_M
 /// @return
 Pathfinding_route *Pathfinding_generate_route_to_food(Stack *path, Maze_Directions starting_direction, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
 
+/// @brief Determines based on the current coordinates and direction if the point is an intersection
+/// @param current_direction the direction the robot is facing in the maze
+/// @param x The x coordinates of the point
+/// @param y The y coordinates of the point
+/// @param maze the 2d maze
+/// @return
+uint8_t Pathfinding_is_on_intersection(Maze_Directions current_direction, uint8_t x, uint8_t y, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
+
 #endif
