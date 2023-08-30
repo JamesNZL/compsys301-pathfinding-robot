@@ -216,6 +216,8 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *path, Maze_Directio
 			Queue_append(turns, Node_create(required_action_pointer));
 		}
 	}
+	Pathfinding_route *route = Pathfinding_route_construct(turns, current_direction, 0);
+	return route;
 }
 
 void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_MAZE_HEIGHT * PATHFINDING_MAZE_WIDTH], Point *start, Point *end)
