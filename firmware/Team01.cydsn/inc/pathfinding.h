@@ -55,8 +55,6 @@ Maze_Directions Pathfinding_get_relative_direction(Point *current, Point *next);
 /// @return
 Pathfinding_route *Pathfinding_route_create(Queue *turns, uint8_t final_distance);
 
-Node *Pathfinding_create_node(Point *point);
-
 /// @brief Returns a stack of points to represent the shortest path, with the top of the stack being the first node
 /// @param start A Point representing the starting position in the maze
 /// @param end  A Point represetning the destination position of the maze
