@@ -25,7 +25,14 @@ typedef enum Actions
 
 uint8_t Pathfinding_coordinates_in_bounds(uint8_t x, uint8_t y);
 
+/// @brief Creates and returns a pointer to a route data structure which has a queue containing the required turns, and the required amount of distance to be travelled after the final turn
+/// @param turns a Queue of turns defined as enums
+/// @param final_distance the units (in terms of the maze grid) required to be travelled after the final turn
+/// @return
+Pathfinding_route *Pathfinding_route_create(Queue *turns, uint8_t final_distance);
+
 Node *Pathfinding_create_node(Point *point);
+
 /// @brief Returns a stack of points to represent the shortest path, with the top of the stack being the first node
 /// @param start A Point representing the starting position in the maze
 /// @param end  A Point represetning the destination position of the maze
