@@ -28,3 +28,4 @@ Backup/
 # Ignore compiler generated files
 *.o
 *.exe
+*.exe.*
