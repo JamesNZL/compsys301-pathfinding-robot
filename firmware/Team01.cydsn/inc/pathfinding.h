@@ -21,6 +21,7 @@ typedef enum Actions
 	ACTIONS_RIGHT,
 	ACTIONS_SKIP,
 	ACTIONS_AROUND,
+	ACTIONS_STRAIGHT
 } Actions;
 
 typedef enum Maze_Directions

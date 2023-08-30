@@ -53,7 +53,7 @@ Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions
 		switch (next)
 		{
 		case MAZE_DIRECTIONS_LEFT:
-			return ACTIONS_SKIP;
+			return ACTIONS_STRAIGHT;
 		case MAZE_DIRECTIONS_RIGHT:
 			return ACTIONS_AROUND;
 		case MAZE_DIRECTIONS_UP:
@@ -70,7 +70,7 @@ Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions
 		case MAZE_DIRECTIONS_LEFT:
 			return ACTIONS_AROUND;
 		case MAZE_DIRECTIONS_RIGHT:
-			return ACTIONS_SKIP;
+			return ACTIONS_STRAIGHT;
 		case MAZE_DIRECTIONS_UP:
 			return ACTIONS_LEFT;
 		case MAZE_DIRECTIONS_DOWN:
@@ -87,7 +87,7 @@ Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions
 		case MAZE_DIRECTIONS_RIGHT:
 			return ACTIONS_RIGHT;
 		case MAZE_DIRECTIONS_UP:
-			return ACTIONS_SKIP;
+			return ACTIONS_STRAIGHT;
 		case MAZE_DIRECTIONS_DOWN:
 			return ACTIONS_AROUND;
 		}
@@ -104,7 +104,7 @@ Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions
 		case MAZE_DIRECTIONS_UP:
 			return ACTIONS_AROUND;
 		case MAZE_DIRECTIONS_DOWN:
-			return ACTIONS_SKIP;
+			return ACTIONS_STRAIGHT;
 		}
 	}
 	break;
@@ -191,7 +191,12 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *path, Maze_Directio
 		Point *next_point = Node_get_value(next_node);
 
 		Maze_Directions relative_direction_of_next = Pathfinding_get_relative_direction(current_point, next_point);
-		Actions action = Pathfinding_get_required_action(current_direction, relative_direction_of_next);
+		Actions required_action = Pathfinding_get_required_action(current_direction, relative_direction_of_next);
+
+		current_direction = relative_direction_of_next;
+
+		uint8_t current_x = Point_get_x(current_point);
+		uint8_t current_y = Point_get_y(current_point);
 	}
 }
 
