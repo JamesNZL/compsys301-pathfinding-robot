@@ -63,5 +63,14 @@ int main()
 	// <- to up
 	Actions action_3 = Pathfinding_get_required_action(MAZE_DIRECTIONS_LEFT, MAZE_DIRECTIONS_UP);
 	assert(action_3 == ACTIONS_RIGHT);
+
+	// "next point" is one to its right
+	Maze_Directions direction_1 = Pathfinding_get_relative_direction(Point_create(1, 1, PATHFINDING_MAZE_WIDTH), Point_create(2, 1, PATHFINDING_MAZE_WIDTH));
+	assert(direction_1 == MAZE_DIRECTIONS_RIGHT);
+
+	// "next point" is one above (x stays the same)
+	Maze_Directions direction_2 = Pathfinding_get_relative_direction(Point_create(1, 1, PATHFINDING_MAZE_WIDTH), Point_create(1, 0, PATHFINDING_MAZE_WIDTH));
+	assert(direction_2 == MAZE_DIRECTIONS_UP);
+
 	return 0;
 }

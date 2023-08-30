@@ -16,6 +16,7 @@ Maze_Directions Pathfinding_get_relative_direction(Point *current, Point *next)
 	uint8_t next_x = Point_get_x(next);
 	uint8_t next_y = Point_get_y(next);
 
+	// TODO: possible handle non-adjacent cases i.e throw error
 	// is in a different X position
 	if (current_x != next_x)
 	{
