@@ -136,7 +136,7 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 	uint8_t visited[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH] = { 0 };
 	visited[Point_get_y(start)][Point_get_x(start)] = 1;
 	Queue *q = Queue_construct();
-	Queue_append(q, Pathfinding_create_node(start));
+	Queue_append(q, Node_create(start));
 	Point *current_point;
 	while (!Queue_is_empty(q))
 	{
@@ -156,7 +156,7 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 			if (Pathfinding_coordinates_in_bounds(newX, newY) && !visited[newY][newX] && maze[newY][newX] == 0)
 			{
 				Point *neighbour_point = Point_create(newX, newY, PATHFINDING_MAZE_WIDTH);
-				Node *neighbour = Pathfinding_create_node(neighbour_point);
+				Node *neighbour = Node_create(neighbour_point);
 				pred[Point_get_1d(neighbour_point)] = Point_get_1d(current_point);
 				visited[newY][newX] = 1;
 				Queue_append(q, neighbour);
@@ -169,6 +169,24 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 	Pathfinding_build_stack_from_pred(stack, pred, start, end);
 	Queue_destroy(q);
 	return stack;
+}
+
+Pathfinding_route *Pathfinding_generate_route_to_food(Stack *path, Maze_Directions starting_direction, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH])
+{
+	Maze_Directions current_direction = starting_direction;
+	Queue *turns = Queue_construct();
+
+	while (!Stack_is_empty(path))
+	{
+		Node *current_node = Stack_pop(path);
+		Point *current_point = Node_get_value(current_node);
+		Node_destroy(current_node);
+		// we popped the last node
+		if (Stack_is_empty(path))
+		{
+			break;
+		}
+	}
 }
 
 void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_MAZE_HEIGHT * PATHFINDING_MAZE_WIDTH], Point *start, Point *end)
@@ -190,11 +208,6 @@ void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_M
 		Node *start_node = Node_create(Point_create_from_1d(start_index, PATHFINDING_MAZE_WIDTH));
 		Stack_push(stack, start_node);
 	}
-}
-
-Node *Pathfinding_create_node(Point *point)
-{
-	return Node_create(point);
 }
 
 uint8_t Pathfinding_coordinates_in_bounds(uint8_t x, uint8_t y)
