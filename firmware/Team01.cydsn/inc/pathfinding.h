@@ -90,4 +90,6 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze
 /// @return
 uint8_t Pathfinding_is_on_intersection(Maze_Directions current_direction, uint8_t x, uint8_t y, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
 
+uint8_t Pathfinding_calculate_point_spacing(Maze_Directions current_direction, Point *point_1, Point *point_2);
+
 #endif

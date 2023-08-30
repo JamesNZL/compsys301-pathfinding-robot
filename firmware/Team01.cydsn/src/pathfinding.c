@@ -195,18 +195,25 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze
 {
 	Maze_Directions current_direction = starting_direction;
 	Queue *turns = Queue_construct();
-	Point *latest_intersection_point;
-
+	Point *last_intersection_point;
+	uint8_t final_distance;
 	while (!Stack_is_empty(shortest_path))
 	{
 		Node *current_node = Stack_pop(shortest_path);
 		Point *current_point = Node_get_value(current_node);
 		Node_destroy(current_node);
+
+		uint8_t current_x = Point_get_x(current_point);
+		uint8_t current_y = Point_get_y(current_point);
+
 		// we popped the last node
 		if (Stack_is_empty(shortest_path))
 		{
+			printf("final: (%i,%i), last: (%i,%i)", Point_get_x(current_point), Point_get_y(current_point), Point_get_x(last_intersection_point), Point_get_y(last_intersection_point));
+			final_distance = Pathfinding_calculate_point_spacing(current_direction, current_point, last_intersection_point);
 			Stack_destroy(shortest_path);
 			Point_destroy(current_point);
+			Point_destroy(last_intersection_point);
 			break;
 		}
 
@@ -221,9 +228,6 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze
 
 		current_direction = relative_direction_of_next;
 
-		uint8_t current_x = Point_get_x(current_point);
-		uint8_t current_y = Point_get_y(current_point);
-
 		if (required_action == ACTIONS_STRAIGHT)
 		{
 			if (Pathfinding_is_on_intersection(current_direction, current_x, current_y, maze))
@@ -236,12 +240,13 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze
 		}
 		else
 		{
-			latest_intersection_point = current_point;
+			last_intersection_point = current_point;
 			*required_action_pointer = required_action;
 			Queue_append(turns, Node_create(required_action_pointer));
 		}
 	}
-	Pathfinding_route *route = Pathfinding_route_construct(turns, current_direction, 0);
+
+	Pathfinding_route *route = Pathfinding_route_construct(turns, current_direction, last_intersection_point);
 	return route;
 }
 
@@ -263,6 +268,26 @@ void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_M
 	{
 		Node *start_node = Node_create(Point_create_from_1d(start_index, PATHFINDING_MAZE_WIDTH));
 		Stack_push(stack, start_node);
+	}
+}
+
+uint8_t Pathfinding_calculate_point_spacing(Maze_Directions current_direction, Point *point_1, Point *point_2)
+{
+
+	switch (current_direction)
+	{
+	// moving horizontally
+	case MAZE_DIRECTIONS_LEFT:
+	case MAZE_DIRECTIONS_RIGHT:
+		return abs(Point_get_x(point_1) - Point_get_x(point_2));
+		break;
+	// moving vertically
+	case MAZE_DIRECTIONS_UP:
+	case MAZE_DIRECTIONS_DOWN:
+		return abs(Point_get_y(point_1) - Point_get_y(point_2));
+		break;
+	default:
+		return 0;
 	}
 }
 
