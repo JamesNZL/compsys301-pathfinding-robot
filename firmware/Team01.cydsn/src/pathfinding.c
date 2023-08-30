@@ -216,6 +216,32 @@ void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_M
 	}
 }
 
+uint8_t Pathfinding_is_on_intersection(Maze_Directions current_direction, uint8_t x, uint8_t y, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH])
+{
+	switch (current_direction)
+	{
+	// moving horizontally
+	case MAZE_DIRECTIONS_LEFT:
+	case MAZE_DIRECTIONS_RIGHT:
+
+		if (maze[y + 1][x] == 0 || maze[y - 1][x] == 0)
+		{
+			return 1;
+		}
+		break;
+	// moving vertically
+	case MAZE_DIRECTIONS_UP:
+	case MAZE_DIRECTIONS_DOWN:
+		if (maze[y + 1][x] == 0 || maze[y - 1][x] == 0)
+		{
+			return 1;
+		}
+		break;
+	default:
+		return 0;
+	}
+}
+
 uint8_t Pathfinding_coordinates_in_bounds(uint8_t x, uint8_t y)
 {
 	uint8_t x_in_bounds = x >= PATHFINDING_STARTING_INDEX && x < PATHFINDING_MAZE_WIDTH;
