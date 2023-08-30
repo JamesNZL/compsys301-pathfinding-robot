@@ -6,6 +6,7 @@ const static int8_t dX[PATHFINDING_POSSIBLE_DIRECTIONS] = { -1, 1, 0, 0 };
 typedef struct Pathfinding_route
 {
 	Queue *turns;
+	Maze_Directions last_faced_direction;
 	uint8_t final_distance;
 } Pathfinding_route;
 
@@ -112,7 +113,7 @@ Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions
 	return ACTIONS_SKIP;
 }
 
-Pathfinding_route *Pathfinding_route_construct(Queue *turns, uint8_t final_distance)
+Pathfinding_route *Pathfinding_route_construct(Queue *turns, Maze_Directions last_faced_direction, uint8_t final_distance)
 {
 	Pathfinding_route *route = malloc(sizeof(Pathfinding_route));
 	if (route == NULL)
@@ -120,6 +121,7 @@ Pathfinding_route *Pathfinding_route_construct(Queue *turns, uint8_t final_dista
 		return NULL;
 	}
 	route->turns = turns;
+	route->last_faced_direction = last_faced_direction;
 	route->final_distance = final_distance;
 	return route;
 }
@@ -187,16 +189,32 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *path, Maze_Directio
 			break;
 		}
 
-		Node *next_node = Stack_pop(path);
+		Node *next_node = Stack_peek(path);
 		Point *next_point = Node_get_value(next_node);
+		Node_destroy(next_node);
 
 		Maze_Directions relative_direction_of_next = Pathfinding_get_relative_direction(current_point, next_point);
 		Actions required_action = Pathfinding_get_required_action(current_direction, relative_direction_of_next);
+		// Need a pointer to use node
+		Actions *required_action_pointer = malloc(sizeof(Actions));
 
 		current_direction = relative_direction_of_next;
 
 		uint8_t current_x = Point_get_x(current_point);
 		uint8_t current_y = Point_get_y(current_point);
+		if (required_action == ACTIONS_STRAIGHT)
+		{
+			if (Pathfinding_is_on_intersection(current_direction, current_x, current_y, maze))
+			{
+				*required_action_pointer = ACTIONS_SKIP;
+				Queue_append(turns, Node_create(required_action_pointer));
+			}
+		}
+		else
+		{
+			*required_action_pointer = required_action_pointer;
+			Queue_append(turns, Node_create(required_action_pointer));
+		}
 	}
 }
 

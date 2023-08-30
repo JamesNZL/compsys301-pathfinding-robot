@@ -52,9 +52,10 @@ Maze_Directions Pathfinding_get_relative_direction(Point *current, Point *next);
 
 /// @brief Creates and returns a pointer to a route data structure which has a queue containing the required turns, and the required amount of distance to be travelled after the final turn
 /// @param turns a Queue of turns defined as enums
+/// @param last_faced_direction the direction the robot will be facing after reaching the food
 /// @param final_distance the units (in terms of the maze grid) required to be travelled after the final turn
 /// @return
-Pathfinding_route *Pathfinding_route_construct(Queue *turns, uint8_t final_distance);
+Pathfinding_route *Pathfinding_route_construct(Queue *turns, Maze_Directions last_faced_direction, final_distance);
 
 /// @brief Returns a stack of points to represent the shortest path, with the top of the stack being the first node
 /// @param start A Point representing the starting position in the maze
