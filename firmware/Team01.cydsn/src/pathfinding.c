@@ -276,7 +276,7 @@ uint8_t Pathfinding_is_on_intersection(Maze_Directions current_direction, uint8_
 	// moving vertically
 	case MAZE_DIRECTIONS_UP:
 	case MAZE_DIRECTIONS_DOWN:
-		if (maze[y + 1][x] == 0 || maze[y - 1][x] == 0)
+		if (maze[y][x + 1] == 0 || maze[y][x - 1] == 0)
 		{
 			return 1;
 		}
@@ -284,6 +284,7 @@ uint8_t Pathfinding_is_on_intersection(Maze_Directions current_direction, uint8_
 	default:
 		return 0;
 	}
+	return 0;
 }
 
 uint8_t Pathfinding_coordinates_in_bounds(uint8_t x, uint8_t y)
