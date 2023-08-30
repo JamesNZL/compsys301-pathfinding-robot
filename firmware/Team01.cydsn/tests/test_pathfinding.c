@@ -57,7 +57,6 @@ void run_shortest_path_tests()
 
 void run_direction_tests()
 {
-
 	printf("==============================Direction tests ==============================\n");
 	// Should be around
 	Actions action_1 = Pathfinding_get_required_action(MAZE_DIRECTIONS_DOWN, MAZE_DIRECTIONS_UP);
@@ -77,10 +76,22 @@ void run_direction_tests()
 	Maze_Directions direction_2 = Pathfinding_get_relative_direction(Point_create(1, 1, PATHFINDING_MAZE_WIDTH), Point_create(1, 0, PATHFINDING_MAZE_WIDTH));
 	assert(direction_2 == MAZE_DIRECTIONS_UP);
 }
+void run_route_tests()
+{
+	printf("==============================Route tests ==============================\n");
+	Point *start = Point_create(1, 1, PATHFINDING_MAZE_WIDTH);
+	Point *end = Point_create(17, 1, PATHFINDING_MAZE_WIDTH);
+	Stack *path = Pathfinding_find_shortest_path_bfs(start, end, map);
+	Pathfinding_route *route = Pathfinding_generate_route_to_food(path, MAZE_DIRECTIONS_LEFT, map);
+	printf("The current route is:\n");
+	printf("The last facing direction is:\n");
+	printf("The final required distance is:\n");
+}
 
 int main()
 {
 	run_shortest_path_tests();
 	run_direction_tests();
+	run_route_tests();
 	return 0;
 }

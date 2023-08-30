@@ -55,7 +55,11 @@ Maze_Directions Pathfinding_get_relative_direction(Point *current, Point *next);
 /// @param last_faced_direction the direction the robot will be facing after reaching the food
 /// @param final_distance the units (in terms of the maze grid) required to be travelled after the final turn
 /// @return
-Pathfinding_route *Pathfinding_route_construct(Queue *turns, Maze_Directions last_faced_direction, final_distance);
+Pathfinding_route *Pathfinding_route_construct(Queue *turns, Maze_Directions last_faced_direction, uint8_t final_distance);
+
+Queue *Pathfinding_route_get_turns(Pathfinding_route *route);
+Maze_Directions Pathfinding_route_get_last_faced_direction(Pathfinding_route *route);
+uint8_t Pathfinding_route_get_final_distance(Pathfinding_route *route);
 
 /// @brief Returns a stack of points to represent the shortest path, with the top of the stack being the first node
 /// @param start A Point representing the starting position in the maze
@@ -76,7 +80,7 @@ void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_M
 /// @brief Gives a path to the food containing the turns needed, as well as instructions after the final turn such as distance
 /// @param path a stack of the nodes contained within the shortest path
 /// @return
-Pathfinding_route *Pathfinding_generate_route_to_food(Stack *path, Maze_Directions starting_direction, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
+Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze_Directions starting_direction, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
 
 /// @brief Determines based on the current coordinates and direction if the point is an intersection
 /// @param current_direction the direction the robot is facing in the maze
