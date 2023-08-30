@@ -35,6 +35,8 @@ uint8_t Pathfinding_coordinates_in_bounds(uint8_t x, uint8_t y);
 
 Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions next);
 
+Maze_Directions Pathfinding_get_relative_direction(Point *current, Point *next);
+
 /// @brief Creates and returns a pointer to a route data structure which has a queue containing the required turns, and the required amount of distance to be travelled after the final turn
 /// @param turns a Queue of turns defined as enums
 /// @param final_distance the units (in terms of the maze grid) required to be travelled after the final turn

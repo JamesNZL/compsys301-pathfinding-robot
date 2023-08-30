@@ -9,6 +9,40 @@ typedef struct Pathfinding_route
 	uint8_t final_distance;
 } Pathfinding_route;
 
+Maze_Directions Pathfinding_get_relative_direction(Point *current, Point *next)
+{
+	uint8_t current_x = Point_get_x(current);
+	uint8_t current_y = Point_get_y(current);
+	uint8_t next_x = Point_get_x(next);
+	uint8_t next_y = Point_get_y(next);
+
+	// is in a different X position
+	if (current_x != next_x)
+	{
+		// next is on the left
+		if (next_x < current_x)
+		{
+			return MAZE_DIRECTIONS_LEFT;
+		}
+		else
+		{
+			return MAZE_DIRECTIONS_RIGHT;
+		}
+	}
+	else
+	{
+		// y is different
+		if (next_y < current_y)
+		{
+			// next is above
+			return MAZE_DIRECTIONS_UP;
+		}
+		else
+		{
+			return MAZE_DIRECTIONS_DOWN;
+		}
+	}
+}
 Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions next)
 {
 	switch (current)
