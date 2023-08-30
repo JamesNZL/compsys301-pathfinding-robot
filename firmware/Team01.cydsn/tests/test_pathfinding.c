@@ -9,7 +9,7 @@ void teardown(Point *start, Point *end, Stack *path)
 	Stack_destroy(path);
 }
 
-int main()
+void run_shortest_path_tests()
 {
 	int length;
 
@@ -53,6 +53,11 @@ int main()
 	printf("Length of path is: %i \n", length);
 	assert(length == 29);
 	teardown(start_2, end_2, path_2);
+}
+
+void run_direction_tests()
+{
+
 	printf("==============================Direction tests ==============================\n");
 	// Should be around
 	Actions action_1 = Pathfinding_get_required_action(MAZE_DIRECTIONS_DOWN, MAZE_DIRECTIONS_UP);
@@ -71,6 +76,11 @@ int main()
 	// "next point" is one above (x stays the same)
 	Maze_Directions direction_2 = Pathfinding_get_relative_direction(Point_create(1, 1, PATHFINDING_MAZE_WIDTH), Point_create(1, 0, PATHFINDING_MAZE_WIDTH));
 	assert(direction_2 == MAZE_DIRECTIONS_UP);
+}
 
+int main()
+{
+	run_shortest_path_tests();
+	run_direction_tests();
 	return 0;
 }
