@@ -195,6 +195,7 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze
 {
 	Maze_Directions current_direction = starting_direction;
 	Queue *turns = Queue_construct();
+	Point *latest_intersection_point;
 
 	while (!Stack_is_empty(shortest_path))
 	{
@@ -209,6 +210,7 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze
 			break;
 		}
 
+		// dont destroy node here becauase we pop it next iteration
 		Node *next_node = Stack_peek(shortest_path);
 		Point *next_point = Node_get_value(next_node);
 
@@ -221,6 +223,7 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze
 
 		uint8_t current_x = Point_get_x(current_point);
 		uint8_t current_y = Point_get_y(current_point);
+
 		if (required_action == ACTIONS_STRAIGHT)
 		{
 			if (Pathfinding_is_on_intersection(current_direction, current_x, current_y, maze))
@@ -228,9 +231,12 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze
 				*required_action_pointer = ACTIONS_SKIP;
 				Queue_append(turns, Node_create(required_action_pointer));
 			}
+			// no longer need point if its not part of an intersection
+			Point_destroy(current_point);
 		}
 		else
 		{
+			latest_intersection_point = current_point;
 			*required_action_pointer = required_action;
 			Queue_append(turns, Node_create(required_action_pointer));
 		}
