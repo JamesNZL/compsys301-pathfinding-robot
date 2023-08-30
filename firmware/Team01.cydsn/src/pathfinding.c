@@ -281,12 +281,12 @@ uint8_t Pathfinding_calculate_point_spacing(Maze_Directions current_direction, P
 	case MAZE_DIRECTIONS_LEFT:
 	case MAZE_DIRECTIONS_RIGHT:
 		// implement abs manually
-		return abs(Point_get_x(point_1), Point_get_x(point_2));
+		return abs(Point_get_x(point_1) - Point_get_x(point_2));
 		break;
 	// moving vertically
 	case MAZE_DIRECTIONS_UP:
 	case MAZE_DIRECTIONS_DOWN:
-		return abs(Point_get_y(point_1), Point_get_y(point_2));
+		return abs(Point_get_y(point_1) - Point_get_y(point_2));
 		break;
 	default:
 		return 0;
