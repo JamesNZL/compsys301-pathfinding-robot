@@ -31,10 +31,22 @@ typedef enum Maze_Directions
 	MAZE_DIRECTIONS_DOWN
 } Maze_Directions;
 
+/// @brief Determines if an x and y value BOTH fall within range of the maze coordinates
+/// @param x horizontal position
+/// @param y vertical position
+/// @return `TRUE` or `FALSE`
 uint8_t Pathfinding_coordinates_in_bounds(uint8_t x, uint8_t y);
 
+/// @brief Calculates the action needed based on the positional state of the robot in the maze
+/// @param current the direction the robot is facing in the maze
+/// @param next the relative direction of the next point
+/// @return
 Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions next);
 
+/// @brief Finds the relative direction `up,down,left,right` of a point in the maze based on a current point
+/// @param current a pointer to the current Point
+/// @param next a pointer to the Point who's relative position is to be determined
+/// @return
 Maze_Directions Pathfinding_get_relative_direction(Point *current, Point *next);
 
 /// @brief Creates and returns a pointer to a route data structure which has a queue containing the required turns, and the required amount of distance to be travelled after the final turn
