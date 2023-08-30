@@ -6,6 +6,7 @@
 #include <Queue/Queue.h>
 #include <Stack/Stack.h>
 #include <stdint.h>
+#include <stdlib.h>
 
 #define PATHFINDING_MAZE_WIDTH			19
 #define PATHFINDING_MAZE_HEIGHT			15
@@ -20,10 +21,19 @@ typedef enum Actions
 	ACTIONS_RIGHT,
 	ACTIONS_SKIP,
 	ACTIONS_AROUND,
-	ACTIONS_ARRIVE
 } Actions;
 
+typedef enum Maze_Directions
+{
+	MAZE_DIRECTIONS_LEFT,
+	MAZE_DIRECTIONS_RIGHT,
+	MAZE_DIRECTIONS_UP,
+	MAZE_DIRECTIONS_DOWN
+} Maze_Directions;
+
 uint8_t Pathfinding_coordinates_in_bounds(uint8_t x, uint8_t y);
+
+Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions next);
 
 /// @brief Creates and returns a pointer to a route data structure which has a queue containing the required turns, and the required amount of distance to be travelled after the final turn
 /// @param turns a Queue of turns defined as enums

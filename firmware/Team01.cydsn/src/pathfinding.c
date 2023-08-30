@@ -2,12 +2,24 @@
 
 const static int8_t dY[PATHFINDING_POSSIBLE_DIRECTIONS] = { 0, 0, -1, 1 };
 const static int8_t dX[PATHFINDING_POSSIBLE_DIRECTIONS] = { -1, 1, 0, 0 };
+const static Actions action_LUT[5][5] = {
+	{ ACTIONS_SKIP, ACTIONS_SKIP, ACTIONS_SKIP, ACTIONS_SKIP, ACTIONS_SKIP },
+	{ ACTIONS_SKIP, ACTIONS_AROUND, ACTIONS_RIGHT, ACTIONS_SKIP, ACTIONS_LEFT },
+	{ ACTIONS_SKIP, ACTIONS_LEFT, ACTIONS_AROUND, ACTIONS_RIGHT, ACTIONS_SKIP },
+	{ ACTIONS_SKIP, ACTIONS_SKIP, ACTIONS_LEFT, ACTIONS_AROUND, ACTIONS_RIGHT },
+	{ ACTIONS_SKIP, ACTIONS_RIGHT, ACTIONS_SKIP, ACTIONS_LEFT, ACTIONS_AROUND }
+};
 
 typedef struct Pathfinding_route
 {
 	Queue *turns;
 	uint8_t final_distance;
 } Pathfinding_route;
+
+Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions next)
+{
+	return action_LUT[current + 1][next + 1];
+}
 
 Pathfinding_route *Pathfinding_route_create(Queue *turns, uint8_t final_distance)
 {
