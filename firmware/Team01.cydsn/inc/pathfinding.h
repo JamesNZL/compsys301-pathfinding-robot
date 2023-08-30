@@ -12,6 +12,8 @@
 #define PATHFINDING_STARTING_INDEX		0
 #define PATHFINDING_POSSIBLE_DIRECTIONS 4
 
+typedef struct Pathfinding_route Pathfinding_route;
+
 typedef enum Actions
 {
 	ACTIONS_LEFT,

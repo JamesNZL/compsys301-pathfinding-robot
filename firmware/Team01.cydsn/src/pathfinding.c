@@ -3,6 +3,24 @@
 const static int8_t dY[PATHFINDING_POSSIBLE_DIRECTIONS] = { 0, 0, -1, 1 };
 const static int8_t dX[PATHFINDING_POSSIBLE_DIRECTIONS] = { -1, 1, 0, 0 };
 
+typedef struct Pathfinding_route
+{
+	Queue *turns;
+	uint8_t final_distance;
+} Pathfinding_route;
+
+Pathfinding_route *Pathfinding_route_create(Queue *turns, uint8_t final_distance)
+{
+	Pathfinding_route *route = malloc(sizeof(Pathfinding_route));
+	if (route == NULL)
+	{
+		return NULL;
+	}
+	route->turns = turns;
+	route->final_distance = final_distance;
+	return route;
+}
+
 Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH])
 {
 	// predecessor array to store shortest path
