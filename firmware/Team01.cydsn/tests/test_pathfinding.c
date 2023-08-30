@@ -84,7 +84,16 @@ void run_route_tests()
 	Stack *path = Pathfinding_find_shortest_path_bfs(start, end, map);
 	Pathfinding_route *route = Pathfinding_generate_route_to_food(path, MAZE_DIRECTIONS_LEFT, map);
 	printf("The current route is:\n");
-	printf("The last facing direction is:\n");
+	Queue *turns = Pathfinding_route_get_turns(route);
+	while (!Queue_is_empty(turns))
+	{
+		Node *current = Queue_pop(turns);
+		Actions *current_action = Node_get_value(current);
+		printf("%s,", action_strings[*current_action]);
+		free(current_action);
+		Node_destroy(current);
+	}
+	printf("\nThe last facing direction is: %i\n", Pathfinding_route_get_last_faced_direction(route));
 	printf("The final required distance is:\n");
 }
 

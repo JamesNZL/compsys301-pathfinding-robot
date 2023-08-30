@@ -23,14 +23,17 @@ Pathfinding_route *Pathfinding_route_construct(Queue *turns, Maze_Directions las
 	route->final_distance = final_distance;
 	return route;
 }
+
 Queue *Pathfinding_route_get_turns(Pathfinding_route *route)
 {
 	return route->turns;
 }
+
 Maze_Directions Pathfinding_route_get_last_faced_direction(Pathfinding_route *route)
 {
 	return route->last_faced_direction;
 }
+
 uint8_t Pathfinding_route_get_final_distance(Pathfinding_route *route)
 {
 	return route->final_distance;
@@ -188,23 +191,25 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 	return stack;
 }
 
-Pathfinding_route *Pathfinding_generate_route_to_food(Stack *path, Maze_Directions starting_direction, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH])
+Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze_Directions starting_direction, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH])
 {
 	Maze_Directions current_direction = starting_direction;
 	Queue *turns = Queue_construct();
 
-	while (!Stack_is_empty(path))
+	while (!Stack_is_empty(shortest_path))
 	{
-		Node *current_node = Stack_pop(path);
+		Node *current_node = Stack_pop(shortest_path);
 		Point *current_point = Node_get_value(current_node);
 		Node_destroy(current_node);
 		// we popped the last node
-		if (Stack_is_empty(path))
+		if (Stack_is_empty(shortest_path))
 		{
+			Stack_destroy(shortest_path);
+			Point_destroy(current_point);
 			break;
 		}
 
-		Node *next_node = Stack_peek(path);
+		Node *next_node = Stack_peek(shortest_path);
 		Point *next_point = Node_get_value(next_node);
 
 		Maze_Directions relative_direction_of_next = Pathfinding_get_relative_direction(current_point, next_point);
