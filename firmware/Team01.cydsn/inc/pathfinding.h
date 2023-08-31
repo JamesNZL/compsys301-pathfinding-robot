@@ -32,13 +32,13 @@ typedef enum Actions
 	ACTIONS_STRAIGHT,
 } Actions;
 
-typedef enum Maze_Directions
+typedef enum MazeDirections
 {
 	MAZE_DIRECTIONS_LEFT,
 	MAZE_DIRECTIONS_RIGHT,
 	MAZE_DIRECTIONS_UP,
 	MAZE_DIRECTIONS_DOWN,
-} Maze_Directions;
+} MazeDirections;
 
 /**
  * @brief Generates a queue containing all the pathfinding routes based on the food list and maze given a starting point
@@ -49,7 +49,7 @@ typedef enum Maze_Directions
  * @warning It is the caller's responsibility to destroy the queue and routes
  * @return
  */
-Queue *Pathfinding_generate_routes_to_all_food(Point *start, Maze_Directions starting_direction, uint8_t food_list[PATHFINDING_FOOD_LOCATIONS][2], uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
+Queue *Pathfinding_generate_routes_to_all_food(Point *start, MazeDirections starting_direction, uint8_t food_list[PATHFINDING_FOOD_LOCATIONS][2], uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
 
 /**
  * @brief Creates and returns a pointer to a route data structure which has a queue containing the required turns, and the required amount of distance to be travelled after the final turn
@@ -59,7 +59,7 @@ Queue *Pathfinding_generate_routes_to_all_food(Point *start, Maze_Directions sta
  * @return Pathfinding_route* Pointer to the created Pathfinding_route
  */
 PathfindingRoute *
-Pathfinding_route_construct(Queue *turns, Maze_Directions last_faced_direction, uint8_t final_distance);
+Pathfinding_route_construct(Queue *turns, MazeDirections last_faced_direction, uint8_t final_distance);
 
 /**
  * @brief Frees a memory allocated to a pathfinding route pointer
@@ -79,7 +79,7 @@ Queue *Pathfinding_route_get_turns(PathfindingRoute *route);
  * @param route
  * @return Maze_Directions The last faced direction in the route
  */
-Maze_Directions Pathfinding_route_get_last_faced_direction(PathfindingRoute *route);
+MazeDirections Pathfinding_route_get_last_faced_direction(PathfindingRoute *route);
 
 #ifdef TESTING
 
@@ -104,7 +104,7 @@ uint8_t Pathfinding_coordinates_in_bounds(uint8_t x, uint8_t y);
  * @param next the relative direction of the next point
  * @return Actions The required action
  */
-Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions next);
+Actions Pathfinding_get_required_action(MazeDirections current, MazeDirections next);
 
 /**
  * @brief Finds the relative direction `up,down,left,right` of a point in the maze based on a current point
@@ -112,7 +112,7 @@ Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions
  * @param next a pointer to the Point whose relative position is to be determined
  * @return Maze_Directions The relative direction of the next point
  */
-Maze_Directions Pathfinding_get_relative_direction(Point *current, Point *next);
+MazeDirections Pathfinding_get_relative_direction(Point *current, Point *next);
 
 /**
  * @brief Returns a stack of points to represent the shortest path, with the top of the stack being the first node
@@ -140,7 +140,7 @@ void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_M
  * @return Pathfinding_route* Pointer to the created Pathfinding_route
  * @warning DO NOT destroy the stack afterwards as this function does it (you will get DOUBLE FREE error)
  */
-PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze_Directions starting_direction, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
+PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortest_path, MazeDirections starting_direction, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
 
 /**
  * @brief Determines based on the current coordinates and direction if the point is an intersection
@@ -150,7 +150,7 @@ PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze_
  * @param maze the 2d maze
  * @return uint8_t `TRUE` or `FALSE`
  */
-uint8_t Pathfinding_is_on_intersection(Maze_Directions current_direction, uint8_t x, uint8_t y, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
+uint8_t Pathfinding_is_on_intersection(MazeDirections current_direction, uint8_t x, uint8_t y, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
 
 /**
  * @brief Calculates the spacing between two points based on current direction
@@ -159,7 +159,7 @@ uint8_t Pathfinding_is_on_intersection(Maze_Directions current_direction, uint8_
  * @param point_2 The second point
  * @return uint8_t The spacing between the two points
  */
-uint8_t Pathfinding_calculate_point_spacing(Maze_Directions current_direction, Point *point_1, Point *point_2);
+uint8_t Pathfinding_calculate_point_spacing(MazeDirections current_direction, Point *point_1, Point *point_2);
 
 #endif
 #endif
