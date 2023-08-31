@@ -1,7 +1,7 @@
 #include "pathfinding.h"
 
-const static int8_t dY[PATHFINDING_POSSIBLE_DIRECTIONS] = { 0, 0, -1, 1 };
-const static int8_t dX[PATHFINDING_POSSIBLE_DIRECTIONS] = { -1, 1, 0, 0 };
+const static int8_t DY[PATHFINDING_POSSIBLE_DIRECTIONS] = { 0, 0, -1, 1 };
+const static int8_t DX[PATHFINDING_POSSIBLE_DIRECTIONS] = { -1, 1, 0, 0 };
 
 /* Everything relating to the route data structure*/
 typedef struct PathfindingRoute
@@ -96,8 +96,8 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 		}
 		for (uint8_t i = 0; i < PATHFINDING_POSSIBLE_DIRECTIONS; ++i)
 		{
-			uint8_t newX = Point_get_x(currentPoint) + dX[i];
-			uint8_t newY = Point_get_y(currentPoint) + dY[i];
+			uint8_t newX = Point_get_x(currentPoint) + DX[i];
+			uint8_t newY = Point_get_y(currentPoint) + DY[i];
 			if (Pathfinding_coordinates_in_bounds(newX, newY) && !visited[newY][newX] && maze[newY][newX] == 0)
 			{
 				Point *neighbourPoint = Point_create(newX, newY, PATHFINDING_MAZE_WIDTH);
