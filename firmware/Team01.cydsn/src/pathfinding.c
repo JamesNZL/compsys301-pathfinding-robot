@@ -201,8 +201,8 @@ void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_M
 	// push the start node
 	if (currentIndex == startIndex)
 	{
-		Node *start_node = Node_create(Point_create_from_1d(startIndex, PATHFINDING_MAZE_WIDTH));
-		Stack_push(stack, start_node);
+		Node *startNode = Node_create(Point_create_from_1d(startIndex, PATHFINDING_MAZE_WIDTH));
+		Stack_push(stack, startNode);
 	}
 }
 

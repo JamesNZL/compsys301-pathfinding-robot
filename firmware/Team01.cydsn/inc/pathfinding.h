@@ -43,8 +43,8 @@ typedef enum MazeDirections
 /**
  * @brief Generates a queue containing all the pathfinding routes based on the food list and maze given a starting point
  * @param start A pointer to a Point of the starting location
- * @param starting_direction the direction the robot starts facing
- * @param food_list A 2D array containing the coordinates of the food locations
+ * @param startingDirection the direction the robot starts facing
+ * @param foodList A 2D array containing the coordinates of the food locations
  * @param maze A 2D array representing the maze
  * @warning It is the caller's responsibility to destroy the queue and routes
  * @return
@@ -54,8 +54,8 @@ Queue *Pathfinding_generate_routes_to_all_food(Point *start, MazeDirections star
 /**
  * @brief Creates and returns a pointer to a route data structure which has a queue containing the required turns, and the required amount of distance to be travelled after the final turn
  * @param turns a Queue of turns defined as enums
- * @param last_faced_direction the direction the robot will be facing after reaching the food
- * @param final_distance the units (in terms of the maze grid) required to be travelled after the final turn
+ * @param lastFacedDirection the direction the robot will be facing after reaching the food
+ * @param finalDistance the units (in terms of the maze grid) required to be travelled after the final turn
  * @return Pathfinding_route* Pointer to the created Pathfinding_route
  */
 PathfindingRoute *
@@ -144,7 +144,7 @@ PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortestPath, MazeDi
 
 /**
  * @brief Determines based on the current coordinates and direction if the point is an intersection
- * @param current_direction the direction the robot is facing in the maze
+ * @param currentDirection the direction the robot is facing in the maze
  * @param x The x coordinates of the point
  * @param y The y coordinates of the point
  * @param maze the 2d maze
@@ -154,9 +154,9 @@ uint8_t Pathfinding_is_on_intersection(MazeDirections currentDirection, uint8_t 
 
 /**
  * @brief Calculates the spacing between two points based on current direction
- * @param current_direction the direction the robot is facing in the maze
- * @param point_1 The first point
- * @param point_2 The second point
+ * @param currentDirection the direction the robot is facing in the maze
+ * @param point1 The first point
+ * @param point2 The second point
  * @return uint8_t The spacing between the two points
  */
 uint8_t Pathfinding_calculate_point_spacing(MazeDirections currentDirection, Point *point1, Point *point2);
