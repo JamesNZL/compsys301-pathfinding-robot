@@ -167,7 +167,7 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze
 			}
 			else
 			{
-
+				free(required_action_pointer);
 				// no longer need point if its not part of an intersection
 				Point_destroy(current_point);
 			}
