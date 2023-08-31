@@ -6,15 +6,6 @@
 typedef struct Point Point;
 
 /**
- * @brief Represents a point in a maze with (x, y) coordinates.
- */
-struct Point
-{
-	uint8_t x; /**< The x-coordinate (cols) - ZERO INDEXED */
-	uint8_t y; /**< The y-coordinate (rows) - ZERO INDEXED */
-};
-
-/**
  * @brief Allocates memory for a point representing a location in the maze as (x, y).
  * @param x The x-coordinate (cols) - ZERO INDEXED
  * @param y The y-coordinate (rows) - ZERO INDEXED
