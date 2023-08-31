@@ -39,6 +39,10 @@ Point *Point_create_from_1d(uint16_t index, uint8_t COLUMNS)
 
 void Point_destroy(Point *point)
 {
+	if (point == NULL)
+	{
+		return;
+	}
 	free(point);
 }
 

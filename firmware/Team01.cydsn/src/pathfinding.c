@@ -161,11 +161,16 @@ Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze
 		{
 			if (Pathfinding_is_on_intersection(current_direction, current_x, current_y, maze))
 			{
+				last_intersection_point = current_point;
 				*required_action_pointer = ACTIONS_SKIP;
 				Queue_append(turns, Node_create(required_action_pointer));
 			}
-			// no longer need point if its not part of an intersection
-			Point_destroy(current_point);
+			else
+			{
+
+				// no longer need point if its not part of an intersection
+				Point_destroy(current_point);
+			}
 		}
 		else
 		{
