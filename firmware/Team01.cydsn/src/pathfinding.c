@@ -41,107 +41,26 @@ uint8_t Pathfinding_route_get_final_distance(Pathfinding_route *route)
 
 /* END route operations */
 
-Maze_Directions Pathfinding_get_relative_direction(Point *current, Point *next)
+Queue *Pathfinding_generate_routes_to_all_food(Point *start, Maze_Directions starting_direction, uint8_t food_locations[PATHFINDING_FOOD_LOCATIONS][2], uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH])
 {
-	uint8_t current_x = Point_get_x(current);
-	uint8_t current_y = Point_get_y(current);
-	uint8_t next_x = Point_get_x(next);
-	uint8_t next_y = Point_get_y(next);
+	Queue *routes = Queue_construct();
+	Point *current_start_point = start;
+	Maze_Directions current_starting_direction = starting_direction;
+	for (uint8_t i = 0; i < PATHFINDING_FOOD_LOCATIONS; ++i)
+	{
+		uint8_t current_food_location[2] = food_locations[i];
+		Point *current_end_point = Point_create(current_food_location[0], current_food_location[1], PATHFINDING_MAZE_WIDTH);
+		Stack *current_shortest_path = Pathfinding_find_shortest_path_bfs(current_start_point, current_end_point, maze);
+		Pathfinding_route *current_route = Pathfinding_generate_route_to_food(current_shortest_path, current_starting_direction, maze);
+		Queue_append(routes, Node_create(current_route));
 
-	// TODO: possible handle non-adjacent cases i.e throw error
-	// is in a different X position
-	if (current_x != next_x)
-	{
-		// next is on the left
-		if (next_x < current_x)
-		{
-			return MAZE_DIRECTIONS_LEFT;
-		}
-		else
-		{
-			return MAZE_DIRECTIONS_RIGHT;
-		}
+		Point_destroy(current_start_point);
+		Stack_destroy(current_shortest_path);
+		current_start_point = current_end_point;
+		current_starting_direction = Pathfinding_route_get_last_faced_direction(current_route);
 	}
-	else
-	{
-		// y is different
-		if (next_y < current_y)
-		{
-			// next is above
-			return MAZE_DIRECTIONS_UP;
-		}
-		else
-		{
-			return MAZE_DIRECTIONS_DOWN;
-		}
-	}
-}
-Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions next)
-{
-	switch (current)
-	{
-	case MAZE_DIRECTIONS_LEFT:
-	{
-		switch (next)
-		{
-		case MAZE_DIRECTIONS_LEFT:
-			return ACTIONS_STRAIGHT;
-		case MAZE_DIRECTIONS_RIGHT:
-			return ACTIONS_AROUND;
-		case MAZE_DIRECTIONS_UP:
-			return ACTIONS_RIGHT;
-		case MAZE_DIRECTIONS_DOWN:
-			return ACTIONS_LEFT;
-		}
-	}
-	break;
-	case MAZE_DIRECTIONS_RIGHT:
-	{
-		switch (next)
-		{
-		case MAZE_DIRECTIONS_LEFT:
-			return ACTIONS_AROUND;
-		case MAZE_DIRECTIONS_RIGHT:
-			return ACTIONS_STRAIGHT;
-		case MAZE_DIRECTIONS_UP:
-			return ACTIONS_LEFT;
-		case MAZE_DIRECTIONS_DOWN:
-			return ACTIONS_RIGHT;
-		}
-	}
-	break;
-	case MAZE_DIRECTIONS_UP:
-	{
-		switch (next)
-		{
-		case MAZE_DIRECTIONS_LEFT:
-			return ACTIONS_LEFT;
-		case MAZE_DIRECTIONS_RIGHT:
-			return ACTIONS_RIGHT;
-		case MAZE_DIRECTIONS_UP:
-			return ACTIONS_STRAIGHT;
-		case MAZE_DIRECTIONS_DOWN:
-			return ACTIONS_AROUND;
-		}
-	}
-	break;
-	case MAZE_DIRECTIONS_DOWN:
-	{
-		switch (next)
-		{
-		case MAZE_DIRECTIONS_LEFT:
-			return ACTIONS_RIGHT;
-		case MAZE_DIRECTIONS_RIGHT:
-			return ACTIONS_LEFT;
-		case MAZE_DIRECTIONS_UP:
-			return ACTIONS_AROUND;
-		case MAZE_DIRECTIONS_DOWN:
-			return ACTIONS_STRAIGHT;
-		}
-	}
-	break;
-	}
-	return ACTIONS_SKIP;
+
+	return routes;
 }
 
 Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH])
@@ -273,6 +192,109 @@ void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_M
 		Node *start_node = Node_create(Point_create_from_1d(start_index, PATHFINDING_MAZE_WIDTH));
 		Stack_push(stack, start_node);
 	}
+}
+
+Maze_Directions Pathfinding_get_relative_direction(Point *current, Point *next)
+{
+	uint8_t current_x = Point_get_x(current);
+	uint8_t current_y = Point_get_y(current);
+	uint8_t next_x = Point_get_x(next);
+	uint8_t next_y = Point_get_y(next);
+
+	// TODO: possible handle non-adjacent cases i.e throw error
+	// is in a different X position
+	if (current_x != next_x)
+	{
+		// next is on the left
+		if (next_x < current_x)
+		{
+			return MAZE_DIRECTIONS_LEFT;
+		}
+		else
+		{
+			return MAZE_DIRECTIONS_RIGHT;
+		}
+	}
+	else
+	{
+		// y is different
+		if (next_y < current_y)
+		{
+			// next is above
+			return MAZE_DIRECTIONS_UP;
+		}
+		else
+		{
+			return MAZE_DIRECTIONS_DOWN;
+		}
+	}
+}
+Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions next)
+{
+	switch (current)
+	{
+	case MAZE_DIRECTIONS_LEFT:
+	{
+		switch (next)
+		{
+		case MAZE_DIRECTIONS_LEFT:
+			return ACTIONS_STRAIGHT;
+		case MAZE_DIRECTIONS_RIGHT:
+			return ACTIONS_AROUND;
+		case MAZE_DIRECTIONS_UP:
+			return ACTIONS_RIGHT;
+		case MAZE_DIRECTIONS_DOWN:
+			return ACTIONS_LEFT;
+		}
+	}
+	break;
+	case MAZE_DIRECTIONS_RIGHT:
+	{
+		switch (next)
+		{
+		case MAZE_DIRECTIONS_LEFT:
+			return ACTIONS_AROUND;
+		case MAZE_DIRECTIONS_RIGHT:
+			return ACTIONS_STRAIGHT;
+		case MAZE_DIRECTIONS_UP:
+			return ACTIONS_LEFT;
+		case MAZE_DIRECTIONS_DOWN:
+			return ACTIONS_RIGHT;
+		}
+	}
+	break;
+	case MAZE_DIRECTIONS_UP:
+	{
+		switch (next)
+		{
+		case MAZE_DIRECTIONS_LEFT:
+			return ACTIONS_LEFT;
+		case MAZE_DIRECTIONS_RIGHT:
+			return ACTIONS_RIGHT;
+		case MAZE_DIRECTIONS_UP:
+			return ACTIONS_STRAIGHT;
+		case MAZE_DIRECTIONS_DOWN:
+			return ACTIONS_AROUND;
+		}
+	}
+	break;
+	case MAZE_DIRECTIONS_DOWN:
+	{
+		switch (next)
+		{
+		case MAZE_DIRECTIONS_LEFT:
+			return ACTIONS_RIGHT;
+		case MAZE_DIRECTIONS_RIGHT:
+			return ACTIONS_LEFT;
+		case MAZE_DIRECTIONS_UP:
+			return ACTIONS_AROUND;
+		case MAZE_DIRECTIONS_DOWN:
+			return ACTIONS_STRAIGHT;
+		}
+	}
+	break;
+	}
+	return ACTIONS_SKIP;
 }
 
 uint8_t Pathfinding_calculate_point_spacing(Maze_Directions current_direction, Point *point_1, Point *point_2)
