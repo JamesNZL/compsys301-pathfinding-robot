@@ -98,7 +98,7 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 		{
 			uint8_t newX = Point_get_x(currentPoint) + DX[i];
 			uint8_t newY = Point_get_y(currentPoint) + DY[i];
-			if (Pathfinding_coordinates_in_bounds(newX, newY) && !visited[newY][newX] && maze[newY][newX] == 0)
+			if ((Pathfinding_coordinates_in_bounds(newX, newY)) && (!visited[newY][newX]) && (maze[newY][newX] == 0))
 			{
 				Point *neighbourPoint = Point_create(newX, newY, PATHFINDING_MAZE_WIDTH);
 				Node *neighbour = Node_create(neighbourPoint);
