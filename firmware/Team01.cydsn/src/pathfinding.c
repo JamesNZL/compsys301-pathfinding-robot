@@ -48,7 +48,7 @@ Queue *Pathfinding_generate_routes_to_all_food(Point *start, Maze_Directions sta
 	Maze_Directions current_starting_direction = starting_direction;
 	for (uint8_t i = 0; i < PATHFINDING_FOOD_LOCATIONS; ++i)
 	{
-		uint8_t current_food_location[2] = food_locations[i];
+		uint8_t *current_food_location = food_locations[i];
 		Point *current_end_point = Point_create(current_food_location[0], current_food_location[1], PATHFINDING_MAZE_WIDTH);
 		Stack *current_shortest_path = Pathfinding_find_shortest_path_bfs(current_start_point, current_end_point, maze);
 		Pathfinding_route *current_route = Pathfinding_generate_route_to_food(current_shortest_path, current_starting_direction, maze);

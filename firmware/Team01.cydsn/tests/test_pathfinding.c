@@ -96,8 +96,13 @@ void run_route_tests()
 	printf("\nThe last facing direction is: %s\n", direction_strings[Pathfinding_route_get_last_faced_direction(route)]);
 	printf("The final required distance is: %i\n", Pathfinding_route_get_final_distance(route));
 	teardown(start, end, path);
-	free(route);
-	free(turns);
+}
+
+void run_all_routes_tests()
+{
+	printf("==============================All Route tests==============================\n");
+	Point *start = Point_create(1, 1, PATHFINDING_MAZE_WIDTH);
+	Pathfinding_generate_routes_to_all_food(start, MAZE_DIRECTIONS_UP, food_list, map);
 }
 
 int main()
@@ -105,5 +110,6 @@ int main()
 	run_shortest_path_tests();
 	run_direction_tests();
 	run_route_tests();
+	run_all_routes_tests();
 	return 0;
 }
