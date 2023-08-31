@@ -150,14 +150,14 @@ PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortestPath, MazeDi
 		Node *next_node = Stack_peek(shortestPath);
 		Point *next_point = Node_get_value(next_node);
 
-		MazeDirections relative_direction_of_next = Pathfinding_get_relative_direction(currentPoint, next_point);
-		Actions required_action = Pathfinding_get_required_action(currentDirection, relative_direction_of_next);
+		MazeDirections relativeDirectionOfNext = Pathfinding_get_relative_direction(currentPoint, next_point);
+		Actions requiredAction = Pathfinding_get_required_action(currentDirection, relativeDirectionOfNext);
 		// Need a pointer to use node
 		Actions *requiredActionPointer = malloc(sizeof(Actions));
 
-		currentDirection = relative_direction_of_next;
+		currentDirection = relativeDirectionOfNext;
 
-		if (required_action == ACTIONS_STRAIGHT)
+		if (requiredAction == ACTIONS_STRAIGHT)
 		{
 			if (Pathfinding_is_on_intersection(currentDirection, currentX, currentY, maze))
 			{
@@ -175,7 +175,7 @@ PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortestPath, MazeDi
 		else
 		{
 			lastIntersectionPoint = currentPoint;
-			*requiredActionPointer = required_action;
+			*requiredActionPointer = requiredAction;
 			Queue_append(turns, Node_create(requiredActionPointer));
 		}
 	}
