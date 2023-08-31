@@ -8,10 +8,10 @@ typedef struct PathfindingRoute
 {
 	Queue *turns;
 	MazeDirections lastFacedDirection;
-	uint8_t final_distance;
+	uint8_t finalDistance;
 } PathfindingRoute;
 
-PathfindingRoute *Pathfinding_route_construct(Queue *turns, MazeDirections lastFacedDirection, uint8_t final_distance)
+PathfindingRoute *Pathfinding_route_construct(Queue *turns, MazeDirections lastFacedDirection, uint8_t finalDistance)
 {
 	PathfindingRoute *route = malloc(sizeof(PathfindingRoute));
 	if (route == NULL)
@@ -20,7 +20,7 @@ PathfindingRoute *Pathfinding_route_construct(Queue *turns, MazeDirections lastF
 	}
 	route->turns = turns;
 	route->lastFacedDirection = lastFacedDirection;
-	route->final_distance = final_distance;
+	route->finalDistance = finalDistance;
 	return route;
 }
 
@@ -45,7 +45,7 @@ MazeDirections Pathfinding_route_get_last_faced_direction(PathfindingRoute *rout
 
 uint8_t Pathfinding_route_get_final_distance(PathfindingRoute *route)
 {
-	return route->final_distance;
+	return route->finalDistance;
 }
 
 /* END route operations */
@@ -125,7 +125,7 @@ PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortest_path, MazeD
 	MazeDirections current_direction = starting_direction;
 	Queue *turns = Queue_construct();
 	Point *last_intersection_point;
-	uint8_t final_distance;
+	uint8_t finalDistance;
 	while (!Stack_is_empty(shortest_path))
 	{
 		Node *current_node = Stack_pop(shortest_path);
@@ -139,7 +139,7 @@ PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortest_path, MazeD
 		if (Stack_is_empty(shortest_path))
 		{
 			// printf("final: (%i,%i), last: (%i,%i)", Point_get_x(current_point), Point_get_y(current_point), Point_get_x(last_intersection_point), Point_get_y(last_intersection_point));
-			final_distance = Pathfinding_calculate_point_spacing(current_direction, current_point, last_intersection_point);
+			finalDistance = Pathfinding_calculate_point_spacing(current_direction, current_point, last_intersection_point);
 			Stack_destroy(shortest_path);
 			Point_destroy(current_point);
 			Point_destroy(last_intersection_point);
@@ -181,7 +181,7 @@ PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortest_path, MazeD
 	}
 
 	// we add 1 to the final distance to be inclusive of the last intersection point
-	PathfindingRoute *route = Pathfinding_route_construct(turns, current_direction, final_distance + 1);
+	PathfindingRoute *route = Pathfinding_route_construct(turns, current_direction, finalDistance + 1);
 	return route;
 }
 
