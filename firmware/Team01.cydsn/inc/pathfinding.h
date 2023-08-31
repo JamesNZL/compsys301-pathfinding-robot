@@ -68,6 +68,7 @@ Maze_Directions Pathfinding_get_relative_direction(Point *current, Point *next);
  * @param starting_direction the direction the robot starts facing
  * @param food_list A 2D array containing the coordinates of the food locations
  * @param maze A 2D array representing the maze
+ * @warning It is the caller's responsibility to destroy the queue and routes
  * @return
  */
 Queue *Pathfinding_generate_routes_to_all_food(Point *start, Maze_Directions starting_direction, uint8_t food_list[PATHFINDING_FOOD_LOCATIONS][2], uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
@@ -115,6 +116,7 @@ uint8_t Pathfinding_route_get_final_distance(Pathfinding_route *route);
  * @param end A Point representing the destination position of the maze
  * @param maze 2D array representing the maze
  * @return Stack* Stack of points representing the shortest path
+ * @warning it is the caller's responsibility to destroy the start and end points
  */
 Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
 
@@ -124,7 +126,7 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
  * @param pred The predecessor array
  * @param start A Point representing the starting position in the maze
  * @param end A Point representing the destination position of the maze
- * @warning it is the caller's responsibility to destroy the start and end points
+ * @warning it is the caller's responsibility to destroy the stack (this function does not free anything)
  */
 void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_MAZE_HEIGHT * PATHFINDING_MAZE_WIDTH], Point *start, Point *end);
 
