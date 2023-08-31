@@ -191,7 +191,7 @@ void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_M
 	uint16_t currentIndex = Point_get_1d(end);
 	// use starting point to know if we've reached the end
 	uint16_t startIndex = Point_get_1d(start);
-	while (currentIndex != UINT16_MAX && currentIndex != startIndex)
+	while ((currentIndex != UINT16_MAX) && (currentIndex != startIndex))
 	{
 		// printf("%i\n", current_index);
 		Node *currentNode = Node_create(Point_create_from_1d(currentIndex, PATHFINDING_MAZE_WIDTH));
@@ -338,7 +338,7 @@ uint8_t Pathfinding_is_on_intersection(MazeDirections currentDirection, uint8_t 
 	case MAZE_DIRECTIONS_LEFT:
 	case MAZE_DIRECTIONS_RIGHT:
 
-		if (maze[y + 1][x] == 0 || maze[y - 1][x] == 0)
+		if ((maze[y + 1][x] == 0) || (maze[y - 1][x] == 0))
 		{
 			return 1;
 		}
@@ -346,7 +346,7 @@ uint8_t Pathfinding_is_on_intersection(MazeDirections currentDirection, uint8_t 
 	// moving vertically
 	case MAZE_DIRECTIONS_UP:
 	case MAZE_DIRECTIONS_DOWN:
-		if (maze[y][x + 1] == 0 || maze[y][x - 1] == 0)
+		if ((maze[y][x + 1] == 0) || (maze[y][x - 1] == 0))
 		{
 			return 1;
 		}
@@ -359,8 +359,8 @@ uint8_t Pathfinding_is_on_intersection(MazeDirections currentDirection, uint8_t 
 
 uint8_t Pathfinding_coordinates_in_bounds(uint8_t x, uint8_t y)
 {
-	uint8_t xInBounds = x >= PATHFINDING_STARTING_INDEX && x < PATHFINDING_MAZE_WIDTH;
-	uint8_t yInBounds = y >= PATHFINDING_STARTING_INDEX && y < PATHFINDING_MAZE_HEIGHT;
+	uint8_t xInBounds = (x >= PATHFINDING_STARTING_INDEX) && (x < PATHFINDING_MAZE_WIDTH);
+	uint8_t yInBounds = (y >= PATHFINDING_STARTING_INDEX) && (y < PATHFINDING_MAZE_HEIGHT);
 
 	return xInBounds && yInBounds;
 }
