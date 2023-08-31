@@ -24,10 +24,10 @@ Point *Point_create_from_1d(uint16_t index, uint8_t COLUMNS);
 void Point_destroy(Point *point);
 
 /// @brief Checks if two points are equal
-/// @param point_1
-/// @param point_2
+/// @param point1
+/// @param point2
 /// @return 1 (TRUE) if the nodes are equal or 0 (FALSE) if they are not
-uint8_t Point_equal(Point *point_1, Point *point_2);
+uint8_t Point_equal(Point *point1, Point *point2);
 uint8_t Point_get_x(Point *point);
 uint8_t Point_get_y(Point *point);
 uint16_t Point_get_1d(Point *point);

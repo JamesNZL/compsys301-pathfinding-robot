@@ -46,9 +46,9 @@ void Point_destroy(Point *point)
 	free(point);
 }
 
-uint8_t Point_equal(Point *point_1, Point *point_2)
+uint8_t Point_equal(Point *point1, Point *point2)
 {
-	return Point_get_1d(point_1) == Point_get_1d(point_2);
+	return Point_get_1d(point1) == Point_get_1d(point2);
 }
 
 uint8_t Point_get_x(Point *point)
