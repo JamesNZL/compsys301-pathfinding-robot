@@ -108,6 +108,20 @@ void run_all_routes_tests()
 		length++;
 		Node *current_node = Queue_pop(routes);
 		Pathfinding_route *current_route = Node_get_value(current_node);
+
+		printf("\nRoute to food %i\n\n", length);
+		Queue *turns = Pathfinding_route_get_turns(current_route);
+		while (!Queue_is_empty(turns))
+		{
+			Node *current = Queue_pop(turns);
+			Actions *current_action = Node_get_value(current);
+			printf("%s,", action_strings[*current_action]);
+			free(current_action);
+			Node_destroy(current);
+		}
+
+		printf("\nThe last facing direction is: %s\n", direction_strings[Pathfinding_route_get_last_faced_direction(current_route)]);
+		printf("The final required distance is: %i\n", Pathfinding_route_get_final_distance(current_route));
 		Node_destroy(current_node);
 	}
 	assert(length == 5);

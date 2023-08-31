@@ -126,6 +126,7 @@ void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_M
  * @brief Gives a path to the food containing the turns needed, as well as instructions after the final turn such as distance
  * @param path a stack of the nodes contained within the shortest path
  * @return Pathfinding_route* Pointer to the created Pathfinding_route
+ * @warning DO NOT destroy the stack afterwards as this function does it (you will get DOUBLE FREE error)
  */
 Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze_Directions starting_direction, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
 

@@ -54,8 +54,6 @@ Queue *Pathfinding_generate_routes_to_all_food(Point *start, Maze_Directions sta
 		Pathfinding_route *current_route = Pathfinding_generate_route_to_food(current_shortest_path, current_starting_direction, maze);
 		Queue_append(routes, Node_create(current_route));
 
-		Point_destroy(current_start_point);
-		Stack_destroy(current_shortest_path);
 		current_start_point = current_end_point;
 		current_starting_direction = Pathfinding_route_get_last_faced_direction(current_route);
 	}
