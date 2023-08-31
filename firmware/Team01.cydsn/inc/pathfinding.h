@@ -21,7 +21,7 @@
 #define PATHFINDING_POSSIBLE_DIRECTIONS 4
 #define PATHFINDING_FOOD_LOCATIONS		5
 
-typedef struct Pathfinding_route Pathfinding_route;
+typedef struct PathfindingRoute PathfindingRoute;
 
 typedef enum Actions
 {
@@ -58,28 +58,28 @@ Queue *Pathfinding_generate_routes_to_all_food(Point *start, Maze_Directions sta
  * @param final_distance the units (in terms of the maze grid) required to be travelled after the final turn
  * @return Pathfinding_route* Pointer to the created Pathfinding_route
  */
-Pathfinding_route *
+PathfindingRoute *
 Pathfinding_route_construct(Queue *turns, Maze_Directions last_faced_direction, uint8_t final_distance);
 
 /**
  * @brief Frees a memory allocated to a pathfinding route pointer
  * @param route
  */
-void Pathfinding_route_destroy(Pathfinding_route *route);
+void Pathfinding_route_destroy(PathfindingRoute *route);
 
 /**
  * @brief
  * @param route
  * @return Queue* The queue of turns in the route
  */
-Queue *Pathfinding_route_get_turns(Pathfinding_route *route);
+Queue *Pathfinding_route_get_turns(PathfindingRoute *route);
 
 /**
  * @brief
  * @param route
  * @return Maze_Directions The last faced direction in the route
  */
-Maze_Directions Pathfinding_route_get_last_faced_direction(Pathfinding_route *route);
+Maze_Directions Pathfinding_route_get_last_faced_direction(PathfindingRoute *route);
 
 #ifdef TESTING
 
@@ -88,7 +88,7 @@ Maze_Directions Pathfinding_route_get_last_faced_direction(Pathfinding_route *ro
  * @param route
  * @return uint8_t The final distance in the route
  */
-uint8_t Pathfinding_route_get_final_distance(Pathfinding_route *route);
+uint8_t Pathfinding_route_get_final_distance(PathfindingRoute *route);
 
 /**
  * @brief Determines if an x and y value BOTH fall within range of the maze coordinates
@@ -140,7 +140,7 @@ void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_M
  * @return Pathfinding_route* Pointer to the created Pathfinding_route
  * @warning DO NOT destroy the stack afterwards as this function does it (you will get DOUBLE FREE error)
  */
-Pathfinding_route *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze_Directions starting_direction, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
+PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortest_path, Maze_Directions starting_direction, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
 
 /**
  * @brief Determines based on the current coordinates and direction if the point is an intersection
