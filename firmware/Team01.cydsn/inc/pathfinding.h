@@ -6,6 +6,8 @@
 #ifndef PATHFINDING_H_
 #define PATHFINDING_H_
 
+#define TESTING 1
+
 #include <Node/Node.h>
 #include <Point/Point.h>
 #include <Queue/Queue.h>
@@ -37,30 +39,6 @@ typedef enum Maze_Directions
 	MAZE_DIRECTIONS_UP,
 	MAZE_DIRECTIONS_DOWN,
 } Maze_Directions;
-
-/**
- * @brief Determines if an x and y value BOTH fall within range of the maze coordinates
- * @param x horizontal position
- * @param y vertical position
- * @return `TRUE` or `FALSE`
- */
-uint8_t Pathfinding_coordinates_in_bounds(uint8_t x, uint8_t y);
-
-/**
- * @brief Calculates the action needed based on the positional state of the robot in the maze
- * @param current the direction the robot is facing in the maze
- * @param next the relative direction of the next point
- * @return Actions The required action
- */
-Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions next);
-
-/**
- * @brief Finds the relative direction `up,down,left,right` of a point in the maze based on a current point
- * @param current a pointer to the current Point
- * @param next a pointer to the Point whose relative position is to be determined
- * @return Maze_Directions The relative direction of the next point
- */
-Maze_Directions Pathfinding_get_relative_direction(Point *current, Point *next);
 
 /**
  * @brief Generates a queue containing all the pathfinding routes based on the food list and maze given a starting point
@@ -109,6 +87,30 @@ Maze_Directions Pathfinding_route_get_last_faced_direction(Pathfinding_route *ro
  * @return uint8_t The final distance in the route
  */
 uint8_t Pathfinding_route_get_final_distance(Pathfinding_route *route);
+
+/**
+ * @brief Determines if an x and y value BOTH fall within range of the maze coordinates
+ * @param x horizontal position
+ * @param y vertical position
+ * @return `TRUE` or `FALSE`
+ */
+uint8_t Pathfinding_coordinates_in_bounds(uint8_t x, uint8_t y);
+
+/**
+ * @brief Calculates the action needed based on the positional state of the robot in the maze
+ * @param current the direction the robot is facing in the maze
+ * @param next the relative direction of the next point
+ * @return Actions The required action
+ */
+Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions next);
+
+/**
+ * @brief Finds the relative direction `up,down,left,right` of a point in the maze based on a current point
+ * @param current a pointer to the current Point
+ * @param next a pointer to the Point whose relative position is to be determined
+ * @return Maze_Directions The relative direction of the next point
+ */
+Maze_Directions Pathfinding_get_relative_direction(Point *current, Point *next);
 
 /**
  * @brief Returns a stack of points to represent the shortest path, with the top of the stack being the first node
