@@ -258,8 +258,8 @@ Actions Pathfinding_get_required_action(MazeDirections current, MazeDirections n
 		case MAZE_DIRECTIONS_DOWN:
 			return ACTIONS_LEFT;
 		}
+		break;
 	}
-	break;
 	case MAZE_DIRECTIONS_RIGHT:
 	{
 		switch (next)
@@ -273,8 +273,8 @@ Actions Pathfinding_get_required_action(MazeDirections current, MazeDirections n
 		case MAZE_DIRECTIONS_DOWN:
 			return ACTIONS_RIGHT;
 		}
+		break;
 	}
-	break;
 	case MAZE_DIRECTIONS_UP:
 	{
 		switch (next)
@@ -288,8 +288,8 @@ Actions Pathfinding_get_required_action(MazeDirections current, MazeDirections n
 		case MAZE_DIRECTIONS_DOWN:
 			return ACTIONS_AROUND;
 		}
+		break;
 	}
-	break;
 	case MAZE_DIRECTIONS_DOWN:
 	{
 		switch (next)
@@ -303,8 +303,8 @@ Actions Pathfinding_get_required_action(MazeDirections current, MazeDirections n
 		case MAZE_DIRECTIONS_DOWN:
 			return ACTIONS_STRAIGHT;
 		}
+		break;
 	}
-	break;
 	}
 	return ACTIONS_SKIP;
 }
