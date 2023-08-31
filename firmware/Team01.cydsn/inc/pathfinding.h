@@ -17,6 +17,7 @@
 #define PATHFINDING_MAZE_HEIGHT			15
 #define PATHFINDING_STARTING_INDEX		0
 #define PATHFINDING_POSSIBLE_DIRECTIONS 4
+#define PATHFINDING_FOOD_LOCATIONS		5
 
 typedef struct Pathfinding_route Pathfinding_route;
 
@@ -62,13 +63,24 @@ Actions Pathfinding_get_required_action(Maze_Directions current, Maze_Directions
 Maze_Directions Pathfinding_get_relative_direction(Point *current, Point *next);
 
 /**
+ * @brief Generates a queue containing all the pathfinding routes based on the food list and maze given a starting point
+ * @param start A pointer to a Point of the starting location
+ * @param starting_direction the direction the robot starts facing
+ * @param food_list A 2D array containing the coordinates of the food locations
+ * @param maze A 2D array representing the maze
+ * @return
+ */
+Queue *Pathfinding_generate_routes_to_all_food(Point *start, Maze_Directions starting_direction, uint8_t food_list[PATHFINDING_FOOD_LOCATIONS][2], uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
+
+/**
  * @brief Creates and returns a pointer to a route data structure which has a queue containing the required turns, and the required amount of distance to be travelled after the final turn
  * @param turns a Queue of turns defined as enums
  * @param last_faced_direction the direction the robot will be facing after reaching the food
  * @param final_distance the units (in terms of the maze grid) required to be travelled after the final turn
  * @return Pathfinding_route* Pointer to the created Pathfinding_route
  */
-Pathfinding_route *Pathfinding_route_construct(Queue *turns, Maze_Directions last_faced_direction, uint8_t final_distance);
+Pathfinding_route *
+Pathfinding_route_construct(Queue *turns, Maze_Directions last_faced_direction, uint8_t final_distance);
 
 /**
  * @brief
