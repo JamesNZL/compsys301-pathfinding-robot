@@ -24,6 +24,15 @@ Pathfinding_route *Pathfinding_route_construct(Queue *turns, Maze_Directions las
 	return route;
 }
 
+void Pathfinding_route_destroy(Pathfinding_route *route)
+{
+	if (route == NULL)
+	{
+		return;
+	}
+	free(route);
+}
+
 Queue *Pathfinding_route_get_turns(Pathfinding_route *route)
 {
 	return route->turns;

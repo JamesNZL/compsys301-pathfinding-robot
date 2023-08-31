@@ -83,6 +83,12 @@ Pathfinding_route *
 Pathfinding_route_construct(Queue *turns, Maze_Directions last_faced_direction, uint8_t final_distance);
 
 /**
+ * @brief Frees a memory allocated to a pathfinding route pointer
+ * @param route
+ */
+void Pathfinding_route_destroy(Pathfinding_route *route);
+
+/**
  * @brief
  * @param route
  * @return Queue* The queue of turns in the route
