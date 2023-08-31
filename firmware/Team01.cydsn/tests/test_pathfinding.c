@@ -125,8 +125,11 @@ void run_all_routes_tests()
 		printf("\nThe last facing direction is: %s\n", direction_strings[Pathfinding_route_get_last_faced_direction(current_route)]);
 		printf("The final required distance is: %i\n", Pathfinding_route_get_final_distance(current_route));
 		Node_destroy(current_node);
+		Pathfinding_route_destroy(current_route);
 	}
 	assert(length == 5);
+	Point_destroy(start);
+	Queue_destroy(routes);
 }
 
 int main()
