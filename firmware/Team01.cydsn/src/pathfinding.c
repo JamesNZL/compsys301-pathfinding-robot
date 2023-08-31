@@ -7,11 +7,11 @@ const static int8_t dX[PATHFINDING_POSSIBLE_DIRECTIONS] = { -1, 1, 0, 0 };
 typedef struct PathfindingRoute
 {
 	Queue *turns;
-	MazeDirections last_faced_direction;
+	MazeDirections lastFacedDirection;
 	uint8_t final_distance;
 } PathfindingRoute;
 
-PathfindingRoute *Pathfinding_route_construct(Queue *turns, MazeDirections last_faced_direction, uint8_t final_distance)
+PathfindingRoute *Pathfinding_route_construct(Queue *turns, MazeDirections lastFacedDirection, uint8_t final_distance)
 {
 	PathfindingRoute *route = malloc(sizeof(PathfindingRoute));
 	if (route == NULL)
@@ -19,7 +19,7 @@ PathfindingRoute *Pathfinding_route_construct(Queue *turns, MazeDirections last_
 		return NULL;
 	}
 	route->turns = turns;
-	route->last_faced_direction = last_faced_direction;
+	route->lastFacedDirection = lastFacedDirection;
 	route->final_distance = final_distance;
 	return route;
 }
@@ -40,7 +40,7 @@ Queue *Pathfinding_route_get_turns(PathfindingRoute *route)
 
 MazeDirections Pathfinding_route_get_last_faced_direction(PathfindingRoute *route)
 {
-	return route->last_faced_direction;
+	return route->lastFacedDirection;
 }
 
 uint8_t Pathfinding_route_get_final_distance(PathfindingRoute *route)
