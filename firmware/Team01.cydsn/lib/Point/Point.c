@@ -5,7 +5,7 @@ typedef struct Point
 {
 	uint8_t x;
 	uint8_t y;
-	uint16_t one_dim_index;
+	uint16_t oneDimIndex;
 } Point;
 
 Point *Point_create(uint8_t x, uint8_t y, uint8_t COLUMNS)
@@ -18,7 +18,7 @@ Point *Point_create(uint8_t x, uint8_t y, uint8_t COLUMNS)
 
 	point->x = x;
 	point->y = y;
-	point->one_dim_index = x + y * COLUMNS;
+	point->oneDimIndex = x + y * COLUMNS;
 	return point;
 }
 
@@ -33,7 +33,7 @@ Point *Point_create_from_1d(uint16_t index, uint8_t COLUMNS)
 
 	point->x = index % COLUMNS;
 	point->y = index / COLUMNS;
-	point->one_dim_index = index;
+	point->oneDimIndex = index;
 	return point;
 }
 
@@ -62,5 +62,5 @@ uint8_t Point_get_y(Point *point)
 }
 uint16_t Point_get_1d(Point *point)
 {
-	return point->one_dim_index;
+	return point->oneDimIndex;
 }
