@@ -4,7 +4,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#define NULL ((void *)0)
 // Use an opaque type to prevent direct access to members
 typedef struct RollingBuffer RollingBuffer;
 
