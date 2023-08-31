@@ -6,7 +6,7 @@
 #ifndef PATHFINDING_H_
 #define PATHFINDING_H_
 
-#define TESTING 1
+#define TESTING
 
 #include <Node/Node.h>
 #include <Point/Point.h>
@@ -80,6 +80,8 @@ Queue *Pathfinding_route_get_turns(Pathfinding_route *route);
  * @return Maze_Directions The last faced direction in the route
  */
 Maze_Directions Pathfinding_route_get_last_faced_direction(Pathfinding_route *route);
+
+#ifdef TESTING
 
 /**
  * @brief
@@ -159,4 +161,5 @@ uint8_t Pathfinding_is_on_intersection(Maze_Directions current_direction, uint8_
  */
 uint8_t Pathfinding_calculate_point_spacing(Maze_Directions current_direction, Point *point_1, Point *point_2);
 
+#endif
 #endif
