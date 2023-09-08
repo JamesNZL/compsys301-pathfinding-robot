@@ -5,5 +5,25 @@
 #define SENSOR_TURN_SENSOR_POS_1 0;
 #define SENSOR_TURN_SENSOR_POS_2 0;
 #define SENSOR_SKEW_SENSOR_1	 0;
-// put isr in this file
+
+CY_ISR(light_sensed)
+{
+	Timer_checklight_Start();
+	Sensor_Output_1_Write(1);
+	isr_lightsense_Disable();
+}
+
+CY_ISR(check_light)
+{
+	if (!Lightsense_Read())
+	{
+		Sensor_Output_1_Write(0);
+		Timer_checklight_Stop();
+		isr_lightsense_Enable();
+	}
+	Timer_checklight_ReadStatusRegister();
+}
+
+void Sensor_init_sensors();
+
 #endif
