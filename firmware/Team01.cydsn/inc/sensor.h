@@ -8,8 +8,7 @@
 
 CY_ISR(light_sensed)
 {
-	Timer_checklight_Start();
-	Sensor_Output_1_Write(1);
+	Timer_Light_Check_Start();
 	isr_lightsense_Disable();
 }
 
