@@ -30,7 +30,7 @@ int main()
 
 		if (FLAG_IS_SET(FLAGS, FLAG_USB_INPUT))
 		{
-			FLAGS_CLEAR(FLAGS, FLAG_USB_INPUT);
+			FLAG_CLEAR(FLAGS, FLAG_USB_INPUT);
 
 			char *token = strtok(USB_input, COMMAND_DELIMITER);
 			if (token != NULL)

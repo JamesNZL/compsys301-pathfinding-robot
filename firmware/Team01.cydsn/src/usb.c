@@ -52,7 +52,7 @@ void USB_get_input(void)
 				received[usbBufCount] = '\0';
 				strcpy(USB_input, received);
 				usbBufCount = 0;
-				FLAGS_SET(FLAGS, FLAG_USB_INPUT);
+				FLAG_SET(FLAGS, FLAG_USB_INPUT);
 			}
 			else
 			{
