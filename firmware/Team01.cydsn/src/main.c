@@ -3,6 +3,7 @@
 #include "handlers.h"
 #include "movement.h"
 #include "usb.h"
+#include "sensor.h"
 
 #include <project.h>
 #include <stdio.h>
