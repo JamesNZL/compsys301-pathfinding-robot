@@ -14,10 +14,11 @@ CY_ISR(light_sensed)
 
 CY_ISR(check_light)
 {
-	if (!Lightsense_Read())
+	// sensors.sensor1 = Is_White1_Read()
+
+	if (!(Is_White1_Read() ||))
 	{
-		Sensor_Output_1_Write(0);
-		Timer_checklight_Stop();
+		Timer_Light_Check_Stop();
 		isr_lightsense_Enable();
 	}
 	Timer_checklight_ReadStatusRegister();
