@@ -33,7 +33,6 @@ CY_ISR(check_light)
 
 void Sensor_store_sensor_statuses()
 {
-
 	Sensor_turnLeft = Turn_Left_Read();
 	Sensor_turnRight = Turn_Right_Read();
 	Sensor_skewBackRight = Skew_Back_Right_Read();
@@ -54,7 +53,6 @@ void Sensor_init_sensors()
 
 void Sensor_set_bias_level(float voltage)
 {
-
 	uint8_t dacValue = (voltage / DAC_Lower_RANGE_4V) * 255;
 
 	DAC_Lower_SetValue(dacValue);

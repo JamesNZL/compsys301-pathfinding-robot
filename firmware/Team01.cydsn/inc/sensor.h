@@ -15,6 +15,9 @@ volatile extern bool Sensor_skewFrontRight;
 volatile extern bool Sensor_skewFrontLeft;
 volatile extern bool Sensor_skewCenter;
 
+/**
+ * @brief Init all sensor dependencies - DAC, Bias levels, interrupts
+ */
 void Sensor_init_sensors();
 
 void Sensor_store_sensor_statuses();
