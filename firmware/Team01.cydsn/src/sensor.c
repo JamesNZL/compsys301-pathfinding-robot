@@ -13,8 +13,9 @@ CY_ISR(check_light)
 	// sensors.sensor1 = Is_White1_Read()
 	// sensors.sensor2 = Is_White2_Read()
 	// ...
+	bool allLightsOff = !(Skew_Back_Left_Read() || Skew_Back_Right_Read() || Skew_Center_Read() || Skew_Front_Left_Read() || Skew_Front_Right_Read() || Turn_Left_Read() || Turn_Right_Read());
 
-	if (!(Is_White1_Read() || Is_White2_Read() || Is_White3_Read() || Is_White4_Read() || Is_White5_Read() || Is_White6_Read() || Is_White7_Read())) // sensor1 or sensor2 or sensor3 ...
+	if (allLightsOff) // sensor1 or sensor2 or sensor3 ...
 	{
 		// Safeguard
 		Timer_Light_Check_Stop();
