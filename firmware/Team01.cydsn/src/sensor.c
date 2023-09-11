@@ -25,6 +25,18 @@ CY_ISR(check_light)
 
 void Sensor_init_sensors()
 {
+	DAC_Lower_Start();
+	DAC_Upper_Start();
+	Sensor_set_bias_level(SENSOR_DEFAULT_BIAS_VOLTAGE);
 	isr_lightsense_StartEx(light_sensed);
 	isr_lightcheck_StartEx(check_light);
+}
+
+void Sensor_set_bias_level(float voltage)
+{
+
+	uint8_t dacValue = (voltage / DAC_Lower_RANGE_4V) * 255;
+
+	DAC_Lower_SetValue(dacValue);
+	DAC_Upper_SetValue(dacValue);
 }
