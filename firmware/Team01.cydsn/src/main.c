@@ -19,9 +19,6 @@ int main()
 
 	CyDelay(2000);
 
-	// NOTE!!! The skew correction isnt working for this reason - I am placing a small number of pulses extra into the pwm count
-	// Due to the freq of the ISR. Need a smarter way to use the pulse error as a factor in skew correct.
-
 	Movement_init_decoder_ISR();
 	// Movement_turn_right(90);
 	// CyDelay(500);
