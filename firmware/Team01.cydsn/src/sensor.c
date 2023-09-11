@@ -1,5 +1,13 @@
 #include "sensor.h"
 
+bool Sensor_turnLeft = FALSE;
+bool Sensor_turnRight = FALSE;
+bool Sensor_skewBackRight = FALSE;
+bool Sensor_skewBackLeft = FALSE;
+bool Sensor_skewFrontRight = FALSE;
+bool Sensor_skewFrontLeft = FALSE;
+bool Sensor_skewCenter = FALSE;
+
 CY_ISR(light_sensed)
 {
 	Timer_Light_Check_Start();
