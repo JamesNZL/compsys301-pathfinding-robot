@@ -16,10 +16,17 @@ CY_ISR(light_sensed)
 
 CY_ISR(check_light)
 {
-	// sensors.sensor1 = Is_White1_Read()
-	// sensors.sensor2 = Is_White2_Read()
-	// ...
-	bool allLightsOff = !(Skew_Back_Left_Read() || Skew_Back_Right_Read() || Skew_Center_Read() || Skew_Front_Left_Read() || Skew_Front_Right_Read() || Turn_Left_Read() || Turn_Right_Read());
+	Sensor_turnLeft = Turn_Left_Read();
+	Sensor_turnRight = Turn_Right_Read();
+	Sensor_skewBackRight = Skew_Back_Right_Read();
+	Sensor_skewBackLeft = Skew_Back_Left_Read();
+	Sensor_skewFrontRight = Skew_Front_Right_Read();
+	Sensor_skewFrontLeft = Skew_Front_Left_Read();
+	Sensor_skewCenter = Skew_Center_Read();
+
+	bool allLightsOff = !(Sensor_turnLeft || Sensor_turnRight
+		|| Sensor_skewBackRight || Sensor_skewBackLeft || Sensor_skewCenter
+		|| Sensor_skewFrontLeft || Sensor_skewFrontRight);
 
 	if (allLightsOff) // sensor1 or sensor2 or sensor3 ...
 	{
