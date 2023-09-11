@@ -17,6 +17,8 @@ volatile extern bool Sensor_skewCenter;
 
 void Sensor_init_sensors();
 
+void Sensor_store_sensor_statuses();
+
 void Sensor_set_bias_level(float voltage);
 
 #endif

@@ -16,13 +16,7 @@ CY_ISR(light_sensed)
 
 CY_ISR(check_light)
 {
-	Sensor_turnLeft = Turn_Left_Read();
-	Sensor_turnRight = Turn_Right_Read();
-	Sensor_skewBackRight = Skew_Back_Right_Read();
-	Sensor_skewBackLeft = Skew_Back_Left_Read();
-	Sensor_skewFrontRight = Skew_Front_Right_Read();
-	Sensor_skewFrontLeft = Skew_Front_Left_Read();
-	Sensor_skewCenter = Skew_Center_Read();
+	Sensor_store_sensor_statuses();
 
 	bool allLightsOff = !(Sensor_turnLeft || Sensor_turnRight
 		|| Sensor_skewBackRight || Sensor_skewBackLeft || Sensor_skewCenter
@@ -35,6 +29,18 @@ CY_ISR(check_light)
 		isr_lightsense_Enable();
 	}
 	Timer_Light_Check_ReadStatusRegister();
+}
+
+void Sensor_store_sensor_statuses()
+{
+
+	Sensor_turnLeft = Turn_Left_Read();
+	Sensor_turnRight = Turn_Right_Read();
+	Sensor_skewBackRight = Skew_Back_Right_Read();
+	Sensor_skewBackLeft = Skew_Back_Left_Read();
+	Sensor_skewFrontRight = Skew_Front_Right_Read();
+	Sensor_skewFrontLeft = Skew_Front_Left_Read();
+	Sensor_skewCenter = Skew_Center_Read();
 }
 
 void Sensor_init_sensors()
