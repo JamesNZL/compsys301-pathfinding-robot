@@ -1,6 +1,4 @@
 #include "sensor.h"
-#include "common.h"
-#include <project.h>
 
 CY_ISR(light_sensed)
 {

@@ -7,6 +7,9 @@
 #define SENSOR_SKEW_SENSOR_1		0
 #define SENSOR_DEFAULT_BIAS_VOLTAGE 1.5F
 
+#include "common.h"
+#include <project.h>
+
 void Sensor_init_sensors();
 
 void Sensor_set_bias_level(float voltage);
