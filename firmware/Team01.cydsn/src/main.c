@@ -60,16 +60,16 @@ int main()
 				MOVEMENT_PULSES_TO_MOVE -= (MOVEMENT_APPARENT_PULSE_1 > 0) ? MOVEMENT_APPARENT_PULSE_1 : -MOVEMENT_APPARENT_PULSE_1;
 			}
 
-			int8 pulseError1 = MOVEMENT_TPULSE_1 / 100 - MOVEMENT_APPARENT_PULSE_1;
-			int8 pulseError2 = MOVEMENT_TPULSE_2 / 100 - MOVEMENT_APPARENT_PULSE_2;
-			// int8 pulseError2 = MOVEMENT_APPARENT_PULSE_1 - MOVEMENT_APPARENT_PULSE_2;
+			int8 pulseError1 = MOVEMENT_TPULSE_1 / 25 - MOVEMENT_APPARENT_PULSE_1;
+			// int8 pulseError2 = MOVEMENT_TPULSE_2 / 25 - MOVEMENT_APPARENT_PULSE_2;
+			int8 pulseError2 = MOVEMENT_APPARENT_PULSE_1 - MOVEMENT_APPARENT_PULSE_2;
 
 			// static char entryy[256];
 			// sprintf(entryy, "ERR: %d\n;\tTGT2: %d\n;\tM1ENC: %d, M2ENC %d\n\n", pulseError2, MOVEMENT_TPULSE_2, MOVEMENT_APPARENT_PULSE_1, MOVEMENT_APPARENT_PULSE_2);
 			// USB_put_string(entryy);
 
 			Movement_set_M1_pulse(MOVEMENT_TPULSE_1 + pulseError1);
-			Movement_set_M2_pulse(MOVEMENT_TPULSE_2 + pulseError2 * Kp);
+			Movement_set_M2_pulse(MOVEMENT_TPULSE_2 + pulseError2);
 
 			FLAGS &= ~(1 << FLAG_ENCODERS_READY);
 		}
