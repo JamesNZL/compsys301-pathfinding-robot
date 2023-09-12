@@ -18,6 +18,7 @@ CY_ISR(check_light)
 {
 	Sensor_store_sensor_statuses();
 
+	Sensor_write_statuses_to_debug();
 	bool allLightsOff = !(Sensor_turnLeft || Sensor_turnRight
 		|| Sensor_skewBackRight || Sensor_skewBackLeft || Sensor_skewCenter
 		|| Sensor_skewFrontLeft || Sensor_skewFrontRight);
@@ -28,8 +29,6 @@ CY_ISR(check_light)
 		Timer_Light_Check_Stop();
 		isr_lightsense_Enable();
 	}
-	Sensor_write_statuses_to_debug();
-	Timer_Light_Check_ReadStatusRegister();
 }
 
 void Sensor_store_sensor_statuses()
@@ -45,6 +44,7 @@ void Sensor_store_sensor_statuses()
 
 void Sensor_write_statuses_to_debug()
 {
+
 	DB0_Write(Sensor_turnLeft);
 	DB1_Write(Sensor_turnRight);
 	DB2_Write(Sensor_skewBackRight);
