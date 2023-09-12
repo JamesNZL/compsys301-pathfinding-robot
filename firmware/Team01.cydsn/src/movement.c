@@ -26,8 +26,8 @@ CY_ISR(PROCESS_PULSE)
 void Movement_move_mm(uint16 dist)
 {
 	MOVEMENT_PULSES_TO_MOVE = (float)dist / MOVEMENT_MM_PER_PULSE;
-	Movement_set_M1_pulse(MOVEMENT_RUN_SPEED);
-	Movement_set_M2_pulse(MOVEMENT_RUN_SPEED);
+	Movement_set_M1_ctrltarget(MOVEMENT_RUN_SPEED);
+	Movement_set_M2_ctrltarget(MOVEMENT_RUN_SPEED);
 }
 
 void Movement_set_M1_pulse(uint16 target)

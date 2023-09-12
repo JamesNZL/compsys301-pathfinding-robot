@@ -23,7 +23,7 @@ int main()
 	// Movement_turn_right(90);
 	// CyDelay(500);
 	// Movement_move_mm(500);
-	Movement_set_M1_ctrltarget(300);
+	// Movement_set_M1_ctrltarget(300);
 	// Movement_set_M2_ctrltarget(300);
 
 #ifdef USB_ENABLED
@@ -38,18 +38,18 @@ int main()
 
 		//--------------------------------------------
 
-		// if (MOVEMENT_PULSES_TO_MOVE <= 0)
-		// {
-		// 	// USB_put_string("STOP!");
-		// 	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
-		// 	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
-		// }
-		// else if (MOVEMENT_PULSES_TO_MOVE < 150)
-		// {
-		// 	// USB_put_string("BRAKE");
-		// 	Movement_set_M1_pulse(MOVEMENT_BRAKE_SPEED);
-		// 	Movement_set_M2_pulse(MOVEMENT_BRAKE_SPEED);
-		// }
+		if (MOVEMENT_PULSES_TO_MOVE <= 0)
+		{
+			// USB_put_string("STOP!");
+			Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
+			Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+		}
+		else if (MOVEMENT_PULSES_TO_MOVE < 150)
+		{
+			// USB_put_string("BRAKE");
+			Movement_set_M1_ctrltarget(MOVEMENT_BRAKE_SPEED);
+			Movement_set_M2_ctrltarget(MOVEMENT_BRAKE_SPEED);
+		}
 
 		if (FLAG_IS_SET(FLAGS, FLAG_ENCODERS_READY))
 		{
