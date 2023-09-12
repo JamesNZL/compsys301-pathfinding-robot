@@ -1,12 +1,12 @@
 #include "sensor.h"
 
-bool Sensor_turnLeft = FALSE;
-bool Sensor_turnRight = FALSE;
-bool Sensor_skewBackRight = FALSE;
-bool Sensor_skewBackLeft = FALSE;
-bool Sensor_skewFrontRight = FALSE;
-bool Sensor_skewFrontLeft = FALSE;
-bool Sensor_skewCenter = FALSE;
+volatile bool Sensor_turnLeft = FALSE;
+volatile bool Sensor_turnRight = FALSE;
+volatile bool Sensor_skewBackRight = FALSE;
+volatile bool Sensor_skewBackLeft = FALSE;
+volatile bool Sensor_skewFrontRight = FALSE;
+volatile bool Sensor_skewFrontLeft = FALSE;
+volatile bool Sensor_skewCenter = FALSE;
 
 CY_ISR(light_sensed)
 {
