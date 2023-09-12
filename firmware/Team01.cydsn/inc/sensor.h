@@ -2,7 +2,7 @@
 #define SENSOR_H
 #define SENSOR_HARDWARE_MODE		0
 #define SENSOR_COUNT				7
-#define SENSOR_DEFAULT_BIAS_VOLTAGE 1.5F
+#define SENSOR_DEFAULT_BIAS_VOLTAGE 1.0F
 
 #include "common.h"
 #include <project.h>

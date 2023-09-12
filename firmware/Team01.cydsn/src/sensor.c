@@ -28,6 +28,7 @@ CY_ISR(check_light)
 		Timer_Light_Check_Stop();
 		isr_lightsense_Enable();
 	}
+	Sensor_write_statuses_to_debug();
 	Timer_Light_Check_ReadStatusRegister();
 }
 
