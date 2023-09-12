@@ -25,6 +25,7 @@ int main()
 	// Movement_move_mm(500);
 	// Movement_set_M1_ctrltarget(300);
 	// Movement_set_M2_ctrltarget(300);
+	Movement_move_mm(2000);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);

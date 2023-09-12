@@ -6,7 +6,7 @@ volatile const float MOVEMENT_OFFSET = 170.9;
 volatile const float MOVEMENT_SLOPE = 8.6543;
 
 const uint8 MOVEMENT_BRAKE_SPEED = 150;
-const uint16 MOVEMENT_RUN_SPEED = 600;
+const uint16 MOVEMENT_RUN_SPEED = 300;
 const uint16 MOVEMENT_MOTOR_TURN_SPEED = 227;
 const uint8 MOVEMENT_PULSE_CORRECTION = 9;
 const uint8 Kp = 1;
