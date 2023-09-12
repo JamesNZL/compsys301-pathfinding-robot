@@ -30,4 +30,6 @@ void Sensor_store_sensor_statuses();
  */
 void Sensor_set_bias_level(float voltage);
 
+void Sensor_write_statuses_to_debug();
+
 #endif

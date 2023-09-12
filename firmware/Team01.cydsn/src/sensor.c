@@ -42,6 +42,17 @@ void Sensor_store_sensor_statuses()
 	Sensor_skewCenter = Skew_Center_Read();
 }
 
+void Sensor_write_statuses_to_debug()
+{
+	DB0_Write(Sensor_turnLeft);
+	DB1_Write(Sensor_turnRight);
+	DB2_Write(Sensor_skewBackRight);
+	DB3_Write(Sensor_skewBackLeft);
+	DB4_Write(Sensor_skewFrontRight);
+	DB5_Write(Sensor_skewFrontLeft);
+	DB6_Write(Sensor_skewCenter);
+}
+
 void Sensor_init_sensors()
 {
 	DAC_Lower_Start();
