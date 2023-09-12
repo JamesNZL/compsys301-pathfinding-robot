@@ -440,6 +440,7 @@
       <Data key="3076204a-988e-43fd-9383-4e3241436613" value="M2_IN2" />
       <Data key="06558356-fdf8-4008-a956-bbdf645a3ee7" value="RX_2" />
       <Data key="9224328b-1c0f-46d5-8e08-4a551e10952e" value="MA_INV" />
+      <Data key="9364402e-ff7e-42cf-b115-95e958851297" value="V_Bias_M" />
       <Data key="26511763-69a7-4c32-8375-530118e91a53" value="M2_D2" />
       <Data key="29017152-12a1-4f98-9f2e-a92c7a5b3a0c" value="Rx_2" />
       <Data key="77715107-f8d5-47e5-a629-0fb83101ac6b" value="V_Bias_U" />
@@ -3630,7 +3631,7 @@
     </Group>
     <Group key="779f33e0-db1e-4d47-bd2e-ec3a9a900f13">
       <Group key="0">
-        <Data key="Port Format" value="0,3" />
+        <Data key="Port Format" value="0,2" />
       </Group>
     </Group>
     <Group key="842c1b4c-8c1d-4815-9289-67e09b1db0e8">
@@ -3688,6 +3689,11 @@
         <Data key="Port Format" value="3,5" />
       </Group>
     </Group>
+    <Group key="9364402e-ff7e-42cf-b115-95e958851297">
+      <Group key="0">
+        <Data key="Port Format" value="1,2" />
+      </Group>
+    </Group>
     <Group key="26511763-69a7-4c32-8375-530118e91a53">
       <Group key="0">
         <Data key="Port Format" value="12,5" />
@@ -3700,7 +3706,7 @@
     </Group>
     <Group key="77715107-f8d5-47e5-a629-0fb83101ac6b">
       <Group key="0">
-        <Data key="Port Format" value="1,2" />
+        <Data key="Port Format" value="1,6" />
       </Group>
     </Group>
     <Group key="79772720-a0e3-4c4c-9406-2e0ad94c56bf">
@@ -3833,7 +3839,7 @@
         <Data key="0" value="133389745761667553" />
       </Group>
       <Group key="d50de08c-8a77-4334-bd87-4d4dcae266e2">
-        <Data key="0" value="133389746232628354" />
+        <Data key="0" value="133389798377809264" />
       </Group>
     </Group>
   </Group>
