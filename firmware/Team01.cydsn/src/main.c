@@ -17,6 +17,7 @@ int main()
 	CYGlobalIntEnable;
 	PWM_1_Start();
 	PWM_2_Start();
+	Sensor_init_sensors();
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
