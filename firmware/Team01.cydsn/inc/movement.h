@@ -33,6 +33,8 @@ volatile int16 MOVEMENT_APPARENT_PULSE_2;
 
 volatile int16 MOVEMENT_TPULSE_1;
 volatile int16 MOVEMENT_TPULSE_2;
+volatile int16 MOVEMENT_CPULSE_1;
+volatile int16 MOVEMENT_CPULSE_2;
 
 const extern uint8 MOVEMENT_BRAKE_SPEED;
 const extern uint16 MOVEMENT_RUN_SPEED;
