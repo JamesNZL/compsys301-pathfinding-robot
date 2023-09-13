@@ -44,6 +44,16 @@ const extern uint8 MOVEMENT_PULSE_CORRECTION;
 const extern uint8 Kp;
 
 /**
+ * @brief Checks if there is distance to move - sets speed accordingly
+ */
+void Movement_check_dist();
+
+/**
+ * @brief Executes the next control loop cycle with feedback
+ */
+void Movement_next_control_cycle();
+
+/**
  * @brief Instructs the robot to move a certain number of mm
  *
  * @param dist the distance to move in mm

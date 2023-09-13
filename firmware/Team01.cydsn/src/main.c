@@ -39,45 +39,8 @@ int main()
 
 		//--------------------------------------------
 
-		if (MOVEMENT_PULSES_TO_MOVE <= 0)
-		{
-			// USB_put_string("STOP!");
-			Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
-			Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
-			Movement_set_M1_ctrlconst(MOVEMENT_MOTOR_OFF);
-			Movement_set_M2_ctrlconst(MOVEMENT_MOTOR_OFF);
-		}
-		else if (MOVEMENT_PULSES_TO_MOVE < 150)
-		{
-			// USB_put_string("BRAKE");
-			Movement_set_M1_ctrlconst(MOVEMENT_BRAKE_SPEED);
-			Movement_set_M2_ctrlconst(MOVEMENT_BRAKE_SPEED);
-		}
-
-		if (FLAG_IS_SET(FLAGS, FLAG_ENCODERS_READY))
-		{
-			// If pulses to move are positive, turn the motors on and subtract from pulses to move.
-			if (MOVEMENT_PULSES_TO_MOVE > 0)
-			{
-				MOVEMENT_PULSES_TO_MOVE -= (MOVEMENT_APPARENT_PULSE_1 > 0) ? MOVEMENT_APPARENT_PULSE_1 : -MOVEMENT_APPARENT_PULSE_1;
-			}
-
-			int8 pulseError1 = MOVEMENT_CPULSE_1 / 25 - MOVEMENT_APPARENT_PULSE_1;
-			int8 pulseError2 = MOVEMENT_CPULSE_2 / 25 - MOVEMENT_APPARENT_PULSE_2;
-			// int8 pulseError2 = MOVEMENT_APPARENT_PULSE_1 - MOVEMENT_APPARENT_PULSE_2;
-
-			// static char entryy[256];
-			// sprintf(entryy, "ERR: %d\n;\tTGT2: %d\n;\tM1ENC: %d, M2ENC %d\n\n", pulseError1, MOVEMENT_TPULSE_1, MOVEMENT_APPARENT_PULSE_1, MOVEMENT_APPARENT_PULSE_2);
-			// USB_put_string(entryy);
-
-			Movement_set_M1_pulse(MOVEMENT_TPULSE_1 + pulseError1);
-			Movement_set_M2_pulse(MOVEMENT_TPULSE_2 + pulseError2);
-
-			Movement_set_M1_ctrltarget(MOVEMENT_TPULSE_1 + pulseError1);
-			Movement_set_M2_ctrltarget(MOVEMENT_TPULSE_2 + pulseError2);
-
-			FLAGS &= ~(1 << FLAG_ENCODERS_READY);
-		}
+		Movement_check_dist();
+		Movement_next_control_cycle();
 
 		//--------------------------------------------
 

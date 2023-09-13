@@ -23,6 +23,45 @@ CY_ISR(PROCESS_PULSE)
 	Timer_Dec_ReadStatusRegister();
 }
 
+void Movement_check_dist()
+{
+	if (MOVEMENT_PULSES_TO_MOVE <= 0)
+	{
+		Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
+		Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+		Movement_set_M1_ctrlconst(MOVEMENT_MOTOR_OFF);
+		Movement_set_M2_ctrlconst(MOVEMENT_MOTOR_OFF);
+	}
+	else if (MOVEMENT_PULSES_TO_MOVE < 150)
+	{
+		Movement_set_M1_ctrlconst(MOVEMENT_BRAKE_SPEED);
+		Movement_set_M2_ctrlconst(MOVEMENT_BRAKE_SPEED);
+	}
+}
+
+void Movement_next_control_cycle()
+{
+	if (FLAG_IS_SET(FLAGS, FLAG_ENCODERS_READY))
+	{
+		if (MOVEMENT_PULSES_TO_MOVE > 0)
+		{
+			MOVEMENT_PULSES_TO_MOVE -= (MOVEMENT_APPARENT_PULSE_1 > 0) ? MOVEMENT_APPARENT_PULSE_1 : -MOVEMENT_APPARENT_PULSE_1;
+		}
+
+		int8 pulseError1 = MOVEMENT_CPULSE_1 / 25 - MOVEMENT_APPARENT_PULSE_1;
+		int8 pulseError2 = MOVEMENT_CPULSE_2 / 25 - MOVEMENT_APPARENT_PULSE_2;
+		// int8 pulseError2 = MOVEMENT_APPARENT_PULSE_1 - MOVEMENT_APPARENT_PULSE_2;
+
+		Movement_set_M1_pulse(MOVEMENT_TPULSE_1 + pulseError1);
+		Movement_set_M2_pulse(MOVEMENT_TPULSE_2 + pulseError2);
+
+		Movement_set_M1_ctrltarget(MOVEMENT_TPULSE_1 + pulseError1);
+		Movement_set_M2_ctrltarget(MOVEMENT_TPULSE_2 + pulseError2);
+
+		FLAGS &= ~(1 << FLAG_ENCODERS_READY);
+	}
+}
+
 void Movement_move_mm(uint16 dist)
 {
 	MOVEMENT_PULSES_TO_MOVE = (float)dist / MOVEMENT_MM_PER_PULSE;
