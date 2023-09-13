@@ -21,7 +21,7 @@ CY_ISR(check_light)
 
 	resetCounter++;
 	Sensor_process_sensor_statuses();
-	if (resetCounter >= SENSOR_MINIMUM_DEBOUNCE_PERIODS || Sensor_all_sensors_off()) // sensor1 or sensor2 or sensor3 ...
+	if (resetCounter >= SENSOR_SAMPLING_PERIODS) // sensor1 or sensor2 or sensor3 ...
 	{
 		Sensor_store_sensor_statuses();
 		// Safeguard

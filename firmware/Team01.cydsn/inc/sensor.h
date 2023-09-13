@@ -3,11 +3,12 @@
 #define SENSOR_HARDWARE_MODE			0
 #define SENSOR_COUNT					7
 #define SENSOR_DEFAULT_BIAS_VOLTAGE		1.1F
-#define SENSOR_MINIMUM_DEBOUNCE_PERIODS 25
+#define SENSOR_MINIMUM_DEBOUNCE_PERIODS 4
+#define SENSOR_SAMPLING_PERIODS			8
 
-#define SENSOR_DEFAULT_INITIALISATION                                           \
-	{                                                                           \
-		.lowCount = 0, .highCount = 0, .previousStatus = FALSE, .status = FALSE \
+#define SENSOR_DEFAULT_INITIALISATION                                                             \
+	{                                                                                             \
+		.lowCount = 0, .highCount = 0, .periodCount = 0, .previousStatus = FALSE, .status = FALSE \
 	}
 
 #define SENSOR_PROCESS_READING(sensorStruct, sensorReadFunction) \
@@ -21,10 +22,20 @@
 		sensorStruct.lowCount++;                                 \
 	}
 
-#define SENSOR_UPDATE_STATUS(sensorStruct)                                               \
-	sensorStruct.status = sensorStruct.highCount > sensorStruct.lowCount ? TRUE : FALSE; \
-	sensorStruct.highCount = 0;                                                          \
-	sensorStruct.lowCount = 0;
+#define SENSOR_UPDATE_STATUS(sensorStruct)                                                           \
+	sensorStruct.periodCount++;                                                                      \
+	bool sensorStruct##newStatus = (sensorStruct.highCount >= sensorStruct.lowCount) ? TRUE : FALSE; \
+	if (sensorStruct.previousStatus != sensorStruct##newStatus)                                      \
+	{                                                                                                \
+		sensorStruct.periodCount = 0;                                                                \
+	}                                                                                                \
+	if (sensorStruct.periodCount >= SENSOR_MINIMUM_DEBOUNCE_PERIODS)                                 \
+	{                                                                                                \
+		sensorStruct.status = sensorStruct##newStatus;                                               \
+	}                                                                                                \
+	sensorStruct.highCount = 0;                                                                      \
+	sensorStruct.lowCount = 0;                                                                       \
+	sensorStruct.previousStatus = sensorStruct##newStatus;
 
 #include "common.h"
 #include <project.h>
@@ -35,6 +46,7 @@ typedef struct Sensor
 	bool previousStatus;
 	uint8 lowCount;
 	uint8 highCount;
+	uint8 periodCount;
 } Sensor;
 
 volatile extern Sensor Sensor_turnLeft;
