@@ -20,7 +20,7 @@ CY_ISR(check_light)
 
 	Sensor_write_statuses_to_debug();
 
-	if (Sensor_all_sensors_off) // sensor1 or sensor2 or sensor3 ...
+	if (Sensor_all_sensors_off()) // sensor1 or sensor2 or sensor3 ...
 	{
 		// Safeguard
 		Timer_Light_Check_Stop();
