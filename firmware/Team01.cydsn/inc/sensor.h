@@ -4,25 +4,26 @@
 #define SENSOR_COUNT					7
 #define SENSOR_DEFAULT_BIAS_VOLTAGE		1.1F
 #define SENSOR_MINIMUM_DEBOUNCE_PERIODS 2
+
 #define SENSOR_DEFAULT_INITIALISATION                          \
 	{                                                          \
 		.counter = 0, .previousStatus = FALSE, .status = FALSE \
 	}
 
-#define SENSOR_DEBOUNCE(sensorStruct, sensorReadFunction)        \
-	bool reading = sensorReadFunction();                         \
-	if (sensorStruct.previousStatus != reading)                  \
-	{                                                            \
-		sensorStruct.counter = 0;                                \
-	}                                                            \
-	if (sensorStruct.counter >= SENSOR_MINIMUM_DEBOUNCE_PERIODS) \
-	{                                                            \
-		if (reading != sensorStruct.previousStatus)              \
-		{                                                        \
-			sensorStruct.status = reading;                       \
-		}                                                        \
-	}                                                            \
-	sensorStruct.previousStatus = reading;
+#define SENSOR_DEBOUNCE(sensorStruct, sensorReadFunction)         \
+	bool sensorStruct##Reading = sensorReadFunction();            \
+	if (sensorStruct.previousStatus != sensorStruct##Reading)     \
+	{                                                             \
+		sensorStruct.counter = 0;                                 \
+	}                                                             \
+	if (sensorStruct.counter >= SENSOR_MINIMUM_DEBOUNCE_PERIODS)  \
+	{                                                             \
+		if (sensorStruct##Reading != sensorStruct.previousStatus) \
+		{                                                         \
+			sensorStruct.status = sensorStruct##Reading;          \
+		}                                                         \
+	}                                                             \
+	sensorStruct.previousStatus = sensorStruct##Reading;
 
 #include "common.h"
 #include <project.h>
