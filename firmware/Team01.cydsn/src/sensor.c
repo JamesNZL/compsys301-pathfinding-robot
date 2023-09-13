@@ -1,12 +1,12 @@
 #include "sensor.h"
 
-volatile bool Sensor_turnLeft = FALSE;
-volatile bool Sensor_turnRight = FALSE;
-volatile bool Sensor_skewBackRight = FALSE;
-volatile bool Sensor_skewBackLeft = FALSE;
-volatile bool Sensor_skewFrontRight = FALSE;
-volatile bool Sensor_skewFrontLeft = FALSE;
-volatile bool Sensor_skewCenter = FALSE;
+volatile Sensor Sensor_turnLeft = SENSOR_DEFAULT_INITIALISATION;
+volatile Sensor Sensor_turnRight = SENSOR_DEFAULT_INITIALISATION;
+volatile Sensor Sensor_skewBackRight = SENSOR_DEFAULT_INITIALISATION;
+volatile Sensor Sensor_skewBackLeft = SENSOR_DEFAULT_INITIALISATION;
+volatile Sensor Sensor_skewFrontRight = SENSOR_DEFAULT_INITIALISATION;
+volatile Sensor Sensor_skewFrontLeft = SENSOR_DEFAULT_INITIALISATION;
+volatile Sensor Sensor_skewCenter = SENSOR_DEFAULT_INITIALISATION;
 
 CY_ISR(light_sensed)
 {
@@ -19,16 +19,20 @@ CY_ISR(check_light)
 	Sensor_store_sensor_statuses();
 
 	Sensor_write_statuses_to_debug();
-	bool allLightsOff = !(Sensor_turnLeft || Sensor_turnRight
-		|| Sensor_skewBackRight || Sensor_skewBackLeft || Sensor_skewCenter
-		|| Sensor_skewFrontLeft || Sensor_skewFrontRight);
 
-	if (allLightsOff) // sensor1 or sensor2 or sensor3 ...
+	if (Sensor_all_sensors_off) // sensor1 or sensor2 or sensor3 ...
 	{
 		// Safeguard
 		Timer_Light_Check_Stop();
 		isr_lightsense_Enable();
 	}
+}
+
+bool Sensor_all_sensors_off()
+{
+	return !(Sensor_turnLeft.status || Sensor_turnRight.status
+		|| Sensor_skewBackRight.status || Sensor_skewBackLeft.status || Sensor_skewCenter.status
+		|| Sensor_skewFrontLeft.status || Sensor_skewFrontRight.status);
 }
 
 void Sensor_store_sensor_statuses()
