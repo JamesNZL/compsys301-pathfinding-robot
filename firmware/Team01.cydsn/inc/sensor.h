@@ -3,7 +3,7 @@
 #define SENSOR_HARDWARE_MODE			0
 #define SENSOR_COUNT					7
 #define SENSOR_DEFAULT_BIAS_VOLTAGE		1.1F
-#define SENSOR_MINIMUM_DEBOUNCE_PERIODS 1
+#define SENSOR_MINIMUM_DEBOUNCE_PERIODS 25
 
 #define SENSOR_DEFAULT_INITIALISATION                                           \
 	{                                                                           \
