@@ -37,6 +37,21 @@ bool Sensor_all_sensors_off()
 		|| Sensor_skewFrontLeft.status || Sensor_skewFrontRight.status);
 }
 
+bool Sensor_on_right_turn_intersection()
+{
+	return !Sensor_turnLeft.status && Sensor_turnRight.status;
+}
+
+bool Sensor_on_left_turn_intersection()
+{
+	return Sensor_turnLeft.status && !Sensor_turnRight.status;
+}
+
+bool Sensor_on_all_turn_intersection()
+{
+	return Sensor_turnLeft.status && Sensor_turnRight.status;
+}
+
 void Sensor_store_sensor_statuses()
 {
 

@@ -78,6 +78,13 @@ void Sensor_process_sensor_statuses();
 
 void Sensor_reset_counts(Sensor sensorStruct);
 
+// Conditional Statements
 bool Sensor_all_sensors_off();
+
+bool Sensor_on_right_turn_intersection();
+
+bool Sensor_on_left_turn_intersection();
+
+bool Sensor_on_all_turn_intersection();
 
 #endif
