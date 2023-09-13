@@ -33,6 +33,8 @@ volatile int16 MOVEMENT_APPARENT_PULSE_2;
 
 volatile int16 MOVEMENT_TPULSE_1;
 volatile int16 MOVEMENT_TPULSE_2;
+volatile int16 MOVEMENT_CPULSE_1;
+volatile int16 MOVEMENT_CPULSE_2;
 
 const extern uint8 MOVEMENT_BRAKE_SPEED;
 const extern uint16 MOVEMENT_RUN_SPEED;
@@ -63,6 +65,14 @@ void Movement_set_M2_pulse(uint16 target);
  */
 void Movement_set_M1_ctrltarget(uint16 target);
 void Movement_set_M2_ctrltarget(uint16 target);
+
+/**
+ * @brief Sets the motor pulse correction, related to the constant target pulse
+ *
+ * @param target the target amount of pulses to turn in one second
+ */
+void Movement_set_M1_ctrlcorrect(uint16 target);
+void Movement_set_M2_ctrlcorrect(uint16 target);
 
 /**
  * @brief Calculates target duty cycle

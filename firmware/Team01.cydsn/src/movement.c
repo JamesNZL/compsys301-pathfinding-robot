@@ -38,7 +38,6 @@ void Movement_set_M1_pulse(uint16 target)
 void Movement_set_M2_pulse(uint16 target)
 {
 	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target));
-	// MOVEMENT_TPULSE_2 = target;
 }
 
 void Movement_set_M1_ctrltarget(uint16 target)
@@ -49,6 +48,16 @@ void Movement_set_M1_ctrltarget(uint16 target)
 void Movement_set_M2_ctrltarget(uint16 target)
 {
 	MOVEMENT_TPULSE_2 = target;
+}
+
+void Movement_set_M1_ctrlcorrect(uint16 target)
+{
+	MOVEMENT_CPULSE_1 = target;
+}
+
+void Movement_set_M2_ctrlcorrect(uint16 target)
+{
+	MOVEMENT_CPULSE_2 = target;
 }
 
 float Movement_calculate_duty(uint16 target)
