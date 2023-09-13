@@ -27,6 +27,7 @@ int main()
 
 	for (;;)
 	{
+		Sensor_write_statuses_to_debug();
 		/* Place your application code here. */
 		USB_get_input();
 

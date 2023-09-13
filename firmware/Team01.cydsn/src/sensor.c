@@ -16,10 +16,8 @@ CY_ISR(light_sensed)
 
 CY_ISR(check_light)
 {
-	Sensor_store_sensor_statuses();
 
-	Sensor_write_statuses_to_debug();
-
+	Sensor_debounce_and_store_sensor_statuses();
 	if (Sensor_all_sensors_off()) // sensor1 or sensor2 or sensor3 ...
 	{
 		// Safeguard
@@ -37,6 +35,17 @@ bool Sensor_all_sensors_off()
 
 void Sensor_store_sensor_statuses()
 {
+	Sensor_turnLeft.status = Turn_Left_Read();
+	Sensor_turnRight.status = Turn_Right_Read();
+	Sensor_skewBackRight.status = Skew_Back_Right_Read();
+	Sensor_skewBackLeft.status = Skew_Back_Left_Read();
+	Sensor_skewFrontRight.status = Skew_Front_Right_Read();
+	Sensor_skewFrontLeft.status = Skew_Front_Left_Read();
+	Sensor_skewCenter.status = Skew_Center_Read();
+}
+
+void Sensor_debounce_and_store_sensor_statuses()
+{
 	SENSOR_DEBOUNCE(Sensor_turnLeft, Turn_Left_Read);
 	SENSOR_DEBOUNCE(Sensor_turnRight, Turn_Right_Read);
 	SENSOR_DEBOUNCE(Sensor_skewBackRight, Skew_Back_Right_Read);
@@ -45,7 +54,6 @@ void Sensor_store_sensor_statuses()
 	SENSOR_DEBOUNCE(Sensor_skewFrontLeft, Skew_Front_Left_Read);
 	SENSOR_DEBOUNCE(Sensor_skewCenter, Skew_Center_Read);
 }
-
 void Sensor_write_statuses_to_debug()
 {
 

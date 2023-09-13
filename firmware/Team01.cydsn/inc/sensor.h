@@ -10,19 +10,20 @@
 		.counter = 0, .previousStatus = FALSE, .status = FALSE \
 	}
 
-#define SENSOR_DEBOUNCE(sensorStruct, sensorReadFunction)         \
-	bool sensorStruct##Reading = sensorReadFunction();            \
-	if (sensorStruct.previousStatus != sensorStruct##Reading)     \
-	{                                                             \
-		sensorStruct.counter = 0;                                 \
-	}                                                             \
-	if (sensorStruct.counter >= SENSOR_MINIMUM_DEBOUNCE_PERIODS)  \
-	{                                                             \
-		if (sensorStruct##Reading != sensorStruct.previousStatus) \
-		{                                                         \
-			sensorStruct.status = sensorStruct##Reading;          \
-		}                                                         \
-	}                                                             \
+#define SENSOR_DEBOUNCE(sensorStruct, sensorReadFunction)        \
+	bool sensorStruct##Reading = sensorReadFunction();           \
+	if (sensorStruct.previousStatus != sensorStruct##Reading)    \
+	{                                                            \
+		sensorStruct.counter = 0;                                \
+	}                                                            \
+	if (sensorStruct.counter >= SENSOR_MINIMUM_DEBOUNCE_PERIODS) \
+	{                                                            \
+		if (sensorStruct##Reading != sensorStruct.status)        \
+		{                                                        \
+			sensorStruct.status = sensorStruct##Reading;         \
+		}                                                        \
+	}                                                            \
+	sensorStruct.counter++;                                      \
 	sensorStruct.previousStatus = sensorStruct##Reading;
 
 #include "common.h"
@@ -59,6 +60,8 @@ void Sensor_store_sensor_statuses();
 void Sensor_set_bias_level(float voltage);
 
 void Sensor_write_statuses_to_debug();
+
+void Sensor_debounce_and_store_sensor_statuses();
 
 bool Sensor_all_sensors_off();
 
