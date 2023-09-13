@@ -4,25 +4,25 @@
 #define SENSOR_COUNT					7
 #define SENSOR_DEFAULT_BIAS_VOLTAGE		1.1F
 #define SENSOR_MINIMUM_DEBOUNCE_PERIODS 2
-#define SENSOR_DEFAULT_INITIALISATION                         \
-	{                                                         \
-		.counter = 0, .previousValue = FALSE, .status = FALSE \
+#define SENSOR_DEFAULT_INITIALISATION                          \
+	{                                                          \
+		.counter = 0, .previousStatus = FALSE, .status = FALSE \
 	}
 
-#define SENSOR_DEBOUNCE(sensorStruct, sensorReadFunction) \
-	bool reading = sensorReadFunction();                  \
-	if (sensorStruct.previousValue != reading)            \
-	{                                                     \
-		sensorStruct.counter = 0;                         \
-	}                                                     \
-	if (counter >= SENSOR_MINIMUM_DEBOUNCE_PERIODS)       \
-	{                                                     \
-		if (reading != sensorStruct.previousValue)        \
-		{                                                 \
-			sensorStruct.value = reading;                 \
-		}                                                 \
-	}                                                     \
-	sensorStruct.previousValue = reading;
+#define SENSOR_DEBOUNCE(sensorStruct, sensorReadFunction)        \
+	bool reading = sensorReadFunction();                         \
+	if (sensorStruct.previousStatus != reading)                  \
+	{                                                            \
+		sensorStruct.counter = 0;                                \
+	}                                                            \
+	if (sensorStruct.counter >= SENSOR_MINIMUM_DEBOUNCE_PERIODS) \
+	{                                                            \
+		if (reading != sensorStruct.previousStatus)              \
+		{                                                        \
+			sensorStruct.status = reading;                       \
+		}                                                        \
+	}                                                            \
+	sensorStruct.previousStatus = reading;
 
 #include "common.h"
 #include <project.h>
@@ -30,7 +30,7 @@
 typedef struct Sensor
 {
 	bool status;
-	bool previousValue;
+	bool previousStatus;
 	uint8 counter;
 } Sensor;
 

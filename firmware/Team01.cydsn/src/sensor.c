@@ -37,25 +37,25 @@ bool Sensor_all_sensors_off()
 
 void Sensor_store_sensor_statuses()
 {
-	Sensor_turnLeft = Turn_Left_Read();
-	Sensor_turnRight = Turn_Right_Read();
-	Sensor_skewBackRight = Skew_Back_Right_Read();
-	Sensor_skewBackLeft = Skew_Back_Left_Read();
-	Sensor_skewFrontRight = Skew_Front_Right_Read();
-	Sensor_skewFrontLeft = Skew_Front_Left_Read();
-	Sensor_skewCenter = Skew_Center_Read();
+	SENSOR_DEBOUNCE(Sensor_turnLeft, Turn_Left_Read);
+	SENSOR_DEBOUNCE(Sensor_turnRight, Turn_Right_Read);
+	SENSOR_DEBOUNCE(Sensor_skewBackRight, Skew_Back_Right_Read);
+	SENSOR_DEBOUNCE(Sensor_skewBackLeft, Skew_Back_Left_Read);
+	SENSOR_DEBOUNCE(Sensor_skewFrontRight, Skew_Front_Right_Read);
+	SENSOR_DEBOUNCE(Sensor_skewFrontLeft, Skew_Front_Left_Read);
+	SENSOR_DEBOUNCE(Sensor_skewCenter, Skew_Center_Read);
 }
 
 void Sensor_write_statuses_to_debug()
 {
 
-	DB0_Write(Sensor_turnLeft);
-	DB1_Write(Sensor_turnRight);
-	DB2_Write(Sensor_skewBackRight);
-	DB3_Write(Sensor_skewBackLeft);
-	DB4_Write(Sensor_skewFrontRight);
-	DB5_Write(Sensor_skewFrontLeft);
-	DB6_Write(Sensor_skewCenter);
+	DB0_Write(Sensor_turnLeft.status);
+	DB1_Write(Sensor_turnRight.status);
+	DB2_Write(Sensor_skewBackRight.status);
+	DB3_Write(Sensor_skewBackLeft.status);
+	DB4_Write(Sensor_skewFrontRight.status);
+	DB5_Write(Sensor_skewFrontLeft.status);
+	DB6_Write(Sensor_skewCenter.status);
 }
 
 void Sensor_init_sensors()
