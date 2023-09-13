@@ -4,7 +4,7 @@
 #define SENSOR_COUNT					7
 #define SENSOR_DEFAULT_BIAS_VOLTAGE		1.1F
 #define SENSOR_MINIMUM_DEBOUNCE_PERIODS 3
-#define SENSOR_SAMPLING_PERIODS			8
+#define SENSOR_SAMPLING_PERIODS			10
 
 #define SENSOR_DEFAULT_INITIALISATION                                                             \
 	{                                                                                             \
