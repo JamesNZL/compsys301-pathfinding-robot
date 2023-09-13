@@ -50,16 +50,6 @@ void Movement_set_M2_ctrltarget(uint16 target)
 	MOVEMENT_TPULSE_2 = target;
 }
 
-void Movement_set_M1_ctrlcorrect(uint16 target)
-{
-	MOVEMENT_CPULSE_1 = target;
-}
-
-void Movement_set_M2_ctrlcorrect(uint16 target)
-{
-	MOVEMENT_CPULSE_2 = target;
-}
-
 float Movement_calculate_duty(uint16 target)
 {
 	float dutyFraction = (((target + MOVEMENT_OFFSET) / MOVEMENT_SLOPE) / (float)100);
