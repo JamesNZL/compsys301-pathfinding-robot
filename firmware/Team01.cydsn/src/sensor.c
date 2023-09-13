@@ -19,7 +19,7 @@ CY_ISR(light_sensed)
 CY_ISR(check_light)
 {
 	Sensor_sampledPeriods++;
-	Sensor_process_sensor_statuses();
+	Sensor_sample_sensor_readings();
 	if (Sensor_sampledPeriods >= SENSOR_SAMPLING_PERIODS) // sensor1 or sensor2 or sensor3 ...
 	{
 		Sensor_store_sensor_statuses();
@@ -64,7 +64,7 @@ void Sensor_store_sensor_statuses()
 	SENSOR_UPDATE_STATUS(Sensor_skewCenter);
 }
 
-void Sensor_process_sensor_statuses()
+void Sensor_sample_sensor_readings()
 {
 	SENSOR_PROCESS_READING(Sensor_turnLeft, Turn_Left_Read);
 	SENSOR_PROCESS_READING(Sensor_turnRight, Turn_Right_Read);

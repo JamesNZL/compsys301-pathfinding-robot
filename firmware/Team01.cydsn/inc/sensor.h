@@ -72,19 +72,36 @@ void Sensor_store_sensor_statuses();
  */
 void Sensor_set_bias_level(float voltage);
 
+/**
+ * @brief Writes to DB LEDs the status for each sensor
+ */
 void Sensor_write_statuses_to_debug();
 
-void Sensor_process_sensor_statuses();
-
-void Sensor_reset_counts(Sensor sensorStruct);
+/**
+ * @brief read and count occurences of sensor statuses
+ */
+void Sensor_sample_sensor_readings();
 
 // Conditional Statements
+
+/**
+ * @return true if all sensors are off (on black)
+ */
 bool Sensor_all_sensors_off();
 
+/**
+ * @return true if there is only a right turn available currently
+ */
 bool Sensor_on_right_turn_intersection();
 
+/**
+ * @return true if there is only a left turn available currently
+ */
 bool Sensor_on_left_turn_intersection();
 
+/**
+ * @return true if there is a left AND right turn currently available
+ */
 bool Sensor_on_all_turn_intersection();
 
 #endif
