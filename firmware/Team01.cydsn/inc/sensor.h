@@ -3,28 +3,28 @@
 #define SENSOR_HARDWARE_MODE			0
 #define SENSOR_COUNT					7
 #define SENSOR_DEFAULT_BIAS_VOLTAGE		1.1F
-#define SENSOR_MINIMUM_DEBOUNCE_PERIODS 2
+#define SENSOR_MINIMUM_DEBOUNCE_PERIODS 1
 
-#define SENSOR_DEFAULT_INITIALISATION                          \
-	{                                                          \
-		.counter = 0, .previousStatus = FALSE, .status = FALSE \
+#define SENSOR_DEFAULT_INITIALISATION                                           \
+	{                                                                           \
+		.lowCount = 0, .highCount = 0, .previousStatus = FALSE, .status = FALSE \
 	}
 
-#define SENSOR_DEBOUNCE(sensorStruct, sensorReadFunction)        \
+#define SENSOR_PROCESS_READING(sensorStruct, sensorReadFunction) \
 	bool sensorStruct##Reading = sensorReadFunction();           \
-	if (sensorStruct.previousStatus != sensorStruct##Reading)    \
+	if (sensorStruct##Reading)                                   \
 	{                                                            \
-		sensorStruct.counter = 0;                                \
+		sensorStruct.highCount++;                                \
 	}                                                            \
-	if (sensorStruct.counter >= SENSOR_MINIMUM_DEBOUNCE_PERIODS) \
+	else                                                         \
 	{                                                            \
-		if (sensorStruct##Reading != sensorStruct.status)        \
-		{                                                        \
-			sensorStruct.status = sensorStruct##Reading;         \
-		}                                                        \
-	}                                                            \
-	sensorStruct.counter++;                                      \
-	sensorStruct.previousStatus = sensorStruct##Reading;
+		sensorStruct.lowCount++;                                 \
+	}
+
+#define SENSOR_UPDATE_STATUS(sensorStruct)                                               \
+	sensorStruct.status = sensorStruct.highCount > sensorStruct.lowCount ? TRUE : FALSE; \
+	sensorStruct.highCount = 0;                                                          \
+	sensorStruct.lowCount = 0;
 
 #include "common.h"
 #include <project.h>
@@ -33,7 +33,8 @@ typedef struct Sensor
 {
 	bool status;
 	bool previousStatus;
-	uint8 counter;
+	uint8 lowCount;
+	uint8 highCount;
 } Sensor;
 
 volatile extern Sensor Sensor_turnLeft;
@@ -61,7 +62,9 @@ void Sensor_set_bias_level(float voltage);
 
 void Sensor_write_statuses_to_debug();
 
-void Sensor_debounce_and_store_sensor_statuses();
+void Sensor_process_sensor_statuses();
+
+void Sensor_reset_counts(Sensor sensorStruct);
 
 bool Sensor_all_sensors_off();
 

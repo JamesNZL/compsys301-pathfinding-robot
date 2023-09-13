@@ -8,6 +8,8 @@ volatile Sensor Sensor_skewFrontRight = SENSOR_DEFAULT_INITIALISATION;
 volatile Sensor Sensor_skewFrontLeft = SENSOR_DEFAULT_INITIALISATION;
 volatile Sensor Sensor_skewCenter = SENSOR_DEFAULT_INITIALISATION;
 
+volatile uint8 resetCounter = 0;
+
 CY_ISR(light_sensed)
 {
 	isr_lightsense_Disable();
@@ -17,10 +19,13 @@ CY_ISR(light_sensed)
 CY_ISR(check_light)
 {
 
-	Sensor_debounce_and_store_sensor_statuses();
-	if (Sensor_all_sensors_off()) // sensor1 or sensor2 or sensor3 ...
+	resetCounter++;
+	Sensor_process_sensor_statuses();
+	if (resetCounter >= 10 || Sensor_all_sensors_off()) // sensor1 or sensor2 or sensor3 ...
 	{
+		Sensor_store_sensor_statuses();
 		// Safeguard
+		resetCounter = 0;
 		Timer_Light_Check_Stop();
 		isr_lightsense_Enable();
 	}
@@ -35,24 +40,25 @@ bool Sensor_all_sensors_off()
 
 void Sensor_store_sensor_statuses()
 {
-	Sensor_turnLeft.status = Turn_Left_Read();
-	Sensor_turnRight.status = Turn_Right_Read();
-	Sensor_skewBackRight.status = Skew_Back_Right_Read();
-	Sensor_skewBackLeft.status = Skew_Back_Left_Read();
-	Sensor_skewFrontRight.status = Skew_Front_Right_Read();
-	Sensor_skewFrontLeft.status = Skew_Front_Left_Read();
-	Sensor_skewCenter.status = Skew_Center_Read();
+
+	SENSOR_UPDATE_STATUS(Sensor_turnLeft);
+	SENSOR_UPDATE_STATUS(Sensor_turnRight);
+	SENSOR_UPDATE_STATUS(Sensor_skewBackRight);
+	SENSOR_UPDATE_STATUS(Sensor_skewBackLeft);
+	SENSOR_UPDATE_STATUS(Sensor_skewFrontRight);
+	SENSOR_UPDATE_STATUS(Sensor_skewFrontLeft);
+	SENSOR_UPDATE_STATUS(Sensor_skewCenter);
 }
 
-void Sensor_debounce_and_store_sensor_statuses()
+void Sensor_process_sensor_statuses()
 {
-	SENSOR_DEBOUNCE(Sensor_turnLeft, Turn_Left_Read);
-	SENSOR_DEBOUNCE(Sensor_turnRight, Turn_Right_Read);
-	SENSOR_DEBOUNCE(Sensor_skewBackRight, Skew_Back_Right_Read);
-	SENSOR_DEBOUNCE(Sensor_skewBackLeft, Skew_Back_Left_Read);
-	SENSOR_DEBOUNCE(Sensor_skewFrontRight, Skew_Front_Right_Read);
-	SENSOR_DEBOUNCE(Sensor_skewFrontLeft, Skew_Front_Left_Read);
-	SENSOR_DEBOUNCE(Sensor_skewCenter, Skew_Center_Read);
+	SENSOR_PROCESS_READING(Sensor_turnLeft, Turn_Left_Read);
+	SENSOR_PROCESS_READING(Sensor_turnRight, Turn_Right_Read);
+	SENSOR_PROCESS_READING(Sensor_skewBackRight, Skew_Back_Right_Read);
+	SENSOR_PROCESS_READING(Sensor_skewBackLeft, Skew_Back_Left_Read);
+	SENSOR_PROCESS_READING(Sensor_skewFrontRight, Skew_Front_Right_Read);
+	SENSOR_PROCESS_READING(Sensor_skewFrontLeft, Skew_Front_Left_Read);
+	SENSOR_PROCESS_READING(Sensor_skewCenter, Skew_Center_Read);
 }
 void Sensor_write_statuses_to_debug()
 {
