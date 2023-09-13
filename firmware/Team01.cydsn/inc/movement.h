@@ -67,6 +67,14 @@ void Movement_set_M1_ctrltarget(uint16 target);
 void Movement_set_M2_ctrltarget(uint16 target);
 
 /**
+ * @brief Sets the motor pulse target for control loop - doesnt change
+ *
+ * @param target the target amount of pulses to turn in one second
+ */
+void Movement_set_M1_ctrlconst(uint16 target);
+void Movement_set_M2_ctrlconst(uint16 target);
+
+/**
  * @brief Calculates target duty cycle
  *
  * @param target the target pulses to be converted

@@ -44,12 +44,14 @@ int main()
 			// USB_put_string("STOP!");
 			Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
 			Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+			Movement_set_M1_ctrlconst(MOVEMENT_MOTOR_OFF);
+			Movement_set_M2_ctrlconst(MOVEMENT_MOTOR_OFF);
 		}
 		else if (MOVEMENT_PULSES_TO_MOVE < 150)
 		{
 			// USB_put_string("BRAKE");
-			Movement_set_M1_ctrltarget(MOVEMENT_BRAKE_SPEED);
-			Movement_set_M2_ctrltarget(MOVEMENT_BRAKE_SPEED);
+			Movement_set_M1_ctrlconst(MOVEMENT_BRAKE_SPEED);
+			Movement_set_M2_ctrlconst(MOVEMENT_BRAKE_SPEED);
 		}
 
 		if (FLAG_IS_SET(FLAGS, FLAG_ENCODERS_READY))

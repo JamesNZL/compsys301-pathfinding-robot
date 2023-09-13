@@ -28,8 +28,8 @@ void Movement_move_mm(uint16 dist)
 	MOVEMENT_PULSES_TO_MOVE = (float)dist / MOVEMENT_MM_PER_PULSE;
 	Movement_set_M1_ctrltarget(MOVEMENT_RUN_SPEED);
 	Movement_set_M2_ctrltarget(MOVEMENT_RUN_SPEED);
-	MOVEMENT_CPULSE_1 = MOVEMENT_RUN_SPEED;
-	MOVEMENT_CPULSE_2 = MOVEMENT_RUN_SPEED;
+	Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED);
+	Movement_set_M2_ctrlconst(MOVEMENT_RUN_SPEED);
 }
 
 void Movement_set_M1_pulse(uint16 target)
@@ -50,6 +50,16 @@ void Movement_set_M1_ctrltarget(uint16 target)
 void Movement_set_M2_ctrltarget(uint16 target)
 {
 	MOVEMENT_TPULSE_2 = target;
+}
+
+void Movement_set_M1_ctrlconst(uint16 target)
+{
+	MOVEMENT_CPULSE_1 = target;
+}
+
+void Movement_set_M2_ctrlconst(uint16 target)
+{
+	MOVEMENT_CPULSE_2 = target;
 }
 
 float Movement_calculate_duty(uint16 target)
