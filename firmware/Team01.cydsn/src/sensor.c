@@ -8,7 +8,7 @@ volatile Sensor Sensor_skewFrontRight = SENSOR_DEFAULT_INITIALISATION;
 volatile Sensor Sensor_skewFrontLeft = SENSOR_DEFAULT_INITIALISATION;
 volatile Sensor Sensor_skewCenter = SENSOR_DEFAULT_INITIALISATION;
 
-volatile uint8 resetCounter = 0;
+volatile uint8 Sensor_sampledPeriods = 0;
 
 CY_ISR(light_sensed)
 {
@@ -18,14 +18,13 @@ CY_ISR(light_sensed)
 
 CY_ISR(check_light)
 {
-
-	resetCounter++;
+	Sensor_sampledPeriods++;
 	Sensor_process_sensor_statuses();
-	if (resetCounter >= SENSOR_SAMPLING_PERIODS) // sensor1 or sensor2 or sensor3 ...
+	if (Sensor_sampledPeriods >= SENSOR_SAMPLING_PERIODS) // sensor1 or sensor2 or sensor3 ...
 	{
 		Sensor_store_sensor_statuses();
 		// Safeguard
-		resetCounter = 0;
+		Sensor_sampledPeriods = 0;
 		Timer_Light_Check_Stop();
 		isr_lightsense_Enable();
 	}
