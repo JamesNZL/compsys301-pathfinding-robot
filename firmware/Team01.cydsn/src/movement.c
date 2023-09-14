@@ -25,17 +25,20 @@ CY_ISR(PROCESS_PULSE)
 
 void Movement_check_dist()
 {
-	if (MOVEMENT_PULSES_TO_MOVE <= 0)
+	if (FLAGS_IS_CLEARED(FLAG_MOVE_INFINITELY))
 	{
-		Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
-		Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
-		Movement_set_M1_ctrlconst(MOVEMENT_MOTOR_OFF);
-		Movement_set_M2_ctrlconst(MOVEMENT_MOTOR_OFF);
-	}
-	else if (MOVEMENT_PULSES_TO_MOVE < 150)
-	{
-		Movement_set_M1_ctrlconst(MOVEMENT_BRAKE_SPEED);
-		Movement_set_M2_ctrlconst(MOVEMENT_BRAKE_SPEED);
+		if (MOVEMENT_PULSES_TO_MOVE <= 0)
+		{
+			Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
+			Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+			Movement_set_M1_ctrlconst(MOVEMENT_MOTOR_OFF);
+			Movement_set_M2_ctrlconst(MOVEMENT_MOTOR_OFF);
+		}
+		else if (MOVEMENT_PULSES_TO_MOVE < 150)
+		{
+			Movement_set_M1_ctrlconst(MOVEMENT_BRAKE_SPEED);
+			Movement_set_M2_ctrlconst(MOVEMENT_BRAKE_SPEED);
+		}
 	}
 }
 
