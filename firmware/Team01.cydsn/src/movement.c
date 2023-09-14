@@ -29,12 +29,10 @@ void Movement_check_dist()
 	{
 		if (MOVEMENT_PULSES_TO_MOVE <= 0)
 		{
-			// Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
-			// Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
-			// Movement_set_M1_ctrlconst(MOVEMENT_MOTOR_OFF);
-			// Movement_set_M2_ctrlconst(MOVEMENT_MOTOR_OFF);
-			Movement_move_mm(500);
-			Movement_skewer(DIRECTION_RIGHT);
+			Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
+			Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+			Movement_set_M1_ctrlconst(MOVEMENT_MOTOR_OFF);
+			Movement_set_M2_ctrlconst(MOVEMENT_MOTOR_OFF);
 		}
 		else if (MOVEMENT_PULSES_TO_MOVE < 150)
 		{

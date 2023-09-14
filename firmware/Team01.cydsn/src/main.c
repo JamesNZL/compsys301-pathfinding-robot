@@ -22,7 +22,7 @@ int main()
 	Movement_init_decoder_ISR();
 	// Movement_turn_right(90);
 	// CyDelay(500);
-	Movement_move_mm(500);
+	Movement_move_mm(2000);
 	// Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED);
 	// Movement_set_M2_ctrlconst(MOVEMENT_RUN_SPEED);
 
