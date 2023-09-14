@@ -28,6 +28,9 @@ int main()
 	// Movement_move_mm(2000);
 	FLAGS |= (1 << FLAG_MOVE_INFINITELY);
 	CyDelay(500);
+	// Movement_skewer(DIRECTION_LEFT);
+	// CyDelay(500);
+	// Movement_sync_motors(MOVEMENT_RUN_SPEED);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);

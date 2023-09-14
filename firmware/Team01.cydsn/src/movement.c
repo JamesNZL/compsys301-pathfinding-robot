@@ -25,7 +25,7 @@ CY_ISR(PROCESS_PULSE)
 
 void Movement_check_dist()
 {
-	if (FLAGS_IS_CLEARED(FLAG_MOVE_INFINITELY))
+	if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVE_INFINITELY))
 	{
 		if (MOVEMENT_PULSES_TO_MOVE <= 0)
 		{
@@ -81,11 +81,11 @@ void Movement_skewer(Direction direction)
 	}
 }
 
-void Movement_sync_motors()
+void Movement_sync_motors(uint16 speed)
 {
 	FLAGS &= ~(1 << FLAG_SKEW_CORRECTING);
-	Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED);
-	Movement_set_M2_ctrlconst(MOVEMENT_RUN_SPEED);
+	Movement_set_M1_ctrlconst(speed);
+	Movement_set_M2_ctrlconst(speed);
 }
 
 void Movement_move_mm(uint16 dist)

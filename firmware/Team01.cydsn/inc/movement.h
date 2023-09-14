@@ -65,7 +65,7 @@ void Movement_skewer(Direction direction);
 /**
  * @brief Resets both motor speeds - to be called after skew corrected alignment is met
  */
-void Movement_sync_motors();
+void Movement_sync_motors(uint16 speed);
 
 /**
  * @brief Instructs the robot to move a certain number of mm
