@@ -12,6 +12,14 @@
 
 volatile uint8 FLAGS = 0x00;
 
+char *action_strings[5] = {
+	"left", "right", "skip", "around", "straight"
+};
+
+char *direction_strings[4] = {
+	"left", "right", "up", "down"
+};
+
 uint8_t map[15][19] = {
 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 	{ 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
@@ -48,9 +56,31 @@ int main()
 #endif
 
 	Point *start = Point_create(1, 1, PATHFINDING_MAZE_WIDTH);
-	Pathfinding_generate_routes_to_all_food(start, MAZE_DIRECTIONS_DOWN, food_list, map);
+	Queue *routes = Pathfinding_generate_routes_to_all_food(start, MAZE_DIRECTIONS_DOWN, food_list, map);
+	char buffer[256];
 	RF_BT_SELECT_Write(0);
-	USB_put_string("asds");
+	while (!Queue_is_empty(routes))
+	{
+		Node *current_node = Queue_pop(routes);
+		PathfindingRoute *current_route = Node_get_value(current_node);
+		Queue *turns = Pathfinding_route_get_turns(current_route);
+		while (!Queue_is_empty(turns))
+		{
+			Node *current = Queue_pop(turns);
+			Actions *current_action = Node_get_value(current);
+			sprintf(buffer, "%s,", action_strings[*current_action]);
+			USB_put_string(buffer);
+			free(current_action);
+			Node_destroy(current);
+		}
+
+		sprintf(buffer, "\nThe last facing direction is: %s\n", direction_strings[Pathfinding_route_get_last_faced_direction(current_route)]);
+		USB_put_string(buffer);
+		sprintf(buffer, "The final required distance is: %i\n", Pathfinding_route_get_final_distance(current_route));
+		USB_put_string(buffer);
+		Node_destroy(current_node);
+		Pathfinding_route_destroy(current_route);
+	}
 	for (;;)
 	{
 		/* Place your application code here. */
