@@ -36,5 +36,19 @@ void USB_put_string(char *string);
  * @param character The character to put to the terminal.
  */
 void USB_put_char(char character);
+/**
+ * @brief Set a flag bit.
+ *
+ * @param flags The flag byte(s).
+ * @param bit The position of the flag bit.
+ */
+#define FLAGS_SET(flags, bit) flags |= (1 << bit)
 
+/**
+ * @brief Clear a flag bit.
+ *
+ * @param flags The flag byte(s).
+ * @param bit The position of the flag bit.
+ */
+#define FLAGS_CLEAR(flags, bit) flags &= ~(1 << bit)
 #endif

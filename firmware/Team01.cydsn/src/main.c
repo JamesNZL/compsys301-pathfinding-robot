@@ -2,6 +2,7 @@
 #include "common.h"
 #include "handlers.h"
 #include "movement.h"
+#include "pathfinding.h"
 #include "usb.h"
 
 #include <project.h>
@@ -11,6 +12,31 @@
 
 volatile uint8 FLAGS = 0x00;
 
+uint8_t map[15][19] = {
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+	{ 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1 },
+	{ 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1 },
+	{ 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1 },
+	{ 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1 },
+	{ 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1 },
+	{ 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+};
+
+uint8_t food_list[5][2] = {
+	{ 1, 9 },
+	{ 5, 5 },
+	{ 7, 1 },
+	{ 13, 5 },
+	{ 9, 9 },
+};
 int main()
 {
 	CYGlobalIntEnable;
@@ -21,8 +47,10 @@ int main()
 	USBUART_Start(0, USBUART_5V_OPERATION);
 #endif
 
+	Point *start = Point_create(1, 1, PATHFINDING_MAZE_WIDTH);
+	Pathfinding_generate_routes_to_all_food(start, MAZE_DIRECTIONS_DOWN, food_list, map);
 	RF_BT_SELECT_Write(0);
-
+	USB_put_string("asds");
 	for (;;)
 	{
 		/* Place your application code here. */
