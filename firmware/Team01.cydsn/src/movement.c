@@ -66,10 +66,19 @@ void Movement_skewer(Direction direction)
 {
 	switch (direction)
 	{
-	case DIRECTION_RIGHT:
-
 	case DIRECTION_LEFT:
+		Movement_set_M1_ctrltarget(MOVEMENT_RUN_SPEED + 5);
+		break;
+	case DIRECTION_RIGHT:
+		Movement_set_M2_ctrltarget(MOVEMENT_RUN_SPEED + 5);
+		break;
 	}
+}
+
+void Movement_sync_motors()
+{
+	Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED);
+	Movement_set_M2_ctrlconst(MOVEMENT_RUN_SPEED);
 }
 
 void Movement_move_mm(uint16 dist)
