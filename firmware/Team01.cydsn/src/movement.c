@@ -73,6 +73,8 @@ void Movement_skewer(Direction direction)
 	case DIRECTION_RIGHT:
 		Movement_set_M2_ctrltarget(MOVEMENT_RUN_SPEED + 5);
 		break;
+	default:
+		break;
 	}
 }
 
@@ -177,7 +179,6 @@ void Movement_turn_right(uint16 angle)
 
 uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 {
-	uint16 pulseTarget;
 	switch (angle)
 	{
 	case 90:
@@ -238,6 +239,8 @@ void Movement_set_direction_left(Direction direction)
 		currentValue &= ~(1 << MOTOR_LEFT_CR_POS);
 		break;
 	}
+	default:
+		break;
 	}
 	Dir_Control_Reg_Write(currentValue);
 }
@@ -257,6 +260,8 @@ void Movement_set_direction_right(Direction direction)
 		currentValue &= ~(1 << MOTOR_RIGHT_CR_POS);
 		break;
 	}
+	default:
+		break;
 	}
 	Dir_Control_Reg_Write(currentValue);
 }
