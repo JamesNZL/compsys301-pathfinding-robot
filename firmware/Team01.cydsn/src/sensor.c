@@ -14,6 +14,7 @@ CY_ISR(light_sensed)
 {
 	isr_lightsense_Disable();
 	Timer_Light_Check_Start();
+	FLAG_CLEAR(FLAGS, FLAG_SENSOR_WAITING_RISING);
 }
 
 CY_ISR(check_light)
