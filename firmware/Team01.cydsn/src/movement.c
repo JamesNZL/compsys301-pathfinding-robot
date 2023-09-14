@@ -64,6 +64,7 @@ void Movement_next_control_cycle()
 
 void Movement_skewer(Direction direction)
 {
+	FLAGS |= (1 << FLAG_SKEW_CORRECTING);
 	switch (direction)
 	{
 	case DIRECTION_LEFT:
@@ -77,6 +78,7 @@ void Movement_skewer(Direction direction)
 
 void Movement_sync_motors()
 {
+	FLAGS &= ~(1 << FLAG_SKEW_CORRECTING);
 	Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED);
 	Movement_set_M2_ctrlconst(MOVEMENT_RUN_SPEED);
 }
