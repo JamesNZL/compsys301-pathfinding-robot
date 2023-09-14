@@ -71,10 +71,10 @@ void Movement_skewer(Direction direction)
 	switch (direction)
 	{
 	case DIRECTION_LEFT:
-		Movement_set_M1_ctrltarget(MOVEMENT_RUN_SPEED + 5);
+		Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED + 5);
 		break;
 	case DIRECTION_RIGHT:
-		Movement_set_M2_ctrltarget(MOVEMENT_RUN_SPEED + 5);
+		Movement_set_M2_ctrlconst(MOVEMENT_RUN_SPEED + 5);
 		break;
 	default:
 		break;
