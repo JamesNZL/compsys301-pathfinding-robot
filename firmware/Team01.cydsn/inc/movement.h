@@ -23,6 +23,8 @@ typedef enum Direction
 {
 	DIRECTION_FORWARD,
 	DIRECTION_REVERSE,
+	DIRECTION_RIGHT,
+	DIRECTION_LEFT,
 } Direction;
 
 volatile const extern float MOVEMENT_OFFSET;
