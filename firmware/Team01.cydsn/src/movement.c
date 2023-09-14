@@ -95,6 +95,7 @@ void Movement_move_mm(uint16 dist)
 	Movement_set_M2_ctrltarget(MOVEMENT_RUN_SPEED);
 	Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED);
 	Movement_set_M2_ctrlconst(MOVEMENT_RUN_SPEED);
+	FLAGS &= ~(1 << FLAG_MOVE_INFINITELY);
 }
 
 void Movement_set_M1_pulse(uint16 target)

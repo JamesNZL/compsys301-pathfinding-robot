@@ -23,9 +23,11 @@ int main()
 	// Movement_turn_right(90);
 	// CyDelay(500);
 	// Movement_move_mm(500);
-	// Movement_set_M1_ctrltarget(300);
-	// Movement_set_M2_ctrltarget(300);
-	Movement_move_mm(2000);
+	Movement_set_M1_ctrltarget(MOVEMENT_RUN_SPEED);
+	Movement_set_M2_ctrltarget(MOVEMENT_RUN_SPEED);
+	// Movement_move_mm(2000);
+	FLAGS |= (1 << FLAG_MOVE_INFINITELY);
+	CyDelay(500);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
