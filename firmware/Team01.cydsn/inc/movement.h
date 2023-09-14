@@ -56,6 +56,18 @@ void Movement_check_dist();
 void Movement_next_control_cycle();
 
 /**
+ * @brief Corrects the skew of the robot
+ *
+ * @param direction the direction the robot is skewing in
+ */
+void Movement_skewer(Direction direction);
+
+/**
+ * @brief Resets both motor speeds - to be called after skew corrected alignment is met
+ */
+void Movement_sync_motors();
+
+/**
  * @brief Instructs the robot to move a certain number of mm
  *
  * @param dist the distance to move in mm
