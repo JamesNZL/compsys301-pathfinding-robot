@@ -1,10 +1,12 @@
 #ifndef SENSOR_H
 #define SENSOR_H
-#define SENSOR_HARDWARE_MODE			0
-#define SENSOR_COUNT					7
-#define SENSOR_DEFAULT_BIAS_VOLTAGE		1.1F
-#define SENSOR_MINIMUM_DEBOUNCE_PERIODS 4
-#define SENSOR_SAMPLING_PERIODS			10
+#define SENSOR_HARDWARE_MODE				 0
+#define SENSOR_COUNT						 7
+#define SENSOR_DEFAULT_BIAS_VOLTAGE			 1.1F
+#define SENSOR_MINIMUM_DEBOUNCE_PERIODS		 4
+#define SENSOR_SAMPLING_PERIODS				 10
+#define SENSOR_SAMPLING_PERIOD_COMPARE		 999 // X us
+#define SENSOR_RISING_EDGE_MAX_DELAY_COMPARE 999 // X ms
 
 #define SENSOR_DEFAULT_INITIALISATION                                                             \
 	{                                                                                             \

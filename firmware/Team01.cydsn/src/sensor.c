@@ -15,10 +15,17 @@ CY_ISR(light_sensed)
 	isr_lightsense_Disable();
 	Timer_Light_Check_Start();
 	FLAG_CLEAR(FLAGS, FLAG_SENSOR_WAITING_RISING);
+	Timer_Light_Check_WritePeriod(SENSOR_SAMPLING_PERIOD_COMPARE);
 }
 
 CY_ISR(check_light)
 {
+
+	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_WAITING_RISING))
+	{
+		// TODO set all sensors to 0
+		return;
+	}
 	Sensor_sampledPeriods++;
 	Sensor_sample_sensor_readings();
 	if (Sensor_sampledPeriods >= SENSOR_SAMPLING_PERIODS) // sensor1 or sensor2 or sensor3 ...
@@ -28,6 +35,8 @@ CY_ISR(check_light)
 		Sensor_sampledPeriods = 0;
 		Timer_Light_Check_Stop();
 		isr_lightsense_Enable();
+		FLAG_SET(FLAGS, FLAG_SENSOR_WAITING_RISING);
+		Timer_Light_Check_WritePeriod(SENSOR_RISING_EDGE_MAX_DELAY_COMPARE);
 	}
 }
 
