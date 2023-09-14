@@ -62,6 +62,16 @@ void Movement_next_control_cycle()
 	}
 }
 
+void Movement_skewer(Direction direction)
+{
+	switch (direction)
+	{
+	case DIRECTION_RIGHT:
+
+	case DIRECTION_LEFT:
+	}
+}
+
 void Movement_move_mm(uint16 dist)
 {
 	MOVEMENT_PULSES_TO_MOVE = (float)dist / MOVEMENT_MM_PER_PULSE;
@@ -160,19 +170,16 @@ uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 	switch (angle)
 	{
 	case 90:
-		pulseTarget = MOVEMENT_PULSE_90_DEGREE - MOVEMENT_PULSE_CORRECTION;
-		break;
+		return MOVEMENT_PULSE_90_DEGREE - MOVEMENT_PULSE_CORRECTION;
 	case 180:
-		pulseTarget = MOVEMENT_PULSE_180_DEGREE - MOVEMENT_PULSE_CORRECTION;
-		break;
+		return MOVEMENT_PULSE_180_DEGREE - MOVEMENT_PULSE_CORRECTION;
 	default:
 		// Convert angle to fraction of circle by dividing 360
 		// Multiply fraction by total pivot circumference
 		// Divide by circumference of wheel to determine revs needed
 		// Convert revs to pulses through multiply 228
-		pulseTarget = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_PULSE_CORRECTION;
+		return ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_PULSE_CORRECTION;
 	}
-	return pulseTarget;
 }
 
 void Movement_init_decoder_ISR()
