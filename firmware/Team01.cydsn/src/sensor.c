@@ -13,6 +13,7 @@ volatile uint8 Sensor_sampledPeriods = 0;
 CY_ISR(light_sensed)
 {
 	FLAG_CLEAR(FLAGS, FLAG_SENSOR_WAITING_RISING);
+	FLAG_CLEAR(FLAGS, FLAG_SENSOR_ALL_LOW);
 	isr_lightsense_Disable();
 	Timer_Light_Check_Stop();
 	Timer_Light_Check_WritePeriod(SENSOR_SAMPLING_PERIOD_COMPARE);
@@ -24,8 +25,9 @@ CY_ISR(light_sensed)
 CY_ISR(check_light)
 {
 
-	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_WAITING_RISING))
+	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_WAITING_RISING) && FLAG_IS_CLEARED(FLAGS, FLAG_SENSOR_ALL_LOW))
 	{
+		FLAG_SET(FLAGS, FLAG_SENSOR_ALL_LOW);
 		Sensor_write_low_all_sensors();
 		DB7_Write(1);
 		return;

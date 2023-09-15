@@ -57,6 +57,7 @@ volatile extern uint8 FLAGS;
 #define FLAG_USB_INPUT			   0
 
 #define FLAG_SENSOR_WAITING_RISING 2
+#define FLAG_SENSOR_ALL_LOW		   3
 
 /*
  * Debugging
