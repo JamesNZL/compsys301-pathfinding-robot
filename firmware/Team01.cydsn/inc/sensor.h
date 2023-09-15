@@ -108,6 +108,9 @@ void Sensor_prepare_for_next_rising_edge();
  */
 void Sensor_handle_missing_rising_edge();
 
+/**
+ * @brief reset and configure for enabline the light check isr for sampling
+ */
 void Sensor_prepare_for_sampling();
 
 /**
