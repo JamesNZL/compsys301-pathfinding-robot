@@ -23,6 +23,17 @@ int main()
 	// Movement_turn_right(90);
 	// CyDelay(500);
 	Movement_move_mm(2000);
+	//----------------BENCHMARK 1-----------------
+
+	//--------------------------------------------
+	//----------------BENCHMARK 2-----------------
+	// // Move the robot 2m at 75% run speed
+	// // Run speed = x = (x*0.8926/100) cm/s
+	// Movement_move_mm(2000);
+	Movement_set_M1_ctrlconst(300);
+	Movement_set_M2_ctrlconst(300);
+	// // Expected 7.52s
+	//--------------------------------------------
 	// Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED);
 	// Movement_set_M2_ctrlconst(MOVEMENT_RUN_SPEED);
 
