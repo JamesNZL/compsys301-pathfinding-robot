@@ -32,6 +32,7 @@ int main()
 	// Movement_move_mm(2000);
 	Movement_set_M1_ctrlconst(300);
 	Movement_set_M2_ctrlconst(300);
+
 	// // Expected 7.52s
 	//--------------------------------------------
 	// Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED);

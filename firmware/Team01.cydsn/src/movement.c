@@ -145,7 +145,7 @@ void Movement_turn_left(uint16 angle)
 {
 	CYGlobalIntDisable;
 	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
-	// uint16 pulseMeas = QuadDec_M1_GetCounter();
+	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
 	Movement_set_direction_left(DIRECTION_REVERSE);
 	Movement_set_M1_pulse(MOVEMENT_MOTOR_TURN_SPEED);
@@ -158,6 +158,7 @@ void Movement_turn_left(uint16 angle)
 	Movement_set_direction_left(DIRECTION_FORWARD);
 	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
 	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+	QuadDec_M1_SetCounter(pulseMeas);
 	CYGlobalIntEnable;
 }
 
@@ -165,7 +166,7 @@ void Movement_turn_right(uint16 angle)
 {
 	CYGlobalIntDisable;
 	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
-	// uint16 pulseMeas = QuadDec_M1_GetCounter();
+	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
 	Movement_set_direction_right(DIRECTION_REVERSE);
 	Movement_set_M1_pulse(MOVEMENT_MOTOR_TURN_SPEED);
@@ -178,6 +179,7 @@ void Movement_turn_right(uint16 angle)
 	Movement_set_direction_right(DIRECTION_FORWARD);
 	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
 	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+	QuadDec_M1_SetCounter(pulseMeas);
 	CYGlobalIntEnable;
 }
 
