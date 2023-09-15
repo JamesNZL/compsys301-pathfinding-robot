@@ -13,6 +13,7 @@ volatile uint8 Sensor_sampledPeriods = 0;
 CY_ISR(light_sensed)
 {
 	isr_lightsense_Disable();
+	Timer_Light_Check_Stop();
 	Timer_Light_Check_Start();
 	FLAG_CLEAR(FLAGS, FLAG_SENSOR_WAITING_RISING);
 	Timer_Light_Check_WritePeriod(SENSOR_SAMPLING_PERIOD_COMPARE);
@@ -34,6 +35,7 @@ CY_ISR(check_light)
 		// Safeguard
 		Sensor_sampledPeriods = 0;
 		Timer_Light_Check_Stop();
+		Timer_Light_Check_Start();
 		isr_lightsense_Enable();
 		FLAG_SET(FLAGS, FLAG_SENSOR_WAITING_RISING);
 		Timer_Light_Check_WritePeriod(SENSOR_RISING_EDGE_MAX_DELAY_COMPARE);
@@ -64,7 +66,6 @@ bool Sensor_on_all_turn_intersection()
 
 void Sensor_store_sensor_statuses()
 {
-
 	SENSOR_UPDATE_STATUS(Sensor_turnLeft);
 	SENSOR_UPDATE_STATUS(Sensor_turnRight);
 	SENSOR_UPDATE_STATUS(Sensor_skewBackRight);
@@ -113,4 +114,15 @@ void Sensor_set_bias_level(float voltage)
 	DAC_Lower_SetValue(dacValue);
 	DAC_Middle_SetValue(dacValue);
 	DAC_Upper_SetValue(dacValue);
+}
+
+void Senosor_write_low_all_sensors()
+{
+	SENSOR_WRITE_LOW(Sensor_turnLeft);
+	SENSOR_WRITE_LOW(Sensor_turnRight);
+	SENSOR_WRITE_LOW(Sensor_skewBackLeft);
+	SENSOR_WRITE_LOW(Sensor_skewBackRight);
+	SENSOR_WRITE_LOW(Sensor_skewFrontLeft);
+	SENSOR_WRITE_LOW(Sensor_skewFrontRight);
+	SENSOR_WRITE_LOW(Sensor_skewCenter);
 }

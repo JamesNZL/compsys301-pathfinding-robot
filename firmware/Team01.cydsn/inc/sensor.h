@@ -5,8 +5,8 @@
 #define SENSOR_DEFAULT_BIAS_VOLTAGE			 1.1F
 #define SENSOR_MINIMUM_DEBOUNCE_PERIODS		 4
 #define SENSOR_SAMPLING_PERIODS				 10
-#define SENSOR_SAMPLING_PERIOD_COMPARE		 999 // X us
-#define SENSOR_RISING_EDGE_MAX_DELAY_COMPARE 999 // X ms
+#define SENSOR_SAMPLING_PERIOD_COMPARE		 10 // 100 us
+#define SENSOR_RISING_EDGE_MAX_DELAY_COMPARE 2000 // 20 ms
 
 #define SENSOR_DEFAULT_INITIALISATION                                                             \
 	{                                                                                             \
@@ -38,6 +38,12 @@
 	sensorStruct.highCount = 0;                                                                      \
 	sensorStruct.lowCount = 0;                                                                       \
 	sensorStruct.previousStatus = sensorStruct##newStatus;
+
+#define SENSOR_WRITE_LOW(sensorStruct) \
+	sensorStruct.status = FALSE
+
+#define SENSOR_WRITE_HIGH(sensorStruct) \
+	sensorStruct.status = TRUE
 
 #include "common.h"
 #include <project.h>
@@ -105,5 +111,7 @@ bool Sensor_on_left_turn_intersection();
  * @return true if there is a left AND right turn currently available
  */
 bool Sensor_on_all_turn_intersection();
+
+void Senosor_write_low_all_sensors();
 
 #endif
