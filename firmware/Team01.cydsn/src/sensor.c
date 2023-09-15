@@ -64,6 +64,17 @@ bool Sensor_on_all_turn_intersection()
 {
 	return Sensor_turnLeft.status && Sensor_turnRight.status;
 }
+
+bool Sensor_is_right_skewed()
+{
+	return TRUE;
+}
+
+bool Sensor_is_left_skewed()
+{
+	return TRUE;
+}
+
 void Sensor_set_light_check_timer_period(uint16 period)
 {
 	Timer_Light_Check_Stop();
