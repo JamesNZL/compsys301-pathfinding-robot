@@ -145,7 +145,7 @@ CY_ISR(light_sensed)
 	FLAG_CLEAR(FLAGS, FLAG_SENSOR_WAITING_RISING);
 	FLAG_CLEAR(FLAGS, FLAG_SENSOR_ALL_LOW);
 	isr_lightsense_Disable();
-	Sensor_set_light_check_timer_period(SENSOR_SAMPLING_PERIOD_COMPARE);
+	Sensor_set_light_check_timer_period(SENSOR_SAMPLING_TIMER_PERIOD);
 	DB7_Write(0);
 }
 
@@ -170,7 +170,7 @@ CY_ISR(check_light)
 		// Safeguard
 		Sensor_sampledPeriods = 0;
 		FLAG_SET(FLAGS, FLAG_SENSOR_WAITING_RISING);
-		Sensor_set_light_check_timer_period(SENSOR_RISING_EDGE_MAX_DELAY_COMPARE);
+		Sensor_set_light_check_timer_period(SENSOR_RISING_EDGE_MAX_DELAY_TIMER_PERIOD);
 		isr_lightsense_Enable();
 	}
 }
