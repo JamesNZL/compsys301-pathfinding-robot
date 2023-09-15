@@ -24,7 +24,7 @@ CY_ISR(check_light)
 
 	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_WAITING_RISING))
 	{
-		// TODO set all sensors to 0
+		Sensor_writelow_all_sensors();
 		return;
 	}
 	Sensor_sampledPeriods++;
@@ -116,7 +116,7 @@ void Sensor_set_bias_level(float voltage)
 	DAC_Upper_SetValue(dacValue);
 }
 
-void Senosor_write_low_all_sensors()
+void Sensor_writelow_all_sensors()
 {
 	SENSOR_WRITE_LOW(Sensor_turnLeft);
 	SENSOR_WRITE_LOW(Sensor_turnRight);

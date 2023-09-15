@@ -112,6 +112,6 @@ bool Sensor_on_left_turn_intersection();
  */
 bool Sensor_on_all_turn_intersection();
 
-void Senosor_write_low_all_sensors();
+void Sensor_write_low_all_sensors();
 
 #endif
