@@ -13,10 +13,9 @@ volatile uint8 Sensor_sampledPeriods = 0;
 CY_ISR(light_sensed)
 {
 	isr_lightsense_Disable();
-	Timer_Light_Check_Stop();
-	Timer_Light_Check_Start();
 	FLAG_CLEAR(FLAGS, FLAG_SENSOR_WAITING_RISING);
 	Timer_Light_Check_WritePeriod(SENSOR_SAMPLING_PERIOD_COMPARE);
+	Timer_Light_Check_WriteCounter(0);
 }
 
 CY_ISR(check_light)
@@ -24,7 +23,7 @@ CY_ISR(check_light)
 
 	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_WAITING_RISING))
 	{
-		Sensor_writelow_all_sensors();
+		Sensor_write_low_all_sensors();
 		return;
 	}
 	Sensor_sampledPeriods++;
@@ -34,11 +33,10 @@ CY_ISR(check_light)
 		Sensor_store_sensor_statuses();
 		// Safeguard
 		Sensor_sampledPeriods = 0;
-		Timer_Light_Check_Stop();
-		Timer_Light_Check_Start();
-		isr_lightsense_Enable();
 		FLAG_SET(FLAGS, FLAG_SENSOR_WAITING_RISING);
 		Timer_Light_Check_WritePeriod(SENSOR_RISING_EDGE_MAX_DELAY_COMPARE);
+		Timer_Light_Check_WriteCounter(0);
+		isr_lightsense_Enable();
 	}
 }
 
@@ -116,7 +114,7 @@ void Sensor_set_bias_level(float voltage)
 	DAC_Upper_SetValue(dacValue);
 }
 
-void Sensor_writelow_all_sensors()
+void Sensor_write_low_all_sensors()
 {
 	SENSOR_WRITE_LOW(Sensor_turnLeft);
 	SENSOR_WRITE_LOW(Sensor_turnRight);
