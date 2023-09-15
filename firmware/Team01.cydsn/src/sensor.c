@@ -77,6 +77,18 @@ bool Sensor_is_left_skewed()
 	return TRUE;
 }
 
+LUTActions Sensor_determine_actions()
+{
+	uint8 bitfield = (Sensor_skewCenter.status << 6)
+		| (Sensor_skewFrontLeft.status << 5)
+		| (Sensor_skewFrontRight.status << 4)
+		| (Sensor_skewBackLeft.status << 3)
+		| (Sensor_skewBackRight.status << 2)
+		| (Sensor_turnLeft.status << 1)
+		| (Sensor_turnRight.status << 0);
+	return SENSOR_ACTION_LUT[bitfield];
+}
+
 void Sensor_set_light_check_timer_period(uint16 period)
 {
 	Timer_Light_Check_Stop();
