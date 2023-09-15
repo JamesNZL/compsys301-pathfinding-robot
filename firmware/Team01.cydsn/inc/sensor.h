@@ -13,18 +13,20 @@
 		.lowCount = 0, .highCount = 0, .periodCount = 0, .previousStatus = FALSE, .status = FALSE \
 	}
 
-#define SENSOR_PROCESS_READING(sensorStruct, sensorReadFunction) \
-	bool sensorStruct##Reading = sensorReadFunction();           \
-	if (sensorStruct##Reading)                                   \
-	{                                                            \
-		sensorStruct.highCount++;                                \
-	}                                                            \
-	else                                                         \
-	{                                                            \
-		sensorStruct.lowCount++;                                 \
+// Samples the sensor information and stores it for later processing
+#define SENSOR_SAMPLE_READING(sensorStruct, sensorReadFunction) \
+	bool sensorStruct##Reading = sensorReadFunction();          \
+	if (sensorStruct##Reading)                                  \
+	{                                                           \
+		sensorStruct.highCount++;                               \
+	}                                                           \
+	else                                                        \
+	{                                                           \
+		sensorStruct.lowCount++;                                \
 	}
 
-#define SENSOR_UPDATE_STATUS(sensorStruct)                                                           \
+// Debounces (ensures the signal has held its value for at least X periods) and stores the required status
+#define SENSOR_DEBOUNCE_AND_UPDATE_STATUS(sensorStruct)                                              \
 	sensorStruct.periodCount++;                                                                      \
 	bool sensorStruct##newStatus = (sensorStruct.highCount >= sensorStruct.lowCount) ? TRUE : FALSE; \
 	if (sensorStruct.previousStatus != sensorStruct##newStatus)                                      \
@@ -112,8 +114,15 @@ bool Sensor_on_left_turn_intersection();
  */
 bool Sensor_on_all_turn_intersection();
 
+/**
+ * @brief sets the status of all sensor structs to FALSE (low)
+ */
 void Sensor_write_low_all_sensors();
 
+/**
+ * @brief Undertakes the required steps to reset and set the timer period
+ * @param period a valid period for a 16-bit UDB timer
+ */
 void Sensor_set_light_check_timer_period(uint16 period);
 
 #endif
