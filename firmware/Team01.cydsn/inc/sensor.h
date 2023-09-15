@@ -6,7 +6,7 @@
 #define SENSOR_MINIMUM_DEBOUNCE_PERIODS		 4
 #define SENSOR_SAMPLING_PERIODS				 10
 #define SENSOR_SAMPLING_PERIOD_COMPARE		 10 // 100 us
-#define SENSOR_RISING_EDGE_MAX_DELAY_COMPARE 3200 // 20 ms
+#define SENSOR_RISING_EDGE_MAX_DELAY_COMPARE 1600 // 20 ms
 
 #define SENSOR_DEFAULT_INITIALISATION                                                             \
 	{                                                                                             \

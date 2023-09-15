@@ -12,11 +12,13 @@ volatile uint8 Sensor_sampledPeriods = 0;
 
 CY_ISR(light_sensed)
 {
-	isr_lightsense_Disable();
 	FLAG_CLEAR(FLAGS, FLAG_SENSOR_WAITING_RISING);
+	isr_lightsense_Disable();
+	Timer_Light_Check_Stop();
 	Timer_Light_Check_WritePeriod(SENSOR_SAMPLING_PERIOD_COMPARE);
-	Timer_Light_Check_WriteCounter(0);
+	Timer_Light_Check_WriteCounter(SENSOR_SAMPLING_PERIOD_COMPARE);
 	Timer_Light_Check_Start();
+	DB7_Write(0);
 }
 
 CY_ISR(check_light)
@@ -24,11 +26,10 @@ CY_ISR(check_light)
 
 	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_WAITING_RISING))
 	{
-		//	Sensor_write_low_all_sensors();
+		Sensor_write_low_all_sensors();
 		DB7_Write(1);
 		return;
 	}
-	DB7_Write(0);
 	Sensor_sampledPeriods++;
 	Sensor_sample_sensor_readings();
 	if (Sensor_sampledPeriods >= SENSOR_SAMPLING_PERIODS) // sensor1 or sensor2 or sensor3 ...
@@ -37,8 +38,10 @@ CY_ISR(check_light)
 		// Safeguard
 		Sensor_sampledPeriods = 0;
 		FLAG_SET(FLAGS, FLAG_SENSOR_WAITING_RISING);
+		Timer_Light_Check_Stop();
 		Timer_Light_Check_WritePeriod(SENSOR_RISING_EDGE_MAX_DELAY_COMPARE);
-		Timer_Light_Check_WriteCounter(0);
+		Timer_Light_Check_WriteCounter(SENSOR_RISING_EDGE_MAX_DELAY_COMPARE);
+		Timer_Light_Check_Start();
 		isr_lightsense_Enable();
 	}
 }
