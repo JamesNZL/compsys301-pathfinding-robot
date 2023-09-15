@@ -151,27 +151,22 @@ CY_ISR(light_sensed)
 
 CY_ISR(check_light)
 {
+	// If we have exceeded the maximum time without a rising edge
 	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_WAITING_RISING))
 	{
-		if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_ALL_LOW))
-		{
-			return;
-		}
-		FLAG_SET(FLAGS, FLAG_SENSOR_ALL_LOW);
-		Sensor_write_low_all_sensors();
-		DB7_Write(1);
+		Sensor_handle_missing_rising_edge();
 		return;
 	}
-	Sensor_sampledPeriods++;
+
+	// SAMPLING
 	Sensor_sample_sensor_readings();
-	if (Sensor_sampledPeriods >= SENSOR_SAMPLING_PERIODS) // sensor1 or sensor2 or sensor3 ...
+	Sensor_sampledPeriods++;
+
+	// We have taken all samples needed for this rising edge
+	if (Sensor_sampledPeriods >= SENSOR_SAMPLING_PERIODS)
 	{
-		Sensor_debounce_and_update_sensor_statuses();
-		// Safeguard
-		Sensor_sampledPeriods = 0;
-		FLAG_SET(FLAGS, FLAG_SENSOR_WAITING_RISING);
-		Sensor_set_light_check_timer_period(SENSOR_RISING_EDGE_MAX_DELAY_TIMER_PERIOD);
-		isr_lightsense_Enable();
+		Sensor_prepare_for_next_rising_edge();
+		return;
 	}
 }
 
@@ -278,4 +273,24 @@ void Sensor_write_low_all_sensors()
 	SENSOR_WRITE_LOW(Sensor_skewFrontLeft);
 	SENSOR_WRITE_LOW(Sensor_skewFrontRight);
 	SENSOR_WRITE_LOW(Sensor_skewCenter);
+}
+
+void Sensor_prepare_for_next_rising_edge()
+{
+	Sensor_debounce_and_update_sensor_statuses();
+	Sensor_sampledPeriods = 0;
+	FLAG_SET(FLAGS, FLAG_SENSOR_WAITING_RISING);
+	Sensor_set_light_check_timer_period(SENSOR_RISING_EDGE_MAX_DELAY_TIMER_PERIOD);
+	isr_lightsense_Enable();
+}
+
+void Sensor_handle_missing_rising_edge()
+{
+	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_ALL_LOW))
+	{
+		return;
+	}
+	FLAG_SET(FLAGS, FLAG_SENSOR_ALL_LOW);
+	Sensor_write_low_all_sensors();
+	DB7_Write(1);
 }

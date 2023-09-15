@@ -99,6 +99,16 @@ void Sensor_set_bias_level(float voltage);
 void Sensor_write_statuses_to_debug();
 
 /**
+ * @brief reset and configure for enabling the light sense isr
+ */
+void Sensor_prepare_for_next_rising_edge();
+
+/**
+ * @brief procedure for when there is no rising edge withing a specific timeframe
+ */
+void Sensor_handle_missing_rising_edge();
+
+/**
  * @brief read and count occurences of sensor statuses
  */
 void Sensor_sample_sensor_readings();
