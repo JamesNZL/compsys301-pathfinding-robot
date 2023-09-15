@@ -257,16 +257,6 @@ bool Sensor_on_left_turn_intersection();
 bool Sensor_on_all_turn_intersection();
 
 /**
- * @return true if the robot is drifting (skewed) towards the right
- */
-bool Sensor_is_right_skewed();
-
-/**
- * @return true if the robot is drifting (skewed) towards the left
- */
-bool Sensor_is_left_skewed();
-
-/**
  * @return required action based on current LUT state
  */
 LUTActions Sensor_determine_action();
