@@ -21,15 +21,17 @@ CY_ISR(light_sensed)
 
 CY_ISR(check_light)
 {
-
-	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_WAITING_RISING) && FLAG_IS_CLEARED(FLAGS, FLAG_SENSOR_ALL_LOW))
+	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_WAITING_RISING))
 	{
+		if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_ALL_LOW))
+		{
+			return;
+		}
 		FLAG_SET(FLAGS, FLAG_SENSOR_ALL_LOW);
 		Sensor_write_low_all_sensors();
 		DB7_Write(1);
 		return;
 	}
-
 	Sensor_sampledPeriods++;
 	Sensor_sample_sensor_readings();
 	if (Sensor_sampledPeriods >= SENSOR_SAMPLING_PERIODS) // sensor1 or sensor2 or sensor3 ...
