@@ -110,7 +110,7 @@ void Sensor_init_sensors()
 	DAC_Lower_Start();
 	DAC_Upper_Start();
 	DAC_Middle_Start();
-	Sensor_set_bias_level(SENSOR_DEFAULT_BIAS_VOLTAGE);
+	Sensor_set_bias_level(SENSOR_DEFAULT_BIAS_VOLTAGE_VOLTS);
 	isr_lightsense_StartEx(light_sensed);
 	isr_lightcheck_StartEx(check_light);
 }
