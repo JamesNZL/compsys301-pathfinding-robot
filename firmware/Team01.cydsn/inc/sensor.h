@@ -108,6 +108,8 @@ void Sensor_prepare_for_next_rising_edge();
  */
 void Sensor_handle_missing_rising_edge();
 
+void Sensor_prepare_for_sampling();
+
 /**
  * @brief read and count occurences of sensor statuses
  */
