@@ -16,6 +16,7 @@ CY_ISR(light_sensed)
 	FLAG_CLEAR(FLAGS, FLAG_SENSOR_WAITING_RISING);
 	Timer_Light_Check_WritePeriod(SENSOR_SAMPLING_PERIOD_COMPARE);
 	Timer_Light_Check_WriteCounter(0);
+	Timer_Light_Check_Start();
 }
 
 CY_ISR(check_light)
@@ -23,9 +24,11 @@ CY_ISR(check_light)
 
 	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_WAITING_RISING))
 	{
-		Sensor_write_low_all_sensors();
+		//	Sensor_write_low_all_sensors();
+		DB7_Write(1);
 		return;
 	}
+	DB7_Write(0);
 	Sensor_sampledPeriods++;
 	Sensor_sample_sensor_readings();
 	if (Sensor_sampledPeriods >= SENSOR_SAMPLING_PERIODS) // sensor1 or sensor2 or sensor3 ...
