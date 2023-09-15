@@ -114,4 +114,6 @@ bool Sensor_on_all_turn_intersection();
 
 void Sensor_write_low_all_sensors();
 
+void Sensor_set_light_check_timer_period(uint16 period);
+
 #endif

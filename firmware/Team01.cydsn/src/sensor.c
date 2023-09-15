@@ -15,10 +15,7 @@ CY_ISR(light_sensed)
 	FLAG_CLEAR(FLAGS, FLAG_SENSOR_WAITING_RISING);
 	FLAG_CLEAR(FLAGS, FLAG_SENSOR_ALL_LOW);
 	isr_lightsense_Disable();
-	Timer_Light_Check_Stop();
-	Timer_Light_Check_WritePeriod(SENSOR_SAMPLING_PERIOD_COMPARE);
-	Timer_Light_Check_WriteCounter(SENSOR_SAMPLING_PERIOD_COMPARE);
-	Timer_Light_Check_Start();
+	Sensor_set_light_check_timer_period(SENSOR_SAMPLING_PERIOD_COMPARE);
 	DB7_Write(0);
 }
 
@@ -40,10 +37,7 @@ CY_ISR(check_light)
 		// Safeguard
 		Sensor_sampledPeriods = 0;
 		FLAG_SET(FLAGS, FLAG_SENSOR_WAITING_RISING);
-		Timer_Light_Check_Stop();
-		Timer_Light_Check_WritePeriod(SENSOR_RISING_EDGE_MAX_DELAY_COMPARE);
-		Timer_Light_Check_WriteCounter(SENSOR_RISING_EDGE_MAX_DELAY_COMPARE);
-		Timer_Light_Check_Start();
+		Sensor_set_light_check_timer_period(SENSOR_RISING_EDGE_MAX_DELAY_COMPARE);
 		isr_lightsense_Enable();
 	}
 }
@@ -68,6 +62,13 @@ bool Sensor_on_left_turn_intersection()
 bool Sensor_on_all_turn_intersection()
 {
 	return Sensor_turnLeft.status && Sensor_turnRight.status;
+}
+void Sensor_set_light_check_timer_period(uint16 period)
+{
+	Timer_Light_Check_Stop();
+	Timer_Light_Check_WritePeriod(period);
+	Timer_Light_Check_WriteCounter(period);
+	Timer_Light_Check_Start();
 }
 
 void Sensor_store_sensor_statuses()
