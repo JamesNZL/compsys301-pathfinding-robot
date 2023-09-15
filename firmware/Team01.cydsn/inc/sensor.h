@@ -86,7 +86,7 @@ void Sensor_init_sensors();
 /**
  * @brief Stores the status of all sensors by reading their pins
  */
-void Sensor_store_sensor_statuses();
+void Sensor_debounce_and_update_sensor_statuses();
 
 /**
  * @brief Sets the bias level of DAC Lower and Upper

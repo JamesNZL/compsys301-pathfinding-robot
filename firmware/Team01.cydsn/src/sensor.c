@@ -166,7 +166,7 @@ CY_ISR(check_light)
 	Sensor_sample_sensor_readings();
 	if (Sensor_sampledPeriods >= SENSOR_SAMPLING_PERIODS) // sensor1 or sensor2 or sensor3 ...
 	{
-		Sensor_store_sensor_statuses();
+		Sensor_debounce_and_update_sensor_statuses();
 		// Safeguard
 		Sensor_sampledPeriods = 0;
 		FLAG_SET(FLAGS, FLAG_SENSOR_WAITING_RISING);
@@ -217,7 +217,7 @@ void Sensor_set_light_check_timer_period(uint16 period)
 	Timer_Light_Check_Start();
 }
 
-void Sensor_store_sensor_statuses()
+void Sensor_debounce_and_update_sensor_statuses()
 {
 	SENSOR_DEBOUNCE_AND_UPDATE_STATUS(Sensor_turnLeft);
 	SENSOR_DEBOUNCE_AND_UPDATE_STATUS(Sensor_turnRight);
