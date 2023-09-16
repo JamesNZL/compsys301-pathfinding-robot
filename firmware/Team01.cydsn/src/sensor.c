@@ -38,9 +38,14 @@ CY_ISR(check_light)
 
 bool Sensor_is_all_sensors_off()
 {
-	return !(Sensor_turnLeft.status || Sensor_turnRight.status
-		|| Sensor_skewBackRight.status || Sensor_skewBackLeft.status || Sensor_skewCenter.status
-		|| Sensor_skewFrontLeft.status || Sensor_skewFrontRight.status);
+	return !(
+		Sensor_turnLeft.status
+		|| Sensor_turnRight.status
+		|| Sensor_skewBackRight.status
+		|| Sensor_skewBackLeft.status
+		|| Sensor_skewCenter.status
+		|| Sensor_skewFrontLeft.status
+		|| Sensor_skewFrontRight.status);
 }
 
 bool Sensor_is_on_right_turn_intersection()
@@ -60,13 +65,14 @@ bool Sensor_is_on_all_turn_intersection()
 
 SensorActions Sensor_determine_actions()
 {
-	uint8 bitfield = (Sensor_skewCenter.status << 6)
+	uint8 bitfield = ((Sensor_skewCenter.status << 6)
 		| (Sensor_skewFrontLeft.status << 5)
 		| (Sensor_skewFrontRight.status << 4)
 		| (Sensor_skewBackLeft.status << 3)
 		| (Sensor_skewBackRight.status << 2)
 		| (Sensor_turnLeft.status << 1)
-		| (Sensor_turnRight.status << 0);
+		| (Sensor_turnRight.status << 0));
+
 	return SENSOR_ACTION_LUT[bitfield];
 }
 
