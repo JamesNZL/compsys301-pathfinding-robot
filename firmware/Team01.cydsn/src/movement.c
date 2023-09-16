@@ -30,49 +30,53 @@ uint16 Movement_cm_to_pulse(float cm)
 
 void Movement_check_distance()
 {
-	if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVE_INFINITELY))
+	if (FLAG_IS_SET(FLAGS, FLAG_MOVE_INFINITELY))
 	{
-		if (MOVEMENT_PULSES_TO_MOVE <= 0)
-		{
-			Movement_set_M1_pulse_target(MOVEMENT_MOTOR_OFF);
-			Movement_set_M2_pulse_target(MOVEMENT_MOTOR_OFF);
-			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
-		}
-		else if (MOVEMENT_PULSES_TO_MOVE < 150)
-		{
-			Movement_set_M1_pulse_target(MOVEMENT_SPEED_BRAKE);
-			Movement_set_M2_pulse_target(MOVEMENT_SPEED_BRAKE);
-		}
+		return;
+	}
+
+	if (MOVEMENT_PULSES_TO_MOVE <= 0)
+	{
+		Movement_set_M1_pulse_target(MOVEMENT_MOTOR_OFF);
+		Movement_set_M2_pulse_target(MOVEMENT_MOTOR_OFF);
+		Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+	}
+	else if (MOVEMENT_PULSES_TO_MOVE < 150)
+	{
+		Movement_set_M1_pulse_target(MOVEMENT_SPEED_BRAKE);
+		Movement_set_M2_pulse_target(MOVEMENT_SPEED_BRAKE);
 	}
 }
 
 void Movement_next_control_cycle()
 {
-	if (FLAG_IS_SET(FLAGS, FLAG_ENCODERS_READY))
+	if (FLAG_IS_CLEARED(FLAGS, FLAG_ENCODERS_READY))
 	{
-		// Subtract read pulses from distance to travel
-		if (MOVEMENT_PULSES_TO_MOVE > 0)
-		{
-			MOVEMENT_PULSES_TO_MOVE -= MOVEMENT_PULSE_APPARENT_1;
-		}
-
-		// Samples taken every 25th of a second. Divide target by 25 to get expected 25th of a second pulses
-		int8 pulseError1 = (MOVEMENT_PULSE_TARGET_1 / 25) - MOVEMENT_PULSE_APPARENT_1;
-		int8 pulseError2 = (MOVEMENT_PULSE_TARGET_2 / 25) - MOVEMENT_PULSE_APPARENT_2;
-		// int8 pulseError2 = MOVEMENT_PULSE_APPARENT_1 - MOVEMENT_PULSE_APPARENT_2; // For shimmy shimmy
-
-		uint16 target1 = MOVEMENT_PULSE_VARYING_1 + pulseError1;
-		uint16 target2 = MOVEMENT_PULSE_VARYING_2 + pulseError2;
-
-		Movement_write_M1_pulse(target1);
-		Movement_write_M2_pulse(target2);
-
-		// Make the varying pulses change up or down accordingly to the observed speed
-		Movement_set_M1_pulse_varying(target1);
-		Movement_set_M2_pulse_varying(target2);
-
-		FLAGS &= ~(1 << FLAG_ENCODERS_READY);
+		return;
 	}
+
+	// Subtract read pulses from distance to travel
+	if (MOVEMENT_PULSES_TO_MOVE > 0)
+	{
+		MOVEMENT_PULSES_TO_MOVE -= MOVEMENT_PULSE_APPARENT_1;
+	}
+
+	// Samples taken every 25th of a second. Divide target by 25 to get expected 25th of a second pulses
+	int8 pulseError1 = (MOVEMENT_PULSE_TARGET_1 / 25) - MOVEMENT_PULSE_APPARENT_1;
+	int8 pulseError2 = (MOVEMENT_PULSE_TARGET_2 / 25) - MOVEMENT_PULSE_APPARENT_2;
+	// int8 pulseError2 = MOVEMENT_PULSE_APPARENT_1 - MOVEMENT_PULSE_APPARENT_2; // For shimmy shimmy
+
+	uint16 target1 = MOVEMENT_PULSE_VARYING_1 + pulseError1;
+	uint16 target2 = MOVEMENT_PULSE_VARYING_2 + pulseError2;
+
+	Movement_write_M1_pulse(target1);
+	Movement_write_M2_pulse(target2);
+
+	// Make the varying pulses change up or down accordingly to the observed speed
+	Movement_set_M1_pulse_varying(target1);
+	Movement_set_M2_pulse_varying(target2);
+
+	FLAGS &= ~(1 << FLAG_ENCODERS_READY);
 }
 
 void Movement_skewer(Direction direction)
