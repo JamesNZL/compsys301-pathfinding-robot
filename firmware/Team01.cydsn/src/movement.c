@@ -107,7 +107,7 @@ void Movement_move_mm(uint16 distance)
 {
 	// Enable the motors, and set the target distance, turn off move infinitely
 	Motor_Control_Reg_Write(Motor_Control_Reg_Read() & ~(1 << MOTOR_DISABLE_CR_POS));
-	MOVEMENT_PULSES_TO_MOVE = (float)dist / MOVEMENT_MM_PER_PULSE;
+	MOVEMENT_PULSES_TO_MOVE = (float)distance / MOVEMENT_MM_PER_PULSE;
 	FLAGS &= ~(1 << FLAG_MOVE_INFINITELY);
 }
 
