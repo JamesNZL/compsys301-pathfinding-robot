@@ -16,7 +16,7 @@ CY_ISR(PROCESS_PULSE)
 	MOVEMENT_PULSE_APPARENT_1 = QuadDec_M1_GetCounter();
 	MOVEMENT_PULSE_APPARENT_2 = QuadDec_M2_GetCounter();
 
-	FLAGS |= (1 << FLAG_ENCODERS_READY);
+	FLAG_SET(FLAGS, FLAG_ENCODERS_READY);
 
 	QuadDec_M1_SetCounter(0);
 	QuadDec_M2_SetCounter(0);
@@ -76,13 +76,14 @@ void Movement_next_control_cycle()
 	Movement_set_M1_pulse_varying(target1);
 	Movement_set_M2_pulse_varying(target2);
 
-	FLAGS &= ~(1 << FLAG_ENCODERS_READY);
+	FLAG_CLEAR(FLAGS, FLAG_ENCODERS_READY);
 }
 
 void Movement_skewer(Direction direction)
 {
 	// Increase the speed of one motor to correct for a skew
-	FLAGS |= (1 << FLAG_SKEW_CORRECTING);
+	FLAG_SET(FLAGS, FLAG_SKEW_CORRECTING);
+
 	switch (direction)
 	{
 	case DIRECTION_LEFT:
@@ -98,7 +99,8 @@ void Movement_skewer(Direction direction)
 
 void Movement_sync_motors(uint16 speed)
 {
-	FLAGS &= ~(1 << FLAG_SKEW_CORRECTING);
+	FLAG_CLEAR(FLAGS, FLAG_SKEW_CORRECTING);
+
 	Movement_set_M1_pulse_target(speed);
 	Movement_set_M2_pulse_target(speed);
 }
@@ -108,7 +110,8 @@ void Movement_move_mm(uint16 distance)
 	// Enable the motors, and set the target distance, turn off move infinitely
 	Motor_Control_Reg_Write(Motor_Control_Reg_Read() & ~(1 << MOTOR_DISABLE_CR_POS));
 	MOVEMENT_PULSES_TO_MOVE = (float)distance / MOVEMENT_MM_PER_PULSE;
-	FLAGS &= ~(1 << FLAG_MOVE_INFINITELY);
+
+	FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
 }
 
 void Movement_write_M1_pulse(uint16 target)
