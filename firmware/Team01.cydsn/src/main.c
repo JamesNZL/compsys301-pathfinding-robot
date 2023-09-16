@@ -15,6 +15,8 @@ volatile uint8 FLAGS = 0x00;
 int main()
 {
 	CYGlobalIntEnable;
+	Movement_init_motors();
+	Sensor_init_sensors();
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
@@ -23,9 +25,13 @@ int main()
 	{
 		;
 	}
+	Movement_move_mm(2000);
+	Movement_sync_motors(300);
 
 	for (;;)
 	{
+		Movement_next_control_cycle();
+		Movement_check_dist();
 
 		Sensor_write_statuses_to_debug();
 		SensorActions currentAction = Sensor_determine_action();
