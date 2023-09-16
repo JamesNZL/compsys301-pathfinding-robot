@@ -23,8 +23,6 @@ int main()
 	USBUART_Start(0, USBUART_5V_OPERATION);
 #endif
 
-	RF_BT_SELECT_Write(0);
-
 	for (;;)
 	{
 		Sensor_write_statuses_to_debug();
