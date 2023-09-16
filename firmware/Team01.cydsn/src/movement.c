@@ -87,13 +87,19 @@ void Movement_skewer(Direction direction)
 	switch (direction)
 	{
 	case DIRECTION_LEFT:
+	{
 		Movement_set_M1_pulse_target(MOVEMENT_SPEED_RUN + MOVEMENT_CORRECTION_SKEW);
 		break;
+	}
 	case DIRECTION_RIGHT:
+	{
 		Movement_set_M2_pulse_target(MOVEMENT_SPEED_RUN + MOVEMENT_CORRECTION_SKEW);
 		break;
+	}
 	default:
+	{
 		break;
+	}
 	}
 }
 
@@ -209,15 +215,21 @@ uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 	switch (angle)
 	{
 	case 90:
+	{
 		return MOVEMENT_PULSE_90_DEGREE - MOVEMENT_CORRECTION_TURNS;
+	}
 	case 180:
+	{
 		return MOVEMENT_PULSE_180_DEGREE - MOVEMENT_CORRECTION_TURNS;
+	}
 	default:
+	{
 		// Convert angle to fraction of circle by dividing 360
 		// Multiply fraction by total pivot circumference
 		// Divide by circumference of wheel to determine revs needed
 		// Convert revs to pulses through multiply 228
 		return ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_CORRECTION_TURNS;
+	}
 	}
 }
 
