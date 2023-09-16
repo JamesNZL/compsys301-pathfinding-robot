@@ -429,6 +429,7 @@
       <Data key="5be00cf9-2463-499a-b1b0-c956f9d984f5" value="V_Bias_L" />
       <Data key="5e84e724-662d-421b-855f-e389c5a63488" value="Skew_Back_Left" />
       <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="M1_QA" />
+      <Data key="8e914747-6c0e-4a69-93ba-3db1bdd937d4" value="V_Battery" />
       <Data key="11a2febe-9376-4d85-9ec7-a0807e2760e5" value="M1_D2" />
       <Data key="20cb7137-8a04-4df9-96a9-a72e04bf758a" value="A2" />
       <Data key="34c4f5ce-504e-4b4d-8c23-359accdd7835" value="DIN_4" />
@@ -3621,6 +3622,11 @@
     <Group key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba">
       <Group key="0">
         <Data key="Port Format" value="15,5" />
+      </Group>
+    </Group>
+    <Group key="8e914747-6c0e-4a69-93ba-3db1bdd937d4">
+      <Group key="0">
+        <Data key="Port Format" value="3,3" />
       </Group>
     </Group>
     <Group key="11a2febe-9376-4d85-9ec7-a0807e2760e5">
