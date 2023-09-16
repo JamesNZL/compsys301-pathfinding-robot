@@ -139,7 +139,7 @@ uint16 Movement_calculate_angle_to_pulse(uint16 angle);
 /**
  * @brief Turns on all skew dependencies
  */
-void Movement_init_decoder_ISR();
+void Movement_init_motors();
 
 /**
  * @brief sets the direction of BOTH motors to forwards or reverse

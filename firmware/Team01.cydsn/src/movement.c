@@ -212,8 +212,10 @@ uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 	}
 }
 
-void Movement_init_decoder_ISR()
+void Movement_init_motors()
 {
+	PWM_1_Start();
+	PWM_2_Start();
 	Timer_Dec_Start();
 	QuadDec_M1_Start();
 	QuadDec_M2_Start();
