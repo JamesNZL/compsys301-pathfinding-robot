@@ -50,7 +50,7 @@ void *RollingBuffer_get_element(RollingBuffer *buffer, uint16_t index)
 
 void RollingBuffer_push(RollingBuffer *buffer, void *data)
 {
-	if (is_buffer_full(buffer))
+	if (RollingBuffer_is_full(buffer))
 	{
 		// buffer->sum -= buffer->array[buffer->head++];
 		buffer->head++;

@@ -36,7 +36,8 @@ int main(void)
 	isr_checklight_StartEx(check_light);
 
 	/* Place your initialization/startup code here (e.g. MyInst_Start()) */
-
+	VDAC8_1_Start();
+	VDAC8_2_Start();
 	for (;;)
 	{
 		/* Place your application code here. */

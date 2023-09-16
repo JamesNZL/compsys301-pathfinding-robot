@@ -254,7 +254,8 @@
       <Data key="08d54ea8-8ed0-4c74-99d4-e1519ec5768b" value="Sensor_Input_2" />
       <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="Sensor_Input_1" />
       <Data key="96e64ff1-cfa8-4acd-88b9-6ec1000af35f" value="Sensor_Output_2" />
-      <Data key="77715107-f8d5-47e5-a629-0fb83101ac6b" value="Lightsense" />
+      <Data key="96f6d8ed-6e06-4fb4-b64a-346778e5e6c7" value="V_Bias_1" />
+      <Data key="77715107-f8d5-47e5-a629-0fb83101ac6b" value="V_Bias_2" />
       <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="Sensor_Output_1" />
     </Group>
   </Group>
@@ -3357,9 +3358,14 @@
         <Data key="Port Format" value="0,6" />
       </Group>
     </Group>
+    <Group key="96f6d8ed-6e06-4fb4-b64a-346778e5e6c7">
+      <Group key="0">
+        <Data key="Port Format" value="3,2" />
+      </Group>
+    </Group>
     <Group key="77715107-f8d5-47e5-a629-0fb83101ac6b">
       <Group key="0">
-        <Data key="Port Format" value="15,0" />
+        <Data key="Port Format" value="3,3" />
       </Group>
     </Group>
     <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">

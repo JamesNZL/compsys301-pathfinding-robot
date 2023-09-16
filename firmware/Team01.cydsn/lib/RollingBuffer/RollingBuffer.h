@@ -2,6 +2,7 @@
 #define ROLLING_BUFFER_H_
 
 #include <stdint.h>
+#include <stdlib.h>
 
 // Use an opaque type to prevent direct access to members
 typedef struct RollingBuffer RollingBuffer;

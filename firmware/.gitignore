@@ -24,3 +24,8 @@ Backup/
 *.svd
 *.log
 *.zip
+
+# Ignore compiler generated files
+*.o
+*.exe
+*.exe.*
