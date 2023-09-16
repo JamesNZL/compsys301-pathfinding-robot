@@ -23,8 +23,7 @@
 
 // Samples the sensor information and stores it for later processing
 #define SENSOR_SAMPLE_READING(sensorStruct, sensorReadFunction) \
-	bool sensorStruct##Reading = sensorReadFunction();          \
-	if (sensorStruct##Reading)                                  \
+	if (sensorReadFunction())                                   \
 	{                                                           \
 		sensorStruct.highCount++;                               \
 	}                                                           \
