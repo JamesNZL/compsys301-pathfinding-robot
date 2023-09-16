@@ -14,7 +14,7 @@
 
 #define SENSOR_DEFAULT_INITIALISATION \
 	{                                 \
-		.lowCount = 0,                \
+		.periodCount = 0,             \
 		.highWasSampled = FALSE,      \
 		.previousStatus = FALSE,      \
 		.status = FALSE               \
@@ -24,7 +24,7 @@
 #define SENSOR_SAMPLE_READING(sensorStruct, sensorReadFunction) \
 	if (sensorReadFunction())                                   \
 	{                                                           \
-		sensorStruct.highWasSampled = TRUE                      \
+		sensorStruct.highWasSampled = TRUE;                     \
 	}
 
 // Debounces (ensures the signal has held its value for at least X periods) and stores the required status
@@ -39,7 +39,7 @@
 	{                                                                \
 		sensorStruct.status = sensorStruct##newStatus;               \
 	}                                                                \
-	sensorStruct.highWasSamped = FALSE;                              \
+	sensorStruct.highWasSampled = FALSE;                             \
 	sensorStruct.previousStatus = sensorStruct##newStatus;
 
 #define SENSOR_WRITE_LOW(sensorStruct) \
