@@ -48,6 +48,13 @@ const extern uint8 MOVEMENT_PULSE_CORRECTION;
 const extern uint8 Kp;
 
 /**
+ * @brief Converts cm per second to pulses per second
+ *
+ * @param cms the centimeters per second to target
+ */
+uint16 Movement_cm_to_pulse(float cms);
+
+/**
  * @brief Checks if there is distance to move - sets speed accordingly
  */
 void Movement_check_dist();
@@ -67,7 +74,7 @@ void Movement_skewer(Direction direction);
 /**
  * @brief Resets both motor speeds in cm/s - to be called after skew corrected alignment is met
  */
-void Movement_sync_motors(float speed);
+void Movement_sync_motors(uint16 speed);
 
 /**
  * @brief Instructs the robot to move a certain number of mm

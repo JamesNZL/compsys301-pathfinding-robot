@@ -23,7 +23,8 @@ int main()
 	// Movement_turn_right(90);
 	// CyDelay(500);
 	Movement_move_mm(2000);
-	Movement_sync_motors(30);
+	// FLAGS |= (1 << FLAG_MOVE_INFINITELY);
+	Movement_sync_motors(Movement_cm_to_pulse(30));
 	// Movement_turn_left(90);
 	//----------------BENCHMARK 1-----------------
 
