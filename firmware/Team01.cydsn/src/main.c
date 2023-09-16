@@ -30,12 +30,12 @@ int main()
 
 	for (;;)
 	{
-		if (Sensor_on_right_turn_intersection())
+		if (Sensor_is_on_right_turn_intersection())
 		{
 			Movement_turn_right(90);
 			CyDelay(3000);
 		}
-		else if (Sensor_on_left_turn_intersection())
+		else if (Sensor_is_on_left_turn_intersection())
 		{
 			Movement_turn_left(90);
 			CyDelay(3000);
