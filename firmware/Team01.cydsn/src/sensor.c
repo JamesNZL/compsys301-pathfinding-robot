@@ -107,14 +107,13 @@ void Sensor_sample_sensor_readings()
 }
 void Sensor_write_statuses_to_debug()
 {
-
-	DB0_Write(Sensor_turnLeft.status);
-	DB1_Write(Sensor_turnRight.status);
-	DB2_Write(Sensor_skewBackRight.status);
-	DB3_Write(Sensor_skewBackLeft.status);
+	DB0_Write(Sensor_skewFrontLeft.status);
+	DB1_Write(Sensor_turnLeft.status);
+	DB2_Write(Sensor_skewBackLeft.status);
+	DB3_Write(Sensor_skewCenter.status);
 	DB4_Write(Sensor_skewFrontRight.status);
-	DB5_Write(Sensor_skewFrontLeft.status);
-	DB6_Write(Sensor_skewCenter.status);
+	DB5_Write(Sensor_turnRight.status);
+	DB6_Write(Sensor_skewBackRight.status);
 }
 
 void Sensor_init_sensors()
