@@ -14,7 +14,7 @@ void Battery_display_level(void)
 	}
 
 	// 10k 2.7k resistive divider
-	uint16 batteryReading = (ADC_Battery_CountsTo_mVolts(ADC_Battery_GetResult16()) * 4704);
+	uint16 batteryReading = (ADC_Battery_CountsTo_Volts(ADC_Battery_GetResult16()) * 4704);
 
 	ADC_Battery_Stop();
 
