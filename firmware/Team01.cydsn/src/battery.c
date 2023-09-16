@@ -31,6 +31,8 @@ void Battery_display_level(void)
 			DB5_TOGGLE_LED;
 			DB6_TOGGLE_LED;
 			DB7_TOGGLE_LED;
+
+			CyDelay(150);
 		}
 
 		return;
