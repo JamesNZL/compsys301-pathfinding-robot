@@ -5,6 +5,7 @@
 const uint8 MOVEMENT_BRAKE_SPEED = 150;
 const uint16 MOVEMENT_RUN_SPEED = 300;
 const uint16 MOVEMENT_MOTOR_TURN_SPEED = 227;
+const uint8 MOVEMENT_CORRECTION_INCREASE = 10;
 const uint8 MOVEMENT_PULSE_CORRECTION = 9;
 const uint8 Kp = 1;
 
@@ -33,6 +34,7 @@ void Movement_check_dist()
 		{
 			Movement_set_M1_ctrlconst(MOVEMENT_MOTOR_OFF);
 			Movement_set_M2_ctrlconst(MOVEMENT_MOTOR_OFF);
+			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 		}
 		else if (MOVEMENT_PULSES_TO_MOVE < 150)
 		{
@@ -58,12 +60,6 @@ void Movement_next_control_cycle()
 		uint16 target1 = MOVEMENT_TPULSE_1 + pulseError1;
 		uint16 target2 = MOVEMENT_TPULSE_2 + pulseError2;
 
-		// Disable the motors after target distance is reached
-		if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVE_INFINITELY) && (target1 == 0) && (target2 == 0))
-		{
-			Motor_Control_Reg_Write(Motor_Control_Reg_Read() & ~(1 << MOTOR_DISABLE_CR_POS));
-		}
-
 		Movement_set_M1_pulse(target1);
 		Movement_set_M2_pulse(target2);
 
@@ -80,10 +76,10 @@ void Movement_skewer(Direction direction)
 	switch (direction)
 	{
 	case DIRECTION_LEFT:
-		Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED + 5);
+		Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED + MOVEMENT_CORRECTION_INCREASE);
 		break;
 	case DIRECTION_RIGHT:
-		Movement_set_M2_ctrlconst(MOVEMENT_RUN_SPEED + 5);
+		Movement_set_M2_ctrlconst(MOVEMENT_RUN_SPEED + MOVEMENT_CORRECTION_INCREASE);
 		break;
 	default:
 		break;
@@ -99,7 +95,7 @@ void Movement_sync_motors(uint16 speed)
 
 void Movement_move_mm(uint16 dist)
 {
-	Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+	Motor_Control_Reg_Write(Motor_Control_Reg_Read() & ~(1 << MOTOR_DISABLE_CR_POS));
 	MOVEMENT_PULSES_TO_MOVE = (float)dist / MOVEMENT_MM_PER_PULSE;
 	FLAGS &= ~(1 << FLAG_MOVE_INFINITELY);
 }

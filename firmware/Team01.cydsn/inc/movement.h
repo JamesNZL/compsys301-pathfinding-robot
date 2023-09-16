@@ -43,6 +43,8 @@ const extern uint8 MOVEMENT_BRAKE_SPEED;
 const extern uint16 MOVEMENT_RUN_SPEED;
 const extern uint16 MOVEMENT_MOTOR_TURN_SPEED;
 
+const extern uint8 MOVEMENT_CORRECTION_INCREASE;
+
 const extern uint8 MOVEMENT_PULSE_CORRECTION;
 const extern uint8 Kp;
 
