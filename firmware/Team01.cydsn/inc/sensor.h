@@ -8,15 +8,14 @@
 #define SENSOR_COUNT							  7
 #define SENSOR_DEFAULT_BIAS_VOLTAGE_VOLTS		  1.2F
 #define SENSOR_MINIMUM_DEBOUNCE_PERIODS			  4 // How many periods the signal has to remain at a level to be considered a valid level change
-#define SENSOR_SAMPLING_PERIODS					  10 // Amount of times to sample all the sensors after a rising edge
-#define SENSOR_SAMPLING_TIMER_PERIOD			  10 // 100 us - Delay between each sensor sample on a rising edge
+#define SENSOR_SAMPLING_PERIODS					  4 // Amount of times to sample all the sensors after a rising edge
+#define SENSOR_SAMPLING_TIMER_PERIOD			  20 // 200 us - Delay between each sensor sample on a rising edge
 #define SENSOR_RISING_EDGE_MAX_DELAY_TIMER_PERIOD 1200 // 12 ms - The maximum time allowed after a rising edge before all sensors are assumed to be off
 
 #define SENSOR_DEFAULT_INITIALISATION \
 	{                                 \
 		.lowCount = 0,                \
-		.highCount = 0,               \
-		.periodCount = 0,             \
+		.highWasSampled = FALSE,      \
 		.previousStatus = FALSE,      \
 		.status = FALSE               \
 	}
@@ -25,29 +24,22 @@
 #define SENSOR_SAMPLE_READING(sensorStruct, sensorReadFunction) \
 	if (sensorReadFunction())                                   \
 	{                                                           \
-		sensorStruct.highCount++;                               \
-	}                                                           \
-	else                                                        \
-	{                                                           \
-		sensorStruct.lowCount++;                                \
+		sensorStruct.highWasSampled = TRUE                      \
 	}
 
 // Debounces (ensures the signal has held its value for at least X periods) and stores the required status
-#define SENSOR_DEBOUNCE_AND_UPDATE_STATUS(sensorStruct)                              \
-	sensorStruct.periodCount++;                                                      \
-	bool sensorStruct##newStatus = (sensorStruct.highCount >= sensorStruct.lowCount) \
-		? TRUE                                                                       \
-		: FALSE;                                                                     \
-	if (sensorStruct.previousStatus != sensorStruct##newStatus)                      \
-	{                                                                                \
-		sensorStruct.periodCount = 0;                                                \
-	}                                                                                \
-	if (sensorStruct.periodCount >= SENSOR_MINIMUM_DEBOUNCE_PERIODS)                 \
-	{                                                                                \
-		sensorStruct.status = sensorStruct##newStatus;                               \
-	}                                                                                \
-	sensorStruct.highCount = 0;                                                      \
-	sensorStruct.lowCount = 0;                                                       \
+#define SENSOR_DEBOUNCE_AND_UPDATE_STATUS(sensorStruct)              \
+	sensorStruct.periodCount++;                                      \
+	bool sensorStruct##newStatus = sensorStruct.highWasSampled;      \
+	if (sensorStruct.previousStatus != sensorStruct##newStatus)      \
+	{                                                                \
+		sensorStruct.periodCount = 0;                                \
+	}                                                                \
+	if (sensorStruct.periodCount >= SENSOR_MINIMUM_DEBOUNCE_PERIODS) \
+	{                                                                \
+		sensorStruct.status = sensorStruct##newStatus;               \
+	}                                                                \
+	sensorStruct.highWasSamped = FALSE;                              \
 	sensorStruct.previousStatus = sensorStruct##newStatus;
 
 #define SENSOR_WRITE_LOW(sensorStruct) \
@@ -60,8 +52,7 @@ typedef struct Sensor
 {
 	bool status;
 	bool previousStatus;
-	uint8 lowCount;
-	uint8 highCount;
+	bool highWasSampled;
 	uint8 periodCount;
 } Sensor;
 
