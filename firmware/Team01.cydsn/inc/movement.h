@@ -14,6 +14,8 @@
 
 #define MOVEMENT_MM_PER_PULSE		 0.8928F
 
+#define MOVEMENT_CMS_CONVERSION	     112.0072F
+
 #define MOVEMENT_MOTOR_OFF			 0
 
 /**
@@ -63,9 +65,9 @@ void Movement_next_control_cycle();
 void Movement_skewer(Direction direction);
 
 /**
- * @brief Resets both motor speeds - to be called after skew corrected alignment is met
+ * @brief Resets both motor speeds in cm/s - to be called after skew corrected alignment is met
  */
-void Movement_sync_motors(uint16 speed);
+void Movement_sync_motors(float speed);
 
 /**
  * @brief Instructs the robot to move a certain number of mm

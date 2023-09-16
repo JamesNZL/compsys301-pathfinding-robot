@@ -81,11 +81,11 @@ void Movement_skewer(Direction direction)
 	}
 }
 
-void Movement_sync_motors(uint16 speed)
+void Movement_sync_motors(float speed)
 {
 	FLAGS &= ~(1 << FLAG_SKEW_CORRECTING);
-	Movement_set_M1_ctrlconst(speed);
-	Movement_set_M2_ctrlconst(speed);
+	Movement_set_M1_ctrlconst((uint16)(speed*MOVEMENT_CMS_CONVERSION));
+	Movement_set_M2_ctrlconst((uint16)(speed*MOVEMENT_CMS_CONVERSION));
 }
 
 void Movement_move_mm(uint16 dist)
