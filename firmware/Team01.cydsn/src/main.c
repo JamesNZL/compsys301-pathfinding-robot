@@ -27,11 +27,19 @@ int main()
 	{
 		;
 	}
-	Movement_turn_right(90);
-	DB7_Write(1);
 
 	for (;;)
 	{
+		if (Sensor_on_right_turn_intersection())
+		{
+			Movement_turn_right(90);
+			CyDelay(3000);
+		}
+		else if (Sensor_on_left_turn_intersection())
+		{
+			Movement_turn_left(90);
+			CyDelay(3000);
+		}
 		Sensor_write_statuses_to_debug();
 #ifdef USB_ENABLED
 		/* Place your application code here. */

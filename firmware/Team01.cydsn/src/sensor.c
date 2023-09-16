@@ -175,17 +175,17 @@ bool Sensor_all_sensors_off()
 
 bool Sensor_on_right_turn_intersection()
 {
-	return !Sensor_turnLeft.status && Sensor_turnRight.status;
+	return Sensor_turnLeft.status && !Sensor_turnRight.status;
 }
 
 bool Sensor_on_left_turn_intersection()
 {
-	return Sensor_turnLeft.status && !Sensor_turnRight.status;
+	return !Sensor_turnLeft.status && Sensor_turnRight.status;
 }
 
 bool Sensor_on_all_turn_intersection()
 {
-	return Sensor_turnLeft.status && Sensor_turnRight.status;
+	return !Sensor_turnLeft.status && !Sensor_turnRight.status;
 }
 
 LUTActions Sensor_determine_actions()
