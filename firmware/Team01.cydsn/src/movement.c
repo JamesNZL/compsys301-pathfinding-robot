@@ -4,7 +4,7 @@
 
 const uint8 MOVEMENT_SPEED_BRAKE = 150;
 uint16 MOVEMENT_SPEED_RUN = 300;
-const uint16 MOVEMENT_SPEED_TURN = 300;
+const uint16 MOVEMENT_SPEED_TURN = 150;
 
 const uint8 MOVEMENT_CORRECTION_SKEW = 10;
 const uint8 MOVEMENT_CORRECTION_TURNS = 9;
@@ -181,8 +181,8 @@ void Movement_turn_left(uint16 angle)
 		;
 	}
 	Movement_set_direction_left(DIRECTION_FORWARD);
-	Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
-	Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
+	// Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
+	// Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
 
 	// Reset decoders to previous value before tur
 	QuadDec_M1_SetCounter(pulseMeas);
@@ -204,8 +204,8 @@ void Movement_turn_right(uint16 angle)
 		;
 	}
 	Movement_set_direction_right(DIRECTION_FORWARD);
-	Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
-	Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
+	// Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
+	// Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
 	QuadDec_M1_SetCounter(pulseMeas);
 	CYGlobalIntEnable;
 }

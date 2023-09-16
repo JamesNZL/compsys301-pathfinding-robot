@@ -25,15 +25,29 @@ int main()
 	{
 		;
 	}
-	Movement_move_mm(2000);
-	Movement_sync_motors(300);
-
+	FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+	Movement_write_M1_pulse(200);
+	Movement_write_M2_pulse(200);
 	for (;;)
 	{
-		Movement_next_control_cycle();
-		Movement_check_dist();
-
+		// Movement_next_control_cycle();
+		Movement_check_distance();
 		Sensor_write_statuses_to_debug();
+
+		if (Sensor_is_on_right_turn_intersection())
+		{
+			FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
+			Movement_turn_right(90);
+			FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+		}
+		else if (Sensor_is_on_left_turn_intersection())
+		{
+			FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
+			Movement_turn_left(90);
+			FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+		}
+		continue;
+
 		SensorActions currentAction = Sensor_determine_action();
 		switch (currentAction)
 		{
