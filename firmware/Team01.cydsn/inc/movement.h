@@ -58,7 +58,7 @@ uint16 Movement_cm_to_pulse(float cms);
 /**
  * @brief Checks if there is distance to move - sets speed accordingly
  */
-void Movement_check_dist();
+void Movement_check_distance();
 
 /**
  * @brief Executes the next control loop cycle with feedback
@@ -80,9 +80,9 @@ void Movement_sync_motors(uint16 speed);
 /**
  * @brief Instructs the robot to move a certain number of mm
  *
- * @param dist the distance to move in mm
+ * @param distance the distance to move in mm
  */
-void Movement_move_mm(uint16 dist);
+void Movement_move_mm(uint16 distance);
 
 /**
  * @brief Writes the motor pulse target physically

@@ -28,7 +28,7 @@ uint16 Movement_cm_to_pulse(float cm)
 	return (uint16)(cm * MOVEMENT_CM_CONVERSION);
 }
 
-void Movement_check_dist()
+void Movement_check_distance()
 {
 	if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVE_INFINITELY))
 	{
@@ -99,7 +99,7 @@ void Movement_sync_motors(uint16 speed)
 	Movement_set_M2_pulse_target(speed);
 }
 
-void Movement_move_mm(uint16 dist)
+void Movement_move_mm(uint16 distance)
 {
 	// Enable the motors, and set the target distance, turn off move infinitely
 	Motor_Control_Reg_Write(Motor_Control_Reg_Read() & ~(1 << MOTOR_DISABLE_CR_POS));
