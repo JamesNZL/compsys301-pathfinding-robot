@@ -386,7 +386,7 @@
   </Group>
   <Group key="Component">
     <Group key="v1">
-      <Data key="cy_boot" value="cy_boot_v5_82" />
+      <Data key="cy_boot" value="cy_boot_v6_10" />
       <Data key="Em_EEPROM_Dynamic" value="Em_EEPROM_Dynamic_v2_20" />
       <Data key="LIN_Dynamic" value="LIN_Dynamic_v6_0" />
     </Group>
@@ -3856,9 +3856,6 @@
       <Group key="7696e31e-504b-4f89-bbba-87b07ae5279f">
         <Data key="0" value="133386212271449204" />
       </Group>
-      <Group key="1425177d-0d0e-4468-8bcc-e638e5509a9b">
-        <Data key="0" value="133392975639410130" />
-      </Group>
       <Group key="b6ffe4e8-bfde-4b71-b826-17696ee2657e">
         <Data key="0" value="133388661421401622" />
       </Group>
@@ -3867,6 +3864,15 @@
       </Group>
       <Group key="d50de08c-8a77-4334-bd87-4d4dcae266e2">
         <Data key="0" value="133389798377809264" />
+      </Group>
+    </Group>
+    <Group key="Unlocked Pins">
+      <Group key="1425177d-0d0e-4468-8bcc-e638e5509a9b">
+        <Group key="0">
+          <Group key="133393160208640670">
+            <Data key="Port Format" value="3,0" />
+          </Group>
+        </Group>
       </Group>
     </Group>
   </Group>

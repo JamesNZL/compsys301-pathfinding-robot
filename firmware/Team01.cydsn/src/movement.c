@@ -3,13 +3,15 @@
 #include <project.h>
 
 const uint8 MOVEMENT_SPEED_BRAKE = 150;
-uint16 MOVEMENT_SPEED_RUN = 300;
-const uint16 MOVEMENT_SPEED_TURN = 150;
+uint16 MOVEMENT_SPEED_RUN = 170;
+const uint16 MOVEMENT_SPEED_TURN = 140;
 
-const uint8 MOVEMENT_CORRECTION_SKEW = 10;
+const uint8 MOVEMENT_CORRECTION_SKEW = 1;
 const uint8 MOVEMENT_CORRECTION_TURNS = 9;
 
 const uint8 MOVEMENT_CONTROLLER_GAIN = 1;
+
+volatile uint32 MOVEMENT_TIME_ELAPSED_AFTER_TURN = 0;
 
 CY_ISR(PROCESS_PULSE)
 {
@@ -32,6 +34,15 @@ void Movement_check_distance()
 {
 	if (FLAG_IS_SET(FLAGS, FLAG_MOVE_INFINITELY))
 	{
+		if (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN))
+		{
+			MOVEMENT_TIME_ELAPSED_AFTER_TURN++;
+			if (MOVEMENT_TIME_ELAPSED_AFTER_TURN >= 50000)
+			{
+				FLAG_CLEAR(FLAGS, FLAG_WAITING_AFTER_TURN);
+				MOVEMENT_TIME_ELAPSED_AFTER_TURN = 0;
+			}
+		}
 		return;
 	}
 
@@ -181,8 +192,8 @@ void Movement_turn_left(uint16 angle)
 		;
 	}
 	Movement_set_direction_left(DIRECTION_FORWARD);
-	// Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
-	// Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
 
 	// Reset decoders to previous value before tur
 	QuadDec_M1_SetCounter(pulseMeas);
@@ -204,8 +215,8 @@ void Movement_turn_right(uint16 angle)
 		;
 	}
 	Movement_set_direction_right(DIRECTION_FORWARD);
-	// Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
-	// Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
 	QuadDec_M1_SetCounter(pulseMeas);
 	CYGlobalIntEnable;
 }

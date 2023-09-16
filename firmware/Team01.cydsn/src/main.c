@@ -17,7 +17,6 @@ int main()
 	CYGlobalIntEnable;
 	Movement_init_motors();
 	Sensor_init_sensors();
-
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
 #endif
@@ -26,53 +25,74 @@ int main()
 		;
 	}
 	FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
-	Movement_write_M1_pulse(200);
-	Movement_write_M2_pulse(200);
+	Movement_sync_motors(MOVEMENT_SPEED_RUN);
 	for (;;)
 	{
-		// Movement_next_control_cycle();
+
+		Movement_next_control_cycle();
 		Movement_check_distance();
 		Sensor_write_statuses_to_debug();
+		if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_AFTER_TURN))
+		{
 
-		if (Sensor_is_on_right_turn_intersection())
-		{
-			FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
-			Movement_turn_right(90);
-			FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+			if (Sensor_is_on_right_turn_intersection())
+			{
+				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
+				Movement_turn_right(90);
+				CyDelay(100);
+				Movement_sync_motors(MOVEMENT_SPEED_RUN);
+				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+				continue;
+			}
+			else if (Sensor_is_on_left_turn_intersection())
+			{
+				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
+				Movement_turn_left(90);
+				CyDelay(100);
+				Movement_sync_motors(MOVEMENT_SPEED_RUN);
+				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+				continue;
+			}
 		}
-		else if (Sensor_is_on_left_turn_intersection())
+		else if (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN))
 		{
-			FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
-			Movement_turn_left(90);
-			FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+			continue;
 		}
-		continue;
 
 		SensorActions currentAction = Sensor_determine_action();
+		continue;
 		switch (currentAction)
 		{
 		case SENSOR_ACTION_CONTINUE_FORWARD:
 		{
+			// Movement_sync_motors(MOVEMENT_SPEED_RUN);
 			break;
 		}
 		case SENSOR_ACTION_CONTINUE_PREVIOUS:
 		{
+			// Movement_sync_motors(170);
 			break;
 		}
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
+			Movement_skewer(DIRECTION_RIGHT);
 			break;
 		}
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
+			Movement_skewer(DIRECTION_LEFT);
 			break;
 		}
 		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
 		{
+			// Movement_sync_motors(170);
 			break;
 		}
 		case SENSOR_ACTION_FIND_VALID_STATE:
 		{
+			// Movement_sync_motors(170);
 			break;
 		}
 		}
