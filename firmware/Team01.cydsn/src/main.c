@@ -30,6 +30,34 @@ int main()
 
 	for (;;)
 	{
+		SensorActions currentAction = Sensor_determine_action();
+		switch (currentAction)
+		{
+		case SENSOR_ACTION_CONTINUE_FORWARD:
+		{
+			break;
+		}
+		case SENSOR_ACTION_CONTINUE_PREVIOUS:
+		{
+			break;
+		}
+		case SENSOR_ACTION_CORRECT_LEFT:
+		{
+			break;
+		}
+		case SENSOR_ACTION_CORRECT_RIGHT:
+		{
+			break;
+		}
+		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
+		{
+			break;
+		}
+		case SENSOR_ACTION_FIND_VALID_STATE:
+		{
+			break;
+		}
+		}
 		if (Sensor_is_on_right_turn_intersection())
 		{
 			Movement_turn_right(90);
