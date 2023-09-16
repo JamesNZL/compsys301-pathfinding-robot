@@ -1,5 +1,5 @@
-#ifndef SENSOR_H
-#define SENSOR_H
+#ifndef SENSOR_H_
+#define SENSOR_H_
 
 #include "common.h"
 #include <project.h>
