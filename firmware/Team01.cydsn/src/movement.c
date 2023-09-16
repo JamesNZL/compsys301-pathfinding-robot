@@ -32,14 +32,14 @@ void Movement_check_dist()
 	{
 		if (MOVEMENT_PULSES_TO_MOVE <= 0)
 		{
-			Movement_set_M1_ctrlconst(MOVEMENT_MOTOR_OFF);
-			Movement_set_M2_ctrlconst(MOVEMENT_MOTOR_OFF);
+			Movement_set_M1_pulse_target(MOVEMENT_MOTOR_OFF);
+			Movement_set_M2_pulse_target(MOVEMENT_MOTOR_OFF);
 			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 		}
 		else if (MOVEMENT_PULSES_TO_MOVE < 150)
 		{
-			Movement_set_M1_ctrlconst(MOVEMENT_BRAKE_SPEED);
-			Movement_set_M2_ctrlconst(MOVEMENT_BRAKE_SPEED);
+			Movement_set_M1_pulse_target(MOVEMENT_BRAKE_SPEED);
+			Movement_set_M2_pulse_target(MOVEMENT_BRAKE_SPEED);
 		}
 	}
 }
@@ -48,23 +48,26 @@ void Movement_next_control_cycle()
 {
 	if (FLAG_IS_SET(FLAGS, FLAG_ENCODERS_READY))
 	{
+		// Subtract read pulses from distance to travel
 		if (MOVEMENT_PULSES_TO_MOVE > 0)
 		{
 			MOVEMENT_PULSES_TO_MOVE -= MOVEMENT_APPARENT_PULSE_1;
 		}
 
-		int8 pulseError1 = (MOVEMENT_CPULSE_1 / 25) - MOVEMENT_APPARENT_PULSE_1;
-		int8 pulseError2 = (MOVEMENT_CPULSE_2 / 25) - MOVEMENT_APPARENT_PULSE_2;
-		// int8 pulseError2 = MOVEMENT_APPARENT_PULSE_1 - MOVEMENT_APPARENT_PULSE_2;
+		// Samples taken every 25th of a second. Divide target by 25 to get expected 25th of a second pulses
+		int8 pulseError1 = (MOVEMENT_PULSE_TARGET_1 / 25) - MOVEMENT_APPARENT_PULSE_1;
+		int8 pulseError2 = (MOVEMENT_PULSE_TARGET_2 / 25) - MOVEMENT_APPARENT_PULSE_2;
+		// int8 pulseError2 = MOVEMENT_APPARENT_PULSE_1 - MOVEMENT_APPARENT_PULSE_2; // For shimmy shimmy
 
-		uint16 target1 = MOVEMENT_TPULSE_1 + pulseError1;
-		uint16 target2 = MOVEMENT_TPULSE_2 + pulseError2;
+		uint16 target1 = MOVEMENT_PULSE_VARYING_1 + pulseError1;
+		uint16 target2 = MOVEMENT_PULSE_VARYING_2 + pulseError2;
 
-		Movement_set_M1_pulse(target1);
-		Movement_set_M2_pulse(target2);
+		Movement_write_M1_pulse(target1);
+		Movement_write_M2_pulse(target2);
 
-		Movement_set_M1_ctrltarget(target1);
-		Movement_set_M2_ctrltarget(target2);
+		// Make the varying pulses change up or down accordingly to the observed speed
+		Movement_set_M1_pulse_varying(target1);
+		Movement_set_M2_pulse_varying(target2);
 
 		FLAGS &= ~(1 << FLAG_ENCODERS_READY);
 	}
@@ -72,14 +75,15 @@ void Movement_next_control_cycle()
 
 void Movement_skewer(Direction direction)
 {
+	// Increase the speed of one motor to correct for a skew
 	FLAGS |= (1 << FLAG_SKEW_CORRECTING);
 	switch (direction)
 	{
 	case DIRECTION_LEFT:
-		Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED + MOVEMENT_CORRECTION_INCREASE);
+		Movement_set_M1_pulse_target(MOVEMENT_RUN_SPEED + MOVEMENT_CORRECTION_INCREASE);
 		break;
 	case DIRECTION_RIGHT:
-		Movement_set_M2_ctrlconst(MOVEMENT_RUN_SPEED + MOVEMENT_CORRECTION_INCREASE);
+		Movement_set_M2_pulse_target(MOVEMENT_RUN_SPEED + MOVEMENT_CORRECTION_INCREASE);
 		break;
 	default:
 		break;
@@ -89,45 +93,46 @@ void Movement_skewer(Direction direction)
 void Movement_sync_motors(uint16 speed)
 {
 	FLAGS &= ~(1 << FLAG_SKEW_CORRECTING);
-	Movement_set_M1_ctrlconst(speed);
-	Movement_set_M2_ctrlconst(speed);
+	Movement_set_M1_pulse_target(speed);
+	Movement_set_M2_pulse_target(speed);
 }
 
 void Movement_move_mm(uint16 dist)
 {
+	// Enable the motors, and set the target distance, turn off move infinitely
 	Motor_Control_Reg_Write(Motor_Control_Reg_Read() & ~(1 << MOTOR_DISABLE_CR_POS));
 	MOVEMENT_PULSES_TO_MOVE = (float)dist / MOVEMENT_MM_PER_PULSE;
 	FLAGS &= ~(1 << FLAG_MOVE_INFINITELY);
 }
 
-void Movement_set_M1_pulse(uint16 target)
+void Movement_write_M1_pulse(uint16 target)
 {
 	PWM_1_WriteCompare(PWM_1_ReadPeriod() * Movement_calculate_duty(target));
 }
 
-void Movement_set_M2_pulse(uint16 target)
+void Movement_write_M2_pulse(uint16 target)
 {
 	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target));
 }
 
-void Movement_set_M1_ctrltarget(uint16 target)
+void Movement_set_M1_pulse_varying(uint16 target)
 {
-	MOVEMENT_TPULSE_1 = target;
+	MOVEMENT_PULSE_VARYING_1 = target;
 }
 
-void Movement_set_M2_ctrltarget(uint16 target)
+void Movement_set_M2_pulse_varying(uint16 target)
 {
-	MOVEMENT_TPULSE_2 = target;
+	MOVEMENT_PULSE_VARYING_2 = target;
 }
 
-void Movement_set_M1_ctrlconst(uint16 target)
+void Movement_set_M1_pulse_target(uint16 target)
 {
-	MOVEMENT_CPULSE_1 = target;
+	MOVEMENT_PULSE_TARGET_1 = target;
 }
 
-void Movement_set_M2_ctrlconst(uint16 target)
+void Movement_set_M2_pulse_target(uint16 target)
 {
-	MOVEMENT_CPULSE_2 = target;
+	MOVEMENT_PULSE_TARGET_2 = target;
 }
 
 float Movement_calculate_duty(uint16 target)
@@ -145,21 +150,26 @@ float Movement_calculate_duty(uint16 target)
 
 void Movement_turn_left(uint16 angle)
 {
+	// Disable interrupts so decoders dont get reset to 0
 	CYGlobalIntDisable;
 	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
 	Movement_set_direction_left(DIRECTION_REVERSE);
-	Movement_set_M1_pulse(MOVEMENT_MOTOR_TURN_SPEED);
-	Movement_set_M2_pulse(MOVEMENT_MOTOR_TURN_SPEED);
+	Movement_write_M1_pulse(MOVEMENT_MOTOR_TURN_SPEED);
+	Movement_write_M2_pulse(MOVEMENT_MOTOR_TURN_SPEED);
+
+	// Poll until pulse target is met
 	QuadDec_M1_SetCounter(0);
 	while (QuadDec_M1_GetCounter() > -pulseTarget)
 	{
 		;
 	}
 	Movement_set_direction_left(DIRECTION_FORWARD);
-	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
-	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
+
+	// Reset decoders to previous value before tur
 	QuadDec_M1_SetCounter(pulseMeas);
 	CYGlobalIntEnable;
 }
@@ -171,16 +181,16 @@ void Movement_turn_right(uint16 angle)
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
 	Movement_set_direction_right(DIRECTION_REVERSE);
-	Movement_set_M1_pulse(MOVEMENT_MOTOR_TURN_SPEED);
-	Movement_set_M2_pulse(MOVEMENT_MOTOR_TURN_SPEED);
+	Movement_write_M1_pulse(MOVEMENT_MOTOR_TURN_SPEED);
+	Movement_write_M2_pulse(MOVEMENT_MOTOR_TURN_SPEED);
 	QuadDec_M1_SetCounter(0);
 	while (QuadDec_M1_GetCounter() < pulseTarget)
 	{
 		;
 	}
 	Movement_set_direction_right(DIRECTION_FORWARD);
-	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
-	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
 	QuadDec_M1_SetCounter(pulseMeas);
 	CYGlobalIntEnable;
 }
