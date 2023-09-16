@@ -5,6 +5,11 @@
 #define BATTERY_FULL_MV	 1400 * BATTERY_COUNT
 #define BATTERY_EMPTY_MV 1100 * BATTERY_COUNT
 
-void Battery_display_level(void);
+/**
+ * @brief Display the battery level the debugging LEDs.
+ *
+ * @return uint16 The current battery voltage.
+ */
+uint16 Battery_display_level(void);
 
 #endif

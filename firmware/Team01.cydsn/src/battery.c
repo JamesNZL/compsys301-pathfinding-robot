@@ -3,7 +3,7 @@
 #include "common.h"
 #include <project.h>
 
-void Battery_display_level(void)
+uint16 Battery_display_level(void)
 {
 	ADC_Battery_Start();
 	ADC_Battery_StartConvert();
@@ -35,7 +35,7 @@ void Battery_display_level(void)
 			CyDelay(150);
 		}
 
-		return;
+		return batteryReading;
 	}
 
 	uint8 batteryPercentage = ((batteryReading - BATTERY_EMPTY_MV) * 100) / (BATTERY_FULL_MV - BATTERY_EMPTY_MV);
@@ -79,4 +79,6 @@ void Battery_display_level(void)
 	{
 		DB6_OFF;
 	}
+
+	return batteryReading;
 }

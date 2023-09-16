@@ -17,7 +17,7 @@ int main()
 {
 	CYGlobalIntEnable;
 
-	Battery_display_level();
+	uint16 batteryVoltage = Battery_display_level();
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
