@@ -63,7 +63,7 @@ bool Sensor_is_on_all_turn_intersection()
 	return !Sensor_turnLeft.status && !Sensor_turnRight.status;
 }
 
-SensorActions Sensor_determine_actions()
+SensorActions Sensor_determine_action()
 {
 	uint8 bitfield = ((Sensor_skewCenter.status << 6)
 		| (Sensor_skewFrontLeft.status << 5)
