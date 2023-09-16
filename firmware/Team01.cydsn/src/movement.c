@@ -31,8 +31,6 @@ void Movement_check_dist()
 	{
 		if (MOVEMENT_PULSES_TO_MOVE <= 0)
 		{
-			// 	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
-			// 	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
 			Movement_set_M1_ctrlconst(MOVEMENT_MOTOR_OFF);
 			Movement_set_M2_ctrlconst(MOVEMENT_MOTOR_OFF);
 		}
@@ -57,11 +55,20 @@ void Movement_next_control_cycle()
 		int8 pulseError2 = (MOVEMENT_CPULSE_2 / 25) - MOVEMENT_APPARENT_PULSE_2;
 		// int8 pulseError2 = MOVEMENT_APPARENT_PULSE_1 - MOVEMENT_APPARENT_PULSE_2;
 
-		Movement_set_M1_pulse(MOVEMENT_TPULSE_1 + pulseError1);
-		Movement_set_M2_pulse(MOVEMENT_TPULSE_2 + pulseError2);
+		uint16 target1 = MOVEMENT_TPULSE_1 + pulseError1;
+		uint16 target2 = MOVEMENT_TPULSE_2 + pulseError2;
 
-		Movement_set_M1_ctrltarget(MOVEMENT_TPULSE_1 + pulseError1);
-		Movement_set_M2_ctrltarget(MOVEMENT_TPULSE_2 + pulseError2);
+		// Disable the motors after target distance is reached
+		if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVE_INFINITELY) && (target1 == 0) && (target2 == 0))
+		{
+			Motor_Control_Reg_Write(Motor_Control_Reg_Read() & ~(1 << MOTOR_DISABLE_CR_POS));
+		}
+
+		Movement_set_M1_pulse(target1);
+		Movement_set_M2_pulse(target2);
+
+		Movement_set_M1_ctrltarget(target1);
+		Movement_set_M2_ctrltarget(target2);
 
 		FLAGS &= ~(1 << FLAG_ENCODERS_READY);
 	}
@@ -92,6 +99,7 @@ void Movement_sync_motors(uint16 speed)
 
 void Movement_move_mm(uint16 dist)
 {
+	Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 	MOVEMENT_PULSES_TO_MOVE = (float)dist / MOVEMENT_MM_PER_PULSE;
 	FLAGS &= ~(1 << FLAG_MOVE_INFINITELY);
 }
@@ -230,7 +238,7 @@ uint8 Movement_calculate_compare(uint8 percent)
 
 void Movement_set_direction_left(Direction direction)
 {
-	uint8 currentValue = Dir_Control_Reg_Read();
+	uint8 currentValue = Motor_Control_Reg_Read();
 	switch (direction)
 	{
 	case DIRECTION_FORWARD:
@@ -246,12 +254,12 @@ void Movement_set_direction_left(Direction direction)
 	default:
 		break;
 	}
-	Dir_Control_Reg_Write(currentValue);
+	Motor_Control_Reg_Write(currentValue);
 }
 
 void Movement_set_direction_right(Direction direction)
 {
-	uint8 currentValue = Dir_Control_Reg_Read();
+	uint8 currentValue = Motor_Control_Reg_Read();
 	switch (direction)
 	{
 	case DIRECTION_FORWARD:
@@ -267,7 +275,7 @@ void Movement_set_direction_right(Direction direction)
 	default:
 		break;
 	}
-	Dir_Control_Reg_Write(currentValue);
+	Motor_Control_Reg_Write(currentValue);
 }
 
 void Movement_set_direction(Direction direction)
