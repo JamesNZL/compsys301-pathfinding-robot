@@ -83,18 +83,22 @@ void Movement_skewer(Direction direction)
 
 void Movement_sync_motors(float speed)
 {
+	uint16 pulsesPerSec = (uint16)(speed * MOVEMENT_CMS_CONVERSION);
+
 	FLAGS &= ~(1 << FLAG_SKEW_CORRECTING);
-	Movement_set_M1_ctrlconst((uint16)(speed*MOVEMENT_CMS_CONVERSION));
-	Movement_set_M2_ctrlconst((uint16)(speed*MOVEMENT_CMS_CONVERSION));
+	Movement_set_M1_ctrlconst(pulsesPerSec);
+	Movement_set_M2_ctrlconst(pulsesPerSec);
+	Movement_set_M1_ctrltarget(pulsesPerSec);
+	Movement_set_M2_ctrltarget(pulsesPerSec);
 }
 
 void Movement_move_mm(uint16 dist)
 {
 	MOVEMENT_PULSES_TO_MOVE = (float)dist / MOVEMENT_MM_PER_PULSE;
-	Movement_set_M1_ctrltarget(MOVEMENT_RUN_SPEED);
-	Movement_set_M2_ctrltarget(MOVEMENT_RUN_SPEED);
-	Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED);
-	Movement_set_M2_ctrlconst(MOVEMENT_RUN_SPEED);
+	// Movement_set_M1_ctrltarget(MOVEMENT_RUN_SPEED);
+	// Movement_set_M2_ctrltarget(MOVEMENT_RUN_SPEED);
+	// Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED);
+	// Movement_set_M2_ctrlconst(MOVEMENT_RUN_SPEED);
 	FLAGS &= ~(1 << FLAG_MOVE_INFINITELY);
 }
 
@@ -143,7 +147,7 @@ float Movement_calculate_duty(uint16 target)
 
 void Movement_turn_left(uint16 angle)
 {
-	CYGlobalIntDisable;
+	// CYGlobalIntDisable;
 	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
@@ -159,7 +163,7 @@ void Movement_turn_left(uint16 angle)
 	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
 	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
 	QuadDec_M1_SetCounter(pulseMeas);
-	CYGlobalIntEnable;
+	// CYGlobalIntEnable;
 }
 
 void Movement_turn_right(uint16 angle)
