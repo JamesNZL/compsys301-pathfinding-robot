@@ -1,3 +1,4 @@
+#include "battery.h"
 #include "commands.h"
 #include "common.h"
 #include "handlers.h"
@@ -15,6 +16,9 @@ volatile uint8 FLAGS = 0x00;
 int main()
 {
 	CYGlobalIntEnable;
+
+	Battery_display_level();
+
 	Movement_init_motors();
 	Sensor_init_sensors();
 
