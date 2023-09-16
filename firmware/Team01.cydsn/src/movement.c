@@ -2,9 +2,6 @@
 #include "common.h"
 #include <project.h>
 
-volatile const float MOVEMENT_OFFSET = 170.9;
-volatile const float MOVEMENT_SLOPE = 8.6543;
-
 const uint8 MOVEMENT_BRAKE_SPEED = 150;
 const uint16 MOVEMENT_RUN_SPEED = 300;
 const uint16 MOVEMENT_MOTOR_TURN_SPEED = 227;
@@ -34,8 +31,8 @@ void Movement_check_dist()
 	{
 		if (MOVEMENT_PULSES_TO_MOVE <= 0)
 		{
-			Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
-			Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
+			// 	Movement_set_M1_pulse(MOVEMENT_MOTOR_OFF);
+			// 	Movement_set_M2_pulse(MOVEMENT_MOTOR_OFF);
 			Movement_set_M1_ctrlconst(MOVEMENT_MOTOR_OFF);
 			Movement_set_M2_ctrlconst(MOVEMENT_MOTOR_OFF);
 		}
@@ -53,7 +50,7 @@ void Movement_next_control_cycle()
 	{
 		if (MOVEMENT_PULSES_TO_MOVE > 0)
 		{
-			MOVEMENT_PULSES_TO_MOVE -= (MOVEMENT_APPARENT_PULSE_1 > 0) ? MOVEMENT_APPARENT_PULSE_1 : -MOVEMENT_APPARENT_PULSE_1;
+			MOVEMENT_PULSES_TO_MOVE -= MOVEMENT_APPARENT_PULSE_1;
 		}
 
 		int8 pulseError1 = (MOVEMENT_CPULSE_1 / 25) - MOVEMENT_APPARENT_PULSE_1;
@@ -91,17 +88,11 @@ void Movement_sync_motors(uint16 speed)
 	FLAGS &= ~(1 << FLAG_SKEW_CORRECTING);
 	Movement_set_M1_ctrlconst(speed);
 	Movement_set_M2_ctrlconst(speed);
-	Movement_set_M1_ctrltarget(speed);
-	Movement_set_M2_ctrltarget(speed);
 }
 
 void Movement_move_mm(uint16 dist)
 {
 	MOVEMENT_PULSES_TO_MOVE = (float)dist / MOVEMENT_MM_PER_PULSE;
-	// Movement_set_M1_ctrltarget(MOVEMENT_RUN_SPEED);
-	// Movement_set_M2_ctrltarget(MOVEMENT_RUN_SPEED);
-	// Movement_set_M1_ctrlconst(MOVEMENT_RUN_SPEED);
-	// Movement_set_M2_ctrlconst(MOVEMENT_RUN_SPEED);
 	FLAGS &= ~(1 << FLAG_MOVE_INFINITELY);
 }
 
@@ -137,7 +128,7 @@ void Movement_set_M2_ctrlconst(uint16 target)
 
 float Movement_calculate_duty(uint16 target)
 {
-	float dutyFraction = (((target + MOVEMENT_OFFSET) / MOVEMENT_SLOPE) / (float)100);
+	float dutyFraction = ((float)target / PWM_1_ReadPeriod());
 	if (dutyFraction < 1)
 	{
 		return dutyFraction;

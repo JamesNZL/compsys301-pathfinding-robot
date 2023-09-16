@@ -29,8 +29,6 @@ typedef enum Direction
 	DIRECTION_LEFT,
 } Direction;
 
-volatile const extern float MOVEMENT_OFFSET;
-volatile const extern float MOVEMENT_SLOPE;
 volatile int16 MOVEMENT_PULSES_TO_MOVE;
 volatile int16 MOVEMENT_APPARENT_PULSE_1;
 volatile int16 MOVEMENT_APPARENT_PULSE_2;
