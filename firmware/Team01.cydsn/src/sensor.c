@@ -18,7 +18,7 @@ CY_ISR(light_sensed)
 CY_ISR(check_light)
 {
 	// If we have exceeded the maximum time without a rising edge
-	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_WAITING_RISING))
+	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_AWAIT_RISING))
 	{
 		Sensor_handle_missing_rising_edge();
 		return;
@@ -149,7 +149,7 @@ void Sensor_write_low_all_sensors()
 
 void Sensor_prepare_for_sampling()
 {
-	FLAG_CLEAR(FLAGS, FLAG_SENSOR_WAITING_RISING);
+	FLAG_CLEAR(FLAGS, FLAG_SENSOR_AWAIT_RISING);
 	isr_lightsense_Disable();
 	Sensor_set_light_check_timer_period(SENSOR_SAMPLING_TIMER_PERIOD);
 	DB7_Write(0);
@@ -159,7 +159,7 @@ void Sensor_prepare_for_next_rising_edge()
 {
 	Sensor_debounce_and_update_sensor_statuses();
 	Sensor_sampledPeriods = 0;
-	FLAG_SET(FLAGS, FLAG_SENSOR_WAITING_RISING);
+	FLAG_SET(FLAGS, FLAG_SENSOR_AWAIT_RISING);
 	Sensor_set_light_check_timer_period(SENSOR_RISING_EDGE_MAX_DELAY_TIMER_PERIOD);
 	isr_lightsense_Enable();
 }

@@ -52,10 +52,10 @@ volatile extern uint8 FLAGS;
  * @param flags The flag byte(s).
  * @param bit The position of the flag bit.
  */
-#define FLAG_CLEAR(flags, bit)	   flags &= ~(1 << bit)
+#define FLAG_CLEAR(flags, bit)	 flags &= ~(1 << bit)
 
-#define FLAG_USB_INPUT			   0
-#define FLAG_SENSOR_WAITING_RISING 2
+#define FLAG_USB_INPUT			 0
+#define FLAG_SENSOR_AWAIT_RISING 2
 
 /*
  * Debugging
