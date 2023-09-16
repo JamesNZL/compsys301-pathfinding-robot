@@ -1,7 +1,7 @@
 #ifndef USB_H_
 #define USB_H_
 
-#define USB_ENABLED
+// #define USB_ENABLED
 
 #define USB_BUF_SIZE 64 // USBUART fixed buffer size
 #define CHAR_DEL	 0x7F

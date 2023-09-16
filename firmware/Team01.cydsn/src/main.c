@@ -31,6 +31,7 @@ int main()
 	for (;;)
 	{
 		Sensor_write_statuses_to_debug();
+#ifdef USB_ENABLED
 		/* Place your application code here. */
 		USB_get_input();
 
@@ -79,5 +80,6 @@ int main()
 				}
 			}
 		}
+#endif
 	}
 }
