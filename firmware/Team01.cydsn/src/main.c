@@ -19,16 +19,18 @@ int main()
 
 	Battery_display_level();
 
-	Movement_init_motors();
-	Sensor_init_sensors();
-
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
 #endif
+
 	while (Push_Button_Read() != TRUE)
 	{
 		;
 	}
+
+	Movement_init_motors();
+	Sensor_init_sensors();
+
 	Movement_move_mm(2000);
 	Movement_sync_motors(300);
 
