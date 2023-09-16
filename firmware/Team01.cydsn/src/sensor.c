@@ -36,24 +36,24 @@ CY_ISR(check_light)
 	}
 }
 
-bool Sensor_all_sensors_off()
+bool Sensor_is_all_sensors_off()
 {
 	return !(Sensor_turnLeft.status || Sensor_turnRight.status
 		|| Sensor_skewBackRight.status || Sensor_skewBackLeft.status || Sensor_skewCenter.status
 		|| Sensor_skewFrontLeft.status || Sensor_skewFrontRight.status);
 }
 
-bool Sensor_on_right_turn_intersection()
+bool Sensor_is_on_right_turn_intersection()
 {
 	return Sensor_turnLeft.status && !Sensor_turnRight.status;
 }
 
-bool Sensor_on_left_turn_intersection()
+bool Sensor_is_on_left_turn_intersection()
 {
 	return !Sensor_turnLeft.status && Sensor_turnRight.status;
 }
 
-bool Sensor_on_all_turn_intersection()
+bool Sensor_is_on_all_turn_intersection()
 {
 	return !Sensor_turnLeft.status && !Sensor_turnRight.status;
 }

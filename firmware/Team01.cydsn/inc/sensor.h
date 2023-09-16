@@ -259,22 +259,22 @@ void Sensor_sample_sensor_readings();
 /**
  * @return true if all sensors are off (on black)
  */
-bool Sensor_all_sensors_off();
+bool Sensor_is_all_sensors_off();
 
 /**
  * @return true if there is only a right turn available currently
  */
-bool Sensor_on_right_turn_intersection();
+bool Sensor_is_on_right_turn_intersection();
 
 /**
  * @return true if there is only a left turn available currently
  */
-bool Sensor_on_left_turn_intersection();
+bool Sensor_is_on_left_turn_intersection();
 
 /**
  * @return true if there is a left AND right turn currently available
  */
-bool Sensor_on_all_turn_intersection();
+bool Sensor_is_on_all_turn_intersection();
 
 /**
  * @return required action based on current LUT state
