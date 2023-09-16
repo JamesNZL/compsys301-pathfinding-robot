@@ -274,7 +274,6 @@ void Sensor_write_low_all_sensors()
 void Sensor_prepare_for_sampling()
 {
 	FLAG_CLEAR(FLAGS, FLAG_SENSOR_WAITING_RISING);
-	FLAG_CLEAR(FLAGS, FLAG_SENSOR_ALL_LOW);
 	isr_lightsense_Disable();
 	Sensor_set_light_check_timer_period(SENSOR_SAMPLING_TIMER_PERIOD);
 	DB7_Write(0);
@@ -291,11 +290,7 @@ void Sensor_prepare_for_next_rising_edge()
 
 void Sensor_handle_missing_rising_edge()
 {
-	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_ALL_LOW))
-	{
-		return;
-	}
-	FLAG_SET(FLAGS, FLAG_SENSOR_ALL_LOW);
+	Timer_Light_Check_Stop();
 	Sensor_write_low_all_sensors();
 	DB7_Write(1);
 }
