@@ -21,6 +21,9 @@ int main()
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
+
+	sprintf(USB_buffer, "Battery Voltage: %d mV\n", batteryVoltage);
+	USB_put_string(USB_buffer);
 #endif
 
 	while (Push_Button_Read() != TRUE)
