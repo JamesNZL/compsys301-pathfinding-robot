@@ -12,9 +12,13 @@
 #define SENSOR_SAMPLING_TIMER_PERIOD			  10 // 100 us - Delay between each sensor sample on a rising edge
 #define SENSOR_RISING_EDGE_MAX_DELAY_TIMER_PERIOD 1200 // 12 ms - The maximum time allowed after a rising edge before all sensors are assumed to be off
 
-#define SENSOR_DEFAULT_INITIALISATION                                                             \
-	{                                                                                             \
-		.lowCount = 0, .highCount = 0, .periodCount = 0, .previousStatus = FALSE, .status = FALSE \
+#define SENSOR_DEFAULT_INITIALISATION \
+	{                                 \
+		.lowCount = 0,                \
+		.highCount = 0,               \
+		.periodCount = 0,             \
+		.previousStatus = FALSE,      \
+		.status = FALSE               \
 	}
 
 // Samples the sensor information and stores it for later processing
