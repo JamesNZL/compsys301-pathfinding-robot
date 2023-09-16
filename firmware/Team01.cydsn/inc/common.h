@@ -79,4 +79,24 @@ volatile extern uint8 FLAGS;
 #define DB2_OFF		   DB2_Write(0)
 #define DB2_TOGGLE_LED DB2_Write(~DB2_Read())
 
+#define DB3_ON		   DB3_Write(1)
+#define DB3_OFF		   DB3_Write(0)
+#define DB3_TOGGLE_LED DB3_Write(~DB3_Read())
+
+#define DB4_ON		   DB4_Write(1)
+#define DB4_OFF		   DB4_Write(0)
+#define DB4_TOGGLE_LED DB4_Write(~DB4_Read())
+
+#define DB5_ON		   DB5_Write(1)
+#define DB5_OFF		   DB5_Write(0)
+#define DB5_TOGGLE_LED DB5_Write(~DB5_Read())
+
+#define DB6_ON		   DB6_Write(1)
+#define DB6_OFF		   DB6_Write(0)
+#define DB6_TOGGLE_LED DB6_Write(~DB6_Read())
+
+#define DB7_ON		   DB7_Write(1)
+#define DB7_OFF		   DB7_Write(0)
+#define DB7_TOGGLE_LED DB7_Write(~DB7_Read())
+
 #endif
