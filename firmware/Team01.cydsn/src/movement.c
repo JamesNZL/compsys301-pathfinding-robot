@@ -21,9 +21,9 @@ CY_ISR(PROCESS_PULSE)
 	Timer_Dec_ReadStatusRegister();
 }
 
-uint16 Movement_cm_to_pulse(float cms)
+uint16 Movement_cm_to_pulse(float cm)
 {
-	return (uint16)(cms * MOVEMENT_CMS_CONVERSION);
+	return (uint16)(cm * MOVEMENT_CM_CONVERSION);
 }
 
 void Movement_check_dist()
