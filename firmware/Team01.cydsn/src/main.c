@@ -17,6 +17,8 @@ int main()
 	CYGlobalIntEnable;
 	PWM_1_Start();
 	PWM_2_Start();
+	QuadDec_M1_Start();
+	QuadDec_M2_Start();
 	Sensor_init_sensors();
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
@@ -25,7 +27,7 @@ int main()
 	{
 		;
 	}
-
+	Movement_turn_right(90);
 	DB7_Write(1);
 
 	for (;;)
