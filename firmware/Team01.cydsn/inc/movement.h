@@ -39,14 +39,14 @@ volatile int16 MOVEMENT_PULSE_VARYING_2;
 volatile int16 MOVEMENT_PULSE_TARGET_1;
 volatile int16 MOVEMENT_PULSE_TARGET_2;
 
-const extern uint8 MOVEMENT_BRAKE_SPEED;
-extern uint16 MOVEMENT_RUN_SPEED;
-const extern uint16 MOVEMENT_MOTOR_TURN_SPEED;
+const extern uint8 MOVEMENT_SPEED_BRAKE;
+extern uint16 MOVEMENT_SPEED_RUN;
+const extern uint16 MOVEMENT_SPEED_TURN;
 
-const extern uint8 MOVEMENT_CORRECTION_INCREASE;
+const extern uint8 MOVEMENT_CORRECTION_SKEW;
+const extern uint8 MOVEMENT_CORRECTION_TURNS;
 
-const extern uint8 MOVEMENT_PULSE_CORRECTION;
-const extern uint8 Kp;
+const extern uint8 MOVEMENT_CONTROLLER_GAIN;
 
 /**
  * @brief Converts cm per second to pulses per second

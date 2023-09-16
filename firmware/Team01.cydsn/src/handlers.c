@@ -25,5 +25,5 @@ void Handlers_change_direction(char *token)
 
 void Handlers_change_speed(char *token)
 {
-	MOVEMENT_RUN_SPEED = atoi(token);
+	MOVEMENT_SPEED_RUN = atoi(token);
 }

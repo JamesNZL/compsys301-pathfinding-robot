@@ -2,12 +2,14 @@
 #include "common.h"
 #include <project.h>
 
-const uint8 MOVEMENT_BRAKE_SPEED = 150;
-uint16 MOVEMENT_RUN_SPEED = 300;
-const uint16 MOVEMENT_MOTOR_TURN_SPEED = 300;
-const uint8 MOVEMENT_CORRECTION_INCREASE = 10;
-const uint8 MOVEMENT_PULSE_CORRECTION = 9;
-const uint8 Kp = 1;
+const uint8 MOVEMENT_SPEED_BRAKE = 150;
+uint16 MOVEMENT_SPEED_RUN = 300;
+const uint16 MOVEMENT_SPEED_TURN = 300;
+
+const uint8 MOVEMENT_CORRECTION_SKEW = 10;
+const uint8 MOVEMENT_CORRECTION_TURNS = 9;
+
+const uint8 MOVEMENT_CONTROLLER_GAIN = 1;
 
 CY_ISR(PROCESS_PULSE)
 {
@@ -38,8 +40,8 @@ void Movement_check_dist()
 		}
 		else if (MOVEMENT_PULSES_TO_MOVE < 150)
 		{
-			Movement_set_M1_pulse_target(MOVEMENT_BRAKE_SPEED);
-			Movement_set_M2_pulse_target(MOVEMENT_BRAKE_SPEED);
+			Movement_set_M1_pulse_target(MOVEMENT_SPEED_BRAKE);
+			Movement_set_M2_pulse_target(MOVEMENT_SPEED_BRAKE);
 		}
 	}
 }
@@ -80,10 +82,10 @@ void Movement_skewer(Direction direction)
 	switch (direction)
 	{
 	case DIRECTION_LEFT:
-		Movement_set_M1_pulse_target(MOVEMENT_RUN_SPEED + MOVEMENT_CORRECTION_INCREASE);
+		Movement_set_M1_pulse_target(MOVEMENT_SPEED_RUN + MOVEMENT_CORRECTION_SKEW);
 		break;
 	case DIRECTION_RIGHT:
-		Movement_set_M2_pulse_target(MOVEMENT_RUN_SPEED + MOVEMENT_CORRECTION_INCREASE);
+		Movement_set_M2_pulse_target(MOVEMENT_SPEED_RUN + MOVEMENT_CORRECTION_SKEW);
 		break;
 	default:
 		break;
@@ -156,8 +158,8 @@ void Movement_turn_left(uint16 angle)
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
 	Movement_set_direction_left(DIRECTION_REVERSE);
-	Movement_write_M1_pulse(MOVEMENT_MOTOR_TURN_SPEED);
-	Movement_write_M2_pulse(MOVEMENT_MOTOR_TURN_SPEED);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
 
 	// Poll until pulse target is met
 	QuadDec_M1_SetCounter(0);
@@ -181,8 +183,8 @@ void Movement_turn_right(uint16 angle)
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
 	Movement_set_direction_right(DIRECTION_REVERSE);
-	Movement_write_M1_pulse(MOVEMENT_MOTOR_TURN_SPEED);
-	Movement_write_M2_pulse(MOVEMENT_MOTOR_TURN_SPEED);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
 	QuadDec_M1_SetCounter(0);
 	while (QuadDec_M1_GetCounter() < pulseTarget)
 	{
@@ -200,15 +202,15 @@ uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 	switch (angle)
 	{
 	case 90:
-		return MOVEMENT_PULSE_90_DEGREE - MOVEMENT_PULSE_CORRECTION;
+		return MOVEMENT_PULSE_90_DEGREE - MOVEMENT_CORRECTION_TURNS;
 	case 180:
-		return MOVEMENT_PULSE_180_DEGREE - MOVEMENT_PULSE_CORRECTION;
+		return MOVEMENT_PULSE_180_DEGREE - MOVEMENT_CORRECTION_TURNS;
 	default:
 		// Convert angle to fraction of circle by dividing 360
 		// Multiply fraction by total pivot circumference
 		// Divide by circumference of wheel to determine revs needed
 		// Convert revs to pulses through multiply 228
-		return ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_PULSE_CORRECTION;
+		return ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_CORRECTION_TURNS;
 	}
 }
 
