@@ -31,7 +31,7 @@ int main()
 	for (;;)
 	{
 		Movement_next_control_cycle();
-		Movement_check_dist();
+		Movement_check_distance();
 
 		Sensor_write_statuses_to_debug();
 		SensorActions currentAction = Sensor_determine_action();
