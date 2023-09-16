@@ -22,6 +22,12 @@
  */
 volatile extern uint8 FLAGS;
 
+#define FLAG_USB_INPUT			 0
+#define FLAG_ENCODERS_READY		 1
+#define FLAG_SKEW_CORRECTING	 2
+#define FLAG_MOVE_INFINITELY	 3
+#define FLAG_SENSOR_AWAIT_RISING 4
+
 /**
  * @brief Check whether a flag bit is set.
  *
@@ -38,11 +44,6 @@ volatile extern uint8 FLAGS;
  */
 #define FLAG_IS_CLEARED(flags, bit) ~flags & (1 << bit)
 
-#define FLAG_USB_INPUT				0
-#define FLAG_ENCODERS_READY			1
-#define FLAG_SKEW_CORRECTING		2
-#define FLAG_MOVE_INFINITELY		3
-#define FLAG_SENSOR_AWAIT_RISING	4
 /**
  * @brief Set a flag bit.
  *
