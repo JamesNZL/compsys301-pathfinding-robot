@@ -33,19 +33,21 @@
 	}
 
 // Debounces (ensures the signal has held its value for at least X periods) and stores the required status
-#define SENSOR_DEBOUNCE_AND_UPDATE_STATUS(sensorStruct)                                              \
-	sensorStruct.periodCount++;                                                                      \
-	bool sensorStruct##newStatus = (sensorStruct.highCount >= sensorStruct.lowCount) ? TRUE : FALSE; \
-	if (sensorStruct.previousStatus != sensorStruct##newStatus)                                      \
-	{                                                                                                \
-		sensorStruct.periodCount = 0;                                                                \
-	}                                                                                                \
-	if (sensorStruct.periodCount >= SENSOR_MINIMUM_DEBOUNCE_PERIODS)                                 \
-	{                                                                                                \
-		sensorStruct.status = sensorStruct##newStatus;                                               \
-	}                                                                                                \
-	sensorStruct.highCount = 0;                                                                      \
-	sensorStruct.lowCount = 0;                                                                       \
+#define SENSOR_DEBOUNCE_AND_UPDATE_STATUS(sensorStruct)                              \
+	sensorStruct.periodCount++;                                                      \
+	bool sensorStruct##newStatus = (sensorStruct.highCount >= sensorStruct.lowCount) \
+		? TRUE                                                                       \
+		: FALSE;                                                                     \
+	if (sensorStruct.previousStatus != sensorStruct##newStatus)                      \
+	{                                                                                \
+		sensorStruct.periodCount = 0;                                                \
+	}                                                                                \
+	if (sensorStruct.periodCount >= SENSOR_MINIMUM_DEBOUNCE_PERIODS)                 \
+	{                                                                                \
+		sensorStruct.status = sensorStruct##newStatus;                               \
+	}                                                                                \
+	sensorStruct.highCount = 0;                                                      \
+	sensorStruct.lowCount = 0;                                                       \
 	sensorStruct.previousStatus = sensorStruct##newStatus;
 
 #define SENSOR_WRITE_LOW(sensorStruct) \
