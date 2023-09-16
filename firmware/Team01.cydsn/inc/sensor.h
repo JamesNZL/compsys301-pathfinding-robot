@@ -65,15 +65,15 @@ typedef struct Sensor
 	uint8 periodCount;
 } Sensor;
 
-typedef enum LUTActions
+typedef enum SensorActions
 {
-	LUTACTIONS_CONTINUE_FORWARD,
-	LUTACTIONS_CORRECT_LEFT,
-	LUTACTIONS_CORRECT_RIGHT,
-	LUTACTIONS_CONTINUE_PREVIOUS,
-	LUTACTIONS_DETERMINE_SKEW_OR_TURN_ABOUT,
-	LUTACTIONS_FIND_VALID_STATE
-} LUTActions;
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CORRECT_LEFT,
+	SENSOR_ACTION_CORRECT_RIGHT,
+	SENSOR_ACTION_CONTINUE_PREVIOUS,
+	SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT,
+	SENSOR_ACTION_FIND_VALID_STATE
+} SensorActions;
 
 volatile extern Sensor Sensor_turnLeft;
 volatile extern Sensor Sensor_turnRight;
@@ -148,7 +148,7 @@ bool Sensor_on_all_turn_intersection();
 /**
  * @return required action based on current LUT state
  */
-LUTActions Sensor_determine_action();
+SensorActions Sensor_determine_action();
 
 /**
  * @brief sets the status of all sensor structs to FALSE (low)
