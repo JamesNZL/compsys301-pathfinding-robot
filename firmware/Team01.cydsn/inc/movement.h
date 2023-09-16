@@ -40,7 +40,7 @@ volatile int16 MOVEMENT_PULSE_TARGET_1;
 volatile int16 MOVEMENT_PULSE_TARGET_2;
 
 const extern uint8 MOVEMENT_BRAKE_SPEED;
-const extern uint16 MOVEMENT_RUN_SPEED;
+extern uint16 MOVEMENT_RUN_SPEED;
 const extern uint16 MOVEMENT_MOTOR_TURN_SPEED;
 
 const extern uint8 MOVEMENT_CORRECTION_INCREASE;

@@ -3,8 +3,8 @@
 #include <project.h>
 
 const uint8 MOVEMENT_BRAKE_SPEED = 150;
-const uint16 MOVEMENT_RUN_SPEED = 300;
-const uint16 MOVEMENT_MOTOR_TURN_SPEED = 227;
+uint16 MOVEMENT_RUN_SPEED = 300;
+const uint16 MOVEMENT_MOTOR_TURN_SPEED = 300;
 const uint8 MOVEMENT_CORRECTION_INCREASE = 10;
 const uint8 MOVEMENT_PULSE_CORRECTION = 9;
 const uint8 Kp = 1;

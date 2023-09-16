@@ -25,7 +25,5 @@ void Handlers_change_direction(char *token)
 
 void Handlers_change_speed(char *token)
 {
-	uint8_t percent = atoi(token);
-	USB_put_string(token);
-	Movement_set_speed(percent);
+	MOVEMENT_RUN_SPEED = atoi(token);
 }
