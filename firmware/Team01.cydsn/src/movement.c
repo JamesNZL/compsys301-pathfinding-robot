@@ -11,8 +11,8 @@ const uint8 Kp = 1;
 
 CY_ISR(PROCESS_PULSE)
 {
-	MOVEMENT_APPARENT_PULSE_1 = QuadDec_M1_GetCounter();
-	MOVEMENT_APPARENT_PULSE_2 = QuadDec_M2_GetCounter();
+	MOVEMENT_PULSE_APPARENT_1 = QuadDec_M1_GetCounter();
+	MOVEMENT_PULSE_APPARENT_2 = QuadDec_M2_GetCounter();
 
 	FLAGS |= (1 << FLAG_ENCODERS_READY);
 
@@ -51,13 +51,13 @@ void Movement_next_control_cycle()
 		// Subtract read pulses from distance to travel
 		if (MOVEMENT_PULSES_TO_MOVE > 0)
 		{
-			MOVEMENT_PULSES_TO_MOVE -= MOVEMENT_APPARENT_PULSE_1;
+			MOVEMENT_PULSES_TO_MOVE -= MOVEMENT_PULSE_APPARENT_1;
 		}
 
 		// Samples taken every 25th of a second. Divide target by 25 to get expected 25th of a second pulses
-		int8 pulseError1 = (MOVEMENT_PULSE_TARGET_1 / 25) - MOVEMENT_APPARENT_PULSE_1;
-		int8 pulseError2 = (MOVEMENT_PULSE_TARGET_2 / 25) - MOVEMENT_APPARENT_PULSE_2;
-		// int8 pulseError2 = MOVEMENT_APPARENT_PULSE_1 - MOVEMENT_APPARENT_PULSE_2; // For shimmy shimmy
+		int8 pulseError1 = (MOVEMENT_PULSE_TARGET_1 / 25) - MOVEMENT_PULSE_APPARENT_1;
+		int8 pulseError2 = (MOVEMENT_PULSE_TARGET_2 / 25) - MOVEMENT_PULSE_APPARENT_2;
+		// int8 pulseError2 = MOVEMENT_PULSE_APPARENT_1 - MOVEMENT_PULSE_APPARENT_2; // For shimmy shimmy
 
 		uint16 target1 = MOVEMENT_PULSE_VARYING_1 + pulseError1;
 		uint16 target2 = MOVEMENT_PULSE_VARYING_2 + pulseError2;

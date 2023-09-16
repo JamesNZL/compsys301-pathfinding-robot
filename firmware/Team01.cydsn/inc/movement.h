@@ -31,8 +31,8 @@ typedef enum Direction
 } Direction;
 
 volatile int16 MOVEMENT_PULSES_TO_MOVE;
-volatile int16 MOVEMENT_APPARENT_PULSE_1;
-volatile int16 MOVEMENT_APPARENT_PULSE_2;
+volatile int16 MOVEMENT_PULSE_APPARENT_1;
+volatile int16 MOVEMENT_PULSE_APPARENT_2;
 
 volatile int16 MOVEMENT_PULSE_VARYING_1;
 volatile int16 MOVEMENT_PULSE_VARYING_2;
