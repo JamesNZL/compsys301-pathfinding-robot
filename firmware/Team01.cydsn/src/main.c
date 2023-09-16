@@ -15,11 +15,9 @@ volatile uint8 FLAGS = 0x00;
 int main()
 {
 	CYGlobalIntEnable;
-	PWM_1_Start();
-	PWM_2_Start();
-	QuadDec_M1_Start();
-	QuadDec_M2_Start();
+	Movement_init_motors();
 	Sensor_init_sensors();
+
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
 #endif
@@ -27,9 +25,15 @@ int main()
 	{
 		;
 	}
+	Movement_move_mm(2000);
+	Movement_sync_motors(300);
 
 	for (;;)
 	{
+		Movement_next_control_cycle();
+		Movement_check_dist();
+
+		Sensor_write_statuses_to_debug();
 		SensorActions currentAction = Sensor_determine_action();
 		switch (currentAction)
 		{
@@ -58,17 +62,6 @@ int main()
 			break;
 		}
 		}
-		if (Sensor_is_on_right_turn_intersection())
-		{
-			Movement_turn_right(90);
-			CyDelay(3000);
-		}
-		else if (Sensor_is_on_left_turn_intersection())
-		{
-			Movement_turn_left(90);
-			CyDelay(3000);
-		}
-		Sensor_write_statuses_to_debug();
 #ifdef USB_ENABLED
 		/* Place your application code here. */
 		USB_get_input();
