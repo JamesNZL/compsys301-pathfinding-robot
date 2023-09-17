@@ -52,6 +52,7 @@
 #define MOVEMENT_TURNS_CORRECTION		 -3 // more negative -> more turn
 #define MOVEMENT_TURNS_LEFT_CORRECTION	 25 // more positive -> less turn
 #define MOVEMENT_TURNS_RIGHT_CORRECTION	 25 // more positive -> less turn
+#define MOVEMENT_TURNS_STATIC_PERIOD	 100
 
 #define MOVEMENT_TURNS_REFRACTORY_PULSES 60
 
