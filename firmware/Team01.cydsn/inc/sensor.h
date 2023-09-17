@@ -184,12 +184,12 @@ volatile extern Sensor Sensor_skewCenter;
 /**
  * @brief Init all sensor dependencies - DAC, Bias levels, interrupts
  */
-void Sensor_init_sensors();
+void Sensor_init_sensors(void);
 
 /**
  * @return required action based on current LUT state
  */
-SensorActions Sensor_determine_action();
+SensorActions Sensor_determine_action(void);
 
 /**
  * @brief Sets the bias level of DAC Lower and Upper
@@ -199,7 +199,7 @@ void Sensor_set_bias_level(float voltage);
 /**
  * @brief Writes to DB LEDs the status for each sensor
  */
-void Sensor_write_statuses_to_debug();
+void Sensor_write_statuses_to_debug(void);
 
 /*
  * Conditionals
@@ -208,21 +208,21 @@ void Sensor_write_statuses_to_debug();
 /**
  * @return true if all sensors are off (on black)
  */
-bool Sensor_is_all_sensors_off();
+bool Sensor_is_all_sensors_off(void);
 
 /**
  * @return true if there is only a right turn available currently
  */
-bool Sensor_is_on_right_turn_intersection();
+bool Sensor_is_on_right_turn_intersection(void);
 
 /**
  * @return true if there is only a left turn available currently
  */
-bool Sensor_is_on_left_turn_intersection();
+bool Sensor_is_on_left_turn_intersection(void);
 
 /**
  * @return true if there is a left AND right turn currently available
  */
-bool Sensor_is_on_all_turn_intersection();
+bool Sensor_is_on_all_turn_intersection(void);
 
 #endif
