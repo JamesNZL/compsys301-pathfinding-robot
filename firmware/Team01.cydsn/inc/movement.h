@@ -24,6 +24,9 @@
 
 #define MOVEMENT_MOTOR_OFF					 0
 
+// #define MOVEMENT_DISPLAY_SKEW_ON_DEBUG
+#define MOVEMENT_DISPLAY_TURNS_ON_DEBUG
+
 /**
  * @brief The possible movement directions for the robot.
  */
