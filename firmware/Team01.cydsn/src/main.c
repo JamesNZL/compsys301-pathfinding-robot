@@ -41,6 +41,9 @@ int main()
 
 	for (;;)
 	{
+		/*
+		 * Movement Control
+		 */
 		Movement_next_control_cycle();
 		Movement_check_distance();
 		Sensor_write_statuses_to_debug();
@@ -87,6 +90,7 @@ int main()
 		{
 			continue;
 		}
+
 		// SensorActions currentAction = Sensor_determine_action();
 		switch (currentAction)
 		{
@@ -117,8 +121,11 @@ int main()
 		}
 		}
 		previousAction = currentAction;
+
 #ifdef USB_ENABLED
-		/* Place your application code here. */
+		/*
+		 * Command Parsing
+		 */
 		USB_get_input();
 
 		if (FLAG_IS_SET(FLAGS, FLAG_USB_INPUT))
