@@ -40,9 +40,9 @@
 
 /* Skew */
 /** @brief Percentage of the current speed by which to correct skew. */
-#define MOVEMENT_SKEW_CORRECTION_FACTOR 13 // 13% of MOVEMENT_currentSpeed
+#define MOVEMENT_SKEW_CORRECTION_FACTOR 13
 /** @brief Percentage of the current speed by which to boost skew correction. */
-#define MOVEMENT_SKEW_BOOST_FACTOR 19 // 19% of MOVEMENT_currentSpeed
+#define MOVEMENT_SKEW_BOOST_FACTOR 19
 
 /* Turns */
 #define MOVEMENT_TURNS_CORRECTION		 -9
