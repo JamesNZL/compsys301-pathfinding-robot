@@ -70,9 +70,9 @@ void Movement_next_control_cycle();
 /**
  * @brief Corrects the skew of the robot
  *
- * @param direction the direction the robot is skewing in
+ * @param direction the direction to turn faster in to correct a skew
  */
-void Movement_skewer(Direction direction);
+void Movement_skew_correct(Direction direction);
 
 /**
  * @brief Resets both motor speeds in cm/s - to be called after skew corrected alignment is met
