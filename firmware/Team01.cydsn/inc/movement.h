@@ -3,26 +3,53 @@
 
 #include <cytypes.h>
 
-#define MOTOR_LEFT_CR_POS					 0
-#define MOTOR_RIGHT_CR_POS					 1
-#define MOTOR_DISABLE_CR_POS				 2
-
-#define MOVEMENT_PIVOT_CIRCUMFERENCE		 354.277f
-#define MOVEMENT_WHEEL_CIRCUMFERENCE		 203.57f
-#define MOVEMENT_PULSE_REVOLUTION			 228
-#define MOVEMENT_PULSE_90_DEGREE			 99
-#define MOVEMENT_PULSE_180_DEGREE			 198
-
-#define MOVEMENT_LEFT_TURN_PULSE_CORRECTION	 30
-#define MOVEMENT_RIGHT_TURN_PULSE_CORRECTION 10
-
-#define MOVEMENT_PULSES_TO_DELAY_AFTER_TURN	 60
-
-#define MOVEMENT_MM_PER_PULSE				 0.8928f
-#define MOVEMENT_CM_CONVERSION				 11.20072f
-
+/*
+ * Debugging
+ */
 #define MOVEMENT_DISPLAY_SKEW_ON_DEBUG
 // #define MOVEMENT_DISPLAY_TURNS_ON_DEBUG
+
+/*
+ * Motor Control Register
+ */
+#define MOTOR_LEFT_CR_POS	 0
+#define MOTOR_RIGHT_CR_POS	 1
+#define MOTOR_DISABLE_CR_POS 2
+
+/*
+ * Robot Physical Constants
+ */
+#define MOVEMENT_PIVOT_CIRCUMFERENCE 354.277f
+#define MOVEMENT_WHEEL_CIRCUMFERENCE 203.57f
+#define MOVEMENT_PULSE_REVOLUTION	 228
+#define MOVEMENT_PULSE_90_DEGREE	 99
+#define MOVEMENT_PULSE_180_DEGREE	 198
+
+#define MOVEMENT_MM_PER_PULSE		 0.8928f
+#define MOVEMENT_CM_CONVERSION		 11.20072f
+
+/*
+ * Calibrations
+ */
+
+/* Speeds */
+#define MOVEMENT_SPEED_OFF	 0
+#define MOVEMENT_SPEED_BRAKE 70
+#define MOVEMENT_SPEED_RUN	 160
+#define MOVEMENT_SPEED_TURN	 150
+
+/* Skew */
+/** @brief Percentage of the current speed by which to correct skew. */
+#define MOVEMENT_SKEW_CORRECTION_FACTOR 13 // 13% of MOVEMENT_currentSpeed
+/** @brief Percentage of the current speed by which to boost skew correction. */
+#define MOVEMENT_SKEW_BOOST_FACTOR 19 // 19% of MOVEMENT_currentSpeed
+
+/* Turns */
+#define MOVEMENT_TURNS_CORRECTION		 -9
+#define MOVEMENT_TURNS_LEFT_CORRECTION	 30
+#define MOVEMENT_TURNS_RIGHT_CORRECTION	 10
+
+#define MOVEMENT_TURNS_REFRACTORY_PULSES 60
 
 /**
  * @brief The possible movement directions for the robot.
@@ -34,29 +61,6 @@ typedef enum Direction
 	DIRECTION_RIGHT,
 	DIRECTION_LEFT,
 } Direction;
-
-volatile int16 MOVEMENT_PULSES_TO_MOVE;
-volatile int16 MOVEMENT_PULSE_APPARENT_1;
-volatile int16 MOVEMENT_PULSE_APPARENT_2;
-
-volatile int16 MOVEMENT_PULSE_VARYING_1;
-volatile int16 MOVEMENT_PULSE_VARYING_2;
-volatile int16 MOVEMENT_PULSE_TARGET_1;
-volatile int16 MOVEMENT_PULSE_TARGET_2;
-
-const extern uint16 MOVEMENT_SPEED_OFF;
-const extern uint8 MOVEMENT_SPEED_BRAKE;
-extern uint16 MOVEMENT_SPEED_RUN;
-const extern uint16 MOVEMENT_SPEED_TURN;
-
-/** @brief Percentage of the current speed by which to correct skew. */
-const extern uint8 MOVEMENT_CORRECTION_SKEW_FACTOR;
-/** @brief Percentage of the current speed by which to boost skew correction. */
-const extern int8 MOVEMENT_SKEW_BOOST_FACTOR;
-
-const extern int8 MOVEMENT_CORRECTION_TURNS;
-
-const extern uint8 MOVEMENT_CONTROLLER_GAIN;
 
 /**
  * @brief Converts cm per second to pulses per second
