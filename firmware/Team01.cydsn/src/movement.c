@@ -7,6 +7,7 @@ uint16 MOVEMENT_SPEED_RUN = 170;
 const uint16 MOVEMENT_SPEED_TURN = 120;
 
 const uint8 MOVEMENT_CORRECTION_SKEW = 20;
+const int8 MOVEMENT_SKEW_BOOST = 25;
 const int8 MOVEMENT_CORRECTION_TURNS = -9;
 
 const uint8 MOVEMENT_CONTROLLER_GAIN = 1;
@@ -96,7 +97,7 @@ void Movement_next_control_cycle()
 	FLAG_CLEAR(FLAGS, FLAG_ENCODERS_READY);
 }
 
-void Movement_skew_correct(Direction direction)
+void Movement_skew_correct(Direction direction, int8 boost)
 {
 	// Increase the speed of one motor to correct for a skew
 	FLAG_SET(FLAGS, FLAG_SKEW_CORRECTING);
@@ -105,12 +106,12 @@ void Movement_skew_correct(Direction direction)
 	{
 	case DIRECTION_LEFT:
 	{
-		Movement_set_M1_pulse_target(MOVEMENT_SPEED_RUN + MOVEMENT_CORRECTION_SKEW);
+		Movement_set_M1_pulse_target(MOVEMENT_SPEED_RUN + MOVEMENT_CORRECTION_SKEW + boost);
 		break;
 	}
 	case DIRECTION_RIGHT:
 	{
-		Movement_set_M2_pulse_target(MOVEMENT_SPEED_RUN + MOVEMENT_CORRECTION_SKEW);
+		Movement_set_M2_pulse_target(MOVEMENT_SPEED_RUN + MOVEMENT_CORRECTION_SKEW + boost);
 		break;
 	}
 	default:
