@@ -46,7 +46,7 @@ extern uint16 MOVEMENT_SPEED_RUN;
 const extern uint16 MOVEMENT_SPEED_TURN;
 
 const extern uint8 MOVEMENT_CORRECTION_SKEW;
-const extern uint8 MOVEMENT_CORRECTION_TURNS;
+const extern int8 MOVEMENT_CORRECTION_TURNS;
 
 const extern uint8 MOVEMENT_CONTROLLER_GAIN;
 

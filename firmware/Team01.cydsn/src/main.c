@@ -12,6 +12,7 @@
 
 volatile uint8 FLAGS = 0x00;
 volatile SensorActions previousAction = SENSOR_ACTION_CONTINUE_FORWARD;
+volatile SensorActions currentAction;
 
 int main()
 {
@@ -42,6 +43,8 @@ int main()
 				Movement_turn_right(90);
 				CyDelay(100);
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
+				currentAction = SENSOR_ACTION_CORRECT_RIGHT;
+				Movement_skewer(DIRECTION_LEFT);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 				continue;
@@ -52,21 +55,18 @@ int main()
 				Movement_turn_left(90);
 				CyDelay(100);
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
+				currentAction = SENSOR_ACTION_CORRECT_LEFT;
+				Movement_skewer(DIRECTION_RIGHT);
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 				continue;
 			}
 		}
-		else if (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN))
-		{
-			continue;
-		}
-		SensorActions currentAction;
-		if (Sensor_skewBackLeft.status && Sensor_skewFrontRight.status)
+		if ((Sensor_skewBackLeft.status && Sensor_skewFrontRight.status) || (Sensor_skewFrontRight.status && Sensor_skewBackRight.status))
 		{
 			currentAction = SENSOR_ACTION_CORRECT_LEFT;
 		}
-		else if (Sensor_skewBackRight.status && Sensor_skewFrontLeft.status)
+		else if ((Sensor_skewBackRight.status && Sensor_skewFrontLeft.status) || (Sensor_skewFrontLeft.status && Sensor_skewBackLeft.status))
 		{
 			currentAction = SENSOR_ACTION_CORRECT_RIGHT;
 		}
@@ -92,6 +92,7 @@ int main()
 		}
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
+
 			Movement_skewer(DIRECTION_RIGHT);
 			break;
 		}
