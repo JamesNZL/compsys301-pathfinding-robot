@@ -165,6 +165,12 @@ int main()
 
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
+			if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
+			{
+				// Slow down the robot if we are snaking
+				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+			}
+
 			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 #ifdef MOVEMENT_DEBUG_SKEW
@@ -177,6 +183,12 @@ int main()
 
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
+			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
+			{
+				// Slow down the robot if we are snaking
+				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+			}
+
 			Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 #ifdef MOVEMENT_DEBUG_SKEW
