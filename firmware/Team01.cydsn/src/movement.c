@@ -67,7 +67,7 @@ uint16 Movement_cm_to_pulse(float cm)
 void Movement_move_mm(uint16 distance)
 {
 	// Enable the motors, and set the target distance, turn off move infinitely
-	Motor_Control_Reg_Write(Motor_Control_Reg_Read() & ~(1 << MOTOR_DISABLE_CR_POS));
+	MOVEMENT_ENABLE;
 	Movement_pulsesToMove = (float)distance / MOVEMENT_MM_PER_PULSE;
 
 	FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
@@ -84,7 +84,7 @@ void Movement_check_distance(void)
 	{
 		Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-		Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+		MOVEMENT_DISABLE;
 	}
 	else if (Movement_pulsesToMove < 150)
 	{

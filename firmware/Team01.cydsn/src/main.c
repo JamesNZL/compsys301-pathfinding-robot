@@ -148,6 +148,7 @@ int main()
 
 		case SENSOR_ACTION_ANTICIPATE_TURN:
 		{
+
 			Movement_sync_motors(MOVEMENT_SPEED_BRAKE);
 
 #ifdef MOVEMENT_DEBUG_SKEW
@@ -212,7 +213,7 @@ int main()
 #endif
 
 #ifdef SENSOR_ACTIONS_INVALID_KILL
-			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+			MOVEMENT_DISABLE;
 #endif
 
 			break;
@@ -227,6 +228,12 @@ int main()
 				TODO: —ignore rear skew detection unless front detectors do not detect anything
 				TODO: —this is to prevent the robot from turning around when it should continue forward
 			 */
+
+			Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+
+			// TODO: some counter of attempts so far
+			Movement_turn_left(10);
 #else
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
@@ -245,7 +252,7 @@ int main()
 #endif
 
 #ifdef SENSOR_ACTIONS_INVALID_KILL
-			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+			MOVEMENT_DISABLE;
 #endif
 
 			break;
@@ -255,7 +262,7 @@ int main()
 		{
 			DEBUG_ALL_ON;
 
-			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+			MOVEMENT_DISABLE;
 
 			break;
 		}

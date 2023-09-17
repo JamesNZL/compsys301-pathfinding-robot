@@ -16,6 +16,9 @@
 #define MOTOR_RIGHT_CR_POS	 1
 #define MOTOR_DISABLE_CR_POS 2
 
+#define MOVEMENT_DISABLE	 Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS))
+#define MOVEMENT_ENABLE		 Motor_Control_Reg_Write(Motor_Control_Reg_Read() & ~(1 << MOTOR_DISABLE_CR_POS))
+
 /*
  * Robot Physical Constants
  */
