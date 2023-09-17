@@ -197,18 +197,24 @@ int main()
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 			}
 
-			// Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
-
 #ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
 			DB_ALL_OFF;
 			DB_EVEN_ON;
 #endif
+
+			// Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 
 			break;
 		}
 
 		case SENSOR_ACTION_FIND_VALID_STATE:
 		{
+
+#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
+			DB_ALL_OFF;
+			DB_ODD_ON;
+#endif
+
 			// Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
@@ -219,10 +225,6 @@ int main()
 			{
 				Movement_skew_correct(DIRECTION_RIGHT, 0);
 			}
-#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
-			DB_ALL_OFF;
-			DB_ODD_ON;
-#endif
 
 			break;
 		}
