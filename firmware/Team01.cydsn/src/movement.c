@@ -102,6 +102,8 @@ void Movement_skew_correct(Direction direction, int8 boost)
 	// Increase the speed of one motor to correct for a skew
 	FLAG_SET(FLAGS, FLAG_SKEW_CORRECTING);
 
+	Movement_sync_motors(MOVEMENT_SPEED_RUN);
+
 	switch (direction)
 	{
 	case DIRECTION_LEFT:
