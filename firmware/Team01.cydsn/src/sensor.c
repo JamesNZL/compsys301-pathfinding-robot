@@ -66,13 +66,62 @@ bool Sensor_is_on_all_turn_intersection()
 SensorActions Sensor_determine_action()
 {
 #ifndef SENSOR_USE_LOOKUP
+	/*
+	if ((!Sensor_skewCenter.status && !Sensor_skewFrontLeft.status && !Sensor_skewFrontRight.status && !Sensor_skewBackLeft.status && !Sensor_skewBackRight.status)
+			|| (!Sensor_skewCenter.status && Sensor_skewFrontLeft.status && Sensor_skewFrontRight.status && !Sensor_skewBackLeft.status && !Sensor_skewBackRight.status)
+			|| (Sensor_skewCenter.status && !Sensor_skewFrontLeft.status && Sensor_skewFrontRight.status && Sensor_skewBackLeft.status && Sensor_skewBackRight.status && Sensor_turnLeft.status && Sensor_turnRight.status)
+			|| (Sensor_skewCenter.status && Sensor_skewFrontLeft.status && !Sensor_skewFrontRight.status && Sensor_skewBackLeft.status && Sensor_skewBackRight.status && Sensor_turnLeft.status && Sensor_turnRight.status)
+			|| (!Sensor_skewFrontLeft.status && !Sensor_skewFrontRight.status && Sensor_skewBackLeft.status && Sensor_skewBackRight.status))
+		{
+			return SENSOR_ACTION_CONTINUE_FORWARD;
+		}
+
+		if ((Sensor_skewCenter.status && !Sensor_skewFrontLeft.status && !Sensor_skewFrontRight.status && !Sensor_skewBackLeft.status && !Sensor_skewBackRight.status)
+			|| (Sensor_skewCenter.status && !Sensor_skewFrontLeft.status && Sensor_skewFrontRight.status && Sensor_skewBackLeft.status && !Sensor_skewBackRight.status)
+			|| (Sensor_skewCenter.status && Sensor_skewFrontLeft.status && !Sensor_skewFrontRight.status && !Sensor_skewBackLeft.status && Sensor_skewBackRight.status))
+		{
+			return SENSOR_ACTION_CONTINUE_PREVIOUS;
+		}
+
+		if ((!Sensor_skewFrontLeft.status && Sensor_skewFrontRight.status && !Sensor_skewBackLeft.status && !Sensor_skewBackRight.status)
+			|| (!Sensor_skewFrontLeft.status && !Sensor_skewBackLeft.status && Sensor_skewBackRight.status)
+			|| (!Sensor_skewCenter.status && !Sensor_skewFrontLeft.status && Sensor_skewFrontRight.status && Sensor_skewBackLeft.status)
+			|| (!Sensor_skewCenter.status && Sensor_skewFrontLeft.status && Sensor_skewFrontRight.status && !Sensor_skewBackLeft.status && Sensor_skewBackRight.status)
+			|| (Sensor_skewCenter.status && !Sensor_skewFrontLeft.status && Sensor_skewFrontRight.status && Sensor_skewBackLeft.status && Sensor_skewBackRight.status && !Sensor_turnLeft.status)
+			|| (Sensor_skewCenter.status && !Sensor_skewFrontLeft.status && Sensor_skewFrontRight.status && Sensor_skewBackLeft.status && Sensor_skewBackRight.status && Sensor_turnLeft.status && !Sensor_turnRight.status))
+		{
+			return SENSOR_ACTION_CORRECT_LEFT;
+		}
+
+		if ((Sensor_skewFrontLeft.status && !Sensor_skewFrontRight.status && !Sensor_skewBackLeft.status && !Sensor_skewBackRight.status)
+			|| (!Sensor_skewCenter.status && Sensor_skewFrontLeft.status && Sensor_skewFrontRight.status && Sensor_skewBackLeft.status && !Sensor_skewBackRight.status)
+			|| (!Sensor_skewFrontRight.status && Sensor_skewBackLeft.status && !Sensor_skewBackRight.status)
+			|| (!Sensor_skewCenter.status && Sensor_skewFrontLeft.status && !Sensor_skewFrontRight.status && Sensor_skewBackRight.status)
+			|| (Sensor_skewCenter.status && Sensor_skewFrontLeft.status && !Sensor_skewFrontRight.status && Sensor_skewBackLeft.status && Sensor_skewBackRight.status && !Sensor_turnLeft.status)
+			|| (Sensor_skewCenter.status && Sensor_skewFrontLeft.status && !Sensor_skewFrontRight.status && Sensor_skewBackLeft.status && Sensor_skewBackRight.status && Sensor_turnLeft.status && !Sensor_turnRight.status))
+		{
+			return SENSOR_ACTION_CORRECT_RIGHT;
+		}
+
+		if ((Sensor_skewCenter.status && Sensor_skewFrontLeft.status && Sensor_skewFrontRight.status && Sensor_skewBackLeft.status && !Sensor_skewBackRight.status)
+			|| (Sensor_skewCenter.status && Sensor_skewFrontLeft.status && Sensor_skewFrontRight.status && !Sensor_skewBackLeft.status))
+		{
+			return SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT;
+		}
+
+		if (Sensor_skewFrontLeft.status && Sensor_skewFrontRight.status && Sensor_skewBackLeft.status && Sensor_skewBackRight.status)
+		{
+			return SENSOR_ACTION_FIND_VALID_STATE;
+		}
+	 */
+
 	if ((Sensor_skewBackLeft.status && Sensor_skewFrontRight.status) || (Sensor_skewFrontRight.status && Sensor_skewBackRight.status))
 	{
-		return SENSOR_ACTION_CORRECT_RIGHT;
+		return SENSOR_ACTION_CORRECT_LEFT;
 	}
 	else if ((Sensor_skewBackRight.status && Sensor_skewFrontLeft.status) || (Sensor_skewFrontLeft.status && Sensor_skewBackLeft.status))
 	{
-		return SENSOR_ACTION_CORRECT_LEFT;
+		return SENSOR_ACTION_CORRECT_RIGHT;
 	}
 	else
 	{
