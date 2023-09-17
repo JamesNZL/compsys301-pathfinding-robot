@@ -90,7 +90,7 @@ void Movement_next_control_cycle()
 	FLAG_CLEAR(FLAGS, FLAG_ENCODERS_READY);
 }
 
-void Movement_skewer(Direction direction)
+void Movement_skew_correct(Direction direction)
 {
 	// Increase the speed of one motor to correct for a skew
 	FLAG_SET(FLAGS, FLAG_SKEW_CORRECTING);
