@@ -202,7 +202,9 @@ int main()
 			DEBUG_EVEN_ON;
 #endif
 
-			// Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+#ifdef SENSOR_ACTIONS_INVALID_KILL
+			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+#endif
 
 			break;
 		}
@@ -215,7 +217,9 @@ int main()
 			DEBUG_ODD_ON;
 #endif
 
-			// Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+#ifdef SENSOR_ACTIONS_INVALID_KILL
+			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+#endif
 
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{

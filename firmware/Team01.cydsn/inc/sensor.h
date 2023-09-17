@@ -6,6 +6,8 @@
 
 // #define SENSOR_DEBUG
 
+// #define SENSOR_ACTIONS_INVALID_KILL
+#define SENSOR_RIGOROUS_MODE
 #define SENSOR_HARDWARE_MODE					  0
 
 #define SENSOR_COUNT							  7
