@@ -39,7 +39,7 @@
 #define MOVEMENT_SPEED_OFF	 0
 #define MOVEMENT_SPEED_BRAKE 70
 #define MOVEMENT_SPEED_SLOW	 120 // ! no lower than 110
-#define MOVEMENT_SPEED_RUN	 160 // ! no lower than 130, no more than 240, 160 is KNOWN GOOD
+#define MOVEMENT_SPEED_RUN	 200 // ! no lower than 130, no more than 240, 160 is KNOWN GOOD
 #define MOVEMENT_SPEED_TURN	 130
 
 /* Skew */
