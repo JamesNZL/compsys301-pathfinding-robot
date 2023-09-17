@@ -61,6 +61,14 @@ static void Sensor_debounce_and_update_sensor_statuses(void);
  */
 static void Sensor_write_low_all_sensors(void);
 
+typedef struct Sensor
+{
+	bool status;
+	bool previousStatus;
+	bool highWasSampled;
+	uint8 periodCount;
+} Sensor;
+
 volatile Sensor Sensor_turnLeft = SENSOR_DEFAULT_INITIALISATION;
 volatile Sensor Sensor_turnRight = SENSOR_DEFAULT_INITIALISATION;
 volatile Sensor Sensor_skewBackRight = SENSOR_DEFAULT_INITIALISATION;

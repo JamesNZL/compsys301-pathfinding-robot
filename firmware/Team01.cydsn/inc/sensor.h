@@ -26,13 +26,7 @@
 		.status = FALSE               \
 	}
 
-typedef struct Sensor
-{
-	bool status;
-	bool previousStatus;
-	bool highWasSampled;
-	uint8 periodCount;
-} Sensor;
+typedef struct Sensor Sensor;
 
 typedef enum SensorActions
 {
