@@ -215,6 +215,18 @@ int main()
 
 			break;
 		}
+
+		default:
+		{
+
+#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
+			DB_ALL_ON;
+#endif
+
+			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+
+			break;
+		}
 		}
 
 		previousAction = currentAction;
