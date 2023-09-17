@@ -54,7 +54,6 @@ int main()
 #ifdef MOVEMENT_DISPLAY_TURNS_ON_DEBUG
 			DB_ALL_ON;
 #endif
-
 			Movement_check_turn_complete();
 		}
 		else
@@ -62,7 +61,6 @@ int main()
 #ifdef MOVEMENT_DISPLAY_TURNS_ON_DEBUG
 			DB_ALL_OFF;
 #endif
-
 			if (Sensor_is_on_right_turn_intersection())
 			{
 				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
