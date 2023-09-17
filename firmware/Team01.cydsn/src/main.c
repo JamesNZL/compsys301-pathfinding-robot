@@ -47,7 +47,6 @@ int main()
 #ifdef SENSOR_DISPLAY_ON_DEBUG
 		Sensor_write_statuses_to_debug();
 #endif
-
 		/* Turn Detection */
 		if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_AFTER_TURN))
 		{
@@ -60,7 +59,6 @@ int main()
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
-
 				continue;
 			}
 			else if (Sensor_is_on_left_turn_intersection())
@@ -75,6 +73,10 @@ int main()
 
 				continue;
 			}
+		}
+		else
+		{
+			Movement_check_turn_complete();
 		}
 
 		/* Sensor Actions */

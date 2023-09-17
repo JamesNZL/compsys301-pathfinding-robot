@@ -16,7 +16,7 @@
 #define MOVEMENT_LEFT_TURN_PULSE_CORRECTION	 22
 #define MOVEMENT_RIGHT_TURN_PULSE_CORRECTION 4
 
-#define MOVEMENT_DELAY_AFTER_TURN			 50000
+#define MOVEMENT_PULSES_TO_DELAY_AFTER_TURN	 5000
 
 #define MOVEMENT_MM_PER_PULSE				 0.8928F
 
@@ -168,6 +168,7 @@ void Movement_set_speed_left(uint8 percent);
 // Utils
 void Movement_set_pwm_1_duty_cycle(uint8 percent);
 void Movement_set_pwm_2_duty_cycle(uint8 percent);
+void Movement_check_turn_complete();
 uint8 Movement_calculate_compare(uint8 percent);
 
 // Debug

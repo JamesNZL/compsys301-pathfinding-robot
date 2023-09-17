@@ -6,13 +6,13 @@ const uint8 MOVEMENT_SPEED_BRAKE = 150;
 uint16 MOVEMENT_SPEED_RUN = 170;
 const uint16 MOVEMENT_SPEED_TURN = 120;
 
-const uint8 MOVEMENT_CORRECTION_SKEW = 20;
+const uint8 MOVEMENT_CORRECTION_SKEW = 30;
 const int8 MOVEMENT_SKEW_BOOST = 20;
 const int8 MOVEMENT_CORRECTION_TURNS = -9;
 
 const uint8 MOVEMENT_CONTROLLER_GAIN = 1;
 
-volatile uint32 MOVEMENT_TIME_ELAPSED_AFTER_TURN = 0;
+volatile int16 MOVEMENT_PULSES_SINCE_TURN = 0;
 
 CY_ISR(PROCESS_PULSE)
 {
@@ -35,21 +35,6 @@ void Movement_check_distance()
 {
 	if (FLAG_IS_SET(FLAGS, FLAG_MOVE_INFINITELY))
 	{
-		if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_AFTER_TURN))
-		{
-			return;
-		}
-
-		MOVEMENT_TIME_ELAPSED_AFTER_TURN++;
-
-		if (MOVEMENT_TIME_ELAPSED_AFTER_TURN < MOVEMENT_DELAY_AFTER_TURN)
-		{
-			return;
-		}
-
-		FLAG_CLEAR(FLAGS, FLAG_WAITING_AFTER_TURN);
-		MOVEMENT_TIME_ELAPSED_AFTER_TURN = 0;
-
 		return;
 	}
 
@@ -350,4 +335,17 @@ void Movement_set_speed(uint8 percent)
 {
 	Movement_set_speed_left(percent);
 	Movement_set_speed_right(percent);
+}
+
+void Movement_check_turn_complete()
+{
+	MOVEMENT_PULSES_SINCE_TURN += MOVEMENT_PULSE_APPARENT_1;
+
+	if (MOVEMENT_PULSES_SINCE_TURN < MOVEMENT_PULSES_TO_DELAY_AFTER_TURN)
+	{
+		return;
+	}
+
+	FLAG_CLEAR(FLAGS, FLAG_WAITING_AFTER_TURN);
+	MOVEMENT_PULSES_SINCE_TURN = 0;
 }
