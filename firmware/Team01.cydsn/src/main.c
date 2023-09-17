@@ -80,8 +80,8 @@ int main()
 				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
-				Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
-				Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
+				Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+				Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 
 				Movement_turn_right(90);
 				CyDelay(100);
@@ -105,8 +105,8 @@ int main()
 				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
-				Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
-				Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
+				Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+				Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 
 				Movement_turn_left(90);
 				CyDelay(100);

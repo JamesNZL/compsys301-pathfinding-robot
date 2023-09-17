@@ -2,9 +2,12 @@
 #include "common.h"
 #include <project.h>
 
+const uint16 MOVEMENT_SPEED_OFF = 0;
 const uint8 MOVEMENT_SPEED_BRAKE = 70;
 uint16 MOVEMENT_SPEED_RUN = 160;
 const uint16 MOVEMENT_SPEED_TURN = 150;
+
+uint16 MOVEMENT_currentSpeed;
 
 // TODO: scalar factor of running speed
 const uint8 MOVEMENT_CORRECTION_SKEW = 20;
@@ -41,14 +44,13 @@ void Movement_check_distance()
 
 	if (MOVEMENT_PULSES_TO_MOVE <= 0)
 	{
-		Movement_set_M1_pulse_target(MOVEMENT_MOTOR_OFF);
-		Movement_set_M2_pulse_target(MOVEMENT_MOTOR_OFF);
+		Movement_sync_motors(MOVEMENT_SPEED_OFF);
+
 		Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 	}
 	else if (MOVEMENT_PULSES_TO_MOVE < 150)
 	{
-		Movement_set_M1_pulse_target(MOVEMENT_SPEED_BRAKE);
-		Movement_set_M2_pulse_target(MOVEMENT_SPEED_BRAKE);
+		Movement_sync_motors(MOVEMENT_SPEED_BRAKE);
 	}
 }
 
@@ -88,19 +90,19 @@ void Movement_skew_correct(Direction direction, int8 boost)
 	// Increase the speed of one motor to correct for a skew
 	FLAG_SET(FLAGS, FLAG_SKEW_CORRECTING);
 
-	Movement_sync_motors(MOVEMENT_SPEED_RUN);
+	Movement_sync_motors(MOVEMENT_currentSpeed);
 
 	switch (direction)
 	{
 	case DIRECTION_LEFT:
 	{
 		// TODO: use default speed
-		Movement_set_M2_pulse_target(MOVEMENT_SPEED_RUN + MOVEMENT_CORRECTION_SKEW + boost);
+		Movement_set_M2_pulse_target(MOVEMENT_currentSpeed + MOVEMENT_CORRECTION_SKEW + boost);
 		break;
 	}
 	case DIRECTION_RIGHT:
 	{
-		Movement_set_M1_pulse_target(MOVEMENT_SPEED_RUN + MOVEMENT_CORRECTION_SKEW + boost);
+		Movement_set_M1_pulse_target(MOVEMENT_currentSpeed + MOVEMENT_CORRECTION_SKEW + boost);
 		break;
 	}
 	default:
@@ -114,8 +116,10 @@ void Movement_sync_motors(uint16 speed)
 {
 	FLAG_CLEAR(FLAGS, FLAG_SKEW_CORRECTING);
 
-	Movement_set_M1_pulse_target(speed);
-	Movement_set_M2_pulse_target(speed);
+	MOVEMENT_currentSpeed = speed;
+
+	Movement_set_M1_pulse_target(MOVEMENT_currentSpeed);
+	Movement_set_M2_pulse_target(MOVEMENT_currentSpeed);
 }
 
 void Movement_move_mm(uint16 distance)
@@ -189,8 +193,8 @@ void Movement_turn_left(uint16 angle)
 		;
 	}
 	Movement_set_direction_left(DIRECTION_FORWARD);
-	Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
-	Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 
 	// Reset decoders to previous value before tur
 	QuadDec_M1_SetCounter(pulseMeas);
@@ -203,8 +207,8 @@ void Movement_turn_right(uint16 angle)
 	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle) - MOVEMENT_RIGHT_TURN_PULSE_CORRECTION;
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
-	Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
-	Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 	CyDelay(10);
 	Movement_set_direction_right(DIRECTION_REVERSE);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
@@ -215,8 +219,8 @@ void Movement_turn_right(uint16 angle)
 		;
 	}
 	Movement_set_direction_right(DIRECTION_FORWARD);
-	Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
-	Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 	QuadDec_M1_SetCounter(pulseMeas);
 	CYGlobalIntEnable;
 }
