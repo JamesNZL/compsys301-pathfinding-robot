@@ -47,9 +47,21 @@ int main()
 #ifdef SENSOR_DISPLAY_ON_DEBUG
 		Sensor_write_statuses_to_debug();
 #endif
+
 		/* Turn Detection */
 		if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_AFTER_TURN))
 		{
+#ifdef MOVEMENT_DISPLAY_TURNS_ON_DEBUG
+			DB0_OFF;
+			DB1_OFF;
+			DB2_OFF;
+			DB3_OFF;
+			DB4_OFF;
+			DB5_OFF;
+			DB6_OFF;
+			DB7_OFF;
+#endif
+
 			if (Sensor_is_on_right_turn_intersection())
 			{
 				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
@@ -61,6 +73,7 @@ int main()
 				// Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST);
 
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+
 				continue;
 			}
 			else if (Sensor_is_on_left_turn_intersection())
@@ -81,6 +94,17 @@ int main()
 		else
 		{
 			Movement_check_turn_complete();
+
+#ifdef MOVEMENT_DISPLAY_TURNS_ON_DEBUG
+			DB0_ON;
+			DB1_ON;
+			DB2_ON;
+			DB3_ON;
+			DB4_ON;
+			DB5_ON;
+			DB6_ON;
+			DB7_ON;
+#endif
 		}
 
 		/* Sensor Actions */
@@ -99,7 +123,7 @@ int main()
 		{
 			Movement_sync_motors(MOVEMENT_SPEED_RUN);
 
-#ifndef SENSOR_DISPLAY_ON_DEBUG
+#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
 			DB0_OFF;
 			DB1_OFF;
 			DB2_OFF;
@@ -122,7 +146,7 @@ int main()
 		{
 			Movement_skew_correct(DIRECTION_LEFT, 0);
 
-#ifndef SENSOR_DISPLAY_ON_DEBUG
+#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
 			DB0_ON;
 			DB1_ON;
 			DB2_ON;
@@ -140,7 +164,7 @@ int main()
 		{
 			Movement_skew_correct(DIRECTION_RIGHT, 0);
 
-#ifndef SENSOR_DISPLAY_ON_DEBUG
+#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
 			DB0_OFF;
 			DB1_OFF;
 			DB2_OFF;
@@ -173,7 +197,7 @@ int main()
 
 			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 
-#ifndef SENSOR_DISPLAY_ON_DEBUG
+#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
 			DB0_OFF;
 			DB1_ON;
 			DB2_OFF;
@@ -191,7 +215,7 @@ int main()
 		{
 			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 
-#ifndef SENSOR_DISPLAY_ON_DEBUG
+#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
 			DB0_ON;
 			DB1_OFF;
 			DB2_ON;
