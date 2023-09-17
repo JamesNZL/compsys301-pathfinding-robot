@@ -43,8 +43,6 @@ int main()
 				Movement_turn_right(90);
 				CyDelay(100);
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
-				currentAction = SENSOR_ACTION_CORRECT_RIGHT;
-				Movement_skewer(DIRECTION_LEFT);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 				continue;
@@ -55,8 +53,6 @@ int main()
 				Movement_turn_left(90);
 				CyDelay(100);
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
-				currentAction = SENSOR_ACTION_CORRECT_LEFT;
-				Movement_skewer(DIRECTION_RIGHT);
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 				continue;
