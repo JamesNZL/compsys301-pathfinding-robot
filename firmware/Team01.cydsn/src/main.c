@@ -49,17 +49,18 @@ int main()
 #endif
 
 		/* Turn Detection */
-		if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_AFTER_TURN))
+		if (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN))
 		{
 #ifdef MOVEMENT_DISPLAY_TURNS_ON_DEBUG
-			DB0_OFF;
-			DB1_OFF;
-			DB2_OFF;
-			DB3_OFF;
-			DB4_OFF;
-			DB5_OFF;
-			DB6_OFF;
-			DB7_OFF;
+			DB_ALL_ON;
+#endif
+
+			Movement_check_turn_complete();
+		}
+		else
+		{
+#ifdef MOVEMENT_DISPLAY_TURNS_ON_DEBUG
+			DB_ALL_OFF;
 #endif
 
 			if (Sensor_is_on_right_turn_intersection())
@@ -90,21 +91,6 @@ int main()
 				continue;
 			}
 		}
-		else
-		{
-			Movement_check_turn_complete();
-
-#ifdef MOVEMENT_DISPLAY_TURNS_ON_DEBUG
-			DB0_ON;
-			DB1_ON;
-			DB2_ON;
-			DB3_ON;
-			DB4_ON;
-			DB5_ON;
-			DB6_ON;
-			DB7_ON;
-#endif
-		}
 
 		/* Sensor Actions */
 		static SensorActions previousAction;
@@ -123,14 +109,7 @@ int main()
 			Movement_sync_motors(MOVEMENT_SPEED_RUN);
 
 #ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
-			DB0_OFF;
-			DB1_OFF;
-			DB2_OFF;
-			DB3_OFF;
-			DB4_OFF;
-			DB5_OFF;
-			DB6_OFF;
-			DB7_OFF;
+			DB_ALL_OFF;
 #endif
 
 			break;
@@ -146,14 +125,8 @@ int main()
 			Movement_skew_correct(DIRECTION_LEFT, 0);
 
 #ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
-			DB0_ON;
-			DB1_ON;
-			DB2_ON;
-			DB3_ON;
-			DB4_OFF;
-			DB5_OFF;
-			DB6_OFF;
-			DB7_OFF;
+			DB_ALL_OFF;
+			DB_LEFT_ON;
 #endif
 
 			break;
@@ -164,14 +137,8 @@ int main()
 			Movement_skew_correct(DIRECTION_RIGHT, 0);
 
 #ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
-			DB0_OFF;
-			DB1_OFF;
-			DB2_OFF;
-			DB3_OFF;
-			DB4_ON;
-			DB5_ON;
-			DB6_ON;
-			DB7_ON;
+			DB_ALL_OFF;
+			DB_RIGHT_ON;
 #endif
 
 			break;
@@ -197,14 +164,8 @@ int main()
 			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 
 #ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
-			DB0_OFF;
-			DB1_ON;
-			DB2_OFF;
-			DB3_ON;
-			DB4_OFF;
-			DB5_ON;
-			DB6_OFF;
-			DB7_ON;
+			DB_ALL_OFF;
+			DB_EVEN_ON;
 #endif
 
 			break;
@@ -215,14 +176,8 @@ int main()
 			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 
 #ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
-			DB0_ON;
-			DB1_OFF;
-			DB2_ON;
-			DB3_OFF;
-			DB4_ON;
-			DB5_OFF;
-			DB6_ON;
-			DB7_OFF;
+			DB_ALL_OFF;
+			DB_ODD_ON;
 #endif
 
 			break;

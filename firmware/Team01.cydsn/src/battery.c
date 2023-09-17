@@ -33,14 +33,7 @@ uint16 Battery_display_level(void)
 	{
 		for (uint8 i = 0; i < BATTERY_LOW_FLASH_COUNT; i++)
 		{
-			DB0_TOGGLE_LED;
-			DB1_TOGGLE_LED;
-			DB2_TOGGLE_LED;
-			DB3_TOGGLE_LED;
-			DB4_TOGGLE_LED;
-			DB5_TOGGLE_LED;
-			DB6_TOGGLE_LED;
-			DB7_TOGGLE_LED;
+			DB_ALL_TOGGLE;
 
 			CyDelay(150);
 		}
