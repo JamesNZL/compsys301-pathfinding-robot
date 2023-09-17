@@ -6,22 +6,27 @@
 uint16 Battery_display_level(void)
 {
 	ADC_Battery_Start();
-	ADC_Battery_StartConvert();
-
-	while (!ADC_Battery_IsEndConversion(ADC_Battery_RETURN_STATUS))
+	uint16 sum = 0;
+	for (uint8 i = 0; i < BATTERY_SAMPLES_COUNT; i++)
 	{
-		;
+		ADC_Battery_StartConvert();
+
+		while (!ADC_Battery_IsEndConversion(ADC_Battery_RETURN_STATUS))
+		{
+			;
+		}
+
+		sum += ADC_Battery_CountsTo_mVolts(ADC_Battery_GetResult16());
 	}
 
-	// 10k 2.7k resistive divider
-	uint16 batteryReading = (ADC_Battery_CountsTo_Volts(ADC_Battery_GetResult16()) * 4704);
+	uint16 batteryReading = (sum / BATTERY_SAMPLES_COUNT) * BATTERY_DIVIDER_GAIN;
 
 	ADC_Battery_Stop();
 
 	// Check if empty
 	if (batteryReading <= BATTERY_EMPTY_MV)
 	{
-		for (uint8 i = 0; i < 255; i++)
+		for (uint8 i = 0; i < BATTERY_LOW_FLASH_COUNT; i++)
 		{
 			DB0_TOGGLE_LED;
 			DB1_TOGGLE_LED;
