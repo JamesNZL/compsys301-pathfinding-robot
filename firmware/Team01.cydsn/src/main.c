@@ -49,7 +49,22 @@ int main()
 #endif
 
 		/* Turn Detection */
-		if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_AFTER_TURN))
+		if (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN))
+		{
+#ifdef MOVEMENT_DISPLAY_TURNS_ON_DEBUG
+			DB0_ON;
+			DB1_ON;
+			DB2_ON;
+			DB3_ON;
+			DB4_ON;
+			DB5_ON;
+			DB6_ON;
+			DB7_ON;
+#endif
+
+			Movement_check_turn_complete();
+		}
+		else
 		{
 #ifdef MOVEMENT_DISPLAY_TURNS_ON_DEBUG
 			DB0_OFF;
@@ -90,21 +105,6 @@ int main()
 
 				continue;
 			}
-		}
-		else
-		{
-			Movement_check_turn_complete();
-
-#ifdef MOVEMENT_DISPLAY_TURNS_ON_DEBUG
-			DB0_ON;
-			DB1_ON;
-			DB2_ON;
-			DB3_ON;
-			DB4_ON;
-			DB5_ON;
-			DB6_ON;
-			DB7_ON;
-#endif
 		}
 
 		/* Sensor Actions */
