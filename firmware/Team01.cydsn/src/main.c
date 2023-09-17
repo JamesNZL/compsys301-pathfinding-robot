@@ -1,3 +1,4 @@
+#include "battery.h"
 #include "commands.h"
 #include "common.h"
 #include "handlers.h"
@@ -17,15 +18,24 @@ volatile SensorActions currentAction;
 int main()
 {
 	CYGlobalIntEnable;
-	Movement_init_motors();
-	Sensor_init_sensors();
+
+	uint16 batteryVoltage = Battery_display_level();
+	sprintf(USB_buffer, "Battery Voltage: %d mV\n", batteryVoltage);
+
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
+
+	USB_put_string(USB_buffer);
 #endif
+
 	while (Push_Button_Read() != TRUE)
 	{
 		;
 	}
+
+	Sensor_init_sensors();
+	Movement_init_motors();
+
 	FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 	Movement_sync_motors(MOVEMENT_SPEED_RUN);
 	for (;;)
