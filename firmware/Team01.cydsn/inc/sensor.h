@@ -4,7 +4,7 @@
 #include "common.h"
 #include <project.h>
 
-// #define SENSOR_DISPLAY_ON_DEBUG
+// #define SENSOR_DEBUG
 
 #define SENSOR_HARDWARE_MODE					  0
 

@@ -44,7 +44,7 @@ int main()
 
 	for (;;)
 	{
-#ifdef SENSOR_DISPLAY_ON_DEBUG
+#ifdef SENSOR_DEBUG
 		Sensor_write_statuses_to_debug();
 #endif
 
@@ -56,7 +56,7 @@ int main()
 		if (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN))
 		{
 
-#ifdef MOVEMENT_DISPLAY_TURNS_ON_DEBUG
+#ifdef MOVEMENT_DEBUG_TURNS
 			DB_ALL_ON;
 #endif
 
@@ -65,14 +65,14 @@ int main()
 		else
 		{
 
-#ifdef MOVEMENT_DISPLAY_TURNS_ON_DEBUG
+#ifdef MOVEMENT_DEBUG_TURNS
 			DB_ALL_OFF;
 #endif
 
 			if (Sensor_is_on_right_turn_intersection())
 			{
 
-#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
+#ifdef MOVEMENT_DEBUG_SKEW
 				DB_ALL_OFF;
 				DB_RIGHT_ON;
 #endif
@@ -97,7 +97,7 @@ int main()
 			else if (Sensor_is_on_left_turn_intersection())
 			{
 
-#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
+#ifdef MOVEMENT_DEBUG_SKEW
 				DB_ALL_OFF;
 				DB_LEFT_ON;
 #endif
@@ -139,7 +139,7 @@ int main()
 		{
 			Movement_sync_motors(MOVEMENT_SPEED_RUN);
 
-#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
+#ifdef MOVEMENT_DEBUG_SKEW
 			DB_ALL_OFF;
 #endif
 
@@ -150,7 +150,7 @@ int main()
 		{
 			Movement_sync_motors(MOVEMENT_SPEED_BRAKE);
 
-#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
+#ifdef MOVEMENT_DEBUG_SKEW
 			DB_ALL_ON;
 #endif
 
@@ -166,7 +166,7 @@ int main()
 		{
 			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
-#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
+#ifdef MOVEMENT_DEBUG_SKEW
 			DB_ALL_OFF;
 			DB_LEFT_ON;
 #endif
@@ -178,7 +178,7 @@ int main()
 		{
 			Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 
-#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
+#ifdef MOVEMENT_DEBUG_SKEW
 			DB_ALL_OFF;
 			DB_RIGHT_ON;
 #endif
@@ -197,7 +197,7 @@ int main()
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 			}
 
-#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
+#ifdef MOVEMENT_DEBUG_SKEW
 			DB_ALL_OFF;
 			DB_EVEN_ON;
 #endif
@@ -210,7 +210,7 @@ int main()
 		case SENSOR_ACTION_FIND_VALID_STATE:
 		{
 
-#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
+#ifdef MOVEMENT_DEBUG_SKEW
 			DB_ALL_OFF;
 			DB_ODD_ON;
 #endif
@@ -232,7 +232,7 @@ int main()
 		default:
 		{
 
-#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
+#ifdef MOVEMENT_DEBUG_SKEW
 			DB_ALL_ON;
 #endif
 

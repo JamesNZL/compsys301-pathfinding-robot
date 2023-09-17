@@ -179,7 +179,7 @@ static void Sensor_handle_missing_rising_edge(void)
 	Timer_Light_Check_Stop();
 	Sensor_write_low_all_sensors();
 
-#ifdef SENSOR_DISPLAY_ON_DEBUG
+#ifdef SENSOR_DEBUG
 	DB7_ON;
 #endif
 }
@@ -190,7 +190,7 @@ static void Sensor_prepare_for_sampling(void)
 	isr_lightsense_Disable();
 	Sensor_set_light_check_timer_period(SENSOR_SAMPLING_TIMER_PERIOD);
 
-#ifdef SENSOR_DISPLAY_ON_DEBUG
+#ifdef SENSOR_DEBUG
 	DB7_OFF;
 #endif
 }

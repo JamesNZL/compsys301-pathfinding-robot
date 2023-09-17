@@ -6,8 +6,8 @@
 /*
  * Debugging
  */
-#define MOVEMENT_DISPLAY_SKEW_ON_DEBUG
-// #define MOVEMENT_DISPLAY_TURNS_ON_DEBUG
+#define MOVEMENT_DEBUG_SKEW
+// #define MOVEMENT_DEBUG_TURNS
 
 /*
  * Motor Control Register
