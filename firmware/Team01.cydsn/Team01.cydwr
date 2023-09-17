@@ -413,6 +413,7 @@
       <Data key="40c0cf20-a884-4511-ba5c-2ac50401cec3" value="isr_lightcheck" />
       <Data key="9832daf3-9503-416c-9c90-7c57bda5372d" value="isr_lightsense" />
       <Data key="66357837-8232-4e25-a3af-2644fd133e5d" value="isrRF_RX" />
+      <Data key="c4b67ccf-d949-4c73-8a4b-da3cd4a88211" value="isr_getpulse" />
       <Data key="e46a62db-5735-406f-a3c5-0e438160f984" value="isrRF_TX" />
     </Group>
     <Group key="Pin">
@@ -3574,10 +3575,17 @@
     </Group>
   </Group>
   <Group key="Interrupt">
-    <Group key="9832daf3-9503-416c-9c90-7c57bda5372d">
+    <Group key="40c0cf20-a884-4511-ba5c-2ac50401cec3">
       <Group key="CortexM3">
         <Data key="Assigned" value="True" />
         <Data key="Priority" value="6" />
+        <Data key="Vector" value="-1" />
+      </Group>
+    </Group>
+    <Group key="9832daf3-9503-416c-9c90-7c57bda5372d">
+      <Group key="CortexM3">
+        <Data key="Assigned" value="True" />
+        <Data key="Priority" value="5" />
         <Data key="Vector" value="-1" />
       </Group>
     </Group>

@@ -11,6 +11,7 @@
 #include <string.h>
 
 volatile uint8 FLAGS = 0x00;
+volatile SensorActions previousAction = SENSOR_ACTION_CONTINUE_FORWARD;
 
 int main()
 {
@@ -60,20 +61,34 @@ int main()
 		{
 			continue;
 		}
-
-		SensorActions currentAction = Sensor_determine_action();
-		continue;
+		SensorActions currentAction;
+		if (Sensor_skewBackLeft.status && Sensor_skewFrontRight.status)
+		{
+			currentAction = SENSOR_ACTION_CORRECT_LEFT;
+		}
+		else if (Sensor_skewBackRight.status && Sensor_skewFrontLeft.status)
+		{
+			currentAction = SENSOR_ACTION_CORRECT_RIGHT;
+		}
+		else
+		{
+			currentAction = SENSOR_ACTION_CONTINUE_FORWARD;
+		}
+		if (currentAction == previousAction)
+		{
+			continue;
+		}
+		// SensorActions currentAction = Sensor_determine_action();
 		switch (currentAction)
 		{
 		case SENSOR_ACTION_CONTINUE_FORWARD:
 		{
-			// Movement_sync_motors(MOVEMENT_SPEED_RUN);
+			Movement_sync_motors(MOVEMENT_SPEED_RUN);
 			break;
 		}
 		case SENSOR_ACTION_CONTINUE_PREVIOUS:
 		{
-			// Movement_sync_motors(170);
-			break;
+			continue;
 		}
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
@@ -87,15 +102,11 @@ int main()
 		}
 		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
 		{
-			// Movement_sync_motors(170);
-			break;
-		}
-		case SENSOR_ACTION_FIND_VALID_STATE:
-		{
-			// Movement_sync_motors(170);
+			// Movement_sync_mmotors(170);
 			break;
 		}
 		}
+		previousAction = currentAction;
 #ifdef USB_ENABLED
 		/* Place your application code here. */
 		USB_get_input();
