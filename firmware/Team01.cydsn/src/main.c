@@ -82,7 +82,7 @@ int main()
 		}
 
 		/* Sensor Actions */
-		static SensorActions previousAction = SENSOR_ACTION_CONTINUE_FORWARD;
+		static SensorActions previousAction;
 		SensorActions currentAction = Sensor_determine_action();
 
 		if (currentAction == previousAction)
@@ -92,6 +92,7 @@ int main()
 
 		switch (currentAction)
 		{
+
 		case SENSOR_ACTION_CONTINUE_FORWARD:
 		{
 			Movement_sync_motors(MOVEMENT_SPEED_RUN);
@@ -109,10 +110,12 @@ int main()
 
 			break;
 		}
+
 		case SENSOR_ACTION_CONTINUE_PREVIOUS:
 		{
-			continue;
+			break;
 		}
+
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
 			Movement_skew_correct(DIRECTION_LEFT, 0);
@@ -130,6 +133,7 @@ int main()
 
 			break;
 		}
+
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
 			Movement_skew_correct(DIRECTION_RIGHT, 0);
@@ -147,20 +151,26 @@ int main()
 
 			break;
 		}
+
 		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
 		{
-			//			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
-
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
 				Movement_skew_correct(DIRECTION_LEFT, 0);
 				currentAction = DIRECTION_LEFT;
+
+				break;
 			}
 			else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
 			{
 				Movement_skew_correct(DIRECTION_RIGHT, 0);
 				currentAction = DIRECTION_RIGHT;
+
+				break;
 			}
+
+			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+
 #ifndef SENSOR_DISPLAY_ON_DEBUG
 			DB0_OFF;
 			DB1_ON;
@@ -172,9 +182,9 @@ int main()
 			DB7_ON;
 #endif
 
-			// Movement_sync_mmotors(170);
 			break;
 		}
+
 		case SENSOR_ACTION_FIND_VALID_STATE:
 		{
 			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
