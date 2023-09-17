@@ -12,8 +12,6 @@
 #include <string.h>
 
 volatile uint8 FLAGS = 0x00;
-volatile SensorActions previousAction = SENSOR_ACTION_CONTINUE_FORWARD;
-volatile SensorActions currentAction;
 
 int main()
 {
@@ -78,7 +76,9 @@ int main()
 		}
 
 		/* Sensor Actions */
+		static SensorActions previousAction = SENSOR_ACTION_CONTINUE_FORWARD;
 		SensorActions currentAction = Sensor_determine_action();
+
 		if (currentAction == previousAction)
 		{
 			continue;
@@ -111,6 +111,7 @@ int main()
 			break;
 		}
 		}
+
 		previousAction = currentAction;
 
 #ifdef USB_ENABLED
