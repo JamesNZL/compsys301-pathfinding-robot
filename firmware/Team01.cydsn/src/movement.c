@@ -175,6 +175,8 @@ void Movement_turn_left(uint16 angle)
 	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle) - MOVEMENT_LEFT_TURN_PULSE_CORRECTION;
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
+	Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
 	Movement_set_direction_left(DIRECTION_REVERSE);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
@@ -200,6 +202,8 @@ void Movement_turn_right(uint16 angle)
 	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle) - MOVEMENT_RIGHT_TURN_PULSE_CORRECTION;
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
+	Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
+	Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
 	Movement_set_direction_right(DIRECTION_REVERSE);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
@@ -339,6 +343,10 @@ void Movement_set_speed(uint8 percent)
 
 void Movement_check_turn_complete()
 {
+	if (FLAG_IS_CLEARED(FLAGS, FLAG_ENCODERS_READY))
+	{
+		return;
+	}
 	MOVEMENT_PULSES_SINCE_TURN -= MOVEMENT_PULSE_APPARENT_1;
 
 	if (MOVEMENT_PULSES_SINCE_TURN > 0)
