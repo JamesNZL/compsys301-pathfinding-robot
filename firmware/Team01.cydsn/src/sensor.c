@@ -65,6 +65,22 @@ bool Sensor_is_on_all_turn_intersection()
 
 SensorActions Sensor_determine_action()
 {
+#ifndef SENSOR_USE_LOOKUP
+	if ((Sensor_skewBackLeft.status && Sensor_skewFrontRight.status) || (Sensor_skewFrontRight.status && Sensor_skewBackRight.status))
+	{
+		return SENSOR_ACTION_CORRECT_LEFT;
+	}
+	else if ((Sensor_skewBackRight.status && Sensor_skewFrontLeft.status) || (Sensor_skewFrontLeft.status && Sensor_skewBackLeft.status))
+	{
+		return SENSOR_ACTION_CORRECT_RIGHT;
+	}
+	else
+	{
+		return SENSOR_ACTION_CONTINUE_FORWARD;
+	}
+#endif
+
+#ifdef SENSOR_USE_LOOKUP
 	uint8 bitfield = ((Sensor_skewCenter.status << 6)
 		| (Sensor_skewFrontLeft.status << 5)
 		| (Sensor_skewFrontRight.status << 4)
@@ -74,6 +90,7 @@ SensorActions Sensor_determine_action()
 		| (Sensor_turnRight.status << 0));
 
 	return SENSOR_ACTION_LUT[bitfield];
+#endif
 }
 
 void Sensor_set_light_check_timer_period(uint16 period)
