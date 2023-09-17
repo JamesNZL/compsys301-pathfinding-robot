@@ -241,11 +241,27 @@ int main()
 				TODO: —this is to prevent the robot from turning around when it should continue forward
 			 */
 
+			static uint8 lastAttempt = 0;
+			static uint8 anglesToAttempt[9] = { 2, 5, 8, 10, 15, 20, 25, 30, 40 };
+
 			Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 
-			// TODO: some counter of attempts so far
-			Movement_turn_left(10);
+			if (previousAction != SENSOR_ACTION_FIND_VALID_STATE)
+			{
+				lastAttempt = 0;
+			}
+
+			if ((lastAttempt++) % 2 == 0)
+			{
+				// Turn left
+				Movement_turn_left(anglesToAttempt[lastAttempt / 2]);
+			}
+			else
+			{
+				// Turn right
+				Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
+			}
 #else
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
@@ -255,7 +271,6 @@ int main()
 			{
 				Movement_skew_correct(DIRECTION_RIGHT, 0);
 			}
-
 #endif
 
 #ifdef MOVEMENT_DEBUG_SKEW
