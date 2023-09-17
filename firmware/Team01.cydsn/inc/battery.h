@@ -7,7 +7,7 @@
 #define BATTERY_FULL_MV			1400 * BATTERY_COUNT
 #define BATTERY_EMPTY_MV		1100 * BATTERY_COUNT
 
-#define BATTERY_DIVIDER_GAIN	4.704f // 10k 2k7 resistive divider
+#define BATTERY_DIVIDER_GAIN	4.7037037037f // 10k 2k7 resistive divider
 
 #define BATTERY_SAMPLES_COUNT	10
 #define BATTERY_LOW_FLASH_COUNT 255 // must fit in a uint8
