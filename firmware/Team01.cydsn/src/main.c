@@ -70,7 +70,7 @@ int main()
 				Movement_turn_right(90);
 				CyDelay(100);
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
-				// Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST);
+				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST);
 
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 
@@ -84,7 +84,7 @@ int main()
 				Movement_turn_left(90);
 				CyDelay(100);
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
-				// Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST);
+				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST);
 
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 
@@ -146,22 +146,8 @@ int main()
 
 		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
 		{
-			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
-			{
-				Movement_skew_correct(DIRECTION_LEFT, 0);
-				currentAction = DIRECTION_LEFT;
 
-				break;
-			}
-			else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
-			{
-				Movement_skew_correct(DIRECTION_RIGHT, 0);
-				currentAction = DIRECTION_RIGHT;
-
-				break;
-			}
-
-			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+			//			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 
 #ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
 			DB_ALL_OFF;
@@ -173,7 +159,7 @@ int main()
 
 		case SENSOR_ACTION_FIND_VALID_STATE:
 		{
-			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+			//	Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 
 #ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
 			DB_ALL_OFF;

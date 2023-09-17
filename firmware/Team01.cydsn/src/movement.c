@@ -3,11 +3,11 @@
 #include <project.h>
 
 const uint8 MOVEMENT_SPEED_BRAKE = 150;
-uint16 MOVEMENT_SPEED_RUN = 170;
+uint16 MOVEMENT_SPEED_RUN = 150;
 const uint16 MOVEMENT_SPEED_TURN = 120;
 
 const uint8 MOVEMENT_CORRECTION_SKEW = 20;
-const int8 MOVEMENT_SKEW_BOOST = 20;
+const int8 MOVEMENT_SKEW_BOOST = 25;
 const int8 MOVEMENT_CORRECTION_TURNS = -9;
 
 const uint8 MOVEMENT_CONTROLLER_GAIN = 1;
@@ -177,6 +177,7 @@ void Movement_turn_left(uint16 angle)
 
 	Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
 	Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
+	CyDelay(1500);
 	Movement_set_direction_left(DIRECTION_REVERSE);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
@@ -204,6 +205,7 @@ void Movement_turn_right(uint16 angle)
 
 	Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
 	Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
+	CyDelay(1500);
 	Movement_set_direction_right(DIRECTION_REVERSE);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
