@@ -148,13 +148,13 @@ void Sensor_set_bias_level(float voltage)
 
 void Sensor_write_statuses_to_debug(void)
 {
-	DB0_Write(Sensor_skewFrontLeft.status);
-	DB1_Write(Sensor_turnLeft.status);
-	DB2_Write(Sensor_skewBackLeft.status);
-	DB3_Write(Sensor_skewCenter.status);
-	DB4_Write(Sensor_skewFrontRight.status);
-	DB5_Write(Sensor_turnRight.status);
-	DB6_Write(Sensor_skewBackRight.status);
+	DEBUG_0_Write(Sensor_skewFrontLeft.status);
+	DEBUG_1_Write(Sensor_turnLeft.status);
+	DEBUG_2_Write(Sensor_skewBackLeft.status);
+	DEBUG_3_Write(Sensor_skewCenter.status);
+	DEBUG_4_Write(Sensor_skewFrontRight.status);
+	DEBUG_5_Write(Sensor_turnRight.status);
+	DEBUG_6_Write(Sensor_skewBackRight.status);
 }
 
 static void Sensor_set_light_check_timer_period(uint16 period)
@@ -180,7 +180,7 @@ static void Sensor_handle_missing_rising_edge(void)
 	Sensor_write_low_all_sensors();
 
 #ifdef SENSOR_DEBUG
-	DB7_ON;
+	DEBUG_7_ON;
 #endif
 }
 
@@ -191,7 +191,7 @@ static void Sensor_prepare_for_sampling(void)
 	Sensor_set_light_check_timer_period(SENSOR_SAMPLING_TIMER_PERIOD);
 
 #ifdef SENSOR_DEBUG
-	DB7_OFF;
+	DEBUG_7_OFF;
 #endif
 }
 

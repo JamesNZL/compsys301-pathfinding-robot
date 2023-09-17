@@ -31,7 +31,7 @@ int main()
 		;
 	}
 
-	DB_ALL_OFF;
+	DEBUG_ALL_OFF;
 
 	Sensor_init_sensors();
 	Movement_init_motors();
@@ -57,7 +57,7 @@ int main()
 		{
 
 #ifdef MOVEMENT_DEBUG_TURNS
-			DB_ALL_ON;
+			DEBUG_ALL_ON;
 #endif
 
 			Movement_check_turn_complete();
@@ -66,15 +66,15 @@ int main()
 		{
 
 #ifdef MOVEMENT_DEBUG_TURNS
-			DB_ALL_OFF;
+			DEBUG_ALL_OFF;
 #endif
 
 			if (Sensor_is_on_right_turn_intersection())
 			{
 
 #ifdef MOVEMENT_DEBUG_SKEW
-				DB_ALL_OFF;
-				DB_RIGHT_ON;
+				DEBUG_ALL_OFF;
+				DEBUG_RIGHT_ON;
 #endif
 
 				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
@@ -98,8 +98,8 @@ int main()
 			{
 
 #ifdef MOVEMENT_DEBUG_SKEW
-				DB_ALL_OFF;
-				DB_LEFT_ON;
+				DEBUG_ALL_OFF;
+				DEBUG_LEFT_ON;
 #endif
 
 				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
@@ -140,7 +140,7 @@ int main()
 			Movement_sync_motors(MOVEMENT_SPEED_RUN);
 
 #ifdef MOVEMENT_DEBUG_SKEW
-			DB_ALL_OFF;
+			DEBUG_ALL_OFF;
 #endif
 
 			break;
@@ -151,7 +151,7 @@ int main()
 			Movement_sync_motors(MOVEMENT_SPEED_BRAKE);
 
 #ifdef MOVEMENT_DEBUG_SKEW
-			DB_ALL_ON;
+			DEBUG_ALL_ON;
 #endif
 
 			break;
@@ -167,8 +167,8 @@ int main()
 			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 #ifdef MOVEMENT_DEBUG_SKEW
-			DB_ALL_OFF;
-			DB_LEFT_ON;
+			DEBUG_ALL_OFF;
+			DEBUG_LEFT_ON;
 #endif
 
 			break;
@@ -179,8 +179,8 @@ int main()
 			Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 #ifdef MOVEMENT_DEBUG_SKEW
-			DB_ALL_OFF;
-			DB_RIGHT_ON;
+			DEBUG_ALL_OFF;
+			DEBUG_RIGHT_ON;
 #endif
 
 			break;
@@ -198,8 +198,8 @@ int main()
 			}
 
 #ifdef MOVEMENT_DEBUG_SKEW
-			DB_ALL_OFF;
-			DB_EVEN_ON;
+			DEBUG_ALL_OFF;
+			DEBUG_EVEN_ON;
 #endif
 
 			// Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
@@ -211,8 +211,8 @@ int main()
 		{
 
 #ifdef MOVEMENT_DEBUG_SKEW
-			DB_ALL_OFF;
-			DB_ODD_ON;
+			DEBUG_ALL_OFF;
+			DEBUG_ODD_ON;
 #endif
 
 			// Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
@@ -233,7 +233,7 @@ int main()
 		{
 
 #ifdef MOVEMENT_DEBUG_SKEW
-			DB_ALL_ON;
+			DEBUG_ALL_ON;
 #endif
 
 			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
