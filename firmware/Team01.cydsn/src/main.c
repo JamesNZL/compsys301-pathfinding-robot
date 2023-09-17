@@ -90,6 +90,8 @@ int main()
 		{
 		case SENSOR_ACTION_CONTINUE_FORWARD:
 		{
+			Movement_sync_motors(MOVEMENT_SPEED_RUN);
+
 #ifndef SENSOR_DISPLAY_ON_DEBUG
 			DB0_OFF;
 			DB1_OFF;
@@ -101,7 +103,6 @@ int main()
 			DB7_OFF;
 #endif
 
-			Movement_sync_motors(MOVEMENT_SPEED_RUN);
 			break;
 		}
 		case SENSOR_ACTION_CONTINUE_PREVIOUS:
@@ -110,6 +111,8 @@ int main()
 		}
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
+			Movement_skew_correct(DIRECTION_LEFT, 0);
+
 #ifndef SENSOR_DISPLAY_ON_DEBUG
 			DB0_ON;
 			DB1_ON;
@@ -121,11 +124,12 @@ int main()
 			DB7_OFF;
 #endif
 
-			Movement_skew_correct(DIRECTION_LEFT, 0);
 			break;
 		}
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
+			Movement_skew_correct(DIRECTION_RIGHT, 0);
+
 #ifndef SENSOR_DISPLAY_ON_DEBUG
 			DB0_OFF;
 			DB1_OFF;
@@ -137,7 +141,6 @@ int main()
 			DB7_ON;
 #endif
 
-			Movement_skew_correct(DIRECTION_RIGHT, 0);
 			break;
 		}
 		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
