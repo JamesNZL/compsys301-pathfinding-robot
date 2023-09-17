@@ -6,6 +6,7 @@ const uint8 MOVEMENT_SPEED_BRAKE = 70;
 uint16 MOVEMENT_SPEED_RUN = 160;
 const uint16 MOVEMENT_SPEED_TURN = 150;
 
+// TODO: scalar factor of running speed
 const uint8 MOVEMENT_CORRECTION_SKEW = 20;
 const int8 MOVEMENT_SKEW_BOOST = 30;
 const int8 MOVEMENT_CORRECTION_TURNS = -9;
@@ -93,6 +94,7 @@ void Movement_skew_correct(Direction direction, int8 boost)
 	{
 	case DIRECTION_LEFT:
 	{
+		// TODO: use default speed
 		Movement_set_M2_pulse_target(MOVEMENT_SPEED_RUN + MOVEMENT_CORRECTION_SKEW + boost);
 		break;
 	}

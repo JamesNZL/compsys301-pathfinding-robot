@@ -146,6 +146,17 @@ int main()
 			break;
 		}
 
+		case SENSOR_ACTION_ANTICIPATE_TURN:
+		{
+			Movement_sync_motors(MOVEMENT_SPEED_BRAKE);
+
+#ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
+			DB_ALL_ON;
+#endif
+
+			break;
+		}
+
 		case SENSOR_ACTION_CONTINUE_PREVIOUS:
 		{
 			break;
