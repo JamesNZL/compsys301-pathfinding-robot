@@ -184,7 +184,7 @@ void Movement_turn_left(uint16 angle)
 {
 	// Disable interrupts so decoders dont get reset to 0
 	CYGlobalIntDisable;
-	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
+	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle) - MOVEMENT_LEFT_TURN_PULSE_CORRECTION;
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
 	Movement_set_direction_left(DIRECTION_REVERSE);

@@ -53,6 +53,7 @@ int main()
 				Movement_turn_right(90);
 				CyDelay(100);
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
+				Movement_skew_correct(DIRECTION_RIGHT);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 
@@ -64,6 +65,7 @@ int main()
 				Movement_turn_left(90);
 				CyDelay(100);
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
+				Movement_skew_correct(DIRECTION_LEFT);
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
@@ -73,11 +75,11 @@ int main()
 
 		if ((Sensor_skewBackLeft.status && Sensor_skewFrontRight.status) || (Sensor_skewFrontRight.status && Sensor_skewBackRight.status))
 		{
-			currentAction = SENSOR_ACTION_CORRECT_LEFT;
+			currentAction = SENSOR_ACTION_CORRECT_RIGHT;
 		}
 		else if ((Sensor_skewBackRight.status && Sensor_skewFrontLeft.status) || (Sensor_skewFrontLeft.status && Sensor_skewBackLeft.status))
 		{
-			currentAction = SENSOR_ACTION_CORRECT_RIGHT;
+			currentAction = SENSOR_ACTION_CORRECT_LEFT;
 		}
 		else
 		{
@@ -101,13 +103,12 @@ int main()
 		}
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
-
-			Movement_skewer(DIRECTION_RIGHT);
+			Movement_skew_correct(DIRECTION_LEFT);
 			break;
 		}
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
-			Movement_skewer(DIRECTION_LEFT);
+			Movement_skew_correct(DIRECTION_RIGHT);
 			break;
 		}
 		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
