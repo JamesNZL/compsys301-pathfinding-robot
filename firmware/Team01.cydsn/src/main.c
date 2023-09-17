@@ -41,10 +41,14 @@ int main()
 
 	for (;;)
 	{
+		/*
+		 * Movement Control
+		 */
 		Movement_next_control_cycle();
 		Movement_check_distance();
 		Sensor_write_statuses_to_debug();
 
+		/* Turn Detection */
 		if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_AFTER_TURN))
 		{
 			if (Sensor_is_on_right_turn_intersection())
@@ -73,23 +77,13 @@ int main()
 			}
 		}
 
-		if ((Sensor_skewBackLeft.status && Sensor_skewFrontRight.status) || (Sensor_skewFrontRight.status && Sensor_skewBackRight.status))
-		{
-			currentAction = SENSOR_ACTION_CORRECT_RIGHT;
-		}
-		else if ((Sensor_skewBackRight.status && Sensor_skewFrontLeft.status) || (Sensor_skewFrontLeft.status && Sensor_skewBackLeft.status))
-		{
-			currentAction = SENSOR_ACTION_CORRECT_LEFT;
-		}
-		else
-		{
-			currentAction = SENSOR_ACTION_CONTINUE_FORWARD;
-		}
+		/* Sensor Actions */
+		SensorActions currentAction = Sensor_determine_action();
 		if (currentAction == previousAction)
 		{
 			continue;
 		}
-		// SensorActions currentAction = Sensor_determine_action();
+
 		switch (currentAction)
 		{
 		case SENSOR_ACTION_CONTINUE_FORWARD:
@@ -118,8 +112,11 @@ int main()
 		}
 		}
 		previousAction = currentAction;
+
 #ifdef USB_ENABLED
-		/* Place your application code here. */
+		/*
+		 * Command Parsing
+		 */
 		USB_get_input();
 
 		if (FLAG_IS_SET(FLAGS, FLAG_USB_INPUT))
