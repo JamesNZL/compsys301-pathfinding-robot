@@ -64,40 +64,88 @@ volatile extern uint8 FLAGS;
 /*
  * Debugging
  */
-#define LED_ON		   LED_Write(1)
-#define LED_OFF		   LED_Write(0)
-#define LED_TOGGLE	   LED_Write(~LED_Read())
+#define LED_ON	   LED_Write(1)
+#define LED_OFF	   LED_Write(0)
+#define LED_TOGGLE LED_Write(~LED_Read())
 
-#define DB0_ON		   DB0_Write(1)
-#define DB0_OFF		   DB0_Write(0)
-#define DB0_TOGGLE_LED DB0_Write(~DB0_Read())
+#define DB0_ON	   DB0_Write(1)
+#define DB0_OFF	   DB0_Write(0)
+#define DB0_TOGGLE DB0_Write(~DB0_Read())
 
-#define DB1_ON		   DB1_Write(1)
-#define DB1_OFF		   DB1_Write(0)
-#define DB1_TOGGLE_LED DB1_Write(~DB1_Read())
+#define DB1_ON	   DB1_Write(1)
+#define DB1_OFF	   DB1_Write(0)
+#define DB1_TOGGLE DB1_Write(~DB1_Read())
 
-#define DB2_ON		   DB2_Write(1)
-#define DB2_OFF		   DB2_Write(0)
-#define DB2_TOGGLE_LED DB2_Write(~DB2_Read())
+#define DB2_ON	   DB2_Write(1)
+#define DB2_OFF	   DB2_Write(0)
+#define DB2_TOGGLE DB2_Write(~DB2_Read())
 
-#define DB3_ON		   DB3_Write(1)
-#define DB3_OFF		   DB3_Write(0)
-#define DB3_TOGGLE_LED DB3_Write(~DB3_Read())
+#define DB3_ON	   DB3_Write(1)
+#define DB3_OFF	   DB3_Write(0)
+#define DB3_TOGGLE DB3_Write(~DB3_Read())
 
-#define DB4_ON		   DB4_Write(1)
-#define DB4_OFF		   DB4_Write(0)
-#define DB4_TOGGLE_LED DB4_Write(~DB4_Read())
+#define DB4_ON	   DB4_Write(1)
+#define DB4_OFF	   DB4_Write(0)
+#define DB4_TOGGLE DB4_Write(~DB4_Read())
 
-#define DB5_ON		   DB5_Write(1)
-#define DB5_OFF		   DB5_Write(0)
-#define DB5_TOGGLE_LED DB5_Write(~DB5_Read())
+#define DB5_ON	   DB5_Write(1)
+#define DB5_OFF	   DB5_Write(0)
+#define DB5_TOGGLE DB5_Write(~DB5_Read())
 
-#define DB6_ON		   DB6_Write(1)
-#define DB6_OFF		   DB6_Write(0)
-#define DB6_TOGGLE_LED DB6_Write(~DB6_Read())
+#define DB6_ON	   DB6_Write(1)
+#define DB6_OFF	   DB6_Write(0)
+#define DB6_TOGGLE DB6_Write(~DB6_Read())
 
-#define DB7_ON		   DB7_Write(1)
-#define DB7_OFF		   DB7_Write(0)
-#define DB7_TOGGLE_LED DB7_Write(~DB7_Read())
+#define DB7_ON	   DB7_Write(1)
+#define DB7_OFF	   DB7_Write(0)
+#define DB7_TOGGLE DB7_Write(~DB7_Read())
+
+#define DB_LEFT_ON \
+	DB0_ON;        \
+	DB1_ON;        \
+	DB2_ON;        \
+	DB3_ON
+
+#define DB_RIGHT_ON \
+	DB4_ON;         \
+	DB5_ON;         \
+	DB6_ON;         \
+	DB7_ON
+
+#define DB_EVEN_ON \
+	DB0_ON;        \
+	DB2_ON;        \
+	DB4_ON;        \
+	DB6_ON
+
+#define DB_ODD_ON \
+	DB1_ON;       \
+	DB3_ON;       \
+	DB5_ON;       \
+	DB7_ON
+
+#define DB_ALL_ON \
+	DB_LEFT_ON;   \
+	DB_RIGHT_ON
+
+#define DB_ALL_OFF \
+	DB0_OFF;       \
+	DB1_OFF;       \
+	DB2_OFF;       \
+	DB3_OFF;       \
+	DB4_OFF;       \
+	DB5_OFF;       \
+	DB6_OFF;       \
+	DB7_OFF
+
+#define DB_ALL_TOGGLE \
+	DB0_TOGGLE;       \
+	DB1_TOGGLE;       \
+	DB2_TOGGLE;       \
+	DB3_TOGGLE;       \
+	DB4_TOGGLE;       \
+	DB5_TOGGLE;       \
+	DB6_TOGGLE;       \
+	DB7_TOGGLE
 
 #endif
