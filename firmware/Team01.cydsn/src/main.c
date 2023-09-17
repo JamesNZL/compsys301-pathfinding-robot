@@ -188,6 +188,14 @@ int main()
 
 		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
 		{
+
+#ifdef SENSOR_ACTION_RIGOROUS
+			/*
+				TODO: Rotate left and right to see if just skewed
+				TODO: (ie if middle sensor returns to line),
+				TODO: otherwise turn around
+			 */
+#else
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
@@ -196,6 +204,7 @@ int main()
 			{
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 			}
+#endif
 
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_OFF;
@@ -212,15 +221,13 @@ int main()
 		case SENSOR_ACTION_FIND_VALID_STATE:
 		{
 
-#ifdef MOVEMENT_DEBUG_SKEW
-			DEBUG_ALL_OFF;
-			DEBUG_ODD_ON;
-#endif
-
-#ifdef SENSOR_ACTIONS_INVALID_KILL
-			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
-#endif
-
+#ifdef SENSOR_ACTIONS_RIGOROUS
+			/*
+				TODO: Rotate left and right to transition to a valid state
+				TODO: —ignore rear skew detection unless front detectors do not detect anything
+				TODO: —this is to prevent the robot from turning around when it should continue forward
+			 */
+#else
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
 				Movement_skew_correct(DIRECTION_LEFT, 0);
@@ -230,15 +237,23 @@ int main()
 				Movement_skew_correct(DIRECTION_RIGHT, 0);
 			}
 
+#endif
+
+#ifdef MOVEMENT_DEBUG_SKEW
+			DEBUG_ALL_OFF;
+			DEBUG_ODD_ON;
+#endif
+
+#ifdef SENSOR_ACTIONS_INVALID_KILL
+			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+#endif
+
 			break;
 		}
 
 		default:
 		{
-
-#ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_ON;
-#endif
 
 			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 
