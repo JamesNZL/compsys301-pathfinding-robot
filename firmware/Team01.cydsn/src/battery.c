@@ -6,6 +6,11 @@
 uint16 Battery_display_level(void)
 {
 	ADC_Battery_Start();
+
+	// Wait for the voltage level to settle
+	// ! This is very important as there is >5ms charging time on the V_Battery pin!
+	CyDelay(15);
+
 	uint16 sum = 0;
 	for (uint8 i = 0; i < BATTERY_SAMPLES_COUNT; i++)
 	{
