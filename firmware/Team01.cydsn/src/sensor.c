@@ -217,7 +217,10 @@ void Sensor_prepare_for_sampling()
 	FLAG_CLEAR(FLAGS, FLAG_SENSOR_AWAIT_RISING);
 	isr_lightsense_Disable();
 	Sensor_set_light_check_timer_period(SENSOR_SAMPLING_TIMER_PERIOD);
-	DB7_Write(0);
+
+#ifdef SENSOR_DISPLAY_ON_DEBUG
+	DB7_OFF;
+#endif
 }
 
 void Sensor_prepare_for_next_rising_edge()
@@ -233,5 +236,8 @@ void Sensor_handle_missing_rising_edge()
 {
 	Timer_Light_Check_Stop();
 	Sensor_write_low_all_sensors();
-	DB7_Write(1);
+
+#ifdef SENSOR_DISPLAY_ON_DEBUG
+	DB7_ON;
+#endif
 }

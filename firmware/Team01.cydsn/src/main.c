@@ -44,7 +44,9 @@ int main()
 		 */
 		Movement_next_control_cycle();
 		Movement_check_distance();
+#ifdef SENSOR_DISPLAY_ON_DEBUG
 		Sensor_write_statuses_to_debug();
+#endif
 
 		/* Turn Detection */
 		if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_AFTER_TURN))
@@ -88,6 +90,17 @@ int main()
 		{
 		case SENSOR_ACTION_CONTINUE_FORWARD:
 		{
+#ifndef SENSOR_DISPLAY_ON_DEBUG
+			DB0_OFF;
+			DB1_OFF;
+			DB2_OFF;
+			DB3_OFF;
+			DB4_OFF;
+			DB5_OFF;
+			DB6_OFF;
+			DB7_OFF;
+#endif
+
 			Movement_sync_motors(MOVEMENT_SPEED_RUN);
 			break;
 		}
@@ -97,11 +110,33 @@ int main()
 		}
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
+#ifndef SENSOR_DISPLAY_ON_DEBUG
+			DB0_ON;
+			DB1_ON;
+			DB2_ON;
+			DB3_ON;
+			DB4_OFF;
+			DB5_OFF;
+			DB6_OFF;
+			DB7_OFF;
+#endif
+
 			Movement_skew_correct(DIRECTION_LEFT, 0);
 			break;
 		}
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
+#ifndef SENSOR_DISPLAY_ON_DEBUG
+			DB0_OFF;
+			DB1_OFF;
+			DB2_OFF;
+			DB3_OFF;
+			DB4_ON;
+			DB5_ON;
+			DB6_ON;
+			DB7_ON;
+#endif
+
 			Movement_skew_correct(DIRECTION_RIGHT, 0);
 			break;
 		}
