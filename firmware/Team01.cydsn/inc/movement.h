@@ -49,8 +49,11 @@ const extern uint8 MOVEMENT_SPEED_BRAKE;
 extern uint16 MOVEMENT_SPEED_RUN;
 const extern uint16 MOVEMENT_SPEED_TURN;
 
-const extern uint8 MOVEMENT_CORRECTION_SKEW;
-const extern int8 MOVEMENT_SKEW_BOOST;
+/** @brief Percentage of the current speed by which to correct skew. */
+const extern uint8 MOVEMENT_CORRECTION_SKEW_FACTOR;
+/** @brief Percentage of the current speed by which to boost skew correction. */
+const extern int8 MOVEMENT_SKEW_BOOST_FACTOR;
+
 const extern int8 MOVEMENT_CORRECTION_TURNS;
 
 const extern uint8 MOVEMENT_CONTROLLER_GAIN;
@@ -76,8 +79,9 @@ void Movement_next_control_cycle();
  * @brief Corrects the skew of the robot
  *
  * @param direction the direction to turn faster in to correct a skew
+ * @param boostFactor the percentage of the current speed by which to boost skew correction
  */
-void Movement_skew_correct(Direction direction, int8 boost);
+void Movement_skew_correct(Direction direction, int8 boostFactor);
 
 /**
  * @brief Resets both motor speeds in cm/s - to be called after skew corrected alignment is met

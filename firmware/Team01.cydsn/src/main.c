@@ -87,7 +87,7 @@ int main()
 				CyDelay(100);
 
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
-				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST);
+				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 				previousAction = SENSOR_ACTION_CORRECT_RIGHT;
 
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
@@ -112,7 +112,7 @@ int main()
 				CyDelay(100);
 
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
-				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST);
+				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 				previousAction = SENSOR_ACTION_CORRECT_LEFT;
 
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
@@ -164,7 +164,7 @@ int main()
 
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
-			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST);
+			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 #ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
 			DB_ALL_OFF;
@@ -176,7 +176,7 @@ int main()
 
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
-			Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST);
+			Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 #ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
 			DB_ALL_OFF;
@@ -190,11 +190,11 @@ int main()
 		{
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
-				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST);
+				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 			}
 			else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
 			{
-				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST);
+				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 			}
 
 			// Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));

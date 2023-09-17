@@ -9,9 +9,9 @@ const uint16 MOVEMENT_SPEED_TURN = 150;
 
 uint16 MOVEMENT_currentSpeed;
 
-// TODO: scalar factor of running speed
-const uint8 MOVEMENT_CORRECTION_SKEW = 20;
-const int8 MOVEMENT_SKEW_BOOST = 30;
+const uint8 MOVEMENT_CORRECTION_SKEW_FACTOR = 13; // 13% of MOVEMENT_currentSpeed
+const int8 MOVEMENT_SKEW_BOOST_FACTOR = 19; // 19% of MOVEMENT_currentSpeed
+
 const int8 MOVEMENT_CORRECTION_TURNS = -9;
 
 const uint8 MOVEMENT_CONTROLLER_GAIN = 1;
@@ -85,7 +85,7 @@ void Movement_next_control_cycle()
 	FLAG_CLEAR(FLAGS, FLAG_ENCODERS_READY);
 }
 
-void Movement_skew_correct(Direction direction, int8 boost)
+void Movement_skew_correct(Direction direction, int8 boostFactor)
 {
 	// Increase the speed of one motor to correct for a skew
 	FLAG_SET(FLAGS, FLAG_SKEW_CORRECTING);
@@ -96,13 +96,12 @@ void Movement_skew_correct(Direction direction, int8 boost)
 	{
 	case DIRECTION_LEFT:
 	{
-		// TODO: use default speed
-		Movement_set_M2_pulse_target(MOVEMENT_currentSpeed + MOVEMENT_CORRECTION_SKEW + boost);
+		Movement_set_M2_pulse_target((MOVEMENT_currentSpeed * (100 + MOVEMENT_CORRECTION_SKEW_FACTOR + boostFactor)) / 100);
 		break;
 	}
 	case DIRECTION_RIGHT:
 	{
-		Movement_set_M1_pulse_target(MOVEMENT_currentSpeed + MOVEMENT_CORRECTION_SKEW + boost);
+		Movement_set_M1_pulse_target((MOVEMENT_currentSpeed * (100 + MOVEMENT_CORRECTION_SKEW_FACTOR + boostFactor)) / 100);
 		break;
 	}
 	default:
