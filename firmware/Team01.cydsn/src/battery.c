@@ -50,44 +50,35 @@ uint16 Battery_display_level(void)
 
 	uint8 batteryPercentage = ((batteryReading - BATTERY_EMPTY_MV) * 100) / (BATTERY_FULL_MV - BATTERY_EMPTY_MV);
 
-	// First turn all LEDs on
-	DB0_ON;
-	DB1_ON;
-	DB2_ON;
-	DB3_ON;
-	DB4_ON;
-	DB5_ON;
-	DB6_ON;
 	DB7_ON;
 
-	// Turn LEDs off as required
-	if (batteryPercentage < 88)
+	if (batteryPercentage > 13)
 	{
-		DB0_OFF;
+		DB6_ON;
 	}
-	if (batteryPercentage < 75)
+	if (batteryPercentage > 25)
 	{
-		DB1_OFF;
+		DB5_ON;
 	}
-	if (batteryPercentage < 63)
+	if (batteryPercentage > 38)
 	{
-		DB2_OFF;
+		DB4_ON;
 	}
-	if (batteryPercentage < 50)
+	if (batteryPercentage > 50)
 	{
-		DB3_OFF;
+		DB3_ON;
 	}
-	if (batteryPercentage < 38)
+	if (batteryPercentage > 63)
 	{
-		DB4_OFF;
+		DB2_ON;
 	}
-	if (batteryPercentage < 25)
+	if (batteryPercentage > 75)
 	{
-		DB5_OFF;
+		DB1_ON;
 	}
-	if (batteryPercentage < 13)
+	if (batteryPercentage > 88)
 	{
-		DB6_OFF;
+		DB0_ON;
 	}
 
 	return batteryReading;
