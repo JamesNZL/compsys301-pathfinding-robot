@@ -173,17 +173,7 @@ int main()
 		}
 		case SENSOR_ACTION_FIND_VALID_STATE:
 		{
-			// Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
-			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
-			{
-				Movement_skew_correct(DIRECTION_LEFT, 0);
-				currentAction = DIRECTION_LEFT;
-			}
-			else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
-			{
-				Movement_skew_correct(DIRECTION_RIGHT, 0);
-				currentAction = DIRECTION_RIGHT;
-			}
+			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 
 #ifndef SENSOR_DISPLAY_ON_DEBUG
 			DB0_ON;
