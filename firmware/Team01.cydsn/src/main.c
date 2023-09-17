@@ -107,7 +107,15 @@ int main()
 		}
 		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
 		{
+			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+
 			// Movement_sync_mmotors(170);
+			break;
+		}
+		case SENSOR_ACTION_FIND_VALID_STATE:
+		{
+			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+
 			break;
 		}
 		}
