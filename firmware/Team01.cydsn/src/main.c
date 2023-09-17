@@ -38,15 +38,15 @@ int main()
 
 	FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 	Movement_sync_motors(MOVEMENT_SPEED_RUN);
+
 	for (;;)
 	{
-
 		Movement_next_control_cycle();
 		Movement_check_distance();
 		Sensor_write_statuses_to_debug();
+
 		if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_AFTER_TURN))
 		{
-
 			if (Sensor_is_on_right_turn_intersection())
 			{
 				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
@@ -55,6 +55,7 @@ int main()
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+
 				continue;
 			}
 			else if (Sensor_is_on_left_turn_intersection())
@@ -65,9 +66,11 @@ int main()
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+
 				continue;
 			}
 		}
+
 		if ((Sensor_skewBackLeft.status && Sensor_skewFrontRight.status) || (Sensor_skewFrontRight.status && Sensor_skewBackRight.status))
 		{
 			currentAction = SENSOR_ACTION_CORRECT_LEFT;
