@@ -66,7 +66,6 @@ int main()
 			{
 				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
-
 				Movement_turn_right(90);
 				CyDelay(100);
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
