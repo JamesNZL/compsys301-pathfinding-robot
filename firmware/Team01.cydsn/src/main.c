@@ -16,8 +16,7 @@ volatile uint8 FLAGS = 0x00;
 int main()
 {
 	CYGlobalIntEnable;
-	SensorActions currentAction;
-	static SensorActions previousAction;
+
 	uint16 batteryVoltage = Battery_display_level();
 	sprintf(USB_buffer, "Battery Voltage: %d mV\n", batteryVoltage);
 
@@ -40,37 +39,53 @@ int main()
 	FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 	Movement_sync_motors(MOVEMENT_SPEED_RUN);
 
+	static SensorActions previousAction;
+	static SensorActions currentAction;
+
 	for (;;)
 	{
 #ifdef SENSOR_DISPLAY_ON_DEBUG
 		Sensor_write_statuses_to_debug();
 #endif
 
+		/*
+		 * Movement Control
+		 */
+
 		/* Turn Detection */
 		if (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN))
 		{
+
 #ifdef MOVEMENT_DISPLAY_TURNS_ON_DEBUG
 			DB_ALL_ON;
 #endif
+
 			Movement_check_turn_complete();
 		}
 		else
 		{
+
 #ifdef MOVEMENT_DISPLAY_TURNS_ON_DEBUG
 			DB_ALL_OFF;
 #endif
+
 			if (Sensor_is_on_right_turn_intersection())
 			{
+
 #ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
 				DB_ALL_OFF;
 				DB_RIGHT_ON;
 #endif
+
 				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+
 				Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
 				Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
+
 				Movement_turn_right(90);
 				CyDelay(100);
+
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST);
 				previousAction = SENSOR_ACTION_CORRECT_RIGHT;
@@ -86,13 +101,16 @@ int main()
 				DB_ALL_OFF;
 				DB_LEFT_ON;
 #endif
+
 				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
 				Movement_write_M1_pulse(MOVEMENT_MOTOR_OFF);
 				Movement_write_M2_pulse(MOVEMENT_MOTOR_OFF);
+
 				Movement_turn_left(90);
 				CyDelay(100);
+
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST);
 				previousAction = SENSOR_ACTION_CORRECT_LEFT;
@@ -103,15 +121,12 @@ int main()
 			}
 		}
 
-		/*
-		 * Movement Control
-		 */
+		/* Movement Control Loop */
 		Movement_next_control_cycle();
 		Movement_check_distance();
 
 		/* Sensor Actions */
 		currentAction = Sensor_determine_action();
-
 		if (currentAction == previousAction)
 		{
 			continue;
@@ -171,7 +186,7 @@ int main()
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST);
 			}
 
-			//			Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+			// Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 
 #ifdef MOVEMENT_DISPLAY_SKEW_ON_DEBUG
 			DB_ALL_OFF;
@@ -183,7 +198,7 @@ int main()
 
 		case SENSOR_ACTION_FIND_VALID_STATE:
 		{
-			//	Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
+			// Motor_Control_Reg_Write(Motor_Control_Reg_Read() | (1 << MOTOR_DISABLE_CR_POS));
 
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
@@ -208,6 +223,7 @@ int main()
 		/*
 		 * Command Parsing
 		 */
+
 		USB_get_input();
 
 		if (FLAG_IS_SET(FLAGS, FLAG_USB_INPUT))
