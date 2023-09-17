@@ -39,14 +39,14 @@
 #define MOVEMENT_SPEED_OFF	 0
 #define MOVEMENT_SPEED_BRAKE 70
 #define MOVEMENT_SPEED_SLOW	 120 // ! no lower than 110
-#define MOVEMENT_SPEED_RUN	 220 // ! no lower than 130, no more than 240, 160 is KNOWN GOOD
+#define MOVEMENT_SPEED_RUN	 160 // ! no lower than 130, no more than 240, 160 is KNOWN GOOD
 #define MOVEMENT_SPEED_TURN	 130
 
 /* Skew */
 /** @brief Percentage of the current speed by which to correct skew. */
-#define MOVEMENT_SKEW_CORRECTION_FACTOR 12
+#define MOVEMENT_SKEW_CORRECTION_FACTOR 10
 /** @brief Percentage of the current speed by which to boost skew correction. */
-#define MOVEMENT_SKEW_BOOST_FACTOR 6
+#define MOVEMENT_SKEW_BOOST_FACTOR 4
 
 /* Turns */
 #define MOVEMENT_TURNS_CORRECTION		 -3 // more negative -> more turn
