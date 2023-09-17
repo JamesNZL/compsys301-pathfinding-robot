@@ -206,7 +206,10 @@ void Movement_turn_left(uint16 angle)
 	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle) - MOVEMENT_TURNS_LEFT_CORRECTION;
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
-	CyDelay(10);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+
+	CyDelay(300);
 	Movement_set_direction_left(DIRECTION_REVERSE);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
@@ -220,6 +223,7 @@ void Movement_turn_left(uint16 angle)
 	Movement_set_direction_left(DIRECTION_FORWARD);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+	CyDelay(300);
 
 	// Reset decoders to previous value before tur
 	QuadDec_M1_SetCounter(pulseMeas);
@@ -234,7 +238,8 @@ void Movement_turn_right(uint16 angle)
 
 	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
-	CyDelay(10);
+
+	CyDelay(300);
 	Movement_set_direction_right(DIRECTION_REVERSE);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
@@ -246,6 +251,8 @@ void Movement_turn_right(uint16 angle)
 	Movement_set_direction_right(DIRECTION_FORWARD);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+	CyDelay(300);
+
 	QuadDec_M1_SetCounter(pulseMeas);
 	CYGlobalIntEnable;
 }

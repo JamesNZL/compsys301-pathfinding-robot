@@ -38,19 +38,20 @@
 /* Speeds */
 #define MOVEMENT_SPEED_OFF	 0
 #define MOVEMENT_SPEED_BRAKE 70
+#define MOVEMENT_SPEED_SLOW	 120 // ! no lower than 110
 #define MOVEMENT_SPEED_RUN	 160
-#define MOVEMENT_SPEED_TURN	 150
+#define MOVEMENT_SPEED_TURN	 130
 
 /* Skew */
 /** @brief Percentage of the current speed by which to correct skew. */
-#define MOVEMENT_SKEW_CORRECTION_FACTOR 13
+#define MOVEMENT_SKEW_CORRECTION_FACTOR 12
 /** @brief Percentage of the current speed by which to boost skew correction. */
-#define MOVEMENT_SKEW_BOOST_FACTOR 19
+#define MOVEMENT_SKEW_BOOST_FACTOR 6
 
 /* Turns */
-#define MOVEMENT_TURNS_CORRECTION		 -9
-#define MOVEMENT_TURNS_LEFT_CORRECTION	 30
-#define MOVEMENT_TURNS_RIGHT_CORRECTION	 10
+#define MOVEMENT_TURNS_CORRECTION		 -3 // more negative -> more turn
+#define MOVEMENT_TURNS_LEFT_CORRECTION	 25 // more positive -> less turn
+#define MOVEMENT_TURNS_RIGHT_CORRECTION	 25 // more positive -> less turn
 
 #define MOVEMENT_TURNS_REFRACTORY_PULSES 60
 

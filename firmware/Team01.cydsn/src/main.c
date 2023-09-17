@@ -86,7 +86,7 @@ int main()
 				Movement_turn_right(90);
 				CyDelay(100);
 
-				Movement_sync_motors(MOVEMENT_SPEED_RUN);
+				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 				previousAction = SENSOR_ACTION_CORRECT_RIGHT;
 
@@ -111,7 +111,7 @@ int main()
 				Movement_turn_left(90);
 				CyDelay(100);
 
-				Movement_sync_motors(MOVEMENT_SPEED_RUN);
+				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 				previousAction = SENSOR_ACTION_CORRECT_LEFT;
 
@@ -149,7 +149,7 @@ int main()
 		case SENSOR_ACTION_ANTICIPATE_TURN:
 		{
 
-			Movement_sync_motors(MOVEMENT_SPEED_BRAKE);
+			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_ON;
