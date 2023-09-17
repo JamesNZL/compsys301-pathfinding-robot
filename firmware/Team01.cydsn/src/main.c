@@ -55,7 +55,7 @@ int main()
 				Movement_turn_right(90);
 				CyDelay(100);
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
-				Movement_skew_correct(DIRECTION_LEFT);
+				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 
@@ -67,7 +67,7 @@ int main()
 				Movement_turn_left(90);
 				CyDelay(100);
 				Movement_sync_motors(MOVEMENT_SPEED_RUN);
-				Movement_skew_correct(DIRECTION_RIGHT);
+				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST);
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
@@ -97,12 +97,12 @@ int main()
 		}
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
-			Movement_skew_correct(DIRECTION_LEFT);
+			Movement_skew_correct(DIRECTION_LEFT, 0);
 			break;
 		}
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
-			Movement_skew_correct(DIRECTION_RIGHT);
+			Movement_skew_correct(DIRECTION_RIGHT, 0);
 			break;
 		}
 		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:

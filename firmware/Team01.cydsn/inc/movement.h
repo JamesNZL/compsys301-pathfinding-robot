@@ -3,25 +3,26 @@
 
 #include <cytypes.h>
 
-#define MOTOR_LEFT_CR_POS					0
-#define MOTOR_RIGHT_CR_POS					1
-#define MOTOR_DISABLE_CR_POS				2
+#define MOTOR_LEFT_CR_POS					 0
+#define MOTOR_RIGHT_CR_POS					 1
+#define MOTOR_DISABLE_CR_POS				 2
 
-#define MOVEMENT_PIVOT_CIRCUMFERENCE		354.277F
-#define MOVEMENT_WHEEL_CIRCUMFERENCE		203.57F
-#define MOVEMENT_PULSE_REVOLUTION			228
-#define MOVEMENT_PULSE_90_DEGREE			99
-#define MOVEMENT_PULSE_180_DEGREE			198
+#define MOVEMENT_PIVOT_CIRCUMFERENCE		 354.277F
+#define MOVEMENT_WHEEL_CIRCUMFERENCE		 203.57F
+#define MOVEMENT_PULSE_REVOLUTION			 228
+#define MOVEMENT_PULSE_90_DEGREE			 99
+#define MOVEMENT_PULSE_180_DEGREE			 198
 
-#define MOVEMENT_LEFT_TURN_PULSE_CORRECTION 35
+#define MOVEMENT_LEFT_TURN_PULSE_CORRECTION	 22
+#define MOVEMENT_RIGHT_TURN_PULSE_CORRECTION 4
 
-#define MOVEMENT_DELAY_AFTER_TURN			50000
+#define MOVEMENT_DELAY_AFTER_TURN			 50000
 
-#define MOVEMENT_MM_PER_PULSE				0.8928F
+#define MOVEMENT_MM_PER_PULSE				 0.8928F
 
-#define MOVEMENT_CM_CONVERSION				11.20072F
+#define MOVEMENT_CM_CONVERSION				 11.20072F
 
-#define MOVEMENT_MOTOR_OFF					0
+#define MOVEMENT_MOTOR_OFF					 0
 
 /**
  * @brief The possible movement directions for the robot.
@@ -48,6 +49,7 @@ extern uint16 MOVEMENT_SPEED_RUN;
 const extern uint16 MOVEMENT_SPEED_TURN;
 
 const extern uint8 MOVEMENT_CORRECTION_SKEW;
+const extern int8 MOVEMENT_SKEW_BOOST;
 const extern int8 MOVEMENT_CORRECTION_TURNS;
 
 const extern uint8 MOVEMENT_CONTROLLER_GAIN;
@@ -74,7 +76,7 @@ void Movement_next_control_cycle();
  *
  * @param direction the direction to turn faster in to correct a skew
  */
-void Movement_skew_correct(Direction direction);
+void Movement_skew_correct(Direction direction, int8 boost);
 
 /**
  * @brief Resets both motor speeds in cm/s - to be called after skew corrected alignment is met
