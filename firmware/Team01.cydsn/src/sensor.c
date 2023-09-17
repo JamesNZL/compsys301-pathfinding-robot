@@ -68,11 +68,11 @@ SensorActions Sensor_determine_action()
 #ifndef SENSOR_USE_LOOKUP
 	if ((Sensor_skewBackLeft.status && Sensor_skewFrontRight.status) || (Sensor_skewFrontRight.status && Sensor_skewBackRight.status))
 	{
-		return SENSOR_ACTION_CORRECT_LEFT;
+		return SENSOR_ACTION_CORRECT_RIGHT;
 	}
 	else if ((Sensor_skewBackRight.status && Sensor_skewFrontLeft.status) || (Sensor_skewFrontLeft.status && Sensor_skewBackLeft.status))
 	{
-		return SENSOR_ACTION_CORRECT_RIGHT;
+		return SENSOR_ACTION_CORRECT_LEFT;
 	}
 	else
 	{
