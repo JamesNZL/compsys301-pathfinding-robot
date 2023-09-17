@@ -23,34 +23,6 @@
 		.status = FALSE               \
 	}
 
-// Samples the sensor information and stores it for later processing
-#define SENSOR_SAMPLE_READING(sensorStruct, sensorReadFunction) \
-	if (sensorReadFunction())                                   \
-	{                                                           \
-		sensorStruct.highWasSampled = TRUE;                     \
-	}
-
-// Debounces (ensures the signal has held its value for at least X periods) and stores the required status
-#define SENSOR_DEBOUNCE_AND_UPDATE_STATUS(sensorStruct)              \
-	sensorStruct.periodCount++;                                      \
-	bool sensorStruct##newStatus = sensorStruct.highWasSampled;      \
-	if (sensorStruct.previousStatus != sensorStruct##newStatus)      \
-	{                                                                \
-		sensorStruct.periodCount = 0;                                \
-	}                                                                \
-	if (sensorStruct.periodCount >= SENSOR_MINIMUM_DEBOUNCE_PERIODS) \
-	{                                                                \
-		sensorStruct.status = sensorStruct##newStatus;               \
-	}                                                                \
-	sensorStruct.highWasSampled = FALSE;                             \
-	sensorStruct.previousStatus = sensorStruct##newStatus;
-
-#define SENSOR_WRITE_LOW(sensorStruct) \
-	sensorStruct.status = FALSE
-
-#define SENSOR_WRITE_HIGH(sensorStruct) \
-	sensorStruct.status = TRUE
-
 typedef struct Sensor
 {
 	bool status;
@@ -215,9 +187,9 @@ volatile extern Sensor Sensor_skewCenter;
 void Sensor_init_sensors();
 
 /**
- * @brief Stores the status of all sensors by reading their pins
+ * @return required action based on current LUT state
  */
-void Sensor_debounce_and_update_sensor_statuses();
+SensorActions Sensor_determine_action();
 
 /**
  * @brief Sets the bias level of DAC Lower and Upper
@@ -229,27 +201,9 @@ void Sensor_set_bias_level(float voltage);
  */
 void Sensor_write_statuses_to_debug();
 
-/**
- * @brief reset and configure for enabling the light sense isr
+/*
+ * Conditionals
  */
-void Sensor_prepare_for_next_rising_edge();
-
-/**
- * @brief procedure for when there is no rising edge withing a specific timeframe
- */
-void Sensor_handle_missing_rising_edge();
-
-/**
- * @brief reset and configure for enabline the light check isr for sampling
- */
-void Sensor_prepare_for_sampling();
-
-/**
- * @brief read and count occurences of sensor statuses
- */
-void Sensor_sample_sensor_readings();
-
-// Conditional Statements
 
 /**
  * @return true if all sensors are off (on black)
@@ -270,21 +224,5 @@ bool Sensor_is_on_left_turn_intersection();
  * @return true if there is a left AND right turn currently available
  */
 bool Sensor_is_on_all_turn_intersection();
-
-/**
- * @return required action based on current LUT state
- */
-SensorActions Sensor_determine_action();
-
-/**
- * @brief sets the status of all sensor structs to FALSE (low)
- */
-void Sensor_write_low_all_sensors();
-
-/**
- * @brief Undertakes the required steps to reset and set the timer period
- * @param period a valid period for a 16-bit UDB timer
- */
-void Sensor_set_light_check_timer_period(uint16 period);
 
 #endif

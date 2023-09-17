@@ -63,21 +63,37 @@ typedef enum Direction
 } Direction;
 
 /**
+ * @brief Initialises all movement dependencies
+ */
+void Movement_init_motors(void);
+
+/**
  * @brief Converts cm per second to pulses per second
  *
  * @param cms the centimeters per second to target
  */
-uint16 Movement_cm_to_pulse(float cms);
+uint16 Movement_cm_to_pulse(float cm);
+/**
+ * @brief Instructs the robot to move a certain number of mm
+ *
+ * @param distance the distance to move in mm
+ */
+void Movement_move_mm(uint16 distance);
 
 /**
  * @brief Checks if there is distance to move - sets speed accordingly
  */
-void Movement_check_distance();
+void Movement_check_distance(void);
 
 /**
  * @brief Executes the next control loop cycle with feedback
  */
-void Movement_next_control_cycle();
+void Movement_next_control_cycle(void);
+
+/**
+ * @brief Resets both motor speeds in cm/s - to be called after skew corrected alignment is met
+ */
+void Movement_sync_motors(uint16 speed);
 
 /**
  * @brief Corrects the skew of the robot
@@ -88,47 +104,9 @@ void Movement_next_control_cycle();
 void Movement_skew_correct(Direction direction, int8 boostFactor);
 
 /**
- * @brief Resets both motor speeds in cm/s - to be called after skew corrected alignment is met
+ * @brief Check if the previous turn is complete and re-enable turn sensors if so
  */
-void Movement_sync_motors(uint16 speed);
-
-/**
- * @brief Instructs the robot to move a certain number of mm
- *
- * @param distance the distance to move in mm
- */
-void Movement_move_mm(uint16 distance);
-
-/**
- * @brief Writes the motor pulse target physically
- *
- * @param target The target amount of pulses for a motor to turn in one second
- */
-void Movement_write_M1_pulse(uint16 target);
-void Movement_write_M2_pulse(uint16 target);
-
-/**
- * @brief Sets the motor pulse target for control loop
- *
- * @param target the target amount of pulses to turn in one second
- */
-void Movement_set_M1_pulse_varying(uint16 target);
-void Movement_set_M2_pulse_varying(uint16 target);
-
-/**
- * @brief Sets the motor pulse target for control loop - doesnt change
- *
- * @param target the target amount of pulses to turn in one second
- */
-void Movement_set_M1_pulse_target(uint16 target);
-void Movement_set_M2_pulse_target(uint16 target);
-
-/**
- * @brief Calculates target duty cycle
- *
- * @param target the target pulses to be converted
- */
-float Movement_calculate_duty(uint16 target);
+void Movement_check_turn_complete(void);
 
 /**
  * @brief Turns the robot left (on the spot) by angle degrees
@@ -145,16 +123,12 @@ void Movement_turn_left(uint16 angle);
 void Movement_turn_right(uint16 angle);
 
 /**
- * @brief Turns target angle to turn into pulse count
+ * @brief Writes the motor pulse target physically
  *
- * @param angle the scalar angle in degrees to turn any direction
+ * @param target The target amount of pulses for a motor to turn in one second
  */
-uint16 Movement_calculate_angle_to_pulse(uint16 angle);
-
-/**
- * @brief Turns on all skew dependencies
- */
-void Movement_init_motors();
+void Movement_write_M1_pulse(uint16 target);
+void Movement_write_M2_pulse(uint16 target);
 
 /**
  * @brief sets the direction of BOTH motors to forwards or reverse
@@ -173,15 +147,5 @@ void Movement_set_direction_left(Direction direction);
 void Movement_set_speed(uint8 percent);
 void Movement_set_speed_right(uint8 percent);
 void Movement_set_speed_left(uint8 percent);
-
-// Utils
-void Movement_set_pwm_1_duty_cycle(uint8 percent);
-void Movement_set_pwm_2_duty_cycle(uint8 percent);
-void Movement_check_turn_complete();
-uint8 Movement_calculate_compare(uint8 percent);
-
-// Debug
-int16 Movement_get_speed_left();
-int16 Movement_get_speed_right();
 
 #endif

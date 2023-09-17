@@ -2,6 +2,39 @@
 #include "common.h"
 #include <project.h>
 
+/**
+ * @brief Turns target angle to turn into pulse count
+ *
+ * @param angle the scalar angle in degrees to turn any direction
+ */
+static uint16 Movement_calculate_angle_to_pulse(uint16 angle);
+
+/**
+ * @brief Calculates target duty cycle
+ *
+ * @param target the target pulses to be converted
+ */
+static float Movement_calculate_duty(uint16 target);
+
+/**
+ * @brief Sets the motor pulse target for control loop
+ *
+ * @param target the target amount of pulses to turn in one second
+ */
+static void Movement_set_M1_pulse_varying(uint16 target);
+static void Movement_set_M2_pulse_varying(uint16 target);
+/**
+ * @brief Sets the motor pulse target for control loop - doesnt change
+ *
+ * @param target the target amount of pulses to turn in one second
+ */
+static void Movement_set_M1_pulse_target(uint16 target);
+static void Movement_set_M2_pulse_target(uint16 target);
+
+static void Movement_set_pwm_1_duty_cycle(uint8 percent);
+static void Movement_set_pwm_2_duty_cycle(uint8 percent);
+static uint8 Movement_calculate_compare(uint8 percent);
+
 volatile static int16 Movement_pulsesApparentM1;
 volatile static int16 Movement_pulsesApparentM2;
 static int16 Movement_pulsesVaryingM1;
@@ -31,7 +64,16 @@ uint16 Movement_cm_to_pulse(float cm)
 	return (uint16)(cm * MOVEMENT_CM_CONVERSION);
 }
 
-void Movement_check_distance()
+void Movement_move_mm(uint16 distance)
+{
+	// Enable the motors, and set the target distance, turn off move infinitely
+	Motor_Control_Reg_Write(Motor_Control_Reg_Read() & ~(1 << MOTOR_DISABLE_CR_POS));
+	Movement_pulsesToMove = (float)distance / MOVEMENT_MM_PER_PULSE;
+
+	FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
+}
+
+void Movement_check_distance(void)
 {
 	if (FLAG_IS_SET(FLAGS, FLAG_MOVE_INFINITELY))
 	{
@@ -50,7 +92,7 @@ void Movement_check_distance()
 	}
 }
 
-void Movement_next_control_cycle()
+void Movement_next_control_cycle(void)
 {
 	if (FLAG_IS_CLEARED(FLAGS, FLAG_ENCODERS_READY))
 	{
@@ -81,6 +123,16 @@ void Movement_next_control_cycle()
 	FLAG_CLEAR(FLAGS, FLAG_ENCODERS_READY);
 }
 
+void Movement_sync_motors(uint16 speed)
+{
+	FLAG_CLEAR(FLAGS, FLAG_SKEW_CORRECTING);
+
+	Movement_currentSpeed = speed;
+
+	Movement_set_M1_pulse_target(Movement_currentSpeed);
+	Movement_set_M2_pulse_target(Movement_currentSpeed);
+}
+
 void Movement_skew_correct(Direction direction, int8 boostFactor)
 {
 	// Increase the speed of one motor to correct for a skew
@@ -107,65 +159,43 @@ void Movement_skew_correct(Direction direction, int8 boostFactor)
 	}
 }
 
-void Movement_sync_motors(uint16 speed)
+void Movement_check_turn_complete(void)
 {
-	FLAG_CLEAR(FLAGS, FLAG_SKEW_CORRECTING);
-
-	Movement_currentSpeed = speed;
-
-	Movement_set_M1_pulse_target(Movement_currentSpeed);
-	Movement_set_M2_pulse_target(Movement_currentSpeed);
-}
-
-void Movement_move_mm(uint16 distance)
-{
-	// Enable the motors, and set the target distance, turn off move infinitely
-	Motor_Control_Reg_Write(Motor_Control_Reg_Read() & ~(1 << MOTOR_DISABLE_CR_POS));
-	Movement_pulsesToMove = (float)distance / MOVEMENT_MM_PER_PULSE;
-
-	FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
-}
-
-void Movement_write_M1_pulse(uint16 target)
-{
-	PWM_1_WriteCompare(PWM_1_ReadPeriod() * Movement_calculate_duty(target));
-}
-
-void Movement_write_M2_pulse(uint16 target)
-{
-	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target));
-}
-
-void Movement_set_M1_pulse_varying(uint16 target)
-{
-	Movement_pulsesVaryingM1 = target;
-}
-
-void Movement_set_M2_pulse_varying(uint16 target)
-{
-	Movement_pulsesVaryingM2 = target;
-}
-
-void Movement_set_M1_pulse_target(uint16 target)
-{
-	Movement_pulsesTargetM1 = target;
-}
-
-void Movement_set_M2_pulse_target(uint16 target)
-{
-	Movement_pulsesTargetM2 = target;
-}
-
-float Movement_calculate_duty(uint16 target)
-{
-	float dutyFraction = ((float)target / PWM_1_ReadPeriod());
-	if (dutyFraction < 1)
+	if (FLAG_IS_CLEARED(FLAGS, FLAG_ENCODERS_READY))
 	{
-		return dutyFraction;
+		return;
 	}
-	else
+	Movement_pulsesSinceTurn -= Movement_pulsesApparentM1;
+
+	if (Movement_pulsesSinceTurn > 0)
 	{
-		return 1;
+		return;
+	}
+
+	FLAG_CLEAR(FLAGS, FLAG_WAITING_AFTER_TURN);
+	Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
+}
+
+static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
+{
+	switch (angle)
+	{
+	case 90:
+	{
+		return MOVEMENT_PULSE_90_DEGREE - MOVEMENT_TURNS_CORRECTION;
+	}
+	case 180:
+	{
+		return MOVEMENT_PULSE_180_DEGREE - MOVEMENT_TURNS_CORRECTION;
+	}
+	default:
+	{
+		// Convert angle to fraction of circle by dividing 360
+		// Multiply fraction by total pivot circumference
+		// Divide by circumference of wheel to determine revs needed
+		// Convert revs to pulses through multiply 228
+		return ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_TURNS_CORRECTION;
+	}
 	}
 }
 
@@ -220,54 +250,64 @@ void Movement_turn_right(uint16 angle)
 	CYGlobalIntEnable;
 }
 
-uint16 Movement_calculate_angle_to_pulse(uint16 angle)
+static float Movement_calculate_duty(uint16 target)
 {
-	switch (angle)
+	float dutyFraction = ((float)target / PWM_1_ReadPeriod());
+	if (dutyFraction < 1)
 	{
-	case 90:
-	{
-		return MOVEMENT_PULSE_90_DEGREE - MOVEMENT_TURNS_CORRECTION;
+		return dutyFraction;
 	}
-	case 180:
+	else
 	{
-		return MOVEMENT_PULSE_180_DEGREE - MOVEMENT_TURNS_CORRECTION;
-	}
-	default:
-	{
-		// Convert angle to fraction of circle by dividing 360
-		// Multiply fraction by total pivot circumference
-		// Divide by circumference of wheel to determine revs needed
-		// Convert revs to pulses through multiply 228
-		return ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_TURNS_CORRECTION;
-	}
+		return 1;
 	}
 }
 
-void Movement_init_motors()
+void Movement_write_M1_pulse(uint16 target)
 {
-	PWM_1_Start();
-	PWM_2_Start();
-	Timer_Dec_Start();
-	QuadDec_M1_Start();
-	QuadDec_M2_Start();
-	isr_getpulse_StartEx(PROCESS_PULSE);
+	PWM_1_WriteCompare(PWM_1_ReadPeriod() * Movement_calculate_duty(target));
 }
 
-void Movement_set_pwm_1_duty_cycle(uint8 percent)
+void Movement_write_M2_pulse(uint16 target)
+{
+	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target));
+}
+
+static void Movement_set_M1_pulse_varying(uint16 target)
+{
+	Movement_pulsesVaryingM1 = target;
+}
+
+static void Movement_set_M2_pulse_varying(uint16 target)
+{
+	Movement_pulsesVaryingM2 = target;
+}
+
+static void Movement_set_M1_pulse_target(uint16 target)
+{
+	Movement_pulsesTargetM1 = target;
+}
+
+static void Movement_set_M2_pulse_target(uint16 target)
+{
+	Movement_pulsesTargetM2 = target;
+}
+
+static void Movement_set_pwm_1_duty_cycle(uint8 percent)
 {
 	// set the compare
 	uint8 compare = Movement_calculate_compare(percent);
 	PWM_1_WriteCompare(compare);
 }
 
-void Movement_set_pwm_2_duty_cycle(uint8 percent)
+static void Movement_set_pwm_2_duty_cycle(uint8 percent)
 {
 	// set the compare
 	uint8 compare = Movement_calculate_compare(percent);
 	PWM_2_WriteCompare(compare);
 }
 
-uint8 Movement_calculate_compare(uint8 percent)
+static uint8 Movement_calculate_compare(uint8 percent)
 {
 	// get max count assuming it is 8 bits
 	uint8 maxCount = PWM_2_ReadPeriod();
@@ -342,19 +382,12 @@ void Movement_set_speed(uint8 percent)
 	Movement_set_speed_right(percent);
 }
 
-void Movement_check_turn_complete()
+void Movement_init_motors(void)
 {
-	if (FLAG_IS_CLEARED(FLAGS, FLAG_ENCODERS_READY))
-	{
-		return;
-	}
-	Movement_pulsesSinceTurn -= Movement_pulsesApparentM1;
-
-	if (Movement_pulsesSinceTurn > 0)
-	{
-		return;
-	}
-
-	FLAG_CLEAR(FLAGS, FLAG_WAITING_AFTER_TURN);
-	Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
+	PWM_1_Start();
+	PWM_2_Start();
+	Timer_Dec_Start();
+	QuadDec_M1_Start();
+	QuadDec_M2_Start();
+	isr_getpulse_StartEx(PROCESS_PULSE);
 }
