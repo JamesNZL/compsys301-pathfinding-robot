@@ -7,7 +7,7 @@ const uint8 MOVEMENT_SPEED_BRAKE = 70;
 uint16 MOVEMENT_SPEED_RUN = 160;
 const uint16 MOVEMENT_SPEED_TURN = 150;
 
-uint16 MOVEMENT_currentSpeed;
+static uint16 MOVEMENT_currentSpeed;
 
 const uint8 MOVEMENT_CORRECTION_SKEW_FACTOR = 13; // 13% of MOVEMENT_currentSpeed
 const int8 MOVEMENT_SKEW_BOOST_FACTOR = 19; // 19% of MOVEMENT_currentSpeed
