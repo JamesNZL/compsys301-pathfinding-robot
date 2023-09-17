@@ -31,6 +31,8 @@ int main()
 		;
 	}
 
+	DB_ALL_OFF;
+
 	Sensor_init_sensors();
 	Movement_init_motors();
 
