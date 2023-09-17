@@ -7,7 +7,7 @@ uint16 MOVEMENT_SPEED_RUN = 170;
 const uint16 MOVEMENT_SPEED_TURN = 120;
 
 const uint8 MOVEMENT_CORRECTION_SKEW = 20;
-const int8 MOVEMENT_SKEW_BOOST = 25;
+const int8 MOVEMENT_SKEW_BOOST = 20;
 const int8 MOVEMENT_CORRECTION_TURNS = -9;
 
 const uint8 MOVEMENT_CONTROLLER_GAIN = 1;
@@ -210,7 +210,7 @@ void Movement_turn_left(uint16 angle)
 void Movement_turn_right(uint16 angle)
 {
 	CYGlobalIntDisable;
-	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
+	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle) - MOVEMENT_RIGHT_TURN_PULSE_CORRECTION;
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
 	Movement_set_direction_right(DIRECTION_REVERSE);
