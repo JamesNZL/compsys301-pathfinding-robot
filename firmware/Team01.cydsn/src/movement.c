@@ -111,6 +111,10 @@ void Movement_next_control_cycle(void)
 		return;
 	}
 
+#ifdef MOVEMENT_DAMPEN_SKEW
+	Movement_check_turn_complete();
+#endif
+
 	// Subtract read pulses from distance to travel
 	if (Movement_pulsesToMove > 0)
 	{

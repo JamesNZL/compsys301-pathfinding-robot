@@ -10,6 +10,7 @@
  */
 #define MOVEMENT_DEBUG_SKEW
 // #define MOVEMENT_DEBUG_TURNS
+#define MOVEMENT_DAMPEN_SKEW
 
 /*
  * Motor Control Register
