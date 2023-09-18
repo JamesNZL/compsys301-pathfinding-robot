@@ -10,6 +10,15 @@
 static uint16 Movement_calculate_angle_to_pulse(uint16 angle);
 
 /**
+ * @brief Sweep left until the predicate is reached, for a maximum of 90 degrees.
+ *
+ * @param predicate A predicate to test as the robot is swept.
+ * @return uint16 The pulses swept left until the predicate was satisfied, or 0 if never satisfied.
+ */
+static uint16 Movement_sweep_left(uint8 predicate(void));
+static uint16 Movement_sweep_right(uint8 predicate(void));
+
+/**
  * @brief Calculates target duty cycle
  *
  * @param target the target pulses to be converted
@@ -278,7 +287,7 @@ void Movement_turn_right(uint16 angle)
 	CYGlobalIntEnable;
 }
 
-uint8 Movement_sweep_left(uint8 predicate(void))
+static uint16 Movement_sweep_left(uint8 predicate(void))
 {
 	// Disable interrupts so decoders dont get reset to 0
 	CYGlobalIntDisable;
@@ -327,16 +336,17 @@ uint8 Movement_sweep_left(uint8 predicate(void))
 	Movement_set_direction_right(DIRECTION_FORWARD);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
-	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
 
 	// Reset decoders to previous value before tur
 	QuadDec_M1_SetCounter(pulseMeas);
 	CYGlobalIntEnable;
 
-	return predicateResult;
+	return (predicateResult)
+		? -pulsesSwept
+		: 0;
 }
 
-uint8 Movement_sweep_right(uint8 predicate(void))
+static uint16 Movement_sweep_right(uint8 predicate(void))
 {
 	CYGlobalIntDisable;
 
@@ -383,12 +393,39 @@ uint8 Movement_sweep_right(uint8 predicate(void))
 	Movement_set_direction_left(DIRECTION_FORWARD);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
-	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
 
 	QuadDec_M1_SetCounter(pulseMeas);
 	CYGlobalIntEnable;
 
-	return predicateResult;
+	return (predicateResult)
+		? pulsesSwept
+		: 0;
+}
+
+SensorActions Movement_sweep(void)
+{
+	uint16 pulsesLeft = Movement_sweep_left(Sensor_is_any_front_on_line);
+	uint16 pulsesRight = Movement_sweep_right(Sensor_is_any_front_on_line);
+	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
+
+	if ((pulsesLeft == 0) && (pulsesRight == 0))
+	{
+		return SENSOR_ACTION_TURN_ABOUT;
+	}
+	else if (((pulsesLeft != 0) && (pulsesRight == 0)) || (pulsesLeft < pulsesRight))
+	{
+		return SENSOR_ACTION_CORRECT_LEFT;
+	}
+	else if (((pulsesRight != 0) && (pulsesLeft == 0)) || (pulsesRight < pulsesLeft))
+	{
+		return SENSOR_ACTION_CORRECT_RIGHT;
+	}
+	else
+	{
+		return SENSOR_ACTION_TURN_ABOUT;
+	}
+
+	return SENSOR_ACTION_FIND_VALID_STATE;
 }
 
 static float Movement_calculate_duty(uint16 target)

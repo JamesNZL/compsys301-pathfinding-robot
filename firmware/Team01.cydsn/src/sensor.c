@@ -150,6 +150,11 @@ bool Sensor_is_middle_on_line(void)
 	return !Sensor_skewMiddle.status;
 }
 
+bool Sensor_is_any_front_on_line(void)
+{
+	return (!Sensor_skewFrontLeft.status) || (!Sensor_skewFrontRight.status);
+}
+
 void Sensor_set_bias_level(float voltage)
 {
 	uint8_t dacValue = (voltage / DAC_Lower_RANGE_4V) * 255;

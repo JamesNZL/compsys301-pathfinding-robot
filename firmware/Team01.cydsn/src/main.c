@@ -212,6 +212,22 @@ int main()
 			break;
 		}
 
+		case SENSOR_ACTION_TURN_ABOUT:
+		{
+
+#ifdef MOVEMENT_DEBUG_SKEW
+			DEBUG_ALL_ON;
+#endif
+
+			Movement_turn_right(180);
+
+			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
+			currentAction = SENSOR_ACTION_CORRECT_LEFT;
+
+			break;
+		}
+
 		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
 		{
 
@@ -248,18 +264,59 @@ int main()
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-			uint8 turnAbout = !(Movement_sweep_right(Sensor_is_middle_on_line) || Movement_sweep_left(Sensor_is_middle_on_line));
-			if (!turnAbout)
+			SensorActions action = Movement_sweep();
+			switch (action)
 			{
-				// TODO: robot is skewed, need to know which direction to correct
+			case SENSOR_ACTION_TURN_ABOUT:
+			{
+				Movement_turn_right(180);
+
+				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+
+#ifdef MOVEMENT_DEBUG_SKEW
+				DEBUG_ALL_OFF;
+				DEBUG_LEFT_ON;
+#endif
+
+				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
+
 				break;
 			}
+			case SENSOR_ACTION_CORRECT_LEFT:
+			{
+				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 
-			Movement_turn_right(180);
+#ifdef MOVEMENT_DEBUG_SKEW
+				DEBUG_ALL_OFF;
+				DEBUG_LEFT_ON;
+#endif
 
-			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
-			currentAction = SENSOR_ACTION_CORRECT_LEFT;
+				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
+
+				break;
+			}
+			case SENSOR_ACTION_CORRECT_RIGHT:
+			{
+				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+
+#ifdef MOVEMENT_DEBUG_SKEW
+				DEBUG_ALL_OFF;
+				DEBUG_RIGHT_ON;
+#endif
+
+				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
+
+				break;
+			}
+			default:
+			{
+				DEBUG_ALL_ON;
+
+				MOVEMENT_DISABLE;
+
+				break;
+			}
+			}
 #endif
 
 			break;

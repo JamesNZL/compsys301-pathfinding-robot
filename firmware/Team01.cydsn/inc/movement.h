@@ -1,6 +1,8 @@
 #ifndef MOVEMENT_H_
 #define MOVEMENT_H_
 
+#include "sensor.h"
+
 #include <cytypes.h>
 
 /*
@@ -26,7 +28,7 @@
 #define MOVEMENT_WHEEL_CIRCUMFERENCE 203.57f
 #define MOVEMENT_PULSE_REVOLUTION	 228
 #define MOVEMENT_PULSE_90_DEGREE	 99
-#define MOVEMENT_PULSE_180_DEGREE	 210
+#define MOVEMENT_PULSE_180_DEGREE	 200
 
 #define MOVEMENT_MM_PER_PULSE		 0.8928f
 #define MOVEMENT_CM_CONVERSION		 11.20072f
@@ -120,8 +122,12 @@ void Movement_check_turn_complete(void);
  */
 void Movement_turn_left(uint16 angle);
 
-uint8 Movement_sweep_left(uint8 predicate(void));
-uint8 Movement_sweep_right(uint8 predicate(void));
+/**
+ * @brief Sweep the motor left and right and determine the next action.
+ *
+ * @return SensorActions The next action to take to return to a valid state.
+ */
+SensorActions Movement_sweep(void);
 
 /**
  * @brief Turns the robot right (on the spot) by angle degrees

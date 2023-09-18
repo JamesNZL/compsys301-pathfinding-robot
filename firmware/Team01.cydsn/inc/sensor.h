@@ -43,6 +43,7 @@ typedef enum SensorActions
 	SENSOR_ACTION_CORRECT_LEFT,
 	SENSOR_ACTION_CORRECT_RIGHT,
 	SENSOR_ACTION_CONTINUE_PREVIOUS,
+	SENSOR_ACTION_TURN_ABOUT,
 	SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT,
 	SENSOR_ACTION_FIND_VALID_STATE
 } SensorActions;
@@ -234,5 +235,10 @@ bool Sensor_is_on_all_turn_intersection(void);
  * @return true if the middle sensor is on the line
  */
 bool Sensor_is_middle_on_line(void);
+
+/**
+ * @return true if either front sensor is on the line
+ */
+bool Sensor_is_any_front_on_line(void);
 
 #endif
