@@ -215,11 +215,6 @@ int main()
 			DEBUG_ALL_OFF;
 			DEBUG_EVEN_ON;
 #endif
-
-#ifdef SENSOR_ACTIONS_INVALID_KILL
-			MOVEMENT_DISABLE;
-#endif
-
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
 				Movement_skew_correct(DIRECTION_LEFT, 0);
@@ -244,7 +239,7 @@ int main()
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-			SensorActions action = Movement_sweep();
+			SensorActions action = Movement_sweep(TRUE);
 			switch (action)
 			{
 			case SENSOR_ACTION_TURN_ABOUT:
@@ -285,7 +280,9 @@ int main()
 			default:
 			{
 				DEBUG_ALL_ON;
+#ifdef SENSOR_ACTIONS_INVALID_KILL
 				MOVEMENT_DISABLE;
+#endif
 
 				break;
 			}
@@ -302,11 +299,6 @@ int main()
 			DEBUG_ALL_OFF;
 			DEBUG_ODD_ON;
 #endif
-
-#ifdef SENSOR_ACTIONS_INVALID_KILL
-			MOVEMENT_DISABLE;
-#endif
-
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
 				Movement_skew_correct(DIRECTION_LEFT, 0);
@@ -322,34 +314,18 @@ int main()
 
 #ifdef SENSOR_ACTIONS_RIGOROUS
 			/*
-				TODO: Rotate left and right to transition to a valid state
+				Rotate left and right to transition to a valid state
 				TODO: —ignore rear skew detection unless front detectors do not detect anything
 				TODO: —this is to prevent the robot from turning around when it should continue forward
 			 */
-
-			// TODO: this isn't 100% correct but should be enough for now
 
 			Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-			SensorActions action = Movement_sweep();
+			SensorActions action = Movement_sweep(FALSE);
 			switch (action)
 			{
-			// TODO: do not handle this case
-			case SENSOR_ACTION_TURN_ABOUT:
-			{
-				Movement_turn_right(180);
-
-				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-#ifdef MOVEMENT_DEBUG_SKEW
-				DEBUG_ALL_OFF;
-				DEBUG_LEFT_ON;
-#endif
-				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
-
-				break;
-			}
 			case SENSOR_ACTION_CORRECT_LEFT:
 			{
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
@@ -375,7 +351,9 @@ int main()
 			default:
 			{
 				DEBUG_ALL_ON;
+#ifdef SENSOR_ACTIONS_INVALID_KILL
 				MOVEMENT_DISABLE;
+#endif
 
 				break;
 			}

@@ -12,11 +12,13 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle);
 /**
  * @brief Sweep left until the predicate is reached, for a maximum of 90 degrees.
  *
+ * @param maxPulses The maximum number of pulses to sweep.
  * @param predicate A predicate to test as the robot is swept.
+ * @param resetHeading Whether to reset the heading once the maximum pulses is reached or the predicate is satisfied.
  * @return uint16 The pulses swept left until the predicate was satisfied, or 0 if never satisfied.
  */
-static uint16 Movement_sweep_left(uint16 maxPulses, uint8 predicate(void));
-static uint16 Movement_sweep_right(uint16 maxPulses, uint8 predicate(void));
+static uint16 Movement_sweep_left(uint16 maxPulses, uint8 predicate(void), bool resetHeading);
+static uint16 Movement_sweep_right(uint16 maxPulses, uint8 predicate(void), bool resetHeading);
 
 /**
  * @brief Calculates target duty cycle
@@ -287,7 +289,7 @@ void Movement_turn_right(uint16 angle)
 	isr_getpulse_Enable();
 }
 
-static uint16 Movement_sweep_left(uint16 maxPulses, uint8 predicate(void))
+static uint16 Movement_sweep_left(uint16 maxPulses, uint8 predicate(void), bool resetHeading)
 {
 	// Disable interrupts so decoders dont get reset to 0
 	isr_getpulse_Disable();
@@ -317,12 +319,24 @@ static uint16 Movement_sweep_left(uint16 maxPulses, uint8 predicate(void))
 			predicateResult = TRUE;
 			break;
 		}
+		// TODO: does a delay here help?
 	}
 
 	Movement_set_direction_left(DIRECTION_FORWARD);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
+
+	if (!resetHeading)
+	{
+		// Reset decoders to previous value before tur
+		QuadDec_M1_SetCounter(pulseMeas);
+		isr_getpulse_Enable();
+
+		return (predicateResult)
+			? -pulsesSwept
+			: 0;
+	}
 
 	// Reset turn
 	Movement_set_direction_right(DIRECTION_REVERSE);
@@ -348,7 +362,7 @@ static uint16 Movement_sweep_left(uint16 maxPulses, uint8 predicate(void))
 		: 0;
 }
 
-static uint16 Movement_sweep_right(uint16 maxPulses, uint8 predicate(void))
+static uint16 Movement_sweep_right(uint16 maxPulses, uint8 predicate(void), bool resetHeading)
 {
 	isr_getpulse_Disable();
 
@@ -376,12 +390,23 @@ static uint16 Movement_sweep_right(uint16 maxPulses, uint8 predicate(void))
 			predicateResult = TRUE;
 			break;
 		}
+		// TODO: does a delay here help?
 	}
 
 	Movement_set_direction_right(DIRECTION_FORWARD);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
+
+	if (!resetHeading)
+	{
+		QuadDec_M1_SetCounter(pulseMeas);
+		isr_getpulse_Enable();
+
+		return (predicateResult)
+			? pulsesSwept
+			: 0;
+	}
 
 	// Reset turn
 	Movement_set_direction_left(DIRECTION_REVERSE);
@@ -406,12 +431,17 @@ static uint16 Movement_sweep_right(uint16 maxPulses, uint8 predicate(void))
 		: 0;
 }
 
-SensorActions Movement_sweep(void)
+SensorActions Movement_sweep(bool resetHeading)
 {
-	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
-	uint16 pulsesLeft = Movement_sweep_left(0, Sensor_is_any_front_on_line);
-	uint16 pulsesRight = Movement_sweep_right(pulsesLeft, Sensor_is_any_front_on_line);
-	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
+	CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
+	uint16 pulsesLeft = Movement_sweep_left(0, Sensor_is_any_front_on_line, TRUE);
+	uint16 pulsesRight = Movement_sweep_right(pulsesLeft, Sensor_is_any_front_on_line, TRUE);
+	CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
+
+	// TODO: this implementation does not account for back sensors only
+	// TODO: but this should not be the biggest problem,
+	// TODO: as we mostly expect FIND_VALID_STATE to come here after a 180deg turn
+	// TODO: —where the front sensors are of interest
 
 	if ((pulsesLeft == 0) && (pulsesRight == 0))
 	{
@@ -419,15 +449,21 @@ SensorActions Movement_sweep(void)
 	}
 	else if (((pulsesLeft != 0) && (pulsesRight == 0)) || (pulsesLeft < pulsesRight))
 	{
+		if (!resetHeading)
+		{
+			Movement_sweep_left(((pulsesLeft * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100), Sensor_is_any_front_on_line, FALSE);
+		}
+
 		return SENSOR_ACTION_CORRECT_LEFT;
 	}
 	else if (((pulsesRight != 0) && (pulsesLeft == 0)) || (pulsesRight < pulsesLeft))
 	{
+		if (!resetHeading)
+		{
+			Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100), Sensor_is_any_front_on_line, FALSE);
+		}
+
 		return SENSOR_ACTION_CORRECT_RIGHT;
-	}
-	else
-	{
-		return SENSOR_ACTION_TURN_ABOUT;
 	}
 
 	return SENSOR_ACTION_FIND_VALID_STATE;

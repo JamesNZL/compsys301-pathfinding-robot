@@ -54,9 +54,14 @@
 #define MOVEMENT_TURNS_CORRECTION		 -3 // more negative -> more turn
 #define MOVEMENT_TURNS_LEFT_CORRECTION	 25 // more positive -> less turn
 #define MOVEMENT_TURNS_RIGHT_CORRECTION	 25 // more positive -> less turn
+
 #define MOVEMENT_TURNS_STATIC_PERIOD	 100 // in ms
 
 #define MOVEMENT_TURNS_REFRACTORY_PULSES 60
+
+/* Sweeps */
+/** @brief Percentage of the previous pulse count to add to the maximum allowed pulses before overruling predicate */
+#define MOVEMENT_SWEEP_OVERSHOOT_FACTOR 50
 
 /**
  * @brief The possible movement directions for the robot.
@@ -125,9 +130,10 @@ void Movement_turn_left(uint16 angle);
 /**
  * @brief Sweep the motor left and right and determine the next action.
  *
+ * @param resetHeading Whether the reset the heading once the shortest sweep is found.
  * @return SensorActions The next action to take to return to a valid state.
  */
-SensorActions Movement_sweep(void);
+SensorActions Movement_sweep(bool resetHeading);
 
 /**
  * @brief Turns the robot right (on the spot) by angle degrees
