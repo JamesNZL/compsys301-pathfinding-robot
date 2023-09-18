@@ -53,7 +53,7 @@
 #define MOVEMENT_SKEW_CORRECTION_FACTOR 10
 /** @brief Percentage of the current speed by which to boost skew correction. */
 #define MOVEMENT_SKEW_BOOST_FACTOR	 4
-#define MOVEMENT_SKEW_DAMPING_FACTOR 1
+#define MOVEMENT_SKEW_DAMPING_FACTOR 2
 
 /* Turns */
 /** @brief Overshoot factor for turn angles before stopping sensor detection */

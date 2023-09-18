@@ -180,19 +180,19 @@ void Movement_skew_correct(Direction direction, int8 boostFactor)
 // TODO: decrease skew correction factor if turn was a long time ago
 void Movement_check_turn_complete(void)
 {
-	// if (FLAG_IS_CLEARED(FLAGS, FLAG_ENCODERS_READY))
-	// {
-	// 	return;
-	// }
-	Movement_pulsesSinceTurn += Movement_pulsesApparentM1;
+	if (FLAG_IS_CLEARED(FLAGS, FLAG_ENCODERS_READY))
+	{
+		return;
+	}
+	Movement_pulsesSinceTurn -= Movement_pulsesApparentM1;
 
-	if (Movement_pulsesSinceTurn < MOVEMENT_TURNS_REFRACTORY_PULSES)
+	if (Movement_pulsesSinceTurn > 0)
 	{
 		return;
 	}
 
 	FLAG_CLEAR(FLAGS, FLAG_WAITING_AFTER_TURN);
-	Movement_pulsesSinceTurn = 0;
+	Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
 }
 
 static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
