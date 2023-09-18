@@ -57,7 +57,7 @@ static uint16 Movement_currentSpeed = MOVEMENT_SPEED_RUN;
 static int16 Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
 static int8 Movement_skewDamperFactor = 0;
 
-CY_ISR(PROCESS_PULSE)
+CY_ISR(MOVEMENT_ISR_PROCESS_PULSE)
 {
 	Movement_pulsesApparentM1 = QuadDec_M1_GetCounter();
 	Movement_pulsesApparentM2 = QuadDec_M2_GetCounter();
@@ -217,7 +217,7 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 void Movement_turn_left(uint16 angle)
 {
 	// Disable interrupts so decoders dont get reset to 0
-	CYGlobalIntDisable;
+	isr_getpulse_Disable();
 
 	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
 	if (pulseTarget > MOVEMENT_TURNS_LEFT_CORRECTION)
@@ -249,12 +249,12 @@ void Movement_turn_left(uint16 angle)
 
 	// Reset decoders to previous value before tur
 	QuadDec_M1_SetCounter(pulseMeas);
-	CYGlobalIntEnable;
+	isr_getpulse_Enable();
 }
 
 void Movement_turn_right(uint16 angle)
 {
-	CYGlobalIntDisable;
+	isr_getpulse_Disable();
 
 	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
 	if (pulseTarget > MOVEMENT_TURNS_RIGHT_CORRECTION)
@@ -284,13 +284,13 @@ void Movement_turn_right(uint16 angle)
 	CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
 
 	QuadDec_M1_SetCounter(pulseMeas);
-	CYGlobalIntEnable;
+	isr_getpulse_Enable();
 }
 
 static uint16 Movement_sweep_left(uint8 predicate(void))
 {
 	// Disable interrupts so decoders dont get reset to 0
-	CYGlobalIntDisable;
+	isr_getpulse_Disable();
 
 	uint16 maxPulses = Movement_calculate_angle_to_pulse(90);
 
@@ -339,7 +339,7 @@ static uint16 Movement_sweep_left(uint8 predicate(void))
 
 	// Reset decoders to previous value before tur
 	QuadDec_M1_SetCounter(pulseMeas);
-	CYGlobalIntEnable;
+	isr_getpulse_Enable();
 
 	return (predicateResult)
 		? -pulsesSwept
@@ -348,7 +348,7 @@ static uint16 Movement_sweep_left(uint8 predicate(void))
 
 static uint16 Movement_sweep_right(uint8 predicate(void))
 {
-	CYGlobalIntDisable;
+	isr_getpulse_Disable();
 
 	uint16 maxPulses = Movement_calculate_angle_to_pulse(90);
 
@@ -395,7 +395,7 @@ static uint16 Movement_sweep_right(uint8 predicate(void))
 	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 
 	QuadDec_M1_SetCounter(pulseMeas);
-	CYGlobalIntEnable;
+	isr_getpulse_Enable();
 
 	return (predicateResult)
 		? pulsesSwept
@@ -567,5 +567,5 @@ void Movement_init_motors(void)
 	Timer_Dec_Start();
 	QuadDec_M1_Start();
 	QuadDec_M2_Start();
-	isr_getpulse_StartEx(PROCESS_PULSE);
+	isr_getpulse_StartEx(MOVEMENT_ISR_PROCESS_PULSE);
 }

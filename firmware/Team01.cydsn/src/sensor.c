@@ -79,12 +79,12 @@ volatile Sensor Sensor_skewMiddle = SENSOR_DEFAULT_INITIALISATION;
 
 volatile uint8 Sensor_sampledPeriods = 0;
 
-CY_ISR(light_sensed)
+CY_ISR(SENSOR_ISR_LIGHT_SENSED)
 {
 	Sensor_prepare_for_sampling();
 }
 
-CY_ISR(check_light)
+CY_ISR(SENSOR_ISR_CHECK_LIGHT)
 {
 	// If we have exceeded the maximum time without a rising edge
 	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_AWAIT_RISING))
@@ -252,6 +252,6 @@ void Sensor_init_sensors(void)
 	DAC_Upper_Start();
 	DAC_Middle_Start();
 	Sensor_set_bias_level(SENSOR_DEFAULT_BIAS_VOLTAGE_VOLTS);
-	isr_lightsense_StartEx(light_sensed);
-	isr_lightcheck_StartEx(check_light);
+	isr_lightsense_StartEx(SENSOR_ISR_LIGHT_SENSED);
+	isr_lightcheck_StartEx(SENSOR_ISR_CHECK_LIGHT);
 }

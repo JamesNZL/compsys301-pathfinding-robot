@@ -354,55 +354,65 @@ int main()
 				TODO: —this is to prevent the robot from turning around when it should continue forward
 			 */
 
-			// TODO: do one continuous turn that constantly checks—rather than this jank—read the pulses turned in each direction for the valid state, and make decision off of that
-
-			static uint8 anglesToAttempt[5] = { 2, 8, 15, 30, 40 };
-			static uint8 numberOfAttempts = (sizeof(anglesToAttempt) / sizeof(anglesToAttempt[0]));
+			// TODO: this isn't 100% correct but should be enough for now
 
 			Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-			for (uint8 lastAttempt = 0; lastAttempt < numberOfAttempts; lastAttempt++)
+			SensorActions action = Movement_sweep();
+			switch (action)
 			{
-				// TODO: If rear sensor detection, immediately make next request without re-running loop
-				// TODO: but will need to handle case where only rear sensors
+			case SENSOR_ACTION_TURN_ABOUT:
+			{
+				Movement_turn_right(180);
 
-				if (lastAttempt % 2 == 0)
-				{
-					// Turn left
-					Movement_turn_left(anglesToAttempt[lastAttempt / 2]);
+				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 
-					if (Sensor_determine_action() != currentAction)
-					{
-						// Return to original position
-						Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
+#ifdef MOVEMENT_DEBUG_SKEW
+				DEBUG_ALL_OFF;
+				DEBUG_LEFT_ON;
+#endif
 
-						break;
-					}
+				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
-					// Return to original position
-					Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
-				}
-				else
-				{
-					// Turn right
-					Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
-
-					if (Sensor_determine_action() != currentAction)
-					{
-						// Return to original position
-						Movement_turn_left(anglesToAttempt[lastAttempt / 2]);
-
-						break;
-					}
-
-					// Return to original position
-					Movement_turn_left(anglesToAttempt[lastAttempt / 2]);
-				}
+				break;
 			}
+			case SENSOR_ACTION_CORRECT_LEFT:
+			{
+				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 
-			// If no state was found, the robot will stay stopped
+#ifdef MOVEMENT_DEBUG_SKEW
+				DEBUG_ALL_OFF;
+				DEBUG_LEFT_ON;
+#endif
+
+				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
+
+				break;
+			}
+			case SENSOR_ACTION_CORRECT_RIGHT:
+			{
+				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+
+#ifdef MOVEMENT_DEBUG_SKEW
+				DEBUG_ALL_OFF;
+				DEBUG_RIGHT_ON;
+#endif
+
+				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
+
+				break;
+			}
+			default:
+			{
+				DEBUG_ALL_ON;
+
+				MOVEMENT_DISABLE;
+
+				break;
+			}
+			}
 #endif
 
 			break;
