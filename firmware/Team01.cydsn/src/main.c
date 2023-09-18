@@ -162,6 +162,8 @@ int main()
 			DEBUG_ALL_ON;
 #endif
 
+			Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
+			Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 
 			break;
