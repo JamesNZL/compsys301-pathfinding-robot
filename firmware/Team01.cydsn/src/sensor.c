@@ -75,7 +75,7 @@ volatile Sensor Sensor_skewBackRight = SENSOR_DEFAULT_INITIALISATION;
 volatile Sensor Sensor_skewBackLeft = SENSOR_DEFAULT_INITIALISATION;
 volatile Sensor Sensor_skewFrontRight = SENSOR_DEFAULT_INITIALISATION;
 volatile Sensor Sensor_skewFrontLeft = SENSOR_DEFAULT_INITIALISATION;
-volatile Sensor Sensor_skewCenter = SENSOR_DEFAULT_INITIALISATION;
+volatile Sensor Sensor_skewMiddle = SENSOR_DEFAULT_INITIALISATION;
 
 volatile uint8 Sensor_sampledPeriods = 0;
 
@@ -107,7 +107,7 @@ CY_ISR(check_light)
 
 SensorActions Sensor_determine_action(void)
 {
-	uint8 bitfield = ((Sensor_skewCenter.status << SENSOR_SKEW_CENTER_POSITION)
+	uint8 bitfield = ((Sensor_skewMiddle.status << SENSOR_SKEW_MIDDLE_POSITION)
 		| (Sensor_skewFrontLeft.status << SENSOR_SKEW_FRONT_LEFT_POSITION)
 		| (Sensor_skewFrontRight.status << SENSOR_SKEW_FRONT_RIGHT_POSITION)
 		| (Sensor_skewBackLeft.status << SENSOR_SKEW_BACK_LEFT_POSITION)
@@ -125,7 +125,7 @@ bool Sensor_is_all_sensors_off(void)
 		|| Sensor_turnRight.status
 		|| Sensor_skewBackRight.status
 		|| Sensor_skewBackLeft.status
-		|| Sensor_skewCenter.status
+		|| Sensor_skewMiddle.status
 		|| Sensor_skewFrontLeft.status
 		|| Sensor_skewFrontRight.status);
 }
@@ -145,6 +145,11 @@ bool Sensor_is_on_all_turn_intersection(void)
 	return !Sensor_turnLeft.status && !Sensor_turnRight.status;
 }
 
+bool Sensor_is_middle_on_line(void)
+{
+	return !Sensor_skewMiddle.status;
+}
+
 void Sensor_set_bias_level(float voltage)
 {
 	uint8_t dacValue = (voltage / DAC_Lower_RANGE_4V) * 255;
@@ -159,7 +164,7 @@ void Sensor_write_statuses_to_debug(void)
 	DEBUG_0_Write(Sensor_skewFrontLeft.status);
 	DEBUG_1_Write(Sensor_turnLeft.status);
 	DEBUG_2_Write(Sensor_skewBackLeft.status);
-	DEBUG_3_Write(Sensor_skewCenter.status);
+	DEBUG_3_Write(Sensor_skewMiddle.status);
 	DEBUG_4_Write(Sensor_skewFrontRight.status);
 	DEBUG_5_Write(Sensor_turnRight.status);
 	DEBUG_6_Write(Sensor_skewBackRight.status);
@@ -211,7 +216,7 @@ static void Sensor_sample_sensor_readings(void)
 	SENSOR_SAMPLE_READING(Sensor_skewBackLeft, Skew_Back_Left_Read);
 	SENSOR_SAMPLE_READING(Sensor_skewFrontRight, Skew_Front_Right_Read);
 	SENSOR_SAMPLE_READING(Sensor_skewFrontLeft, Skew_Front_Left_Read);
-	SENSOR_SAMPLE_READING(Sensor_skewCenter, Skew_Center_Read);
+	SENSOR_SAMPLE_READING(Sensor_skewMiddle, Skew_Middle_Read);
 }
 
 static void Sensor_debounce_and_update_sensor_statuses(void)
@@ -222,7 +227,7 @@ static void Sensor_debounce_and_update_sensor_statuses(void)
 	SENSOR_DEBOUNCE_AND_UPDATE_STATUS(Sensor_skewBackLeft);
 	SENSOR_DEBOUNCE_AND_UPDATE_STATUS(Sensor_skewFrontRight);
 	SENSOR_DEBOUNCE_AND_UPDATE_STATUS(Sensor_skewFrontLeft);
-	SENSOR_DEBOUNCE_AND_UPDATE_STATUS(Sensor_skewCenter);
+	SENSOR_DEBOUNCE_AND_UPDATE_STATUS(Sensor_skewMiddle);
 }
 
 static void Sensor_write_low_all_sensors(void)
@@ -233,7 +238,7 @@ static void Sensor_write_low_all_sensors(void)
 	SENSOR_WRITE_LOW(Sensor_skewBackRight);
 	SENSOR_WRITE_LOW(Sensor_skewFrontLeft);
 	SENSOR_WRITE_LOW(Sensor_skewFrontRight);
-	SENSOR_WRITE_LOW(Sensor_skewCenter);
+	SENSOR_WRITE_LOW(Sensor_skewMiddle);
 }
 
 void Sensor_init_sensors(void)
