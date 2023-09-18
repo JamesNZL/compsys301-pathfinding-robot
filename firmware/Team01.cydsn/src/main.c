@@ -259,7 +259,7 @@ int main()
 
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
-			previousAction = SENSOR_ACTION_CORRECT_LEFT;
+			currentAction = SENSOR_ACTION_CORRECT_LEFT;
 #endif
 
 			break;
@@ -291,8 +291,6 @@ int main()
 			}
 
 #ifdef SENSOR_ACTIONS_RIGOROUS
-			MOVEMENT_DISABLE;
-
 			/*
 				TODO: Rotate left and right to transition to a valid state
 				TODO: —ignore rear skew detection unless front detectors do not detect anything
