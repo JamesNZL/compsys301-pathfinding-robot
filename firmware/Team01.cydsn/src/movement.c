@@ -15,8 +15,8 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle);
  * @param predicate A predicate to test as the robot is swept.
  * @return uint16 The pulses swept left until the predicate was satisfied, or 0 if never satisfied.
  */
-static uint16 Movement_sweep_left(uint8 predicate(void));
-static uint16 Movement_sweep_right(uint8 predicate(void));
+static uint16 Movement_sweep_left(uint16 maxPulses, uint8 predicate(void));
+static uint16 Movement_sweep_right(uint16 maxPulses, uint8 predicate(void));
 
 /**
  * @brief Calculates target duty cycle
@@ -287,12 +287,15 @@ void Movement_turn_right(uint16 angle)
 	isr_getpulse_Enable();
 }
 
-static uint16 Movement_sweep_left(uint8 predicate(void))
+static uint16 Movement_sweep_left(uint16 maxPulses, uint8 predicate(void))
 {
 	// Disable interrupts so decoders dont get reset to 0
 	isr_getpulse_Disable();
 
-	uint16 maxPulses = Movement_calculate_angle_to_pulse(90);
+	if (maxPulses == 0)
+	{
+		maxPulses = Movement_calculate_angle_to_pulse(90);
+	}
 
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
@@ -345,11 +348,14 @@ static uint16 Movement_sweep_left(uint8 predicate(void))
 		: 0;
 }
 
-static uint16 Movement_sweep_right(uint8 predicate(void))
+static uint16 Movement_sweep_right(uint16 maxPulses, uint8 predicate(void))
 {
 	isr_getpulse_Disable();
 
-	uint16 maxPulses = Movement_calculate_angle_to_pulse(90);
+	if (maxPulses == 0)
+	{
+		maxPulses = Movement_calculate_angle_to_pulse(90);
+	}
 
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
@@ -403,8 +409,8 @@ static uint16 Movement_sweep_right(uint8 predicate(void))
 SensorActions Movement_sweep(void)
 {
 	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
-	uint16 pulsesLeft = Movement_sweep_left(Sensor_is_any_front_on_line);
-	uint16 pulsesRight = Movement_sweep_right(Sensor_is_any_front_on_line);
+	uint16 pulsesLeft = Movement_sweep_left(0, Sensor_is_any_front_on_line);
+	uint16 pulsesRight = Movement_sweep_right(pulsesLeft, Sensor_is_any_front_on_line);
 	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
 
 	if ((pulsesLeft == 0) && (pulsesRight == 0))

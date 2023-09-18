@@ -205,7 +205,6 @@ int main()
 
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
-			currentAction = SENSOR_ACTION_CORRECT_LEFT;
 
 			break;
 		}
@@ -286,12 +285,13 @@ int main()
 			default:
 			{
 				DEBUG_ALL_ON;
-
 				MOVEMENT_DISABLE;
 
 				break;
 			}
 			}
+
+			// ? TODO: drive for some distance
 #endif
 			break;
 		}
@@ -336,6 +336,7 @@ int main()
 			SensorActions action = Movement_sweep();
 			switch (action)
 			{
+			// TODO: do not handle this case
 			case SENSOR_ACTION_TURN_ABOUT:
 			{
 				Movement_turn_right(180);
@@ -374,7 +375,6 @@ int main()
 			default:
 			{
 				DEBUG_ALL_ON;
-
 				MOVEMENT_DISABLE;
 
 				break;
@@ -387,7 +387,6 @@ int main()
 		default:
 		{
 			DEBUG_ALL_ON;
-
 			MOVEMENT_DISABLE;
 
 			break;
