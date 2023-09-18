@@ -239,7 +239,7 @@ int main()
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-			SensorActions action = Movement_sweep_front(TRUE);
+			SensorActions action = Movement_sweep(Sensor_is_any_front_on_line, SENSOR_ACTION_TURN_ABOUT, TRUE);
 			switch (action)
 			{
 			case SENSOR_ACTION_TURN_ABOUT:
@@ -313,48 +313,21 @@ int main()
 #ifdef SENSOR_ACTIONS_RIGOROUS
 			/*
 				Rotate left and right to transition to a valid state
-				TODO: —ignore rear skew detection unless front detectors do not detect anything
-				TODO: —this is to prevent the robot from turning around when it should continue forward
+				—ignore rear skew detection unless front detectors do not detect anything
+				—this is to prevent the robot from turning around when it should continue forward
 			 */
 
 			Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-			SensorActions action = Movement_sweep_front(FALSE);
-			switch (action)
+			SensorActions action = Movement_sweep(Sensor_is_any_front_on_line, SENSOR_ACTION_TURN_ABOUT, FALSE);
+			// TODO: do I need the switch-case here?
+			if (action == SENSOR_ACTION_TURN_ABOUT)
 			{
-			case SENSOR_ACTION_CORRECT_LEFT:
-			{
-				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-#ifdef MOVEMENT_DEBUG_SKEW
-				DEBUG_ALL_OFF;
-				DEBUG_LEFT_ON;
-#endif
-				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
-
-				break;
-			}
-			case SENSOR_ACTION_CORRECT_RIGHT:
-			{
-				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-#ifdef MOVEMENT_DEBUG_SKEW
-				DEBUG_ALL_OFF;
-				DEBUG_RIGHT_ON;
-#endif
-				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
-
-				break;
-			}
-			default:
-			{
-				DEBUG_ALL_ON;
-#ifdef SENSOR_ACTIONS_INVALID_KILL
-				MOVEMENT_DISABLE;
-#endif
-
-				break;
-			}
+				// No line was detected in front—now sweep the back sensors
+				Movement_sweep(Sensor_is_any_back_on_line, SENSOR_ACTION_CONTINUE_FORWARD, FALSE);
+				// TODO: do I need the switch-case here?
 			}
 #endif
 			break;

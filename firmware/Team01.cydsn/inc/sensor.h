@@ -220,12 +220,10 @@ bool Sensor_is_all_sensors_off(void);
  * @return true if there is only a right turn available currently
  */
 bool Sensor_is_on_right_turn_intersection(void);
-
 /**
  * @return true if there is only a left turn available currently
  */
 bool Sensor_is_on_left_turn_intersection(void);
-
 /**
  * @return true if there is a left AND right turn currently available
  */
@@ -240,5 +238,9 @@ bool Sensor_is_middle_on_line(void);
  * @return true if either front sensor is on the line
  */
 bool Sensor_is_any_front_on_line(void);
+/**
+ * @return true if either back sensor is on the line
+ */
+bool Sensor_is_any_back_on_line(void);
 
 #endif

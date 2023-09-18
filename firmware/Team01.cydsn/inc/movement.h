@@ -120,28 +120,28 @@ void Movement_skew_correct(Direction direction, int8 boostFactor);
  * @brief Check if the previous turn is complete and re-enable turn sensors if so
  */
 void Movement_check_turn_complete(void);
-
 /**
  * @brief Turns the robot left (on the spot) by angle degrees
  *
  * @param angle The angle (in degrees) to turn left from the current position
  */
 void Movement_turn_left(uint16 angle);
-
-/**
- * @brief Sweep the motor left and right and determine the next action using the front sensors.
- *
- * @param resetHeading Whether the reset the heading once the shortest sweep is found.
- * @return SensorActions The next action to take to return to a valid state.
- */
-SensorActions Movement_sweep_front(bool resetHeading);
-
 /**
  * @brief Turns the robot right (on the spot) by angle degrees
  *
  * @param angle The angle (in degrees) to turn right from the current position
  */
 void Movement_turn_right(uint16 angle);
+
+/**
+ * @brief Sweep the motor left and right and determine the next action using a predicate.
+ *
+ * @param predicate A predicate to test as the robot is swept.
+ * @param actionIfUnsatisfied The action to return if the predicate is not satisfied.
+ * @param resetHeading Whether to reset the heading once the shortest sweep is found.
+ * @return SensorActions The next action to take to return to a valid state.
+ */
+SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatisfied, bool resetHeading);
 
 /**
  * @brief Writes the motor pulse target physically
