@@ -10,15 +10,15 @@
 static uint16 Movement_calculate_angle_to_pulse(uint16 angle);
 
 /**
- * @brief Sweep left until the predicate is reached, for a maximum of 90 degrees.
+ * @brief Sweep left until the predicate is reached.
  *
- * @param maxPulses The maximum number of pulses to sweep.
+ * @param maxPulses The maximum number of pulses to sweep, or 0 for 90 degrees.
  * @param predicate A predicate to test as the robot is swept.
  * @param resetHeading Whether to reset the heading once the maximum pulses is reached or the predicate is satisfied.
- * @return uint16 The pulses swept left until the predicate was satisfied, or 0 if never satisfied.
+ * @return uint16 The pulses swept left until the predicate was satisfied, or -1 if never satisfied.
  */
-static uint16 Movement_sweep_left(uint16 maxPulses, bool predicate(void), bool resetHeading);
-static uint16 Movement_sweep_right(uint16 maxPulses, bool predicate(void), bool resetHeading);
+static int16 Movement_sweep_left(uint16 maxPulses, bool predicate(void), bool resetHeading);
+static int16 Movement_sweep_right(uint16 maxPulses, bool predicate(void), bool resetHeading);
 
 /**
  * @brief Calculates target duty cycle
@@ -287,9 +287,14 @@ void Movement_turn_right(uint16 angle)
 	isr_getpulse_Enable();
 }
 
-static uint16 Movement_sweep_left(uint16 maxPulses, bool predicate(void), bool resetHeading)
+static int16 Movement_sweep_left(uint16 maxPulses, bool predicate(void), bool resetHeading)
 {
-	// Disable interrupts so decoders dont get reset to 0
+	if (predicate())
+	{
+		return 0;
+	}
+
+	// Disable interrupt so decoders dont get reset to 0
 	isr_getpulse_Disable();
 
 	if (maxPulses == 0)
@@ -327,13 +332,13 @@ static uint16 Movement_sweep_left(uint16 maxPulses, bool predicate(void), bool r
 
 	if (!resetHeading)
 	{
-		// Reset decoders to previous value before tur
+		// Reset decoders to previous value before turn
 		QuadDec_M1_SetCounter(pulseMeas);
 		isr_getpulse_Enable();
 
 		return (predicateResult)
 			? -pulsesSwept
-			: 0;
+			: -1;
 	}
 
 	// Reset turn
@@ -357,11 +362,16 @@ static uint16 Movement_sweep_left(uint16 maxPulses, bool predicate(void), bool r
 
 	return (predicateResult)
 		? -pulsesSwept
-		: 0;
+		: -1;
 }
 
-static uint16 Movement_sweep_right(uint16 maxPulses, bool predicate(void), bool resetHeading)
+static int16 Movement_sweep_right(uint16 maxPulses, bool predicate(void), bool resetHeading)
 {
+	if (predicate())
+	{
+		return 0;
+	}
+
 	isr_getpulse_Disable();
 
 	if (maxPulses == 0)
@@ -436,24 +446,25 @@ SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatis
 	uint16 pulsesRight = Movement_sweep_right(pulsesLeft, predicate, TRUE);
 	CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 
-	if ((pulsesLeft == 0) && (pulsesRight == 0))
+	if ((pulsesLeft == -1) && (pulsesRight == -1))
 	{
 		return actionIfUnsatisfied;
 	}
-	else if (((pulsesLeft != 0) && (pulsesRight == 0)) || (pulsesLeft < pulsesRight))
+	else if (pulsesLeft < pulsesRight)
 	{
 		if (!resetHeading)
 		{
-			Movement_sweep_left(((pulsesLeft * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100), predicate, FALSE);
+			// Add 1 to ensure is never 0
+			Movement_sweep_left(((pulsesLeft * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
 		}
 
 		return SENSOR_ACTION_CORRECT_LEFT;
 	}
-	else if (((pulsesRight != 0) && (pulsesLeft == 0)) || (pulsesRight < pulsesLeft))
+	else if (pulsesRight < pulsesLeft)
 	{
 		if (!resetHeading)
 		{
-			Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100), predicate, FALSE);
+			Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
 		}
 
 		return SENSOR_ACTION_CORRECT_RIGHT;
