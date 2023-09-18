@@ -278,6 +278,127 @@ void Movement_turn_right(uint16 angle)
 	CYGlobalIntEnable;
 }
 
+uint8 Movement_sweep_left(uint8 predicate(void))
+{
+	// Disable interrupts so decoders dont get reset to 0
+	CYGlobalIntDisable;
+
+	uint16 maxPulses = Movement_calculate_angle_to_pulse(90);
+	if (maxPulses > MOVEMENT_TURNS_LEFT_CORRECTION)
+	{
+		maxPulses -= MOVEMENT_TURNS_LEFT_CORRECTION;
+	}
+
+	uint16 pulseMeas = QuadDec_M1_GetCounter();
+
+	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+
+	CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
+	Movement_set_direction_left(DIRECTION_REVERSE);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
+
+	// Poll until pulse target is met
+	QuadDec_M1_SetCounter(0);
+	uint8 predicateResult = FALSE;
+	int16 pulsesSwept = 0;
+	while ((pulsesSwept = QuadDec_M1_GetCounter()) > -maxPulses)
+	{
+		if (predicate())
+		{
+			predicateResult = TRUE;
+			break;
+		}
+	}
+
+	Movement_set_direction_left(DIRECTION_FORWARD);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+	CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
+
+	// Reset turn
+	Movement_set_direction_right(DIRECTION_REVERSE);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
+
+	QuadDec_M1_SetCounter(0);
+	while (QuadDec_M1_GetCounter() < -pulsesSwept)
+	{
+		;
+	}
+
+	Movement_set_direction_right(DIRECTION_FORWARD);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+	CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
+
+	// Reset decoders to previous value before tur
+	QuadDec_M1_SetCounter(pulseMeas);
+	CYGlobalIntEnable;
+
+	return predicateResult;
+}
+
+uint8 Movement_sweep_right(uint8 predicate(void))
+{
+	CYGlobalIntDisable;
+
+	uint16 maxPulses = Movement_calculate_angle_to_pulse(90);
+	if (maxPulses > MOVEMENT_TURNS_RIGHT_CORRECTION)
+	{
+		maxPulses -= MOVEMENT_TURNS_RIGHT_CORRECTION;
+	}
+
+	uint16 pulseMeas = QuadDec_M1_GetCounter();
+
+	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+
+	CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
+	Movement_set_direction_right(DIRECTION_REVERSE);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
+
+	QuadDec_M1_SetCounter(0);
+	int8 predicateResult = FALSE;
+	uint16 pulsesSwept = 0;
+	while ((pulsesSwept = QuadDec_M1_GetCounter()) < maxPulses)
+	{
+		if (predicate())
+		{
+			predicateResult = TRUE;
+			break;
+		}
+	}
+
+	Movement_set_direction_right(DIRECTION_FORWARD);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+	CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
+
+	// Reset turn
+	Movement_set_direction_left(DIRECTION_REVERSE);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
+
+	QuadDec_M1_SetCounter(0);
+	while (QuadDec_M1_GetCounter() > -pulsesSwept)
+	{
+		;
+	}
+
+	Movement_set_direction_left(DIRECTION_FORWARD);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+	CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
+
+	QuadDec_M1_SetCounter(pulseMeas);
+	CYGlobalIntEnable;
+
+	return predicateResult;
+}
+
 static float Movement_calculate_duty(uint16 target)
 {
 	float dutyFraction = ((float)target / PWM_1_ReadPeriod());

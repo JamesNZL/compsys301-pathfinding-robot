@@ -233,54 +233,11 @@ int main()
 
 			// TODO: do one continuous turn that constantly checks—rather than this jank—read the pulses turned in each direction for the valid state, and make decision off of that
 
-			static uint8 anglesToAttempt[5] = { 2, 8, 15, 30, 40 };
-			static uint8 numberOfAttempts = (sizeof(anglesToAttempt) / sizeof(anglesToAttempt[0]));
-
 			Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-			uint8 turnAbout = TRUE;
-			for (uint8 lastAttempt = 0; lastAttempt < numberOfAttempts; lastAttempt++)
-			{
-				if (lastAttempt % 2 == 0)
-				{
-					// Turn left
-					Movement_turn_left(anglesToAttempt[lastAttempt / 2]);
-
-					if (Sensor_is_middle_on_line())
-					{
-						turnAbout = FALSE;
-
-						// Return to original position
-						Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
-
-						break;
-					}
-
-					// Return to original position
-					Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
-				}
-				else
-				{
-					// Turn right
-					Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
-
-					if (Sensor_is_middle_on_line())
-					{
-						turnAbout = FALSE;
-
-						// Return to original position
-						Movement_turn_left(anglesToAttempt[lastAttempt / 2]);
-
-						break;
-					}
-
-					// Return to original position
-					Movement_turn_left(anglesToAttempt[lastAttempt / 2]);
-				}
-			}
-
+			uint8 turnAbout = !(Movement_sweep_left(Sensor_is_middle_on_line) || Movement_sweep_right(Sensor_is_middle_on_line));
 			if (!turnAbout)
 			{
 				break;
@@ -311,6 +268,7 @@ int main()
 			DEBUG_ODD_ON;
 #endif
 
+			MOVEMENT_DISABLE;
 #ifdef SENSOR_ACTIONS_INVALID_KILL
 			MOVEMENT_DISABLE;
 #endif
