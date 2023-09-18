@@ -107,13 +107,13 @@ CY_ISR(check_light)
 
 SensorActions Sensor_determine_action(void)
 {
-	uint8 bitfield = ((Sensor_skewCenter.status << 6)
-		| (Sensor_skewFrontLeft.status << 5)
-		| (Sensor_skewFrontRight.status << 4)
-		| (Sensor_skewBackLeft.status << 3)
-		| (Sensor_skewBackRight.status << 2)
-		| (Sensor_turnLeft.status << 1)
-		| (Sensor_turnRight.status << 0));
+	uint8 bitfield = ((Sensor_skewCenter.status << SENSOR_SKEW_CENTER_POSITION)
+		| (Sensor_skewFrontLeft.status << SENSOR_SKEW_FRONT_LEFT_POSITION)
+		| (Sensor_skewFrontRight.status << SENSOR_SKEW_FRONT_RIGHT_POSITION)
+		| (Sensor_skewBackLeft.status << SENSOR_SKEW_BACK_LEFT_POSITION)
+		| (Sensor_skewBackRight.status << SENSOR_SKEW_BACK_RIGHT_POSITION)
+		| (Sensor_turnLeft.status << SENSOR_TURN_LEFT_POSITION)
+		| (Sensor_turnRight.status << SENSOR_TURN_RIGHT_POSITION));
 
 	return SENSOR_ACTION_LUT[bitfield];
 }
