@@ -143,11 +143,12 @@ int main()
 
 		case SENSOR_ACTION_CONTINUE_FORWARD:
 		{
-			Movement_sync_motors(MOVEMENT_SPEED_RUN);
 
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_OFF;
 #endif
+
+			Movement_sync_motors(MOVEMENT_SPEED_RUN);
 
 			break;
 		}
@@ -155,11 +156,11 @@ int main()
 		case SENSOR_ACTION_ANTICIPATE_TURN:
 		{
 
-			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_ON;
 #endif
+
+			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 
 			break;
 		}
@@ -171,6 +172,12 @@ int main()
 
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
+
+#ifdef MOVEMENT_DEBUG_SKEW
+			DEBUG_ALL_OFF;
+			DEBUG_LEFT_ON;
+#endif
+
 			if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
 			{
 				// Slow down the robot if we are snaking
@@ -179,16 +186,17 @@ int main()
 
 			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
-#ifdef MOVEMENT_DEBUG_SKEW
-			DEBUG_ALL_OFF;
-			DEBUG_LEFT_ON;
-#endif
-
 			break;
 		}
 
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
+
+#ifdef MOVEMENT_DEBUG_SKEW
+			DEBUG_ALL_OFF;
+			DEBUG_RIGHT_ON;
+#endif
+
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
 				// Slow down the robot if we are snaking
@@ -197,75 +205,80 @@ int main()
 
 			Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 
-#ifdef MOVEMENT_DEBUG_SKEW
-			DEBUG_ALL_OFF;
-			DEBUG_RIGHT_ON;
-#endif
-
 			break;
 		}
 
 		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
 		{
 
-#ifdef SENSOR_ACTIONS_RIGOROUS
-			/*
-				TODO: Rotate left and right to see if just skewed
-				TODO: (ie if middle sensor returns to line),
-				TODO: otherwise turn around
-			 */
+			// #ifdef SENSOR_ACTIONS_RIGOROUS
+			// 			/*
+			// 				TODO: Rotate left and right to see if just skewed
+			// 				TODO: (ie if middle sensor returns to line),
+			// 				TODO: otherwise turn around
+			// 			 */
 
-			static uint8 lastAttempt = 0;
-			static uint8 anglesToAttempt[9] = { 2, 5, 8, 10, 15, 20, 25, 30, 40 };
+			// 			static uint8 lastAttempt = 0;
+			// 			static uint8 anglesToAttempt[9] = { 2, 5, 8, 10, 15, 20, 25, 30, 40 };
 
-			Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
-			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+			// 			Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+			// 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 
-			if (previousAction != SENSOR_ACTION_FIND_VALID_STATE)
-			{
-				lastAttempt = 0;
-			}
+			// 			if (previousAction != SENSOR_ACTION_FIND_VALID_STATE)
+			// 			{
+			// 				lastAttempt = 0;
+			// 			}
 
-			if ((lastAttempt++) % 2 == 0)
-			{
-				// Turn left
-				Movement_turn_left(anglesToAttempt[lastAttempt / 2]);
-			}
-			else
-			{
-				// Turn right
-				Movement_turn_right(2 * anglesToAttempt[lastAttempt / 2]);
-			}
-			// CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
-			CyDelay(2000);
-			DEBUG_ALL_TOGGLE;
+			// 			if (lastAttempt % 2 == 0)
+			// 			{
+			// 				// Turn left
+			// 				Movement_turn_left(anglesToAttempt[lastAttempt / 2]);
+			// 			}
+			// 			else
+			// 			{
+			// 				// Turn right
+			// 				Movement_turn_right(2 * anglesToAttempt[lastAttempt / 2]);
+			// 			}
+			// 			lastAttempt++;
+			// 			// CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
+			// 			CyDelay(2000);
+			// 			DEBUG_ALL_TOGGLE;
 
-			// TODO: If rear sensor detection, immediately make next request without re-running loop
-#else
-			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
-			{
-				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
-			}
-			else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
-			{
-				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
-			}
-#endif
+			// 			// TODO: If rear sensor detection, immediately make next request without re-running loop
+			// #else
+			// 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
+			// 			{
+			// 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
+			// 			}
+			// 			else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
+			// 			{
+			// 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
+			// 			}
+			// #endif
+
+			// #ifdef MOVEMENT_DEBUG_SKEW
+			// 			DEBUG_ALL_OFF;
+			// 			DEBUG_EVEN_ON;
+			// #endif
+
+			// #ifdef SENSOR_ACTIONS_INVALID_KILL
+			// 			MOVEMENT_DISABLE;
+			// #endif
+
+			// 			break;
+		}
+
+		case SENSOR_ACTION_FIND_VALID_STATE:
+		{
 
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_OFF;
-			DEBUG_EVEN_ON;
+			DEBUG_ODD_ON;
 #endif
 
 #ifdef SENSOR_ACTIONS_INVALID_KILL
 			MOVEMENT_DISABLE;
 #endif
-
-			break;
-		}
-
-		case SENSOR_ACTION_FIND_VALID_STATE:
-		{
 
 #ifdef SENSOR_ACTIONS_RIGOROUS
 			/*
@@ -277,6 +290,8 @@ int main()
 			static uint8 lastAttempt = 0;
 			static uint8 anglesToAttempt[9] = { 2, 5, 8, 10, 15, 20, 25, 30, 40 };
 
+			FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
+
 			Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 
@@ -296,6 +311,11 @@ int main()
 				Movement_turn_right(2 * anglesToAttempt[lastAttempt / 2]);
 			}
 
+			CyDelay(2000);
+			DEBUG_ALL_TOGGLE;
+
+			FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+
 			// TODO: If rear sensor detection, immediately make next request without re-running loop
 #else
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
@@ -306,15 +326,6 @@ int main()
 			{
 				Movement_skew_correct(DIRECTION_RIGHT, 0);
 			}
-#endif
-
-#ifdef MOVEMENT_DEBUG_SKEW
-			DEBUG_ALL_OFF;
-			DEBUG_ODD_ON;
-#endif
-
-#ifdef SENSOR_ACTIONS_INVALID_KILL
-			MOVEMENT_DISABLE;
 #endif
 
 			break;
