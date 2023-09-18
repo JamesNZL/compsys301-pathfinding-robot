@@ -199,7 +199,8 @@ int main()
 		case SENSOR_ACTION_TURN_ABOUT:
 		{
 #ifdef MOVEMENT_DEBUG_SKEW
-			DEBUG_ALL_ON;
+			DEBUG_ALL_OFF;
+			DEBUG_OUTER_ON;
 #endif
 			Movement_turn_right(180);
 

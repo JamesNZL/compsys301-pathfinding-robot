@@ -289,6 +289,12 @@ void Movement_turn_right(uint16 angle)
 
 static int16 Movement_sweep_left(uint16 maxPulses, bool predicate(void), bool resetHeading)
 {
+#ifdef MOVEMENT_DEBUG_SKEW
+	DEBUG_ALL_OFF;
+	DEBUG_INNER_ON;
+	DEBUG_RIGHT_OFF;
+#endif
+
 	if (predicate())
 	{
 		return 0;
@@ -342,6 +348,11 @@ static int16 Movement_sweep_left(uint16 maxPulses, bool predicate(void), bool re
 	}
 
 	// Reset turn
+#ifdef MOVEMENT_DEBUG_SKEW
+	DEBUG_ALL_OFF;
+	DEBUG_INNER_ON;
+	DEBUG_LEFT_OFF;
+#endif
 	Movement_set_direction_right(DIRECTION_REVERSE);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_BRAKE);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_BRAKE);
@@ -367,6 +378,12 @@ static int16 Movement_sweep_left(uint16 maxPulses, bool predicate(void), bool re
 
 static int16 Movement_sweep_right(uint16 maxPulses, bool predicate(void), bool resetHeading)
 {
+#ifdef MOVEMENT_DEBUG_SKEW
+	DEBUG_ALL_OFF;
+	DEBUG_INNER_ON;
+	DEBUG_LEFT_OFF;
+#endif
+
 	if (predicate())
 	{
 		return 0;
@@ -417,6 +434,11 @@ static int16 Movement_sweep_right(uint16 maxPulses, bool predicate(void), bool r
 	}
 
 	// Reset turn
+#ifdef MOVEMENT_DEBUG_SKEW
+	DEBUG_ALL_OFF;
+	DEBUG_INNER_ON;
+	DEBUG_RIGHT_OFF;
+#endif
 	Movement_set_direction_left(DIRECTION_REVERSE);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_BRAKE);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_BRAKE);
@@ -441,10 +463,20 @@ static int16 Movement_sweep_right(uint16 maxPulses, bool predicate(void), bool r
 
 SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatisfied, bool resetHeading)
 {
+#ifdef MOVEMENT_DEBUG_SWEEP
+	DEBUG_ALL_OFF;
+	DEBUG_INNER_ON;
+#endif
+
 	CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 	uint16 pulsesLeft = Movement_sweep_left(0, predicate, TRUE);
 	uint16 pulsesRight = Movement_sweep_right(pulsesLeft, predicate, TRUE);
 	CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
+
+#ifdef MOVEMENT_DEBUG_SWEEP
+	DEBUG_ALL_OFF;
+	DEBUG_INNER_ON;
+#endif
 
 	if ((pulsesLeft == -1) && (pulsesRight == -1))
 	{

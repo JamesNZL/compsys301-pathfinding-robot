@@ -124,9 +124,33 @@ volatile extern uint8 FLAGS;
 	DEBUG_5_ON;      \
 	DEBUG_7_ON
 
+#define DEBUG_OUTER_ON \
+	DEBUG_0_ON;        \
+	DEBUG_3_ON;        \
+	DEBUG_4_ON;        \
+	DEBUG_7_ON
+
+#define DEBUG_INNER_ON \
+	DEBUG_1_ON;        \
+	DEBUG_2_ON;        \
+	DEBUG_5_ON;        \
+	DEBUG_6_ON
+
 #define DEBUG_ALL_ON \
 	DEBUG_LEFT_ON;   \
 	DEBUG_RIGHT_ON
+
+#define DEBUG_LEFT_OFF \
+	DEBUG_0_OFF;       \
+	DEBUG_1_OFF;       \
+	DEBUG_2_OFF;       \
+	DEBUG_3_OFF
+
+#define DEBUG_RIGHT_OFF \
+	DEBUG_4_OFF;        \
+	DEBUG_5_OFF;        \
+	DEBUG_6_OFF;        \
+	DEBUG_7_OFF
 
 #define DEBUG_ALL_OFF \
 	DEBUG_0_OFF;      \
