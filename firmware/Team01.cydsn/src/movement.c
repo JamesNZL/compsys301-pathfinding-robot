@@ -182,15 +182,15 @@ void Movement_check_turn_complete(void)
 	{
 		return;
 	}
-	Movement_pulsesSinceTurn -= Movement_pulsesApparentM1;
+	Movement_pulsesSinceTurn += Movement_pulsesApparentM1;
 
-	if (Movement_pulsesSinceTurn > 0)
+	if (Movement_pulsesSinceTurn < MOVEMENT_TURNS_REFRACTORY_PULSES)
 	{
 		return;
 	}
 
 	FLAG_CLEAR(FLAGS, FLAG_WAITING_AFTER_TURN);
-	Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
+	Movement_pulsesSinceTurn = 0;
 }
 
 static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
