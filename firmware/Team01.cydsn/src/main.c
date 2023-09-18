@@ -278,6 +278,19 @@ int main()
 			MOVEMENT_DISABLE;
 #endif
 
+			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
+			{
+				Movement_skew_correct(DIRECTION_LEFT, 0);
+
+				break;
+			}
+			else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
+			{
+				Movement_skew_correct(DIRECTION_RIGHT, 0);
+
+				break;
+			}
+
 #ifdef SENSOR_ACTIONS_RIGOROUS
 			MOVEMENT_DISABLE;
 
@@ -336,15 +349,6 @@ int main()
 			}
 
 			// If no state was found, the robot will stay stopped
-#else
-			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
-			{
-				Movement_skew_correct(DIRECTION_LEFT, 0);
-			}
-			else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
-			{
-				Movement_skew_correct(DIRECTION_RIGHT, 0);
-			}
 #endif
 
 			break;
