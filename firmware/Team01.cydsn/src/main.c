@@ -61,28 +61,22 @@ int main()
 		/* Turn Detection */
 		if (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN))
 		{
-
 #ifdef MOVEMENT_DEBUG_TURNS
 			DEBUG_ALL_ON;
 #endif
-
 			Movement_check_turn_complete();
 		}
 		else
 		{
-
 #ifdef MOVEMENT_DEBUG_TURNS
 			DEBUG_ALL_OFF;
 #endif
-
 			if (Sensor_is_on_right_turn_intersection())
 			{
-
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
 				DEBUG_RIGHT_ON;
 #endif
-
 				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
@@ -103,12 +97,10 @@ int main()
 			}
 			else if (Sensor_is_on_left_turn_intersection())
 			{
-
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
 				DEBUG_LEFT_ON;
 #endif
-
 				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
 				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
@@ -145,11 +137,9 @@ int main()
 
 		case SENSOR_ACTION_CONTINUE_FORWARD:
 		{
-
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_OFF;
 #endif
-
 			Movement_sync_motors(MOVEMENT_SPEED_RUN);
 
 			break;
@@ -157,11 +147,9 @@ int main()
 
 		case SENSOR_ACTION_ANTICIPATE_TURN:
 		{
-
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_ON;
 #endif
-
 			Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
 			Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
@@ -176,12 +164,10 @@ int main()
 
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
-
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_OFF;
 			DEBUG_LEFT_ON;
 #endif
-
 			if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
 			{
 				// Slow down the robot if we are snaking
@@ -195,12 +181,10 @@ int main()
 
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
-
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_OFF;
 			DEBUG_RIGHT_ON;
 #endif
-
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
 				// Slow down the robot if we are snaking
@@ -214,11 +198,9 @@ int main()
 
 		case SENSOR_ACTION_TURN_ABOUT:
 		{
-
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_ON;
 #endif
-
 			Movement_turn_right(180);
 
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
@@ -230,7 +212,6 @@ int main()
 
 		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
 		{
-
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_OFF;
 			DEBUG_EVEN_ON;
@@ -272,12 +253,10 @@ int main()
 				Movement_turn_right(180);
 
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
 				DEBUG_LEFT_ON;
 #endif
-
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 				break;
@@ -285,12 +264,10 @@ int main()
 			case SENSOR_ACTION_CORRECT_LEFT:
 			{
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
 				DEBUG_LEFT_ON;
 #endif
-
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 				break;
@@ -298,12 +275,10 @@ int main()
 			case SENSOR_ACTION_CORRECT_RIGHT:
 			{
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
 				DEBUG_RIGHT_ON;
 #endif
-
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 				break;
@@ -318,13 +293,11 @@ int main()
 			}
 			}
 #endif
-
 			break;
 		}
 
 		case SENSOR_ACTION_FIND_VALID_STATE:
 		{
-
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_OFF;
 			DEBUG_ODD_ON;
@@ -368,12 +341,10 @@ int main()
 				Movement_turn_right(180);
 
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
 				DEBUG_LEFT_ON;
 #endif
-
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 				break;
@@ -381,12 +352,10 @@ int main()
 			case SENSOR_ACTION_CORRECT_LEFT:
 			{
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
 				DEBUG_LEFT_ON;
 #endif
-
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 				break;
@@ -394,12 +363,10 @@ int main()
 			case SENSOR_ACTION_CORRECT_RIGHT:
 			{
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
 				DEBUG_RIGHT_ON;
 #endif
-
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 				break;
@@ -414,7 +381,6 @@ int main()
 			}
 			}
 #endif
-
 			break;
 		}
 
