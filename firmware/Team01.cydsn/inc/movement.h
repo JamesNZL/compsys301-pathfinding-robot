@@ -26,9 +26,10 @@
  */
 #define MOVEMENT_PIVOT_CIRCUMFERENCE 354.277f
 #define MOVEMENT_WHEEL_CIRCUMFERENCE 203.57f
+
 #define MOVEMENT_PULSE_REVOLUTION	 228
 #define MOVEMENT_PULSE_90_DEGREE	 99
-#define MOVEMENT_PULSE_180_DEGREE	 200
+#define MOVEMENT_PULSE_180_DEGREE	 198
 
 #define MOVEMENT_MM_PER_PULSE		 0.8928f
 #define MOVEMENT_CM_CONVERSION		 11.20072f
@@ -51,7 +52,7 @@
 #define MOVEMENT_SKEW_BOOST_FACTOR 4
 
 /* Turns */
-#define MOVEMENT_TURNS_CORRECTION		 -3 // more negative -> more turn
+#define MOVEMENT_TURNS_CORRECTION_FACTOR -3 // more negative -> more turn
 #define MOVEMENT_TURNS_LEFT_CORRECTION	 25 // more positive -> less turn
 #define MOVEMENT_TURNS_RIGHT_CORRECTION	 25 // more positive -> less turn
 

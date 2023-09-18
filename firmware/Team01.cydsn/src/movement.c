@@ -195,11 +195,11 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 	{
 	case 90:
 	{
-		return MOVEMENT_PULSE_90_DEGREE - MOVEMENT_TURNS_CORRECTION;
+		return (MOVEMENT_PULSE_90_DEGREE * (100 + MOVEMENT_TURNS_CORRECTION_FACTOR)) / 100;
 	}
 	case 180:
 	{
-		return MOVEMENT_PULSE_180_DEGREE - MOVEMENT_TURNS_CORRECTION;
+		return (MOVEMENT_PULSE_180_DEGREE * (100 + MOVEMENT_TURNS_CORRECTION_FACTOR)) / 100;
 	}
 	default:
 	{
@@ -209,9 +209,7 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 		// Convert revs to pulses through multiply 228
 		uint16 rawPulses = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION);
 
-		return (rawPulses > MOVEMENT_TURNS_CORRECTION)
-			? rawPulses - MOVEMENT_TURNS_CORRECTION
-			: rawPulses;
+		return (rawPulses * (100 + MOVEMENT_TURNS_CORRECTION_FACTOR)) / 100;
 	}
 	}
 }
