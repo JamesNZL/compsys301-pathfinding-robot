@@ -18,6 +18,14 @@
 #define SENSOR_SAMPLING_TIMER_PERIOD			  25 // 250 us - Delay between each sensor sample on a rising edge
 #define SENSOR_RISING_EDGE_MAX_DELAY_TIMER_PERIOD 1200 // 12 ms - The maximum time allowed after a rising edge before all sensors are assumed to be off
 
+#define SENSOR_SKEW_CENTER_POSITION				  6
+#define SENSOR_SKEW_FRONT_LEFT_POSITION			  5
+#define SENSOR_SKEW_FRONT_RIGHT_POSITION		  4
+#define SENSOR_SKEW_BACK_LEFT_POSITION			  3
+#define SENSOR_SKEW_BACK_RIGHT_POSITION			  2
+#define SENSOR_TURN_LEFT_POSITION				  1
+#define SENSOR_TURN_RIGHT_POSITION				  0
+
 #define SENSOR_DEFAULT_INITIALISATION \
 	{                                 \
 		.periodCount = 0,             \
