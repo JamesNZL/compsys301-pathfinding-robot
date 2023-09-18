@@ -224,6 +224,19 @@ int main()
 			MOVEMENT_DISABLE;
 #endif
 
+			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
+			{
+				Movement_skew_correct(DIRECTION_LEFT, 0);
+
+				break;
+			}
+			else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
+			{
+				Movement_skew_correct(DIRECTION_RIGHT, 0);
+
+				break;
+			}
+
 #ifdef SENSOR_ACTIONS_RIGOROUS
 			/*
 				Rotate left and right to see if just skewed
@@ -237,7 +250,7 @@ int main()
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-			uint8 turnAbout = !(Movement_sweep_left(Sensor_is_middle_on_line) || Movement_sweep_right(Sensor_is_middle_on_line));
+			uint8 turnAbout = !(Movement_sweep_right(Sensor_is_middle_on_line) || Movement_sweep_left(Sensor_is_middle_on_line));
 			if (!turnAbout)
 			{
 				break;
@@ -246,15 +259,8 @@ int main()
 			Movement_turn_right(180);
 
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-#else
-			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
-			{
-				Movement_skew_correct(DIRECTION_LEFT, 0);
-			}
-			else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
-			{
-				Movement_skew_correct(DIRECTION_RIGHT, 0);
-			}
+			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
+			previousAction = SENSOR_ACTION_CORRECT_LEFT;
 #endif
 
 			break;

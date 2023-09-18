@@ -284,10 +284,6 @@ uint8 Movement_sweep_left(uint8 predicate(void))
 	CYGlobalIntDisable;
 
 	uint16 maxPulses = Movement_calculate_angle_to_pulse(90);
-	if (maxPulses > MOVEMENT_TURNS_LEFT_CORRECTION)
-	{
-		maxPulses -= MOVEMENT_TURNS_LEFT_CORRECTION;
-	}
 
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
@@ -345,10 +341,6 @@ uint8 Movement_sweep_right(uint8 predicate(void))
 	CYGlobalIntDisable;
 
 	uint16 maxPulses = Movement_calculate_angle_to_pulse(90);
-	if (maxPulses > MOVEMENT_TURNS_RIGHT_CORRECTION)
-	{
-		maxPulses -= MOVEMENT_TURNS_RIGHT_CORRECTION;
-	}
 
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
