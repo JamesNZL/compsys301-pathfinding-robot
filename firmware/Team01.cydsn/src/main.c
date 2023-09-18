@@ -11,6 +11,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define FIXED_DISTANCE
+
 volatile uint8 FLAGS = 0x00;
 
 int main()
@@ -36,7 +38,11 @@ int main()
 	Sensor_init_sensors();
 	Movement_init_motors();
 
+#ifdef FIXED_DISTANCE
+	Movement_move_mm(1680);
+#else
 	FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+#endif
 	Movement_sync_motors(MOVEMENT_SPEED_RUN);
 
 	static SensorActions previousAction;
@@ -208,6 +214,31 @@ int main()
 				TODO: (ie if middle sensor returns to line),
 				TODO: otherwise turn around
 			 */
+
+			static uint8 lastAttempt = 0;
+			static uint8 anglesToAttempt[9] = { 2, 5, 8, 10, 15, 20, 25, 30, 40 };
+
+			Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+
+			if (previousAction != SENSOR_ACTION_FIND_VALID_STATE)
+			{
+				lastAttempt = 0;
+			}
+
+			if ((lastAttempt++) % 2 == 0)
+			{
+				// Turn left
+				Movement_turn_left(anglesToAttempt[lastAttempt / 2]);
+			}
+			else
+			{
+				// Turn right
+				// TODO: undo previous
+				Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
+			}
+
+			// TODO: If rear sensor detection, immediately make next request without re-running loop
 #else
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
@@ -262,6 +293,8 @@ int main()
 				// Turn right
 				Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
 			}
+
+			// TODO: If rear sensor detection, immediately make next request without re-running loop
 #else
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
