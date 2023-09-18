@@ -481,9 +481,9 @@ SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatis
 #endif
 
 	CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
-	int16 pulsesLeft = Movement_sweep_left(0, predicate, TRUE);
+	int16 pulsesRight = Movement_sweep_right(0, predicate, TRUE);
 	// + 1 to convert the -1 to 0
-	int16 pulsesRight = Movement_sweep_right(pulsesLeft + 1, predicate, TRUE);
+	int16 pulsesLeft = Movement_sweep_left(pulsesRight + 1, predicate, TRUE);
 	CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 
 #ifdef MOVEMENT_DEBUG_SWEEP
