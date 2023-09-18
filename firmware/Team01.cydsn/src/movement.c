@@ -111,10 +111,6 @@ void Movement_next_control_cycle(void)
 		return;
 	}
 
-#ifdef MOVEMENT_DAMPEN_SKEW
-	Movement_check_turn_complete();
-#endif
-
 	// Subtract read pulses from distance to travel
 	if (Movement_pulsesToMove > 0)
 	{
@@ -135,6 +131,11 @@ void Movement_next_control_cycle(void)
 	// Make the varying pulses change up or down accordingly to the observed speed
 	Movement_set_M1_pulse_varying(target1);
 	Movement_set_M2_pulse_varying(target2);
+
+#ifdef MOVEMENT_DAMPEN_SKEW
+	Movement_check_turn_complete();
+	Movement_skewDamperFactor = (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN)) ? 0 : 8;
+#endif
 
 	FLAG_CLEAR(FLAGS, FLAG_ENCODERS_READY);
 }
@@ -178,10 +179,10 @@ void Movement_skew_correct(Direction direction, int8 boostFactor)
 // TODO: decrease skew correction factor if turn was a long time ago
 void Movement_check_turn_complete(void)
 {
-	if (FLAG_IS_CLEARED(FLAGS, FLAG_ENCODERS_READY))
-	{
-		return;
-	}
+	// if (FLAG_IS_CLEARED(FLAGS, FLAG_ENCODERS_READY))
+	// {
+	// 	return;
+	// }
 	Movement_pulsesSinceTurn += Movement_pulsesApparentM1;
 
 	if (Movement_pulsesSinceTurn < MOVEMENT_TURNS_REFRACTORY_PULSES)
