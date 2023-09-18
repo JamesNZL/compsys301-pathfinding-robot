@@ -128,12 +128,12 @@ void Movement_check_turn_complete(void);
 void Movement_turn_left(uint16 angle);
 
 /**
- * @brief Sweep the motor left and right and determine the next action.
+ * @brief Sweep the motor left and right and determine the next action using the front sensors.
  *
  * @param resetHeading Whether the reset the heading once the shortest sweep is found.
  * @return SensorActions The next action to take to return to a valid state.
  */
-SensorActions Movement_sweep(bool resetHeading);
+SensorActions Movement_sweep_front(bool resetHeading);
 
 /**
  * @brief Turns the robot right (on the spot) by angle degrees

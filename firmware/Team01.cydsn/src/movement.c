@@ -431,7 +431,7 @@ static uint16 Movement_sweep_right(uint16 maxPulses, uint8 predicate(void), bool
 		: 0;
 }
 
-SensorActions Movement_sweep(bool resetHeading)
+SensorActions Movement_sweep_front(bool resetHeading)
 {
 	CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 	uint16 pulsesLeft = Movement_sweep_left(0, Sensor_is_any_front_on_line, TRUE);

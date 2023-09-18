@@ -231,7 +231,7 @@ int main()
 #ifdef SENSOR_ACTIONS_RIGOROUS
 			/*
 				Rotate left and right to see if just skewed
-				(ie if middle sensor returns to line),
+				(ie if front sensor(s) return to line),
 				otherwise turn around
 			 */
 
@@ -239,7 +239,7 @@ int main()
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-			SensorActions action = Movement_sweep(TRUE);
+			SensorActions action = Movement_sweep_front(TRUE);
 			switch (action)
 			{
 			case SENSOR_ACTION_TURN_ABOUT:
@@ -287,8 +287,6 @@ int main()
 				break;
 			}
 			}
-
-			// ? TODO: drive for some distance
 #endif
 			break;
 		}
@@ -323,7 +321,7 @@ int main()
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-			SensorActions action = Movement_sweep(FALSE);
+			SensorActions action = Movement_sweep_front(FALSE);
 			switch (action)
 			{
 			case SENSOR_ACTION_CORRECT_LEFT:
