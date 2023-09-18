@@ -268,12 +268,13 @@ int main()
 			DEBUG_ODD_ON;
 #endif
 
-			MOVEMENT_DISABLE;
 #ifdef SENSOR_ACTIONS_INVALID_KILL
 			MOVEMENT_DISABLE;
 #endif
 
 #ifdef SENSOR_ACTIONS_RIGOROUS
+			MOVEMENT_DISABLE;
+
 			/*
 				TODO: Rotate left and right to transition to a valid state
 				TODO: —ignore rear skew detection unless front detectors do not detect anything
