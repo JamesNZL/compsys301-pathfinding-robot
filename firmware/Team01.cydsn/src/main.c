@@ -17,9 +17,9 @@ volatile uint8 FLAGS = 0x00;
 int main()
 {
 	CYGlobalIntEnable;
-	Sfx_scream();
 	uint16 batteryVoltage = Battery_display_level();
 	sprintf(USB_buffer, "Battery Voltage: %d mV\n", batteryVoltage);
+	Sfx_scream();
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
