@@ -244,8 +244,6 @@ int main()
 				otherwise turn around
 			 */
 
-			// TODO: do one continuous turn that constantly checks—rather than this jank—read the pulses turned in each direction for the valid state, and make decision off of that
-
 			Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
@@ -253,6 +251,7 @@ int main()
 			uint8 turnAbout = !(Movement_sweep_right(Sensor_is_middle_on_line) || Movement_sweep_left(Sensor_is_middle_on_line));
 			if (!turnAbout)
 			{
+				// TODO: robot is skewed, need to know which direction to correct
 				break;
 			}
 
