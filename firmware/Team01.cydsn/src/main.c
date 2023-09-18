@@ -233,6 +233,8 @@ int main()
 
 			static uint8 anglesToAttempt[5] = { 2, 8, 15, 30, 40 };
 			static uint8 numberOfAttempts = (sizeof(anglesToAttempt) / sizeof(anglesToAttempt[0]));
+
+			Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
