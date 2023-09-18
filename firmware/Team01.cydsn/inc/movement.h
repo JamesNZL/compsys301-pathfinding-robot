@@ -10,7 +10,9 @@
  */
 #define MOVEMENT_DEBUG_SKEW
 // #define MOVEMENT_DEBUG_TURNS
+
 #define MOVEMENT_DAMPEN_SKEW
+// #define MOVEMENT_TURN_WITH_SENSORS
 
 /*
  * Motor Control Register
@@ -54,6 +56,12 @@
 #define MOVEMENT_SKEW_DAMPING_FACTOR 1
 
 /* Turns */
+/** @brief Overshoot factor for turn angles before stopping sensor detection */
+#ifdef MOVEMENT_TURN_WITH_SENSORS
+#define MOVEMENT_TURNS_OVERSHOOT_FACTOR 20
+#else
+#define MOVEMENT_TURNS_OVERSHOOT_FACTOR 0
+#endif
 #define MOVEMENT_TURNS_CORRECTION_FACTOR -3 // more negative -> more turn
 #define MOVEMENT_TURNS_LEFT_CORRECTION	 25 // more positive -> less turn
 #define MOVEMENT_TURNS_RIGHT_CORRECTION	 25 // more positive -> less turn
@@ -125,15 +133,17 @@ void Movement_check_turn_complete(void);
 /**
  * @brief Turns the robot left (on the spot) by angle degrees
  *
- * @param angle The angle (in degrees) to turn left from the current position
+ * @param maxAngle The maximum angle (in degrees) to turn left from the current position before aborting the predicate
+ * @param predicate A predicate to test as the robot turns, halting once satisfied
  */
-void Movement_turn_left(uint16 angle);
+void Movement_turn_left(uint16 maxAngle, bool predicate(void));
 /**
  * @brief Turns the robot right (on the spot) by angle degrees
  *
- * @param angle The angle (in degrees) to turn right from the current position
+ * @param maxAngle The maximum angle (in degrees) to turn right from the current position before aborting the predicate
+ * @param predicate A predicate to test as the robot turns, halting once satisfied
  */
-void Movement_turn_right(uint16 angle);
+void Movement_turn_right(uint16 maxAngle, bool predicate(void));
 
 /**
  * @brief Sweep the motor left and right and determine the next action using a predicate.

@@ -239,6 +239,10 @@ bool Sensor_is_middle_on_line(void);
  */
 bool Sensor_is_any_front_on_line(void);
 /**
+ * @return true if both front sensors are on the line
+ */
+bool Sensor_is_both_front_on_line(void);
+/**
  * @return true if either back sensor is on the line
  */
 bool Sensor_is_any_back_on_line(void);
