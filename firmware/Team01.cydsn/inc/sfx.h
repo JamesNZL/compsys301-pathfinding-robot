@@ -1,5 +1,5 @@
-#ifndef COMMON_H_
-#define COMMON_H_
+#ifndef SFX_H_
+#define SFX_H_
 
 void Sfx_scream();
 

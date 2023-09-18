@@ -4,6 +4,7 @@
 #include "handlers.h"
 #include "movement.h"
 #include "sensor.h"
+#include "sfx.h"
 #include "usb.h"
 
 #include <project.h>
@@ -16,7 +17,7 @@ volatile uint8 FLAGS = 0x00;
 int main()
 {
 	CYGlobalIntEnable;
-
+	Sfx_scream();
 	uint16 batteryVoltage = Battery_display_level();
 	sprintf(USB_buffer, "Battery Voltage: %d mV\n", batteryVoltage);
 
