@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define FIXED_DISTANCE
+// #define FIXED_DISTANCE
 
 volatile uint8 FLAGS = 0x00;
 
@@ -208,7 +208,7 @@ int main()
 		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
 		{
 
-#ifdef SENSOR_ACTION_RIGOROUS
+#ifdef SENSOR_ACTIONS_RIGOROUS
 			/*
 				TODO: Rotate left and right to see if just skewed
 				TODO: (ie if middle sensor returns to line),
@@ -234,9 +234,11 @@ int main()
 			else
 			{
 				// Turn right
-				// TODO: undo previous
-				Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
+				Movement_turn_right(2 * anglesToAttempt[lastAttempt / 2]);
 			}
+			// CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
+			CyDelay(2000);
+			DEBUG_ALL_TOGGLE;
 
 			// TODO: If rear sensor detection, immediately make next request without re-running loop
 #else
@@ -291,7 +293,7 @@ int main()
 			else
 			{
 				// Turn right
-				Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
+				Movement_turn_right(2 * anglesToAttempt[lastAttempt / 2]);
 			}
 
 			// TODO: If rear sensor detection, immediately make next request without re-running loop
