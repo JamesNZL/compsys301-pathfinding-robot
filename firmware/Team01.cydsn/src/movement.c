@@ -325,10 +325,13 @@ static int16 Movement_sweep_left(uint16 maxPulses, bool predicate(void), bool re
 	{
 		if (predicate())
 		{
+#ifdef MOVEMENT_DEBUG_SKEW
+			DEBUG_ALL_OFF;
+			DEBUG_LEFT_ON;
+#endif
 			predicateResult = TRUE;
 			break;
 		}
-		// TODO: does a delay here help?
 	}
 
 	Movement_set_direction_left(DIRECTION_FORWARD);
@@ -412,10 +415,13 @@ static int16 Movement_sweep_right(uint16 maxPulses, bool predicate(void), bool r
 	{
 		if (predicate())
 		{
+#ifdef MOVEMENT_DEBUG_SKEW
+			DEBUG_ALL_OFF;
+			DEBUG_RIGHT_ON;
+#endif
 			predicateResult = TRUE;
 			break;
 		}
-		// TODO: does a delay here help?
 	}
 
 	Movement_set_direction_right(DIRECTION_FORWARD);
@@ -483,7 +489,7 @@ SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatis
 	{
 		return actionIfUnsatisfied;
 	}
-	else if (pulsesLeft < pulsesRight)
+	else if ((pulsesLeft != -1) && (pulsesLeft < pulsesRight))
 	{
 		if (!resetHeading)
 		{
@@ -493,7 +499,7 @@ SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatis
 
 		return SENSOR_ACTION_CORRECT_LEFT;
 	}
-	else if (pulsesRight < pulsesLeft)
+	else if ((pulsesRight != -1) && (pulsesRight < pulsesLeft))
 	{
 		if (!resetHeading)
 		{
