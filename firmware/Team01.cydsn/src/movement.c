@@ -509,7 +509,7 @@ SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatis
 	{
 		if (!resetHeading)
 		{
-			1 Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
+			Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
 		}
 
 		return SENSOR_ACTION_CORRECT_RIGHT;
