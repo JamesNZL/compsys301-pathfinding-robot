@@ -476,6 +476,7 @@
       <Data key="c887bbe2-0ed3-470d-a517-5a829e33db03" value="DB1" />
       <Data key="d2a9d570-4919-4de2-b70e-425814b1ac56" value="DB7" />
       <Data key="d50de08c-8a77-4334-bd87-4d4dcae266e2" value="LED" />
+      <Data key="da32d0f8-1b43-4b96-847a-090a2c7e2906" value="Buzzer" />
       <Data key="de7661ad-4d65-4480-9df4-c3caf391cab2" value="DIN_1" />
       <Data key="e1e266c3-5643-4aa1-ba34-d9b231cd76ce" value="Skew_Front_Left" />
       <Data key="e1f99039-5287-4719-ba9c-fa3c4132b19b" value="DIN_5" />
@@ -3734,11 +3735,6 @@
         <Data key="Port Format" value="2,4" />
       </Group>
     </Group>
-    <Group key="77715107-f8d5-47e5-a629-0fb83101ac6b">
-      <Group key="0">
-        <Data key="Port Format" value="1,6" />
-      </Group>
-    </Group>
     <Group key="79772720-a0e3-4c4c-9406-2e0ad94c56bf">
       <Group key="0">
         <Data key="Port Format" value="12,4" />
@@ -3797,6 +3793,11 @@
     <Group key="d2a9d570-4919-4de2-b70e-425814b1ac56">
       <Group key="0">
         <Data key="Port Format" value="2,1" />
+      </Group>
+    </Group>
+    <Group key="da32d0f8-1b43-4b96-847a-090a2c7e2906">
+      <Group key="0">
+        <Data key="Port Format" value="1,6" />
       </Group>
     </Group>
     <Group key="e1e266c3-5643-4aa1-ba34-d9b231cd76ce">
@@ -3864,6 +3865,9 @@
       </Group>
       <Group key="1425177d-0d0e-4468-8bcc-e638e5509a9b">
         <Data key="0" value="133392975639410130" />
+      </Group>
+      <Group key="77715107-f8d5-47e5-a629-0fb83101ac6b">
+        <Data key="0" value="133394827733196160" />
       </Group>
       <Group key="b6ffe4e8-bfde-4b71-b826-17696ee2657e">
         <Data key="0" value="133388661421401622" />
