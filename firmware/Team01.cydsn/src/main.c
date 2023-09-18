@@ -200,10 +200,14 @@ int main()
 		{
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_OFF;
-			DEBUG_OUTER_ON;
+			DEBUG_LOWER_ON;
 #endif
 			Movement_turn_right(180);
 
+#ifdef MOVEMENT_DEBUG_SKEW
+			DEBUG_ALL_OFF;
+			DEBUG_LEFT_ON;
+#endif
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
@@ -218,12 +222,20 @@ int main()
 #endif
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
+#ifdef MOVEMENT_DEBUG_SKEW
+				DEBUG_ALL_OFF;
+				DEBUG_LEFT_ON;
+#endif
 				Movement_skew_correct(DIRECTION_LEFT, 0);
 
 				break;
 			}
 			else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
 			{
+#ifdef MOVEMENT_DEBUG_SKEW
+				DEBUG_ALL_OFF;
+				DEBUG_RIGHT_ON;
+#endif
 				Movement_skew_correct(DIRECTION_RIGHT, 0);
 
 				break;
@@ -245,42 +257,47 @@ int main()
 			{
 			case SENSOR_ACTION_TURN_ABOUT:
 			{
+#ifdef MOVEMENT_DEBUG_SKEW
+				DEBUG_ALL_OFF;
+				DEBUG_LOWER_ON;
+#endif
 				Movement_turn_right(180);
 
-				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
 				DEBUG_LEFT_ON;
 #endif
+				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 				break;
 			}
 			case SENSOR_ACTION_CORRECT_LEFT:
 			{
-				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
 				DEBUG_LEFT_ON;
 #endif
+				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 				break;
 			}
 			case SENSOR_ACTION_CORRECT_RIGHT:
 			{
-				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
 				DEBUG_RIGHT_ON;
 #endif
+				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 				break;
 			}
 			default:
 			{
-				DEBUG_ALL_ON;
+				DEBUG_ALL_OFF;
+				DEBUG_OUTER_ON;
 #ifdef SENSOR_ACTIONS_INVALID_KILL
 				MOVEMENT_DISABLE;
 #endif
@@ -300,12 +317,20 @@ int main()
 #endif
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
+#ifdef MOVEMENT_DEBUG_SKEW
+				DEBUG_ALL_OFF;
+				DEBUG_LEFT_ON;
+#endif
 				Movement_skew_correct(DIRECTION_LEFT, 0);
 
 				break;
 			}
 			else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
 			{
+#ifdef MOVEMENT_DEBUG_SKEW
+				DEBUG_ALL_OFF;
+				DEBUG_RIGHT_ON;
+#endif
 				Movement_skew_correct(DIRECTION_RIGHT, 0);
 
 				break;
@@ -336,7 +361,8 @@ int main()
 
 		default:
 		{
-			DEBUG_ALL_ON;
+			DEBUG_ALL_OFF;
+			DEBUG_OUTER_ON;
 			MOVEMENT_DISABLE;
 
 			break;
