@@ -413,7 +413,7 @@ static int16 Movement_sweep_right(uint16 maxPulses, bool predicate(void), bool r
 
 		return (predicateResult)
 			? pulsesSwept
-			: 0;
+			: -1;
 	}
 
 	// Reset turn
@@ -436,7 +436,7 @@ static int16 Movement_sweep_right(uint16 maxPulses, bool predicate(void), bool r
 
 	return (predicateResult)
 		? pulsesSwept
-		: 0;
+		: -1;
 }
 
 SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatisfied, bool resetHeading)
