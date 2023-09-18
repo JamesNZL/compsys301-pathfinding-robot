@@ -159,6 +159,7 @@ void Movement_skew_correct(Direction direction, int8 boostFactor)
 	}
 }
 
+// TODO: decrease skew correction factor if turn was a long time ago
 void Movement_check_turn_complete(void)
 {
 	if (FLAG_IS_CLEARED(FLAGS, FLAG_ENCODERS_READY))
