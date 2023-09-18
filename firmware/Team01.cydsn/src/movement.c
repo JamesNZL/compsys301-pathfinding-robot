@@ -133,7 +133,9 @@ void Movement_next_control_cycle(void)
 	Movement_set_M2_pulse_varying(target2);
 
 #ifdef MOVEMENT_DAMPEN_SKEW
-	Movement_skewDamperFactor = (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN)) ? 0 : MOVEMENT_SKEW_DAMPING_FACTOR;
+	Movement_skewDamperFactor = (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN))
+		? 0
+		: MOVEMENT_SKEW_DAMPING_FACTOR;
 #endif
 
 	FLAG_CLEAR(FLAGS, FLAG_ENCODERS_READY);
@@ -507,7 +509,7 @@ SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatis
 	{
 		if (!resetHeading)
 		{
-			Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
+			1 Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
 		}
 
 		return SENSOR_ACTION_CORRECT_RIGHT;
