@@ -84,7 +84,7 @@ int main()
 				Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 
 				Movement_turn_right(90);
-				CyDelay(100);
+				CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
 
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
@@ -109,7 +109,7 @@ int main()
 				Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 
 				Movement_turn_left(90);
-				CyDelay(100);
+				CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
 
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
