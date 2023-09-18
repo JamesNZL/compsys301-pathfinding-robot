@@ -213,6 +213,15 @@ int main()
 		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
 		{
 
+#ifdef MOVEMENT_DEBUG_SKEW
+			DEBUG_ALL_OFF;
+			DEBUG_EVEN_ON;
+#endif
+
+#ifdef SENSOR_ACTIONS_INVALID_KILL
+			MOVEMENT_DISABLE;
+#endif
+
 #ifdef SENSOR_ACTIONS_RIGOROUS
 			/*
 				Rotate left and right to see if just skewed
@@ -222,15 +231,13 @@ int main()
 
 			// TODO: do one continuous turn that constantly checks—rather than this jank—read the pulses turned in each direction for the valid state, and make decision off of that
 
-			static uint8 anglesToAttempt[9] = { 2, 5, 8, 10, 15, 20, 25, 30, 40 };
+			static uint8 anglesToAttempt[5] = { 2, 8, 15, 30, 40 };
 			static uint8 numberOfAttempts = (sizeof(anglesToAttempt) / sizeof(anglesToAttempt[0]));
-
-			Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
 			uint8 turnAbout = TRUE;
-			for (uint8 lastAttempt = 0; ((turnAbout) && (lastAttempt < numberOfAttempts)); lastAttempt++)
+			for (uint8 lastAttempt = 0; lastAttempt < numberOfAttempts; lastAttempt++)
 			{
 				if (lastAttempt % 2 == 0)
 				{
@@ -240,6 +247,11 @@ int main()
 					if (Sensor_is_middle_on_line())
 					{
 						turnAbout = FALSE;
+
+						// Return to original position
+						Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
+
+						break;
 					}
 
 					// Return to original position
@@ -253,6 +265,11 @@ int main()
 					if (Sensor_is_middle_on_line())
 					{
 						turnAbout = FALSE;
+
+						// Return to original position
+						Movement_turn_left(anglesToAttempt[lastAttempt / 2]);
+
+						break;
 					}
 
 					// Return to original position
@@ -303,38 +320,53 @@ int main()
 
 			// TODO: do one continuous turn that constantly checks—rather than this jank—read the pulses turned in each direction for the valid state, and make decision off of that
 
-			uint8 lastAttempt = 0;
-			static uint8 anglesToAttempt[9] = { 2, 5, 8, 10, 15, 20, 25, 30, 40 };
+			static uint8 anglesToAttempt[5] = { 2, 8, 15, 30, 40 };
+			static uint8 numberOfAttempts = (sizeof(anglesToAttempt) / sizeof(anglesToAttempt[0]));
 
 			Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-			while (Sensor_determine_action() == currentAction)
+			for (uint8 lastAttempt = 0; lastAttempt < numberOfAttempts; lastAttempt++)
 			{
 				// TODO: If rear sensor detection, immediately make next request without re-running loop
+				// TODO: but will need to handle case where only rear sensors
 
 				if (lastAttempt % 2 == 0)
 				{
-					// Reset previous turn
-					if (lastAttempt > 1)
-					{
-						Movement_turn_left(anglesToAttempt[(lastAttempt - 1) / 2]);
-					}
-
 					// Turn left
 					Movement_turn_left(anglesToAttempt[lastAttempt / 2]);
+
+					if (Sensor_determine_action() != currentAction)
+					{
+						// Return to original position
+						Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
+
+						break;
+					}
+
+					// Return to original position
+					Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
 				}
 				else
 				{
-					// Reset previous turn
-					Movement_turn_right(anglesToAttempt[(lastAttempt - 1) / 2]);
-
 					// Turn right
 					Movement_turn_right(anglesToAttempt[lastAttempt / 2]);
+
+					if (Sensor_determine_action() != currentAction)
+					{
+						// Return to original position
+						Movement_turn_left(anglesToAttempt[lastAttempt / 2]);
+
+						break;
+					}
+
+					// Return to original position
+					Movement_turn_left(anglesToAttempt[lastAttempt / 2]);
 				}
-				lastAttempt++;
 			}
+
+			// If no state was found, the robot will stay stopped
 #else
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
