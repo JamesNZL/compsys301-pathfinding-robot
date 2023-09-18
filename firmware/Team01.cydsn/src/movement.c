@@ -296,8 +296,8 @@ uint8 Movement_sweep_left(uint8 predicate(void))
 
 	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
 	Movement_set_direction_left(DIRECTION_REVERSE);
-	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
-	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_BRAKE);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_BRAKE);
 
 	// Poll until pulse target is met
 	QuadDec_M1_SetCounter(0);
@@ -319,8 +319,8 @@ uint8 Movement_sweep_left(uint8 predicate(void))
 
 	// Reset turn
 	Movement_set_direction_right(DIRECTION_REVERSE);
-	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
-	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_BRAKE);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_BRAKE);
 
 	QuadDec_M1_SetCounter(0);
 	while (QuadDec_M1_GetCounter() < -pulsesSwept)
@@ -357,8 +357,8 @@ uint8 Movement_sweep_right(uint8 predicate(void))
 
 	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
 	Movement_set_direction_right(DIRECTION_REVERSE);
-	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
-	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_BRAKE);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_BRAKE);
 
 	QuadDec_M1_SetCounter(0);
 	int8 predicateResult = FALSE;
@@ -379,8 +379,8 @@ uint8 Movement_sweep_right(uint8 predicate(void))
 
 	// Reset turn
 	Movement_set_direction_left(DIRECTION_REVERSE);
-	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
-	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
+	Movement_write_M1_pulse(MOVEMENT_SPEED_BRAKE);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_BRAKE);
 
 	QuadDec_M1_SetCounter(0);
 	while (QuadDec_M1_GetCounter() > -pulsesSwept)
