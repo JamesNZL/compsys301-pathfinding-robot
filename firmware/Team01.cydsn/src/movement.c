@@ -299,7 +299,6 @@ static uint16 Movement_sweep_left(uint8 predicate(void))
 	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 
-	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
 	Movement_set_direction_left(DIRECTION_REVERSE);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_BRAKE);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_BRAKE);
@@ -357,7 +356,6 @@ static uint16 Movement_sweep_right(uint8 predicate(void))
 	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 
-	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
 	Movement_set_direction_right(DIRECTION_REVERSE);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_BRAKE);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_BRAKE);
@@ -404,6 +402,7 @@ static uint16 Movement_sweep_right(uint8 predicate(void))
 
 SensorActions Movement_sweep(void)
 {
+	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
 	uint16 pulsesLeft = Movement_sweep_left(Sensor_is_any_front_on_line);
 	uint16 pulsesRight = Movement_sweep_right(Sensor_is_any_front_on_line);
 	CyDelay(5 * MOVEMENT_TURNS_STATIC_PERIOD);
