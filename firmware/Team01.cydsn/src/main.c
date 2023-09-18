@@ -1,7 +1,9 @@
+#include "battery.h"
 #include "commands.h"
 #include "common.h"
 #include "handlers.h"
 #include "movement.h"
+#include "sensor.h"
 #include "usb.h"
 
 #include <project.h>
@@ -14,23 +16,68 @@ volatile uint8 FLAGS = 0x00;
 int main()
 {
 	CYGlobalIntEnable;
-	PWM_1_Start();
-	PWM_2_Start();
+
+	uint16 batteryVoltage = Battery_display_level();
+	sprintf(USB_buffer, "Battery Voltage: %d mV\n", batteryVoltage);
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
+
+	USB_put_string(USB_buffer);
 #endif
 
-	RF_BT_SELECT_Write(0);
+	while (Push_Button_Read() != TRUE)
+	{
+		;
+	}
+
+	Movement_init_motors();
+	Sensor_init_sensors();
+
+	Movement_move_mm(2000);
+	Movement_sync_motors(300);
 
 	for (;;)
 	{
+		Movement_next_control_cycle();
+		Movement_check_distance();
+
+		Sensor_write_statuses_to_debug();
+		SensorActions currentAction = Sensor_determine_action();
+		switch (currentAction)
+		{
+		case SENSOR_ACTION_CONTINUE_FORWARD:
+		{
+			break;
+		}
+		case SENSOR_ACTION_CONTINUE_PREVIOUS:
+		{
+			break;
+		}
+		case SENSOR_ACTION_CORRECT_LEFT:
+		{
+			break;
+		}
+		case SENSOR_ACTION_CORRECT_RIGHT:
+		{
+			break;
+		}
+		case SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT:
+		{
+			break;
+		}
+		case SENSOR_ACTION_FIND_VALID_STATE:
+		{
+			break;
+		}
+		}
+#ifdef USB_ENABLED
 		/* Place your application code here. */
 		USB_get_input();
 
 		if (FLAG_IS_SET(FLAGS, FLAG_USB_INPUT))
 		{
-			FLAGS_CLEAR(FLAGS, FLAG_USB_INPUT);
+			FLAG_CLEAR(FLAGS, FLAG_USB_INPUT);
 
 			char *token = strtok(USB_input, COMMAND_DELIMITER);
 			if (token != NULL)
@@ -73,5 +120,6 @@ int main()
 				}
 			}
 		}
+#endif
 	}
 }

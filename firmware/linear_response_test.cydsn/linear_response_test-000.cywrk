@@ -2,18 +2,16 @@
 <CyXmlSerializer>
 <!--This file is machine generated and read. It is not intended to be edited by hand.-->
 <!--Due to this, there is no schema for this file.-->
-<CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWorkspaceSerialize" version="5" xml_contents_version="3" name="Team01" persistent="Team01.cywrk" platform="NOT_USED">
-<current_project name=".\Team01.cyprj" />
+<CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWorkspaceSerialize" version="5" xml_contents_version="3" name="linear_response_test-000" persistent="linear_response_test-000.cywrk" platform="NOT_USED">
+<current_project name=".\linear_response_test.cyprj" />
 <wrkspc_folders />
 <files />
 <projects>
-<v>.\Team01.cyprj</v>
-<v>..\motor_test.cydsn\motor_test.cyprj</v>
-<v>..\linear_response_test.cydsn\linear_response_test.cyprj</v>
+<v>.\linear_response_test.cyprj</v>
 </projects>
-<workspace_id v="324477da-3e91-45c1-b7eb-1a151f617e51" />
-<WriteAppVersionLastSavedWith v="4.4.0.80" />
-<WriteAppMarketingVersionLastSavedWith v="4.4" />
+<workspace_id v="79fd004a-8a40-4304-aca1-14b4c7604e51" />
+<WriteAppVersionLastSavedWith v="4.2.0.641" />
+<WriteAppMarketingVersionLastSavedWith v="4.2" />
 <CyGuid_dcbd9771-0334-43dc-9cc3-fe99dc3c5316 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWorkspaceSerialize+CyPrjDependencyList" version="4">
 <wrkspc_dependencies />
 </CyGuid_dcbd9771-0334-43dc-9cc3-fe99dc3c5316>
