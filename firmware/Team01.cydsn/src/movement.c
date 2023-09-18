@@ -196,7 +196,11 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 		// Multiply fraction by total pivot circumference
 		// Divide by circumference of wheel to determine revs needed
 		// Convert revs to pulses through multiply 228
-		return ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION) - MOVEMENT_TURNS_CORRECTION;
+		uint16 rawPulses = ((((angle / (float)360) * MOVEMENT_PIVOT_CIRCUMFERENCE) / MOVEMENT_WHEEL_CIRCUMFERENCE) * MOVEMENT_PULSE_REVOLUTION);
+
+		return (rawPulses > MOVEMENT_TURNS_CORRECTION)
+			? rawPulses - MOVEMENT_TURNS_CORRECTION
+			: rawPulses;
 	}
 	}
 }
@@ -205,7 +209,13 @@ void Movement_turn_left(uint16 angle)
 {
 	// Disable interrupts so decoders dont get reset to 0
 	CYGlobalIntDisable;
-	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle) - MOVEMENT_TURNS_LEFT_CORRECTION;
+
+	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
+	if (pulseTarget > MOVEMENT_TURNS_LEFT_CORRECTION)
+	{
+		pulseTarget -= MOVEMENT_TURNS_LEFT_CORRECTION;
+	}
+
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
 	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
@@ -222,6 +232,7 @@ void Movement_turn_left(uint16 angle)
 	{
 		;
 	}
+
 	Movement_set_direction_left(DIRECTION_FORWARD);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
@@ -235,7 +246,13 @@ void Movement_turn_left(uint16 angle)
 void Movement_turn_right(uint16 angle)
 {
 	CYGlobalIntDisable;
-	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle) - MOVEMENT_TURNS_RIGHT_CORRECTION;
+
+	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
+	if (pulseTarget > MOVEMENT_TURNS_RIGHT_CORRECTION)
+	{
+		pulseTarget -= MOVEMENT_TURNS_RIGHT_CORRECTION;
+	}
+
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
 
 	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
@@ -245,11 +262,13 @@ void Movement_turn_right(uint16 angle)
 	Movement_set_direction_right(DIRECTION_REVERSE);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_TURN);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
+
 	QuadDec_M1_SetCounter(0);
 	while (QuadDec_M1_GetCounter() < pulseTarget)
 	{
 		;
 	}
+
 	Movement_set_direction_right(DIRECTION_FORWARD);
 	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
 	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
