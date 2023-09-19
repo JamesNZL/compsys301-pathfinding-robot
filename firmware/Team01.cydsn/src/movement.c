@@ -199,7 +199,6 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 	}
 	case 180:
 	{
-		// TODO: this needs to be increased
 		return MOVEMENT_PULSE_180_DEGREE - MOVEMENT_TURNS_CORRECTION;
 	}
 	default:

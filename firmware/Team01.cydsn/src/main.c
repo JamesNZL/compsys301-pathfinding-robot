@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// #define FIXED_DISTANCE
+#define FIXED_DISTANCE
 
 volatile uint8 FLAGS = 0x00;
 
@@ -39,7 +39,7 @@ int main()
 	Movement_init_motors();
 
 #ifdef FIXED_DISTANCE
-	Movement_move_mm(1680);
+	Movement_move_mm(1000);
 #else
 	FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 #endif
