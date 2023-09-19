@@ -357,6 +357,8 @@ int main()
 				// No line was detected in front—now sweep the back sensors
 				action = Movement_sweep(Sensor_is_any_back_on_line, SENSOR_ACTION_CONTINUE_FORWARD, FALSE);
 			}
+
+			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 #endif
 			break;
 		}
