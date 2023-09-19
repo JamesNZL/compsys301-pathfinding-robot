@@ -150,6 +150,16 @@ void Movement_skew_correct(Direction direction, int8 boostFactor)
 	// Increase the speed of one motor to correct for a skew
 	FLAG_SET(FLAGS, FLAG_SKEW_CORRECTING);
 
+	// proportional = proportional_counter;
+	// derivational = proportional - previous_proportional;
+	// integral = integral + proportional;
+
+	// Kp = 0;
+	// Ki = 0;
+	// Kd = 0;
+
+	// PID_boost_factor = (proportional * Kp) + (integral * Ki) + (derivational * Kd); 
+
 	Movement_sync_motors(Movement_currentSpeed);
 
 	switch (direction)
