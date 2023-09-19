@@ -149,10 +149,10 @@ void Movement_turn_right(uint16 maxAngle, bool predicate(void));
  *
  * @param predicate A predicate to test as the robot is swept.
  * @param actionIfUnsatisfied The action to return if the predicate is not satisfied.
- * @param resetHeading Whether to reset the heading once the shortest sweep is found.
+ * @param
  * @return SensorActions The next action to take to return to a valid state.
  */
-SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatisfied, bool resetHeading);
+SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatisfied);
 
 /**
  * @brief Writes the motor pulse target physically

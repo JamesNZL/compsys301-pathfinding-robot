@@ -482,7 +482,7 @@ static int16 Movement_sweep_right(uint16 maxPulses, bool predicate(void), bool r
 		: -1;
 }
 
-SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatisfied, bool resetHeading)
+SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatisfied)
 {
 #ifdef MOVEMENT_DEBUG_SKEW
 	DEBUG_ALL_OFF;
@@ -514,27 +514,17 @@ SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatis
 	// OR left line was closer than right line
 	else if (((pulsesLeft != -1) && (pulsesRight == -1)) || ((pulsesLeft != -1) && (pulsesLeft < pulsesRight)))
 	{
-		// TODO: verify that these work
-		if (!resetHeading)
-		{
-			// DEBUG_ALL_OFF;
-			// DEBUG_OUTER_ON;
-			// DEBUG_RIGHT_OFF;
-			// Add 1 to ensure is never 0
-			Movement_sweep_left(((pulsesLeft * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
-		}
+		// DEBUG_ALL_OFF;
+		// DEBUG_OUTER_ON;
+		// DEBUG_RIGHT_OFF;
+		// Add 1 to ensure is never 0
+		Movement_sweep_left(((pulsesLeft * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
 
 		return SENSOR_ACTION_CORRECT_LEFT;
 	}
 	else if ((pulsesRight != -1 && pulsesLeft == -1) || ((pulsesRight != -1) && (pulsesRight < pulsesLeft)))
 	{
-		if (!resetHeading)
-		{
-			// DEBUG_ALL_OFF;
-			// DEBUG_OUTER_ON;
-			// DEBUG_LEFT_OFF;
-			Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
-		}
+		Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
 
 		return SENSOR_ACTION_CORRECT_RIGHT;
 	}

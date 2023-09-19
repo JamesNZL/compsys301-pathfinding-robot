@@ -254,7 +254,7 @@ int main()
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-			SensorActions action = Movement_sweep(Sensor_is_any_front_on_line, SENSOR_ACTION_TURN_ABOUT, TRUE);
+			SensorActions action = Movement_sweep(Sensor_is_any_front_on_line, SENSOR_ACTION_TURN_ABOUT);
 			switch (action)
 			{
 			case SENSOR_ACTION_TURN_ABOUT:
@@ -351,11 +351,11 @@ int main()
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
 			// TODO: why do i need this switch case? does it not properly return to the line?
-			SensorActions action = Movement_sweep(Sensor_is_any_front_on_line, SENSOR_ACTION_TURN_ABOUT, FALSE);
+			SensorActions action = Movement_sweep(Sensor_is_any_front_on_line, SENSOR_ACTION_TURN_ABOUT);
 			if (action == SENSOR_ACTION_TURN_ABOUT)
 			{
 				// No line was detected in front—now sweep the back sensors
-				action = Movement_sweep(Sensor_is_any_back_on_line, SENSOR_ACTION_CONTINUE_FORWARD, FALSE);
+				action = Movement_sweep(Sensor_is_any_back_on_line, SENSOR_ACTION_CONTINUE_FORWARD);
 			}
 
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
