@@ -102,10 +102,6 @@ void Movement_check_distance(void)
 
 		MOVEMENT_DISABLE;
 	}
-	else if (Movement_pulsesToMove < 150)
-	{
-		Movement_sync_motors(MOVEMENT_SPEED_BRAKE);
-	}
 }
 
 void Movement_next_control_cycle(void)
