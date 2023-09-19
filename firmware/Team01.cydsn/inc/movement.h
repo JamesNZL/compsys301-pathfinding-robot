@@ -72,7 +72,7 @@
 #define MOVEMENT_SWEEP_OVERSHOOT_FACTOR 25
 
 /* Recovery */
-#define MOVEMENT_RECOVERY_DELAY_PERIOD 125
+#define MOVEMENT_RECOVERY_DELAY_PERIOD 200
 
 /**
  * @brief The possible movement directions for the robot.

@@ -517,7 +517,8 @@ SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatis
 		// DEBUG_OUTER_ON;
 		// DEBUG_RIGHT_OFF;
 		// Add 1 to ensure is never 0
-		Movement_sweep_left(((pulsesLeft * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
+		// Sweep 75% of the distance to the valid state
+		Movement_sweep_left(((pulsesLeft * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 133) + 1, predicate, FALSE);
 
 		CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 		return SENSOR_ACTION_CORRECT_LEFT;
@@ -525,7 +526,7 @@ SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatis
 	else if ((pulsesRight != -1 && pulsesLeft == -1) || ((pulsesRight != -1) && (pulsesRight < pulsesLeft)))
 	{
 		CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
-		Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
+		Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 133) + 1, predicate, FALSE);
 
 		CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 		return SENSOR_ACTION_CORRECT_RIGHT;
