@@ -268,6 +268,8 @@ int main()
 #endif
 				Movement_turn_right(180, Sensor_is_any_front_on_line);
 
+				Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
+				Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 
 				break;
@@ -278,6 +280,8 @@ int main()
 				DEBUG_ALL_OFF;
 #endif
 
+				Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
+				Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 
 				break;
@@ -289,6 +293,8 @@ int main()
 				DEBUG_OUTER_ON;
 				DEBUG_RIGHT_OFF;
 #endif
+				Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
+				Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
@@ -301,6 +307,8 @@ int main()
 				DEBUG_OUTER_ON;
 				DEBUG_LEFT_OFF;
 #endif
+				Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
+				Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 
@@ -313,6 +321,8 @@ int main()
 #ifdef SENSOR_ACTIONS_INVALID_KILL
 				MOVEMENT_DISABLE;
 #endif
+				Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
+				Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 
 				break;
@@ -320,6 +330,8 @@ int main()
 			}
 
 			FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+
+			CyDelay(250);
 #endif
 			break;
 		}
@@ -373,7 +385,11 @@ int main()
 
 			FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
+			// TODO: do I want the robot to move here? probably not
+			// Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
+			// Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+			// CyDelay(250);
 #endif
 			break;
 		}

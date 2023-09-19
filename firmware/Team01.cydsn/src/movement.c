@@ -502,10 +502,12 @@ SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatis
 
 	if ((pulsesLeft == -1) && (pulsesRight == -1))
 	{
+		CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 		return actionIfUnsatisfied;
 	}
 	else if (pulsesLeft == pulsesRight)
 	{
+		CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 		return SENSOR_ACTION_CONTINUE_FORWARD;
 	}
 	// Left pulses closer than right pulses, or ONLY left pulses detected
@@ -520,15 +522,18 @@ SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatis
 		CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 		Movement_sweep_left(((pulsesLeft * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
 
+		CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 		return SENSOR_ACTION_CORRECT_LEFT;
 	}
 	else if ((pulsesRight != -1 && pulsesLeft == -1) || ((pulsesRight != -1) && (pulsesRight < pulsesLeft)))
 	{
 		Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
 
+		CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 		return SENSOR_ACTION_CORRECT_RIGHT;
 	}
 
+	CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 	return SENSOR_ACTION_FIND_VALID_STATE;
 }
 
