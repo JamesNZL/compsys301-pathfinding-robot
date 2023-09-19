@@ -66,7 +66,7 @@ int main()
 #endif
 			Movement_check_turn_complete();
 		}
-		else if (FLAG_IS_CLEARED(FLAGS, FLAG_RECOVERED_FROM_INVALID))
+		else
 		{
 #ifdef MOVEMENT_DEBUG_TURNS
 			DEBUG_ALL_OFF;
@@ -143,8 +143,6 @@ int main()
 #endif
 			Movement_sync_motors(MOVEMENT_SPEED_RUN);
 
-			FLAG_CLEAR(FLAGS, FLAG_RECOVERED_FROM_INVALID);
-
 			break;
 		}
 
@@ -156,8 +154,6 @@ int main()
 			Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
 			Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-
-			FLAG_CLEAR(FLAGS, FLAG_RECOVERED_FROM_INVALID);
 
 			break;
 		}
@@ -286,7 +282,7 @@ int main()
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
-				FLAG_SET(FLAGS, FLAG_RECOVERED_FROM_INVALID);
+				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
 				break;
 			}
@@ -299,7 +295,7 @@ int main()
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 
-				FLAG_SET(FLAGS, FLAG_RECOVERED_FROM_INVALID);
+				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
 				break;
 			}
@@ -310,8 +306,6 @@ int main()
 #ifdef SENSOR_ACTIONS_INVALID_KILL
 				MOVEMENT_DISABLE;
 #endif
-				// TODO: do i want to?
-				// FLAG_SET(FLAGS, FLAG_RECOVERED_FROM_INVALID);
 
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 
@@ -367,7 +361,7 @@ int main()
 				action = Movement_sweep(Sensor_is_any_back_on_line, SENSOR_ACTION_CONTINUE_FORWARD);
 			}
 
-			FLAG_SET(FLAGS, FLAG_RECOVERED_FROM_INVALID);
+			FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 #endif
