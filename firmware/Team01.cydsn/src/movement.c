@@ -225,15 +225,15 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 	}
 }
 
-void Movement_turn_left(uint16 angle)
+void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 {
 	// Disable interrupts so decoders dont get reset to 0
 	isr_getpulse_Disable();
 
-	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
-	if (pulseTarget > MOVEMENT_TURNS_LEFT_CORRECTION)
+	uint16 maxPulses = Movement_calculate_angle_to_pulse((maxAngle * (100 + MOVEMENT_TURNS_OVERSHOOT_FACTOR)) / 100);
+	if (maxPulses > MOVEMENT_TURNS_LEFT_CORRECTION)
 	{
-		pulseTarget -= MOVEMENT_TURNS_LEFT_CORRECTION;
+		maxPulses -= MOVEMENT_TURNS_LEFT_CORRECTION;
 	}
 
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
@@ -248,9 +248,15 @@ void Movement_turn_left(uint16 angle)
 
 	// Poll until pulse target is met
 	QuadDec_M1_SetCounter(0);
-	while (QuadDec_M1_GetCounter() > -pulseTarget)
+	while (QuadDec_M1_GetCounter() > -maxPulses)
 	{
-		;
+#ifdef MOVEMENT_TURN_WITH_SENSORS
+		// TODO: properly handle + intersection
+		if (predicate())
+		{
+			break;
+		}
+#endif
 	}
 
 	Movement_set_direction_left(DIRECTION_FORWARD);
@@ -263,14 +269,14 @@ void Movement_turn_left(uint16 angle)
 	isr_getpulse_Enable();
 }
 
-void Movement_turn_right(uint16 angle)
+void Movement_turn_right(uint16 maxAngle, bool predicate(void))
 {
 	isr_getpulse_Disable();
 
-	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
-	if (pulseTarget > MOVEMENT_TURNS_RIGHT_CORRECTION)
+	uint16 maxPulses = Movement_calculate_angle_to_pulse((maxAngle * (100 + MOVEMENT_TURNS_OVERSHOOT_FACTOR)) / 100);
+	if (maxPulses > MOVEMENT_TURNS_RIGHT_CORRECTION)
 	{
-		pulseTarget -= MOVEMENT_TURNS_RIGHT_CORRECTION;
+		maxPulses -= MOVEMENT_TURNS_RIGHT_CORRECTION;
 	}
 
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
@@ -284,9 +290,15 @@ void Movement_turn_right(uint16 angle)
 	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
 
 	QuadDec_M1_SetCounter(0);
-	while (QuadDec_M1_GetCounter() < pulseTarget)
+	while (QuadDec_M1_GetCounter() < maxPulses)
 	{
-		;
+#ifdef MOVEMENT_TURN_WITH_SENSORS
+		// TODO: properly handle + intersection
+		if (predicate())
+		{
+			break;
+		}
+#endif
 	}
 
 	Movement_set_direction_right(DIRECTION_FORWARD);

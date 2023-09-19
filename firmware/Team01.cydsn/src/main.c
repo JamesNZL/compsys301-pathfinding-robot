@@ -84,7 +84,7 @@ int main()
 				Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 				Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-				Movement_turn_right(90);
+				Movement_turn_right(90, Sensor_is_any_front_on_line);
 				CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
 
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
@@ -108,7 +108,7 @@ int main()
 				Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 				Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-				Movement_turn_left(90);
+				Movement_turn_left(90, Sensor_is_any_front_on_line);
 				CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
 
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
@@ -202,7 +202,7 @@ int main()
 			DEBUG_ALL_OFF;
 			DEBUG_LOWER_ON;
 #endif
-			Movement_turn_right(180);
+			Movement_turn_right(180, Sensor_is_any_front_on_line);
 
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_OFF;
@@ -261,7 +261,7 @@ int main()
 				DEBUG_ALL_OFF;
 				DEBUG_LOWER_ON;
 #endif
-				Movement_turn_right(180);
+				Movement_turn_right(180, Sensor_is_any_front_on_line);
 
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
