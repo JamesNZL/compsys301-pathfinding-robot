@@ -40,10 +40,13 @@
  * Calibrations
  */
 
+/* Distance */
+#define MOVEMENT_MM_PULSE_CORRECTION 15
+
 /* Speeds */
 #define MOVEMENT_SPEED_OFF	 0
-#define MOVEMENT_SPEED_BRAKE 110 // ! no lower than 110
-#define MOVEMENT_SPEED_SLOW	 120 // ! no lower than 110
+#define MOVEMENT_SPEED_BRAKE 115 // ! no lower than 115
+#define MOVEMENT_SPEED_SLOW	 120 // ! no lower than 115
 #define MOVEMENT_SPEED_RUN	 180 // ! no lower than 130, no more than 240, 160 & 180 are KNOWN GOOD
 #define MOVEMENT_SPEED_TURN	 130
 
