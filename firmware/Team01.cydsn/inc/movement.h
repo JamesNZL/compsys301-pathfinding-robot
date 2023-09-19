@@ -62,7 +62,7 @@
 #else
 #define MOVEMENT_TURNS_OVERSHOOT_FACTOR 0
 #endif
-#define MOVEMENT_TURNS_CORRECTION_FACTOR -3 // more negative -> more turn
+#define MOVEMENT_TURNS_CORRECTION		 -3 // more negative -> more turn
 #define MOVEMENT_TURNS_LEFT_CORRECTION	 25 // more positive -> less turn
 #define MOVEMENT_TURNS_RIGHT_CORRECTION	 25 // more positive -> less turn
 
