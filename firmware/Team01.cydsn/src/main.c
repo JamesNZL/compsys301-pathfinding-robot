@@ -127,7 +127,6 @@ int main()
 
 		/* Sensor Actions */
 		currentAction = Sensor_determine_action();
-		// TODO: disable sensing for x pulses
 		if (currentAction == previousAction)
 		{
 			continue;
@@ -272,7 +271,16 @@ int main()
 
 				break;
 			}
-			// TODO: keep driving until middle sensor returns
+			case SENSOR_ACTION_CONTINUE_FORWARD:
+			{
+#ifdef MOVEMENT_DEBUG_SKEW
+				DEBUG_ALL_OFF;
+#endif
+
+				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+
+				break;
+			}
 			case SENSOR_ACTION_CORRECT_LEFT:
 			{
 #ifdef MOVEMENT_DEBUG_SKEW
@@ -281,8 +289,6 @@ int main()
 #endif
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
-
-				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
 				break;
 			}
@@ -295,8 +301,6 @@ int main()
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 
-				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
-
 				break;
 			}
 			default:
@@ -306,12 +310,13 @@ int main()
 #ifdef SENSOR_ACTIONS_INVALID_KILL
 				MOVEMENT_DISABLE;
 #endif
-
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 
 				break;
 			}
 			}
+
+			FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 #endif
 			break;
 		}
