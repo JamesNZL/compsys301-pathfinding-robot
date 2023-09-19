@@ -158,7 +158,7 @@ void Movement_skew_correct(Direction direction, int8 boostFactor)
 	// Ki = 0;
 	// Kd = 0;
 
-	// PID_boost_factor = (proportional * Kp) + (integral * Ki) + (derivational * Kd); 
+	// PID_boost_factor = (proportional * Kp) + (integral * Ki) + (derivational * Kd);
 
 	Movement_sync_motors(Movement_currentSpeed);
 
