@@ -71,6 +71,9 @@
 /** @brief Percentage of the previous pulse count to add to the maximum allowed pulses before overruling predicate */
 #define MOVEMENT_SWEEP_OVERSHOOT_FACTOR 25
 
+/* Recovery */
+#define MOVEMENT_RECOVERY_DELAY_PERIOD 125
+
 /**
  * @brief The possible movement directions for the robot.
  */

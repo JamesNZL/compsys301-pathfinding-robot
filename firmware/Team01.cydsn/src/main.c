@@ -324,7 +324,7 @@ int main()
 
 			FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
-			CyDelay(250);
+			CyDelay(MOVEMENT_RECOVERY_DELAY_PERIOD);
 #else
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
@@ -405,7 +405,7 @@ int main()
 			// Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
 			// Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-			// CyDelay(250);
+			// CyDelay(MOVEMENT_RECOVERY_DELAY_PERIOD);
 #endif
 			break;
 		}
