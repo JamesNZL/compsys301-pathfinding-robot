@@ -119,6 +119,11 @@ void Movement_sync_motors(uint16 speed);
 void Movement_skew_correct(Direction direction, int8 boostFactor);
 
 /**
+ * @brief Checks the pulses after a turn has been completed. This value will be used for skew correction
+ */
+void Movement_check_pulses_after_turn(void);
+
+/**
  * @brief Check if the previous turn is complete and re-enable turn sensors if so
  */
 void Movement_check_turn_complete(void);

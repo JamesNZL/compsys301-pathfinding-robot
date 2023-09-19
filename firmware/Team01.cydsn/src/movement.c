@@ -133,6 +133,7 @@ void Movement_next_control_cycle(void)
 	Movement_set_M2_pulse_varying(target2);
 
 #ifdef MOVEMENT_DAMPEN_SKEW
+
 	Movement_skewDamperFactor = (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN))
 		? 0
 		: MOVEMENT_SKEW_DAMPING_FACTOR;
@@ -175,6 +176,10 @@ void Movement_skew_correct(Direction direction, int8 boostFactor)
 		break;
 	}
 	}
+}
+
+void Movement_check_pulses_after_turn()
+{
 }
 
 // TODO: decrease skew correction factor if turn was a long time ago
