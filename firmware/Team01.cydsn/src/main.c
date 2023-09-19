@@ -59,7 +59,6 @@ int main()
 		 */
 
 		/* Turn Detection */
-		// TODO: disable if just recovered from invalid state
 		if (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN))
 		{
 #ifdef MOVEMENT_DEBUG_TURNS
@@ -67,7 +66,7 @@ int main()
 #endif
 			Movement_check_turn_complete();
 		}
-		else
+		else if (FLAG_IS_CLEARED(FLAGS, FLAG_RECOVERED_FROM_INVALID))
 		{
 #ifdef MOVEMENT_DEBUG_TURNS
 			DEBUG_ALL_OFF;
@@ -144,6 +143,8 @@ int main()
 #endif
 			Movement_sync_motors(MOVEMENT_SPEED_RUN);
 
+			FLAG_CLEAR(FLAGS, FLAG_RECOVERED_FROM_INVALID);
+
 			break;
 		}
 
@@ -155,6 +156,8 @@ int main()
 			Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
 			Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+
+			FLAG_CLEAR(FLAGS, FLAG_RECOVERED_FROM_INVALID);
 
 			break;
 		}
@@ -283,6 +286,8 @@ int main()
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
+				FLAG_SET(FLAGS, FLAG_RECOVERED_FROM_INVALID);
+
 				break;
 			}
 			case SENSOR_ACTION_CORRECT_RIGHT:
@@ -294,6 +299,8 @@ int main()
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
 
+				FLAG_SET(FLAGS, FLAG_RECOVERED_FROM_INVALID);
+
 				break;
 			}
 			default:
@@ -303,6 +310,9 @@ int main()
 #ifdef SENSOR_ACTIONS_INVALID_KILL
 				MOVEMENT_DISABLE;
 #endif
+				// TODO: do i want to?
+				// FLAG_SET(FLAGS, FLAG_RECOVERED_FROM_INVALID);
+
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 
 				break;
@@ -350,13 +360,14 @@ int main()
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
-			// TODO: why do i need this switch case? does it not properly return to the line?
 			SensorActions action = Movement_sweep(Sensor_is_any_front_on_line, SENSOR_ACTION_TURN_ABOUT);
 			if (action == SENSOR_ACTION_TURN_ABOUT)
 			{
 				// No line was detected in front—now sweep the back sensors
 				action = Movement_sweep(Sensor_is_any_back_on_line, SENSOR_ACTION_CONTINUE_FORWARD);
 			}
+
+			FLAG_SET(FLAGS, FLAG_RECOVERED_FROM_INVALID);
 
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 #endif
