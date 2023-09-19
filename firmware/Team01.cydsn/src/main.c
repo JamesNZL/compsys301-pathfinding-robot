@@ -166,7 +166,8 @@ int main()
 		{
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_OFF;
-			DEBUG_LEFT_ON;
+			DEBUG_OUTER_ON;
+			DEBUG_RIGHT_OFF;
 #endif
 			if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
 			{
@@ -183,7 +184,8 @@ int main()
 		{
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_OFF;
-			DEBUG_RIGHT_ON;
+			DEBUG_OUTER_ON;
+			DEBUG_LEFT_OFF;
 #endif
 			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
 			{
@@ -206,7 +208,8 @@ int main()
 
 #ifdef MOVEMENT_DEBUG_SKEW
 			DEBUG_ALL_OFF;
-			DEBUG_LEFT_ON;
+			DEBUG_OUTER_ON;
+			DEBUG_RIGHT_OFF;
 #endif
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
@@ -224,7 +227,8 @@ int main()
 			{
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
-				DEBUG_LEFT_ON;
+				DEBUG_OUTER_ON;
+				DEBUG_RIGHT_OFF;
 #endif
 				Movement_skew_correct(DIRECTION_LEFT, 0);
 
@@ -234,7 +238,8 @@ int main()
 			{
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
-				DEBUG_RIGHT_ON;
+				DEBUG_OUTER_ON;
+				DEBUG_LEFT_OFF;
 #endif
 				Movement_skew_correct(DIRECTION_RIGHT, 0);
 
@@ -263,10 +268,6 @@ int main()
 #endif
 				Movement_turn_right(180, Sensor_is_any_front_on_line);
 
-#ifdef MOVEMENT_DEBUG_SKEW
-				DEBUG_ALL_OFF;
-				DEBUG_LEFT_ON;
-#endif
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 
 				break;
@@ -285,7 +286,8 @@ int main()
 			{
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
-				DEBUG_LEFT_ON;
+				DEBUG_OUTER_ON;
+				DEBUG_RIGHT_OFF;
 #endif
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
@@ -296,7 +298,8 @@ int main()
 			{
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
-				DEBUG_RIGHT_ON;
+				DEBUG_OUTER_ON;
+				DEBUG_LEFT_OFF;
 #endif
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
@@ -331,7 +334,8 @@ int main()
 			{
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
-				DEBUG_LEFT_ON;
+				DEBUG_OUTER_ON;
+				DEBUG_RIGHT_OFF;
 #endif
 				Movement_skew_correct(DIRECTION_LEFT, 0);
 
@@ -341,7 +345,8 @@ int main()
 			{
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
-				DEBUG_RIGHT_ON;
+				DEBUG_OUTER_ON;
+				DEBUG_LEFT_OFF;
 #endif
 				Movement_skew_correct(DIRECTION_RIGHT, 0);
 
