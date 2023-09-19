@@ -132,13 +132,6 @@ void Movement_next_control_cycle(void)
 	Movement_set_M1_pulse_varying(target1);
 	Movement_set_M2_pulse_varying(target2);
 
-#ifdef MOVEMENT_DAMPEN_SKEW
-
-	Movement_skewDamperFactor = (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN))
-		? 0
-		: MOVEMENT_SKEW_DAMPING_FACTOR;
-#endif
-
 	FLAG_CLEAR(FLAGS, FLAG_ENCODERS_READY);
 }
 
@@ -176,10 +169,6 @@ void Movement_skew_correct(Direction direction, int8 boostFactor)
 		break;
 	}
 	}
-}
-
-void Movement_check_pulses_after_turn()
-{
 }
 
 // TODO: decrease skew correction factor if turn was a long time ago
@@ -225,15 +214,15 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 	}
 }
 
-void Movement_turn_left(uint16 maxAngle, bool predicate(void))
+void Movement_turn_left(uint16 angle)
 {
 	// Disable interrupts so decoders dont get reset to 0
 	isr_getpulse_Disable();
 
-	uint16 maxPulses = Movement_calculate_angle_to_pulse((maxAngle * (100 + MOVEMENT_TURNS_OVERSHOOT_FACTOR)) / 100);
-	if (maxPulses > MOVEMENT_TURNS_LEFT_CORRECTION)
+	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
+	if (pulseTarget > MOVEMENT_TURNS_LEFT_CORRECTION)
 	{
-		maxPulses -= MOVEMENT_TURNS_LEFT_CORRECTION;
+		pulseTarget -= MOVEMENT_TURNS_LEFT_CORRECTION;
 	}
 
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
@@ -248,15 +237,9 @@ void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 
 	// Poll until pulse target is met
 	QuadDec_M1_SetCounter(0);
-	while (QuadDec_M1_GetCounter() > -maxPulses)
+	while (QuadDec_M1_GetCounter() > -pulseTarget)
 	{
-#ifdef MOVEMENT_TURN_WITH_SENSORS
-		// TODO: properly handle + intersection
-		if (predicate())
-		{
-			break;
-		}
-#endif
+		;
 	}
 
 	Movement_set_direction_left(DIRECTION_FORWARD);
@@ -269,14 +252,14 @@ void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 	isr_getpulse_Enable();
 }
 
-void Movement_turn_right(uint16 maxAngle, bool predicate(void))
+void Movement_turn_right(uint16 angle)
 {
 	isr_getpulse_Disable();
 
-	uint16 maxPulses = Movement_calculate_angle_to_pulse((maxAngle * (100 + MOVEMENT_TURNS_OVERSHOOT_FACTOR)) / 100);
-	if (maxPulses > MOVEMENT_TURNS_RIGHT_CORRECTION)
+	uint16 pulseTarget = Movement_calculate_angle_to_pulse(angle);
+	if (pulseTarget > MOVEMENT_TURNS_RIGHT_CORRECTION)
 	{
-		maxPulses -= MOVEMENT_TURNS_RIGHT_CORRECTION;
+		pulseTarget -= MOVEMENT_TURNS_RIGHT_CORRECTION;
 	}
 
 	uint16 pulseMeas = QuadDec_M1_GetCounter();
@@ -290,15 +273,9 @@ void Movement_turn_right(uint16 maxAngle, bool predicate(void))
 	Movement_write_M2_pulse(MOVEMENT_SPEED_TURN);
 
 	QuadDec_M1_SetCounter(0);
-	while (QuadDec_M1_GetCounter() < maxPulses)
+	while (QuadDec_M1_GetCounter() < pulseTarget)
 	{
-#ifdef MOVEMENT_TURN_WITH_SENSORS
-		// TODO: properly handle + intersection
-		if (predicate())
-		{
-			break;
-		}
-#endif
+		;
 	}
 
 	Movement_set_direction_right(DIRECTION_FORWARD);

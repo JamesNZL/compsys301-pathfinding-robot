@@ -53,7 +53,7 @@
 #define MOVEMENT_SKEW_CORRECTION_FACTOR 10
 /** @brief Percentage of the current speed by which to boost skew correction. */
 #define MOVEMENT_SKEW_BOOST_FACTOR	 4
-#define MOVEMENT_SKEW_DAMPING_FACTOR 2
+#define MOVEMENT_SKEW_DAMPING_FACTOR 8
 
 /* Turns */
 /** @brief Overshoot factor for turn angles before stopping sensor detection */
@@ -125,11 +125,6 @@ void Movement_sync_motors(uint16 speed);
  * @param boostFactor the percentage of the current speed by which to boost skew correction
  */
 void Movement_skew_correct(Direction direction, int8 boostFactor);
-
-/**
- * @brief Checks the pulses after a turn has been completed. This value will be used for skew correction
- */
-void Movement_check_pulses_after_turn(void);
 
 /**
  * @brief Check if the previous turn is complete and re-enable turn sensors if so
