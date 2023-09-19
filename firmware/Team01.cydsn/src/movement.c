@@ -510,7 +510,6 @@ SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatis
 		CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 		return SENSOR_ACTION_CONTINUE_FORWARD;
 	}
-	// Left pulses closer than right pulses, or ONLY left pulses detected
 	// Only left pulses detected
 	// OR left line was closer than right line
 	else if (((pulsesLeft != -1) && (pulsesRight == -1)) || ((pulsesLeft != -1) && (pulsesLeft < pulsesRight)))

@@ -71,7 +71,7 @@
 
 /* Sweeps */
 /** @brief Percentage of the previous pulse count to add to the maximum allowed pulses before overruling predicate */
-#define MOVEMENT_SWEEP_OVERSHOOT_FACTOR 50
+#define MOVEMENT_SWEEP_OVERSHOOT_FACTOR 25
 
 /**
  * @brief The possible movement directions for the robot.

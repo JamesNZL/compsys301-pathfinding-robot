@@ -223,28 +223,6 @@ int main()
 			DEBUG_ALL_OFF;
 			DEBUG_EVEN_ON;
 #endif
-			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
-			{
-#ifdef MOVEMENT_DEBUG_SKEW
-				DEBUG_ALL_OFF;
-				DEBUG_OUTER_ON;
-				DEBUG_RIGHT_OFF;
-#endif
-				Movement_skew_correct(DIRECTION_LEFT, 0);
-
-				break;
-			}
-			else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
-			{
-#ifdef MOVEMENT_DEBUG_SKEW
-				DEBUG_ALL_OFF;
-				DEBUG_OUTER_ON;
-				DEBUG_LEFT_OFF;
-#endif
-				Movement_skew_correct(DIRECTION_RIGHT, 0);
-
-				break;
-			}
 
 #ifdef SENSOR_ACTIONS_RIGOROUS
 			/*
@@ -325,6 +303,21 @@ int main()
 				Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 
+				if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
+				{
+#ifdef MOVEMENT_DEBUG_SKEW
+					DEBUG_RIGHT_OFF;
+#endif
+					Movement_skew_correct(DIRECTION_LEFT, 0);
+				}
+				else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
+				{
+#ifdef MOVEMENT_DEBUG_SKEW
+					DEBUG_LEFT_OFF;
+#endif
+					Movement_skew_correct(DIRECTION_RIGHT, 0);
+				}
+
 				break;
 			}
 			}
@@ -332,6 +325,29 @@ int main()
 			FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
 			CyDelay(250);
+#else
+			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
+			{
+#ifdef MOVEMENT_DEBUG_SKEW
+				DEBUG_ALL_OFF;
+				DEBUG_OUTER_ON;
+				DEBUG_RIGHT_OFF;
+#endif
+				Movement_skew_correct(DIRECTION_LEFT, 0);
+
+				break;
+			}
+			else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
+			{
+#ifdef MOVEMENT_DEBUG_SKEW
+				DEBUG_ALL_OFF;
+				DEBUG_OUTER_ON;
+				DEBUG_LEFT_OFF;
+#endif
+				Movement_skew_correct(DIRECTION_RIGHT, 0);
+
+				break;
+			}
 #endif
 			break;
 		}
