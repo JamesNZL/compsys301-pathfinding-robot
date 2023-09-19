@@ -199,6 +199,7 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 	}
 	case 180:
 	{
+		// TODO: this needs to be increased
 		return MOVEMENT_PULSE_180_DEGREE - MOVEMENT_TURNS_CORRECTION;
 	}
 	default:
@@ -483,18 +484,19 @@ static int16 Movement_sweep_right(uint16 maxPulses, bool predicate(void), bool r
 
 SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatisfied, bool resetHeading)
 {
-#ifdef MOVEMENT_DEBUG_SWEEP
+#ifdef MOVEMENT_DEBUG_SKEW
 	DEBUG_ALL_OFF;
 	DEBUG_INNER_ON;
 #endif
 
 	CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
+	// TODO: why didn't this work?
 	int16 pulsesLeft = Movement_sweep_left(0, predicate, TRUE);
 	// + 1 to convert the -1 to 0
 	int16 pulsesRight = Movement_sweep_right(pulsesLeft + 1, predicate, TRUE);
 	CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 
-#ifdef MOVEMENT_DEBUG_SWEEP
+#ifdef MOVEMENT_DEBUG_SKEW
 	DEBUG_ALL_OFF;
 	DEBUG_INNER_ON;
 #endif
@@ -503,20 +505,34 @@ SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatis
 	{
 		return actionIfUnsatisfied;
 	}
-	else if ((pulsesLeft != -1) && (pulsesLeft < pulsesRight))
+	else if (pulsesLeft == pulsesRight)
 	{
+		return SENSOR_ACTION_CONTINUE_FORWARD;
+	}
+	// Left pulses closer than right pulses, or ONLY left pulses detected
+	// Only left pulses detected
+	// OR left line was closer than right line
+	else if (((pulsesLeft != -1) && (pulsesRight == -1)) || ((pulsesLeft != -1) && (pulsesLeft < pulsesRight)))
+	{
+		// TODO: verify that these work
 		if (!resetHeading)
 		{
+			// DEBUG_ALL_OFF;
+			// DEBUG_OUTER_ON;
+			// DEBUG_RIGHT_OFF;
 			// Add 1 to ensure is never 0
 			Movement_sweep_left(((pulsesLeft * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
 		}
 
 		return SENSOR_ACTION_CORRECT_LEFT;
 	}
-	else if ((pulsesRight != -1) && (pulsesRight < pulsesLeft))
+	else if ((pulsesRight != -1 && pulsesLeft == -1) || ((pulsesRight != -1) && (pulsesRight < pulsesLeft)))
 	{
 		if (!resetHeading)
 		{
+			// DEBUG_ALL_OFF;
+			// DEBUG_OUTER_ON;
+			// DEBUG_LEFT_OFF;
 			Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
 		}
 

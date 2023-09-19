@@ -59,6 +59,7 @@ int main()
 		 */
 
 		/* Turn Detection */
+		// TODO: disable if just recovered from invalid state
 		if (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN))
 		{
 #ifdef MOVEMENT_DEBUG_TURNS
@@ -127,6 +128,7 @@ int main()
 
 		/* Sensor Actions */
 		currentAction = Sensor_determine_action();
+		// TODO: disable sensing for x pulses
 		if (currentAction == previousAction)
 		{
 			continue;
@@ -268,10 +270,10 @@ int main()
 				DEBUG_LEFT_ON;
 #endif
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
 
 				break;
 			}
+			// TODO: keep driving until middle sensor returns
 			case SENSOR_ACTION_CORRECT_LEFT:
 			{
 #ifdef MOVEMENT_DEBUG_SKEW
@@ -348,48 +350,12 @@ int main()
 			Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
 			Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
+			// TODO: why do i need this switch case? does it not properly return to the line?
 			SensorActions action = Movement_sweep(Sensor_is_any_front_on_line, SENSOR_ACTION_TURN_ABOUT, FALSE);
 			if (action == SENSOR_ACTION_TURN_ABOUT)
 			{
 				// No line was detected in front—now sweep the back sensors
 				action = Movement_sweep(Sensor_is_any_back_on_line, SENSOR_ACTION_CONTINUE_FORWARD, FALSE);
-			}
-
-			switch (action)
-			{
-			case SENSOR_ACTION_CORRECT_LEFT:
-			{
-#ifdef MOVEMENT_DEBUG_SKEW
-				DEBUG_ALL_OFF;
-				DEBUG_LEFT_ON;
-#endif
-				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
-
-				break;
-			}
-			case SENSOR_ACTION_CORRECT_RIGHT:
-			{
-#ifdef MOVEMENT_DEBUG_SKEW
-				DEBUG_ALL_OFF;
-				DEBUG_RIGHT_ON;
-#endif
-				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
-
-				break;
-			}
-			default:
-			{
-				DEBUG_ALL_OFF;
-				DEBUG_OUTER_ON;
-#ifdef SENSOR_ACTIONS_INVALID_KILL
-				MOVEMENT_DISABLE;
-#endif
-				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-
-				break;
-			}
 			}
 #endif
 			break;
