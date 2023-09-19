@@ -145,7 +145,7 @@ void Movement_sync_motors(uint16 speed)
 	Movement_set_M2_pulse_target(Movement_currentSpeed);
 }
 
-void Movement_skew_correct(Direction direction, int8 boostFactor)
+void Movement_skew_correct(Direction direction)
 {
 	// Increase the speed of one motor to correct for a skew
 	FLAG_SET(FLAGS, FLAG_SKEW_CORRECTING);
@@ -156,12 +156,12 @@ void Movement_skew_correct(Direction direction, int8 boostFactor)
 	{
 	case DIRECTION_LEFT:
 	{
-		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR + boostFactor - Movement_skewDamperFactor)) / 100);
+		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
 		break;
 	}
 	case DIRECTION_RIGHT:
 	{
-		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR + boostFactor - Movement_skewDamperFactor)) / 100);
+		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
 		break;
 	}
 	default:

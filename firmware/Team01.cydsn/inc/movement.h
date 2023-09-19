@@ -49,10 +49,8 @@
 
 /* Skew */
 /** @brief Percentage of the current speed by which to correct skew. */
-#define MOVEMENT_SKEW_CORRECTION_FACTOR 15
-/** @brief Percentage of the current speed by which to boost skew correction. */
-#define MOVEMENT_SKEW_BOOST_FACTOR	 4
-#define MOVEMENT_SKEW_DAMPING_FACTOR 8
+#define MOVEMENT_SKEW_CORRECTION_FACTOR 20
+#define MOVEMENT_SKEW_DAMPING_FACTOR	8
 
 /* Turns */
 /** @brief Overshoot factor for turn angles before stopping sensor detection */
@@ -121,9 +119,8 @@ void Movement_sync_motors(uint16 speed);
  * @brief Corrects the skew of the robot
  *
  * @param direction the direction to turn faster in to correct a skew
- * @param boostFactor the percentage of the current speed by which to boost skew correction
  */
-void Movement_skew_correct(Direction direction, int8 boostFactor);
+void Movement_skew_correct(Direction direction);
 
 /**
  * @brief Check if the previous turn is complete and re-enable turn sensors if so

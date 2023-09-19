@@ -88,7 +88,7 @@ int main()
 				CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
 
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
+				Movement_skew_correct(DIRECTION_RIGHT);
 				previousAction = SENSOR_ACTION_CORRECT_RIGHT;
 
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
@@ -112,7 +112,7 @@ int main()
 				CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
 
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
+				Movement_skew_correct(DIRECTION_LEFT);
 				previousAction = SENSOR_ACTION_CORRECT_LEFT;
 
 				FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
@@ -175,7 +175,7 @@ int main()
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 			}
 
-			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
+			Movement_skew_correct(DIRECTION_LEFT);
 
 			break;
 		}
@@ -193,7 +193,7 @@ int main()
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 			}
 
-			Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
+			Movement_skew_correct(DIRECTION_RIGHT);
 
 			break;
 		}
@@ -212,7 +212,7 @@ int main()
 			DEBUG_RIGHT_OFF;
 #endif
 			Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-			Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
+			Movement_skew_correct(DIRECTION_LEFT);
 
 			break;
 		}
@@ -274,7 +274,7 @@ int main()
 				Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
 				Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-				Movement_skew_correct(DIRECTION_LEFT, MOVEMENT_SKEW_BOOST_FACTOR);
+				Movement_skew_correct(DIRECTION_LEFT);
 
 				break;
 			}
@@ -288,7 +288,7 @@ int main()
 				Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
 				Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
 				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-				Movement_skew_correct(DIRECTION_RIGHT, MOVEMENT_SKEW_BOOST_FACTOR);
+				Movement_skew_correct(DIRECTION_RIGHT);
 
 				break;
 			}
@@ -308,14 +308,14 @@ int main()
 #ifdef MOVEMENT_DEBUG_SKEW
 					DEBUG_RIGHT_OFF;
 #endif
-					Movement_skew_correct(DIRECTION_LEFT, 0);
+					Movement_skew_correct(DIRECTION_LEFT);
 				}
 				else if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
 				{
 #ifdef MOVEMENT_DEBUG_SKEW
 					DEBUG_LEFT_OFF;
 #endif
-					Movement_skew_correct(DIRECTION_RIGHT, 0);
+					Movement_skew_correct(DIRECTION_RIGHT);
 				}
 
 				break;
@@ -333,7 +333,7 @@ int main()
 				DEBUG_OUTER_ON;
 				DEBUG_RIGHT_OFF;
 #endif
-				Movement_skew_correct(DIRECTION_LEFT, 0);
+				Movement_skew_correct(DIRECTION_LEFT);
 
 				break;
 			}
@@ -344,7 +344,7 @@ int main()
 				DEBUG_OUTER_ON;
 				DEBUG_LEFT_OFF;
 #endif
-				Movement_skew_correct(DIRECTION_RIGHT, 0);
+				Movement_skew_correct(DIRECTION_RIGHT);
 
 				break;
 			}
@@ -365,7 +365,7 @@ int main()
 				DEBUG_OUTER_ON;
 				DEBUG_RIGHT_OFF;
 #endif
-				Movement_skew_correct(DIRECTION_LEFT, 0);
+				Movement_skew_correct(DIRECTION_LEFT);
 
 				break;
 			}
@@ -376,7 +376,7 @@ int main()
 				DEBUG_OUTER_ON;
 				DEBUG_LEFT_OFF;
 #endif
-				Movement_skew_correct(DIRECTION_RIGHT, 0);
+				Movement_skew_correct(DIRECTION_RIGHT);
 
 				break;
 			}
