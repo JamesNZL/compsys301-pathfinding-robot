@@ -96,6 +96,10 @@ void Movement_check_distance(void)
 	{
 		Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
+#ifdef MOVEMENT_DEBUG_SKEW
+		DEBUG_ALL_ON;
+#endif
+
 		MOVEMENT_DISABLE;
 	}
 	else if (Movement_pulsesToMove < 150)
