@@ -13,6 +13,8 @@
 
 // #define MOVEMENT_TURN_WITH_SENSORS
 
+#define MOVEMENT_PID_SKEW
+
 /*
  * Motor Control Register
  */

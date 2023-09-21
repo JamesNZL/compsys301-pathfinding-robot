@@ -125,6 +125,10 @@ void Movement_next_control_cycle(void)
 	uint16 target1 = Movement_pulsesVaryingM1 + pulseError1;
 	uint16 target2 = Movement_pulsesVaryingM2 + pulseError2;
 
+#ifdef MOVEMENT_PID_SKEW
+
+#endif
+
 	Movement_write_M1_pulse(target1);
 	Movement_write_M2_pulse(target2);
 
