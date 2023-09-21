@@ -173,11 +173,13 @@ void Movement_skew_correct(Direction direction, int8 boostFactor)
 	{
 	case DIRECTION_LEFT:
 	{
+		FLAG_SET(FLAGS, FLAG_DIRECTIONAL_BIAS);
 		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR + boostFactor - Movement_skewDamperFactor)) / 100);
 		break;
 	}
 	case DIRECTION_RIGHT:
 	{
+		FLAG_CLEAR(FLAGS, FLAG_DIRECTIONAL_BIAS);
 		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR + boostFactor - Movement_skewDamperFactor)) / 100);
 		break;
 	}
