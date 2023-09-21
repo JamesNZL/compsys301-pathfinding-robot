@@ -58,6 +58,7 @@ static uint16 Movement_currentSpeed = MOVEMENT_SPEED_RUN;
 
 static int16 Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
 static int8 Movement_skewDamperFactor = 0;
+static int16 Movement_directionalBias;
 
 CY_ISR(MOVEMENT_ISR_PROCESS_PULSE)
 {
@@ -126,6 +127,7 @@ void Movement_next_control_cycle(void)
 	uint16 target2 = Movement_pulsesVaryingM2 + pulseError2;
 
 #ifdef MOVEMENT_PID_SKEW
+	Movement_directionalBias += (FLAG_IS_SET(FLAGS, FLAG_DIRECTIONAL_BIAS)) ? -1 : 1;
 
 #endif
 
