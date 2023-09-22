@@ -56,9 +56,9 @@
 #define MOVEMENT_SKEW_BOOST_FACTOR	 4
 #define MOVEMENT_SKEW_DAMPING_FACTOR 8
 /** @brief Skew gain constants*/
-#define MOVEMENT_SKEW_P_BOOST 8
-#define MOVEMENT_SKEW_D_BOOST 2
-#define MOVEMENT_SKEW_I_BOOST 0.02F
+#define MOVEMENT_SKEW_P_BOOST 0.08
+#define MOVEMENT_SKEW_D_BOOST 0.6
+#define MOVEMENT_SKEW_I_BOOST 0.0007F
 
 /* Turns */
 /** @brief Overshoot factor for turn angles before stopping sensor detection */
