@@ -131,10 +131,13 @@ void Movement_next_control_cycle(void)
 
 #ifdef MOVEMENT_PID_SKEW
 	// If we are skew correcting left, move pitch left of origin and vice versa
+
 	Movement_directionalBias += (FLAG_IS_SET(FLAGS, FLAG_SKEW_CORRECTING)) ? ((FLAG_IS_SET(FLAGS, FLAG_DIRECTIONAL_BIAS)) ? -1 : 1) : 0;
 	Movement_skewDerivative = Movement_directionalBias - Movement_previousDirectionalBias;
 	Movement_skewIntegral += Movement_directionalBias;
 	Movement_previousDirectionalBias = Movement_directionalBias;
+
+	float powerCorrection = ((float)Movement_directionalBias * MOVEMENT_SKEW_P_BOOST) + ((float)Movement_skewDerivative * MOVEMENT_SKEW_D_BOOST) + ((float)Movement_skewIntegral * MOVEMENT_SKEW_I_BOOST);
 
 #endif
 
