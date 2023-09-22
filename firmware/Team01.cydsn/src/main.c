@@ -69,6 +69,8 @@ int main()
 		}
 		else
 		{
+#ifdef PATHFINDING
+#else
 #ifdef MOVEMENT_DEBUG_TURNS
 			DEBUG_ALL_OFF;
 #endif
@@ -120,6 +122,7 @@ int main()
 
 				continue;
 			}
+#endif
 		}
 
 		/* Movement Control Loop */
