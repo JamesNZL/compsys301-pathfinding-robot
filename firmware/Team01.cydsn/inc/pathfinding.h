@@ -15,14 +15,45 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#define PATHFINDING_MAZE_WIDTH			19
-#define PATHFINDING_MAZE_HEIGHT			15
-#define PATHFINDING_STARTING_INDEX		0
-#define PATHFINDING_POSSIBLE_DIRECTIONS 4
-#define PATHFINDING_FOOD_LOCATIONS		5
+#define PATHFINDING_MAZE_WIDTH			 19
+#define PATHFINDING_MAZE_HEIGHT			 15
+#define PATHFINDING_STARTING_INDEX		 0
+#define PATHFINDING_POSSIBLE_DIRECTIONS	 4
+#define PATHFINDING_TOTAL_FOOD_LOCATIONS 5
 
-#define PATHFINDING_X_GRID_SCALE_MM		127.5
-#define PATHFINDING_Y_GRID_SCALE_MM		80
+#define PATHFINDING_X_GRID_SCALE_MM		 127.5
+#define PATHFINDING_Y_GRID_SCALE_MM		 80
+
+#define PATHFINDING_START_X				 1
+#define PATHFINDING_START_Y				 1
+#define PATHFINDING_STARTING_DIRECTION	 MAZE_DIRECTIONS_LEFT
+
+static uint8_t PATHFINDING_MAZE[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH] = {
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+	{ 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1 },
+	{ 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1 },
+	{ 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1 },
+	{ 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1 },
+	{ 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1 },
+	{ 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+};
+
+static uint8_t PATHFINDING_FOOD_LIST[PATHFINDING_TOTAL_FOOD_LOCATIONS][2]
+	= {
+		  { 1, 9 },
+		  { 5, 5 },
+		  { 7, 1 },
+		  { 13, 5 },
+		  { 9, 9 },
+	  };
 
 typedef struct PathfindingRoute PathfindingRoute;
 
@@ -52,7 +83,7 @@ typedef enum MazeDirections
  * @warning It is the caller's responsibility to destroy the queue and routes
  * @return
  */
-Queue *Pathfinding_generate_routes_to_all_food(Point *start, MazeDirections startingDirection, uint8_t food_list[PATHFINDING_FOOD_LOCATIONS][2], uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
+Queue *Pathfinding_generate_routes_to_all_food(Point *start, MazeDirections startingDirection, uint8_t food_list[PATHFINDING_TOTAL_FOOD_LOCATIONS][2], uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
 
 uint8_t Pathfinding_is_moving_horizontally(MazeDirections directionOfMotion);
 uint8_t Pathfinding_is_moving_vertically(MazeDirections directionOfMotion);

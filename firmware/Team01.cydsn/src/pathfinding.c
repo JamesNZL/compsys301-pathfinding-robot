@@ -50,12 +50,12 @@ uint8_t Pathfinding_route_get_final_distance(PathfindingRoute *route)
 
 /* END route operations */
 
-Queue *Pathfinding_generate_routes_to_all_food(Point *start, MazeDirections startingDirection, uint8_t foodLocations[PATHFINDING_FOOD_LOCATIONS][2], uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH])
+Queue *Pathfinding_generate_routes_to_all_food(Point *start, MazeDirections startingDirection, uint8_t foodLocations[PATHFINDING_TOTAL_FOOD_LOCATIONS][2], uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH])
 {
 	Queue *routes = Queue_construct();
 	Point *currentStartPoint = start;
 	MazeDirections currentStartingDirection = startingDirection;
-	for (uint8_t i = 0; i < PATHFINDING_FOOD_LOCATIONS; ++i)
+	for (uint8_t i = 0; i < PATHFINDING_TOTAL_FOOD_LOCATIONS; ++i)
 	{
 		uint8_t *currentFoodLocation = foodLocations[i];
 		Point *currentEndPoint = Point_create(currentFoodLocation[0], currentFoodLocation[1], PATHFINDING_MAZE_WIDTH);

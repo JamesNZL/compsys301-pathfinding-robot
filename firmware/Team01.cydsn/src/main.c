@@ -7,6 +7,8 @@
 #include "sensor.h"
 #include "usb.h"
 
+#include <Point/Point.h>
+
 #include <project.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -49,6 +51,17 @@ int main()
 
 	static SensorActions previousAction;
 	static SensorActions currentAction;
+
+/* Pathfinding init */
+#ifdef PATHFINDING
+	Point *startPoint = Point_create(PATHFINDING_START_X, PATHFINDING_START_Y, PATHFINDING_MAZE_WIDTH);
+	Queue *routes = Pathfinding_generate_routes_to_all_food(
+		startPoint,
+		PATHFINDING_STARTING_DIRECTION,
+		PATHFINDING_FOOD_LIST,
+		PATHFINDING_MAZE);
+	Point_destroy(startPoint);
+#endif
 
 	for (;;)
 	{
