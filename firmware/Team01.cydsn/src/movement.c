@@ -59,6 +59,9 @@ static uint16 Movement_currentSpeed = MOVEMENT_SPEED_RUN;
 static int16 Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
 static int8 Movement_skewDamperFactor = 0;
 static int16 Movement_directionalBias;
+static int16 Movement_previousDirectionalBias;
+static int16 Movement_skewDerivative;
+static int16 Movement_skewIntegral;
 
 CY_ISR(MOVEMENT_ISR_PROCESS_PULSE)
 {
@@ -127,8 +130,9 @@ void Movement_next_control_cycle(void)
 	uint16 target2 = Movement_pulsesVaryingM2 + pulseError2;
 
 #ifdef MOVEMENT_PID_SKEW
+	// If we are skew correcting left, move pitch left of origin and vice versa
 	Movement_directionalBias += (FLAG_IS_SET(FLAGS, FLAG_DIRECTIONAL_BIAS)) ? -1 : 1;
-
+	Movement_skewDerivative = Movement_directionalBias - Movement_previousDirectionalBias;
 #endif
 
 	Movement_write_M1_pulse(target1);
