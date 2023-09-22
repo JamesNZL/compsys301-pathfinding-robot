@@ -3,6 +3,7 @@
 #include "common.h"
 #include "handlers.h"
 #include "movement.h"
+#include "pathfinding.h"
 #include "sensor.h"
 #include "usb.h"
 
