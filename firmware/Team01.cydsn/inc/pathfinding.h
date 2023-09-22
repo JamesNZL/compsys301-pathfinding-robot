@@ -21,6 +21,9 @@
 #define PATHFINDING_POSSIBLE_DIRECTIONS 4
 #define PATHFINDING_FOOD_LOCATIONS		5
 
+#define PATHFINDING_X_GRID_SCALE_MM		127.5
+#define PATHFINDING_Y_GRID_SCALE_MM		80
+
 typedef struct PathfindingRoute PathfindingRoute;
 
 typedef enum Actions
