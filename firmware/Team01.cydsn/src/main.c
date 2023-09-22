@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define FIXED_DISTANCE
+// #define FIXED_DISTANCE
 #define PATHFINDING
 
 volatile uint8 FLAGS = 0x00;
