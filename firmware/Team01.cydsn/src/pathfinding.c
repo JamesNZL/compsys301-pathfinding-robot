@@ -124,7 +124,7 @@ PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortestPath, MazeDi
 {
 	MazeDirections currentDirection = startingDirection;
 	Queue *turns = Queue_construct();
-	Point *lastIntersectionPoint;
+	Point *lastIntersectionPoint = NULL;
 	uint8_t finalDistance;
 	while (!Stack_is_empty(shortestPath))
 	{
@@ -138,11 +138,18 @@ PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortestPath, MazeDi
 		// we popped the last node
 		if (Stack_is_empty(shortestPath))
 		{
-			// printf("final: (%i,%i), last: (%i,%i)", Point_get_x(current_point), Point_get_y(current_point), Point_get_x(last_intersection_point), Point_get_y(last_intersection_point));
-			finalDistance = Pathfinding_calculate_point_spacing(currentDirection, currentPoint, lastIntersectionPoint);
+			if (lastIntersectionPoint == NULL)
+			{
+				finalDistance = 0;
+			}
+			else
+			{
+				// printf("final: (%i,%i), last: (%i,%i)", Point_get_x(current_point), Point_get_y(current_point), Point_get_x(last_intersection_point), Point_get_y(last_intersection_point));
+				finalDistance = Pathfinding_calculate_point_spacing(currentDirection, currentPoint, lastIntersectionPoint);
+				Point_destroy(lastIntersectionPoint);
+			}
 			Stack_destroy(shortestPath);
 			Point_destroy(currentPoint);
-			Point_destroy(lastIntersectionPoint);
 			break;
 		}
 
@@ -187,6 +194,13 @@ PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortestPath, MazeDi
 
 void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_MAZE_HEIGHT * PATHFINDING_MAZE_WIDTH], Point *start, Point *end)
 {
+	if (Point_equal(start, end))
+	{
+		// create copy of start node to avoid double free
+		Point *startNodeCopy = Point_create(Point_get_x(start), Point_get_y(start), PATHFINDING_MAZE_WIDTH);
+		Stack_push(stack, Node_create(startNodeCopy));
+		return;
+	}
 	// start with final point
 	uint16_t currentIndex = Point_get_1d(end);
 	// use starting point to know if we've reached the end
