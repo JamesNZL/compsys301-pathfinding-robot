@@ -70,6 +70,29 @@ Queue *Pathfinding_generate_routes_to_all_food(Point *start, MazeDirections star
 	return routes;
 }
 
+uint8_t Pathfinding_is_moving_horizontally(MazeDirections directionOfMotion)
+{
+	switch (directionOfMotion)
+	{
+	case MAZE_DIRECTIONS_LEFT:
+	case MAZE_DIRECTIONS_RIGHT:
+		return 1;
+	default:
+		return 0;
+	}
+}
+uint8_t Pathfinding_is_moving_vertically(MazeDirections directionOfMotion)
+{
+	switch (directionOfMotion)
+	{
+	case MAZE_DIRECTIONS_UP:
+	case MAZE_DIRECTIONS_DOWN:
+		return 1;
+	default:
+		return 0;
+	}
+}
+
 Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH])
 {
 	// predecessor array to store shortest path
@@ -326,48 +349,36 @@ Actions Pathfinding_get_required_action(MazeDirections current, MazeDirections n
 uint8_t Pathfinding_calculate_point_spacing(MazeDirections currentDirection, Point *point_1, Point *point_2)
 {
 
-	switch (currentDirection)
+	if (Pathfinding_is_moving_horizontally(currentDirection))
 	{
-	// moving horizontally
-	case MAZE_DIRECTIONS_LEFT:
-	case MAZE_DIRECTIONS_RIGHT:
 		// implement abs manually
 		return abs(Point_get_x(point_1) - Point_get_x(point_2));
-		break;
-	// moving vertically
-	case MAZE_DIRECTIONS_UP:
-	case MAZE_DIRECTIONS_DOWN:
-		return abs(Point_get_y(point_1) - Point_get_y(point_2));
-		break;
-	default:
-		return 0;
 	}
+	else if (Pathfinding_is_moving_vertically(currentDirection))
+	{
+
+		return abs(Point_get_y(point_1) - Point_get_y(point_2));
+	}
+	return 0;
 }
 
 uint8_t Pathfinding_is_on_intersection(MazeDirections currentDirection, uint8_t x, uint8_t y, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH])
 {
-	switch (currentDirection)
+	if (Pathfinding_is_moving_horizontally(currentDirection))
 	{
-	// moving horizontally
-	case MAZE_DIRECTIONS_LEFT:
-	case MAZE_DIRECTIONS_RIGHT:
-
 		if ((maze[y + 1][x] == 0) || (maze[y - 1][x] == 0))
 		{
 			return 1;
 		}
-		break;
-	// moving vertically
-	case MAZE_DIRECTIONS_UP:
-	case MAZE_DIRECTIONS_DOWN:
+	}
+	else if (Pathfinding_is_moving_vertically(currentDirection))
+	{
 		if ((maze[y][x + 1] == 0) || (maze[y][x - 1] == 0))
 		{
 			return 1;
 		}
-		break;
-	default:
-		return 0;
 	}
+
 	return 0;
 }
 
