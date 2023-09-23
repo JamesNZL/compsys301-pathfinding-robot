@@ -30,12 +30,12 @@
 
 /* For usage with Movement_move_mm */
 
-// Usage: GRID_DISTANCE_LUT_MM_X[distance] where distance is grids - 1
+// Usage: GRID_DISTANCE_LUT_MM_X[distance] where distance is grids - 1 (based on scale of 127.5mm)
 const uint16_t GRID_DISTANCE_LUT_MM_X[PATHFINDING_MAZE_WIDTH] = {
 	0, 127, 255, 382, 510, 637, 765, 892, 1020, 1147, 1275, 1275, 1402, 1530, 1657, 1785, 1912, 2040, 2167, 2295
 };
 
-// Usage: GRID_DISTANCE_LUT_MM_Y[distance] where distance is grids - 1
+// Usage: GRID_DISTANCE_LUT_MM_Y[distance] where distance is grids - 1 (based on scale of 80mm)
 const uint16_t GRID_DISTANCE_LUT_MM_Y[PATHFINDING_MAZE_WIDTH] = {
 	0, 80, 160, 240, 320, 400, 480, 560, 640, 720, 800, 880, 960, 1040, 1120, 1200, 1280, 1360, 1440
 };
