@@ -96,11 +96,11 @@ void Movement_check_distance(void)
 	{
 		Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
+#ifdef MOVEMENT_DEBUG_SKEW
+		DEBUG_ALL_ON;
+#endif
+
 		MOVEMENT_DISABLE;
-	}
-	else if (Movement_pulsesToMove < 150)
-	{
-		Movement_sync_motors(MOVEMENT_SPEED_BRAKE);
 	}
 }
 
@@ -145,7 +145,7 @@ void Movement_sync_motors(uint16 speed)
 	Movement_set_M2_pulse_target(Movement_currentSpeed);
 }
 
-void Movement_skew_correct(Direction direction, int8 boostFactor)
+void Movement_skew_correct(Direction direction)
 {
 	// Increase the speed of one motor to correct for a skew
 	FLAG_SET(FLAGS, FLAG_SKEW_CORRECTING);
@@ -156,12 +156,12 @@ void Movement_skew_correct(Direction direction, int8 boostFactor)
 	{
 	case DIRECTION_LEFT:
 	{
-		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR + boostFactor - Movement_skewDamperFactor)) / 100);
+		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
 		break;
 	}
 	case DIRECTION_RIGHT:
 	{
-		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR + boostFactor - Movement_skewDamperFactor)) / 100);
+		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
 		break;
 	}
 	default:
@@ -481,48 +481,57 @@ static int16 Movement_sweep_right(uint16 maxPulses, bool predicate(void), bool r
 		: -1;
 }
 
-SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatisfied, bool resetHeading)
+SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatisfied)
 {
-#ifdef MOVEMENT_DEBUG_SWEEP
+#ifdef MOVEMENT_DEBUG_SKEW
 	DEBUG_ALL_OFF;
 	DEBUG_INNER_ON;
 #endif
 
-	CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
-	int16 pulsesLeft = Movement_sweep_left(0, predicate, TRUE);
+	CyDelay(2 * MOVEMENT_TURNS_STATIC_PERIOD);
+	int16 pulsesRight = Movement_sweep_right(0, predicate, TRUE);
 	// + 1 to convert the -1 to 0
-	int16 pulsesRight = Movement_sweep_right(pulsesLeft + 1, predicate, TRUE);
-	CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
+	int16 pulsesLeft = Movement_sweep_left(pulsesRight + 1, predicate, TRUE);
 
-#ifdef MOVEMENT_DEBUG_SWEEP
+#ifdef MOVEMENT_DEBUG_SKEW
 	DEBUG_ALL_OFF;
 	DEBUG_INNER_ON;
 #endif
 
 	if ((pulsesLeft == -1) && (pulsesRight == -1))
 	{
+		CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 		return actionIfUnsatisfied;
 	}
-	else if ((pulsesLeft != -1) && (pulsesLeft < pulsesRight))
+	else if (pulsesLeft == pulsesRight)
 	{
-		if (!resetHeading)
-		{
-			// Add 1 to ensure is never 0
-			Movement_sweep_left(((pulsesLeft * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
-		}
+		CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
+		return SENSOR_ACTION_CONTINUE_FORWARD;
+	}
+	// Only left pulses detected
+	// OR left line was closer than right line
+	else if (((pulsesLeft != -1) && (pulsesRight == -1)) || ((pulsesLeft != -1) && (pulsesLeft < pulsesRight)))
+	{
+		// DEBUG_ALL_OFF;
+		// DEBUG_OUTER_ON;
+		// DEBUG_RIGHT_OFF;
+		// Add 1 to ensure is never 0
+		// Sweep 75% of the distance to the valid state
+		Movement_sweep_left(((pulsesLeft * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 133) + 1, predicate, FALSE);
 
+		CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 		return SENSOR_ACTION_CORRECT_LEFT;
 	}
-	else if ((pulsesRight != -1) && (pulsesRight < pulsesLeft))
+	else if ((pulsesRight != -1 && pulsesLeft == -1) || ((pulsesRight != -1) && (pulsesRight < pulsesLeft)))
 	{
-		if (!resetHeading)
-		{
-			Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 100) + 1, predicate, FALSE);
-		}
+		CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
+		Movement_sweep_right(((pulsesRight * (100 + MOVEMENT_SWEEP_OVERSHOOT_FACTOR)) / 133) + 1, predicate, FALSE);
 
+		CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 		return SENSOR_ACTION_CORRECT_RIGHT;
 	}
 
+	CyDelay(3 * MOVEMENT_TURNS_STATIC_PERIOD);
 	return SENSOR_ACTION_FIND_VALID_STATE;
 }
 

@@ -7,7 +7,7 @@
 // #define SENSOR_DEBUG
 
 // #define SENSOR_ACTIONS_INVALID_KILL
-// #define SENSOR_ACTIONS_RIGOROUS
+#define SENSOR_ACTIONS_RIGOROUS
 
 #define SENSOR_HARDWARE_MODE					  0
 
@@ -48,6 +48,7 @@ typedef enum SensorActions
 	SENSOR_ACTION_FIND_VALID_STATE
 } SensorActions;
 
+// TODO: do i want to skew if only the rear skews detect? and leave the front as continue-forwards?
 static const SensorActions SENSOR_ACTION_LUT[128] = {
 	SENSOR_ACTION_CONTINUE_FORWARD,
 	SENSOR_ACTION_CONTINUE_FORWARD,
