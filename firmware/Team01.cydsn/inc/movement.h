@@ -51,10 +51,8 @@
 
 /* Skew */
 /** @brief Percentage of the current speed by which to correct skew. */
-#define MOVEMENT_SKEW_CORRECTION_FACTOR 10
-/** @brief Percentage of the current speed by which to boost skew correction. */
-#define MOVEMENT_SKEW_BOOST_FACTOR	 4
-#define MOVEMENT_SKEW_DAMPING_FACTOR 8
+#define MOVEMENT_SKEW_CORRECTION_FACTOR 20
+#define MOVEMENT_SKEW_DAMPING_FACTOR	8
 /** @brief Skew gain constants*/
 #define MOVEMENT_SKEW_P_BOOST 2
 #define MOVEMENT_SKEW_D_BOOST 0.6
@@ -77,7 +75,10 @@
 
 /* Sweeps */
 /** @brief Percentage of the previous pulse count to add to the maximum allowed pulses before overruling predicate */
-#define MOVEMENT_SWEEP_OVERSHOOT_FACTOR 50
+#define MOVEMENT_SWEEP_OVERSHOOT_FACTOR 25
+
+/* Recovery */
+#define MOVEMENT_RECOVERY_DELAY_PERIOD 200
 
 /**
  * @brief The possible movement directions for the robot.
@@ -127,9 +128,8 @@ void Movement_sync_motors(uint16 speed);
  * @brief Corrects the skew of the robot
  *
  * @param direction the direction to turn faster in to correct a skew
- * @param boostFactor the percentage of the current speed by which to boost skew correction
  */
-void Movement_skew_correct(Direction direction, int8 boostFactor);
+void Movement_skew_correct(Direction direction);
 
 /**
  * @brief Check if the previous turn is complete and re-enable turn sensors if so
@@ -155,10 +155,10 @@ void Movement_turn_right(uint16 maxAngle, bool predicate(void));
  *
  * @param predicate A predicate to test as the robot is swept.
  * @param actionIfUnsatisfied The action to return if the predicate is not satisfied.
- * @param resetHeading Whether to reset the heading once the shortest sweep is found.
+ * @param
  * @return SensorActions The next action to take to return to a valid state.
  */
-SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatisfied, bool resetHeading);
+SensorActions Movement_sweep(bool predicate(void), SensorActions actionIfUnsatisfied);
 
 /**
  * @brief Writes the motor pulse target physically
