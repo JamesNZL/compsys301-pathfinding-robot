@@ -133,12 +133,12 @@ void Movement_next_control_cycle(void)
 	// If we are skew correcting left, move pitch left of origin and vice versa
 	if (FLAG_IS_SET(FLAGS, FLAG_SKEW_CORRECTING))
 	{
-		Movement_directionalBias += (FLAG_IS_SET(FLAGS, FLAG_DIRECTIONAL_BIAS)) ? -1 : 1;
+		Movement_directionalBias += pulseError1 - pulseError2; //(FLAG_IS_SET(FLAGS, FLAG_DIRECTIONAL_BIAS)) ? -1 : 1;
 		Movement_skewDerivative = Movement_directionalBias - Movement_previousDirectionalBias;
 		Movement_skewIntegral += Movement_directionalBias;
 		Movement_previousDirectionalBias = Movement_directionalBias;
 
-		float powerCorrection = 500; //((float)Movement_directionalBias * MOVEMENT_SKEW_P_BOOST) + ((float)Movement_skewDerivative * MOVEMENT_SKEW_D_BOOST) + ((float)Movement_skewIntegral * MOVEMENT_SKEW_I_BOOST);
+		float powerCorrection = ((float)Movement_directionalBias * MOVEMENT_SKEW_P_BOOST) + ((float)Movement_skewDerivative * MOVEMENT_SKEW_D_BOOST) + ((float)Movement_skewIntegral * MOVEMENT_SKEW_I_BOOST);
 		if (Movement_directionalBias < 0)
 		{
 			target1 += powerCorrection;
@@ -188,6 +188,11 @@ void Movement_skew_correct(Direction direction, int8 boostFactor)
 	// Kd = 0;
 
 	// PID_boost_factor = (proportional * Kp) + (integral * Ki) + (derivational * Kd);
+
+	Movement_directionalBias = 0;
+	Movement_skewDerivative = 0;
+	Movement_skewIntegral = 0;
+	Movement_previousDirectionalBias = 0;
 
 	switch (direction)
 	{
