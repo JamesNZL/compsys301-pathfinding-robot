@@ -138,7 +138,7 @@ void Movement_next_control_cycle(void)
 		Movement_skewIntegral += Movement_directionalBias;
 		Movement_previousDirectionalBias = Movement_directionalBias;
 
-		float powerCorrection = ((float)Movement_directionalBias * MOVEMENT_SKEW_P_BOOST) + ((float)Movement_skewDerivative * MOVEMENT_SKEW_D_BOOST) + ((float)Movement_skewIntegral * MOVEMENT_SKEW_I_BOOST);
+		float powerCorrection = 500; //((float)Movement_directionalBias * MOVEMENT_SKEW_P_BOOST) + ((float)Movement_skewDerivative * MOVEMENT_SKEW_D_BOOST) + ((float)Movement_skewIntegral * MOVEMENT_SKEW_I_BOOST);
 		if (Movement_directionalBias < 0)
 		{
 			target1 += powerCorrection;
@@ -189,20 +189,20 @@ void Movement_skew_correct(Direction direction, int8 boostFactor)
 
 	// PID_boost_factor = (proportional * Kp) + (integral * Ki) + (derivational * Kd);
 
-	Movement_sync_motors(Movement_currentSpeed);
-
 	switch (direction)
 	{
 	case DIRECTION_LEFT:
 	{
 		FLAG_SET(FLAGS, FLAG_DIRECTIONAL_BIAS);
 		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR + boostFactor - Movement_skewDamperFactor)) / 100);
+		Movement_set_M1_pulse_target(Movement_currentSpeed);
 		break;
 	}
 	case DIRECTION_RIGHT:
 	{
 		FLAG_CLEAR(FLAGS, FLAG_DIRECTIONAL_BIAS);
 		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR + boostFactor - Movement_skewDamperFactor)) / 100);
+		Movement_set_M2_pulse_target(Movement_currentSpeed);
 		break;
 	}
 	default:
