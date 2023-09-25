@@ -63,6 +63,9 @@ static int16 Movement_previousDirectionalBias;
 static int16 Movement_skewDerivative;
 static int16 Movement_skewIntegral;
 
+static uint8 Movement_LSB;
+static uint8 Movement_RSB;
+
 CY_ISR(MOVEMENT_ISR_PROCESS_PULSE)
 {
 	Movement_pulsesApparentM1 = QuadDec_M1_GetCounter();
@@ -189,25 +192,22 @@ void Movement_skew_correct(Direction direction)
 
 	// PID_boost_factor = (proportional * Kp) + (integral * Ki) + (derivational * Kd);
 
-	Movement_directionalBias = 0;
-	Movement_skewDerivative = 0;
-	Movement_skewIntegral = 0;
-	Movement_previousDirectionalBias = 0;
-
 	switch (direction)
 	{
 	case DIRECTION_LEFT:
 	{
-		FLAG_SET(FLAGS, FLAG_DIRECTIONAL_BIAS);
-		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
-		Movement_set_M1_pulse_target(Movement_currentSpeed);
+		Movement_LSB = MOVEMENT_SKEW_CORRECTION_FACTOR;
+		// FLAG_SET(FLAGS, FLAG_DIRECTIONAL_BIAS);
+		// Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
+		// Movement_set_M1_pulse_target(Movement_currentSpeed);
 		break;
 	}
 	case DIRECTION_RIGHT:
 	{
-		FLAG_CLEAR(FLAGS, FLAG_DIRECTIONAL_BIAS);
-		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
-		Movement_set_M2_pulse_target(Movement_currentSpeed);
+		Movement_RSB = MOVEMENT_SKEW_CORRECTION_FACTOR;
+		// FLAG_CLEAR(FLAGS, FLAG_DIRECTIONAL_BIAS);
+		// Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
+		// Movement_set_M2_pulse_target(Movement_currentSpeed);
 		break;
 	}
 	default:
@@ -596,12 +596,12 @@ static float Movement_calculate_duty(uint16 target)
 
 void Movement_write_M1_pulse(uint16 target)
 {
-	PWM_1_WriteCompare(PWM_1_ReadPeriod() * Movement_calculate_duty(target));
+	PWM_1_WriteCompare(PWM_1_ReadPeriod() * Movement_calculate_duty(target) + Movement_LSB);
 }
 
 void Movement_write_M2_pulse(uint16 target)
 {
-	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target));
+	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target) + Movement_RSB);
 }
 
 static void Movement_set_M1_pulse_varying(uint16 target)
