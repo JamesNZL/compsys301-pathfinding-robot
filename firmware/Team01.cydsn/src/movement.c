@@ -63,6 +63,7 @@ static int16 Movement_previousDirectionalBias;
 static int16 Movement_skewDerivative;
 static int16 Movement_skewIntegral;
 
+// TODO: Rename
 static uint8 Movement_LSB;
 static uint8 Movement_RSB;
 
@@ -111,6 +112,7 @@ void Movement_check_distance(void)
 	}
 }
 
+// TODO: Try adding LSB RSB to ctrl target
 void Movement_next_control_cycle(void)
 {
 	if (FLAG_IS_CLEARED(FLAGS, FLAG_ENCODERS_READY))
@@ -182,6 +184,7 @@ void Movement_sync_motors(uint16 speed)
 	Movement_set_M2_pulse_target(Movement_currentSpeed);
 }
 
+// TODO: Skew correct in the opposite way - negative vel
 void Movement_skew_correct(Direction direction)
 {
 	// Increase the speed of one motor to correct for a skew
