@@ -167,6 +167,8 @@ void Movement_next_control_cycle(void)
 void Movement_sync_motors(uint16 speed)
 {
 	FLAG_CLEAR(FLAGS, FLAG_SKEW_CORRECTING);
+	Movement_RSB = 0;
+	Movement_LSB = 0;
 
 	Movement_currentSpeed = speed;
 
@@ -192,11 +194,14 @@ void Movement_skew_correct(Direction direction)
 
 	// PID_boost_factor = (proportional * Kp) + (integral * Ki) + (derivational * Kd);
 
+	Movement_sync_motors(Movement_currentSpeed);
+
 	switch (direction)
 	{
 	case DIRECTION_LEFT:
 	{
 		Movement_LSB = MOVEMENT_SKEW_CORRECTION_FACTOR;
+		Movement_RSB = 0;
 		// FLAG_SET(FLAGS, FLAG_DIRECTIONAL_BIAS);
 		// Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
 		// Movement_set_M1_pulse_target(Movement_currentSpeed);
@@ -205,6 +210,7 @@ void Movement_skew_correct(Direction direction)
 	case DIRECTION_RIGHT:
 	{
 		Movement_RSB = MOVEMENT_SKEW_CORRECTION_FACTOR;
+		Movement_LSB = 0;
 		// FLAG_CLEAR(FLAGS, FLAG_DIRECTIONAL_BIAS);
 		// Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
 		// Movement_set_M2_pulse_target(Movement_currentSpeed);
