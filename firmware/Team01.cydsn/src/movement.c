@@ -129,6 +129,12 @@ void Movement_next_control_cycle(void)
 	int8 pulseError2 = (Movement_pulsesTargetM2 / 25) - Movement_pulsesApparentM2;
 	// int8 pulseError2 = MOVEMENT_PULSE_APPARENT_1 - MOVEMENT_PULSE_APPARENT_2; // For shimmy shimmy
 
+	if (FLAG_IS_SET(FLAGS, FLAG_SKEW_CORRECTING))
+	{
+		pulseError1 = (pulseError1 <= 2) ? 0 : pulseError1;
+		pulseError2 = (pulseError2 <= 2) ? 0 : pulseError2;
+	}
+
 	uint16 target1 = Movement_pulsesVaryingM1 + pulseError1;
 	uint16 target2 = Movement_pulsesVaryingM2 + pulseError2;
 
@@ -179,7 +185,6 @@ void Movement_sync_motors(uint16 speed)
 void Movement_skew_correct(Direction direction)
 {
 	// Increase the speed of one motor to correct for a skew
-	FLAG_SET(FLAGS, FLAG_SKEW_CORRECTING);
 
 	// TODO: Proportional_counter is the only variable we need to get data from - what is this going to be? We cant do position, we have to relate it to time between skew direction switch.
 
@@ -195,6 +200,8 @@ void Movement_skew_correct(Direction direction)
 	// PID_boost_factor = (proportional * Kp) + (integral * Ki) + (derivational * Kd);
 
 	Movement_sync_motors(Movement_currentSpeed);
+
+	FLAG_SET(FLAGS, FLAG_SKEW_CORRECTING);
 
 	switch (direction)
 	{
