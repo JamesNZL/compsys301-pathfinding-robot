@@ -233,6 +233,10 @@ void Movement_skew_correct(Direction direction)
 	}
 }
 
+void Movement_stability_timeout(void)
+{
+}
+
 // TODO: decrease skew correction factor if turn was a long time ago
 void Movement_check_turn_complete(void)
 {
@@ -278,6 +282,7 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 	}
 }
 
+// TODO: SKEW DIRECTLY TO TURN WILL WRITE ONE MOTOR FASTER - New argument for skewing? write_pulse(speed, skew)
 void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 {
 	// Disable interrupts so decoders dont get reset to 0
