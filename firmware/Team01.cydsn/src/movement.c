@@ -268,9 +268,13 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 	}
 }
 
-// TODO: SKEW DIRECTLY TO TURN WILL WRITE ONE MOTOR FASTER - New argument for skewing? write_pulse(speed, skew)
+// TODO: SKEW DIRECTLY TO TURN WILL WRITE ONE MOTOR FASTER - Must use the constant values, but toggle them off in states.
 void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 {
+	// SKEW VARIABLES
+	Movement_LSB = 0;
+	Movement_RSB = 0;
+
 	// Disable interrupts so decoders dont get reset to 0
 	isr_getpulse_Disable();
 
@@ -315,6 +319,10 @@ void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 
 void Movement_turn_right(uint16 maxAngle, bool predicate(void))
 {
+	// SKEW VARIABLES
+	Movement_LSB = 0;
+	Movement_RSB = 0;
+
 	isr_getpulse_Disable();
 
 	uint16 maxPulses = Movement_calculate_angle_to_pulse((maxAngle * (100 + MOVEMENT_TURNS_OVERSHOOT_FACTOR)) / 100);
