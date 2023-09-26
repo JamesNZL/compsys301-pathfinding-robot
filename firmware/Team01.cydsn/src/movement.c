@@ -137,6 +137,8 @@ void Movement_next_control_cycle(void)
 	uint16 target1 = Movement_pulsesVaryingM1 + pulseError1;
 	uint16 target2 = Movement_pulsesVaryingM2 + pulseError2;
 
+	Movement_skew_stability_timeout();
+
 #ifdef MOVEMENT_PID_SKEW
 	// If we are skew correcting left, move pitch left of origin and vice versa
 	if (FLAG_IS_SET(FLAGS, FLAG_SKEW_CORRECTING))
@@ -289,6 +291,7 @@ void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 	// SKEW VARIABLES
 	Movement_LSB = 0;
 	Movement_RSB = 0;
+	Movement_skewDamperFactor = 0;
 
 	// Disable interrupts so decoders dont get reset to 0
 	isr_getpulse_Disable();
@@ -337,6 +340,7 @@ void Movement_turn_right(uint16 maxAngle, bool predicate(void))
 	// SKEW VARIABLES
 	Movement_LSB = 0;
 	Movement_RSB = 0;
+	Movement_skewDamperFactor = 0;
 
 	isr_getpulse_Disable();
 

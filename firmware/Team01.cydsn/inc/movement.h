@@ -51,7 +51,7 @@
 
 /* Skew */
 /** @brief Percentage of the current speed by which to correct skew. */
-#define MOVEMENT_SKEW_CORRECTION_FACTOR 10
+#define MOVEMENT_SKEW_CORRECTION_FACTOR 20
 #define MOVEMENT_SKEW_DAMPING_FACTOR	0
 #define MOVEMENT_SKEW_NUMERIC_PULSES	5
 
