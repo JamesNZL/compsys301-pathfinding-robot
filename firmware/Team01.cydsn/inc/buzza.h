@@ -93,7 +93,7 @@
 #define NOTE_D8								  4699
 #define NOTE_DS8							  4978
 
-#define BUZZA_SONG_TO_PLAY					  song1
+#define BUZZA_SONG_TO_PLAY					  song2
 
 #define BUZZA_TEMPO							  200
 
