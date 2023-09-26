@@ -93,7 +93,9 @@
 #define NOTE_D8								  4699
 #define NOTE_DS8							  4978
 
-#define BUZZA_SONG_TO_PLAY					  song2
+#define BUZZA_SONG_TO_PLAY					  song1
+
+#define BUZZA_TEMPO							  200
 
 #define BUZZA_FIND_NOTE_ARRAY_SIZE(arrayName) sizeof(arrayName) / sizeof(arrayName[0])
 
@@ -210,6 +212,36 @@ static int16 song2[] = {
 	NOTE_D5, 4, NOTE_G5, 4, NOTE_E5, 4,
 	NOTE_F5, 2
 };
+static int16 song3[] = {
+	// Score available at https://musescore.com/user/29944637/scores/5266155
+	NOTE_E5,
+	8,
+	NOTE_D5,
+	8,
+	NOTE_FS4,
+	4,
+	NOTE_GS4,
+	4,
+	NOTE_CS5,
+	8,
+	NOTE_B4,
+	8,
+	NOTE_D4,
+	4,
+	NOTE_E4,
+	4,
+	NOTE_B4,
+	8,
+	NOTE_A4,
+	8,
+	NOTE_CS4,
+	4,
+	NOTE_E4,
+	4,
+	NOTE_A4,
+	2,
+};
+
 void Buzzer_scream();
 
 void Buzzer_play_song(int16 notes[], uint16 noteArraySize);

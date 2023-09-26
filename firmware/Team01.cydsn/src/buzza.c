@@ -16,7 +16,7 @@ void Buzzer_play_song(int16 notes[], uint16 noteArraySize)
 { // there are two values per note (pitch and duration), so for each note there are four bytes
 	uint16 totalNotes = noteArraySize / 2;
 	// this calculates the duration of a whole note in ms
-	int wholenote1 = (60000 * 4) / 140;
+	int wholenote1 = (60000 * 4) / BUZZA_TEMPO;
 	int divider = 0, noteDuration = 0;
 	for (int thisNote = 0; thisNote < totalNotes * 2; thisNote = thisNote + 2)
 	{
