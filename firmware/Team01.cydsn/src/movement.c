@@ -58,6 +58,7 @@ static uint16 Movement_currentSpeed = MOVEMENT_SPEED_RUN;
 
 static int16 Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
 static int8 Movement_skewDamperFactor = 0;
+static int16 Movement_stability_counter = 0;
 
 // TODO: Rename
 static uint8 Movement_LSB;
@@ -221,6 +222,20 @@ void Movement_skew_correct(Direction direction)
 
 void Movement_skew_stability_timeout(void)
 {
+	if (FLAG_IS_CLEARED(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT))
+	{
+		return;
+	}
+	Movement_stability_counter += Movement_pulsesApparentM1;
+
+	if (Movement_stability_counter < MOVEMENT_SKEW_STABILITY_PULSE_TIMEOUT)
+	{
+		return;
+	}
+
+	Movement_skewDamperFactor = 10;
+	FLAG_CLEAR(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);
+	Movement_stability_counter = 0;
 }
 
 // TODO: decrease skew correction factor if turn was a long time ago

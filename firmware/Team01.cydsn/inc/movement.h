@@ -54,10 +54,6 @@
 #define MOVEMENT_SKEW_CORRECTION_FACTOR 10
 #define MOVEMENT_SKEW_DAMPING_FACTOR	0
 #define MOVEMENT_SKEW_NUMERIC_PULSES	5
-/** @brief Skew gain constants*/
-#define MOVEMENT_SKEW_P_BOOST 2
-#define MOVEMENT_SKEW_D_BOOST 0.6
-#define MOVEMENT_SKEW_I_BOOST 0.007F
 
 /* Turns */
 /** @brief Overshoot factor for turn angles before stopping sensor detection */
@@ -66,13 +62,15 @@
 #else
 #define MOVEMENT_TURNS_OVERSHOOT_FACTOR 0
 #endif
-#define MOVEMENT_TURNS_CORRECTION		 -3 // more negative -> more turn
-#define MOVEMENT_TURNS_LEFT_CORRECTION	 25 // more positive -> less turn
-#define MOVEMENT_TURNS_RIGHT_CORRECTION	 25 // more positive -> less turn
+#define MOVEMENT_TURNS_CORRECTION			  -3 // more negative -> more turn
+#define MOVEMENT_TURNS_LEFT_CORRECTION		  25 // more positive -> less turn
+#define MOVEMENT_TURNS_RIGHT_CORRECTION		  25 // more positive -> less turn
 
-#define MOVEMENT_TURNS_STATIC_PERIOD	 100 // in ms
+#define MOVEMENT_TURNS_STATIC_PERIOD		  100 // in ms
 
-#define MOVEMENT_TURNS_REFRACTORY_PULSES 60
+#define MOVEMENT_TURNS_REFRACTORY_PULSES	  60
+
+#define MOVEMENT_SKEW_STABILITY_PULSE_TIMEOUT 280
 
 /* Sweeps */
 /** @brief Percentage of the previous pulse count to add to the maximum allowed pulses before overruling predicate */
@@ -131,6 +129,11 @@ void Movement_sync_motors(uint16 speed);
  * @param direction the direction to turn faster in to correct a skew
  */
 void Movement_skew_correct(Direction direction);
+
+/**
+ * @brief Copy of below - Waits until a specific turn timeout before suppressing skew correction
+ */
+void Movement_skew_stability_timeout(void);
 
 /**
  * @brief Check if the previous turn is complete and re-enable turn sensors if so
