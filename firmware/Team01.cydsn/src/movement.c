@@ -210,20 +210,20 @@ void Movement_skew_correct(Direction direction)
 	{
 	case DIRECTION_LEFT:
 	{
-		Movement_RSB = (Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100;
+		// Movement_RSB = (Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100;
 		Movement_LSB = 0;
 		// FLAG_SET(FLAGS, FLAG_DIRECTIONAL_BIAS);
-		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
-		// Movement_set_M1_pulse_target(Movement_currentSpeed);
+		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 - MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
+		Movement_set_M2_pulse_target(Movement_currentSpeed);
 		break;
 	}
 	case DIRECTION_RIGHT:
 	{
-		Movement_LSB = (Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100;
+		// Movement_LSB = (Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100;
 		Movement_RSB = 0;
 		// FLAG_CLEAR(FLAGS, FLAG_DIRECTIONAL_BIAS);
-		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
-		// Movement_set_M2_pulse_target(Movement_currentSpeed);
+		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 - MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
+		Movement_set_M1_pulse_target(Movement_currentSpeed);
 		break;
 	}
 	default:
