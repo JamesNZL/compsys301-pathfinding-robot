@@ -1,10 +1,10 @@
 #include "battery.h"
+#include "buzza.h"
 #include "commands.h"
 #include "common.h"
 #include "handlers.h"
 #include "movement.h"
 #include "sensor.h"
-#include "sfx.h"
 #include "usb.h"
 
 #include <project.h>
@@ -19,13 +19,28 @@ int main()
 	CYGlobalIntEnable;
 	uint16 batteryVoltage = Battery_display_level();
 	sprintf(USB_buffer, "Battery Voltage: %d mV\n", batteryVoltage);
-	Sfx_scream();
 
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
 
 	USB_put_string(USB_buffer);
 #endif
+
+	Buzzer_play_tone(NOTE_A1, 20);
+	CyDelay(200);
+	Buzzer_play_tone(NOTE_D4, 20);
+	CyDelay(200);
+	Buzzer_play_tone(NOTE_E1, 20);
+	CyDelay(200);
+	Buzzer_play_tone(NOTE_C4, 20);
+	CyDelay(200);
+	Buzzer_play_tone(NOTE_F4, 20);
+	CyDelay(200);
+	Buzzer_play_tone(NOTE_A4, 20);
+	CyDelay(200);
+	Buzzer_play_tone(NOTE_E4, 20);
+	CyDelay(200);
+	Buzzer_play_tone(NOTE_G4, 20);
 
 	while (Push_Button_Read() != TRUE)
 	{
