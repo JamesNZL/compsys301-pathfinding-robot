@@ -26,7 +26,7 @@ int main()
 	USB_put_string(USB_buffer);
 #endif
 
-	Buzzer_play_song(song1, sizeof(song1) / sizeof(song1[0]));
+	Buzzer_play_song(BUZZA_SONG_TO_PLAY, BUZZA_FIND_NOTE_ARRAY_SIZE(BUZZA_SONG_TO_PLAY));
 
 	while (Push_Button_Read() != TRUE)
 	{

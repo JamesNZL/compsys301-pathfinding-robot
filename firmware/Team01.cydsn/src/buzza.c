@@ -12,7 +12,7 @@ void Sfx_scream()
 	}
 }
 
-void Buzzer_play_song(uint16 notes[], uint16 noteArraySize)
+void Buzzer_play_song(int16 notes[], uint16 noteArraySize)
 { // there are two values per note (pitch and duration), so for each note there are four bytes
 	uint16 totalNotes = noteArraySize / 2;
 	// this calculates the duration of a whole note in ms
