@@ -617,12 +617,12 @@ static float Movement_calculate_duty(uint16 target)
 
 void Movement_write_M1_pulse(uint16 target)
 {
-	PWM_1_WriteCompare(PWM_1_ReadPeriod() * Movement_calculate_duty(target) + Movement_LSB);
+	PWM_1_WriteCompare(PWM_1_ReadPeriod() * Movement_calculate_duty(target));
 }
 
 void Movement_write_M2_pulse(uint16 target)
 {
-	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target) + Movement_RSB);
+	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target));
 }
 
 static void Movement_set_M1_pulse_varying(uint16 target)
