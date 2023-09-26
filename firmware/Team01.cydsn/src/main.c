@@ -26,21 +26,7 @@ int main()
 	USB_put_string(USB_buffer);
 #endif
 
-	Buzzer_play_tone(NOTE_A1, 20);
-	CyDelay(200);
-	Buzzer_play_tone(NOTE_D4, 20);
-	CyDelay(200);
-	Buzzer_play_tone(NOTE_E1, 20);
-	CyDelay(200);
-	Buzzer_play_tone(NOTE_C4, 20);
-	CyDelay(200);
-	Buzzer_play_tone(NOTE_F4, 20);
-	CyDelay(200);
-	Buzzer_play_tone(NOTE_A4, 20);
-	CyDelay(200);
-	Buzzer_play_tone(NOTE_E4, 20);
-	CyDelay(200);
-	Buzzer_play_tone(NOTE_G4, 20);
+	Buzzer_play_song(song1, sizeof(song1) / sizeof(song1[0]));
 
 	while (Push_Button_Read() != TRUE)
 	{

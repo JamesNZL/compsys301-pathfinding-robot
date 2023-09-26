@@ -93,9 +93,7 @@
 #define NOTE_D8	 4699
 #define NOTE_DS8 4978
 
-volatile uint16 buzzaTimeCount;
-
-static int16 melody1[] = {
+static uint16 song1[] = {
 	// Score available at https://musescore.com/user/8221/scores/26906
 	NOTE_C4,
 	4,
@@ -151,7 +149,7 @@ static int16 melody1[] = {
 
 void Buzzer_scream();
 
-void Buzzer_play_song(int16 notes[]);
+void Buzzer_play_song(uint16 notes[], uint16 noteArraySize);
 
 void Buzzer_play_tone(int16 frequency, float duration);
 
