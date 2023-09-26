@@ -228,16 +228,18 @@ void Movement_skew_stability_timeout(void)
 	{
 		return;
 	}
-	Movement_stability_counter += Movement_pulsesApparentM1;
 
 	if (Movement_stability_counter < MOVEMENT_SKEW_STABILITY_PULSE_TIMEOUT)
 	{
+		Movement_stability_counter += Movement_pulsesApparentM1;
 		return;
 	}
-
-	Movement_skewDamperFactor = 10;
-	FLAG_CLEAR(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);
-	Movement_stability_counter = 0;
+	if (Sensor_is_all_skew_on_line())
+	{
+		Movement_skewDamperFactor = 10;
+		FLAG_CLEAR(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);
+		Movement_stability_counter = 0;
+	}
 }
 
 // TODO: decrease skew correction factor if turn was a long time ago
