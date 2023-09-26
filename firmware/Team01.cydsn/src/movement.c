@@ -58,10 +58,6 @@ static uint16 Movement_currentSpeed = MOVEMENT_SPEED_RUN;
 
 static int16 Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
 static int8 Movement_skewDamperFactor = 0;
-static int16 Movement_directionalBias;
-static int16 Movement_previousDirectionalBias;
-static int16 Movement_skewDerivative;
-static int16 Movement_skewIntegral;
 
 // TODO: Rename
 static uint8 Movement_LSB;
