@@ -180,23 +180,9 @@ void Movement_sync_motors(uint16 speed)
 	Movement_set_M2_pulse_target(Movement_currentSpeed);
 }
 
-// TODO: Skew correct in the opposite way - negative vel
 void Movement_skew_correct(Direction direction)
 {
 	// Increase the speed of one motor to correct for a skew
-
-	// TODO: Proportional_counter is the only variable we need to get data from - what is this going to be? We cant do position, we have to relate it to time between skew direction switch.
-
-	// proportional = proportional_counter;
-	// derivational = proportional - previous_proportional;
-	// integral = integral + proportional;
-	// previous_proportional = proportional;
-
-	// Kp = 0;
-	// Ki = 0;
-	// Kd = 0;
-
-	// PID_boost_factor = (proportional * Kp) + (integral * Ki) + (derivational * Kd);
 
 	Movement_sync_motors(Movement_currentSpeed);
 
@@ -233,7 +219,7 @@ void Movement_skew_correct(Direction direction)
 	}
 }
 
-void Movement_stability_timeout(void)
+void Movement_skew_stability_timeout(void)
 {
 }
 
@@ -617,12 +603,12 @@ static float Movement_calculate_duty(uint16 target)
 
 void Movement_write_M1_pulse(uint16 target)
 {
-	PWM_1_WriteCompare(PWM_1_ReadPeriod() * Movement_calculate_duty(target));
+	PWM_1_WriteCompare(PWM_1_ReadPeriod() * Movement_calculate_duty(target) + Movement_LSB);
 }
 
 void Movement_write_M2_pulse(uint16 target)
 {
-	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target));
+	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target) + Movement_RSB);
 }
 
 static void Movement_set_M1_pulse_varying(uint16 target)
