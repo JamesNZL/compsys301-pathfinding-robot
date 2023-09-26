@@ -57,12 +57,10 @@ static int16 Movement_pulsesToMove;
 static uint16 Movement_currentSpeed = MOVEMENT_SPEED_RUN;
 
 static int16 Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
-static int8 Movement_skewDamperFactor = 0;
+static int8 Movement_skewDamperFactor = 8;
 static int16 Movement_stability_counter = 0;
-
-// TODO: Rename
-static uint8 Movement_LSB;
-static uint8 Movement_RSB;
+static uint8 Movement_leftSkewBoost;
+static uint8 Movement_rightSkewBoost;
 
 CY_ISR(MOVEMENT_ISR_PROCESS_PULSE)
 {
@@ -128,38 +126,8 @@ void Movement_next_control_cycle(void)
 	int8 pulseError2 = (Movement_pulsesTargetM2 / 25) - Movement_pulsesApparentM2;
 	// int8 pulseError2 = MOVEMENT_PULSE_APPARENT_1 - MOVEMENT_PULSE_APPARENT_2; // For shimmy shimmy
 
-	// if (FLAG_IS_SET(FLAGS, FLAG_SKEW_CORRECTING))
-	// {
-	// 	pulseError1 = (pulseError1 <= 2) ? 0 : pulseError1;
-	// 	pulseError2 = (pulseError2 <= 2) ? 0 : pulseError2;
-	// }
-
 	uint16 target1 = Movement_pulsesVaryingM1 + pulseError1;
 	uint16 target2 = Movement_pulsesVaryingM2 + pulseError2;
-
-	Movement_skew_stability_timeout();
-
-#ifdef MOVEMENT_PID_SKEW
-	// If we are skew correcting left, move pitch left of origin and vice versa
-	if (FLAG_IS_SET(FLAGS, FLAG_SKEW_CORRECTING))
-	{
-		Movement_directionalBias += pulseError1 - pulseError2; //(FLAG_IS_SET(FLAGS, FLAG_DIRECTIONAL_BIAS)) ? -1 : 1;
-		Movement_skewDerivative = Movement_directionalBias - Movement_previousDirectionalBias;
-		Movement_skewIntegral += Movement_directionalBias;
-		Movement_previousDirectionalBias = Movement_directionalBias;
-
-		float powerCorrection = ((float)Movement_directionalBias * MOVEMENT_SKEW_P_BOOST) + ((float)Movement_skewDerivative * MOVEMENT_SKEW_D_BOOST) + ((float)Movement_skewIntegral * MOVEMENT_SKEW_I_BOOST);
-		if (Movement_directionalBias < 0)
-		{
-			target1 += powerCorrection;
-		}
-		else
-		{
-			target2 += powerCorrection;
-		}
-	}
-
-#endif
 
 	Movement_write_M1_pulse(target1);
 	Movement_write_M2_pulse(target2);
@@ -168,14 +136,16 @@ void Movement_next_control_cycle(void)
 	Movement_set_M1_pulse_varying(target1);
 	Movement_set_M2_pulse_varying(target2);
 
+	Movement_skew_stability_timeout();
+
 	FLAG_CLEAR(FLAGS, FLAG_ENCODERS_READY);
 }
 
 void Movement_sync_motors(uint16 speed)
 {
 	FLAG_CLEAR(FLAGS, FLAG_SKEW_CORRECTING);
-	Movement_RSB = 0;
-	Movement_LSB = 0;
+	Movement_rightSkewBoost = 0;
+	Movement_leftSkewBoost = 0;
 
 	Movement_currentSpeed = speed;
 
@@ -195,8 +165,8 @@ void Movement_skew_correct(Direction direction)
 	{
 	case DIRECTION_LEFT:
 	{
-		Movement_RSB = MOVEMENT_SKEW_NUMERIC_PULSES; //(Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100;
-		Movement_LSB = 0;
+		Movement_rightSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES; //(Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100;
+		Movement_leftSkewBoost = 0;
 		// FLAG_SET(FLAGS, FLAG_DIRECTIONAL_BIAS);
 		// Movement_set_M1_pulse_target((Movement_currentSpeed * (100 - MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
 		// Movement_set_M2_pulse_target(Movement_currentSpeed);
@@ -206,8 +176,8 @@ void Movement_skew_correct(Direction direction)
 	}
 	case DIRECTION_RIGHT:
 	{
-		Movement_LSB = MOVEMENT_SKEW_NUMERIC_PULSES; // (Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100;
-		Movement_RSB = 0;
+		Movement_leftSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES; // (Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100;
+		Movement_rightSkewBoost = 0;
 		// FLAG_CLEAR(FLAGS, FLAG_DIRECTIONAL_BIAS);
 		// Movement_set_M2_pulse_target((Movement_currentSpeed * (100 - MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
 		// Movement_set_M1_pulse_target(Movement_currentSpeed);
@@ -291,8 +261,8 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 {
 	// SKEW VARIABLES
-	Movement_LSB = 0;
-	Movement_RSB = 0;
+	Movement_leftSkewBoost = 0;
+	Movement_rightSkewBoost = 0;
 	Movement_skewDamperFactor = 0;
 
 	// Disable interrupts so decoders dont get reset to 0
@@ -340,8 +310,8 @@ void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 void Movement_turn_right(uint16 maxAngle, bool predicate(void))
 {
 	// SKEW VARIABLES
-	Movement_LSB = 0;
-	Movement_RSB = 0;
+	Movement_leftSkewBoost = 0;
+	Movement_rightSkewBoost = 0;
 	Movement_skewDamperFactor = 0;
 
 	isr_getpulse_Disable();
@@ -632,12 +602,12 @@ static float Movement_calculate_duty(uint16 target)
 
 void Movement_write_M1_pulse(uint16 target)
 {
-	PWM_1_WriteCompare(PWM_1_ReadPeriod() * Movement_calculate_duty(target) + Movement_LSB);
+	PWM_1_WriteCompare(PWM_1_ReadPeriod() * Movement_calculate_duty(target) + Movement_leftSkewBoost);
 }
 
 void Movement_write_M2_pulse(uint16 target)
 {
-	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target) + Movement_RSB);
+	PWM_2_WriteCompare(PWM_2_ReadPeriod() * Movement_calculate_duty(target) + Movement_rightSkewBoost);
 }
 
 static void Movement_set_M1_pulse_varying(uint16 target)
