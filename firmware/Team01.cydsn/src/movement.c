@@ -212,7 +212,6 @@ void Movement_skew_stability_timeout(void)
 	}
 }
 
-// TODO: decrease skew correction factor if turn was a long time ago
 void Movement_check_turn_complete(void)
 {
 	if (FLAG_IS_CLEARED(FLAGS, FLAG_ENCODERS_READY))
