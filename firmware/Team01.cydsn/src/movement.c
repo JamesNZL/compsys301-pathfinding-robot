@@ -170,6 +170,11 @@ void Movement_skew_correct(Direction direction)
 			Movement_rightSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES;
 			Movement_leftSkewBoost = 0;
 		}
+		else
+		{
+			Movement_rightSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES - 4;
+			Movement_leftSkewBoost = 0;
+		}
 		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
 		Movement_set_M1_pulse_target(Movement_currentSpeed);
 		break;
@@ -179,6 +184,11 @@ void Movement_skew_correct(Direction direction)
 		if (FLAG_IS_CLEARED(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT))
 		{
 			Movement_leftSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES;
+			Movement_rightSkewBoost = 0;
+		}
+		else
+		{
+			Movement_leftSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES - 4;
 			Movement_rightSkewBoost = 0;
 		}
 		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
