@@ -200,8 +200,18 @@ static BuzzaNote BUZZA_NOKIA_RINGTONE[] = {
 	{ BUZZA_NOTE_A4, 2 },
 };
 
+/**
+ * @brief BLOCKING call to play all notes in note array
+ * @param notes the array of BuzzaNotes
+ * @param noteArraySize the amount of notes in the array (USE MACRO)
+ */
 void Buzza_play_song(BuzzaNote notes[], uint16 noteArraySize);
 
+/**
+ * @brief Plays a single frequency at a specified duration (in ms)
+ * @param frequency frequency IN HZ
+ * @param duration duration IN MS
+ */
 void Buzza_play_tone(int16 frequency, float duration);
 
 #endif
