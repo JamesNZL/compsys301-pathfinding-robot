@@ -3,6 +3,7 @@
 
 #include "cytypes.h"
 
+// All in Hz
 #define BUZZA_NOTE_B0						  31
 #define BUZZA_NOTE_C1						  33
 #define BUZZA_NOTE_CS1						  35
