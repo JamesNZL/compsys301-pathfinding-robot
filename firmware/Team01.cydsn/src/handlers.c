@@ -9,7 +9,6 @@
 
 void Handlers_change_direction(char *token)
 {
-
 	if (token != NULL)
 	{
 		if (strcmp(token, "F") == 0)
@@ -25,5 +24,5 @@ void Handlers_change_direction(char *token)
 
 void Handlers_change_speed(char *token)
 {
-	MOVEMENT_SPEED_RUN = atoi(token);
+	Movement_sync_motors(atoi(token));
 }

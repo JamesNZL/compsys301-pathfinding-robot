@@ -7,9 +7,9 @@
 <wrkspc_folders />
 <files />
 <projects>
-<v>.\Team01.cyprj</v>
 <v>..\motor_test.cydsn\motor_test.cyprj</v>
 <v>..\linear_response_test.cydsn\linear_response_test.cyprj</v>
+<v>.\Team01.cyprj</v>
 </projects>
 <workspace_id v="324477da-3e91-45c1-b7eb-1a151f617e51" />
 <WriteAppVersionLastSavedWith v="4.4.0.80" />
