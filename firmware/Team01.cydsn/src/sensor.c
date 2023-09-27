@@ -165,7 +165,7 @@ bool Sensor_is_any_back_on_line(void)
 	return (!Sensor_skewBackLeft.status) || (!Sensor_skewBackRight.status);
 }
 
-bool Sensor_is_all_skew_on_line(void)
+bool Sensor_are_skew_diagonals_on_line(void)
 {
 	return (((!Sensor_skewBackLeft.status) && (!Sensor_skewFrontRight.status)) || ((!Sensor_skewBackRight.status) && (!Sensor_skewFrontLeft.status)));
 }

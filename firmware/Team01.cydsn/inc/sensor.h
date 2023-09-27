@@ -250,6 +250,6 @@ bool Sensor_is_any_back_on_line(void);
 /**
  * @return true if all skew sensors are on line
  */
-bool Sensor_is_all_skew_on_line(void);
+bool Sensor_are_skew_diagonals_on_line(void);
 
 #endif

@@ -204,7 +204,8 @@ void Movement_skew_stability_timeout(void)
 		Movement_stability_counter += Movement_pulsesApparentM1;
 		return;
 	}
-	if (Sensor_is_all_skew_on_line())
+
+	if (Sensor_are_skew_diagonals_on_line())
 	{
 		Movement_skewDamperFactor = 10;
 		FLAG_CLEAR(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);

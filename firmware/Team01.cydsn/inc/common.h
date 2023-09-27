@@ -28,8 +28,7 @@ volatile extern uint8 FLAGS;
 #define FLAG_MOVE_INFINITELY	 3
 #define FLAG_SENSOR_AWAIT_RISING 4
 #define FLAG_WAITING_AFTER_TURN	 5
-#define FLAG_DIRECTIONAL_BIAS	 6
-#define FLAG_TOGGLE_TURN_TIMEOUT 7
+#define FLAG_TOGGLE_TURN_TIMEOUT 6
 
 /**
  * @brief Check whether a flag bit is set.

@@ -51,9 +51,10 @@
 
 /* Skew */
 /** @brief Percentage of the current speed by which to correct skew. */
-#define MOVEMENT_SKEW_CORRECTION_FACTOR 20
-#define MOVEMENT_SKEW_DAMPING_FACTOR	0
-#define MOVEMENT_SKEW_NUMERIC_PULSES	10
+#define MOVEMENT_SKEW_CORRECTION_FACTOR		  20
+#define MOVEMENT_SKEW_DAMPING_FACTOR		  0
+#define MOVEMENT_SKEW_NUMERIC_PULSES		  10
+#define MOVEMENT_SKEW_STABILITY_PULSE_TIMEOUT 280
 
 /* Turns */
 /** @brief Overshoot factor for turn angles before stopping sensor detection */
@@ -62,15 +63,13 @@
 #else
 #define MOVEMENT_TURNS_OVERSHOOT_FACTOR 0
 #endif
-#define MOVEMENT_TURNS_CORRECTION			  -3 // more negative -> more turn
-#define MOVEMENT_TURNS_LEFT_CORRECTION		  25 // more positive -> less turn
-#define MOVEMENT_TURNS_RIGHT_CORRECTION		  25 // more positive -> less turn
+#define MOVEMENT_TURNS_CORRECTION		 -3 // more negative -> more turn
+#define MOVEMENT_TURNS_LEFT_CORRECTION	 25 // more positive -> less turn
+#define MOVEMENT_TURNS_RIGHT_CORRECTION	 25 // more positive -> less turn
 
-#define MOVEMENT_TURNS_STATIC_PERIOD		  100 // in ms
+#define MOVEMENT_TURNS_STATIC_PERIOD	 100 // in ms
 
-#define MOVEMENT_TURNS_REFRACTORY_PULSES	  60
-
-#define MOVEMENT_SKEW_STABILITY_PULSE_TIMEOUT 280
+#define MOVEMENT_TURNS_REFRACTORY_PULSES 60
 
 /* Sweeps */
 /** @brief Percentage of the previous pulse count to add to the maximum allowed pulses before overruling predicate */
