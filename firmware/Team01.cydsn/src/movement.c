@@ -57,7 +57,7 @@ static int16 Movement_pulsesToMove;
 static uint16 Movement_currentSpeed = MOVEMENT_SPEED_RUN;
 
 static int16 Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
-static int8 Movement_skewDamperFactor = 8;
+static int8 Movement_skewDamperFactor = 10;
 static int16 Movement_stability_counter = 0;
 static uint8 Movement_leftSkewBoost;
 static uint8 Movement_rightSkewBoost;
@@ -172,7 +172,7 @@ void Movement_skew_correct(Direction direction)
 		}
 		else
 		{
-			Movement_rightSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES - 4;
+			Movement_rightSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES - 5;
 			Movement_leftSkewBoost = 0;
 		}
 		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
@@ -188,7 +188,7 @@ void Movement_skew_correct(Direction direction)
 		}
 		else
 		{
-			Movement_leftSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES - 4;
+			Movement_leftSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES - 5;
 			Movement_rightSkewBoost = 0;
 		}
 		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
