@@ -57,7 +57,7 @@ static int16 Movement_pulsesToMove;
 static uint16 Movement_currentSpeed = MOVEMENT_SPEED_RUN;
 
 static int16 Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
-static int8 Movement_skewDamperFactor = 10;
+static int8 Movement_skewDamperFactor = MOVEMENT_SKEW_DAMPING_FACTOR;
 static int16 Movement_stability_counter = 0;
 static uint8 Movement_leftSkewBoost;
 static uint8 Movement_rightSkewBoost;
@@ -217,7 +217,7 @@ void Movement_skew_stability_timeout(void)
 
 	if (Sensor_are_skew_diagonals_on_line())
 	{
-		Movement_skewDamperFactor = 10;
+		Movement_skewDamperFactor = MOVEMENT_SKEW_DAMPING_FACTOR;
 		FLAG_CLEAR(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);
 		Movement_stability_counter = 0;
 	}
