@@ -93,9 +93,12 @@
 #define BUZZA_NOTE_D8						  4699
 #define BUZZA_NOTE_DS8						  4978
 
-#define BUZZA_SONG_TO_PLAY					  song3
+#define BUZZA_SONG_TO_PLAY					  BUZZA_NOKIA_RINGTONE
 
 #define BUZZA_TEMPO							  320
+
+#define BUZZA_US_IN_S						  1000000
+#define BUZZA_US_IN_MS						  1000
 
 #define BUZZA_FIND_NOTE_ARRAY_SIZE(arrayName) sizeof(arrayName) / sizeof(arrayName[0])
 
@@ -105,7 +108,7 @@ typedef struct BuzzaNote
 	int8 noteType;
 } BuzzaNote;
 
-static BuzzaNote song1[]
+static BuzzaNote BUZZA_HAPPY_BIRTHDAY[]
 	= {
 		  // Score available at https://musescore.com/user/8221/scores/26906
 		  { BUZZA_NOTE_C4, 4 },
@@ -135,7 +138,7 @@ static BuzzaNote song1[]
 		  { BUZZA_NOTE_F4, -2 },
 	  };
 
-static BuzzaNote song2[] = {
+static BuzzaNote BUZZA_MERRY_CHRISTMAS[] = {
 	{ BUZZA_NOTE_C5, 4 }, // 1
 	{ BUZZA_NOTE_F5, 4 }, { BUZZA_NOTE_F5, 8 }, { BUZZA_NOTE_G5, 8 }, { BUZZA_NOTE_F5, 8 }, { BUZZA_NOTE_E5, 8 },
 	{ BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_D5, 4 },
@@ -179,7 +182,7 @@ static BuzzaNote song2[] = {
 	{ BUZZA_NOTE_F5, 2 }
 
 };
-static BuzzaNote song3[] = {
+static BuzzaNote BUZZA_NOKIA_RINGTONE[] = {
 	// Score available at https://musescore.com/user/29944637/scores/5266155
 	{ BUZZA_NOTE_E5, 8 },
 	{ BUZZA_NOTE_D5, 8 },

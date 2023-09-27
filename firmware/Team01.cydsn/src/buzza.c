@@ -32,16 +32,18 @@ void Buzza_play_song(BuzzaNote notes[], uint16 noteArraySize)
 void Buzza_play_tone(int16 frequency, float duration)
 {
 	float periodS = 1 / ((float)frequency);
-	float periodUs = periodS * 1000000;
+	float periodUs = periodS * BUZZA_US_IN_S;
+	float periodUsHalf = periodUs / 2;
 	int iterations = 0;
-	float maxIterations = (duration * 1000) / periodUs; // duration in ms
+	float maxIterations = (duration * BUZZA_US_IN_MS) / periodUs; // duration in ms
 	while (iterations <= maxIterations)
 	{
 		Buzzer_Write(1);
-		CyDelayUs(periodUs / 2);
+		CyDelayUs(periodUsHalf);
 		Buzzer_Write(0);
-		CyDelayUs(periodUs / 2);
+		CyDelayUs(periodUsHalf);
 		iterations++;
 	}
+	// Make sure off after tone is played
 	Buzzer_Write(0);
 }
