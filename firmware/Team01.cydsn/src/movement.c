@@ -107,7 +107,6 @@ void Movement_check_distance(void)
 	}
 }
 
-// TODO: Try adding LSB RSB to ctrl target
 void Movement_next_control_cycle(void)
 {
 	if (FLAG_IS_CLEARED(FLAGS, FLAG_ENCODERS_READY))
@@ -136,6 +135,7 @@ void Movement_next_control_cycle(void)
 	Movement_set_M1_pulse_varying(target1);
 	Movement_set_M2_pulse_varying(target2);
 
+	// Check if period beyond turn has been met -> stabilize robot
 	Movement_skew_stability_timeout();
 
 	FLAG_CLEAR(FLAGS, FLAG_ENCODERS_READY);
