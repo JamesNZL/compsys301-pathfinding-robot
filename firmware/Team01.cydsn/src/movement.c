@@ -144,8 +144,7 @@ void Movement_next_control_cycle(void)
 void Movement_sync_motors(uint16 speed)
 {
 	FLAG_CLEAR(FLAGS, FLAG_SKEW_CORRECTING);
-	Movement_rightSkewBoost = 0;
-	Movement_leftSkewBoost = 0;
+	Movement_set_direct_skew_boosts(0, 0);
 
 	Movement_currentSpeed = speed;
 
@@ -167,13 +166,11 @@ void Movement_skew_correct(Direction direction)
 	{
 		if (FLAG_IS_CLEARED(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT))
 		{
-			Movement_rightSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES;
-			Movement_leftSkewBoost = 0;
+			Movement_set_direct_skew_boosts(0, MOVEMENT_SKEW_NUMERIC_PULSES);
 		}
 		else
 		{
-			Movement_rightSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES - MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS;
-			Movement_leftSkewBoost = 0;
+			Movement_set_direct_skew_boosts(0, MOVEMENT_SKEW_NUMERIC_PULSES - MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS);
 		}
 		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
 		Movement_set_M1_pulse_target(Movement_currentSpeed);
@@ -183,13 +180,11 @@ void Movement_skew_correct(Direction direction)
 	{
 		if (FLAG_IS_CLEARED(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT))
 		{
-			Movement_leftSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES;
-			Movement_rightSkewBoost = 0;
+			Movement_set_direct_skew_boosts(MOVEMENT_SKEW_NUMERIC_PULSES, 0);
 		}
 		else
 		{
-			Movement_leftSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES - MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS;
-			Movement_rightSkewBoost = 0;
+			Movement_set_direct_skew_boosts(MOVEMENT_SKEW_NUMERIC_PULSES - MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS, 0);
 		}
 		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
 		Movement_set_M2_pulse_target(Movement_currentSpeed);
