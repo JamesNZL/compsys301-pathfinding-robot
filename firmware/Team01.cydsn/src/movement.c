@@ -216,7 +216,7 @@ void Movement_skew_stability_timeout(void)
 		return;
 	}
 
-	if (Sensor_are_skew_diagonals_on_line())
+	if (Sensor_is_any_back_on_line() && Sensor_is_any_front_on_line())
 	{
 		Movement_skewDamperFactor = MOVEMENT_SKEW_DAMPING_FACTOR;
 		FLAG_CLEAR(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);
