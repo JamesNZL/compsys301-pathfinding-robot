@@ -83,7 +83,7 @@ void Movement_move_mm(uint16 distance)
 {
 	// Enable the motors, and set the target distance, turn off move infinitely
 	MOVEMENT_ENABLE;
-	Movement_pulsesToMove = (float)distance / MOVEMENT_MM_PER_PULSE;
+	Movement_pulsesToMove = ((float)distance / MOVEMENT_MM_PER_PULSE) + MOVEMENT_MM_PULSE_CORRECTION;
 
 	FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
 }
