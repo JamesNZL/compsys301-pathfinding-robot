@@ -268,7 +268,6 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 	}
 }
 
-// TODO: SKEW DIRECTLY TO TURN WILL WRITE ONE MOTOR FASTER - Must use the constant values, but toggle them off in states.
 void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 {
 	// SKEW VARIABLES
