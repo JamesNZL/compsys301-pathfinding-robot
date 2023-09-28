@@ -172,7 +172,7 @@ void Movement_skew_correct(Direction direction)
 		}
 		else
 		{
-			Movement_rightSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES - 5;
+			Movement_rightSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES - MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS;
 			Movement_leftSkewBoost = 0;
 		}
 		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
@@ -188,7 +188,7 @@ void Movement_skew_correct(Direction direction)
 		}
 		else
 		{
-			Movement_leftSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES - 5;
+			Movement_leftSkewBoost = MOVEMENT_SKEW_NUMERIC_PULSES - MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS;
 			Movement_rightSkewBoost = 0;
 		}
 		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
@@ -200,6 +200,12 @@ void Movement_skew_correct(Direction direction)
 		break;
 	}
 	}
+}
+
+void Movement_set_direct_skew_boosts(uint8 left, uint8 right)
+{
+	Movement_leftSkewBoost = left;
+	Movement_rightSkewBoost = right;
 }
 
 void Movement_skew_stability_timeout(void)
