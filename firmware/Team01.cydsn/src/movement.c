@@ -272,8 +272,7 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 {
 	// SKEW VARIABLES
-	Movement_leftSkewBoost = 0;
-	Movement_rightSkewBoost = 0;
+	Movement_set_direct_skew_boosts(0, 0);
 	Movement_skewDamperFactor = 0;
 
 	// Disable interrupts so decoders dont get reset to 0
@@ -321,8 +320,7 @@ void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 void Movement_turn_right(uint16 maxAngle, bool predicate(void))
 {
 	// SKEW VARIABLES
-	Movement_leftSkewBoost = 0;
-	Movement_rightSkewBoost = 0;
+	Movement_set_direct_skew_boosts(0, 0);
 	Movement_skewDamperFactor = 0;
 
 	isr_getpulse_Disable();
