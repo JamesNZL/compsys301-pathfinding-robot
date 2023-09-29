@@ -125,6 +125,8 @@ void Movement_next_control_cycle(void);
  */
 void Movement_sync_motors(uint16 speed);
 
+void Movement_prepare_for_action();
+
 /**
  * @brief Corrects the skew of the robot
  *

@@ -1,4 +1,5 @@
 #include "battery.h"
+#include "buzza.h"
 #include "commands.h"
 #include "common.h"
 #include "handlers.h"
@@ -35,7 +36,7 @@ int main()
 		PATHFINDING_STARTING_DIRECTION,
 		PATHFINDING_FOOD_LIST,
 		PATHFINDING_MAZE);
-	// Point_destroy(startPoint);
+	Point_destroy(startPoint);
 
 	// Will change during runtime **MUST FREE**
 	Node *currentNode = Queue_pop(routes);
@@ -108,19 +109,19 @@ int main()
 					case ACTIONS_AROUND:
 					{
 						DEBUG_ALL_OFF;
-						FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
-						Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
-						Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
-						Movement_sync_motors(MOVEMENT_SPEED_OFF);
+						FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+						Movement_prepare_for_action();
 
 						CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
 						Movement_turn_left(180, Sensor_is_any_front_on_line);
 
 						Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 						Movement_skew_correct(DIRECTION_LEFT);
+
 						previousAction = SENSOR_ACTION_CORRECT_LEFT;
 						FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+
 						Node_destroy(currentNode);
 						currentNode = Queue_pop(currentTurns);
 						currentActionToCheckFor = Node_get_value(currentNode);
@@ -132,12 +133,8 @@ int main()
 						DEBUG_LEFT_ON;
 						if (Sensor_has_left_turn())
 						{
-							FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
 							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
-
-							Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
-							Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
-							Movement_sync_motors(MOVEMENT_SPEED_OFF);
+							Movement_prepare_for_action();
 
 							Movement_turn_left(90, Sensor_is_any_front_on_line);
 							CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
@@ -146,7 +143,6 @@ int main()
 							Movement_skew_correct(DIRECTION_LEFT);
 							previousAction = SENSOR_ACTION_CORRECT_LEFT;
 
-							// TODO if last turn move mm instead of infinitely
 							FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 
 							Node_destroy(currentNode);
@@ -171,12 +167,9 @@ int main()
 						DEBUG_RIGHT_ON;
 						if (Sensor_has_right_turn())
 						{
-							FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
-							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
 
-							Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
-							Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
-							Movement_sync_motors(MOVEMENT_SPEED_OFF);
+							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+							Movement_prepare_for_action();
 
 							Movement_turn_right(90, Sensor_is_any_front_on_line);
 							CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
@@ -190,6 +183,7 @@ int main()
 							Node_destroy(currentNode);
 							currentNode = Queue_pop(currentTurns);
 							currentActionToCheckFor = Node_get_value(currentNode);
+
 							if (Queue_is_empty(currentTurns) && FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
 							{
 								FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
@@ -209,6 +203,7 @@ int main()
 						if (Sensor_has_turn())
 						{
 							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+
 							Node_destroy(currentNode);
 							currentNode = Queue_pop(currentTurns);
 							currentActionToCheckFor = Node_get_value(currentNode);
@@ -250,9 +245,13 @@ int main()
 
 					currentNode = Queue_pop(routes);
 					currentRoute = Node_get_value(currentNode);
+					Node_destroy(currentNode);
+
 					currentTurns = Pathfinding_route_get_turns(currentRoute);
+
 					currentNode = Queue_pop(currentTurns);
 					currentActionToCheckFor = Node_get_value(currentNode);
+					Node_destroy(currentNode);
 				}
 			}
 #else

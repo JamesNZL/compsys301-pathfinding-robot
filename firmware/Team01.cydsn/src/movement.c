@@ -234,6 +234,16 @@ void Movement_skew_stability_timeout(void)
 	}
 #endif
 }
+void Movement_prepare_for_action()
+{
+	FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
+
+	Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+	Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+	Movement_sync_motors(MOVEMENT_SPEED_OFF);
+
+	CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
+}
 
 void Movement_check_turn_complete(void)
 {
