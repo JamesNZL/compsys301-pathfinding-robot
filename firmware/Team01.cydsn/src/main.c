@@ -103,6 +103,12 @@ int main()
 #ifdef PATHFINDING
 			if (FLAG_IS_CLEARED(FLAGS, FLAG_ON_FINAL_STRETCH))
 			{
+				if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVE_INFINITELY))
+				{
+					FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+					Movement_sync_motors(MOVEMENT_SPEED_RUN);
+					continue;
+				}
 				if (!Queue_is_empty(currentTurns) || FLAG_IS_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
 				{
 					switch (*currentActionToCheckFor)
@@ -210,12 +216,6 @@ int main()
 					{
 						DEBUG_ALL_OFF;
 						DEBUG_ALL_ON;
-						if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVE_INFINITELY))
-						{
-							FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
-							Movement_sync_motors(MOVEMENT_SPEED_RUN);
-							continue;
-						}
 						if (Sensor_has_turn())
 						{
 							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
