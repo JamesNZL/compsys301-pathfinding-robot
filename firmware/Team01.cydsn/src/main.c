@@ -99,7 +99,7 @@ int main()
 		else
 		{
 #ifdef PATHFINDING
-			if (!Queue_is_empty(routes) && FLAG_IS_CLEARED(FLAGS, FLAG_ON_FINAL_STRETCH))
+			if (FLAG_IS_CLEARED(FLAGS, FLAG_ON_FINAL_STRETCH))
 			{
 				if (!Queue_is_empty(currentTurns) || FLAG_IS_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
 				{
