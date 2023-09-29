@@ -13,6 +13,8 @@
 
 // #define MOVEMENT_TURN_WITH_SENSORS
 
+#define MOVEMENT_DIRECT_SKEW
+
 /*
  * Motor Control Register
  */
@@ -40,17 +42,22 @@
  * Calibrations
  */
 
+/* Distance */
+#define MOVEMENT_MM_PULSE_CORRECTION 15
+
 /* Speeds */
 #define MOVEMENT_SPEED_OFF	 0
-#define MOVEMENT_SPEED_BRAKE 110 // ! no lower than 110
-#define MOVEMENT_SPEED_SLOW	 120 // ! no lower than 110
+#define MOVEMENT_SPEED_BRAKE 115 // ! no lower than 115
+#define MOVEMENT_SPEED_SLOW	 120 // ! no lower than 115
 #define MOVEMENT_SPEED_RUN	 180 // ! no lower than 130, no more than 240, 160 & 180 are KNOWN GOOD
 #define MOVEMENT_SPEED_TURN	 130
 
 /* Skew */
 /** @brief Percentage of the current speed by which to correct skew. */
-#define MOVEMENT_SKEW_CORRECTION_FACTOR 20
-#define MOVEMENT_SKEW_DAMPING_FACTOR	8
+#define MOVEMENT_SKEW_CORRECTION_FACTOR		  20
+#define MOVEMENT_SKEW_NUMERIC_PULSES		  9
+#define MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS 5
+#define MOVEMENT_SKEW_STABILITY_PULSE_TIMEOUT 280
 
 /* Turns */
 /** @brief Overshoot factor for turn angles before stopping sensor detection */
@@ -124,6 +131,19 @@ void Movement_sync_motors(uint16 speed);
  * @param direction the direction to turn faster in to correct a skew
  */
 void Movement_skew_correct(Direction direction);
+
+/**
+ * @brief Sets the variables leftSkewBoost and rightSkewBoost, which are used by Movement_write_M1_pulse
+ *
+ * @param left the numeric duty increase to directly write to PWM1
+ * @param right the numeric duty increase to directly write to PWM2
+ */
+void Movement_set_direct_skew_boosts(uint8 left, uint8 right);
+
+/**
+ * @brief Copy of below - Waits until a specific encoder timeout before suppressing skew correction
+ */
+void Movement_skew_stability_timeout(void);
 
 /**
  * @brief Check if the previous turn is complete and re-enable turn sensors if so
