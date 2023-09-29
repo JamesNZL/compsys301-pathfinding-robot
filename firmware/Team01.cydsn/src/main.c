@@ -54,6 +54,7 @@ int main()
 
 /* Pathfinding init */
 #ifdef PATHFINDING
+	// Always constant
 	Point *startPoint = Point_create(PATHFINDING_START_X, PATHFINDING_START_Y, PATHFINDING_MAZE_WIDTH);
 	Queue *routes = Pathfinding_generate_routes_to_all_food(
 		startPoint,
@@ -61,6 +62,12 @@ int main()
 		PATHFINDING_FOOD_LIST,
 		PATHFINDING_MAZE);
 	Point_destroy(startPoint);
+
+	// Will change during runtime **MUST FREE**
+	Node *currentNode = Queue_pop(routes);
+	PathfindingRoute *currentRoute = Node_get_value(currentNode);
+	Queue *currentTurns = Pathfinding_route_get_turns(currentRoute);
+
 #endif
 
 	for (;;)
@@ -84,6 +91,12 @@ int main()
 		else
 		{
 #ifdef PATHFINDING
+			if (!Queue_is_empty(routes))
+			{
+				if (!Queue_is_empty(turns))
+				{
+				}
+			}
 #else
 #ifdef MOVEMENT_DEBUG_TURNS
 			DEBUG_ALL_OFF;
