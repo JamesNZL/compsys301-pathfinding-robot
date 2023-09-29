@@ -135,13 +135,13 @@ void Movement_skew_correct(Direction direction);
 /**
  * @brief Sets the variables leftSkewBoost and rightSkewBoost, which are used by Movement_write_M1_pulse
  *
- * @param left the numeric pulse increase to directly write to PWM1
- * @param right the numeric pulse increase to directly write to PWM2
+ * @param left the numeric duty increase to directly write to PWM1
+ * @param right the numeric duty increase to directly write to PWM2
  */
 void Movement_set_direct_skew_boosts(uint8 left, uint8 right);
 
 /**
- * @brief Copy of below - Waits until a specific turn timeout before suppressing skew correction
+ * @brief Copy of below - Waits until a specific encoder timeout before suppressing skew correction
  */
 void Movement_skew_stability_timeout(void);
 

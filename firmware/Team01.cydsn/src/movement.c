@@ -165,6 +165,7 @@ void Movement_skew_correct(Direction direction)
 	{
 	case DIRECTION_LEFT:
 	{
+		// In stability - Use direct boosts at full power - Otherwise let control do most of the work
 		if (FLAG_IS_CLEARED(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT))
 		{
 			Movement_set_direct_skew_boosts(0, MOVEMENT_SKEW_NUMERIC_PULSES);
