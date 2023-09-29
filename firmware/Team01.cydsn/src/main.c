@@ -164,14 +164,7 @@ int main()
 							currentNode = Queue_pop(currentTurns);
 							currentActionToCheckFor = Node_get_value(currentNode);
 
-							if (Queue_is_empty(currentTurns) && FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
-							{
-								FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
-							}
-							else if (Queue_is_empty(currentTurns))
-							{
-								FLAG_CLEAR(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
-							}
+							Pathfinding_check_if_is_on_final_stretch(currentTurns);
 							continue;
 						}
 						break;
@@ -202,14 +195,7 @@ int main()
 							currentNode = Queue_pop(currentTurns);
 							currentActionToCheckFor = Node_get_value(currentNode);
 
-							if (Queue_is_empty(currentTurns) && FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
-							{
-								FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
-							}
-							else if (Queue_is_empty(currentTurns))
-							{
-								FLAG_CLEAR(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
-							}
+							Pathfinding_check_if_is_on_final_stretch(currentTurns);
 							continue;
 						}
 						break;
@@ -226,14 +212,7 @@ int main()
 							currentNode = Queue_pop(currentTurns);
 							currentActionToCheckFor = Node_get_value(currentNode);
 
-							if (Queue_is_empty(currentTurns) && FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
-							{
-								FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
-							}
-							else if (Queue_is_empty(currentTurns))
-							{
-								FLAG_CLEAR(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
-							}
+							Pathfinding_check_if_is_on_final_stretch(currentTurns);
 							continue;
 						}
 						break;
@@ -264,6 +243,10 @@ int main()
 						Movement_move_mm(GRID_DISTANCE_LUT_MM_Y[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_Y);
 					}
 
+					if (Queue_is_empty(routes))
+					{
+						FLAG_SET(FLAGS, FLAG_ON_LAST_STRAIGHT);
+					}
 					currentNode = Queue_pop(routes);
 					currentRoute = Node_get_value(currentNode);
 					Node_destroy(currentNode);
@@ -273,10 +256,6 @@ int main()
 					currentNode = Queue_pop(currentTurns);
 					currentActionToCheckFor = Node_get_value(currentNode);
 					Node_destroy(currentNode);
-					if (Queue_is_empty(routes))
-					{
-						FLAG_SET(FLAGS, FLAG_ON_LAST_STRAIGHT);
-					}
 				}
 			}
 #else

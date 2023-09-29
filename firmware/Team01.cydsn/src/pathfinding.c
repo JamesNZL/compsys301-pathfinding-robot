@@ -70,6 +70,18 @@ Queue *Pathfinding_generate_routes_to_all_food(Point *start, MazeDirections star
 	return routes;
 }
 
+void Pathfinding_check_if_is_on_final_stretch(Queue *turns)
+{
+	if (Queue_is_empty(turns) && FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
+	{
+		FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
+	}
+	else if (Queue_is_empty(turns))
+	{
+		FLAG_CLEAR(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
+	}
+}
+
 uint8_t Pathfinding_is_moving_horizontally(MazeDirections directionOfMotion)
 {
 	switch (directionOfMotion)

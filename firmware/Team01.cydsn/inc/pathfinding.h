@@ -111,6 +111,8 @@ uint8_t Pathfinding_is_moving_horizontally(MazeDirections directionOfMotion);
  */
 uint8_t Pathfinding_is_moving_vertically(MazeDirections directionOfMotion);
 
+void Pathfinding_check_if_is_on_final_stretch(Queue *turns);
+
 #ifdef TESTING
 /**
  * @brief Creates and returns a pointer to a route data structure which has a queue containing the required turns, and the required amount of distance to be travelled after the final turn
