@@ -17,7 +17,7 @@
 // #define FIXED_DISTANCE
 #define PATHFINDING
 
-volatile uint8 FLAGS = 0x00;
+volatile uint16 FLAGS = 0x00;
 
 int main()
 {
@@ -26,12 +26,39 @@ int main()
 	uint16 batteryVoltage = Battery_display_level();
 	sprintf(USB_buffer, "Battery Voltage: %d mV\n", batteryVoltage);
 
+/* Pathfinding init */
+#ifdef PATHFINDING
+	// Always constant
+	Point *startPoint = Point_create(PATHFINDING_START_X, PATHFINDING_START_Y, PATHFINDING_MAZE_WIDTH);
+	Queue *routes = Pathfinding_generate_routes_to_all_food(
+		startPoint,
+		PATHFINDING_STARTING_DIRECTION,
+		PATHFINDING_FOOD_LIST,
+		PATHFINDING_MAZE);
+	// Point_destroy(startPoint);
+
+	// Will change during runtime **MUST FREE**
+	Node *currentNode = Queue_pop(routes);
+	PathfindingRoute *currentRoute = Node_get_value(currentNode);
+	Queue *currentTurns = Pathfinding_route_get_turns(currentRoute);
+	Actions *currentActionToCheckFor;
+
+	if (!Queue_is_empty(currentTurns))
+	{
+		// Node_destroy(currentNode);
+		currentNode = Queue_pop(currentTurns);
+		currentActionToCheckFor = Node_get_value(currentNode);
+	}
+
+#endif
+
 #ifdef USB_ENABLED
 	USBUART_Start(0, USBUART_5V_OPERATION);
 
 	USB_put_string(USB_buffer);
 #endif
 
+	Sensor_init_sensors();
 	while (Push_Button_Read() != TRUE)
 	{
 		;
@@ -39,7 +66,6 @@ int main()
 
 	DEBUG_ALL_OFF;
 
-	Sensor_init_sensors();
 	Movement_init_motors();
 
 #ifdef FIXED_DISTANCE
@@ -51,24 +77,6 @@ int main()
 
 	static SensorActions previousAction;
 	static SensorActions currentAction;
-
-/* Pathfinding init */
-#ifdef PATHFINDING
-	// Always constant
-	Point *startPoint = Point_create(PATHFINDING_START_X, PATHFINDING_START_Y, PATHFINDING_MAZE_WIDTH);
-	Queue *routes = Pathfinding_generate_routes_to_all_food(
-		startPoint,
-		PATHFINDING_STARTING_DIRECTION,
-		PATHFINDING_FOOD_LIST,
-		PATHFINDING_MAZE);
-	Point_destroy(startPoint);
-
-	// Will change during runtime **MUST FREE**
-	Node *currentNode = Queue_pop(routes);
-	PathfindingRoute *currentRoute = Node_get_value(currentNode);
-	Queue *currentTurns = Pathfinding_route_get_turns(currentRoute);
-
-#endif
 
 	for (;;)
 	{
@@ -91,10 +99,160 @@ int main()
 		else
 		{
 #ifdef PATHFINDING
-			if (!Queue_is_empty(routes))
+			if (!Queue_is_empty(routes) && FLAG_IS_CLEARED(FLAGS, FLAG_ON_FINAL_STRETCH))
 			{
-				if (!Queue_is_empty(turns))
+				if (!Queue_is_empty(currentTurns) || FLAG_IS_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
 				{
+					switch (*currentActionToCheckFor)
+					{
+					case ACTIONS_AROUND:
+					{
+						DEBUG_ALL_OFF;
+						FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+
+						Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+						Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+						Movement_sync_motors(MOVEMENT_SPEED_OFF);
+
+						CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
+						Movement_turn_left(180, Sensor_is_any_front_on_line);
+
+						Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+						Movement_skew_correct(DIRECTION_LEFT);
+						previousAction = SENSOR_ACTION_CORRECT_LEFT;
+						FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+						Node_destroy(currentNode);
+						currentNode = Queue_pop(currentTurns);
+						currentActionToCheckFor = Node_get_value(currentNode);
+						continue;
+					}
+					case ACTIONS_LEFT:
+					{
+						DEBUG_ALL_OFF;
+						DEBUG_LEFT_ON;
+						if (Sensor_has_left_turn())
+						{
+							FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
+							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+
+							Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+							Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+							Movement_sync_motors(MOVEMENT_SPEED_OFF);
+
+							Movement_turn_left(90, Sensor_is_any_front_on_line);
+							CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
+
+							Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+							Movement_skew_correct(DIRECTION_LEFT);
+							previousAction = SENSOR_ACTION_CORRECT_LEFT;
+
+							// TODO if last turn move mm instead of infinitely
+							FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+
+							Node_destroy(currentNode);
+							currentNode = Queue_pop(currentTurns);
+							currentActionToCheckFor = Node_get_value(currentNode);
+
+							if (Queue_is_empty(currentTurns) && FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
+							{
+								FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
+							}
+							else if (Queue_is_empty(currentTurns))
+							{
+								FLAG_CLEAR(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
+							}
+							continue;
+						}
+						break;
+					}
+					case ACTIONS_RIGHT:
+					{
+						DEBUG_ALL_OFF;
+						DEBUG_RIGHT_ON;
+						if (Sensor_has_right_turn())
+						{
+							FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
+							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+
+							Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+							Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+							Movement_sync_motors(MOVEMENT_SPEED_OFF);
+
+							Movement_turn_right(90, Sensor_is_any_front_on_line);
+							CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
+
+							Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+							Movement_skew_correct(DIRECTION_RIGHT);
+							previousAction = SENSOR_ACTION_CORRECT_RIGHT;
+
+							FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+
+							Node_destroy(currentNode);
+							currentNode = Queue_pop(currentTurns);
+							currentActionToCheckFor = Node_get_value(currentNode);
+							if (Queue_is_empty(currentTurns) && FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
+							{
+								FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
+							}
+							else if (Queue_is_empty(currentTurns))
+							{
+								FLAG_CLEAR(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
+							}
+							continue;
+						}
+						break;
+					}
+					case ACTIONS_SKIP:
+					{
+						DEBUG_ALL_OFF;
+						DEBUG_ALL_ON;
+						if (Sensor_has_turn())
+						{
+							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+							Node_destroy(currentNode);
+							currentNode = Queue_pop(currentTurns);
+							currentActionToCheckFor = Node_get_value(currentNode);
+
+							if (Queue_is_empty(currentTurns) && FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
+							{
+								FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
+							}
+							else if (Queue_is_empty(currentTurns))
+							{
+								FLAG_CLEAR(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
+							}
+							continue;
+						}
+						break;
+					}
+					default:
+					{
+						break;
+					}
+					}
+				}
+				else if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
+				{
+					// Queue IS empty
+					DEBUG_ALL_ON;
+					FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
+					FLAG_SET(FLAGS, FLAG_ON_FINAL_STRETCH);
+					MazeDirections lastFacedDirection = Pathfinding_route_get_last_faced_direction(currentRoute);
+					uint8 finalGrids = Pathfinding_route_get_final_distance(currentRoute) - 1;
+					if (Pathfinding_is_moving_horizontally(lastFacedDirection))
+					{
+						Movement_move_mm(GRID_DISTANCE_LUT_MM_X[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_X);
+					}
+					else if (Pathfinding_is_moving_vertically(lastFacedDirection))
+					{
+						Movement_move_mm(GRID_DISTANCE_LUT_MM_Y[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_Y);
+					}
+
+					currentNode = Queue_pop(routes);
+					currentRoute = Node_get_value(currentNode);
+					currentTurns = Pathfinding_route_get_turns(currentRoute);
+					currentNode = Queue_pop(currentTurns);
+					currentActionToCheckFor = Node_get_value(currentNode);
 				}
 			}
 #else

@@ -150,6 +150,19 @@ bool Sensor_is_middle_on_line(void)
 	return !Sensor_skewMiddle.status;
 }
 
+bool Sensor_has_turn(void)
+{
+	return !Sensor_turnLeft.status || !Sensor_turnRight.status;
+}
+bool Sensor_has_right_turn(void)
+{
+	return !Sensor_turnRight.status;
+}
+bool Sensor_has_left_turn(void)
+{
+	return !Sensor_turnLeft.status;
+}
+
 bool Sensor_is_any_front_on_line(void)
 {
 	return (!Sensor_skewFrontLeft.status) || (!Sensor_skewFrontRight.status);

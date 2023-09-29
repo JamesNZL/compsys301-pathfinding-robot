@@ -7,7 +7,7 @@
 // #define SENSOR_DEBUG
 
 // #define SENSOR_ACTIONS_INVALID_KILL
-#define SENSOR_ACTIONS_RIGOROUS
+// #define SENSOR_ACTIONS_RIGOROUS
 
 #define SENSOR_HARDWARE_MODE					  0
 
@@ -230,6 +230,13 @@ bool Sensor_is_on_left_turn_intersection(void);
  */
 bool Sensor_is_on_all_turn_intersection(void);
 
+/**
+ * @return true if there is a left OR right turn currently avialable
+ */
+bool Sensor_has_turn(void);
+
+bool Sensor_has_right_turn(void);
+bool Sensor_has_left_turn(void);
 /**
  * @return true if the middle sensor is on the line
  */
