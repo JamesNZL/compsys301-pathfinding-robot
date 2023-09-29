@@ -6,19 +6,19 @@ const static int8_t DX[PATHFINDING_POSSIBLE_DIRECTIONS] = { -1, 1, 0, 0 };
 /* Everything relating to the route data structure*/
 typedef struct PathfindingRoute
 {
-	Queue *turns;
+	Queue *actions;
 	MazeDirections lastFacedDirection;
 	uint8_t finalDistance;
 } PathfindingRoute;
 
-PathfindingRoute *Pathfinding_route_construct(Queue *turns, MazeDirections lastFacedDirection, uint8_t finalDistance)
+PathfindingRoute *Pathfinding_route_construct(Queue *actions, MazeDirections lastFacedDirection, uint8_t finalDistance)
 {
 	PathfindingRoute *route = malloc(sizeof(PathfindingRoute));
 	if (route == NULL)
 	{
 		return NULL;
 	}
-	route->turns = turns;
+	route->actions = actions;
 	route->lastFacedDirection = lastFacedDirection;
 	route->finalDistance = finalDistance;
 	return route;
@@ -33,9 +33,9 @@ void Pathfinding_route_destroy(PathfindingRoute *route)
 	free(route);
 }
 
-Queue *Pathfinding_route_get_turns(PathfindingRoute *route)
+Queue *Pathfinding_route_get_actions(PathfindingRoute *route)
 {
-	return route->turns;
+	return route->actions;
 }
 
 MazeDirections Pathfinding_route_get_last_faced_direction(PathfindingRoute *route)
@@ -70,16 +70,18 @@ Queue *Pathfinding_generate_routes_to_all_food(Point *start, MazeDirections star
 	return routes;
 }
 
-void Pathfinding_check_if_waiting_for_final_action_in_queue(Queue *turns)
+void Pathfinding_check_if_is_on_final_stretch(Queue *actions)
 {
-	if (Queue_is_empty(turns) && FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE))
+#ifndef TESTING
+	if (Queue_is_empty(actions) && FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
 	{
-		FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE);
+		FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
 	}
-	else if (Queue_is_empty(turns))
+	else if (Queue_is_empty(actions))
 	{
-		FLAG_CLEAR(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE);
+		FLAG_CLEAR(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
 	}
+#endif
 }
 
 uint8_t Pathfinding_is_moving_horizontally(MazeDirections directionOfMotion)
@@ -158,7 +160,7 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortestPath, MazeDirections startingDirection, uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH])
 {
 	MazeDirections currentDirection = startingDirection;
-	Queue *turns = Queue_construct();
+	Queue *actions = Queue_construct();
 	Point *lastIntersectionPoint = NULL;
 	uint8_t finalDistance;
 	while (!Stack_is_empty(shortestPath))
@@ -205,7 +207,7 @@ PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortestPath, MazeDi
 			{
 				lastIntersectionPoint = currentPoint;
 				*requiredActionPointer = ACTIONS_SKIP;
-				Queue_append(turns, Node_create(requiredActionPointer));
+				Queue_append(actions, Node_create(requiredActionPointer));
 			}
 			else
 			{
@@ -218,12 +220,12 @@ PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortestPath, MazeDi
 		{
 			lastIntersectionPoint = currentPoint;
 			*requiredActionPointer = requiredAction;
-			Queue_append(turns, Node_create(requiredActionPointer));
+			Queue_append(actions, Node_create(requiredActionPointer));
 		}
 	}
 
 	// we add 1 to the final distance to be inclusive of the last intersection point
-	PathfindingRoute *route = Pathfinding_route_construct(turns, currentDirection, finalDistance + 1);
+	PathfindingRoute *route = Pathfinding_route_construct(actions, currentDirection, finalDistance + 1);
 	return route;
 }
 

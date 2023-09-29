@@ -42,7 +42,7 @@ int main()
 	// Will change during runtime **MUST FREE**
 	Node *currentNode = Queue_pop(routes);
 	PathfindingRoute *currentRoute = Node_get_value(currentNode);
-	Queue *currentRouteActions = Pathfinding_route_get_turns(currentRoute);
+	Queue *currentRouteActions = Pathfinding_route_get_actions(currentRoute);
 	Actions *currentActionToCheckFor;
 
 	if (!Queue_is_empty(currentRouteActions))
@@ -252,11 +252,12 @@ int main()
 					{
 						FLAG_SET(FLAGS, FLAG_DOING_LAST_MOVE_MM);
 					}
+
 					currentNode = Queue_pop(routes);
 					currentRoute = Node_get_value(currentNode);
 					Node_destroy(currentNode);
 
-					currentRouteActions = Pathfinding_route_get_turns(currentRoute);
+					currentRouteActions = Pathfinding_route_get_actions(currentRoute);
 
 					currentNode = Queue_pop(currentRouteActions);
 					currentActionToCheckFor = Node_get_value(currentNode);

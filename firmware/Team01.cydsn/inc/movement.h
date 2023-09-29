@@ -158,14 +158,14 @@ void Movement_check_action_complete(void);
  * @brief Turns the robot left (on the spot) by angle degrees
  *
  * @param maxAngle The maximum angle (in degrees) to turn left from the current position before aborting the predicate
- * @param predicate A predicate to test as the robot turns, halting once satisfied
+ * @param predicate A predicate to test as the robot actions, halting once satisfied
  */
 void Movement_turn_left(uint16 maxAngle, bool predicate(void));
 /**
  * @brief Turns the robot right (on the spot) by angle degrees
  *
  * @param maxAngle The maximum angle (in degrees) to turn right from the current position before aborting the predicate
- * @param predicate A predicate to test as the robot turns, halting once satisfied
+ * @param predicate A predicate to test as the robot actions, halting once satisfied
  */
 void Movement_turn_right(uint16 maxAngle, bool predicate(void));
 

@@ -113,20 +113,20 @@ uint8_t Pathfinding_is_moving_vertically(MazeDirections directionOfMotion);
 
 /**
  * @brief Handles logic remaining to setting and clearing the waiting for final action
- * @param turns queue of the current turns
+ * @param actions queue of the current actions
  */
-void Pathfinding_check_if_waiting_for_final_action_in_queue(Queue *turns);
+void Pathfinding_check_if_waiting_for_final_action_in_queue(Queue *actions);
 
 #ifdef TESTING
 /**
- * @brief Creates and returns a pointer to a route data structure which has a queue containing the required turns, and the required amount of distance to be travelled after the final turn
- * @param turns a Queue of turns defined as enums
+ * @brief Creates and returns a pointer to a route data structure which has a queue containing the required actions, and the required amount of distance to be travelled after the final turn
+ * @param actions a Queue of actions defined as enums
  * @param lastFacedDirection the direction the robot will be facing after reaching the food
  * @param finalDistance the units (in terms of the maze grid) required to be travelled after the final turn
  * @return Pathfinding_route* Pointer to the created Pathfinding_route
  */
 PathfindingRoute *
-Pathfinding_route_construct(Queue *turns, MazeDirections lastFacedDirection, uint8_t finalDistance);
+Pathfinding_route_construct(Queue *actions, MazeDirections lastFacedDirection, uint8_t finalDistance);
 
 /**
  * @brief Frees a memory allocated to a pathfinding route pointer
@@ -137,9 +137,9 @@ void Pathfinding_route_destroy(PathfindingRoute *route);
 /**
  * @brief
  * @param route
- * @return Queue* The queue of turns in the route
+ * @return Queue* The queue of actions in the route
  */
-Queue *Pathfinding_route_get_turns(PathfindingRoute *route);
+Queue *Pathfinding_route_get_actions(PathfindingRoute *route);
 
 /**
  * @brief
@@ -200,7 +200,7 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_MAZE_HEIGHT * PATHFINDING_MAZE_WIDTH], Point *start, Point *end);
 
 /**
- * @brief Gives a path to the food containing the turns needed, as well as instructions after the final turn such as distance
+ * @brief Gives a path to the food containing the actions needed, as well as instructions after the final turn such as distance
  * @param path a stack of the nodes contained within the shortest path
  * @return Pathfinding_route* Pointer to the created Pathfinding_route
  * @warning DO NOT destroy the stack afterwards as this function does it (you will get DOUBLE FREE error)
