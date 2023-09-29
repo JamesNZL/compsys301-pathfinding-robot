@@ -150,6 +150,19 @@ void Movement_skew_correct(Direction direction)
 	// Increase the speed of one motor to correct for a skew
 	FLAG_SET(FLAGS, FLAG_SKEW_CORRECTING);
 
+	// TODO: Proportional_counter is the only variable we need to get data from - what is this going to be? We cant do position, we have to relate it to time between skew direction switch.
+
+	// proportional = proportional_counter;
+	// derivational = proportional - previous_proportional;
+	// integral = integral + proportional;
+	// previous_proportional = proportional;
+
+	// Kp = 0;
+	// Ki = 0;
+	// Kd = 0;
+
+	// PID_boost_factor = (proportional * Kp) + (integral * Ki) + (derivational * Kd);
+
 	Movement_sync_motors(Movement_currentSpeed);
 
 	switch (direction)
