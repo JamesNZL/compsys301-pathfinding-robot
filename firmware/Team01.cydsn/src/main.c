@@ -164,7 +164,7 @@ int main()
 							currentNode = Queue_pop(currentTurns);
 							currentActionToCheckFor = Node_get_value(currentNode);
 
-							Pathfinding_check_if_is_on_final_stretch(currentTurns);
+							Pathfinding_check_if_waiting_for_final_action(currentTurns);
 							continue;
 						}
 						break;
@@ -195,7 +195,7 @@ int main()
 							currentNode = Queue_pop(currentTurns);
 							currentActionToCheckFor = Node_get_value(currentNode);
 
-							Pathfinding_check_if_is_on_final_stretch(currentTurns);
+							Pathfinding_check_if_waiting_for_final_action(currentTurns);
 							continue;
 						}
 						break;
@@ -212,7 +212,7 @@ int main()
 							currentNode = Queue_pop(currentTurns);
 							currentActionToCheckFor = Node_get_value(currentNode);
 
-							Pathfinding_check_if_is_on_final_stretch(currentTurns);
+							Pathfinding_check_if_waiting_for_final_action(currentTurns);
 							continue;
 						}
 						break;

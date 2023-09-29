@@ -111,7 +111,7 @@ uint8_t Pathfinding_is_moving_horizontally(MazeDirections directionOfMotion);
  */
 uint8_t Pathfinding_is_moving_vertically(MazeDirections directionOfMotion);
 
-void Pathfinding_check_if_is_on_final_stretch(Queue *turns);
+void Pathfinding_check_if_waiting_for_final_action(Queue *turns);
 
 #ifdef TESTING
 /**
