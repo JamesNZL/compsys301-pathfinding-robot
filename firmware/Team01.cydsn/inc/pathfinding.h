@@ -100,7 +100,15 @@ typedef enum MazeDirections
  */
 Queue *Pathfinding_generate_routes_to_all_food(Point *start, MazeDirections startingDirection, uint8_t food_list[PATHFINDING_TOTAL_FOOD_LOCATIONS][2], uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
 
+/**
+ * @brief returns true if the robot is currently moving horizontally
+ * @param directionOfMotion a MAZE_DIRECTION enum
+ */
 uint8_t Pathfinding_is_moving_horizontally(MazeDirections directionOfMotion);
+/**
+ * @brief returns true if the robot is currently moving vertically
+ * @param directionOfMotion a MAZE_DIRECTION enum
+ */
 uint8_t Pathfinding_is_moving_vertically(MazeDirections directionOfMotion);
 
 #ifdef TESTING

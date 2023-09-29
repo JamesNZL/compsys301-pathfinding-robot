@@ -237,8 +237,16 @@ bool Sensor_is_on_all_turn_intersection(void);
  */
 bool Sensor_has_turn(void);
 
+/**
+ * @return true if the robot can turn right
+ */
 bool Sensor_has_right_turn(void);
+
+/**
+ * @return true if the robot can turn left
+ */
 bool Sensor_has_left_turn(void);
+
 /**
  * @return true if the middle sensor is on the line
  */
@@ -248,14 +256,17 @@ bool Sensor_is_middle_on_line(void);
  * @return true if either front sensor is on the line
  */
 bool Sensor_is_any_front_on_line(void);
+
 /**
  * @return true if both front sensors are on the line
  */
 bool Sensor_is_both_front_on_line(void);
+
 /**
  * @return true if either back sensor is on the line
  */
 bool Sensor_is_any_back_on_line(void);
+
 /**
  * @return true if all skew sensors are on line
  */

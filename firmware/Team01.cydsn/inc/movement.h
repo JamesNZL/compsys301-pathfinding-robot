@@ -125,6 +125,9 @@ void Movement_next_control_cycle(void);
  */
 void Movement_sync_motors(uint16 speed);
 
+/**
+ * @brief disables motors (to be used BEFORE a turn)
+ */
 void Movement_prepare_for_action();
 
 /**
