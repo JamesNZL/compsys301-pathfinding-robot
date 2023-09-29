@@ -90,7 +90,7 @@ int main()
 		 */
 
 		/* Turn Detection */
-		if (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_TURN))
+		if (FLAG_IS_SET(FLAGS, FLAG_WAITING_AFTER_ACTION))
 		{
 #ifdef MOVEMENT_DEBUG_TURNS
 			DEBUG_ALL_ON;
@@ -110,7 +110,7 @@ int main()
 					{
 						DEBUG_ALL_OFF;
 
-						FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+						FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
 						Movement_prepare_for_action();
 
 						CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
@@ -133,7 +133,7 @@ int main()
 						DEBUG_LEFT_ON;
 						if (Sensor_has_left_turn())
 						{
-							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
 							Movement_prepare_for_action();
 
 							Movement_turn_left(90, Sensor_is_any_front_on_line);
@@ -168,7 +168,7 @@ int main()
 						if (Sensor_has_right_turn())
 						{
 
-							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
 							Movement_prepare_for_action();
 
 							Movement_turn_right(90, Sensor_is_any_front_on_line);
@@ -202,7 +202,7 @@ int main()
 						DEBUG_ALL_ON;
 						if (Sensor_has_turn())
 						{
-							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
 
 							Node_destroy(currentNode);
 							currentNode = Queue_pop(currentTurns);
@@ -265,7 +265,7 @@ int main()
 				DEBUG_RIGHT_ON;
 #endif
 				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
-				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
 				FLAG_SET(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);
 
 				Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
@@ -290,7 +290,7 @@ int main()
 				DEBUG_LEFT_ON;
 #endif
 				FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
-				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+				FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
 				FLAG_SET(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);
 
 				Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
@@ -513,7 +513,7 @@ int main()
 			}
 			}
 
-			FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+			FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
 
 			CyDelay(MOVEMENT_RECOVERY_DELAY_PERIOD);
 #else
@@ -590,7 +590,7 @@ int main()
 				action = Movement_sweep(Sensor_is_any_back_on_line, SENSOR_ACTION_CONTINUE_FORWARD);
 			}
 
-			FLAG_SET(FLAGS, FLAG_WAITING_AFTER_TURN);
+			FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
 
 			// TODO: do I want the robot to move here? probably not
 			// Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
