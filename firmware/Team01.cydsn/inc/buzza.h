@@ -102,6 +102,7 @@
 #define BUZZA_US_IN_MS						  1000
 
 #define BUZZA_FIND_NOTE_ARRAY_SIZE(arrayName) sizeof(arrayName) / sizeof(arrayName[0])
+#define BUZZA_SONG(songName)				  songName, BUZZA_FIND_NOTE_ARRAY_SIZE(songName)
 
 typedef struct BuzzaNote
 {
