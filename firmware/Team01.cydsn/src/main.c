@@ -17,7 +17,7 @@
 
 // #define FIXED_DISTANCE
 #define PATHFINDING
-#define TROLLING
+// #define TROLLING
 
 volatile uint16 FLAGS = 0x00;
 
@@ -114,7 +114,7 @@ int main()
 						FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
 						Movement_prepare_for_action();
 #ifdef TROLLING
-						Buzza_play_song(BUZZA_SONG(BUZZA_NOKIA_RINGTONE));
+						Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
 #endif
 						CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
 						Movement_turn_left(180, Sensor_is_any_front_on_line);
@@ -140,7 +140,7 @@ int main()
 							Movement_prepare_for_action();
 
 #ifdef TROLLING
-							Buzza_play_song(BUZZA_SONG(BUZZA_NOKIA_RINGTONE));
+							Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
 #endif
 
 							Movement_turn_left(90, Sensor_is_any_front_on_line);
@@ -179,7 +179,7 @@ int main()
 							Movement_prepare_for_action();
 
 #ifdef TROLLING
-							Buzza_play_song(BUZZA_SONG(BUZZA_NOKIA_RINGTONE));
+							Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
 #endif
 							Movement_turn_right(90, Sensor_is_any_front_on_line);
 							CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
