@@ -103,7 +103,7 @@ int main()
 #ifdef PATHFINDING
 			if (FLAG_IS_CLEARED(FLAGS, FLAG_ON_FINAL_STRETCH))
 			{
-				if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVE_INFINITELY))
+				if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVE_INFINITELY) && FLAG_IS_CLEARED(FLAGS, FLAG_ON_LAST_STRAIGHT))
 				{
 					FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 					Movement_sync_motors(MOVEMENT_SPEED_RUN);
@@ -111,6 +111,7 @@ int main()
 				}
 				if (!Queue_is_empty(currentTurns) || FLAG_IS_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
 				{
+
 					switch (*currentActionToCheckFor)
 					{
 					case ACTIONS_AROUND:
@@ -134,6 +135,7 @@ int main()
 						Node_destroy(currentNode);
 						currentNode = Queue_pop(currentTurns);
 						currentActionToCheckFor = Node_get_value(currentNode);
+
 						continue;
 					}
 					case ACTIONS_LEFT:
@@ -271,6 +273,10 @@ int main()
 					currentNode = Queue_pop(currentTurns);
 					currentActionToCheckFor = Node_get_value(currentNode);
 					Node_destroy(currentNode);
+					if (Queue_is_empty(routes))
+					{
+						FLAG_SET(FLAGS, FLAG_ON_LAST_STRAIGHT);
+					}
 				}
 			}
 #else

@@ -31,6 +31,7 @@ volatile extern uint16 FLAGS;
 #define FLAG_ON_FINAL_STRETCH		  6
 #define FLAG_WAITING_FOR_FINAL_ACTION 7
 #define FLAG_TOGGLE_TURN_TIMEOUT	  8
+#define FLAG_ON_LAST_STRAIGHT		  9
 
 /**
  * @brief Check whether a flag bit is set.
