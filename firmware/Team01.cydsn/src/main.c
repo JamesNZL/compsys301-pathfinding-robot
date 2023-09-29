@@ -42,13 +42,13 @@ int main()
 	// Will change during runtime **MUST FREE**
 	Node *currentNode = Queue_pop(routes);
 	PathfindingRoute *currentRoute = Node_get_value(currentNode);
-	Queue *currentTurns = Pathfinding_route_get_turns(currentRoute);
+	Queue *currentRouteActions = Pathfinding_route_get_turns(currentRoute);
 	Actions *currentActionToCheckFor;
 
-	if (!Queue_is_empty(currentTurns))
+	if (!Queue_is_empty(currentRouteActions))
 	{
 		// Node_destroy(currentNode);
-		currentNode = Queue_pop(currentTurns);
+		currentNode = Queue_pop(currentRouteActions);
 		currentActionToCheckFor = Node_get_value(currentNode);
 	}
 
@@ -101,15 +101,16 @@ int main()
 		else
 		{
 #ifdef PATHFINDING
-			if (FLAG_IS_CLEARED(FLAGS, FLAG_ON_FINAL_STRETCH))
+			// on final stretch means we are moving mm
+			if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVING_MM))
 			{
-				if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVE_INFINITELY) && FLAG_IS_CLEARED(FLAGS, FLAG_ON_LAST_STRAIGHT))
+				if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVE_INFINITELY) && FLAG_IS_CLEARED(FLAGS, FLAG_DOING_LAST_MOVE_MM))
 				{
 					FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 					Movement_sync_motors(MOVEMENT_SPEED_RUN);
 					continue;
 				}
-				if (!Queue_is_empty(currentTurns) || FLAG_IS_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
+				if (!Queue_is_empty(currentRouteActions) || FLAG_IS_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE))
 				{
 
 					switch (*currentActionToCheckFor)
@@ -133,7 +134,7 @@ int main()
 						FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 
 						Node_destroy(currentNode);
-						currentNode = Queue_pop(currentTurns);
+						currentNode = Queue_pop(currentRouteActions);
 						currentActionToCheckFor = Node_get_value(currentNode);
 
 						continue;
@@ -161,10 +162,10 @@ int main()
 							FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 
 							Node_destroy(currentNode);
-							currentNode = Queue_pop(currentTurns);
+							currentNode = Queue_pop(currentRouteActions);
 							currentActionToCheckFor = Node_get_value(currentNode);
 
-							Pathfinding_check_if_waiting_for_final_action(currentTurns);
+							Pathfinding_check_if_waiting_for_final_action(currentRouteActions);
 							continue;
 						}
 						break;
@@ -192,10 +193,10 @@ int main()
 							FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 
 							Node_destroy(currentNode);
-							currentNode = Queue_pop(currentTurns);
+							currentNode = Queue_pop(currentRouteActions);
 							currentActionToCheckFor = Node_get_value(currentNode);
 
-							Pathfinding_check_if_waiting_for_final_action(currentTurns);
+							Pathfinding_check_if_waiting_for_final_action(currentRouteActions);
 							continue;
 						}
 						break;
@@ -209,27 +210,28 @@ int main()
 							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
 
 							Node_destroy(currentNode);
-							currentNode = Queue_pop(currentTurns);
+							currentNode = Queue_pop(currentRouteActions);
 							currentActionToCheckFor = Node_get_value(currentNode);
 
-							Pathfinding_check_if_waiting_for_final_action(currentTurns);
+							Pathfinding_check_if_waiting_for_final_action(currentRouteActions);
 							continue;
 						}
 						break;
 					}
 					default:
 					{
+						Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
 						break;
 					}
 					}
 				}
-				else if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
+				else if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE))
 				{
 					// Queue IS empty
 					DEBUG_ALL_ON;
 
 					FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
-					FLAG_SET(FLAGS, FLAG_ON_FINAL_STRETCH);
+					FLAG_SET(FLAGS, FLAG_MOVING_MM);
 
 					MazeDirections lastFacedDirection = Pathfinding_route_get_last_faced_direction(currentRoute);
 					uint8 finalGrids = Pathfinding_route_get_final_distance(currentRoute) - 1;
@@ -245,15 +247,15 @@ int main()
 
 					if (Queue_is_empty(routes))
 					{
-						FLAG_SET(FLAGS, FLAG_ON_LAST_STRAIGHT);
+						FLAG_SET(FLAGS, FLAG_DOING_LAST_MOVE_MM);
 					}
 					currentNode = Queue_pop(routes);
 					currentRoute = Node_get_value(currentNode);
 					Node_destroy(currentNode);
 
-					currentTurns = Pathfinding_route_get_turns(currentRoute);
+					currentRouteActions = Pathfinding_route_get_turns(currentRoute);
 
-					currentNode = Queue_pop(currentTurns);
+					currentNode = Queue_pop(currentRouteActions);
 					currentActionToCheckFor = Node_get_value(currentNode);
 					Node_destroy(currentNode);
 				}
