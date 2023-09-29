@@ -95,7 +95,7 @@ int main()
 #ifdef MOVEMENT_DEBUG_TURNS
 			DEBUG_ALL_ON;
 #endif
-			Movement_check_turn_complete();
+			Movement_check_action_complete();
 		}
 		else
 		{
@@ -200,6 +200,12 @@ int main()
 					{
 						DEBUG_ALL_OFF;
 						DEBUG_ALL_ON;
+						if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVE_INFINITELY))
+						{
+							FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
+							Movement_sync_motors(MOVEMENT_SPEED_RUN);
+							continue;
+						}
 						if (Sensor_has_turn())
 						{
 							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
@@ -230,10 +236,13 @@ int main()
 				{
 					// Queue IS empty
 					DEBUG_ALL_ON;
+
 					FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
 					FLAG_SET(FLAGS, FLAG_ON_FINAL_STRETCH);
+
 					MazeDirections lastFacedDirection = Pathfinding_route_get_last_faced_direction(currentRoute);
 					uint8 finalGrids = Pathfinding_route_get_final_distance(currentRoute) - 1;
+
 					if (Pathfinding_is_moving_horizontally(lastFacedDirection))
 					{
 						Movement_move_mm(GRID_DISTANCE_LUT_MM_X[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_X);
