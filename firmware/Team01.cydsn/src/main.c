@@ -167,7 +167,7 @@ int main()
 							currentNode = Queue_pop(currentRouteActions);
 							currentActionToCheckFor = Node_get_value(currentNode);
 
-							Pathfinding_check_if_waiting_for_final_action(currentRouteActions);
+							Pathfinding_check_if_waiting_for_final_action_in_queue(currentRouteActions);
 							continue;
 						}
 						break;
@@ -198,7 +198,7 @@ int main()
 							currentNode = Queue_pop(currentRouteActions);
 							currentActionToCheckFor = Node_get_value(currentNode);
 
-							Pathfinding_check_if_waiting_for_final_action(currentRouteActions);
+							Pathfinding_check_if_waiting_for_final_action_in_queue(currentRouteActions);
 							continue;
 						}
 						break;
@@ -215,7 +215,7 @@ int main()
 							currentNode = Queue_pop(currentRouteActions);
 							currentActionToCheckFor = Node_get_value(currentNode);
 
-							Pathfinding_check_if_waiting_for_final_action(currentRouteActions);
+							Pathfinding_check_if_waiting_for_final_action_in_queue(currentRouteActions);
 							continue;
 						}
 						break;

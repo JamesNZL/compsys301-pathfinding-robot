@@ -70,7 +70,7 @@ Queue *Pathfinding_generate_routes_to_all_food(Point *start, MazeDirections star
 	return routes;
 }
 
-void Pathfinding_check_if_waiting_for_final_action(Queue *turns)
+void Pathfinding_check_if_waiting_for_final_action_in_queue(Queue *turns)
 {
 	if (Queue_is_empty(turns) && FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE))
 	{

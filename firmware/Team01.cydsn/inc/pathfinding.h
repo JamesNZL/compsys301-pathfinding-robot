@@ -111,7 +111,11 @@ uint8_t Pathfinding_is_moving_horizontally(MazeDirections directionOfMotion);
  */
 uint8_t Pathfinding_is_moving_vertically(MazeDirections directionOfMotion);
 
-void Pathfinding_check_if_waiting_for_final_action(Queue *turns);
+/**
+ * @brief Handles logic remaining to setting and clearing the waiting for final action
+ * @param turns queue of the current turns
+ */
+void Pathfinding_check_if_waiting_for_final_action_in_queue(Queue *turns);
 
 #ifdef TESTING
 /**
