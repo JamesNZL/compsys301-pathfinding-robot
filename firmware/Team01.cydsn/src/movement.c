@@ -165,6 +165,7 @@ void Movement_skew_correct(Direction direction)
 	{
 	case DIRECTION_LEFT:
 	{
+#ifdef MOVEMENT_DIRECT_SKEW
 		// In stability - Use direct boosts at full power - Otherwise let control do most of the work
 		if (FLAG_IS_CLEARED(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT))
 		{
@@ -174,12 +175,14 @@ void Movement_skew_correct(Direction direction)
 		{
 			Movement_set_direct_skew_boosts(0, MOVEMENT_SKEW_NUMERIC_PULSES - MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS);
 		}
+#endif
 		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + Movement_skewCorrectFactor)) / 100);
 		Movement_set_M1_pulse_target(Movement_currentSpeed);
 		break;
 	}
 	case DIRECTION_RIGHT:
 	{
+#ifdef MOVEMENT_DIRECT_SKEW
 		if (FLAG_IS_CLEARED(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT))
 		{
 			Movement_set_direct_skew_boosts(MOVEMENT_SKEW_NUMERIC_PULSES, 0);
@@ -188,6 +191,7 @@ void Movement_skew_correct(Direction direction)
 		{
 			Movement_set_direct_skew_boosts(MOVEMENT_SKEW_NUMERIC_PULSES - MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS, 0);
 		}
+#endif;
 		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + Movement_skewCorrectFactor)) / 100);
 		Movement_set_M2_pulse_target(Movement_currentSpeed);
 		break;
