@@ -164,6 +164,7 @@ int main()
 			break;
 		}
 
+		case SENSOR_ACTION_CORRECT_LEFT_GENTLY:
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
 #ifdef MOVEMENT_DEBUG_SKEW
@@ -182,6 +183,7 @@ int main()
 			break;
 		}
 
+		case SENSOR_ACTION_CORRECT_RIGHT_GENTLY:
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
 #ifdef MOVEMENT_DEBUG_SKEW
@@ -281,34 +283,6 @@ int main()
 				break;
 			}
 			case SENSOR_ACTION_CORRECT_RIGHT:
-			{
-#ifdef MOVEMENT_DEBUG_SKEW
-				DEBUG_ALL_OFF;
-				DEBUG_OUTER_ON;
-				DEBUG_LEFT_OFF;
-#endif
-				Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
-				Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
-				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-				Movement_skew_correct(DIRECTION_RIGHT);
-
-				break;
-			}
-			case SENSOR_ACTION_CORRECT_LEFT_GENTLY:
-			{
-#ifdef MOVEMENT_DEBUG_SKEW
-				DEBUG_ALL_OFF;
-				DEBUG_OUTER_ON;
-				DEBUG_RIGHT_OFF;
-#endif
-				Movement_write_M1_pulse(MOVEMENT_SPEED_SLOW);
-				Movement_write_M2_pulse(MOVEMENT_SPEED_SLOW);
-				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-				Movement_skew_correct(DIRECTION_LEFT);
-
-				break;
-			}
-			case SENSOR_ACTION_CORRECT_RIGHT_GENTLY:
 			{
 #ifdef MOVEMENT_DEBUG_SKEW
 				DEBUG_ALL_OFF;
