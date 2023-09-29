@@ -191,7 +191,7 @@ void Movement_skew_correct(Direction direction)
 		{
 			Movement_set_direct_skew_boosts(MOVEMENT_SKEW_NUMERIC_PULSES - MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS, 0);
 		}
-#endif;
+#endif
 		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + Movement_skewCorrectFactor)) / 100);
 		Movement_set_M2_pulse_target(Movement_currentSpeed);
 		break;
@@ -205,12 +205,15 @@ void Movement_skew_correct(Direction direction)
 
 void Movement_set_direct_skew_boosts(uint8 left, uint8 right)
 {
+#ifdef MOVEMENT_DIRECT_SKEW
 	Movement_leftSkewBoost = left;
 	Movement_rightSkewBoost = right;
+#endif
 }
 
 void Movement_skew_stability_timeout(void)
 {
+#ifdef MOVEMENT_DIRECT_SKEW
 	if (FLAG_IS_CLEARED(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT))
 	{
 		return;
@@ -228,6 +231,7 @@ void Movement_skew_stability_timeout(void)
 		FLAG_CLEAR(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);
 		Movement_stability_counter = 0;
 	}
+#endif
 }
 
 void Movement_check_turn_complete(void)
@@ -276,9 +280,11 @@ static uint16 Movement_calculate_angle_to_pulse(uint16 angle)
 
 void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 {
+#ifdef MOVEMENT_DIRECT_SKEW
 	// SKEW VARIABLES
 	Movement_set_direct_skew_boosts(0, 0);
 	Movement_skewCorrectFactor = MOVEMENT_SKEW_CORRECTION_FACTOR;
+#endif
 
 	// Disable interrupts so decoders dont get reset to 0
 	isr_getpulse_Disable();
@@ -324,9 +330,11 @@ void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 
 void Movement_turn_right(uint16 maxAngle, bool predicate(void))
 {
+#ifdef MOVEMENT_DIRECT_SKEW
 	// SKEW VARIABLES
 	Movement_set_direct_skew_boosts(0, 0);
 	Movement_skewCorrectFactor = MOVEMENT_SKEW_CORRECTION_FACTOR;
+#endif
 
 	isr_getpulse_Disable();
 

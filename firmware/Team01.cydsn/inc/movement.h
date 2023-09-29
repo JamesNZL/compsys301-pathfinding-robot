@@ -13,7 +13,7 @@
 
 // #define MOVEMENT_TURN_WITH_SENSORS
 
-#define MOVEMENT_DIRECT_SKEW
+// #define MOVEMENT_DIRECT_SKEW
 
 /*
  * Motor Control Register
