@@ -57,7 +57,8 @@ static int16 Movement_pulsesToMove;
 static uint16 Movement_currentSpeed = MOVEMENT_SPEED_RUN;
 
 static int16 Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
-static int8 Movement_skewDamperFactor = MOVEMENT_SKEW_DAMPING_FACTOR;
+
+static int8 Movement_skewCorrectFactor = MOVEMENT_SKEW_CORRECTION_FACTOR;
 static int16 Movement_stability_counter = 0;
 static uint8 Movement_leftSkewBoost;
 static uint8 Movement_rightSkewBoost;
@@ -172,7 +173,7 @@ void Movement_skew_correct(Direction direction)
 		{
 			Movement_set_direct_skew_boosts(0, MOVEMENT_SKEW_NUMERIC_PULSES - MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS);
 		}
-		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
+		Movement_set_M2_pulse_target((Movement_currentSpeed * (100 + Movement_skewCorrectFactor)) / 100);
 		Movement_set_M1_pulse_target(Movement_currentSpeed);
 		break;
 	}
@@ -186,7 +187,7 @@ void Movement_skew_correct(Direction direction)
 		{
 			Movement_set_direct_skew_boosts(MOVEMENT_SKEW_NUMERIC_PULSES - MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS, 0);
 		}
-		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + MOVEMENT_SKEW_CORRECTION_FACTOR - Movement_skewDamperFactor)) / 100);
+		Movement_set_M1_pulse_target((Movement_currentSpeed * (100 + Movement_skewCorrectFactor)) / 100);
 		Movement_set_M2_pulse_target(Movement_currentSpeed);
 		break;
 	}
@@ -218,7 +219,7 @@ void Movement_skew_stability_timeout(void)
 
 	if (Sensor_is_any_back_on_line() && Sensor_is_any_front_on_line())
 	{
-		Movement_skewDamperFactor = MOVEMENT_SKEW_DAMPING_FACTOR;
+		Movement_skewCorrectFactor = 0;
 		FLAG_CLEAR(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);
 		Movement_stability_counter = 0;
 	}
@@ -272,7 +273,7 @@ void Movement_turn_left(uint16 maxAngle, bool predicate(void))
 {
 	// SKEW VARIABLES
 	Movement_set_direct_skew_boosts(0, 0);
-	Movement_skewDamperFactor = 0;
+	Movement_skewCorrectFactor = MOVEMENT_SKEW_CORRECTION_FACTOR;
 
 	// Disable interrupts so decoders dont get reset to 0
 	isr_getpulse_Disable();
@@ -320,7 +321,7 @@ void Movement_turn_right(uint16 maxAngle, bool predicate(void))
 {
 	// SKEW VARIABLES
 	Movement_set_direct_skew_boosts(0, 0);
-	Movement_skewDamperFactor = 0;
+	Movement_skewCorrectFactor = MOVEMENT_SKEW_CORRECTION_FACTOR;
 
 	isr_getpulse_Disable();
 
