@@ -13,7 +13,7 @@
 
 #define SENSOR_COUNT							  7
 #define SENSOR_DEFAULT_BIAS_VOLTAGE_VOLTS		  1.2f
-#define SENSOR_MINIMUM_DEBOUNCE_PERIODS			  4 // How many periods the signal has to remain at a level to be considered a valid level change
+#define SENSOR_MINIMUM_DEBOUNCE_PERIODS			  5 // How many periods the signal has to remain at a level to be considered a valid level change
 #define SENSOR_SAMPLING_PERIODS					  1 // Amount of times to sample all the sensors after a rising edge
 #define SENSOR_SAMPLING_TIMER_PERIOD			  25 // 250 us - Delay between each sensor sample on a rising edge
 #define SENSOR_RISING_EDGE_MAX_DELAY_TIMER_PERIOD 1200 // 12 ms - The maximum time allowed after a rising edge before all sensors are assumed to be off
