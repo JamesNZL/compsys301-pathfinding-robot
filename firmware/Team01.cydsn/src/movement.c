@@ -59,7 +59,7 @@ static uint16 Movement_currentSpeed = MOVEMENT_SPEED_RUN;
 static int16 Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
 
 static int8 Movement_skewCorrectFactor = MOVEMENT_SKEW_CORRECTION_FACTOR;
-static int16 Movement_stability_counter = 0;
+static int16 Movement_stabilityCounter = 0;
 static uint8 Movement_leftSkewBoost;
 static uint8 Movement_rightSkewBoost;
 
@@ -219,9 +219,9 @@ void Movement_skew_stability_timeout(void)
 		return;
 	}
 
-	if (Movement_stability_counter < MOVEMENT_SKEW_STABILITY_PULSE_TIMEOUT)
+	if (Movement_stabilityCounter < MOVEMENT_SKEW_STABILITY_PULSE_TIMEOUT)
 	{
-		Movement_stability_counter += Movement_pulsesApparentM1;
+		Movement_stabilityCounter += Movement_pulsesApparentM1;
 		return;
 	}
 
@@ -229,7 +229,7 @@ void Movement_skew_stability_timeout(void)
 	{
 		Movement_skewCorrectFactor = 0;
 		FLAG_CLEAR(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);
-		Movement_stability_counter = 0;
+		Movement_stabilityCounter = 0;
 	}
 #endif
 }
