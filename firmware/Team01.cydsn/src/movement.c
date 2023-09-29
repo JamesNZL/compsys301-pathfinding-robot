@@ -227,6 +227,7 @@ void Movement_skew_stability_timeout(void)
 
 	if (Sensor_is_any_back_on_line() && Sensor_is_any_front_on_line())
 	{
+
 		Movement_skewCorrectFactor = 0;
 		FLAG_CLEAR(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);
 		Movement_stabilityCounter = 0;

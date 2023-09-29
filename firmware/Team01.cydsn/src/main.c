@@ -172,17 +172,16 @@ int main()
 			DEBUG_OUTER_ON;
 			DEBUG_RIGHT_OFF;
 #endif
-			if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
-			{
-				// Slow down the robot if we are snaking
-				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-			}
+			// if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
+			// {
+			// 	// Slow down the robot if we are snaking
+			// 	Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+			// }
 
 			Movement_skew_correct(DIRECTION_LEFT);
 
 			break;
 		}
-
 		case SENSOR_ACTION_CORRECT_RIGHT_GENTLY:
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
@@ -191,11 +190,11 @@ int main()
 			DEBUG_OUTER_ON;
 			DEBUG_LEFT_OFF;
 #endif
-			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
-			{
-				// Slow down the robot if we are snaking
-				Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-			}
+			// if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
+			// {
+			// 	// Slow down the robot if we are snaking
+			// 	Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+			// }
 
 			Movement_skew_correct(DIRECTION_RIGHT);
 
