@@ -101,15 +101,17 @@ int main()
 		else
 		{
 #ifdef PATHFINDING
-			// on final stretch means we are moving mm
+			// if we are not moving mm
 			if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVING_MM))
 			{
+				// restart motors in case where we enter the next route in between intersections
 				if (FLAG_IS_CLEARED(FLAGS, FLAG_MOVE_INFINITELY) && FLAG_IS_CLEARED(FLAGS, FLAG_DOING_LAST_MOVE_MM))
 				{
 					FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 					Movement_sync_motors(MOVEMENT_SPEED_RUN);
 					continue;
 				}
+				// check if we have actions left to do for the current route
 				if (!Queue_is_empty(currentRouteActions) || FLAG_IS_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE))
 				{
 
@@ -225,6 +227,7 @@ int main()
 					}
 					}
 				}
+				// if the current route is empty -> we need to travel the final distance and prepare the next route
 				else if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE))
 				{
 					// Queue IS empty
