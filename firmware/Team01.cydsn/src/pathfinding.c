@@ -70,16 +70,16 @@ Queue *Pathfinding_generate_routes_to_all_food(Point *start, MazeDirections star
 	return routes;
 }
 
-void Pathfinding_check_if_is_on_final_stretch(Queue *actions)
+void Pathfinding_check_if_waiting_for_final_action_in_queue(Queue *actions)
 {
 #ifndef TESTING
-	if (Queue_is_empty(actions) && FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION))
+	if (Queue_is_empty(actions) && FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE))
 	{
-		FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
+		FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE);
 	}
 	else if (Queue_is_empty(actions))
 	{
-		FLAG_CLEAR(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION);
+		FLAG_CLEAR(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE);
 	}
 #endif
 }

@@ -99,7 +99,7 @@ void Movement_check_distance(void)
 	if (Movement_pulsesToMove <= 0)
 	{
 		Movement_sync_motors(MOVEMENT_SPEED_OFF);
-		FLAG_CLEAR(FLAGS, FLAG_ON_FINAL_STRETCH);
+		FLAG_CLEAR(FLAGS, FLAG_MOVING_MM);
 #ifdef MOVEMENT_DEBUG_SKEW
 		DEBUG_ALL_ON;
 #endif

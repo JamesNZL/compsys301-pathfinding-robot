@@ -6,7 +6,7 @@
 #ifndef PATHFINDING_H_
 #define PATHFINDING_H_
 
-#define TESTING
+// #define TESTING
 
 #include <Node/Node.h>
 #include <Point/Point.h>
@@ -14,6 +14,10 @@
 #include <Stack/Stack.h>
 #include <stdint.h>
 #include <stdlib.h>
+
+#ifndef TESTING
+#include "common.h"
+#endif
 
 #define PATHFINDING_MAZE_WIDTH			  19
 #define PATHFINDING_MAZE_HEIGHT			  15
@@ -117,7 +121,6 @@ uint8_t Pathfinding_is_moving_vertically(MazeDirections directionOfMotion);
  */
 void Pathfinding_check_if_waiting_for_final_action_in_queue(Queue *actions);
 
-#ifdef TESTING
 /**
  * @brief Creates and returns a pointer to a route data structure which has a queue containing the required actions, and the required amount of distance to be travelled after the final turn
  * @param actions a Queue of actions defined as enums
@@ -226,5 +229,4 @@ uint8_t Pathfinding_is_on_intersection(MazeDirections currentDirection, uint8_t 
  */
 uint8_t Pathfinding_calculate_point_spacing(MazeDirections currentDirection, Point *point1, Point *point2);
 
-#endif
 #endif
