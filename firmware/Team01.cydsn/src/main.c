@@ -207,16 +207,6 @@ int main()
 							currentNode = Queue_pop(currentRouteActions);
 							currentActionToCheckFor = Node_get_value(currentNode);
 
-							if (!Queue_is_empty(currentRouteActions))
-							{
-								// Node_destroy(currentNode);
-								currentNode = Queue_pop(currentRouteActions);
-								currentActionToCheckFor = Node_get_value(currentNode);
-								if (Queue_is_empty(currentRouteActions))
-								{
-									FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE);
-								}
-							}
 							Pathfinding_check_if_waiting_for_final_action_in_queue(currentRouteActions);
 							continue;
 						}
