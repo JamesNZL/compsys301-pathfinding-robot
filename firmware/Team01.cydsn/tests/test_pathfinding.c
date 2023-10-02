@@ -103,7 +103,7 @@ void run_all_routes_tests()
 {
 	printf("==============================All Route tests==============================\n");
 	Point *start = Point_create(1, 1, PATHFINDING_MAZE_WIDTH);
-	Queue *routes = Pathfinding_generate_routes_to_all_food(start, MAZE_DIRECTIONS_UP, food_list, map);
+	Queue *routes = Pathfinding_generate_routes_to_all_food(start, MAZE_DIRECTIONS_RIGHT, food_list, map);
 	int length = 0;
 	while (!Queue_is_empty(routes))
 	{

@@ -6,7 +6,7 @@
 #ifndef PATHFINDING_H_
 #define PATHFINDING_H_
 
-// #define TESTING
+#define TESTING
 
 #include <Node/Node.h>
 #include <Point/Point.h>

@@ -163,10 +163,17 @@ PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortestPath, MazeDi
 	Queue *actions = Queue_construct();
 	Point *lastIntersectionPoint = NULL;
 	uint8_t finalDistance;
+
+	Node *currentNode = Stack_peek(shortestPath);
+	Point *currentPoint = Node_get_value(currentNode);
+
+	uint8_t startX = Point_get_x(currentPoint);
+	uint8_t startY = Point_get_y(currentPoint);
+
 	while (!Stack_is_empty(shortestPath))
 	{
-		Node *currentNode = Stack_pop(shortestPath);
-		Point *currentPoint = Node_get_value(currentNode);
+		currentNode = Stack_pop(shortestPath);
+		currentPoint = Node_get_value(currentNode);
 		Node_destroy(currentNode);
 
 		uint8_t currentX = Point_get_x(currentPoint);
@@ -177,7 +184,7 @@ PathfindingRoute *Pathfinding_generate_route_to_food(Stack *shortestPath, MazeDi
 		{
 			if (lastIntersectionPoint == NULL)
 			{
-				finalDistance = 0;
+				finalDistance = Pathfinding_calculate_point_spacing(currentDirection, Point_create(startX, startY, PATHFINDING_MAZE_WIDTH), currentPoint);
 			}
 			else
 			{
