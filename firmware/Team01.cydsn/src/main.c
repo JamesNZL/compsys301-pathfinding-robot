@@ -25,6 +25,10 @@ int main()
 {
 	CYGlobalIntEnable;
 
+#ifdef TROLLING
+	// Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
+#endif
+
 	uint16 batteryVoltage = Battery_display_level();
 	sprintf(USB_buffer, "Battery Voltage: %d mV\n", batteryVoltage);
 

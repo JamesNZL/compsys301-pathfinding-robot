@@ -1,20 +1,22 @@
 #include "buzza.h"
 #include "project.h"
+#define DURATION
 
 void Buzza_play_song(BuzzaNote notes[], uint16 noteArraySize)
 { // there are two values per note (pitch and duration), so for each note there are four bytes
 // this calculates the duration of a whole note in ms
 #define BAR_DURATION 60000 * 4
 	int wholenote1 = (BAR_DURATION) / BUZZA_TEMPO;
-	int divider = 0, noteDuration = 0;
+	float divider = 0, noteDuration = 0;
 	for (int thisNote = 0; thisNote < noteArraySize; ++thisNote)
 	{
+
 		// calculates the duration of each note
 		divider = notes[thisNote].noteType;
 		if (divider > 0)
 		{
 			// regular note, just proceed
-			noteDuration = (wholenote1) / divider;
+			noteDuration = 26 * divider;
 		}
 		else if (divider < 0)
 		{
@@ -23,7 +25,7 @@ void Buzza_play_song(BuzzaNote notes[], uint16 noteArraySize)
 			noteDuration *= 1.5; // increases the duration in half for dotted notes
 		}
 		// we only play the note for 90% of the duration, leaving 10% as a pause
-		Buzza_play_tone(notes[thisNote].noteFrequency, noteDuration * 0.9);
+		Buzza_play_tone(notes[thisNote].noteFrequency, noteDuration);
 		// Wait for the specief duration before playing the next note.
 		CyDelay(noteDuration);
 		// stop the waveform generation before the next note.
