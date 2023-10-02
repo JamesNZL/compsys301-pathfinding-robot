@@ -69,9 +69,9 @@ static uint8_t PATHFINDING_FOOD_LIST[PATHFINDING_TOTAL_FOOD_LOCATIONS][2]
 	= {
 		  { 5, 3 },
 		  { 1, 1 },
-		  { 1, 4 },
+		  { 4, 1 },
 		  { 1, 1 },
-		  { 1, 4 },
+		  { 4, 1 },
 	  };
 
 typedef struct PathfindingRoute PathfindingRoute;
