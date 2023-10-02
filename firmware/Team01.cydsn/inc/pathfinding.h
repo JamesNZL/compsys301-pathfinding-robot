@@ -67,11 +67,11 @@ static uint8_t PATHFINDING_MAZE[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]
 
 static uint8_t PATHFINDING_FOOD_LIST[PATHFINDING_TOTAL_FOOD_LOCATIONS][2]
 	= {
-		  { 1, 9 },
-		  { 5, 5 },
-		  { 7, 1 },
-		  { 13, 5 },
-		  { 9, 9 },
+		  { 5, 3 },
+		  { 1, 1 },
+		  { 1, 4 },
+		  { 1, 1 },
+		  { 1, 4 },
 	  };
 
 typedef struct PathfindingRoute PathfindingRoute;
