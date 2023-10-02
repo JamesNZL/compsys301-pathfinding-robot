@@ -6,7 +6,7 @@
 #ifndef PATHFINDING_H_
 #define PATHFINDING_H_
 
-#define TESTING
+// #define TESTING
 
 #include <Node/Node.h>
 #include <Point/Point.h>
@@ -67,7 +67,7 @@ static uint8_t PATHFINDING_MAZE[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]
 
 static uint8_t PATHFINDING_FOOD_LIST[PATHFINDING_TOTAL_FOOD_LOCATIONS][2]
 	= {
-		  { 5, 3 },
+		  { 4, 1 },
 		  { 1, 1 },
 		  { 4, 1 },
 		  { 1, 1 },

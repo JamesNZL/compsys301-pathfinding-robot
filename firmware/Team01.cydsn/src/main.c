@@ -278,6 +278,11 @@ int main()
 
 					currentRouteActions = Pathfinding_route_get_actions(currentRoute);
 
+					if (Queue_is_empty(currentRouteActions))
+					{
+						continue;
+					}
+
 					currentNode = Queue_pop(currentRouteActions);
 					currentActionToCheckFor = Node_get_value(currentNode);
 					Pathfinding_check_if_waiting_for_final_action_in_queue(currentRouteActions);
