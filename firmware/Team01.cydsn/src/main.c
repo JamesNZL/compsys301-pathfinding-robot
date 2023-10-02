@@ -270,8 +270,8 @@ int main()
 					if (Queue_is_empty(routes))
 					{
 						FLAG_SET(FLAGS, FLAG_DOING_LAST_MOVE_MM);
+						continue;
 					}
-
 					currentNode = Queue_pop(routes);
 					currentRoute = Node_get_value(currentNode);
 					// Node_destroy(currentNode);
