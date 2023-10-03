@@ -54,12 +54,10 @@ int main()
 		// Node_destroy(currentNode);
 		currentNode = Queue_pop(currentRouteActions);
 		currentActionToCheckFor = Node_get_value(currentNode);
-		Pathfinding_check_if_waiting_for_final_action_in_queue(currentRouteActions);
-	}
-	else
-	{
-		// No action means that there is no pulse refractory period
-		FLAG_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED);
+		if (Queue_is_empty(currentRouteActions))
+		{
+			FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE);
+		}
 	}
 
 #endif
@@ -125,7 +123,6 @@ int main()
 				if (!Queue_is_empty(currentRouteActions) || FLAG_IS_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE))
 				{
 
-					FLAG_CLEAR(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED);
 					switch (*currentActionToCheckFor)
 					{
 					case ACTIONS_AROUND:
@@ -137,13 +134,20 @@ int main()
 #ifdef TROLLING
 						Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
 #endif
-						CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
+						FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
+						FLAG_SET(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);
+
+						Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+						Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+						Movement_sync_motors(MOVEMENT_SPEED_OFF);
+
 						Movement_turn_left(180, Sensor_is_any_front_on_line);
+						CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
 
 						Movement_sync_motors(MOVEMENT_SPEED_SLOW);
 						Movement_skew_correct(DIRECTION_LEFT);
-
 						previousAction = SENSOR_ACTION_CORRECT_LEFT;
+
 						FLAG_SET(FLAGS, FLAG_MOVE_INFINITELY);
 
 						Node_destroy(currentNode);
@@ -253,25 +257,11 @@ int main()
 
 					if (Pathfinding_is_moving_horizontally(lastFacedDirection))
 					{
-						if (FLAG_IS_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED))
-						{
-							Movement_move_mm(GRID_DISTANCE_LUT_MM_X[finalGrids]);
-						}
-						else
-						{
-							Movement_move_mm(GRID_DISTANCE_LUT_MM_X[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_X);
-						}
+						Movement_move_mm(GRID_DISTANCE_LUT_MM_X[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_X);
 					}
 					else if (Pathfinding_is_moving_vertically(lastFacedDirection))
 					{
-						if (FLAG_IS_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED))
-						{
-							Movement_move_mm(GRID_DISTANCE_LUT_MM_Y[finalGrids]);
-						}
-						else
-						{
-							Movement_move_mm(GRID_DISTANCE_LUT_MM_Y[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_Y);
-						}
+						Movement_move_mm(GRID_DISTANCE_LUT_MM_Y[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_Y);
 					}
 
 					if (Queue_is_empty(routes))
@@ -293,7 +283,6 @@ int main()
 					currentNode = Queue_pop(currentRouteActions);
 					currentActionToCheckFor = Node_get_value(currentNode);
 					Pathfinding_check_if_waiting_for_final_action_in_queue(currentRouteActions);
-					FLAG_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED);
 				}
 			}
 #else
