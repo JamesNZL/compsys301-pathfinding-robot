@@ -60,6 +60,10 @@ int main()
 			FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE);
 		}
 	}
+	else
+	{
+		FLAG_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED);
+	}
 
 #endif
 
@@ -123,7 +127,10 @@ int main()
 				// check if we have actions left to do for the current route
 				if (!Queue_is_empty(currentRouteActions) || FLAG_IS_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE))
 				{
-
+					if (FLAG_IS_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED))
+					{
+						FLAG_CLEAR(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED);
+					}
 					switch (*currentActionToCheckFor)
 					{
 					case ACTIONS_AROUND:
@@ -258,11 +265,25 @@ int main()
 
 					if (Pathfinding_is_moving_horizontally(lastFacedDirection))
 					{
-						Movement_move_mm(GRID_DISTANCE_LUT_MM_X[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_X);
+						if (FLAG_IS_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED))
+						{
+							Movement_move_mm(GRID_DISTANCE_LUT_MM_X[finalGrids]);
+						}
+						else
+						{
+							Movement_move_mm(GRID_DISTANCE_LUT_MM_X[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_X);
+						}
 					}
 					else if (Pathfinding_is_moving_vertically(lastFacedDirection))
 					{
-						Movement_move_mm(GRID_DISTANCE_LUT_MM_Y[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_Y);
+						if (FLAG_IS_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED))
+						{
+							Movement_move_mm(GRID_DISTANCE_LUT_MM_Y[finalGrids]);
+						}
+						else
+						{
+							Movement_move_mm(GRID_DISTANCE_LUT_MM_Y[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_Y);
+						}
 					}
 
 					if (Queue_is_empty(routes))
@@ -278,6 +299,7 @@ int main()
 
 					if (Queue_is_empty(currentRouteActions))
 					{
+						FLAG_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED);
 						continue;
 					}
 
