@@ -26,7 +26,7 @@ int main()
 	CYGlobalIntEnable;
 
 #ifdef TROLLING
-	// Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
+	Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
 #endif
 
 	uint16 batteryVoltage = Battery_display_level();
