@@ -3,7 +3,6 @@
 #include "commands.h"
 #include "common.h"
 #include "handlers.h"
-#include "map.h"
 #include "map2.h"
 #include "movement.h"
 #include "pathfinding.h"

@@ -56,7 +56,7 @@
 /** @brief Percentage of the current speed by which to correct skew. */
 #define MOVEMENT_SKEW_CORRECTION_FACTOR		  20
 #define MOVEMENT_SKEW_NUMERIC_PULSES		  9
-#define MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS 5
+#define MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS 4
 #define MOVEMENT_SKEW_STABILITY_PULSE_TIMEOUT 280
 
 /* Turns */
