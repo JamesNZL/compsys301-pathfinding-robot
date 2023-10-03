@@ -7,7 +7,7 @@
 #include "pathfinding.h"
 #include "sensor.h"
 #include "usb.h"
-#include "map.h"
+#include "map2.h"
 
 #include <Point/Point.h>
 
