@@ -19,6 +19,8 @@
 #include "common.h"
 #endif
 
+#define PATHFINDING_MAZE_WIDTH			  19
+#define PATHFINDING_MAZE_HEIGHT			  15
 #define PATHFINDING_STARTING_INDEX		  0
 #define PATHFINDING_POSSIBLE_DIRECTIONS	  4
 #define PATHFINDING_TOTAL_FOOD_LOCATIONS  5
@@ -27,6 +29,10 @@
 #define PATHFINDING_Y_GRID_SCALE_MM		  80
 #define PATHFINDING_OVERSHOOT_REDUCTION_X 80
 #define PATHFINDING_OVERSHOOT_REDUCTION_Y 70
+
+#define PATHFINDING_START_X				  1
+#define PATHFINDING_START_Y				  1
+#define PATHFINDING_STARTING_DIRECTION	  MAZE_DIRECTIONS_RIGHT
 
 /* For usage with Movement_move_mm */
 
@@ -39,34 +45,6 @@ static const uint16_t GRID_DISTANCE_LUT_MM_X[PATHFINDING_MAZE_WIDTH] = {
 static const uint16_t GRID_DISTANCE_LUT_MM_Y[PATHFINDING_MAZE_WIDTH] = {
 	0, 80, 160, 240, 320, 400, 480, 560, 640, 720, 800, 880, 960, 1040, 1120, 1200, 1280, 1360, 1440
 };
-
-static uint8_t PATHFINDING_MAZE[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]
-	= {
-		  { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-		  { 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-		  { 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1 },
-		  { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1 },
-		  { 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1 },
-		  { 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1 },
-		  { 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1 },
-		  { 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1 },
-		  { 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1 },
-		  { 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1 },
-		  { 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1 },
-		  { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1 },
-		  { 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1 },
-		  { 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-		  { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-	  };
-
-static uint8_t PATHFINDING_FOOD_LIST[PATHFINDING_TOTAL_FOOD_LOCATIONS][2]
-	= {
-		  { 1, 9 },
-		  { 5, 5 },
-		  { 7, 1 },
-		  { 13, 5 },
-		  { 9, 9 }
-	  };
 
 typedef struct PathfindingRoute PathfindingRoute;
 
