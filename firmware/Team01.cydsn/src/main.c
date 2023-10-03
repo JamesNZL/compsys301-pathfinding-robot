@@ -54,10 +54,12 @@ int main()
 		// Node_destroy(currentNode);
 		currentNode = Queue_pop(currentRouteActions);
 		currentActionToCheckFor = Node_get_value(currentNode);
-		if (Queue_is_empty(currentRouteActions))
-		{
-			FLAG_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE);
-		}
+		Pathfinding_check_if_waiting_for_final_action_in_queue(currentRouteActions);
+	}
+	else
+	{
+		// No action means that there is no pulse refractory period
+		FLAG_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED);
 	}
 
 #endif
@@ -123,6 +125,7 @@ int main()
 				if (!Queue_is_empty(currentRouteActions) || FLAG_IS_SET(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE))
 				{
 
+					FLAG_CLEAR(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED);
 					switch (*currentActionToCheckFor)
 					{
 					case ACTIONS_AROUND:
@@ -250,11 +253,25 @@ int main()
 
 					if (Pathfinding_is_moving_horizontally(lastFacedDirection))
 					{
-						Movement_move_mm(GRID_DISTANCE_LUT_MM_X[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_X);
+						if (FLAG_IS_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED))
+						{
+							Movement_move_mm(GRID_DISTANCE_LUT_MM_X[finalGrids]);
+						}
+						else
+						{
+							Movement_move_mm(GRID_DISTANCE_LUT_MM_X[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_X);
+						}
 					}
 					else if (Pathfinding_is_moving_vertically(lastFacedDirection))
 					{
-						Movement_move_mm(GRID_DISTANCE_LUT_MM_Y[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_Y);
+						if (FLAG_IS_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED))
+						{
+							Movement_move_mm(GRID_DISTANCE_LUT_MM_Y[finalGrids]);
+						}
+						else
+						{
+							Movement_move_mm(GRID_DISTANCE_LUT_MM_Y[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_Y);
+						}
 					}
 
 					if (Queue_is_empty(routes))
@@ -276,6 +293,7 @@ int main()
 					currentNode = Queue_pop(currentRouteActions);
 					currentActionToCheckFor = Node_get_value(currentNode);
 					Pathfinding_check_if_waiting_for_final_action_in_queue(currentRouteActions);
+					FLAG_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED);
 				}
 			}
 #else
