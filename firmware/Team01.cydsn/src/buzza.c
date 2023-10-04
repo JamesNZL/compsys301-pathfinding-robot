@@ -56,13 +56,8 @@ void Buzza_play_pwm(int16 pwmValues[], uint16 sampleRate)
 	float duration = 1 / sampleRate;
 	uint16 sample;
 
-	if (sample >= sizeof(pwmValues) / sizeof(pwmValues[0]))
-	{
-		return;
-	}
-	else
+	for (sample; sample < sizeof(pwmValues) / sizeof(pwmValues[0]); ++sample)
 	{
 		Buzza_play_tone(pwmValues[sample], duration);
 	}
-	sample++;
 }
