@@ -53,11 +53,13 @@ void Buzza_play_tone(int16 frequency, float duration)
 
 void Buzza_play_pwm(int16 pwmValues[], uint16 sampleRate)
 {
+	// Take new sample every sampleRate Hz,
 	float duration = 1 / sampleRate;
 	uint16 sample;
 
 	for (sample; sample < sizeof(pwmValues) / sizeof(pwmValues[0]); ++sample)
 	{
 		Buzza_play_tone(pwmValues[sample], duration);
+		// CyDelayUs(duration);
 	}
 }
