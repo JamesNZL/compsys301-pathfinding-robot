@@ -2,8 +2,22 @@
 #include "project.h"
 #define DURATION
 
+volatile uint16 sample;
+
+static int16 *BUZZA_PWM_SONG;
+static uint16 buzzaPwmSongSize;
+
 CY_ISR(BUZZA_CAPTURE_SAMPLE)
 {
+	if (sample >= buzzaPwmSongSize)
+	{
+		Timer_song_sampler_Stop();
+		isr_capture_sample_Stop();
+	}
+	else
+	{
+		Buzza
+	}
 }
 
 void Buzza_play_song(BuzzaNote notes[], uint16 noteArraySize)
@@ -55,9 +69,14 @@ void Buzza_play_tone(int16 frequency, float duration)
 	Buzzer_Write(0);
 }
 
-void Buzza_play_pwm(int16 pwmValues[], uint16 sampleRate)
+void Buzza_play_pwm(int16 pwmValues[], uint16 pwmValuesSize, uint16 sampleRate)
 {
-
+	sample = 0;
+	buzzaPwmSongSize = pwmValuesSize;
+	BUZZA_PWM_SONG = pwmValues;
+	Timer_song_sampler_Start();
+	Timer_song_sampler_WritePeriod(sampleRate / 64);
+	isr_capture_sample_StartEx(BUZZA_CAPTURE_SAMPLE);
 	// // Take new sample every sampleRate Hz,
 	// float duration = 1 / sampleRate;
 	// uint16 sample;
