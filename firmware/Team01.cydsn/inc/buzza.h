@@ -2277,6 +2277,7 @@ void Buzza_play_tone(int16 frequency, float duration);
 /**
  * @brief Plays a pwm song at a specified sampling frequency
  * @param pwmValues the frequencies to play
+ * @param pwmValuesSize the size of the sample array
  * @param sampleRate the sampling rate of the PWM file
  */
 void Buzza_play_pwm(int16 pwmValues[], uint16 pwmValuesSize, uint16 sampleRate);
