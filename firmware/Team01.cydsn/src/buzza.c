@@ -16,8 +16,9 @@ CY_ISR(BUZZA_CAPTURE_SAMPLE)
 	}
 	else
 	{
-		Buzza
+		PWM_Play_Buzzer_WriteCompare(BUZZA_PWM_SONG[sample]);
 	}
+	sample++;
 }
 
 void Buzza_play_song(BuzzaNote notes[], uint16 noteArraySize)
