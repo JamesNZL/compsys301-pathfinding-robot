@@ -2,6 +2,10 @@
 #include "project.h"
 #define DURATION
 
+CY_ISR(BUZZA_CAPTURE_SAMPLE)
+{
+}
+
 void Buzza_play_song(BuzzaNote notes[], uint16 noteArraySize)
 { // there are two values per note (pitch and duration), so for each note there are four bytes
 // this calculates the duration of a whole note in ms
@@ -53,13 +57,14 @@ void Buzza_play_tone(int16 frequency, float duration)
 
 void Buzza_play_pwm(int16 pwmValues[], uint16 sampleRate)
 {
-	// Take new sample every sampleRate Hz,
-	float duration = 1 / sampleRate;
-	uint16 sample;
 
-	for (sample; sample < sizeof(pwmValues) / sizeof(pwmValues[0]); ++sample)
-	{
-		Buzza_play_tone(pwmValues[sample], duration);
-		// CyDelayUs(duration);
-	}
+	// // Take new sample every sampleRate Hz,
+	// float duration = 1 / sampleRate;
+	// uint16 sample;
+
+	// for (sample; sample < sizeof(pwmValues) / sizeof(pwmValues[0]); ++sample)
+	// {
+	// 	Buzza_play_tone(pwmValues[sample], duration);
+	// 	// CyDelayUs(duration);
+	// }
 }
