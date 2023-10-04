@@ -50,3 +50,19 @@ void Buzza_play_tone(int16 frequency, float duration)
 	// Make sure off after tone is played
 	Buzzer_Write(0);
 }
+
+void Buzza_play_pwm(int16 pwmValues[], uint16 sampleRate)
+{
+	float duration = 1 / sampleRate;
+	uint16 sample;
+
+	if (sample >= sizeof(pwmValues) / sizeof(pwmValues[0]))
+	{
+		return;
+	}
+	else
+	{
+		Buzza_play_tone(pwmValues[sample], duration);
+	}
+	sample++;
+}
