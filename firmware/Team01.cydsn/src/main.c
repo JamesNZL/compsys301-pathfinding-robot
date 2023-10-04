@@ -18,7 +18,7 @@
 
 // #define FIXED_DISTANCE
 #define PATHFINDING
-// #define TROLLING
+#define TROLLING
 
 volatile uint16 FLAGS = 0x00;
 

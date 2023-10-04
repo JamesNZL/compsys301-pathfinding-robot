@@ -2279,6 +2279,6 @@ void Buzza_play_tone(int16 frequency, float duration);
  * @param pwmValues the frequencies to play
  * @param sampleRate the sampling rate of the PWM file
  */
-void Buzza_play_pwm(int16 pwmValues[], uint16 sampleRate);
+void Buzza_play_pwm(int16 pwmValues[], uint16 pwmValuesSize, uint16 sampleRate);
 
 #endif
