@@ -101,6 +101,9 @@
 #define BUZZA_US_IN_S						  1000000
 #define BUZZA_US_IN_MS						  1000
 
+#define BUZZA_USE_BLOCKING_MODE				  Sfx_Mode_Write(1)
+#define BUZZA_USE_PWM_MODE					  Sfx_Mode_Write(0)
+
 #define BUZZA_FIND_NOTE_ARRAY_SIZE(arrayName) sizeof(arrayName) / sizeof(arrayName[0])
 #define BUZZA_SONG(songName)				  songName, BUZZA_FIND_NOTE_ARRAY_SIZE(songName)
 
