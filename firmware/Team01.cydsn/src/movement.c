@@ -102,8 +102,8 @@ void Movement_check_distance(void)
 #ifdef MOVEMENT_DEBUG_SKEW
 		DEBUG_ALL_ON;
 #endif
-		FLAG_CLEAR(FLAGS,FLAG_MOVING_MM);
-		//MOVEMENT_DISABLE;
+		FLAG_CLEAR(FLAGS, FLAG_MOVING_MM);
+		// MOVEMENT_DISABLE;
 	}
 }
 
