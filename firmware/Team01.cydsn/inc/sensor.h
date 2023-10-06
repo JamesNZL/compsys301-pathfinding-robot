@@ -235,6 +235,9 @@ bool Sensor_is_on_all_turn_intersection(void);
  */
 bool Sensor_is_middle_on_line(void);
 
+bool Sensor_has_right_turn(void);
+bool Sensor_has_left_turn(void);
+bool Sensor_has_turn(void);
 /**
  * @return true if either front sensor is on the line
  */
