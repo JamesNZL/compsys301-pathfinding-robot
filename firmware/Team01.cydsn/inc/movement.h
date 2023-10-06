@@ -8,12 +8,12 @@
 /*
  * Debugging
  */
-// #define MOVEMENT_DEBUG_SKEW
-//  #define MOVEMENT_DEBUG_TURNS
+#define MOVEMENT_DEBUG_SKEW
+// #define MOVEMENT_DEBUG_TURNS
 
 // #define MOVEMENT_TURN_WITH_SENSORS
 
-#define MOVEMENT_DIRECT_SKEW
+// #define MOVEMENT_PID_SKEW
 
 /*
  * Motor Control Register
@@ -42,21 +42,19 @@
  * Calibrations
  */
 
-/* Distance */
-#define MOVEMENT_MM_PULSE_CORRECTION 15
-
 /* Speeds */
 #define MOVEMENT_SPEED_OFF	 0
-#define MOVEMENT_SPEED_BRAKE 115 // ! no lower than 115
-#define MOVEMENT_SPEED_SLOW	 120 // ! no lower than 115
+#define MOVEMENT_SPEED_BRAKE 110 // ! no lower than 110
+#define MOVEMENT_SPEED_SLOW	 120 // ! no lower than 110
 #define MOVEMENT_SPEED_RUN	 180 // ! no lower than 130, no more than 240, 160 & 180 are KNOWN GOOD
 #define MOVEMENT_SPEED_TURN	 130
 
 /* Skew */
 /** @brief Percentage of the current speed by which to correct skew. */
 #define MOVEMENT_SKEW_CORRECTION_FACTOR		  20
+#define MOVEMENT_SKEW_DAMPING_FACTOR		  10
 #define MOVEMENT_SKEW_NUMERIC_PULSES		  9
-#define MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS 4
+#define MOVEMENT_SKEW_NUMERIC_PULSES_SUPPRESS 5
 #define MOVEMENT_SKEW_STABILITY_PULSE_TIMEOUT 280
 
 /* Turns */
@@ -126,11 +124,6 @@ void Movement_next_control_cycle(void);
 void Movement_sync_motors(uint16 speed);
 
 /**
- * @brief disables motors (to be used BEFORE a turn)
- */
-void Movement_prepare_for_action();
-
-/**
  * @brief Corrects the skew of the robot
  *
  * @param direction the direction to turn faster in to correct a skew
@@ -140,13 +133,13 @@ void Movement_skew_correct(Direction direction);
 /**
  * @brief Sets the variables leftSkewBoost and rightSkewBoost, which are used by Movement_write_M1_pulse
  *
- * @param left the numeric duty increase to directly write to PWM1
- * @param right the numeric duty increase to directly write to PWM2
+ * @param left the numeric pulse increase to directly write to PWM1
+ * @param right the numeric pulse increase to directly write to PWM2
  */
 void Movement_set_direct_skew_boosts(uint8 left, uint8 right);
 
 /**
- * @brief Copy of below - Waits until a specific encoder timeout before suppressing skew correction
+ * @brief Copy of below - Waits until a specific turn timeout before suppressing skew correction
  */
 void Movement_skew_stability_timeout(void);
 
@@ -158,14 +151,14 @@ void Movement_check_action_complete(void);
  * @brief Turns the robot left (on the spot) by angle degrees
  *
  * @param maxAngle The maximum angle (in degrees) to turn left from the current position before aborting the predicate
- * @param predicate A predicate to test as the robot actions, halting once satisfied
+ * @param predicate A predicate to test as the robot turns, halting once satisfied
  */
 void Movement_turn_left(uint16 maxAngle, bool predicate(void));
 /**
  * @brief Turns the robot right (on the spot) by angle degrees
  *
  * @param maxAngle The maximum angle (in degrees) to turn right from the current position before aborting the predicate
- * @param predicate A predicate to test as the robot actions, halting once satisfied
+ * @param predicate A predicate to test as the robot turns, halting once satisfied
  */
 void Movement_turn_right(uint16 maxAngle, bool predicate(void));
 

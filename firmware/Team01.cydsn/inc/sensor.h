@@ -12,8 +12,8 @@
 #define SENSOR_HARDWARE_MODE					  0
 
 #define SENSOR_COUNT							  7
-#define SENSOR_DEFAULT_BIAS_VOLTAGE_VOLTS		  1.2f
-#define SENSOR_MINIMUM_DEBOUNCE_PERIODS			  5 // How many periods the signal has to remain at a level to be considered a valid level change
+#define SENSOR_DEFAULT_BIAS_VOLTAGE_VOLTS		  0.5f
+#define SENSOR_MINIMUM_DEBOUNCE_PERIODS			  4 // How many periods the signal has to remain at a level to be considered a valid level change
 #define SENSOR_SAMPLING_PERIODS					  1 // Amount of times to sample all the sensors after a rising edge
 #define SENSOR_SAMPLING_TIMER_PERIOD			  25 // 250 us - Delay between each sensor sample on a rising edge
 #define SENSOR_RISING_EDGE_MAX_DELAY_TIMER_PERIOD 1200 // 12 ms - The maximum time allowed after a rising edge before all sensors are assumed to be off
@@ -42,8 +42,6 @@ typedef enum SensorActions
 	SENSOR_ACTION_ANTICIPATE_TURN,
 	SENSOR_ACTION_CORRECT_LEFT,
 	SENSOR_ACTION_CORRECT_RIGHT,
-	SENSOR_ACTION_CORRECT_LEFT_GENTLY,
-	SENSOR_ACTION_CORRECT_RIGHT_GENTLY,
 	SENSOR_ACTION_CONTINUE_PREVIOUS,
 	SENSOR_ACTION_TURN_ABOUT,
 	SENSOR_ACTION_DETERMINE_SKEW_OR_TURN_ABOUT,
@@ -56,22 +54,22 @@ static const SensorActions SENSOR_ACTION_LUT[128] = {
 	SENSOR_ACTION_CONTINUE_FORWARD,
 	SENSOR_ACTION_CONTINUE_FORWARD,
 	SENSOR_ACTION_CONTINUE_FORWARD,
-	SENSOR_ACTION_CORRECT_LEFT_GENTLY,
-	SENSOR_ACTION_CORRECT_LEFT_GENTLY,
-	SENSOR_ACTION_CORRECT_LEFT_GENTLY,
-	SENSOR_ACTION_CORRECT_LEFT_GENTLY,
-	SENSOR_ACTION_CORRECT_RIGHT_GENTLY,
-	SENSOR_ACTION_CORRECT_RIGHT_GENTLY,
-	SENSOR_ACTION_CORRECT_RIGHT_GENTLY,
-	SENSOR_ACTION_CORRECT_RIGHT_GENTLY,
 	SENSOR_ACTION_CONTINUE_FORWARD,
 	SENSOR_ACTION_CONTINUE_FORWARD,
 	SENSOR_ACTION_CONTINUE_FORWARD,
 	SENSOR_ACTION_CONTINUE_FORWARD,
-	SENSOR_ACTION_CORRECT_LEFT_GENTLY,
-	SENSOR_ACTION_CORRECT_LEFT_GENTLY,
-	SENSOR_ACTION_CORRECT_LEFT_GENTLY,
-	SENSOR_ACTION_CORRECT_LEFT_GENTLY,
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CONTINUE_FORWARD,
 	SENSOR_ACTION_CORRECT_LEFT,
 	SENSOR_ACTION_CORRECT_LEFT,
 	SENSOR_ACTION_CORRECT_LEFT,
@@ -84,10 +82,10 @@ static const SensorActions SENSOR_ACTION_LUT[128] = {
 	SENSOR_ACTION_CORRECT_LEFT,
 	SENSOR_ACTION_CORRECT_LEFT,
 	SENSOR_ACTION_CORRECT_LEFT,
-	SENSOR_ACTION_CORRECT_RIGHT_GENTLY,
-	SENSOR_ACTION_CORRECT_RIGHT_GENTLY,
-	SENSOR_ACTION_CORRECT_RIGHT_GENTLY,
-	SENSOR_ACTION_CORRECT_RIGHT_GENTLY,
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CONTINUE_FORWARD,
+	SENSOR_ACTION_CONTINUE_FORWARD,
 	SENSOR_ACTION_CORRECT_RIGHT,
 	SENSOR_ACTION_CORRECT_RIGHT,
 	SENSOR_ACTION_CORRECT_RIGHT,
@@ -233,40 +231,25 @@ bool Sensor_is_on_left_turn_intersection(void);
 bool Sensor_is_on_all_turn_intersection(void);
 
 /**
- * @return true if there is a left OR right turn currently avialable
- */
-bool Sensor_has_turn(void);
-
-/**
- * @return true if the robot can turn right
- */
-bool Sensor_has_right_turn(void);
-
-/**
- * @return true if the robot can turn left
- */
-bool Sensor_has_left_turn(void);
-
-/**
  * @return true if the middle sensor is on the line
  */
 bool Sensor_is_middle_on_line(void);
 
+bool Sensor_has_right_turn(void);
+bool Sensor_has_left_turn(void);
+bool Sensor_has_turn(void);
 /**
  * @return true if either front sensor is on the line
  */
 bool Sensor_is_any_front_on_line(void);
-
 /**
  * @return true if both front sensors are on the line
  */
 bool Sensor_is_both_front_on_line(void);
-
 /**
  * @return true if either back sensor is on the line
  */
 bool Sensor_is_any_back_on_line(void);
-
 /**
  * @return true if all skew sensors are on line
  */

@@ -135,10 +135,11 @@ int main()
 					{
 					case ACTIONS_AROUND:
 					{
+#ifdef DEBUG_PATHFINDING
 						DEBUG_ALL_OFF;
+#endif
 
 						FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
-						Movement_prepare_for_action();
 #ifdef TROLLING
 						Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
 #endif
@@ -167,16 +168,23 @@ int main()
 					}
 					case ACTIONS_LEFT:
 					{
+#ifdef DEBUG_PATHFINDING
 						DEBUG_ALL_OFF;
 						DEBUG_LEFT_ON;
+#endif
 						if (Sensor_has_left_turn())
 						{
-							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
-							Movement_prepare_for_action();
-
-#ifdef TROLLING
-							Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
+#ifdef MOVEMENT_DEBUG_SKEW
+							DEBUG_ALL_OFF;
+							DEBUG_LEFT_ON;
 #endif
+							FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
+							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
+							FLAG_SET(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);
+
+							Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+							Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+							Movement_sync_motors(MOVEMENT_SPEED_OFF);
 
 							Movement_turn_left(90, Sensor_is_any_front_on_line);
 							CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
@@ -198,17 +206,25 @@ int main()
 					}
 					case ACTIONS_RIGHT:
 					{
+#ifdef DEBUG_PATHFINDING
 						DEBUG_ALL_OFF;
 						DEBUG_RIGHT_ON;
+#endif
 						if (Sensor_has_right_turn())
 						{
 
-							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
-							Movement_prepare_for_action();
-
-#ifdef TROLLING
-							Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
+#ifdef MOVEMENT_DEBUG_SKEW
+							DEBUG_ALL_OFF;
+							DEBUG_RIGHT_ON;
 #endif
+							FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
+							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
+							FLAG_SET(FLAGS, FLAG_TOGGLE_TURN_TIMEOUT);
+
+							Movement_write_M1_pulse(MOVEMENT_SPEED_OFF);
+							Movement_write_M2_pulse(MOVEMENT_SPEED_OFF);
+							Movement_sync_motors(MOVEMENT_SPEED_OFF);
+
 							Movement_turn_right(90, Sensor_is_any_front_on_line);
 							CyDelay(MOVEMENT_TURNS_STATIC_PERIOD);
 
@@ -229,8 +245,10 @@ int main()
 					}
 					case ACTIONS_SKIP:
 					{
+#ifdef DEBUG_PATHFINDING
 						DEBUG_ALL_OFF;
 						DEBUG_ALL_ON;
+#endif
 						if (Sensor_has_turn())
 						{
 							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
@@ -246,7 +264,6 @@ int main()
 					}
 					default:
 					{
-						Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
 						break;
 					}
 					}
@@ -254,8 +271,11 @@ int main()
 				// if the current route is empty -> we need to travel the final distance and prepare the next route
 				else if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE))
 				{
+
+#ifdef DEBUG_PATHFINDING
 					// Queue IS empty
 					DEBUG_ALL_ON;
+#endif
 
 					FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
 					FLAG_SET(FLAGS, FLAG_MOVING_MM);
@@ -406,7 +426,6 @@ int main()
 			break;
 		}
 
-		case SENSOR_ACTION_CORRECT_LEFT_GENTLY:
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
 #ifdef MOVEMENT_DEBUG_SKEW
@@ -414,17 +433,16 @@ int main()
 			DEBUG_OUTER_ON;
 			DEBUG_RIGHT_OFF;
 #endif
-			// if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
-			// {
-			// 	// Slow down the robot if we are snaking
-			// 	Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-			// }
+			if (previousAction == SENSOR_ACTION_CORRECT_RIGHT)
+			{
+				// Slow down the robot if we are snaking
+				//	Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+			}
 
 			Movement_skew_correct(DIRECTION_LEFT);
 
 			break;
 		}
-		case SENSOR_ACTION_CORRECT_RIGHT_GENTLY:
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
 #ifdef MOVEMENT_DEBUG_SKEW
@@ -432,11 +450,11 @@ int main()
 			DEBUG_OUTER_ON;
 			DEBUG_LEFT_OFF;
 #endif
-			// if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
-			// {
-			// 	// Slow down the robot if we are snaking
-			// 	Movement_sync_motors(MOVEMENT_SPEED_SLOW);
-			// }
+			if (previousAction == SENSOR_ACTION_CORRECT_LEFT)
+			{
+				// Slow down the robot if we are snaking
+				// Movement_sync_motors(MOVEMENT_SPEED_SLOW);
+			}
 
 			Movement_skew_correct(DIRECTION_RIGHT);
 
