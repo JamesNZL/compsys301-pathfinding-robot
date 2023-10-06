@@ -18,7 +18,7 @@
 
 // #define FIXED_DISTANCE
 #define PATHFINDING
-//#define TROLLING
+// #define TROLLING
 
 volatile uint16 FLAGS = 0x00;
 
@@ -28,7 +28,7 @@ int main()
 
 	PWM_Play_Buzzer_Start();
 	BUZZA_USE_PWM_MODE;
-	Buzza_play_pwm(BUZZA_SONG(BUZZA_SONG_TO_PLAY),0);
+	Buzza_play_pwm(BUZZA_SONG(BUZZA_SONG_TO_PLAY), 0);
 #ifdef TROLLING
 	Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
 #endif
