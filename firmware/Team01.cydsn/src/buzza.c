@@ -4,11 +4,12 @@
 
 volatile uint16 sample;
 
-static int16 *BUZZA_PWM_SONG;
+static BuzzaNote *BUZZA_PWM_SONG;
 static uint16 buzzaPwmSongSize;
 
 CY_ISR(BUZZA_CAPTURE_SAMPLE)
 {
+	sample++;
 	if (sample >= buzzaPwmSongSize)
 	{
 		Timer_song_sampler_Stop();
@@ -16,9 +17,11 @@ CY_ISR(BUZZA_CAPTURE_SAMPLE)
 	}
 	else
 	{
-		PWM_Play_Buzzer_WriteCompare(BUZZA_PWM_SONG[sample]);
+		Timer_song_sampler_WritePeriod(BUZZA_PWM_SONG[sample].noteType*1000);
+		uint16 period = 100000/BUZZA_PWM_SONG[sample].noteFrequency -1;
+		PWM_Play_Buzzer_WritePeriod(period);
+		PWM_Play_Buzzer_WriteCompare(period/2);
 	}
-	sample++;
 }
 
 void Buzza_play_song(BuzzaNote notes[], uint16 noteArraySize)
@@ -76,7 +79,7 @@ void Buzza_play_pwm(int16 pwmValues[], uint16 pwmValuesSize, uint16 sampleRate)
 	buzzaPwmSongSize = pwmValuesSize;
 	BUZZA_PWM_SONG = pwmValues;
 	Timer_song_sampler_Start();
-	Timer_song_sampler_WritePeriod(sampleRate / 64);
+	Timer_song_sampler_WritePeriod(BUZZA_PWM_SONG[sample].noteType*1000);
 	isr_capture_sample_StartEx(BUZZA_CAPTURE_SAMPLE);
 	// // Take new sample every sampleRate Hz,
 	// float duration = 1 / sampleRate;
