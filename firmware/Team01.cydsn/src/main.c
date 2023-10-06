@@ -135,7 +135,9 @@ int main()
 					{
 					case ACTIONS_AROUND:
 					{
+#ifdef DEBUG_PATHFINDING
 						DEBUG_ALL_OFF;
+#endif
 
 						FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
 						Movement_prepare_for_action();
@@ -167,8 +169,10 @@ int main()
 					}
 					case ACTIONS_LEFT:
 					{
+#ifdef DEBUG_PATHFINDING
 						DEBUG_ALL_OFF;
 						DEBUG_LEFT_ON;
+#endif
 						if (Sensor_has_left_turn())
 						{
 							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
@@ -198,8 +202,10 @@ int main()
 					}
 					case ACTIONS_RIGHT:
 					{
+#ifdef DEBUG_PATHFINDING
 						DEBUG_ALL_OFF;
 						DEBUG_RIGHT_ON;
+#endif
 						if (Sensor_has_right_turn())
 						{
 
@@ -229,8 +235,10 @@ int main()
 					}
 					case ACTIONS_SKIP:
 					{
+#ifdef DEBUG_PATHFINDING
 						DEBUG_ALL_OFF;
 						DEBUG_ALL_ON;
+#endif
 						if (Sensor_has_turn())
 						{
 							FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
@@ -254,8 +262,11 @@ int main()
 				// if the current route is empty -> we need to travel the final distance and prepare the next route
 				else if (FLAG_IS_CLEARED(FLAGS, FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE))
 				{
+
+#ifdef DEBUG_PATHFINDING
 					// Queue IS empty
 					DEBUG_ALL_ON;
+#endif
 
 					FLAG_CLEAR(FLAGS, FLAG_MOVE_INFINITELY);
 					FLAG_SET(FLAGS, FLAG_MOVING_MM);
