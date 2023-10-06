@@ -427,7 +427,6 @@ int main()
 			break;
 		}
 
-		case SENSOR_ACTION_CORRECT_LEFT_GENTLY:
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
 #ifdef MOVEMENT_DEBUG_SKEW
@@ -445,7 +444,6 @@ int main()
 
 			break;
 		}
-		case SENSOR_ACTION_CORRECT_RIGHT_GENTLY:
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
 #ifdef MOVEMENT_DEBUG_SKEW
