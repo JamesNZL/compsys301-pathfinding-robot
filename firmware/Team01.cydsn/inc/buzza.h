@@ -1,8 +1,8 @@
 #ifndef BUZZA_H_
 #define BUZZA_H_
 
-#include "cytypes.h"
 #include "common.h"
+#include "cytypes.h"
 
 // All in Hz
 #define BUZZA_NOTE_B0						  31
