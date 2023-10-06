@@ -146,7 +146,7 @@ void Movement_skew_stability_timeout(void);
 /**
  * @brief Check if the previous turn is complete and re-enable turn sensors if so
  */
-void Movement_check_turn_complete(void);
+void Movement_check_action_complete(void);
 /**
  * @brief Turns the robot left (on the spot) by angle degrees
  *

@@ -140,7 +140,6 @@ int main()
 #endif
 
 						FLAG_SET(FLAGS, FLAG_WAITING_AFTER_ACTION);
-						Movement_prepare_for_action();
 #ifdef TROLLING
 						Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
 #endif

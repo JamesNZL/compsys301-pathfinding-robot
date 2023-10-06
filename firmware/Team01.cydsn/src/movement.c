@@ -224,7 +224,7 @@ void Movement_skew_stability_timeout(void)
 	}
 }
 
-void Movement_check_turn_complete(void)
+void Movement_check_action_complete(void)
 {
 	if (FLAG_IS_CLEARED(FLAGS, FLAG_ENCODERS_READY))
 	{
@@ -237,7 +237,7 @@ void Movement_check_turn_complete(void)
 		return;
 	}
 
-	FLAG_CLEAR(FLAGS, FLAG_WAITING_AFTER_TURN);
+	FLAG_CLEAR(FLAGS, FLAG_WAITING_AFTER_ACTION);
 	Movement_pulsesSinceTurn = MOVEMENT_TURNS_REFRACTORY_PULSES;
 }
 
