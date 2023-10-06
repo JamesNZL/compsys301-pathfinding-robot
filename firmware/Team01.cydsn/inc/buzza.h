@@ -2,6 +2,7 @@
 #define BUZZA_H_
 
 #include "cytypes.h"
+#include "common.h"
 
 // All in Hz
 #define BUZZA_NOTE_B0						  31
@@ -94,7 +95,7 @@
 #define BUZZA_NOTE_D8						  4699
 #define BUZZA_NOTE_DS8						  4978
 
-#define BUZZA_SONG_TO_PLAY					  BUZZA_FIREFLIES
+#define BUZZA_SONG_TO_PLAY					  BUZZA_MEGALOVANIA
 
 #define BUZZA_TEMPO							  160
 
