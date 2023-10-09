@@ -26,10 +26,12 @@ int main()
 {
 	CYGlobalIntEnable;
 
+	PWM_Play_Buzzer_Start();
+	BUZZA_USE_PWM_MODE;
+	Buzza_play_pwm(BUZZA_SONG(BUZZA_SONG_TO_PLAY), 0);
 #ifdef TROLLING
 	Buzza_play_song(BUZZA_SONG(BUZZA_SONG_TO_PLAY));
 #endif
-
 	uint16 batteryVoltage = Battery_display_level();
 	sprintf(USB_buffer, "Battery Voltage: %d mV\n", batteryVoltage);
 
@@ -426,6 +428,7 @@ int main()
 			break;
 		}
 
+		case SENSOR_ACTION_CORRECT_LEFT_GENTLY:
 		case SENSOR_ACTION_CORRECT_LEFT:
 		{
 #ifdef MOVEMENT_DEBUG_SKEW
@@ -443,6 +446,7 @@ int main()
 
 			break;
 		}
+		case SENSOR_ACTION_CORRECT_RIGHT_GENTLY:
 		case SENSOR_ACTION_CORRECT_RIGHT:
 		{
 #ifdef MOVEMENT_DEBUG_SKEW

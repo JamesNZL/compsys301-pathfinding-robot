@@ -2,6 +2,40 @@
 #include "project.h"
 #define DURATION
 
+volatile uint16 sample;
+
+static BuzzaNote *BUZZA_PWM_SONG;
+static uint16 buzzaPwmSongSize;
+static bool flagPause;
+
+CY_ISR(BUZZA_CAPTURE_SAMPLE)
+{
+	if (flagPause)
+	{
+		flagPause = FALSE;
+		PWM_Play_Buzzer_WriteCompare(0);
+		return;
+	}
+	sample++;
+	if (sample >= buzzaPwmSongSize)
+	{
+		Timer_song_sampler_Stop();
+		isr_capture_sample_Stop();
+	}
+	else
+	{
+		Timer_song_sampler_Stop();
+		uint16 timerPeriod = BUZZA_PWM_SONG[sample].noteType * 21 * 10;
+		Timer_song_sampler_WritePeriod(timerPeriod);
+		Timer_song_sampler_WriteCounter(timerPeriod);
+		uint16 period = (uint32)100000 / BUZZA_PWM_SONG[sample].noteFrequency - 1;
+		PWM_Play_Buzzer_WritePeriod(period);
+		PWM_Play_Buzzer_WriteCompare(period / 2);
+		flagPause = TRUE;
+		Timer_song_sampler_Start();
+	}
+}
+
 void Buzza_play_song(BuzzaNote notes[], uint16 noteArraySize)
 { // there are two values per note (pitch and duration), so for each note there are four bytes
 // this calculates the duration of a whole note in ms
@@ -49,4 +83,23 @@ void Buzza_play_tone(int16 frequency, float duration)
 	}
 	// Make sure off after tone is played
 	Buzzer_Write(0);
+}
+
+void Buzza_play_pwm(int16 pwmValues[], uint16 pwmValuesSize, uint16 sampleRate)
+{
+	sample = 0;
+	buzzaPwmSongSize = pwmValuesSize;
+	BUZZA_PWM_SONG = pwmValues;
+	Timer_song_sampler_Start();
+	Timer_song_sampler_WritePeriod(BUZZA_PWM_SONG[sample].noteType * 1000);
+	isr_capture_sample_StartEx(BUZZA_CAPTURE_SAMPLE);
+	// // Take new sample every sampleRate Hz,
+	// float duration = 1 / sampleRate;
+	// uint16 sample;
+
+	// for (sample; sample < sizeof(pwmValues) / sizeof(pwmValues[0]); ++sample)
+	// {
+	// 	Buzza_play_tone(pwmValues[sample], duration);
+	// 	// CyDelayUs(duration);
+	// }
 }
