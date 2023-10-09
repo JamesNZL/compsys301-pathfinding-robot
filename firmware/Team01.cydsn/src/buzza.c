@@ -25,7 +25,7 @@ CY_ISR(BUZZA_CAPTURE_SAMPLE)
 	else
 	{
 		Timer_song_sampler_Stop();
-		uint16 timerPeriod = BUZZA_PWM_SONG[sample].noteType * 5 * 10;
+		uint16 timerPeriod = BUZZA_PWM_SONG[sample].noteType * 21 * 10;
 		Timer_song_sampler_WritePeriod(timerPeriod);
 		Timer_song_sampler_WriteCounter(timerPeriod);
 		uint16 period = (uint32)100000 / BUZZA_PWM_SONG[sample].noteFrequency - 1;
