@@ -114,8 +114,6 @@ typedef struct BuzzaNote
 	uint16 noteType;
 } BuzzaNote;
 
-// TODO: MIDI to buzza
-
 static BuzzaNote BUZZA_HAPPY_BIRTHDAY[]
 	= {
 		  // Score available at https://musescore.com/user/8221/scores/26906
