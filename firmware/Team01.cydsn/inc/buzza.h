@@ -95,7 +95,7 @@
 #define BUZZA_NOTE_D8						  4699
 #define BUZZA_NOTE_DS8						  4978
 
-#define BUZZA_SONG_TO_PLAY					  BUZZA_FIREFLIES
+#define BUZZA_SONG_TO_PLAY					  music
 
 #define BUZZA_TEMPO							  160
 
