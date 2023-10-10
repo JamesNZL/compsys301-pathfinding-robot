@@ -222,8 +222,8 @@ static void Sensor_prepare_for_next_rising_edge(void)
 
 static void Sensor_handle_missing_rising_edge(void)
 {
-	Timer_Light_Check_Stop();
-	Sensor_write_low_all_sensors();
+	// Timer_Light_Check_Stop();
+	// Sensor_write_low_all_sensors();
 
 #ifdef SENSOR_DEBUG
 	DEBUG_7_ON;
