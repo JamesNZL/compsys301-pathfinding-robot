@@ -1,4 +1,5 @@
 #include "movement.h"
+#include "buzza.h"
 #include "common.h"
 #include <project.h>
 
@@ -103,7 +104,12 @@ void Movement_check_distance(void)
 		DEBUG_ALL_ON;
 #endif
 		FLAG_CLEAR(FLAGS, FLAG_MOVING_MM);
-		// MOVEMENT_DISABLE;
+
+		MOVEMENT_DISABLE;
+		BUZZA_USE_BLOCKING_MODE;
+		Buzza_play_song(BUZZA_SONG(BUZZA_NOKIA_RINGTONE));
+		BUZZA_USE_PWM_MODE;
+		MOVEMENT_ENABLE;
 	}
 }
 

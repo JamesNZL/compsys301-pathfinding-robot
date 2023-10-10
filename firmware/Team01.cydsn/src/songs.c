@@ -1,5 +1,5 @@
 #include "buzza.h"
-const BuzzaNote BUZZA_FIREFLIES[] = {
+const BuzzaNote BUZZA_FIREFLIES[1247] = {
 	{ 233, 3 },
 	{ 466, 3 },
 	{ 1174, 3 },
@@ -1247,7 +1247,7 @@ const BuzzaNote BUZZA_FIREFLIES[] = {
 	{ 698, 3 },
 	{ 466, 3 },
 };
-const BuzzaNote music[]
+const BuzzaNote music[207]
 	= {
 		  { 261, 3 },
 		  { 261, 3 },
@@ -1457,7 +1457,7 @@ const BuzzaNote music[]
 		  { 523, 3 },
 	  };
 
-const BuzzaNote BUZZA_MEGALOVANIA[] = {
+const BuzzaNote BUZZA_MEGALOVANIA[601] = {
 	{ 293, 16 },
 	{ 293, 16 },
 	{ 587, 32 },
@@ -2060,7 +2060,7 @@ const BuzzaNote BUZZA_MEGALOVANIA[] = {
 	{ 391, 16 },
 };
 
-const BuzzaNote BUZZA_NOKIA_RINGTONE[]
+const BuzzaNote BUZZA_NOKIA_RINGTONE[13]
 	= {
 		  // Score available at https://musescore.com/user/29944637/scores/5266155
 		  { BUZZA_NOTE_E5, 8 },

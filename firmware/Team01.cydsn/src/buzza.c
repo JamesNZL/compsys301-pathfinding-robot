@@ -25,7 +25,7 @@ CY_ISR(BUZZA_CAPTURE_SAMPLE)
 	else
 	{
 		Timer_song_sampler_Stop();
-		uint16 timerPeriod = BUZZA_PWM_SONG[sample].noteType * 7 * 10;
+		uint16 timerPeriod = BUZZA_PWM_SONG[sample].noteType * 8 * 10;
 		Timer_song_sampler_WritePeriod(timerPeriod);
 		Timer_song_sampler_WriteCounter(timerPeriod);
 		uint16 period = (uint32)100000 / BUZZA_PWM_SONG[sample].noteFrequency - 1;
@@ -36,7 +36,7 @@ CY_ISR(BUZZA_CAPTURE_SAMPLE)
 	}
 }
 
-void Buzza_play_song(BuzzaNote notes[], uint16 noteArraySize)
+void Buzza_play_song(BuzzaNote *notes, uint16 noteArraySize)
 { // there are two values per note (pitch and duration), so for each note there are four bytes
 // this calculates the duration of a whole note in ms
 #define BAR_DURATION 60000 * 4
@@ -85,7 +85,7 @@ void Buzza_play_tone(int16 frequency, float duration)
 	Buzzer_Write(0);
 }
 
-void Buzza_play_pwm(int16 pwmValues[], uint16 pwmValuesSize, uint16 sampleRate)
+void Buzza_play_pwm(int16 *pwmValues, uint16 pwmValuesSize, uint16 sampleRate)
 {
 	sample = 0;
 	buzzaPwmSongSize = pwmValuesSize;
