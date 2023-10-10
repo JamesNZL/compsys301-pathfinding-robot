@@ -185,7 +185,7 @@ bool Sensor_are_skew_diagonals_on_line(void)
 
 void Sensor_set_bias_level(float voltage)
 {
-	uint8_t dacValue = (voltage / DAC_Lower_RANGE_4V) * 255;
+	uint8_t dacValue = (voltage)*255;
 
 	DAC_Lower_SetValue(dacValue);
 	DAC_Middle_SetValue(dacValue);
