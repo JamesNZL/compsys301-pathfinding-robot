@@ -20,7 +20,7 @@
 #define PATHFINDING
 // #define TROLLING
 
-#define POLLING_PERIOD 50 // 20 Hz
+#define POLLING_PERIOD_MS 1 // 1kHz
 
 volatile uint16 FLAGS = 0x00;
 
@@ -98,7 +98,7 @@ int main()
 
 	for (;;)
 	{
-		CyDelay(50);
+		CyDelay(POLLING_PERIOD);
 #ifdef SENSOR_DEBUG
 		Sensor_write_statuses_to_debug();
 #endif
