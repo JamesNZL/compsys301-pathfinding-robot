@@ -230,7 +230,10 @@ static void Sensor_handle_missing_rising_edge(void)
 {
 	Timer_Light_Check_Stop();
 	Sensor_write_low_all_sensors();
-
+	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_IS_SAMPLING))
+	{
+		FLAG_CLEAR(FLAGS, FLAG_SENSOR_IS_SAMPLING);
+	}
 #ifdef SENSOR_DEBUG
 	DEBUG_7_ON;
 #endif
