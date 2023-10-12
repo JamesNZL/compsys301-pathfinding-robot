@@ -94,6 +94,7 @@ CY_ISR(SENSOR_ISR_CHECK_LIGHT)
 	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_AWAIT_RISING))
 	{
 		Sensor_handle_missing_rising_edge();
+		FLAG_CLEAR(FLAGS, FLAG_SENSOR_AWAIT_RISING);
 		return;
 	}
 
