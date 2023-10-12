@@ -96,6 +96,7 @@ int main()
 
 	for (;;)
 	{
+		CyDelay(10);
 #ifdef SENSOR_DEBUG
 		Sensor_write_statuses_to_debug();
 #endif
@@ -738,6 +739,5 @@ int main()
 			}
 		}
 #endif
-		CyDelay(10);
 	}
 }
