@@ -222,8 +222,8 @@ static void Sensor_prepare_for_next_rising_edge(void)
 
 static void Sensor_handle_missing_rising_edge(void)
 {
-	// Timer_Light_Check_Stop();
-	// Sensor_write_low_all_sensors();
+	Timer_Light_Check_Stop();
+	Sensor_write_low_all_sensors();
 
 #ifdef SENSOR_DEBUG
 	DEBUG_7_ON;
@@ -232,7 +232,10 @@ static void Sensor_handle_missing_rising_edge(void)
 
 static void Sensor_prepare_for_sampling(void)
 {
-	FLAG_CLEAR(FLAGS, FLAG_SENSOR_AWAIT_RISING);
+	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_AWAIT_RISING))
+	{
+		FLAG_CLEAR(FLAGS, FLAG_SENSOR_AWAIT_RISING);
+	}
 	isr_lightsense_Disable();
 	Sensor_set_light_check_timer_period(SENSOR_SAMPLING_TIMER_PERIOD);
 
