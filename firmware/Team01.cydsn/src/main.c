@@ -738,5 +738,6 @@ int main()
 			}
 		}
 #endif
+		CyDelay(10);
 	}
 }
