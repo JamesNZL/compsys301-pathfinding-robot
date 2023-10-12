@@ -19,9 +19,9 @@ static uint8_t PATHFINDING_MAZE[15][19] = {
 };
 
 static uint8_t PATHFINDING_FOOD_LIST[5][2] = {
-	{ 1, 9 },
-	{ 5, 5 },
-	{ 7, 1 },
-	{ 13, 5 },
-	{ 9, 9 }
+	{ 17, 13 },
+	{ 1, 13 },
+	{ 15, 3 },
+	{ 6, 13 },
+	{ 17, 13 }
 };
