@@ -81,6 +81,10 @@ volatile uint8 Sensor_sampledPeriods = 0;
 
 CY_ISR(SENSOR_ISR_LIGHT_SENSED)
 {
+	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_IS_SAMPLING))
+	{
+		return;
+	}
 	Sensor_prepare_for_sampling();
 }
 
@@ -217,7 +221,8 @@ static void Sensor_prepare_for_next_rising_edge(void)
 	Sensor_sampledPeriods = 0;
 	FLAG_SET(FLAGS, FLAG_SENSOR_AWAIT_RISING);
 	Sensor_set_light_check_timer_period(SENSOR_RISING_EDGE_MAX_DELAY_TIMER_PERIOD);
-	isr_lightsense_Enable();
+	// isr_lightsense_Enable();
+	FLAG_CLEAR(FLAGS, FLAG_SENSOR_IS_SAMPLING);
 }
 
 static void Sensor_handle_missing_rising_edge(void)
@@ -236,7 +241,8 @@ static void Sensor_prepare_for_sampling(void)
 	{
 		FLAG_CLEAR(FLAGS, FLAG_SENSOR_AWAIT_RISING);
 	}
-	isr_lightsense_Disable();
+	// isr_lightsense_Disable();
+	FLAG_SET(FLAGS, FLAG_SENSOR_IS_SAMPLING);
 	Sensor_set_light_check_timer_period(SENSOR_SAMPLING_TIMER_PERIOD);
 
 #ifdef SENSOR_DEBUG

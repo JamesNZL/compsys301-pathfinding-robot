@@ -33,6 +33,7 @@ volatile extern uint16 FLAGS;
 #define FLAG_TOGGLE_TURN_TIMEOUT			   8
 #define FLAG_DOING_LAST_MOVE_MM				   9
 #define FLAG_NO_OVERSHOOT_CORRECTION_NEEDED	   10
+#define FLAG_SENSOR_IS_SAMPLING				   11
 
 /**
  * @brief Check whether a flag bit is set.
