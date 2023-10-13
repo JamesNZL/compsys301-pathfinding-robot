@@ -182,14 +182,6 @@ static const SensorActions SENSOR_ACTION_LUT[128] = {
 	SENSOR_ACTION_FIND_VALID_STATE,
 };
 
-volatile extern Sensor Sensor_turnLeft;
-volatile extern Sensor Sensor_turnRight;
-volatile extern Sensor Sensor_skewBackRight;
-volatile extern Sensor Sensor_skewBackLeft;
-volatile extern Sensor Sensor_skewFrontRight;
-volatile extern Sensor Sensor_skewFrontLeft;
-volatile extern Sensor Sensor_skewMiddle;
-
 /**
  * @brief Init all sensor dependencies - DAC, Bias levels, interrupts
  */

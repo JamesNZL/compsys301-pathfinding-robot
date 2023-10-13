@@ -69,15 +69,15 @@ typedef struct Sensor
 	uint8 periodCount;
 } Sensor;
 
-volatile Sensor Sensor_turnLeft = SENSOR_DEFAULT_INITIALISATION;
-volatile Sensor Sensor_turnRight = SENSOR_DEFAULT_INITIALISATION;
-volatile Sensor Sensor_skewBackRight = SENSOR_DEFAULT_INITIALISATION;
-volatile Sensor Sensor_skewBackLeft = SENSOR_DEFAULT_INITIALISATION;
-volatile Sensor Sensor_skewFrontRight = SENSOR_DEFAULT_INITIALISATION;
-volatile Sensor Sensor_skewFrontLeft = SENSOR_DEFAULT_INITIALISATION;
-volatile Sensor Sensor_skewMiddle = SENSOR_DEFAULT_INITIALISATION;
+volatile static Sensor Sensor_turnLeft = SENSOR_DEFAULT_INITIALISATION;
+volatile static Sensor Sensor_turnRight = SENSOR_DEFAULT_INITIALISATION;
+volatile static Sensor Sensor_skewBackRight = SENSOR_DEFAULT_INITIALISATION;
+volatile static Sensor Sensor_skewBackLeft = SENSOR_DEFAULT_INITIALISATION;
+volatile static Sensor Sensor_skewFrontRight = SENSOR_DEFAULT_INITIALISATION;
+volatile static Sensor Sensor_skewFrontLeft = SENSOR_DEFAULT_INITIALISATION;
+volatile static Sensor Sensor_skewMiddle = SENSOR_DEFAULT_INITIALISATION;
 
-volatile uint8 Sensor_sampledPeriods = 0;
+volatile static uint8 Sensor_sampledPeriods = 0;
 
 CY_ISR(SENSOR_ISR_LIGHT_SENSED)
 {

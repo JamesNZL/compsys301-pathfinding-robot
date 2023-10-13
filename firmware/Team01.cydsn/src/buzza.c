@@ -2,11 +2,11 @@
 #include "project.h"
 #define DURATION
 
-volatile uint16 sample;
+volatile static uint16 sample;
 
-static BuzzaNote *BUZZA_PWM_SONG;
-static uint16 buzzaPwmSongSize;
-static bool flagPause;
+volatile static BuzzaNote *BUZZA_PWM_SONG;
+volatile static uint16 buzzaPwmSongSize;
+volatile static bool flagPause;
 
 CY_ISR(BUZZA_CAPTURE_SAMPLE)
 {
@@ -30,7 +30,7 @@ CY_ISR(BUZZA_CAPTURE_SAMPLE)
 		Timer_song_sampler_WriteCounter(timerPeriod);
 		uint16 period = (uint32)100000 / BUZZA_PWM_SONG[sample].noteFrequency - 1;
 		PWM_Play_Buzzer_WritePeriod(period);
-		PWM_Play_Buzzer_WriteCompare(period / 2);
+		PWM_Play_Buzzer_WriteCompare(period >> 2);
 		flagPause = TRUE;
 		Timer_song_sampler_Start();
 	}
