@@ -286,32 +286,33 @@ int main()
 
 					MazeDirections lastFacedDirection = Pathfinding_route_get_last_faced_direction(currentRoute);
 					uint8 finalGrids = Pathfinding_route_get_final_distance(currentRoute) - 1;
-
+					static uint16 distanceMm;
 					if (Pathfinding_is_moving_horizontally(lastFacedDirection))
 					{
 						if (FLAG_IS_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED))
 						{
-							Movement_move_mm(GRID_DISTANCE_LUT_MM_X[finalGrids]);
+							distanceMm = GRID_DISTANCE_LUT_MM_X[finalGrids];
 						}
 						else
 						{
-							Movement_move_mm(GRID_DISTANCE_LUT_MM_X[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_X);
+							distanceMm = GRID_DISTANCE_LUT_MM_X[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_X;
 						}
 					}
 					else if (Pathfinding_is_moving_vertically(lastFacedDirection))
 					{
 						if (FLAG_IS_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED))
 						{
-							Movement_move_mm(GRID_DISTANCE_LUT_MM_Y[finalGrids]);
+							distanceMm = GRID_DISTANCE_LUT_MM_Y[finalGrids];
 						}
 						else
 						{
-							Movement_move_mm(GRID_DISTANCE_LUT_MM_Y[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_Y);
+							distanceMm = GRID_DISTANCE_LUT_MM_Y[finalGrids] - PATHFINDING_OVERSHOOT_REDUCTION_Y;
 						}
 					}
 
 					if (Queue_is_empty(routes))
 					{
+						Movement_move_mm(distanceMm);
 						FLAG_SET(FLAGS, FLAG_DOING_LAST_MOVE_MM);
 						continue;
 					}
@@ -324,12 +325,18 @@ int main()
 					if (Queue_is_empty(currentRouteActions))
 					{
 						FLAG_SET(FLAGS, FLAG_NO_OVERSHOOT_CORRECTION_NEEDED);
+						Movement_move_mm(distanceMm);
 						continue;
 					}
 
 					currentNode = Queue_pop(currentRouteActions);
 					currentActionToCheckFor = Node_get_value(currentNode);
 					Pathfinding_check_if_waiting_for_final_action_in_queue(currentRouteActions);
+					if (*currentActionToCheckFor == ACTIONS_AROUND)
+					{
+						distanceMm += 20;
+					}
+					Movement_move_mm(distanceMm);
 				}
 			}
 #else

@@ -70,7 +70,7 @@
 
 #define MOVEMENT_TURNS_STATIC_PERIOD	 100 // in ms
 
-#define MOVEMENT_TURNS_REFRACTORY_PULSES 60
+#define MOVEMENT_TURNS_REFRACTORY_PULSES 40
 
 /* Sweeps */
 /** @brief Percentage of the previous pulse count to add to the maximum allowed pulses before overruling predicate */
