@@ -1247,7 +1247,7 @@ const BuzzaNote BUZZA_FIREFLIES[1247] = {
 	{ 698, 3 },
 	{ 466, 3 },
 };
-const BuzzaNote music[207]
+const BuzzaNote BUZZA_UNKNOWN[207]
 	= {
 		  { 261, 3 },
 		  { 261, 3 },

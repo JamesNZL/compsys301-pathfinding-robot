@@ -1,6 +1,7 @@
 #include "buzza.h"
 #include "project.h"
 #define DURATION
+// #define FAST_ISR
 
 volatile static uint16 sample;
 
@@ -24,6 +25,10 @@ CY_ISR(BUZZA_CAPTURE_SAMPLE)
 	}
 	else
 	{
+#ifdef FAST_ISR
+		PWM_Play_Buzzer_WritePeriod(BUZZA_PWM_SONG[sample].noteFrequency);
+		PWM_Play_Buzzer_WriteCompare(BUZZA_PWM_SONG[sample].noteFrequency >> 1);
+#else
 		Timer_song_sampler_Stop();
 		uint16 timerPeriod = BUZZA_PWM_SONG[sample].noteType * 8 * 10;
 		Timer_song_sampler_WritePeriod(timerPeriod);
@@ -33,6 +38,7 @@ CY_ISR(BUZZA_CAPTURE_SAMPLE)
 		PWM_Play_Buzzer_WriteCompare(period >> 2);
 		flagPause = TRUE;
 		Timer_song_sampler_Start();
+#endif
 	}
 }
 
