@@ -56,7 +56,7 @@ void Buzza_play_song(BuzzaNote *notes, uint16 noteArraySize)
 		if (divider > 0)
 		{
 			// regular note, just proceed
-			noteDuration = 26 * divider;
+			noteDuration = 9 * divider;
 		}
 		else if (divider < 0)
 		{

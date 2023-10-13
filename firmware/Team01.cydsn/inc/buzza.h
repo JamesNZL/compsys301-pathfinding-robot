@@ -95,7 +95,7 @@
 #define BUZZA_NOTE_D8						  4699
 #define BUZZA_NOTE_DS8						  4978
 
-#define BUZZA_SONG_TO_PLAY					  music
+#define BUZZA_SONG_TO_PLAY					  BUZZA_MEGALOVANIA
 
 #define BUZZA_TEMPO							  160
 
@@ -355,6 +355,28 @@ static BuzzaNote music[] = {
 	{ 587, 16 },
 	{ 523, 32 },
 	{ 195, 32 },
+};
+static BuzzaNote BUZZA_MCD[] = {
+	{ BUZZA_NOTE_B5, 8 },
+	{ BUZZA_NOTE_FS5, 8 },
+	{ BUZZA_NOTE_B5, 8 },
+	{ BUZZA_NOTE_FS5, 8 },
+	{ BUZZA_NOTE_B5, 8 },
+
+	{ 0, 128 },
+
+	{ BUZZA_NOTE_B5, 8 },
+	{ BUZZA_NOTE_FS5, 8 },
+	{ BUZZA_NOTE_B5, 8 },
+	{ BUZZA_NOTE_FS5, 8 },
+
+	{ 0, 128 },
+
+	{ BUZZA_NOTE_B5, 8 },
+	{ BUZZA_NOTE_FS5, 8 },
+	{ BUZZA_NOTE_B5, 8 },
+	{ BUZZA_NOTE_FS5, 8 },
+	{ BUZZA_NOTE_B5, 8 },
 };
 
 /**

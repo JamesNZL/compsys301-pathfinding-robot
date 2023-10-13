@@ -109,7 +109,7 @@ void Movement_check_distance(void)
 		if (FLAG_IS_CLEARED(FLAGS, FLAG_DOING_LAST_MOVE_MM))
 		{
 			BUZZA_USE_BLOCKING_MODE;
-			Buzza_play_song(BUZZA_SONG(BUZZA_NOKIA_RINGTONE));
+			Buzza_play_song(BUZZA_SONG(BUZZA_MCD));
 			BUZZA_USE_PWM_MODE;
 			MOVEMENT_ENABLE;
 		}
