@@ -410,9 +410,12 @@
       <Data key="2b269b96-47a4-4e9a-937e-76d4080bb211/d91ea660-bc91-4817-b29b-2fe86c305500" value="USBUART_arb_int" />
       <Data key="2b269b96-47a4-4e9a-937e-76d4080bb211/dc6da32b-30f7-48b3-b8a1-dbf0214d8c83" value="USBUART_dp_int" />
       <Data key="2b269b96-47a4-4e9a-937e-76d4080bb211/ef9224ec-f8a6-4df0-8a49-e09ce75cefa7" value="USBUART_ep_0" />
+      <Data key="005dedd9-bf37-4757-8454-060263cf6946/b73dcd38-4bce-4cd7-acec-33f53e91ccd6" value="ADC_Battery_IRQ" />
       <Data key="40c0cf20-a884-4511-ba5c-2ac50401cec3" value="isr_lightcheck" />
       <Data key="9832daf3-9503-416c-9c90-7c57bda5372d" value="isr_lightsense" />
       <Data key="66357837-8232-4e25-a3af-2644fd133e5d" value="isrRF_RX" />
+      <Data key="c4b67ccf-d949-4c73-8a4b-da3cd4a88211" value="isr_getpulse" />
+      <Data key="c9d09394-72a5-4d95-9c04-414ca864da31" value="isr_capture_sample" />
       <Data key="e46a62db-5735-406f-a3c5-0e438160f984" value="isrRF_TX" />
     </Group>
     <Group key="Pin">
@@ -3580,6 +3583,13 @@
     </Group>
   </Group>
   <Group key="Interrupt">
+    <Group key="40c0cf20-a884-4511-ba5c-2ac50401cec3">
+      <Group key="CortexM3">
+        <Data key="Assigned" value="True" />
+        <Data key="Priority" value="6" />
+        <Data key="Vector" value="-1" />
+      </Group>
+    </Group>
     <Group key="9832daf3-9503-416c-9c90-7c57bda5372d">
       <Group key="CortexM3">
         <Data key="Assigned" value="True" />

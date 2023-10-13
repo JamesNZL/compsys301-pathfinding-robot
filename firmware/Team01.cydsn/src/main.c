@@ -20,7 +20,7 @@
 #define PATHFINDING
 // #define TROLLING
 
-#define POLLING_PERIOD_MS 2 // 1kHz
+#define POLLING_PERIOD_MS 2 // 500 Hz
 
 volatile uint16 FLAGS = 0x00;
 
