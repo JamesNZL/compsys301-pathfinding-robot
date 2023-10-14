@@ -229,7 +229,7 @@ static void Sensor_prepare_for_next_rising_edge(void)
 static void Sensor_handle_missing_rising_edge(void)
 {
 	Timer_Light_Check_Stop();
-	Sensor_write_low_all_sensors();
+	// Sensor_write_low_all_sensors();
 	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_IS_SAMPLING))
 	{
 		FLAG_CLEAR(FLAGS, FLAG_SENSOR_IS_SAMPLING);
