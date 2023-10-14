@@ -16,7 +16,7 @@
 #define SENSOR_MINIMUM_DEBOUNCE_PERIODS			  4 // How many periods the signal has to remain at a level to be considered a valid level change
 #define SENSOR_SAMPLING_PERIODS					  1 // Amount of times to sample all the sensors after a rising edge
 #define SENSOR_SAMPLING_TIMER_PERIOD			  25 // 250 us - Delay between each sensor sample on a rising edge
-#define SENSOR_RISING_EDGE_MAX_DELAY_TIMER_PERIOD 5000 // 12 ms - The maximum time allowed after a rising edge before all sensors are assumed to be off
+#define SENSOR_RISING_EDGE_MAX_DELAY_TIMER_PERIOD 5000 // 50 ms - The maximum time allowed after a rising edge before all sensors are assumed to be off
 
 #define SENSOR_SKEW_MIDDLE_POSITION				  6
 #define SENSOR_SKEW_FRONT_LEFT_POSITION			  5
@@ -30,8 +30,8 @@
 	{                                 \
 		.periodCount = 0,             \
 		.highWasSampled = FALSE,      \
-		.previousStatus = FALSE,      \
-		.status = FALSE               \
+		.previousStatus = TRUE,       \
+		.status = TRUE                \
 	}
 
 typedef struct Sensor Sensor;
