@@ -60,12 +60,22 @@
 
 \section{Hardware Design}
 
-\subsection{Frequency Domain Analysis}
+\subsection{Sensor Analysis}
 
-% TODO: matlab
-% TODO: photodiode vs phototransistor
+We began our development by profiling the performance of both phototransistors and photodiodes, which we tested under the various relevant lighting regimes—permutations of room lights on/off, and projector white/green/black light.
+We used a Rohde \& Schwarz \texttt{RTB2002} Digital Oscilloscope to view the time-domain signals produced by each device, before exporting the raw samples to analyse these sensors further in \texttt{MATLAB} and using the captured real-world signals in \texttt{LTspice} to design our sensor circuitry.
+
+Once imported into \texttt{MATLAB}, we computed the fast-Fourier transform to view the spectral components of these signals—a summary of which is shown in Figure \ref{fig:sensor-matlab}—which allowed us to draw informed conclusions about our frequencies of interest as being primarily \qty{120}{\hertz}, with minimal difference between the ambient lights on/off spectral components above \qty{150}{\hertz}.
+We made sure to capture data under both projectors, which we used to perform a comparison as shown in Figures \ref{fig:projector-phototransistor-time}–\ref{fig:projector-photodiode-frequency} between their spectral components to build confidence that our designed circuitry would perform under both projectors.
+
+We eventually elected to proceed with a photodiode-based design after directly comparing the sensitivity of each device to ambient light as seen in Figures \ref{fig:sensor-phototransistor-sensitivity} and \ref{fig:sensor-photodiode-sensitivity}, where we noticed that the photodiode has a significantly tighter frequency response, with spectral peaks that do not `leak' as much into their surrounding frequencies.
+More influentially, we notice that there are less lights-on blue peaks in the photodiode plots, suggesting that the photodiode is less sensitive to the fluorescent lights.
+
+The full suite of plots can be viewed in Figures \ref{fig:sensor-matlab}–\ref{fig:sensor-photodiode-sensitivity}.
 
 \subsection{Analogue Circuitry Design}
+
+% TODO: verified with LTspice
 
 The goal whilst designing our sensor circuitry was to produce a robust output signal that was immune to ambient lighting conditions.
 We concluded in our frequency-domain analyses that this ambient noise primarily consisted of a DC (\qty{0}{\hertz}) component, which could be blocked by a high-pass/coupling capacitor.
@@ -257,6 +267,72 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 
 
 \appendix
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{sensor-matlab.png}}
+	\caption{Selection of phototransistor time- and frequency-domain signals}
+	\label{fig:sensor-matlab}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{phototransistor-time.png}}
+	\caption{Time-domain phototransistor signals}
+	\label{fig:phototransistor-time}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{phototransistor-frequency.png}}
+	\caption{Frequency-domain phototransistor spectrums}
+	\label{fig:phototransistor-frequency}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{photodiode-time.png}}
+	\caption{Time-domain photodiode signals}
+	\label{fig:photodiode-time}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{photodiode-frequency.png}}
+	\caption{Frequency-domain photodiode spectrums}
+	\label{fig:photodiode-frequency}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{projector-phototransistor-time.png}}
+	\caption{Time-domain phototransistor signal comparison between projectors}
+	\label{fig:projector-phototransistor-time}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{projector-phototransistor-frequency.png}}
+	\caption{Frequency-domain phototransistor spectrum comparison between projectors}
+	\label{fig:projector-phototransistor-frequency}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{projector-photodiode-time.png}}
+	\caption{Time-domain photodiode signal comparison between projectors}
+	\label{fig:projector-photodiode-time}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{projector-photodiode-frequency.png}}
+	\caption{Frequency-domain photodiode spectrum comparison between projectors}
+	\label{fig:projector-photodiode-frequency}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{sensor-phototransistor-sensitivity.png}}
+	\caption{Frequency-domain phototransistor spectrum comparison between ambient lights on/off}
+	\label{fig:sensor-phototransistor-sensitivity}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{sensor-photodiode-sensitivity.png}}
+	\caption{Frequency-domain photodiode spectrum comparison between ambient lights on/off}
+	\label{fig:sensor-photodiode-sensitivity}
+\end{figure}
 
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{pathfinding-instructions.png}}
