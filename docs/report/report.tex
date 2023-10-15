@@ -93,6 +93,8 @@ In the end, this was prioritised over the slightly higher slew rate of the \text
 % TODO: constellation
 %  DNF and 0ohms
 
+
+
 \section{Pathfinding Algorithms \label{sect-pathfinding-algorithms}}
 
 \subsection{Finding the Shortest Path}
@@ -119,6 +121,8 @@ In the interest of simplifying this business logic, we exploit the fact that the
 
 This provides the instructions by which our robot abides at intersections, and specifies the distance for which to travel if the required food location is not found at an intersection.
 We verified the correctness of this supplementary algorithm by tracing out the correct path the robot should take and comparing against the generated output.
+
+
 
 \section{Firmware Implementation}
 
@@ -226,21 +230,29 @@ The basic process involved synthesising a given frequency and duration by either
 	\item manually generating a square wave using \texttt{CyDelay()}.
 \end{enumerate}
 
+
+
 \section{Integration}
 
 Most of our business logic is performed synchronously as seen in the flowchart in Figure \ref{fig:integration-flowchart}, as we felt that this would make each step easier to understand and debug.
 
 % TODO: more meat?
 
+
+
 \section*{Acknowledgments}
 
 A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen and supporting Graduate/Teaching Assistants for all the guidance, advice, and feedback provided to us towards the successful completion of this project.
+
+
 
 % * References
 
 \nocite{*}
 \bibliographystyle{./IEEEtran}
 \bibliography{annot}
+
+
 
 \appendix
 
