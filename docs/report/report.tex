@@ -75,8 +75,6 @@ The full suite of plots can be viewed in Figures \ref{fig:sensor-matlab}–\ref{
 
 \subsection{Analogue Circuitry Design}
 
-% TODO: verified with LTspice
-
 The goal whilst designing our sensor circuitry was to produce a robust output signal that was immune to ambient lighting conditions.
 We concluded in our frequency-domain analyses that this ambient noise primarily consisted of a DC (\qty{0}{\hertz}) component, which could be blocked by a high-pass/coupling capacitor.
 Since we decided to use a photodiode, we opted for a transimpedance amplifier instead of a simple resistor due to its lower input/output impedance even when using a feedback resistor in the \unit{\Mohm} range.
@@ -96,6 +94,12 @@ We decided to use a DAC on the PSoC to provide the comparator reference voltage,
 
 We selected the rail-to-rail \texttt{TLC082} OpAmp as it drove closer to the rails than an \texttt{LM324}, which was essential towards reliably satisfying the high-voltage threshold of the PSoC. We decided against the BJT-based \texttt{LT6221}, as the FET-based \texttt{TLC082} permitted a higher input impedance for each stage due to its lower input bias current (\qty{150}{\nA} for the \texttt{LT6221} versus \qty{50}{\pA} for the \texttt{TLC082}).
 In the end, this was prioritised over the slightly higher slew rate of the \texttt{LT6221} (\qty{20}{\volt\per\us}) versus \qty{16}{\volt\per\us}) due to the negligible effects of phase shift in both cases.
+
+Our final circuit design was verified with both:
+\begin{enumerate}
+	\item simulations in \texttt{LTspice} as shown in Figure \ref{fig:sensor-spice}, using the collected real-world sensor signals; and
+	\item by prototyping on breadboards.
+\end{enumerate}
 
 \subsection{Printed Circuit Board Design}
 
@@ -332,6 +336,12 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-photodiode-sensitivity.png}}
 	\caption{Frequency-domain photodiode spectrum comparison between ambient lights on/off}
 	\label{fig:sensor-photodiode-sensitivity}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{sensor-spice.png}}
+	\caption{Simulation of our sensor circuitry in \texttt{LTspice}}
+	\label{fig:sensor-spice}
 \end{figure}
 
 \begin{figure}[htbp]
