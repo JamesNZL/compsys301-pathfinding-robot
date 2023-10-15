@@ -93,7 +93,7 @@ In the end, this was prioritised over the slightly higher slew rate of the \text
 % TODO: constellation
 %  DNF and 0ohms
 
-\section{Pathfinding Algorithms}
+\section{Pathfinding Algorithms \label{sect-pathfinding-algorithms}}
 
 \subsection{Finding the Shortest Path}
 
@@ -197,6 +197,20 @@ We concluded that one extra sample after the rising edge was sufficient to accou
 Debouncing was also implemented, which required a signal to hold its level either \texttt{HIGH} or \texttt{LOW} for at least four projector periods to ensure that any false triggers weren't inadvertently counted, corresponding to a a debouncing period of $\left(1 / \qty{120}{\hertz}\right) \times 4 = \qty{33.3}{\ms}$—not long enough to be visibly slower, and which served to be very reliable.
 A sketch detailing this debouncing process is shown in Figure \ref{fig:sensor-debouncing}.
 
+\subsection{Pathfinding Module}
+
+The pathfinding implementation remained identical to that detailed in Section \ref{sect-pathfinding-algorithms}, except now required self-rolled implementations of the data structures not available in \texttt{C}.
+% TODO: write this properly (ie we wanted these to be generic)
+This required us to write a queue, which we decided to architect atop \texttt{void *} pointers to facilitate generic usage, and the route data structures outlined in Figure \ref{fig:pathfinding-route-struct}.
+
+These data structures were dynamically allocated on the heap, which, whilst not ideal, was only performed during program initialisation.
+This meant that no dynamic allocation was done during runtime, such that we could be confident that memory leaks were not possible, and that any heap fragmentation/allocation errors would be caught during initialisation—which we could solve by increasing the upper limit of the heap size.
+A heap of \texttt{0x9000} bytes seemed to be a good upper bound, with no errors in the algorithm's output based on a test program that was written to verify and output the generated route.
+If memory allocation was required at runtime, it would certainly be preferred to have statically allocated memory such that we have a deterministic upper bound on the memory used—in fact, this remains an open issue.
+
+Alongside the standard implementation, a unit testing suite was written and used throughout the development process for each of the relevant pathfinding functions, utilising \texttt{C}'s \texttt{assert()} to streamline development and ensure functional correctness.
+The effectiveness of this testing suite was clearly evident from the lack of pathfinding bugs found during testing and verification.
+
 \section{Integration}
 
 
@@ -241,6 +255,13 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-debouncing.png}}
 	\caption{Explanation of sensor debouncing process}
 	\label{fig:sensor-debouncing}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{pathfinding-route-struct.png}}
+	% TODO:
+	\caption{TODO}
+	\label{fig:pathfinding-route-struct}
 \end{figure}
 
 \end{document}
