@@ -68,12 +68,12 @@
 \subsection{Analogue Circuitry Design}
 
 The goal whilst designing our sensor circuitry was to produce a robust output signal that was immune to ambient lighting conditions.
-We concluded in our frequency-domain anayses that this ambient noise primarily consisted of a DC (\qty{0}{\hertz}) component, which could be blocked by a high-pass/coupling capacitor.
+We concluded in our frequency-domain analyses that this ambient noise primarily consisted of a DC (\qty{0}{\hertz}) component, which could be blocked by a high-pass/coupling capacitor.
 Since we decided to use a photodiode, we opted for a transimpedance amplifier instead of a simple resistor due to its lower input/output impedance even when using a feedback resistor in the \unit{\Mohm} range.
 The maximum photocurrent for the provided \texttt{SD 019-101-411} photodiode is \qty{2.3}{\uA}, which is very small—hence requiring a large gain.
 To get a signal with an acceptable range, where $V_\text{out} = I \times R_\text{feedback}$, we chose a \qty{10}{\Mohm} resistor to produce an output in the order of \qty{2.3}{\volt}.
-We also included a feedback capacitor to the transimpedance amplifier that added a low-pass effect, where the cutoff frequency is given by $f_\text{c} = 1 / (2\pi R_\text{feedback}C)$.
-Knowing that the relevant projector frequency was \qty{120}{\hertz}, we decided that any $f_\text{c}\geq \qty{300}{\hertz}\sim \qty{400}{\hertz}$ was acceptable, but a higher cutoff would likely be more desirable to minimise any phase-shift effects despite the effect being small.
+We also included a feedback capacitor to the transimpedance amplifier that added a low-pass effect, where the cut-off frequency is given by $f_\text{c} = 1 / (2\pi R_\text{feedback}C)$.
+Knowing that the relevant projector frequency was \qty{120}{\hertz}, we decided that any $f_\text{c}\geq \qty{300}{\hertz}\sim \qty{400}{\hertz}$ was acceptable, but a higher cut-off would likely be more desirable to minimise any phase-shift effects despite the effect being small.
 Consequently, we selected a \qty{40}{\pF} capacitor to produce an $f_\text{c}=\qty{400}{\hertz}$ as it was the smallest capacitor available, and also produced an acceptable $f_\text{c}$.
 For the cascaded high-pass stage we decided to choose an $f_\text{c}$ of \qty{110}{\hertz}, assuming the effects of phase shift to be negligible—there was no visible change from experimentation—as this blocks any DC component whilst retaining frequencies of interest.
 This also allowed us to select a \qty{42}{\kohm} resistor and a \qty{47}{\uF} capacitor which were readily available in the ECSE Component Store.
@@ -130,17 +130,69 @@ This modular architectural approach enabled ease-of-understanding during integra
 % TODO: sensor logic design?
 % TODO: battery monitoring
 
+\subsection{Movement Module}
+
+The mission of the movement module was to streamline interactions with the most vital component of our robot—the motors.
+This was achieved by abstracting-away the motor synchronisation, precise timing, and fine-tuning.
+
+Just as no two motors are mechanically identical, we visually observed a substantial difference in the output of each motor during the early stages of the project.
+This inhibited the ability of our robot to perform the basic action of moving in a straight line, leading to the first iteration of our control loop.
+This was a looping routine that measured the error in observed angular position with respect to the expected angular position, determined using the pulses from quadrature decoders.
+The expectation was that we could negate this error by quantifying the necessary power increase to each motor in order to run the motors at a constant speed, but we encountered problems with instability.
+
+The second motor control concept was to benchmark the performance of the motors at varying speeds and battery voltages to formulate a mathematical model of each motor.
+After fitting a linear equation to the rotational speed response outside of the dead-band, we achieved a fairly accurate target-to-output speed when the robot was raised off the ground, but we could not easily model the effect of variance in environment.
+Consequently, we revisited the closed loop control system a third time.
+
+In further detail, the control system reads a representation of the change in angular position through quadrature encoders, the count of which we read in firmware using a timed interrupt—where we use the count to determine whether it is more or less than we expected in that time period.
+This required an engineering decision to be made regarding the rate at which we sampled the counts—if we sampled too quickly we may only read one or nil decoder counts, reducing the possible motor speeds to a binary fully-on or fully-off.
+In contrast, sampling too infrequently would make the control loop too slow to respond, and likely with large corrections due to a larger accumulated error.
+Having learned from our first iteration, we chose a sampling frequency of \qty{40}{\hertz}, producing a control loop with an acceptable range for precise comparisons whilst also running at high speed—this worked.
+We verified the functional correctness of this control system by restraining the wheel on one motor, which produced an increase in torque in an attempt to reach the desired reference speed.
+This was done by changing the PWM duty cycle provided to the motor driver, effectuating an increase/decrease in the voltage provided to the motor.
+
+Following the implementation of our control system, we focussed on the ability for the robot to travel a specified real-world distance.
+This required a method to correlate the quadrature decoder count to millimetres, which we determined by making measurements of dimensions including the robot's:
+\begin{enumerate}
+	\item pivotal circumference,
+	\item wheel diameter, and
+	\item wheel circumference.
+\end{enumerate}
+These measurements are shown in Figure \ref{fig:physical-dimensions}.
+
+Knowing the number of decoder pulses in one full rotation of the wheel, we then determined the arc-length between each pulse. We knew that the length of the arc on the outermost point of the wheel (ie the circumference) would be directly translational to the distance travelled, which gave us a relationship between decoder pulses and ground millimetres.
+
+The next point of action was to use the robot's pivotal circumference to determine the number of pulses required to turn a given number of degrees.
+This was simple to implement, but we debated the use of a polling- versus interrupt-driven implementation.
+Previously, we elected to use interrupts for the \texttt{Movement\_move\_mm()} function as we wanted the control loop operate alongside simultaneously.
+In this case however, we decided that we only cared about completing the turn as precisely as possible whilst executing a turn, and did not want any other component of the system to disrupt the turn.
+Consequently, we employed a blocking, polling-driven implementation.
+
+Finally, whilst the majority of the movement module operates entirely on the control loop and the turning functions, there is another key component of fluid movement—skew correction.
+This is necessary to enable the robot to follow the projected line, and consequently requires the integration of our photodiode light sensors.
+When at least one of the skew detection sensors departs the line, a movement module function is called to correct this deviation.
+We employ two methods to achieve this skew correction:
+\begin{enumerate}
+	\item \textbf{Fast Response.}
+	      This is the simplest method, where we set a variable that directly increases the PWM duty cycle to one motor.
+	      This produces a fast response, and is best used when the robot is already travelling straight.
+	\item \textbf{Smooth Response.}
+	      This method is achieved by utilising the control loop to gradually increase the speed to a motor, and allows the robot to straighten out smoothly after completing a turn.
+\end{enumerate}
+We found that a combination of these two methods produces the best results—by using the smooth control loop method after a turn, until the majority of the skew sensors acquire the line—when we then switch to the fast duty cycle method.
+
+A secondary reason for this fast response method stems from the resolution of the control loop, where the \qty{40}{\hertz} sampling frequency translates to an effectual increase of $\qty{40}{\text{pulses}}$ per second for each unit (ie $\qty{1}{\text{pulse}}$) increase of the input reference value.
+This is too great of a change for fine-tuned skew correction, and often caused oscillations with a unacceptably long settling time.
+
 \section{Integration}
 
 
 
-\section*{Acknowledgment}
+\section*{Acknowledgments}
 
-A big thank you to our lecturers Dr. Morteza Biglari-Abhari and Dr. Maryam Hemmati; Teaching Assistants Ross Porter, Asher Butler, James Park, and Callum Iddon.
+A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen and supporting Graduate/Teaching Assistants for all the guidance, advice, and feedback provided to us towards the successful completion of this project.
 
 \section*{References}
-
-Coursebook information from COMPSYS 305 directed by Dr. Morteza Biglari-Abhari of the Department of Electrical, Computer, and Software Engineering at The University of Auckland.
 
 \nocite{*}
 \bibliographystyle{./IEEEtran}
@@ -152,6 +204,12 @@ Coursebook information from COMPSYS 305 directed by Dr. Morteza Biglari-Abhari o
 	\centerline{\includegraphics[width=0.5\textwidth]{pathfinding-instructions.png}}
 	\caption{Debugging output of the generated instructions}
 	\label{fig:pathfinding-instructions}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{physical-measurements.png}}
+	\caption{Measurements of the robot's physical dimensions}
+	\label{fig:physical-dimensions}
 \end{figure}
 
 \end{document}

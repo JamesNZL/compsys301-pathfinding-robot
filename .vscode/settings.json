@@ -11,5 +11,9 @@
 		"common.h": "c",
 		"movement.h": "c",
 		"commands.h": "c"
-	}
+	},
+	"cSpell.enabled": true,
+	"cSpell.words": [
+		"transimpedance"
+	]
 }
