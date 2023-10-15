@@ -128,6 +128,8 @@ We then constructed the $2^7=\qty{128}{\text{row}}$ truth table for each combina
 A section of this truth table is shown in Figure \ref{fig:sensor-table}, which was then used to produce the reduced truth table shown in Figure \ref{fig:sensor-table-reduced}.
 We also wrote a small \texttt{Python} script to verify the correctness of our reduced Boolean expressions, by iterating through all sensor permutations and testing that the output was as expected.
 
+Finally, we produced a dimensioned CAD drawing as shown in Figure \ref{fig:constellation-cad} for the constellation design to aid in completing our PCB layout.
+
 \subsection{Printed Circuit Board Design}
 
 % TODO: design considerations
@@ -170,8 +172,6 @@ We verified the correctness of this supplementary algorithm by tracing out the c
 In order to facilitate collaboration on different aspects of our firmware, we decided to produce a series of modules, where each module exposed its own API.
 This modular architectural approach enabled ease-of-understanding during integration, and prevented name collisions with our use of namespacing.
 
-% TODO: style guide
-% TODO: sensor logic design?
 % TODO: battery monitoring
 
 \subsection{Movement Module}
@@ -444,6 +444,12 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-table-reduced.png}}
 	\caption{Reduced sensor constellation truth table}
 	\label{fig:sensor-table-reduced}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{constellation-cad.png}}
+	\caption{Dimensioned CAD drawing for final constellation design}
+	\label{fig:constellation-cad}
 \end{figure}
 
 \begin{figure}[htbp]
