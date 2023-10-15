@@ -91,6 +91,7 @@ In the end, this was prioritised over the slightly higher slew rate of the \text
 
 % TODO: design considerations
 % TODO: constellation
+%  DNF and 0ohms
 
 \section{Pathfinding Algorithms}
 
@@ -184,6 +185,18 @@ We found that a combination of these two methods produces the best results—by 
 A secondary reason for this fast response method stems from the resolution of the control loop, where the \qty{40}{\hertz} sampling frequency translates to an effectual increase of $\qty{40}{\text{pulses}}$ per second for each unit (ie $\qty{1}{\text{pulse}}$) increase of the input reference value.
 This is too great of a change for fine-tuned skew correction, and often caused oscillations with a unacceptably long settling time.
 
+\subsection{Sensor Processing Module}
+
+We made use of the digital pin PSoC component to interface with the output of our sensor circuitry, and combined it with an ISR component as shown in Figure \ref{fig:sensor-psoc} to notify us that one of the sensors was under `white' light, or off the line.
+We knew that the timing of these rising edges would be very similar for all the sensors as they are all under the same projected light, but component variances and tolerances in our high-pass filters and $RC$ circuitry of the OpAmps may lead to slight variations in these signals.
+
+To account for this, we decided to take more than just a single sample after a rising edge is detected, such that any phase-shifted sensor signals are correctly detected.
+A sketch detailing this is shown in Figure \ref{fig:sensor-sampling}.
+We concluded that one extra sample after the rising edge was sufficient to account for this, and that excessive sampling introduced unneeded complexity that negatively affected system performance.
+
+Debouncing was also implemented, which required a signal to hold its level either \texttt{HIGH} or \texttt{LOW} for at least four projector periods to ensure that any false triggers weren't inadvertently counted, corresponding to a a debouncing period of $\left(1 / \qty{120}{\hertz}\right) \times 4 = \qty{33.3}{\ms}$—not long enough to be visibly slower, and which served to be very reliable.
+A sketch detailing this debouncing process is shown in Figure \ref{fig:sensor-debouncing}.
+
 \section{Integration}
 
 
@@ -210,6 +223,24 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 	\centerline{\includegraphics[width=0.5\textwidth]{physical-measurements.png}}
 	\caption{Measurements of the robot's physical dimensions}
 	\label{fig:physical-dimensions}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{sensor-psoc.png}}
+	\caption{Screenshot of PSoC components used in sensor processing}
+	\label{fig:sensor-psoc}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{sensor-sampling.png}}
+	\caption{Explanation of sensor sampling process}
+	\label{fig:sensor-sampling}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{sensor-debouncing.png}}
+	\caption{Explanation of sensor debouncing process}
+	\label{fig:sensor-debouncing}
 \end{figure}
 
 \end{document}
