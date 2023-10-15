@@ -101,11 +101,37 @@ Our final circuit design was verified with both:
 	\item by prototyping on breadboards.
 \end{enumerate}
 
+\subsection{Constellation Design}
+
+The driving design ethos behind our sensor constellation was to produce a layout that could correctly detect turns and identify skew, without any false-identifications of skew once a turn has been completed—all in a stateless manner.
+
+The development of our sensor constellation design involved 13 design iterations, each of which involved a thorough evaluation of its potential flaws.
+To summarise the iterations tested, we tried:
+\begin{enumerate}
+	\item Basic 4-Grid (Figure \ref{fig:constellation-basic-4-grid}),
+	\item Basic 4-Grid with Straight-Ahead (Figure \ref{fig:constellation-basic-4-straight}),
+	\item Modified 4-Grid with Skew Detection \texttt{v1} (Figure \ref{fig:constellation-4-skew-v1}),
+	\item Modified 4-Grid with Skew Detection \texttt{v2} (Figure \ref{fig:constellation-4-skew-v2}),
+	\item 4-Line (Figure \ref{fig:constellation-4-line}),
+	\item Modified 4-Grid with Skew Detection \texttt{v3} (Figure \ref{fig:constellation-4-skew-v3}),
+	\item Modified 4-Grid with Skew Detection \texttt{v4} (Figure \ref{fig:constellation-4-skew-v4}),
+	\item 6-Grid (Figure \ref{fig:constellation-6-grid}),
+	\item Modified 4-Grid with Offset Middle Sensors (Figure \ref{fig:constellation-4-offset}),
+	\item Modified 6-Grid with Offset Middle Sensors (Figure \ref{fig:constellation-6-offset}),
+	\item Diamond (Figure \ref{fig:constellation-diamond}),
+	\item Modified Diamond with Middle Sensor (Figure \ref{fig:constellation-diamond-middle}), and
+	\item Hexagon with Middle Sensor (Figure \ref{fig:constellation-hexagon-middle}).
+\end{enumerate}
+
+We eventually converged on the seven-sensor `Hexagon with Middle Sensor' constellation, where each sensor was necessary to provide an adequate stateless detection of turns, skew, and dead-ends.
+We then constructed the $2^7=\qty{128}{\text{row}}$ truth table for each combination of sensor states, such that we could have complete confidence in the correctness of our sensor logic implementation.
+A section of this truth table is shown in Figure \ref{fig:sensor-table}, which was then used to produce the reduced truth table shown in Figure \ref{fig:sensor-table-reduced}.
+We also wrote a small \texttt{Python} script to verify the correctness of our reduced Boolean expressions, by iterating through all sensor permutations and testing that the output was as expected.
+
 \subsection{Printed Circuit Board Design}
 
 % TODO: design considerations
-% TODO: constellation
-%  DNF and 0ohms
+% TODO: DNF and 0ohms
 
 
 
@@ -124,6 +150,7 @@ We knew that in this project each point carried no weight, which guaranteed that
 It is for this reason that Depth First Search (DFS) was not considered, as it could be proven that DFS is not guaranteed to take the shortest path to an end node, even in an unweighted graph.
 
 We were additionally required to create a tool to demonstrate our implemented algorithms, which we created in \texttt{C++} due to its built-in data structures, whilst retaining a syntax that closely resembled \texttt{C} for easier porting into our firmware.
+% TODO: show visualisation
 Additionally, we used \texttt{MatPlotLib} for visualisation.
 We verified the functional correctness of both Dijkstra's and BFS with our visualisation tool, but decided to proceed with BFS as it required only a simple queue, whilst Dijkstra's required a priority queue.
 As these data structures are not provided in \texttt{C}'s standard library, we elected to reduce the risk of introducing a point of failure by selecting the one with an easier implementation—BFS.
@@ -252,7 +279,13 @@ The basic process involved synthesising a given frequency and duration by either
 
 Most of our business logic is performed synchronously as seen in the flowchart in Figure \ref{fig:integration-flowchart}, as we felt that this would make each step easier to understand and debug.
 
-% TODO: more meat?
+Although we have derived and verified the reduced Boolean expressions for our constellation logic as in Figure \ref{fig:sensor-table-reduced}, we later elected to interpret sensor states with a simple look-up table.
+This approach carried a number of advantages, namely:
+\begin{enumerate}
+	\item \textbf{Speed.} By encoding each constellation state as a bitfield, decoding the sensor information becomes a series of shifts and a memory access into the look-up table instead of many conditional branches.
+	\item \textbf{Robustness.} The look-up table allows us to directly encode/decode any individual constellation state, enabling us to easily trace \& debug the robot's actions.
+	\item \textbf{Maintainability.} The direct mapping between truth table to look-up table allows us to quickly fine-tune behaviour without needing to reverse, update, and re-reduce Boolean expressions.
+\end{enumerate}
 
 
 
@@ -283,43 +316,36 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 	\caption{Time-domain phototransistor signals}
 	\label{fig:phototransistor-time}
 \end{figure}
-
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{phototransistor-frequency.png}}
 	\caption{Frequency-domain phototransistor spectrums}
 	\label{fig:phototransistor-frequency}
 \end{figure}
-
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{photodiode-time.png}}
 	\caption{Time-domain photodiode signals}
 	\label{fig:photodiode-time}
 \end{figure}
-
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{photodiode-frequency.png}}
 	\caption{Frequency-domain photodiode spectrums}
 	\label{fig:photodiode-frequency}
 \end{figure}
-
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{projector-phototransistor-time.png}}
 	\caption{Time-domain phototransistor signal comparison between projectors}
 	\label{fig:projector-phototransistor-time}
 \end{figure}
-
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{projector-phototransistor-frequency.png}}
 	\caption{Frequency-domain phototransistor spectrum comparison between projectors}
 	\label{fig:projector-phototransistor-frequency}
 \end{figure}
-
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{projector-photodiode-time.png}}
 	\caption{Time-domain photodiode signal comparison between projectors}
 	\label{fig:projector-photodiode-time}
 \end{figure}
-
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{projector-photodiode-frequency.png}}
 	\caption{Frequency-domain photodiode spectrum comparison between projectors}
@@ -331,7 +357,6 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 	\caption{Frequency-domain phototransistor spectrum comparison between ambient lights on/off}
 	\label{fig:sensor-phototransistor-sensitivity}
 \end{figure}
-
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-photodiode-sensitivity.png}}
 	\caption{Frequency-domain photodiode spectrum comparison between ambient lights on/off}
@@ -342,6 +367,83 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-spice.png}}
 	\caption{Simulation of our sensor circuitry in \texttt{LTspice}}
 	\label{fig:sensor-spice}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.4\textwidth]{constellation-basic-4-grid.png}}
+	\caption{Basic 4-Grid sensor constellation}
+	\label{fig:constellation-basic-4-grid}
+\end{figure}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.4\textwidth]{constellation-basic-4-straight.png}}
+	\caption{Basic 4-Grid with Straight-Ahead sensor constellation}
+	\label{fig:constellation-basic-4-straight}
+\end{figure}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-skew-v1.png}}
+	\caption{Modified 4-Grid with Skew Detection \texttt{v1} sensor constellation}
+	\label{fig:constellation-4-skew-v1}
+\end{figure}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-skew-v2.png}}
+	\caption{Modified 4-Grid with Skew Detection \texttt{v2} sensor constellation}
+	\label{fig:constellation-4-skew-v2}
+\end{figure}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-line.png}}
+	\caption{4-Line sensor constellation}
+	\label{fig:constellation-4-line}
+\end{figure}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-skew-v3.png}}
+	\caption{Modified 4-Grid with Skew Detection \texttt{v3} sensor constellation}
+	\label{fig:constellation-4-skew-v3}
+\end{figure}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-skew-v4.png}}
+	\caption{Modified 4-Grid with Skew Detection \texttt{v4} sensor constellation}
+	\label{fig:constellation-4-skew-v4}
+\end{figure}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.4\textwidth]{constellation-6-grid.png}}
+	\caption{6-Grid sensor constellation}
+	\label{fig:constellation-6-grid}
+\end{figure}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-offset.png}}
+	\caption{Modified 4-Grid with Offset Middle Sensors sensor constellation}
+	\label{fig:constellation-4-offset}
+\end{figure}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.4\textwidth]{constellation-6-offset.png}}
+	\caption{Modified 6-Grid with Offset Middle Sensors sensor constellation}
+	\label{fig:constellation-6-offset}
+\end{figure}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.4\textwidth]{constellation-diamond.png}}
+	\caption{Diamond sensor constellation}
+	\label{fig:constellation-diamond}
+\end{figure}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.4\textwidth]{constellation-diamond-middle.png}}
+	\caption{Modified Diamond with Middle Sensor sensor constellation}
+	\label{fig:constellation-diamond-middle}
+\end{figure}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.2\textwidth]{constellation-hexagon-middle.png}}
+	\caption{Hexagon with Middle Sensor sensor constellation}
+	\label{fig:constellation-hexagon-middle}
+\end{figure}
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{sensor-table.png}}
+	\caption{Selection of rows from sensor constellation truth table}
+	\label{fig:sensor-table}
+\end{figure}
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{sensor-table-reduced.png}}
+	\caption{Reduced sensor constellation truth table}
+	\label{fig:sensor-table-reduced}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -367,7 +469,6 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 	\caption{Explanation of sensor sampling process}
 	\label{fig:sensor-sampling}
 \end{figure}
-
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-debouncing.png}}
 	\caption{Explanation of sensor debouncing process}
@@ -382,7 +483,6 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{integration-flowchart.png}}
-	% TODO:
 	\caption{Our high-level firmware architecture}
 	\label{fig:integration-flowchart}
 \end{figure}
