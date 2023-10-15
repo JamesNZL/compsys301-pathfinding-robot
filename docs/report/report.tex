@@ -3,6 +3,7 @@
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
+\usepackage{siunitx}
 \usepackage{algorithmic}
 \usepackage{graphicx}
 \graphicspath{{images/}}
@@ -61,7 +62,29 @@
 
 \subsection{Frequency Domain Analysis}
 
+% TODO: james
+
 \subsection{Analogue Circuitry Design}
+
+The goal whilst designing our sensor circuitry was to produce a robust output signal that was immune to ambient lighting conditions.
+We concluded in our frequency-domain anayses that this ambient noise primarily consisted of a DC (\qty{0}{\hertz}) component, which could be blocked by a high-pass/coupling capacitor.
+Since we decided to use a photodiode, we opted for a transimpedance amplifier instead of a simple resistor due to its lower input/output impedance even when using a feedback resistor in the \unit{\Mohm} range.
+The maximum photocurrent for the provided \texttt{SD 019-101-411} photodiode is \qty{2.3}{\uA}, which is very small—hence requiring a large gain.
+To get a signal with an acceptable range, where $V_\text{out} = I \times R_\text{feedback}$, we chose a \qty{10}{\Mohm} resistor to produce an output in the order of \qty{2.3}{\volt}.
+We also included a feedback capacitor to the transimpedance amplifier that added a low-pass effect, where the cutoff frequency is given by $f_\text{c} = 1 / (2\pi R_\text{feedback}C)$.
+Knowing that the relevant projector frequency was \qty{120}{\hertz}, we decided that any $f_\text{c}\geq \qty{300}{\hertz}\sim \qty{400}{\hertz}$ was acceptable, but a higher cutoff would likely be more desirable to minimise any phase-shift effects despite the effect being small.
+Consequently, we selected a \qty{40}{\pF} capacitor to produce an $f_\text{c}=\qty{400}{\hertz}$ as it was the smallest capacitor available, and also produced an acceptable $f_\text{c}$.
+For the cascaded high-pass stage we decided to choose an $f_\text{c}$ of \qty{110}{\hertz}, assuming the effects of phase shift to be negligible—there was no visible change from experimentation—as this blocks any DC component whilst retaining frequencies of interest.
+This also allowed us to select a \qty{42}{\kohm} resistor and a \qty{47}{\uF} capacitor which were readily available in the ECSE Component Store.
+
+The next stage comprised a comparator created with an OpAmp.
+No hysteresis was included as we observed our time-domain signals to be very clean with sharp edges.
+One disadvantage of this OpAmp topology is that an OpAmp contains an internal capacitor whilst a dedicated comparator IC does not, resulting in a lower slew rate due to the $RC$ time constant.
+This was acceptable however as we did not require such precision, and it was more practical to simply use the second OpAmp in the transimpedance amplifier IC.
+We decided to use a DAC on the PSoC to provide the comparator reference voltage, as this offered flexibility in case we needed to vary this quantity once our PCB was assembled.
+
+We selected the rail-to-rail \texttt{TLC082} OpAmp as it drove closer to the rails than an \texttt{LM324}, which was essential towards reliably satisfying the high-voltage threshold of the PSoC. We decided against the BJT-based \texttt{LT6221}, as the FET-based \texttt{TLC082} permitted a higher input impedance for each stage due to its lower input bias current (\qty{150}{\nA} for the \texttt{LT6221} versus \qty{50}{\pA} for the \texttt{TLC082}).
+In the end, this was prioritised over the slightly higher slew rate of the \texttt{LT6221} (\qty{20}{\volt\per\us}) versus \qty{16}{\volt\per\us}) due to the negligible effects of phase shift in both cases.
 
 \subsection{Printed Circuit Board Design}
 
@@ -88,7 +111,7 @@ A big thank you to our lecturers Dr. Morteza Biglari-Abhari and Dr. Maryam Hemma
 Coursebook information from COMPSYS 305 directed by Dr. Morteza Biglari-Abhari of the Department of Electrical, Computer, and Software Engineering at The University of Auckland.
 
 \nocite{*}
-\bibliographystyle{../IEEEtran}
+\bibliographystyle{./IEEEtran}
 \bibliography{annot}
 
 \end{document}
