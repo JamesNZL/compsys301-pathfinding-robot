@@ -203,6 +203,11 @@ The pathfinding implementation remained identical to that detailed in Section \r
 % TODO: write this properly (ie we wanted these to be generic)
 This required us to write a queue, which we decided to architect atop \texttt{void *} pointers to facilitate generic usage, and the route data structures outlined in Figure \ref{fig:pathfinding-route-struct}.
 
+Our route data structures were devised to enable the robot to interpret the generated instructions, where each maze segment from one food location to another is labelled as a `route'.
+Each of the `routes' between targeted food locations are stored in a \texttt{Routes} queue, where each route is actioned until its \texttt{Actions} queue is empty, when it is then considered `finished'.
+The decoders are then used to arrive at the final destination, utilising the \texttt{Last Faced Direction} to determine the grid scale (ie horizontal or vertical).
+We felt that this was an intuitive way to integrate with our other APIs.
+
 These data structures were dynamically allocated on the heap, which, whilst not ideal, was only performed during program initialisation.
 This meant that no dynamic allocation was done during runtime, such that we could be confident that memory leaks were not possible, and that any heap fragmentation/allocation errors would be caught during initialisation—which we could solve by increasing the upper limit of the heap size.
 A heap of \texttt{0x9000} bytes seemed to be a good upper bound, with no errors in the algorithm's output based on a test program that was written to verify and output the generated route.
@@ -270,15 +275,14 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.3\textwidth]{pathfinding-route-struct.png}}
-	% TODO:
-	\caption{TODO}
+	\caption{Our route data structure}
 	\label{fig:pathfinding-route-struct}
 \end{figure}
 
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{integration-flowchart.png}}
 	% TODO:
-	\caption{TODO}
+	\caption{Our high-level firmware architecture}
 	\label{fig:integration-flowchart}
 \end{figure}
 
