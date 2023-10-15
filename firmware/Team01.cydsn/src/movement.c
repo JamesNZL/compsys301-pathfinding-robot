@@ -106,12 +106,18 @@ void Movement_check_distance(void)
 		FLAG_CLEAR(FLAGS, FLAG_MOVING_MM);
 
 		MOVEMENT_DISABLE;
+		BUZZA_USE_BLOCKING_MODE;
+		Buzza_play_song(BUZZA_SONG(BUZZA_MCD));
 		if (FLAG_IS_CLEARED(FLAGS, FLAG_DOING_LAST_MOVE_MM))
 		{
-			BUZZA_USE_BLOCKING_MODE;
-			Buzza_play_song(BUZZA_SONG(BUZZA_MCD));
 			BUZZA_USE_PWM_MODE;
 			MOVEMENT_ENABLE;
+		}
+		else
+		{
+			// Infinite wait
+			while (TRUE)
+				;
 		}
 	}
 }
