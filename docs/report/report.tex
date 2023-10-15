@@ -200,8 +200,9 @@ A sketch detailing this debouncing process is shown in Figure \ref{fig:sensor-de
 \subsection{Pathfinding Module}
 
 The pathfinding implementation remained identical to that detailed in Section \ref{sect-pathfinding-algorithms}, except now required self-rolled implementations of the data structures not available in \texttt{C}.
-% TODO: write this properly (ie we wanted these to be generic)
 This required us to write a queue, which we decided to architect atop \texttt{void *} pointers to facilitate generic usage, and the route data structures outlined in Figure \ref{fig:pathfinding-route-struct}.
+We chose to implement generic, well tested, reusable data structures that could be included as needed in favour of single-purpose implementations.
+This was decided to protect ourselves in case requirements changed in the future, allowing us to make `downstream' changes without the risk of breaking the business logic of the data structures themselves.
 
 Our route data structures were devised to enable the robot to interpret the generated instructions, where each maze segment from one food location to another is labelled as a `route'.
 Each of the `routes' between targeted food locations are stored in a \texttt{Routes} queue, where each route is actioned until its \texttt{Actions} queue is empty, when it is then considered `finished'.
