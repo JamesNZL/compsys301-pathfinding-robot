@@ -92,7 +92,22 @@ In the end, this was prioritised over the slightly higher slew rate of the \text
 
 \section{Pathfinding Algorithms}
 
+\subsection{Finding the Shortest Path}
 
+The project requirements state that we must visit five points in \emph{sequential} order, such that the selected algorithm must be capable of computing the shortest path between any two arbitrary points.
+Consequently, we decided to explore two different algorithms:
+\begin{enumerate}
+	\item Dijkstra's Shortest Path (Dijkstra's), and
+	\item Breadth First Search (BFS).
+\end{enumerate}
+Dijkstra's is a greedy algorithm that adds only the least-cost node to its path, whilst BFS is a naïve algorithm—ie the traversal does not have any `intelligence'.
+We knew that in this project each point carried no weight, which guaranteed that the first time that BFS saw each node would be the shortest—or shortest equal—path.
+It is for this reason that Depth First Search (DFS) was not considered, as it could be proven that DFS is not guaranteed to take the shortest path to an end node, even in an unweighted graph.
+
+We were additionally required to create a tool to demonstrate our implemented algorithms, which we created in \texttt{C++} due to its built-in data structures, whilst retaining a syntax that closely resembled \texttt{C} for easier porting into our firmware.
+Additionally, we used \texttt{MatPlotLib} for visualisation.
+We verified the functional correctness of both Dijkstra's and BFS with our visualisation tool, but decided to proceed with BFS as it required only a simple queue, whilst Dijkstra's required a priority queue.
+As these data structures are not provided in \texttt{C}'s standard library, we elected to reduce the risk of introducing a point of failure by selecting the one with an easier implementation—BFS.
 
 \section{Firmware Implementation}
 
