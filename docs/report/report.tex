@@ -211,6 +211,15 @@ If memory allocation was required at runtime, it would certainly be preferred to
 Alongside the standard implementation, a unit testing suite was written and used throughout the development process for each of the relevant pathfinding functions, utilising \texttt{C}'s \texttt{assert()} to streamline development and ensure functional correctness.
 The effectiveness of this testing suite was clearly evident from the lack of pathfinding bugs found during testing and verification.
 
+\subsection{Music Module}
+
+We felt that it did not make sense for a pseudo-vehicle not to have some form of an audio system—hence, we implemented a PWM-driven speaker with its own Class D amplifier capable of playing sounds and music from any MIDI file.
+The basic process involved synthesising a given frequency and duration by either:
+\begin{enumerate}
+	\item writing the required compare and period values for a non-blocking, interrupt-driven solution; or
+	\item manually generating a square wave using \texttt{CyDelay()}.
+\end{enumerate}
+
 \section{Integration}
 
 
