@@ -62,7 +62,8 @@
 
 \subsection{Frequency Domain Analysis}
 
-% TODO: james
+% TODO: matlab
+% TODO: photodiode vs phototransistor
 
 \subsection{Analogue Circuitry Design}
 
@@ -88,7 +89,8 @@ In the end, this was prioritised over the slightly higher slew rate of the \text
 
 \subsection{Printed Circuit Board Design}
 
-
+% TODO: design considerations
+% TODO: constellation
 
 \section{Pathfinding Algorithms}
 
@@ -119,7 +121,14 @@ We verified the correctness of this supplementary algorithm by tracing out the c
 
 \section{Firmware Implementation}
 
+In order to facilitate collaboration on different aspects of our firmware, we decided to produce a series of modules, where each module exposed its own API.
+This modular architectural approach enabled ease-of-understanding during integration, and prevented name collisions with our use of namespacing.
 
+% TODO: style guide
+
+% TODO: signed magnitude
+% TODO: sensor logic design?
+% TODO: battery monitoring
 
 \section{Integration}
 
