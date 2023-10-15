@@ -130,8 +130,6 @@ In order to facilitate collaboration on different aspects of our firmware, we de
 This modular architectural approach enabled ease-of-understanding during integration, and prevented name collisions with our use of namespacing.
 
 % TODO: style guide
-
-% TODO: signed magnitude
 % TODO: sensor logic design?
 % TODO: battery monitoring
 
@@ -139,6 +137,10 @@ This modular architectural approach enabled ease-of-understanding during integra
 
 The mission of the movement module was to streamline interactions with the most vital component of our robot—the motors.
 This was achieved by abstracting-away the motor synchronisation, precise timing, and fine-tuning.
+Behind these abstractions, the motors are ultimately driven with PWM control atop an H-Bridge MOSFET motor driver, which we drive with a signed-magnitude PWM scheme.
+We elected for signed-magnitude over locked anti-phase as the latter scheme would limit us to half the resolution in duty cycle, where each drive direction (ie forwards and backwards) only has $50\%$ of the available duty range.
+Additionally, locked anti-phase drives the motors to be stationary by rapidly switching between both directions, wasting power and causing inductive whine—signed-magnitude does not suffer from this, as you can simply drive the motors with a $0\%$ duty cycle.
+A further benefit of signed-magnitude is the triviality of changing the drive direction of the motors, which is achieved by simply inverting the `direction' signal.
 
 Just as no two motors are mechanically identical, we visually observed a substantial difference in the output of each motor during the early stages of the project.
 This inhibited the ability of our robot to perform the basic action of moving in a straight line, leading to the first iteration of our control loop.
