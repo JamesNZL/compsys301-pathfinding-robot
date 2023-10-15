@@ -152,9 +152,8 @@ We knew that in this project each point carried no weight, which guaranteed that
 It is for this reason that Depth First Search (DFS) was not considered, as it could be proven that DFS is not guaranteed to take the shortest path to an end node, even in an unweighted graph.
 
 We were additionally required to create a tool to demonstrate our implemented algorithms, which we created in \texttt{C++} due to its built-in data structures, whilst retaining a syntax that closely resembled \texttt{C} for easier porting into our firmware.
-% TODO: show visualisation
-Additionally, we used \texttt{MatPlotLib} for visualisation.
-We verified the functional correctness of both Dijkstra's and BFS with our visualisation tool, but decided to proceed with BFS as it required only a simple queue, whilst Dijkstra's required a priority queue.
+Additionally, we used \texttt{Matplotlib} for visualisation.
+We verified the functional correctness of both Dijkstra's and BFS with our visualisation tool as shown in Figure \ref{fig:pathfinding-visualisation}, but decided to proceed with BFS as it required only a simple queue, whilst Dijkstra's required a priority queue.
 As these data structures are not provided in \texttt{C}'s standard library, we elected to reduce the risk of introducing a point of failure by selecting the one with an easier implementation—BFS.
 
 \subsection{Conversion to Instructions}
@@ -452,6 +451,11 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 	\label{fig:constellation-cad}
 \end{figure}
 
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{pathfinding-visualisation.png}}
+	\caption{Pathfinding visualisation tool created with \texttt{Matplotlib}}
+	\label{fig:pathfinding-visualisation}
+\end{figure}
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{pathfinding-instructions.png}}
 	\caption{Debugging output of the generated instructions}
