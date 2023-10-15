@@ -6,7 +6,7 @@
 \usepackage{siunitx}
 \usepackage{algorithmic}
 \usepackage{graphicx}
-\graphicspath{{images/}}
+\graphicspath{{./images/}}
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage[raggedrightboxes]{ragged2e}
@@ -109,6 +109,14 @@ Additionally, we used \texttt{MatPlotLib} for visualisation.
 We verified the functional correctness of both Dijkstra's and BFS with our visualisation tool, but decided to proceed with BFS as it required only a simple queue, whilst Dijkstra's required a priority queue.
 As these data structures are not provided in \texttt{C}'s standard library, we elected to reduce the risk of introducing a point of failure by selecting the one with an easier implementation—BFS.
 
+\subsection{Conversion to Instructions}
+
+Finding the shortest path alone would have necessitated a considerable amount of processing and state management in firmware for the robot to remember its position in the maze.
+In the interest of simplifying this business logic, we exploit the fact that the pathfinding algorithm only needs to be called at initialisation by implementing a supporting algorithm that generates our required actions, an example of which is shown in Figure \ref{fig:pathfinding-instructions}.
+
+This provides the instructions by which our robot abides at intersections, and specifies the distance for which to travel if the required food location is not found at an intersection.
+We verified the correctness of this supplementary algorithm by tracing out the correct path the robot should take and comparing against the generated output.
+
 \section{Firmware Implementation}
 
 
@@ -128,5 +136,13 @@ Coursebook information from COMPSYS 305 directed by Dr. Morteza Biglari-Abhari o
 \nocite{*}
 \bibliographystyle{./IEEEtran}
 \bibliography{annot}
+
+\appendix
+
+\begin{figure}[htbp]
+	\centerline{\includegraphics[width=0.5\textwidth]{pathfinding-instructions.png}}
+	\caption{Debugging output of the generated instructions}
+	\label{fig:pathfinding-instructions}
+\end{figure}
 
 \end{document}
