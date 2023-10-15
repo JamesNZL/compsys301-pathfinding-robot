@@ -1,18 +1,6 @@
-#include "../inc/pathfinding.h"
-#include "../lib/Point/Point.h"
-#include "../lib/Queue/Queue.h"
 #include <stdint.h>
 
-/* For debugging purposes */
-char *action_strings[5] = {
-	"left", "right", "skip", "around", "straight"
-};
-
-char *direction_strings[4] = {
-	"left", "right", "up", "down"
-};
-
-uint8_t map[15][19] = {
+static uint8_t PATHFINDING_MAZE[15][19] = {
 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 	{ 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
 	{ 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1 },
@@ -30,7 +18,7 @@ uint8_t map[15][19] = {
 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
 };
 
-uint8_t food_list[5][2] = {
+static uint8_t PATHFINDING_FOOD_LIST[5][2] = {
 	{ 1, 9 },
 	{ 5, 5 },
 	{ 7, 1 },

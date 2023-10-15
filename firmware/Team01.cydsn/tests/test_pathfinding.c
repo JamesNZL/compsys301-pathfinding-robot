@@ -84,10 +84,10 @@ void run_route_tests()
 	Stack *path = Pathfinding_find_shortest_path_bfs(start, end, map);
 	PathfindingRoute *route = Pathfinding_generate_route_to_food(path, MAZE_DIRECTIONS_LEFT, map);
 	printf("The current route is:\n");
-	Queue *turns = Pathfinding_route_get_turns(route);
-	while (!Queue_is_empty(turns))
+	Queue *actions = Pathfinding_route_get_actions(route);
+	while (!Queue_is_empty(actions))
 	{
-		Node *current = Queue_pop(turns);
+		Node *current = Queue_pop(actions);
 		Actions *current_action = Node_get_value(current);
 		printf("%s,", action_strings[*current_action]);
 		free(current_action);
@@ -103,7 +103,7 @@ void run_all_routes_tests()
 {
 	printf("==============================All Route tests==============================\n");
 	Point *start = Point_create(1, 1, PATHFINDING_MAZE_WIDTH);
-	Queue *routes = Pathfinding_generate_routes_to_all_food(start, MAZE_DIRECTIONS_UP, food_list, map);
+	Queue *routes = Pathfinding_generate_routes_to_all_food(start, MAZE_DIRECTIONS_RIGHT, food_list, map);
 	int length = 0;
 	while (!Queue_is_empty(routes))
 	{
@@ -112,10 +112,10 @@ void run_all_routes_tests()
 		PathfindingRoute *current_route = Node_get_value(current_node);
 
 		printf("\nRoute to food %i\n\n", length);
-		Queue *turns = Pathfinding_route_get_turns(current_route);
-		while (!Queue_is_empty(turns))
+		Queue *actions = Pathfinding_route_get_actions(current_route);
+		while (!Queue_is_empty(actions))
 		{
-			Node *current = Queue_pop(turns);
+			Node *current = Queue_pop(actions);
 			Actions *current_action = Node_get_value(current);
 			printf("%s,", action_strings[*current_action]);
 			free(current_action);

@@ -6,7 +6,7 @@
 #ifndef PATHFINDING_H_
 #define PATHFINDING_H_
 
-#define TESTING
+// #define TESTING
 
 #include <Node/Node.h>
 #include <Point/Point.h>
@@ -15,11 +15,36 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#define PATHFINDING_MAZE_WIDTH			19
-#define PATHFINDING_MAZE_HEIGHT			15
-#define PATHFINDING_STARTING_INDEX		0
-#define PATHFINDING_POSSIBLE_DIRECTIONS 4
-#define PATHFINDING_FOOD_LOCATIONS		5
+#ifndef TESTING
+#include "common.h"
+#endif
+
+#define PATHFINDING_MAZE_WIDTH			  19
+#define PATHFINDING_MAZE_HEIGHT			  15
+#define PATHFINDING_STARTING_INDEX		  0
+#define PATHFINDING_POSSIBLE_DIRECTIONS	  4
+#define PATHFINDING_TOTAL_FOOD_LOCATIONS  5
+
+#define PATHFINDING_X_GRID_SCALE_MM		  127.5
+#define PATHFINDING_Y_GRID_SCALE_MM		  80
+#define PATHFINDING_OVERSHOOT_REDUCTION_X (MOVEMENT_TURNS_REFRACTORY_PULSES + 50)
+#define PATHFINDING_OVERSHOOT_REDUCTION_Y (MOVEMENT_TURNS_REFRACTORY_PULSES + 20)
+
+#define PATHFINDING_START_X				  1
+#define PATHFINDING_START_Y				  1
+#define PATHFINDING_STARTING_DIRECTION	  MAZE_DIRECTIONS_LEFT
+
+/* For usage with Movement_move_mm */
+
+// Usage: GRID_DISTANCE_LUT_MM_X[distance] where distance is grids - 1 (based on scale of 127.5mm)
+static const uint16_t GRID_DISTANCE_LUT_MM_X[PATHFINDING_MAZE_WIDTH] = {
+	0, 127, 255, 382, 510, 637, 765, 892, 1020, 1147, 1275, 1275, 1402, 1530, 1657, 1785, 1912, 2040, 2167
+};
+
+// Usage: GRID_DISTANCE_LUT_MM_Y[distance] where distance is grids - 1 (based on scale of 80mm)
+static const uint16_t GRID_DISTANCE_LUT_MM_Y[PATHFINDING_MAZE_WIDTH] = {
+	0, 80, 160, 240, 320, 400, 480, 560, 640, 720, 800, 880, 960, 1040, 1120, 1200, 1280, 1360, 1440
+};
 
 typedef struct PathfindingRoute PathfindingRoute;
 
@@ -49,17 +74,34 @@ typedef enum MazeDirections
  * @warning It is the caller's responsibility to destroy the queue and routes
  * @return
  */
-Queue *Pathfinding_generate_routes_to_all_food(Point *start, MazeDirections startingDirection, uint8_t food_list[PATHFINDING_FOOD_LOCATIONS][2], uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
+Queue *Pathfinding_generate_routes_to_all_food(Point *start, MazeDirections startingDirection, uint8_t food_list[PATHFINDING_TOTAL_FOOD_LOCATIONS][2], uint8_t maze[PATHFINDING_MAZE_HEIGHT][PATHFINDING_MAZE_WIDTH]);
 
 /**
- * @brief Creates and returns a pointer to a route data structure which has a queue containing the required turns, and the required amount of distance to be travelled after the final turn
- * @param turns a Queue of turns defined as enums
+ * @brief returns true if the robot is currently moving horizontally
+ * @param directionOfMotion a MAZE_DIRECTION enum
+ */
+uint8_t Pathfinding_is_moving_horizontally(MazeDirections directionOfMotion);
+/**
+ * @brief returns true if the robot is currently moving vertically
+ * @param directionOfMotion a MAZE_DIRECTION enum
+ */
+uint8_t Pathfinding_is_moving_vertically(MazeDirections directionOfMotion);
+
+/**
+ * @brief Handles logic remaining to setting and clearing the waiting for final action
+ * @param actions queue of the current actions
+ */
+void Pathfinding_check_if_waiting_for_final_action_in_queue(Queue *actions);
+
+/**
+ * @brief Creates and returns a pointer to a route data structure which has a queue containing the required actions, and the required amount of distance to be travelled after the final turn
+ * @param actions a Queue of actions defined as enums
  * @param lastFacedDirection the direction the robot will be facing after reaching the food
  * @param finalDistance the units (in terms of the maze grid) required to be travelled after the final turn
  * @return Pathfinding_route* Pointer to the created Pathfinding_route
  */
 PathfindingRoute *
-Pathfinding_route_construct(Queue *turns, MazeDirections lastFacedDirection, uint8_t finalDistance);
+Pathfinding_route_construct(Queue *actions, MazeDirections lastFacedDirection, uint8_t finalDistance);
 
 /**
  * @brief Frees a memory allocated to a pathfinding route pointer
@@ -70,9 +112,9 @@ void Pathfinding_route_destroy(PathfindingRoute *route);
 /**
  * @brief
  * @param route
- * @return Queue* The queue of turns in the route
+ * @return Queue* The queue of actions in the route
  */
-Queue *Pathfinding_route_get_turns(PathfindingRoute *route);
+Queue *Pathfinding_route_get_actions(PathfindingRoute *route);
 
 /**
  * @brief
@@ -80,8 +122,6 @@ Queue *Pathfinding_route_get_turns(PathfindingRoute *route);
  * @return Maze_Directions The last faced direction in the route
  */
 MazeDirections Pathfinding_route_get_last_faced_direction(PathfindingRoute *route);
-
-#ifdef TESTING
 
 /**
  * @brief
@@ -135,7 +175,7 @@ Stack *Pathfinding_find_shortest_path_bfs(Point *start, Point *end, uint8_t maze
 void Pathfinding_build_stack_from_pred(Stack *stack, uint16_t pred[PATHFINDING_MAZE_HEIGHT * PATHFINDING_MAZE_WIDTH], Point *start, Point *end);
 
 /**
- * @brief Gives a path to the food containing the turns needed, as well as instructions after the final turn such as distance
+ * @brief Gives a path to the food containing the actions needed, as well as instructions after the final turn such as distance
  * @param path a stack of the nodes contained within the shortest path
  * @return Pathfinding_route* Pointer to the created Pathfinding_route
  * @warning DO NOT destroy the stack afterwards as this function does it (you will get DOUBLE FREE error)
@@ -161,5 +201,4 @@ uint8_t Pathfinding_is_on_intersection(MazeDirections currentDirection, uint8_t 
  */
 uint8_t Pathfinding_calculate_point_spacing(MazeDirections currentDirection, Point *point1, Point *point2);
 
-#endif
 #endif

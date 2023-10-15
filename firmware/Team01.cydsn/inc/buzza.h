@@ -1,6 +1,7 @@
 #ifndef BUZZA_H_
 #define BUZZA_H_
 
+#include "common.h"
 #include "cytypes.h"
 
 // All in Hz
@@ -94,110 +95,288 @@
 #define BUZZA_NOTE_D8						  4699
 #define BUZZA_NOTE_DS8						  4978
 
-#define BUZZA_SONG_TO_PLAY					  BUZZA_NOKIA_RINGTONE
+#define BUZZA_SONG_TO_PLAY					  BUZZA_MEGALOVANIA
 
-#define BUZZA_TEMPO							  320
+#define BUZZA_TEMPO							  160
 
 #define BUZZA_US_IN_S						  1000000
 #define BUZZA_US_IN_MS						  1000
 
+#define BUZZA_USE_BLOCKING_MODE				  Sfx_Mode_Write(1)
+#define BUZZA_USE_PWM_MODE					  Sfx_Mode_Write(0)
+
 #define BUZZA_FIND_NOTE_ARRAY_SIZE(arrayName) sizeof(arrayName) / sizeof(arrayName[0])
+#define BUZZA_SONG(songName)				  songName, BUZZA_FIND_NOTE_ARRAY_SIZE(songName)
 
 typedef struct BuzzaNote
 {
-	int16 noteFrequency;
-	int8 noteType;
+	uint16 noteFrequency;
+	uint16 noteType;
 } BuzzaNote;
 
-static BuzzaNote BUZZA_HAPPY_BIRTHDAY[]
-	= {
-		  // Score available at https://musescore.com/user/8221/scores/26906
-		  { BUZZA_NOTE_C4, 4 },
-		  { BUZZA_NOTE_C4, 8 },
-		  { BUZZA_NOTE_D4, -4 },
-		  { BUZZA_NOTE_C4, -4 },
-		  { BUZZA_NOTE_F4, -4 },
-		  { BUZZA_NOTE_E4, -2 },
-		  { BUZZA_NOTE_C4, 4 },
-		  { BUZZA_NOTE_C4, 8 },
-		  { BUZZA_NOTE_D4, -4 },
-		  { BUZZA_NOTE_C4, -4 },
-		  { BUZZA_NOTE_G4, -4 },
-		  { BUZZA_NOTE_F4, -2 },
-		  { BUZZA_NOTE_C4, 4 },
-		  { BUZZA_NOTE_C4, 8 },
-		  { BUZZA_NOTE_C5, -4 },
-		  { BUZZA_NOTE_A4, -4 },
-		  { BUZZA_NOTE_F4, -4 },
-		  { BUZZA_NOTE_E4, -4 },
-		  { BUZZA_NOTE_D4, -4 },
-		  { BUZZA_NOTE_AS4, 4 },
-		  { BUZZA_NOTE_AS4, 8 },
-		  { BUZZA_NOTE_A4, -4 },
-		  { BUZZA_NOTE_F4, -4 },
-		  { BUZZA_NOTE_G4, -4 },
-		  { BUZZA_NOTE_F4, -2 },
-	  };
-
-static BuzzaNote BUZZA_MERRY_CHRISTMAS[] = {
-	{ BUZZA_NOTE_C5, 4 }, // 1
-	{ BUZZA_NOTE_F5, 4 }, { BUZZA_NOTE_F5, 8 }, { BUZZA_NOTE_G5, 8 }, { BUZZA_NOTE_F5, 8 }, { BUZZA_NOTE_E5, 8 },
-	{ BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_D5, 4 },
-	{ BUZZA_NOTE_G5, 4 }, { BUZZA_NOTE_G5, 8 }, { BUZZA_NOTE_A5, 8 }, { BUZZA_NOTE_G5, 8 }, { BUZZA_NOTE_F5, 8 },
-	{ BUZZA_NOTE_E5, 4 }, { BUZZA_NOTE_C5, 4 }, { BUZZA_NOTE_C5, 4 },
-	{ BUZZA_NOTE_A5, 4 }, { BUZZA_NOTE_A5, 8 }, { BUZZA_NOTE_AS5, 8 }, { BUZZA_NOTE_A5, 8 }, { BUZZA_NOTE_G5, 8 },
-	{ BUZZA_NOTE_F5, 4 }, { BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_C5, 8 }, { BUZZA_NOTE_C5, 8 },
-	{ BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_G5, 4 }, { BUZZA_NOTE_E5, 4 },
-	{ BUZZA_NOTE_F5, 2 }, { BUZZA_NOTE_C5, 4 },
-	{ BUZZA_NOTE_F5, 4 }, { BUZZA_NOTE_F5, 4 }, { BUZZA_NOTE_F5, 4 }, // 17
-	{ BUZZA_NOTE_E5, 2 }, { BUZZA_NOTE_E5, 4 },
-	{ BUZZA_NOTE_F5, 4 }, { BUZZA_NOTE_E5, 4 }, { BUZZA_NOTE_D5, 4 },
-	{ BUZZA_NOTE_C5, 2 }, { BUZZA_NOTE_A5, 4 },
-	{ BUZZA_NOTE_AS5, 4 }, { BUZZA_NOTE_A5, 4 }, { BUZZA_NOTE_G5, 4 },
-	{ BUZZA_NOTE_C6, 4 }, { BUZZA_NOTE_C5, 4 }, { BUZZA_NOTE_C5, 8 }, { BUZZA_NOTE_C5, 8 },
-	{ BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_G5, 4 }, { BUZZA_NOTE_E5, 4 },
-	{ BUZZA_NOTE_F5, 2 }, { BUZZA_NOTE_C5, 4 },
-	{ BUZZA_NOTE_F5, 4 }, { BUZZA_NOTE_F5, 8 }, { BUZZA_NOTE_G5, 8 }, { BUZZA_NOTE_F5, 8 }, { BUZZA_NOTE_E5, 8 },
-	{ BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_D5, 4 },
-	{ BUZZA_NOTE_G5, 4 }, { BUZZA_NOTE_G5, 8 }, { BUZZA_NOTE_A5, 8 }, { BUZZA_NOTE_G5, 8 }, { BUZZA_NOTE_F5, 8 }, // 27
-	{ BUZZA_NOTE_E5, 4 }, { BUZZA_NOTE_C5, 4 }, { BUZZA_NOTE_C5, 4 },
-	{ BUZZA_NOTE_A5, 4 }, { BUZZA_NOTE_A5, 8 }, { BUZZA_NOTE_AS5, 8 }, { BUZZA_NOTE_A5, 8 }, { BUZZA_NOTE_G5, 8 },
-	{ BUZZA_NOTE_F5, 4 }, { BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_C5, 8 }, { BUZZA_NOTE_C5, 8 },
-	{ BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_G5, 4 }, { BUZZA_NOTE_E5, 4 },
-	{ BUZZA_NOTE_F5, 2 }, { BUZZA_NOTE_C5, 4 },
-	{ BUZZA_NOTE_F5, 4 }, { BUZZA_NOTE_F5, 4 }, { BUZZA_NOTE_F5, 4 },
-	{ BUZZA_NOTE_E5, 2 }, { BUZZA_NOTE_E5, 4 },
-	{ BUZZA_NOTE_F5, 4 }, { BUZZA_NOTE_E5, 4 }, { BUZZA_NOTE_D5, 4 },
-	{ BUZZA_NOTE_C5, 2 }, { BUZZA_NOTE_A5, 4 }, // 36
-	{ BUZZA_NOTE_AS5, 4 }, { BUZZA_NOTE_A5, 4 }, { BUZZA_NOTE_G5, 4 },
-	{ BUZZA_NOTE_C6, 4 }, { BUZZA_NOTE_C5, 4 }, { BUZZA_NOTE_C5, 8 }, { BUZZA_NOTE_C5, 8 },
-	{ BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_G5, 4 }, { BUZZA_NOTE_E5, 4 },
-	{ BUZZA_NOTE_F5, 2 }, { BUZZA_NOTE_C5, 4 },
-	{ BUZZA_NOTE_F5, 4 }, { BUZZA_NOTE_F5, 8 }, { BUZZA_NOTE_G5, 8 }, { BUZZA_NOTE_F5, 8 }, { BUZZA_NOTE_E5, 8 },
-	{ BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_D5, 4 },
-	{ BUZZA_NOTE_G5, 4 }, { BUZZA_NOTE_G5, 8 }, { BUZZA_NOTE_A5, 8 }, { BUZZA_NOTE_G5, 8 }, { BUZZA_NOTE_F5, 8 },
-	{ BUZZA_NOTE_E5, 4 }, { BUZZA_NOTE_C5, 4 }, { BUZZA_NOTE_C5, 4 },
-	{ BUZZA_NOTE_A5, 4 }, { BUZZA_NOTE_A5, 8 }, { BUZZA_NOTE_AS5, 8 }, { BUZZA_NOTE_A5, 8 }, { BUZZA_NOTE_G5, 8 }, // 45
-	{ BUZZA_NOTE_F5, 4 }, { BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_C5, 8 }, { BUZZA_NOTE_C5, 8 },
-	{ BUZZA_NOTE_D5, 4 }, { BUZZA_NOTE_G5, 4 }, { BUZZA_NOTE_E5, 4 },
-	{ BUZZA_NOTE_F5, 2 }
-
+extern const BuzzaNote BUZZA_NOKIA_RINGTONE[13];
+extern const BuzzaNote BUZZA_MEGALOVANIA[601];
+extern const BuzzaNote BUZZA_FIREFLIES[1247];
+extern const BuzzaNote BUZZA_UNKNOWN[207];
+static BuzzaNote music[] = {
+	{ 391, 64 },
+	{ 329, 24 },
+	{ 261, 8 },
+	{ 329, 32 },
+	{ 391, 32 },
+	{ 523, 32 },
+	{ 164, 32 },
+	{ 659, 32 },
+	{ 587, 24 },
+	{ 329, 8 },
+	{ 261, 32 },
+	{ 293, 32 },
+	{ 246, 32 },
+	{ 146, 32 },
+	{ 391, 32 },
+	{ 391, 16 },
+	{ 659, 16 },
+	{ 164, 32 },
+	{ 587, 16 },
+	{ 523, 16 },
+	{ 493, 32 },
+	{ 146, 32 },
+	{ 440, 32 },
+	{ 493, 16 },
+	{ 329, 16 },
+	{ 523, 32 },
+	{ 391, 32 },
+	{ 329, 32 },
+	{ 261, 32 },
+	{ 391, 32 },
+	{ 329, 24 },
+	{ 261, 8 },
+	{ 329, 32 },
+	{ 391, 32 },
+	{ 523, 32 },
+	{ 164, 32 },
+	{ 659, 32 },
+	{ 587, 24 },
+	{ 329, 8 },
+	{ 261, 32 },
+	{ 293, 32 },
+	{ 246, 32 },
+	{ 146, 32 },
+	{ 391, 32 },
+	{ 391, 16 },
+	{ 659, 16 },
+	{ 164, 32 },
+	{ 587, 16 },
+	{ 523, 16 },
+	{ 493, 32 },
+	{ 146, 32 },
+	{ 440, 32 },
+	{ 493, 16 },
+	{ 329, 16 },
+	{ 523, 32 },
+	{ 391, 32 },
+	{ 329, 32 },
+	{ 261, 32 },
+	{ 659, 32 },
+	{ 659, 16 },
+	{ 523, 16 },
+	{ 587, 32 },
+	{ 659, 32 },
+	{ 659, 32 },
+	{ 195, 32 },
+	{ 587, 32 },
+	{ 523, 16 },
+	{ 493, 16 },
+	{ 523, 32 },
+	{ 587, 32 },
+	{ 587, 32 },
+	{ 146, 32 },
+	{ 493, 32 },
+	{ 523, 32 },
+	{ 195, 32 },
+	{ 391, 16 },
+	{ 329, 16 },
+	{ 493, 32 },
+	{ 146, 32 },
+	{ 440, 32 },
+	{ 493, 16 },
+	{ 329, 16 },
+	{ 261, 32 },
+	{ 261, 32 },
+	{ 391, 32 },
+	{ 146, 32 },
+	{ 391, 32 },
+	{ 391, 16 },
+	{ 523, 16 },
+	{ 523, 32 },
+	{ 523, 32 },
+	{ 493, 16 },
+	{ 440, 16 },
+	{ 440, 32 },
+	{ 440, 32 },
+	{ 587, 32 },
+	{ 698, 32 },
+	{ 659, 16 },
+	{ 587, 16 },
+	{ 523, 16 },
+	{ 523, 16 },
+	{ 493, 32 },
+	{ 391, 32 },
+	{ 523, 32 },
+	{ 523, 32 },
+	{ 587, 16 },
+	{ 659, 16 },
+	{ 698, 16 },
+	{ 783, 16 },
+	{ 195, 32 },
+	{ 523, 48 },
+	{ 587, 16 },
+	{ 659, 16 },
+	{ 164, 32 },
+	{ 698, 16 },
+	{ 587, 16 },
+	{ 523, 32 },
+	{ 195, 32 },
+	{ 391, 48 },
+	{ 329, 24 },
+	{ 261, 8 },
+	{ 329, 32 },
+	{ 391, 32 },
+	{ 523, 32 },
+	{ 164, 32 },
+	{ 659, 32 },
+	{ 587, 24 },
+	{ 329, 8 },
+	{ 261, 32 },
+	{ 293, 32 },
+	{ 246, 32 },
+	{ 146, 32 },
+	{ 391, 32 },
+	{ 391, 16 },
+	{ 659, 16 },
+	{ 164, 32 },
+	{ 587, 16 },
+	{ 523, 16 },
+	{ 493, 32 },
+	{ 146, 32 },
+	{ 440, 32 },
+	{ 493, 16 },
+	{ 329, 16 },
+	{ 523, 32 },
+	{ 391, 32 },
+	{ 329, 32 },
+	{ 261, 32 },
+	{ 391, 32 },
+	{ 329, 24 },
+	{ 261, 8 },
+	{ 329, 32 },
+	{ 391, 32 },
+	{ 523, 32 },
+	{ 164, 32 },
+	{ 659, 32 },
+	{ 587, 24 },
+	{ 329, 8 },
+	{ 261, 32 },
+	{ 293, 32 },
+	{ 246, 32 },
+	{ 146, 32 },
+	{ 391, 32 },
+	{ 391, 16 },
+	{ 659, 16 },
+	{ 164, 32 },
+	{ 587, 16 },
+	{ 523, 16 },
+	{ 493, 32 },
+	{ 146, 32 },
+	{ 440, 32 },
+	{ 493, 16 },
+	{ 329, 16 },
+	{ 523, 32 },
+	{ 391, 32 },
+	{ 329, 32 },
+	{ 261, 32 },
+	{ 659, 32 },
+	{ 659, 16 },
+	{ 523, 16 },
+	{ 587, 32 },
+	{ 659, 32 },
+	{ 659, 32 },
+	{ 195, 32 },
+	{ 587, 32 },
+	{ 523, 16 },
+	{ 493, 16 },
+	{ 523, 32 },
+	{ 587, 32 },
+	{ 587, 32 },
+	{ 146, 32 },
+	{ 493, 32 },
+	{ 523, 32 },
+	{ 195, 32 },
+	{ 391, 16 },
+	{ 329, 16 },
+	{ 493, 32 },
+	{ 146, 32 },
+	{ 440, 32 },
+	{ 493, 16 },
+	{ 329, 16 },
+	{ 261, 32 },
+	{ 261, 32 },
+	{ 391, 32 },
+	{ 146, 32 },
+	{ 391, 32 },
+	{ 391, 16 },
+	{ 523, 16 },
+	{ 523, 32 },
+	{ 523, 32 },
+	{ 493, 16 },
+	{ 440, 16 },
+	{ 440, 32 },
+	{ 440, 32 },
+	{ 587, 32 },
+	{ 698, 32 },
+	{ 659, 16 },
+	{ 587, 16 },
+	{ 523, 16 },
+	{ 523, 16 },
+	{ 493, 32 },
+	{ 391, 32 },
+	{ 523, 32 },
+	{ 523, 32 },
+	{ 587, 16 },
+	{ 659, 16 },
+	{ 698, 16 },
+	{ 783, 16 },
+	{ 195, 32 },
+	{ 523, 48 },
+	{ 587, 16 },
+	{ 659, 16 },
+	{ 164, 32 },
+	{ 698, 16 },
+	{ 587, 16 },
+	{ 523, 32 },
+	{ 195, 32 },
 };
-static BuzzaNote BUZZA_NOKIA_RINGTONE[] = {
-	// Score available at https://musescore.com/user/29944637/scores/5266155
-	{ BUZZA_NOTE_E5, 8 },
-	{ BUZZA_NOTE_D5, 8 },
-	{ BUZZA_NOTE_FS4, 4 },
-	{ BUZZA_NOTE_GS4, 4 },
-	{ BUZZA_NOTE_CS5, 8 },
-	{ BUZZA_NOTE_B4, 8 },
-	{ BUZZA_NOTE_D4, 4 },
-	{ BUZZA_NOTE_E4, 4 },
-	{ BUZZA_NOTE_B4, 8 },
-	{ BUZZA_NOTE_A4, 8 },
-	{ BUZZA_NOTE_CS4, 4 },
-	{ BUZZA_NOTE_E4, 4 },
-	{ BUZZA_NOTE_A4, 2 },
+static BuzzaNote BUZZA_MCD[] = {
+	{ BUZZA_NOTE_B5, 8 },
+	{ BUZZA_NOTE_FS5, 8 },
+	{ BUZZA_NOTE_B5, 8 },
+	{ BUZZA_NOTE_FS5, 8 },
+	{ BUZZA_NOTE_B5, 8 },
+
+	{ 0, 128 },
+
+	{ BUZZA_NOTE_B5, 8 },
+	{ BUZZA_NOTE_FS5, 8 },
+	{ BUZZA_NOTE_B5, 8 },
+	{ BUZZA_NOTE_FS5, 8 },
+
+	{ 0, 128 },
+
+	{ BUZZA_NOTE_B5, 8 },
+	{ BUZZA_NOTE_FS5, 8 },
+	{ BUZZA_NOTE_B5, 8 },
+	{ BUZZA_NOTE_FS5, 8 },
+	{ BUZZA_NOTE_B5, 8 },
 };
 
 /**
@@ -205,7 +384,7 @@ static BuzzaNote BUZZA_NOKIA_RINGTONE[] = {
  * @param notes the array of BuzzaNotes
  * @param noteArraySize the amount of notes in the array (USE MACRO)
  */
-void Buzza_play_song(BuzzaNote notes[], uint16 noteArraySize);
+void Buzza_play_song(BuzzaNote *notes, uint16 noteArraySize);
 
 /**
  * @brief Plays a single frequency at a specified duration (in ms)
@@ -213,5 +392,13 @@ void Buzza_play_song(BuzzaNote notes[], uint16 noteArraySize);
  * @param duration duration IN MS
  */
 void Buzza_play_tone(int16 frequency, float duration);
+
+/**
+ * @brief Plays a pwm song at a specified sampling frequency
+ * @param pwmValues the frequencies to play
+ * @param pwmValuesSize the size of the sample array
+ * @param sampleRate the sampling rate of the PWM file
+ */
+void Buzza_play_pwm(int16 *pwmValues, uint16 pwmValuesSize, uint16 sampleRate);
 
 #endif

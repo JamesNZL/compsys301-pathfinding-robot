@@ -386,7 +386,7 @@
   </Group>
   <Group key="Component">
     <Group key="v1">
-      <Data key="cy_boot" value="cy_boot_v6_10" />
+      <Data key="cy_boot" value="cy_boot_v5_82" />
       <Data key="Em_EEPROM_Dynamic" value="Em_EEPROM_Dynamic_v2_20" />
       <Data key="LIN_Dynamic" value="LIN_Dynamic_v6_0" />
     </Group>
@@ -410,9 +410,12 @@
       <Data key="2b269b96-47a4-4e9a-937e-76d4080bb211/d91ea660-bc91-4817-b29b-2fe86c305500" value="USBUART_arb_int" />
       <Data key="2b269b96-47a4-4e9a-937e-76d4080bb211/dc6da32b-30f7-48b3-b8a1-dbf0214d8c83" value="USBUART_dp_int" />
       <Data key="2b269b96-47a4-4e9a-937e-76d4080bb211/ef9224ec-f8a6-4df0-8a49-e09ce75cefa7" value="USBUART_ep_0" />
+      <Data key="005dedd9-bf37-4757-8454-060263cf6946/b73dcd38-4bce-4cd7-acec-33f53e91ccd6" value="ADC_Battery_IRQ" />
       <Data key="40c0cf20-a884-4511-ba5c-2ac50401cec3" value="isr_lightcheck" />
       <Data key="9832daf3-9503-416c-9c90-7c57bda5372d" value="isr_lightsense" />
       <Data key="66357837-8232-4e25-a3af-2644fd133e5d" value="isrRF_RX" />
+      <Data key="c4b67ccf-d949-4c73-8a4b-da3cd4a88211" value="isr_getpulse" />
+      <Data key="c9d09394-72a5-4d95-9c04-414ca864da31" value="isr_capture_sample" />
       <Data key="e46a62db-5735-406f-a3c5-0e438160f984" value="isrRF_TX" />
     </Group>
     <Group key="Pin">
@@ -451,7 +454,9 @@
       <Data key="6680f684-23cb-4192-b456-83be615807d2" value="DB0" />
       <Data key="7696e31e-504b-4f89-bbba-87b07ae5279f" value="A7" />
       <Data key="47415e34-6a00-43f6-8ebd-1d6599a97918" value="DIN_7" />
+      <Data key="68383cf1-a207-4ce9-8bc7-31f3f63ec36f" value="Buzzer" />
       <Data key="272329a9-4ef5-4df9-82aa-7879e545e5e5" value="DEBUG_1" />
+      <Data key="286114ea-8741-4f3e-a02f-bdc711e0ff92" value="Buzzer_Out" />
       <Data key="595438c1-3ad0-4f79-bf19-164184a98173" value="DEBUG_0" />
       <Data key="933212c5-98b2-4ebb-8c36-4b87619e155c" value="M1_EN" />
       <Data key="1425177d-0d0e-4468-8bcc-e638e5509a9b" value="Rx_1" />
@@ -3578,6 +3583,13 @@
     </Group>
   </Group>
   <Group key="Interrupt">
+    <Group key="40c0cf20-a884-4511-ba5c-2ac50401cec3">
+      <Group key="CortexM3">
+        <Data key="Assigned" value="True" />
+        <Data key="Priority" value="6" />
+        <Data key="Vector" value="-1" />
+      </Group>
+    </Group>
     <Group key="9832daf3-9503-416c-9c90-7c57bda5372d">
       <Group key="CortexM3">
         <Data key="Assigned" value="True" />
@@ -3672,6 +3684,11 @@
         <Data key="Port Format" value="1,6" />
       </Group>
     </Group>
+    <Group key="350eec05-8fde-4101-95eb-d00c88183837">
+      <Group key="0">
+        <Data key="Port Format" value="3,3" />
+      </Group>
+    </Group>
     <Group key="779f33e0-db1e-4d47-bd2e-ec3a9a900f13">
       <Group key="0">
         <Data key="Port Format" value="0,2" />
@@ -3707,6 +3724,11 @@
         <Data key="Port Format" value="0,1" />
       </Group>
     </Group>
+    <Group key="286114ea-8741-4f3e-a02f-bdc711e0ff92">
+      <Group key="0">
+        <Data key="Port Format" value="1,4" />
+      </Group>
+    </Group>
     <Group key="595438c1-3ad0-4f79-bf19-164184a98173">
       <Group key="0">
         <Data key="Port Format" value="0,0" />
@@ -3740,6 +3762,11 @@
     <Group key="29017152-12a1-4f98-9f2e-a92c7a5b3a0c">
       <Group key="0">
         <Data key="Port Format" value="2,4" />
+      </Group>
+    </Group>
+    <Group key="77715107-f8d5-47e5-a629-0fb83101ac6b">
+      <Group key="0">
+        <Data key="Port Format" value="1,6" />
       </Group>
     </Group>
     <Group key="79772720-a0e3-4c4c-9406-2e0ad94c56bf">
@@ -3870,11 +3897,11 @@
       <Group key="7696e31e-504b-4f89-bbba-87b07ae5279f">
         <Data key="0" value="133386212271449204" />
       </Group>
+      <Group key="68383cf1-a207-4ce9-8bc7-31f3f63ec36f">
+        <Data key="0" value="133409397783737920" />
+      </Group>
       <Group key="1425177d-0d0e-4468-8bcc-e638e5509a9b">
         <Data key="0" value="133392975639410130" />
-      </Group>
-      <Group key="77715107-f8d5-47e5-a629-0fb83101ac6b">
-        <Data key="0" value="133394827733196160" />
       </Group>
       <Group key="b6ffe4e8-bfde-4b71-b826-17696ee2657e">
         <Data key="0" value="133388661421401622" />
@@ -3907,7 +3934,7 @@
     <Data key="CYDEV_DEBUGGING_DPS" value="SWD_SWV" />
     <Data key="CYDEV_DEBUGGING_XRES" value="False" />
     <Data key="CYDEV_ECC_ENABLE" value="False" />
-    <Data key="CYDEV_HEAP_SIZE" value="0x80" />
+    <Data key="CYDEV_HEAP_SIZE" value="0x9000" />
     <Data key="CYDEV_INSTRUCT_CACHE_ENABLED" value="True" />
     <Data key="CYDEV_PROTECTION_ENABLE" value="False" />
     <Data key="CYDEV_STACK_SIZE" value="0x0800" />

@@ -69,18 +69,22 @@ typedef struct Sensor
 	uint8 periodCount;
 } Sensor;
 
-volatile Sensor Sensor_turnLeft = SENSOR_DEFAULT_INITIALISATION;
-volatile Sensor Sensor_turnRight = SENSOR_DEFAULT_INITIALISATION;
-volatile Sensor Sensor_skewBackRight = SENSOR_DEFAULT_INITIALISATION;
-volatile Sensor Sensor_skewBackLeft = SENSOR_DEFAULT_INITIALISATION;
-volatile Sensor Sensor_skewFrontRight = SENSOR_DEFAULT_INITIALISATION;
-volatile Sensor Sensor_skewFrontLeft = SENSOR_DEFAULT_INITIALISATION;
-volatile Sensor Sensor_skewMiddle = SENSOR_DEFAULT_INITIALISATION;
+volatile static Sensor Sensor_turnLeft = SENSOR_DEFAULT_INITIALISATION;
+volatile static Sensor Sensor_turnRight = SENSOR_DEFAULT_INITIALISATION;
+volatile static Sensor Sensor_skewBackRight = SENSOR_DEFAULT_INITIALISATION;
+volatile static Sensor Sensor_skewBackLeft = SENSOR_DEFAULT_INITIALISATION;
+volatile static Sensor Sensor_skewFrontRight = SENSOR_DEFAULT_INITIALISATION;
+volatile static Sensor Sensor_skewFrontLeft = SENSOR_DEFAULT_INITIALISATION;
+volatile static Sensor Sensor_skewMiddle = SENSOR_DEFAULT_INITIALISATION;
 
-volatile uint8 Sensor_sampledPeriods = 0;
+volatile static uint8 Sensor_sampledPeriods = 0;
 
 CY_ISR(SENSOR_ISR_LIGHT_SENSED)
 {
+	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_IS_SAMPLING))
+	{
+		return;
+	}
 	Sensor_prepare_for_sampling();
 }
 
@@ -90,6 +94,7 @@ CY_ISR(SENSOR_ISR_CHECK_LIGHT)
 	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_AWAIT_RISING))
 	{
 		Sensor_handle_missing_rising_edge();
+		FLAG_CLEAR(FLAGS, FLAG_SENSOR_AWAIT_RISING);
 		return;
 	}
 
@@ -150,6 +155,19 @@ bool Sensor_is_middle_on_line(void)
 	return !Sensor_skewMiddle.status;
 }
 
+bool Sensor_has_turn(void)
+{
+	return !Sensor_turnLeft.status || !Sensor_turnRight.status;
+}
+bool Sensor_has_right_turn(void)
+{
+	return !Sensor_turnRight.status;
+}
+bool Sensor_has_left_turn(void)
+{
+	return !Sensor_turnLeft.status;
+}
+
 bool Sensor_is_any_front_on_line(void)
 {
 	return (!Sensor_skewFrontLeft.status) || (!Sensor_skewFrontRight.status);
@@ -165,9 +183,14 @@ bool Sensor_is_any_back_on_line(void)
 	return (!Sensor_skewBackLeft.status) || (!Sensor_skewBackRight.status);
 }
 
+bool Sensor_are_skew_diagonals_on_line(void)
+{
+	return (((!Sensor_skewBackLeft.status) && (!Sensor_skewFrontRight.status)) || ((!Sensor_skewBackRight.status) && (!Sensor_skewFrontLeft.status)));
+}
+
 void Sensor_set_bias_level(float voltage)
 {
-	uint8_t dacValue = (voltage / DAC_Lower_RANGE_4V) * 255;
+	uint8_t dacValue = (voltage)*255;
 
 	DAC_Lower_SetValue(dacValue);
 	DAC_Middle_SetValue(dacValue);
@@ -199,14 +222,18 @@ static void Sensor_prepare_for_next_rising_edge(void)
 	Sensor_sampledPeriods = 0;
 	FLAG_SET(FLAGS, FLAG_SENSOR_AWAIT_RISING);
 	Sensor_set_light_check_timer_period(SENSOR_RISING_EDGE_MAX_DELAY_TIMER_PERIOD);
-	isr_lightsense_Enable();
+	// isr_lightsense_Enable();
+	FLAG_CLEAR(FLAGS, FLAG_SENSOR_IS_SAMPLING);
 }
 
 static void Sensor_handle_missing_rising_edge(void)
 {
 	Timer_Light_Check_Stop();
-	Sensor_write_low_all_sensors();
-
+	// Sensor_write_low_all_sensors();
+	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_IS_SAMPLING))
+	{
+		FLAG_CLEAR(FLAGS, FLAG_SENSOR_IS_SAMPLING);
+	}
 #ifdef SENSOR_DEBUG
 	DEBUG_7_ON;
 #endif
@@ -214,8 +241,12 @@ static void Sensor_handle_missing_rising_edge(void)
 
 static void Sensor_prepare_for_sampling(void)
 {
-	FLAG_CLEAR(FLAGS, FLAG_SENSOR_AWAIT_RISING);
-	isr_lightsense_Disable();
+	if (FLAG_IS_SET(FLAGS, FLAG_SENSOR_AWAIT_RISING))
+	{
+		FLAG_CLEAR(FLAGS, FLAG_SENSOR_AWAIT_RISING);
+	}
+	// isr_lightsense_Disable();
+	FLAG_SET(FLAGS, FLAG_SENSOR_IS_SAMPLING);
 	Sensor_set_light_check_timer_period(SENSOR_SAMPLING_TIMER_PERIOD);
 
 #ifdef SENSOR_DEBUG

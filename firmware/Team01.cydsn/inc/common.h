@@ -20,14 +20,20 @@
 /*
  * Flag Bits
  */
-volatile extern uint8 FLAGS;
+volatile extern uint16 FLAGS;
 
-#define FLAG_USB_INPUT			 0
-#define FLAG_ENCODERS_READY		 1
-#define FLAG_SKEW_CORRECTING	 2
-#define FLAG_MOVE_INFINITELY	 3
-#define FLAG_SENSOR_AWAIT_RISING 4
-#define FLAG_WAITING_AFTER_TURN	 5
+#define FLAG_USB_INPUT						   0
+#define FLAG_ENCODERS_READY					   1
+#define FLAG_SKEW_CORRECTING				   2
+#define FLAG_MOVE_INFINITELY				   3
+#define FLAG_SENSOR_AWAIT_RISING			   4
+#define FLAG_WAITING_AFTER_ACTION			   5
+#define FLAG_MOVING_MM						   6
+#define FLAG_WAITING_FOR_FINAL_ACTION_IN_QUEUE 7
+#define FLAG_TOGGLE_TURN_TIMEOUT			   8
+#define FLAG_DOING_LAST_MOVE_MM				   9
+#define FLAG_NO_OVERSHOOT_CORRECTION_NEEDED	   10
+#define FLAG_SENSOR_IS_SAMPLING				   11
 
 /**
  * @brief Check whether a flag bit is set.
