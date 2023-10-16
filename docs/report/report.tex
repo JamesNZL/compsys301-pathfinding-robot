@@ -9,6 +9,8 @@
 \graphicspath{{./images/}}
 \usepackage{textcomp}
 \usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{makecell}
 \usepackage[raggedrightboxes]{ragged2e}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -134,6 +136,13 @@ Finally, we produced a dimensioned CAD drawing as shown in Figure \ref{fig:const
 
 % TODO: design considerations
 % TODO: DNF and 0ohms
+
+\subsubsection{User Pushbutton}
+
+
+\subsubsection{Debug LEDs}
+
+
 
 
 
@@ -294,15 +303,160 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 
 
 
-% * References
+% % * References
 
-\nocite{*}
-\bibliographystyle{./IEEEtran}
-\bibliography{annot}
+% \nocite{*}
+% \bibliographystyle{./IEEEtran}
+% \bibliography{annot}
 
 
 
 \appendix
+
+\subsection{Team Contributions}
+
+\bgroup
+\def\arraystretch{1.5}
+\begin{tabularx}{\linewidth}{ | c | X | }
+	\hline
+	Name   & Contributions                     \\
+	\hline
+	Benson & \begin{itemize}
+		         \item Sensor Circuitry
+		               \begin{itemize}
+			      \item Design
+			      \item Simulation
+			      \item Physical verification
+		      \end{itemize}
+		         \item PCB Artwork
+		               \begin{itemize}
+			      \item Minor contributions to component layout
+			      \item Soldering
+		      \end{itemize}
+		         \item Pathfinding Algorithm Design
+		               \begin{itemize}
+			      \item Planning
+			      \item Implementation
+			      \item Visualisation
+			      \item Testing
+		      \end{itemize}
+		         \item Firmware Modules
+		               \begin{itemize}
+			      \item API design
+			      \item Sensor processing
+			      \item Pathfinding algorithms
+			      \item Integration of all modules
+		      \end{itemize}
+		         \item Report Writing
+		               \begin{itemize}
+			      \item
+		      \end{itemize}
+	         \end{itemize} \\
+	\hline
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{ | c | X | }
+	\hline
+	Viktor & \begin{itemize}
+		         \item PCB
+		               \begin{itemize}
+			      \item Schematic transfer
+			      \item Multi-channel design
+			      \item Component layout
+			      \item Routing
+			      \item Soldering
+		      \end{itemize}
+	         \end{itemize} \\
+	\hline
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{ | c | X | }
+	\hline
+	James & \begin{itemize}
+		        \item Project Management
+		              \begin{itemize}
+			      \item Repository setup \& maintenance
+			      \item VS Code tooling configuration \& documentation
+		      \end{itemize}
+		        \item Motor Control
+		              \begin{itemize}
+			      \item H-Bridge control
+			      \item PWM scheme selection
+			      \item Motor benchmarking
+		      \end{itemize}
+		        \item Sensor Design
+		              \begin{itemize}
+			      \item Sensor testing \& analysis
+			      \item Time- and frequency- domain profiling
+			      \item Simulation
+			      \item Constellation design
+			      \item Sensor logic design
+		      \end{itemize}
+		        \item PCB Design
+		              \begin{itemize}
+			      \item Schematic capture
+			      \item Pin assignments
+			      \item Component layout
+			      \item Routing
+			      \item Silkscreen
+		      \end{itemize}
+		        \item Pathfinding Algorithm Design
+		              \begin{itemize}
+			      \item Planning
+		      \end{itemize}
+		        \item Firmware Modules
+		              \begin{itemize}
+			      \item API design \& architecture
+			      \item Style guide
+			      \item Serial commands
+			      \item Data structures implementation
+			      \item Battery monitoring
+			      \item Sensor integration
+			      \item Movement integration
+		      \end{itemize}
+		        \item Tests and Verification
+		        \item Report Writing
+		              \begin{itemize}
+			      \item Formatting
+		      \end{itemize}
+	        \end{itemize} \\
+	\hline
+\end{tabularx}
+
+\begin{tabularx}{\linewidth}{ | c | X | }
+	\hline
+	Nick & \begin{itemize}
+		       \item Measurements
+		             \begin{itemize}
+			      \item Robot dimensions for movement functions
+			      \item PCB dimensions for sensor placement
+		      \end{itemize}
+		       \item PCB
+		             \begin{itemize}
+			      \item Soldering
+		      \end{itemize}
+		       \item Firmware Modules
+		             \begin{itemize}
+			      \item API design
+			      \item Sensor processing prototype
+			      \item Movement
+		      \end{itemize}
+		       \item Tests and Verification
+		             \begin{itemize}
+			      \item Speed tests
+			      \item Distance tests
+			      \item Pathfinding tests
+		      \end{itemize}
+		       \item Report Writing
+		             \begin{itemize}
+			      \item
+		      \end{itemize}
+	       \end{itemize} \\
+	\hline
+\end{tabularx}
+\egroup
+
+\subsection{Sensor Analysis}
 
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-matlab.png}}
@@ -362,11 +516,15 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 	\label{fig:sensor-photodiode-sensitivity}
 \end{figure}
 
+\subsection{Analogue Circuitry Design}
+
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-spice.png}}
 	\caption{Simulation of our sensor circuitry in \texttt{LTspice}}
 	\label{fig:sensor-spice}
 \end{figure}
+
+\subsection{Constellation Design}
 
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.4\textwidth]{constellation-basic-4-grid.png}}
@@ -451,6 +609,8 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 	\label{fig:constellation-cad}
 \end{figure}
 
+\subsection{Pathfinding Implementation}
+
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{pathfinding-visualisation.png}}
 	\caption{Pathfinding visualisation tool created with \texttt{Matplotlib}}
@@ -462,11 +622,15 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 	\label{fig:pathfinding-instructions}
 \end{figure}
 
+\subsection{Movement Module}
+
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{physical-measurements.png}}
 	\caption{Measurements of the robot's physical dimensions}
 	\label{fig:physical-dimensions}
 \end{figure}
+
+\subsection{Sensor Processing Module}
 
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-psoc.png}}
@@ -485,11 +649,15 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 	\label{fig:sensor-debouncing}
 \end{figure}
 
+\subsection{Pathfinding Module}
+
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.3\textwidth]{pathfinding-route-struct.png}}
 	\caption{Our route data structure}
 	\label{fig:pathfinding-route-struct}
 \end{figure}
+
+\subsection{Integration}
 
 \begin{figure}[htbp]
 	\centerline{\includegraphics[width=0.5\textwidth]{integration-flowchart.png}}
