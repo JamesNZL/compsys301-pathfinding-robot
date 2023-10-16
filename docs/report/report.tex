@@ -139,11 +139,12 @@ Finally, we produced a dimensioned CAD drawing as shown in Figure \ref{fig:const
 
 \subsubsection{Debug LEDs}
 
-
+Our decision to utilise our surplus \texttt{GPIO}s to implement a bank of four debugging LEDs on each side of the robot served to be \emph{incredibly} useful whilst debugging \& verifying our firmware, as it provided us with direct, visual insight into the robot's sensor interpretations and movement decisions.
+These debugging LEDs were also used to display the battery charge percentage at start-up.
 
 \subsubsection{User Pushbutton}
 
-A key aspect of our hardware implementation was the inclusion of a user pushbutton, which could later be used to provide user input to the robot at runtime.
+Another key aspect of our hardware implementation was the inclusion of a user pushbutton, which could later be used to provide user input to the robot at runtime.
 This was eventually used to serve as a `start' button, where the robot would wait until the button was pressed before completing its startup and initialisation.
 This was a highly-appreciated quality-of-life feature that served to be incredibly useful as an `engineered' alternative to a constant \texttt{CyDelay()} call.
 
