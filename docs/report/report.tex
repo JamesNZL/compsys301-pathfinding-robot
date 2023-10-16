@@ -94,6 +94,9 @@ One disadvantage of this OpAmp topology is that an OpAmp contains an internal ca
 This was acceptable however as we did not require such precision, and it was more practical to simply use the second OpAmp in the transimpedance amplifier IC.
 We decided to use a DAC on the PSoC to provide the comparator reference voltage, as this offered flexibility in case we needed to vary this quantity once our PCB was assembled.
 
+Finally, the output of our comparator stage was fed into a low-pass filter with a cut-off frequency $f_\text{c}=\qty{10}{\hertz}$, which removed the AC switching component and produced a DC signal of approximately \qty{1.5}{\volt}.
+This DC signal was lastly amplified to drive it to positive saturation if the signal was \texttt{HIGH}, producing a PSoC input signal that would require minimal processing in firmware.
+
 We selected the rail-to-rail \texttt{TLC082} OpAmp as it drove closer to the rails than an \texttt{LM324}, which was essential towards reliably satisfying the high-voltage threshold of the PSoC. We decided against the BJT-based \texttt{LT6221}, as the FET-based \texttt{TLC082} permitted a higher input impedance for each stage due to its lower input bias current (\qty{150}{\nA} for the \texttt{LT6221} versus \qty{50}{\pA} for the \texttt{TLC082}).
 In the end, this was prioritised over the slightly higher slew rate of the \texttt{LT6221} (\qty{20}{\volt\per\us}) versus \qty{16}{\volt\per\us}) due to the negligible effects of phase shift in both cases.
 
