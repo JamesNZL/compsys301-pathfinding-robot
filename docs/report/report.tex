@@ -180,8 +180,6 @@ We verified the correctness of this supplementary algorithm by tracing out the c
 In order to facilitate collaboration on different aspects of our firmware, we decided to produce a series of modules, where each module exposed its own API.
 This modular architectural approach enabled ease-of-understanding during integration, and prevented name collisions with our use of namespacing.
 
-% TODO: battery monitoring
-
 \subsection{Movement Module}
 
 The mission of the movement module was to streamline interactions with the most vital component of our robot—the motors.
@@ -272,6 +270,15 @@ If memory allocation was required at runtime, it would certainly be preferred to
 Alongside the standard implementation, a unit testing suite was written and used throughout the development process for each of the relevant pathfinding functions, utilising \texttt{C}'s \texttt{assert()} to streamline development and ensure functional correctness.
 The effectiveness of this testing suite was clearly evident from the lack of pathfinding bugs found during testing and verification.
 
+\subsection{Battery Monitoring Module}
+
+We noticed strained movement, failed skew correction, and unreliable turns whenever the battery voltage dropped below a certain threshold, which motivated the implementation of a module to monitor our battery voltage and alert us to charge once discharged too far.
+We had fortunately accounted for this whilst designing our PCB, at which time we had made sure to include a \qty{10}{\kohm}-\qty{2.7}{\kohm} voltage divider connected to the \texttt{Vbat} pin.
+The output of this voltage divider is fed into an ADC, where the resistive divider ratio was calculated to reduce the maximum \qty{9.6}{\volt} battery voltage to a maximum of \qty{2.048}{\volt} for the ADC.
+
+In firmware, we find the average of 10 samples and compute the original battery voltage, which is compared against a defined minimum–maximum range to compute the battery charge percentage—which is then displayed on our debugging LEDs.
+We found that it was critical to delay the initial sample by at least \qty{10}{\ms} due to a charging time-constant on the \texttt{V\_Battery} pin, which we measured using a digital oscilloscope.
+
 \subsection{Music Module}
 
 We felt that it did not make sense for a pseudo-vehicle not to have some form of an audio system—hence, we implemented a PWM-driven speaker with its own Class D amplifier capable of playing sounds and music from any MIDI file.
@@ -313,356 +320,356 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 
 \appendix
 
-\subsection{Team Contributions}
+% \subsection{Team Contributions}
 
-\bgroup
-\def\arraystretch{1.5}
-\begin{tabularx}{\linewidth}{ | c | X | }
-	\hline
-	Name   & Contributions                     \\
-	\hline
-	Benson & \begin{itemize}
-		         \item Sensor Circuitry
-		               \begin{itemize}
-			      \item Design
-			      \item Simulation
-			      \item Physical verification
-		      \end{itemize}
-		         \item PCB Artwork
-		               \begin{itemize}
-			      \item Minor contributions to component layout
-			      \item Soldering
-		      \end{itemize}
-		         \item Pathfinding Algorithm Design
-		               \begin{itemize}
-			      \item Planning
-			      \item Implementation
-			      \item Visualisation
-			      \item Testing
-		      \end{itemize}
-		         \item Firmware Modules
-		               \begin{itemize}
-			      \item API design
-			      \item Sensor processing
-			      \item Pathfinding algorithms
-			      \item Integration of all modules
-		      \end{itemize}
-		         \item Report Writing
-		               \begin{itemize}
-			      \item
-		      \end{itemize}
-	         \end{itemize} \\
-	\hline
-\end{tabularx}
+% \bgroup
+% \def\arraystretch{1.5}
+% \begin{tabularx}{\linewidth}{ | c | X | }
+% 	\hline
+% 	Name   & Contributions                     \\
+% 	\hline
+% 	Benson & \begin{itemize}
+% 		         \item Sensor Circuitry
+% 		               \begin{itemize}
+% 			      \item Design
+% 			      \item Simulation
+% 			      \item Physical verification
+% 		      \end{itemize}
+% 		         \item PCB Artwork
+% 		               \begin{itemize}
+% 			      \item Minor contributions to component layout
+% 			      \item Soldering
+% 		      \end{itemize}
+% 		         \item Pathfinding Algorithm Design
+% 		               \begin{itemize}
+% 			      \item Planning
+% 			      \item Implementation
+% 			      \item Visualisation
+% 			      \item Testing
+% 		      \end{itemize}
+% 		         \item Firmware Modules
+% 		               \begin{itemize}
+% 			      \item API design
+% 			      \item Sensor processing
+% 			      \item Pathfinding algorithms
+% 			      \item Integration of all modules
+% 		      \end{itemize}
+% 		         \item Report Writing
+% 		               \begin{itemize}
+% 			      \item
+% 		      \end{itemize}
+% 	         \end{itemize} \\
+% 	\hline
+% \end{tabularx}
 
-\begin{tabularx}{\linewidth}{ | c | X | }
-	\hline
-	Viktor & \begin{itemize}
-		         \item PCB
-		               \begin{itemize}
-			      \item Schematic transfer
-			      \item Multi-channel design
-			      \item Component layout
-			      \item Routing
-			      \item Soldering
-		      \end{itemize}
-	         \end{itemize} \\
-	\hline
-\end{tabularx}
+% \begin{tabularx}{\linewidth}{ | c | X | }
+% 	\hline
+% 	Viktor & \begin{itemize}
+% 		         \item PCB
+% 		               \begin{itemize}
+% 			      \item Schematic transfer
+% 			      \item Multi-channel design
+% 			      \item Component layout
+% 			      \item Routing
+% 			      \item Soldering
+% 		      \end{itemize}
+% 	         \end{itemize} \\
+% 	\hline
+% \end{tabularx}
 
-\begin{tabularx}{\linewidth}{ | c | X | }
-	\hline
-	James & \begin{itemize}
-		        \item Project Management
-		              \begin{itemize}
-			      \item Repository setup \& maintenance
-			      \item VS Code tooling configuration \& documentation
-		      \end{itemize}
-		        \item Motor Control
-		              \begin{itemize}
-			      \item H-Bridge control
-			      \item PWM scheme selection
-			      \item Motor benchmarking
-		      \end{itemize}
-		        \item Sensor Design
-		              \begin{itemize}
-			      \item Sensor testing \& analysis
-			      \item Time- and frequency- domain profiling
-			      \item Simulation
-			      \item Constellation design
-			      \item Sensor logic design
-		      \end{itemize}
-		        \item PCB Design
-		              \begin{itemize}
-			      \item Schematic capture
-			      \item Pin assignments
-			      \item Component layout
-			      \item Routing
-			      \item Silkscreen
-		      \end{itemize}
-		        \item Pathfinding Algorithm Design
-		              \begin{itemize}
-			      \item Planning
-		      \end{itemize}
-		        \item Firmware Modules
-		              \begin{itemize}
-			      \item API design \& architecture
-			      \item Style guide
-			      \item Serial commands
-			      \item Data structures implementation
-			      \item Battery monitoring
-			      \item Sensor integration
-			      \item Movement integration
-		      \end{itemize}
-		        \item Tests and Verification
-		        \item Report Writing
-		              \begin{itemize}
-			      \item Formatting
-		      \end{itemize}
-	        \end{itemize} \\
-	\hline
-\end{tabularx}
+% \begin{tabularx}{\linewidth}{ | c | X | }
+% 	\hline
+% 	James & \begin{itemize}
+% 		        \item Project Management
+% 		              \begin{itemize}
+% 			      \item Repository setup \& maintenance
+% 			      \item VS Code tooling configuration \& documentation
+% 		      \end{itemize}
+% 		        \item Motor Control
+% 		              \begin{itemize}
+% 			      \item H-Bridge control
+% 			      \item PWM scheme selection
+% 			      \item Motor benchmarking
+% 		      \end{itemize}
+% 		        \item Sensor Design
+% 		              \begin{itemize}
+% 			      \item Sensor testing \& analysis
+% 			      \item Time- and frequency- domain profiling
+% 			      \item Simulation
+% 			      \item Constellation design
+% 			      \item Sensor logic design
+% 		      \end{itemize}
+% 		        \item PCB Design
+% 		              \begin{itemize}
+% 			      \item Schematic capture
+% 			      \item Pin assignments
+% 			      \item Component layout
+% 			      \item Routing
+% 			      \item Silkscreen
+% 		      \end{itemize}
+% 		        \item Pathfinding Algorithm Design
+% 		              \begin{itemize}
+% 			      \item Planning
+% 		      \end{itemize}
+% 		        \item Firmware Modules
+% 		              \begin{itemize}
+% 			      \item API design \& architecture
+% 			      \item Style guide
+% 			      \item Serial commands
+% 			      \item Data structures implementation
+% 			      \item Battery monitoring
+% 			      \item Sensor integration
+% 			      \item Movement integration
+% 		      \end{itemize}
+% 		        \item Tests and Verification
+% 		        \item Report Writing
+% 		              \begin{itemize}
+% 			      \item Formatting
+% 		      \end{itemize}
+% 	        \end{itemize} \\
+% 	\hline
+% \end{tabularx}
 
-\begin{tabularx}{\linewidth}{ | c | X | }
-	\hline
-	Nick & \begin{itemize}
-		       \item Measurements
-		             \begin{itemize}
-			      \item Robot dimensions for movement functions
-			      \item PCB dimensions for sensor placement
-		      \end{itemize}
-		       \item PCB
-		             \begin{itemize}
-			      \item Soldering
-		      \end{itemize}
-		       \item Firmware Modules
-		             \begin{itemize}
-			      \item API design
-			      \item Sensor processing prototype
-			      \item Movement
-		      \end{itemize}
-		       \item Tests and Verification
-		             \begin{itemize}
-			      \item Speed tests
-			      \item Distance tests
-			      \item Pathfinding tests
-		      \end{itemize}
-		       \item Report Writing
-		             \begin{itemize}
-			      \item
-		      \end{itemize}
-	       \end{itemize} \\
-	\hline
-\end{tabularx}
-\egroup
+% \begin{tabularx}{\linewidth}{ | c | X | }
+% 	\hline
+% 	Nick & \begin{itemize}
+% 		       \item Measurements
+% 		             \begin{itemize}
+% 			      \item Robot dimensions for movement functions
+% 			      \item PCB dimensions for sensor placement
+% 		      \end{itemize}
+% 		       \item PCB
+% 		             \begin{itemize}
+% 			      \item Soldering
+% 		      \end{itemize}
+% 		       \item Firmware Modules
+% 		             \begin{itemize}
+% 			      \item API design
+% 			      \item Sensor processing prototype
+% 			      \item Movement
+% 		      \end{itemize}
+% 		       \item Tests and Verification
+% 		             \begin{itemize}
+% 			      \item Speed tests
+% 			      \item Distance tests
+% 			      \item Pathfinding tests
+% 		      \end{itemize}
+% 		       \item Report Writing
+% 		             \begin{itemize}
+% 			      \item
+% 		      \end{itemize}
+% 	       \end{itemize} \\
+% 	\hline
+% \end{tabularx}
+% \egroup
 
-\subsection{Sensor Analysis}
+% \subsection{Sensor Analysis}
 
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{sensor-matlab.png}}
-	\caption{Selection of phototransistor time- and frequency-domain signals}
-	\label{fig:sensor-matlab}
-\end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-matlab.png}}
+% 	\caption{Selection of phototransistor time- and frequency-domain signals}
+% 	\label{fig:sensor-matlab}
+% \end{figure}
 
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{phototransistor-time.png}}
-	\caption{Time-domain phototransistor signals}
-	\label{fig:phototransistor-time}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{phototransistor-frequency.png}}
-	\caption{Frequency-domain phototransistor spectrums}
-	\label{fig:phototransistor-frequency}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{photodiode-time.png}}
-	\caption{Time-domain photodiode signals}
-	\label{fig:photodiode-time}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{photodiode-frequency.png}}
-	\caption{Frequency-domain photodiode spectrums}
-	\label{fig:photodiode-frequency}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{projector-phototransistor-time.png}}
-	\caption{Time-domain phototransistor signal comparison between projectors}
-	\label{fig:projector-phototransistor-time}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{projector-phototransistor-frequency.png}}
-	\caption{Frequency-domain phototransistor spectrum comparison between projectors}
-	\label{fig:projector-phototransistor-frequency}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{projector-photodiode-time.png}}
-	\caption{Time-domain photodiode signal comparison between projectors}
-	\label{fig:projector-photodiode-time}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{projector-photodiode-frequency.png}}
-	\caption{Frequency-domain photodiode spectrum comparison between projectors}
-	\label{fig:projector-photodiode-frequency}
-\end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{phototransistor-time.png}}
+% 	\caption{Time-domain phototransistor signals}
+% 	\label{fig:phototransistor-time}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{phototransistor-frequency.png}}
+% 	\caption{Frequency-domain phototransistor spectrums}
+% 	\label{fig:phototransistor-frequency}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{photodiode-time.png}}
+% 	\caption{Time-domain photodiode signals}
+% 	\label{fig:photodiode-time}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{photodiode-frequency.png}}
+% 	\caption{Frequency-domain photodiode spectrums}
+% 	\label{fig:photodiode-frequency}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{projector-phototransistor-time.png}}
+% 	\caption{Time-domain phototransistor signal comparison between projectors}
+% 	\label{fig:projector-phototransistor-time}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{projector-phototransistor-frequency.png}}
+% 	\caption{Frequency-domain phototransistor spectrum comparison between projectors}
+% 	\label{fig:projector-phototransistor-frequency}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{projector-photodiode-time.png}}
+% 	\caption{Time-domain photodiode signal comparison between projectors}
+% 	\label{fig:projector-photodiode-time}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{projector-photodiode-frequency.png}}
+% 	\caption{Frequency-domain photodiode spectrum comparison between projectors}
+% 	\label{fig:projector-photodiode-frequency}
+% \end{figure}
 
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{sensor-phototransistor-sensitivity.png}}
-	\caption{Frequency-domain phototransistor spectrum comparison between ambient lights on/off}
-	\label{fig:sensor-phototransistor-sensitivity}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{sensor-photodiode-sensitivity.png}}
-	\caption{Frequency-domain photodiode spectrum comparison between ambient lights on/off}
-	\label{fig:sensor-photodiode-sensitivity}
-\end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-phototransistor-sensitivity.png}}
+% 	\caption{Frequency-domain phototransistor spectrum comparison between ambient lights on/off}
+% 	\label{fig:sensor-phototransistor-sensitivity}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-photodiode-sensitivity.png}}
+% 	\caption{Frequency-domain photodiode spectrum comparison between ambient lights on/off}
+% 	\label{fig:sensor-photodiode-sensitivity}
+% \end{figure}
 
-\subsection{Analogue Circuitry Design}
+% \subsection{Analogue Circuitry Design}
 
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{sensor-spice.png}}
-	\caption{Simulation of our sensor circuitry in \texttt{LTspice}}
-	\label{fig:sensor-spice}
-\end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-spice.png}}
+% 	\caption{Simulation of our sensor circuitry in \texttt{LTspice}}
+% 	\label{fig:sensor-spice}
+% \end{figure}
 
-\subsection{Constellation Design}
+% \subsection{Constellation Design}
 
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.4\textwidth]{constellation-basic-4-grid.png}}
-	\caption{Basic 4-Grid sensor constellation}
-	\label{fig:constellation-basic-4-grid}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.4\textwidth]{constellation-basic-4-straight.png}}
-	\caption{Basic 4-Grid with Straight-Ahead sensor constellation}
-	\label{fig:constellation-basic-4-straight}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-skew-v1.png}}
-	\caption{Modified 4-Grid with Skew Detection \texttt{v1} sensor constellation}
-	\label{fig:constellation-4-skew-v1}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-skew-v2.png}}
-	\caption{Modified 4-Grid with Skew Detection \texttt{v2} sensor constellation}
-	\label{fig:constellation-4-skew-v2}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-line.png}}
-	\caption{4-Line sensor constellation}
-	\label{fig:constellation-4-line}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-skew-v3.png}}
-	\caption{Modified 4-Grid with Skew Detection \texttt{v3} sensor constellation}
-	\label{fig:constellation-4-skew-v3}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-skew-v4.png}}
-	\caption{Modified 4-Grid with Skew Detection \texttt{v4} sensor constellation}
-	\label{fig:constellation-4-skew-v4}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.4\textwidth]{constellation-6-grid.png}}
-	\caption{6-Grid sensor constellation}
-	\label{fig:constellation-6-grid}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-offset.png}}
-	\caption{Modified 4-Grid with Offset Middle Sensors sensor constellation}
-	\label{fig:constellation-4-offset}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.4\textwidth]{constellation-6-offset.png}}
-	\caption{Modified 6-Grid with Offset Middle Sensors sensor constellation}
-	\label{fig:constellation-6-offset}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.4\textwidth]{constellation-diamond.png}}
-	\caption{Diamond sensor constellation}
-	\label{fig:constellation-diamond}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.4\textwidth]{constellation-diamond-middle.png}}
-	\caption{Modified Diamond with Middle Sensor sensor constellation}
-	\label{fig:constellation-diamond-middle}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.2\textwidth]{constellation-hexagon-middle.png}}
-	\caption{Hexagon with Middle Sensor sensor constellation}
-	\label{fig:constellation-hexagon-middle}
-\end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.4\textwidth]{constellation-basic-4-grid.png}}
+% 	\caption{Basic 4-Grid sensor constellation}
+% 	\label{fig:constellation-basic-4-grid}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.4\textwidth]{constellation-basic-4-straight.png}}
+% 	\caption{Basic 4-Grid with Straight-Ahead sensor constellation}
+% 	\label{fig:constellation-basic-4-straight}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-skew-v1.png}}
+% 	\caption{Modified 4-Grid with Skew Detection \texttt{v1} sensor constellation}
+% 	\label{fig:constellation-4-skew-v1}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-skew-v2.png}}
+% 	\caption{Modified 4-Grid with Skew Detection \texttt{v2} sensor constellation}
+% 	\label{fig:constellation-4-skew-v2}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-line.png}}
+% 	\caption{4-Line sensor constellation}
+% 	\label{fig:constellation-4-line}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-skew-v3.png}}
+% 	\caption{Modified 4-Grid with Skew Detection \texttt{v3} sensor constellation}
+% 	\label{fig:constellation-4-skew-v3}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-skew-v4.png}}
+% 	\caption{Modified 4-Grid with Skew Detection \texttt{v4} sensor constellation}
+% 	\label{fig:constellation-4-skew-v4}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.4\textwidth]{constellation-6-grid.png}}
+% 	\caption{6-Grid sensor constellation}
+% 	\label{fig:constellation-6-grid}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.4\textwidth]{constellation-4-offset.png}}
+% 	\caption{Modified 4-Grid with Offset Middle Sensors sensor constellation}
+% 	\label{fig:constellation-4-offset}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.4\textwidth]{constellation-6-offset.png}}
+% 	\caption{Modified 6-Grid with Offset Middle Sensors sensor constellation}
+% 	\label{fig:constellation-6-offset}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.4\textwidth]{constellation-diamond.png}}
+% 	\caption{Diamond sensor constellation}
+% 	\label{fig:constellation-diamond}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.4\textwidth]{constellation-diamond-middle.png}}
+% 	\caption{Modified Diamond with Middle Sensor sensor constellation}
+% 	\label{fig:constellation-diamond-middle}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.2\textwidth]{constellation-hexagon-middle.png}}
+% 	\caption{Hexagon with Middle Sensor sensor constellation}
+% 	\label{fig:constellation-hexagon-middle}
+% \end{figure}
 
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{sensor-table.png}}
-	\caption{Selection of rows from sensor constellation truth table}
-	\label{fig:sensor-table}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{sensor-table-reduced.png}}
-	\caption{Reduced sensor constellation truth table}
-	\label{fig:sensor-table-reduced}
-\end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-table.png}}
+% 	\caption{Selection of rows from sensor constellation truth table}
+% 	\label{fig:sensor-table}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-table-reduced.png}}
+% 	\caption{Reduced sensor constellation truth table}
+% 	\label{fig:sensor-table-reduced}
+% \end{figure}
 
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{constellation-cad.png}}
-	\caption{Dimensioned CAD drawing for final constellation design}
-	\label{fig:constellation-cad}
-\end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{constellation-cad.png}}
+% 	\caption{Dimensioned CAD drawing for final constellation design}
+% 	\label{fig:constellation-cad}
+% \end{figure}
 
-\subsection{Pathfinding Implementation}
+% \subsection{Pathfinding Implementation}
 
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{pathfinding-visualisation.png}}
-	\caption{Pathfinding visualisation tool created with \texttt{Matplotlib}}
-	\label{fig:pathfinding-visualisation}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{pathfinding-instructions.png}}
-	\caption{Debugging output of the generated instructions}
-	\label{fig:pathfinding-instructions}
-\end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{pathfinding-visualisation.png}}
+% 	\caption{Pathfinding visualisation tool created with \texttt{Matplotlib}}
+% 	\label{fig:pathfinding-visualisation}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{pathfinding-instructions.png}}
+% 	\caption{Debugging output of the generated instructions}
+% 	\label{fig:pathfinding-instructions}
+% \end{figure}
 
-\subsection{Movement Module}
+% \subsection{Movement Module}
 
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{physical-measurements.png}}
-	\caption{Measurements of the robot's physical dimensions}
-	\label{fig:physical-dimensions}
-\end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{physical-measurements.png}}
+% 	\caption{Measurements of the robot's physical dimensions}
+% 	\label{fig:physical-dimensions}
+% \end{figure}
 
-\subsection{Sensor Processing Module}
+% \subsection{Sensor Processing Module}
 
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{sensor-psoc.png}}
-	\caption{Screenshot of PSoC components used in sensor processing}
-	\label{fig:sensor-psoc}
-\end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-psoc.png}}
+% 	\caption{Screenshot of PSoC components used in sensor processing}
+% 	\label{fig:sensor-psoc}
+% \end{figure}
 
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{sensor-sampling.png}}
-	\caption{Explanation of sensor sampling process}
-	\label{fig:sensor-sampling}
-\end{figure}
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{sensor-debouncing.png}}
-	\caption{Explanation of sensor debouncing process}
-	\label{fig:sensor-debouncing}
-\end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-sampling.png}}
+% 	\caption{Explanation of sensor sampling process}
+% 	\label{fig:sensor-sampling}
+% \end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{sensor-debouncing.png}}
+% 	\caption{Explanation of sensor debouncing process}
+% 	\label{fig:sensor-debouncing}
+% \end{figure}
 
-\subsection{Pathfinding Module}
+% \subsection{Pathfinding Module}
 
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.3\textwidth]{pathfinding-route-struct.png}}
-	\caption{Our route data structure}
-	\label{fig:pathfinding-route-struct}
-\end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.3\textwidth]{pathfinding-route-struct.png}}
+% 	\caption{Our route data structure}
+% 	\label{fig:pathfinding-route-struct}
+% \end{figure}
 
-\subsection{Integration}
+% \subsection{Integration}
 
-\begin{figure}[htbp]
-	\centerline{\includegraphics[width=0.5\textwidth]{integration-flowchart.png}}
-	\caption{Our high-level firmware architecture}
-	\label{fig:integration-flowchart}
-\end{figure}
+% \begin{figure}[htbp]
+% 	\centerline{\includegraphics[width=0.5\textwidth]{integration-flowchart.png}}
+% 	\caption{Our high-level firmware architecture}
+% 	\label{fig:integration-flowchart}
+% \end{figure}
 
 \end{document}
