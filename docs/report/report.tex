@@ -75,7 +75,7 @@ More influentially, we notice that there are less lights-on blue peaks in the ph
 
 The full suite of plots can be viewed in Figures \ref{fig:sensor-matlab}–\ref{fig:sensor-photodiode-sensitivity}.
 
-\subsection{Analogue Circuitry Design}
+\subsection{Analogue Circuitry Design \label{subsect:analogue}}
 
 The goal whilst designing our sensor circuitry was to produce a robust output signal that was immune to ambient lighting conditions.
 We concluded in our frequency-domain analyses that this ambient noise primarily consisted of a DC (\qty{0}{\hertz}) component, which could be blocked by a high-pass/coupling capacitor.
@@ -153,7 +153,7 @@ This was a highly-appreciated quality-of-life feature that served to be incredib
 
 
 
-\section{Pathfinding Algorithms \label{sect-pathfinding-algorithms}}
+\section{Pathfinding Algorithms \label{sect:pathfinding-algorithms}}
 
 \subsection{Finding the Shortest Path}
 
@@ -247,6 +247,12 @@ This is too great of a change for fine-tuned skew correction, and often caused o
 
 \subsection{Sensor Processing Module}
 
+As outlined in Section \ref{subsect:analogue}, the initial intention for this module was to read the amplified DC component of our comparator output signals with a PSoC digital input pin.
+We subsequently found that the low duty cycle of the comparator output required a long time for the signal to ramp up to a \texttt{HIGH} voltage—the effect of which was clearly visible in the delayed detection \& response of the PSoC.
+Although robust, we decided that this implementation was slower than we desired, leading us to investigate the feasibility of an increased-complexity firmware solution to achieve a faster response.
+We found that using a timer matched to the projector frequency was a simple \& effective solution, but this discovery was made after completing our PCB—which we did not want to re-visit and iterate again.
+With some careful analysis, we noticed that we could implement this alternative approach without any board layout changes, by marking two passives as `do not place (DNP)' and replacing two others with \qty{0}{\ohm} jumpers, we realised that we could convert the low-pass amplifier into a simple unity-gain buffer.
+
 We made use of the digital pin PSoC component to interface with the output of our sensor circuitry, and combined it with an ISR component as shown in Figure \ref{fig:sensor-psoc} to notify us that one of the sensors was under `white' light, or off the line.
 We knew that the timing of these rising edges would be very similar for all the sensors as they are all under the same projected light, but component variances and tolerances in our high-pass filters and $RC$ circuitry of the OpAmps may lead to slight variations in these signals.
 
@@ -259,7 +265,7 @@ A sketch detailing this debouncing process is shown in Figure \ref{fig:sensor-de
 
 \subsection{Pathfinding Module}
 
-The pathfinding implementation remained identical to that detailed in Section \ref{sect-pathfinding-algorithms}, except now required self-rolled implementations of the data structures not available in \texttt{C}.
+The pathfinding implementation remained identical to that detailed in Section \ref{sect:pathfinding-algorithms}, except now required self-rolled implementations of the data structures not available in \texttt{C}.
 This required us to write a queue, which we decided to architect atop \texttt{void *} pointers to facilitate generic usage, and the route data structures outlined in Figure \ref{fig:pathfinding-route-struct}.
 We chose to implement generic, well tested, reusable data structures that could be included as needed in favour of single-purpose implementations.
 This was decided to protect ourselves in case requirements changed in the future, allowing us to make `downstream' changes without the risk of breaking the business logic of the data structures themselves.
@@ -328,6 +334,8 @@ A significant thank you to our lecturers Dr. Nitish Patel and Dr. Nathan Allen a
 \appendix
 
 % \subsection{Team Contributions}
+
+% TODO: report contributions
 
 % \bgroup
 % \def\arraystretch{1.5}
