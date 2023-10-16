@@ -137,12 +137,15 @@ Finally, we produced a dimensioned CAD drawing as shown in Figure \ref{fig:const
 % TODO: design considerations
 % TODO: DNF and 0ohms
 
-\subsubsection{User Pushbutton}
-
-
 \subsubsection{Debug LEDs}
 
 
+
+\subsubsection{User Pushbutton}
+
+A key aspect of our hardware implementation was the inclusion of a user pushbutton, which could later be used to provide user input to the robot at runtime.
+This was eventually used to serve as a `start' button, where the robot would wait until the button was pressed before completing its startup and initialisation.
+This was a highly-appreciated quality-of-life feature that served to be incredibly useful as an `engineered' alternative to a constant \texttt{CyDelay()} call.
 
 
 
